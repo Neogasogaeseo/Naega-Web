@@ -28,7 +28,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "yarn lint-eslint && yarn lint-prettier",
+    "lint-eslint": "eslint --ignore-path .gitignore src/**/*{ts,tsx} --fix",
+    "lint-prettier": "prettier --write \"src/**/*.(ts|tsx)\""
   },
   "eslintConfig": {
     "extends": [

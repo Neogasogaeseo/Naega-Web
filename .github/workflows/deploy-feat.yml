@@ -52,7 +52,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
           script: |
-            DIR="/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.match }}"
+            DIR="/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.group1 }}"
             if [ -d "$DIR" ]
             then
               rm -rf $DIR
@@ -67,7 +67,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
           source: './build'
-          target: '/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.match }}'
+          target: '/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.group1 }}'
 
       - uses: actions/upload-artifact@v2
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}

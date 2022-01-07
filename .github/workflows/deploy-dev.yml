@@ -37,6 +37,20 @@ jobs:
       - name: Build React App
         run: yarn build
 
+      - name: Remove Stale Files
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            DIR="/home/ubuntu/build"
+            if [ -d "$DIR" ]
+            then
+              rm -rf $DIR
+            fi
+
       - name: Copy Build File to Server
         uses: appleboy/scp-action@master
         with:

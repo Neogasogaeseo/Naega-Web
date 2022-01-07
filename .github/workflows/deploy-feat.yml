@@ -45,7 +45,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
           script: |
-            mkdir /home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}
+            DIR="/home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}"
+            if [ -d "$DIR"]
+            then
+              rm -rf $DIR
+            else
+              mkdir $DIR
 
       - name: Copy Build File to Server
         uses: appleboy/scp-action@master

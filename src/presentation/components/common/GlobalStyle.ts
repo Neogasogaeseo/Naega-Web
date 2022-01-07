@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body, button {
-    font-family: 'Pretendard-Regular';
+    font-family: 'Pretendard';
   }
 `;
 

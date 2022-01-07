@@ -26,6 +26,13 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v5.1
 
+      - name: Get branch issue number
+        uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ steps.branch-name.outputs.current_branch }}
+          regex: 'feat/#(\d+)'
+
       - name: Set Node.js 16.x
         uses: actions/setup-node@v2.4.1
         with:
@@ -45,13 +52,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
           script: |
-            DIR="/home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}"
-            if [ -d "$DIR"]
+            DIR="/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.match }}"
+            if [ -d "$DIR" ]
             then
               rm -rf $DIR
-            else
-              mkdir $DIR
             fi
+            mkdir $DIR
 
       - name: Copy Build File to Server
         uses: appleboy/scp-action@master
@@ -61,7 +67,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
           source: './build'
-          target: '/home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}'
+          target: '/home/ubuntu/builds/feat/${{ steps.regex-match.outputs.match }}'
 
       - uses: actions/upload-artifact@v2
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}

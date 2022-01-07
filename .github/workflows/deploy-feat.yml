@@ -16,7 +16,7 @@ env:
   CI: false
 
 jobs:
-  check-dist:
+  deploy-feat:
     runs-on: ubuntu-latest
 
     steps:

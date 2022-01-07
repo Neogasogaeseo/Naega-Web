@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   src: url('../fonts/Pretendard-Regular.ttf') format('truetype'),
     url('../fonts/Pretendard-Regular.woff') format('woff'),
     url('../fonts/Pretendard-Regular.woff2') format('woff2');
@@ -8,7 +8,7 @@
 }
 
 @font-face {
-  font-family: 'Pretendard-SemiBold';
+  font-family: 'Pretendard';
   src: url('../fonts/Pretendard-SemiBold.ttf') format('truetype'),
     url('../fonts/Pretendard-SemiBold.woff') format('woff'),
     url('../fonts/Pretendard-SemiBold.woff2') format('woff2');
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-  font-family: 'Pretendard-Bold';
+  font-family: 'Pretendard';
   src: url('../fonts/Pretendard-Bold.ttf') format('truetype'),
     url('../fonts/Pretendard-Bold.woff') format('woff'),
     url('../fonts/Pretendard-Bold.woff2') format('woff2');

@@ -43,9 +43,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT_DEV }}
-          source: './build/*'
-          target: '/home/ubuntu/builds'
+          port: ${{ secrets.PORT }}
+          source: './build'
+          target: '/home/ubuntu/'
 
       - uses: actions/upload-artifact@v2
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}

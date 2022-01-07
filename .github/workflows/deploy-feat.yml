@@ -37,8 +37,8 @@ jobs:
       - name: Build React App
         run: yarn build
 
-      - name: Make Directory in SSH by Current Branch Name
-        uses: appleboy/scp-action@master
+      - name: Make Directory in Server by Current Branch Name
+        uses: appleboy/ssh-action@master
         env:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -48,7 +48,7 @@ jobs:
           script: |
             mkdir /home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}
 
-      - name: Copy Build File to SSH
+      - name: Copy Build File to Server
         uses: appleboy/scp-action@master
         env:
           host: ${{ secrets.HOST }}

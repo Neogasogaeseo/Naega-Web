@@ -31,7 +31,7 @@ jobs:
         id: regex-match
         with:
           text: ${{ steps.branch-name.outputs.current_branch }}
-          regex: 'feat/#(\d+)'
+          regex: 'feat\/#(\d+)'
 
       - name: Set Node.js 16.x
         uses: actions/setup-node@v2.4.1

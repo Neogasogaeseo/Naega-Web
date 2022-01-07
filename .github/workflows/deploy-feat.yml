@@ -1,0 +1,64 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Run Deploy on Development Server
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the dev branch
+  pull_request:
+    branches: [dev]
+    paths-ignore: ['**.md']
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  CI: false
+
+jobs:
+  check-dist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v5.1
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: 16.x
+
+      - name: Install Client Dependencies
+        run: yarn
+
+      - name: Build React App
+        run: yarn build
+
+      - name: Make Directory in SSH by Current Branch Name
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT_DEV }}
+          script: |
+            mkdir /home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}
+
+      - name: Copy Build File to SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT_DEV }}
+          source: './build'
+          target: '/home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}'
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
+        with:
+          name: deploy_feature_branch
+          path: deploy_feature_branch/

@@ -39,21 +39,23 @@ jobs:
 
       - name: Make Directory in SSH by Current Branch Name
         uses: appleboy/scp-action@master
-        with:
+        env:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
+        with:
           script: |
             mkdir /home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}
 
       - name: Copy Build File to SSH
         uses: appleboy/scp-action@master
-        with:
+        env:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT_DEV }}
+        with:
           source: './build'
           target: '/home/ubuntu/builds/${{ steps.branch-name.outputs.current_branch }}'
 

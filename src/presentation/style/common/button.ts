@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { COLOR } from '@style/common/color';
+import { COLOR } from '@styles/common/color';
 
 export const CORAL_MAIN_BUTTON = css`
   background-color: ${COLOR.CORAL_MAIN};

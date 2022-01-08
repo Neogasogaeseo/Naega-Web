@@ -5,7 +5,7 @@
       "@components/*": ["src/presentation/components/*"],
       "@routes/*": ["src/presentation/routes/*"],
       "@pages/*": ["src/presentation/pages/*"],
-      "@style/*": ["src/presentation/style/*"],
+      "@styles/*": ["src/presentation/style/*"],
       "@utils/*": ["src/application/utils/*"],
       "@models/*": ["src/application/models/*"],
       "@stores/*": ["src/application/stores/*"],

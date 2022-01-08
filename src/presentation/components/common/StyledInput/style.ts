@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { COLOR } from '@styles/common/color';
 
-export const StyledInputWrpper = styled.div`
+export const St = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -12,12 +13,11 @@ export const InputContainer = styled.div<{ width: string }>`
 `;
 
 export const Input = styled.input<{ width: string }>`
-  border: 1px solid #e9e9e9;
+  border: 1px solid ${COLOR.GRAY_3};
   box-sizing: border-box;
   border-radius: 16px;
   padding: 16px;
   font-size: 16px;
-  width: 350px;
   height: 52px;
   width: ${(props) => props.width};
   :focus {
@@ -26,7 +26,7 @@ export const Input = styled.input<{ width: string }>`
 `;
 
 export const ErrorMsg = styled.div`
-  color: #e85440;
+  color: ${COLOR.CORAL_MAIN};
   font-size: 14px;
   line-height: 140%;
   margin-top: 8px;

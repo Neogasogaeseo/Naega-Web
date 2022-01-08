@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyledInputWrpper, InputContainer, Input, ErrorMsg } from './style';
-interface IProps {
+import { St, InputContainer, Input, ErrorMsg } from './style';
+
+interface Props {
   width: string;
   errorMsg?: string;
   placeholder?: string;
-  message?: string;
-  maxByte?: number;
+  maxLength?: number;
   value?: string;
   isConditionMet?: boolean;
   onChange?: (value: string) => void;
@@ -16,12 +16,12 @@ const StyledInput = ({
   width,
   errorMsg,
   placeholder,
-  maxByte,
+  maxLength,
   value,
   isConditionMet,
   onChange,
   onKeyPress,
-}: IProps): React.ReactElement => {
+}: Props): React.ReactElement => {
   const [isInput, setIsInput] = useState('');
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -30,19 +30,19 @@ const StyledInput = ({
   }
 
   return (
-    <StyledInputWrpper>
+    <St>
       <InputContainer width={width}>
         <Input
           width={width}
           onChange={handleOnChange}
           onKeyPress={onKeyPress}
-          maxLength={maxByte}
-          placeholder={placeholder}
+          maxLength={maxLength}
+          placeholder={placeholder || ''}
           value={value}
         />
       </InputContainer>
-      {!isConditionMet && isInput !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
-    </StyledInputWrpper>
+      {!isConditionMet && isInput !== '' && errorMsg !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
+    </St>
   );
 };
 

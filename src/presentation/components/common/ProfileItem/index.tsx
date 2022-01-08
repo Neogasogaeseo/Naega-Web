@@ -1,5 +1,5 @@
 import { StProfileItemWrapper } from './style';
-import { ImgTeamProfile } from '../../../../assets/images/index';
+import { ImgTeamProfile } from '@assets/images/index';
 
 interface ProfileItemProps {
   profileImage?: string;

@@ -7,6 +7,7 @@ export const StTeamMainWrapper = styled.div`
     font-size: 18px;
     color: ${COLOR.GRAY_8};
     margin-bottom: 18px;
+    padding: 0 16px;
   }
 `;
 

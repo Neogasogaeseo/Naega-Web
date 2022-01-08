@@ -14,6 +14,8 @@ export const StItemContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
+  min-width: 100%;
+  padding: 0 16px;
 
   & > div + div {
     margin-left: 14px;

@@ -1,28 +1,28 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StProfileItemWrapper = styled.div`
+export const StProfileItemWrapper = styled.div<{ type: string }>`
   display: flex;
   flex-direction: column;
-  width: 60px;
+  width: ${(props) => (props.type === 'team' ? '60px' : '48px')};
   cursor: pointer;
 
   & > div:first-of-type {
-    height: 60px;
+    height: ${(props) => (props.type === 'team' ? '60px' : '48px')};
 
     & > img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 22px;
+      border-radius: ${(props) => (props.type === 'team' ? '22px' : '50%')};
     }
   }
 
   & > div:last-of-type {
     margin-top: 10px;
     text-align: center;
-    font-size: 14px;
-    color: ${COLOR.GRAY_8};
+    font-size: ${(props) => (props.type === 'team' ? '14px' : '12px')};
+    color: ${(props) => (props.type === 'team' ? COLOR.GRAY_8 : COLOR.GRAY_7)};
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

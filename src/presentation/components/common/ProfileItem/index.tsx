@@ -4,13 +4,14 @@ import { imgEmptyProfile } from '@assets/images/index';
 interface ProfileItemProps {
   profileImage?: string;
   profileName: string;
+  type: string;
 }
 
 function ProfileItem(props: ProfileItemProps) {
-  const { profileImage, profileName } = props;
+  const { profileImage, profileName, type } = props;
 
   return (
-    <StProfileItemWrapper>
+    <StProfileItemWrapper type={type}>
       <div>{profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}</div>
       <div>{profileName}</div>
     </StProfileItemWrapper>

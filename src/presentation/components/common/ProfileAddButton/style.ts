@@ -6,7 +6,6 @@ export const StAddTeamButton = styled.button`
 
   width: 60px;
   height: 60px;
-  margin-left: 14px;
   border-radius: 22px;
 `;
 
@@ -15,7 +14,6 @@ export const StAddMemberButton = styled.button`
 
   width: 48px;
   height: 48px;
-  margin-left: 16px;
   border-radius: 50%;
 
   & > img {

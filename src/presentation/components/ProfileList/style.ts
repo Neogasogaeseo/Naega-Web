@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StTeamListWrapper = styled.div`
+export const StProfileListWrapper = styled.div`
   width: 100vw;
   overflow-x: auto;
   -ms-overflow-style: none;
@@ -10,14 +10,14 @@ export const StTeamListWrapper = styled.div`
   }
 `;
 
-export const StItemContainer = styled.div`
+export const StItemContainer = styled.div<{ type: string }>`
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
   min-width: 100%;
-  padding: 0 16px;
+  padding: ${(props) => (props.type === 'team' ? '0 16px' : '0 24px')};
 
-  & > div + div {
-    margin-left: 14px;
+  & > div {
+    margin-right: ${(props) => (props.type === 'team' ? '14px' : '16px')};
   }
 `;

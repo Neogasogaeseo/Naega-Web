@@ -5,7 +5,7 @@ export const StProfileItemWrapper = styled.div<{ type: string }>`
   display: flex;
   flex-direction: column;
   width: ${(props) => (props.type === 'team' ? '60px' : '48px')};
-  cursor: pointer;
+  cursor: ${(props) => (props.type === 'registerMember' ? 'auto' : 'pointer')};
 
   & > div:first-of-type {
     height: ${(props) => (props.type === 'team' ? '60px' : '48px')};

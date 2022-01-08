@@ -1,10 +1,10 @@
 import { StAddButton } from './style';
-import { IconPlus } from '@assets/icons/index';
+import { icPlus } from '@assets/icons/index';
 
 function ProfileAddButton() {
   return (
     <StAddButton>
-      <img src={IconPlus} />
+      <img src={icPlus} />
     </StAddButton>
   );
 }

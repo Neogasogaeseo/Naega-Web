@@ -1,1 +1,1 @@
-export { default as IconPlus } from './ic_plus.svg';
+export { default as icPlus } from './ic_plus.svg';

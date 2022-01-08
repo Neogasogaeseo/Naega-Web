@@ -1,5 +1,5 @@
 import { StProfileItemWrapper } from './style';
-import { ImgTeamProfile } from '@assets/images/index';
+import { imgTeamProfile } from '@assets/images/index';
 
 interface ProfileItemProps {
   profileImage?: string;
@@ -11,7 +11,7 @@ function ProfileItem(props: ProfileItemProps) {
 
   return (
     <StProfileItemWrapper>
-      <div>{profileImage ? <img src={profileImage} /> : <img src={ImgTeamProfile} />}</div>
+      <div>{profileImage ? <img src={profileImage} /> : <img src={imgTeamProfile} />}</div>
       <div>{profileName}</div>
     </StProfileItemWrapper>
   );

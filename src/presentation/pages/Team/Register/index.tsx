@@ -1,7 +1,12 @@
-import React from 'react';
+import TeamRegisterTitle from '@components/TeamRegisterTitle';
+import { StTeamRegister } from './style';
 
 function TeamRegister() {
-  return <div>팀원소개서 팀등록</div>;
+  return (
+    <StTeamRegister>
+      <TeamRegisterTitle title="팀 등록하기" />
+    </StTeamRegister>
+  );
 }
 
 export default TeamRegister;

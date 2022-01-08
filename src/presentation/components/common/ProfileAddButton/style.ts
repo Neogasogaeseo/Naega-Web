@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLOR } from '@styles/common/color';
 
 export const StAddButton = styled.button`
   display: flex;
@@ -7,6 +8,6 @@ export const StAddButton = styled.button`
   width: 60px;
   height: 60px;
   margin-left: 14px;
-  background: #efefef;
+  background: ${COLOR.GRAY_1};
   border-radius: 22px;
 `;

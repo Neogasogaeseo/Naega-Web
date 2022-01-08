@@ -9,6 +9,7 @@ type IssueData = {
   team: TeamData;
   issueList: IssueDetail[];
   writer: string;
+  thumbnail?: string;
 };
 
 type TeamData = {

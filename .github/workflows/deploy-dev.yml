@@ -40,10 +40,10 @@ jobs:
       - name: Remove Stale Files
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_DEV }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.PORT_DEV }}
           script: |
             DIR="/home/ubuntu/build"
             if [ -d "$DIR" ]
@@ -54,10 +54,10 @@ jobs:
       - name: Copy Build File to Server
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST_DEV }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          port: ${{ secrets.PORT_DEV }}
           source: './build'
           target: '/home/ubuntu/'
 

@@ -1,1 +1,1 @@
-export { default as AlertIcon } from './alertIcon.svg';
+export { default as IconPlus } from './ic_plus.svg';

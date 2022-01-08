@@ -1,7 +1,16 @@
-import React from 'react';
+import ProfileList from '@components/ProfileList';
+import { StTeamMainWrapper, StDivisionLine } from './style';
 
 function HomeTeam() {
-  return <div>팀원소개서 메인</div>;
+  return (
+    <>
+      <StTeamMainWrapper>
+        <h1>나의 팀</h1>
+        <ProfileList type="team" />
+        <StDivisionLine />
+      </StTeamMainWrapper>
+    </>
+  );
 }
 
 export default HomeTeam;

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { StAddButton } from './style';
+import { StAddTeamButton, StAddMemberButton } from './style';
 import { icPlus } from '@assets/icons/index';
 
 interface ProfileAddButtonProps {
@@ -17,9 +17,17 @@ function ProfileAddButton(props: ProfileAddButtonProps) {
   };
 
   return (
-    <StAddButton onClick={handleClick}>
-      <img src={icPlus} />
-    </StAddButton>
+    <>
+      {type === 'team' ? (
+        <StAddTeamButton onClick={handleClick}>
+          <img src={icPlus} />
+        </StAddTeamButton>
+      ) : (
+        <StAddMemberButton onClick={handleClick}>
+          <img src={icPlus} />
+        </StAddMemberButton>
+      )}
+    </>
   );
 }
 

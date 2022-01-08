@@ -12,3 +12,10 @@ export const FULL_WIDTH_BUTTON = css`
   border-radius: 14px;
   font-size: 16px;
 `;
+
+export const ADD_BUTTON = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${COLOR.GRAY_1};
+`;

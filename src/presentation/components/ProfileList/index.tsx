@@ -44,6 +44,7 @@ function ProfileList(props: ProfileListProps) {
           tempData.map(({ id, profileImage, profileName }) => (
             <ProfileItem
               key={id}
+              id={id}
               profileImage={profileImage}
               profileName={profileName}
               type={type}

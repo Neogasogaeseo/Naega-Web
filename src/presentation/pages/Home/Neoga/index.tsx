@@ -1,7 +1,7 @@
 import React from 'react';
 
-function HomeYou() {
+function HomeNeoga() {
   return <div>너가소개서 메인</div>;
 }
 
-export default HomeYou;
+export default HomeNeoga;

@@ -34,7 +34,7 @@ function TeamList() {
         {tempData.map(({ id, profileImage, profileName }) => (
           <ProfileItem key={id} profileImage={profileImage} profileName={profileName} />
         ))}
-        <ProfileAddButton />
+        <ProfileAddButton type={'team'} />
       </StItemContainer>
     </StTeamListWrapper>
   );

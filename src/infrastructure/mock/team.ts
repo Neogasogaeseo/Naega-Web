@@ -1,4 +1,4 @@
-import { TeamService } from '../provider/team';
+import { TeamService } from '@api/team';
 import { TEAM_DATA } from './team.data';
 
 export function teamDataMock(): TeamService {

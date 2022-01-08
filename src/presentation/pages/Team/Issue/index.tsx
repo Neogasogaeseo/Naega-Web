@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { api } from '@provider/index';
-import { IssueData } from '@provider/types/team';
+import { api } from '@api/index';
+import { IssueData } from '@api/types/team';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();

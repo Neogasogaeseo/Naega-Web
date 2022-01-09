@@ -39,7 +39,7 @@ function HomeTeam() {
   };
 
   const handleAddClick = () => {
-    navigate('/register');
+    navigate('/team/register');
   };
 
   return (

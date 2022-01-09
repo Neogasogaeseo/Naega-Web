@@ -10,7 +10,7 @@ export const StProfileListWrapper = styled.div`
   }
 `;
 
-export const StItemContainer = styled.div<{ isSquare: boolean }>`
+export const StItemWrapper = styled.div<{ isSquare: boolean }>`
   display: flex;
   flex-wrap: nowrap;
   width: max-content;

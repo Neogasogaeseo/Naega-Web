@@ -1,6 +1,6 @@
 import ProfileItem from '@components/common/ProfileItem';
 import ProfileAddButton from '@components/common/ProfileAddButton';
-import { StProfileListWrapper, StItemContainer } from './style';
+import { StProfileListWrapper, StItemWrapper } from './style';
 
 interface ProfileListDataProps {
   id: number;
@@ -20,7 +20,7 @@ function ProfileList(props: ProfileListProps) {
 
   return (
     <StProfileListWrapper>
-      <StItemContainer isSquare={isSquare}>
+      <StItemWrapper isSquare={isSquare}>
         {profileListData.map(({ id, profileImage, profileName }) => (
           <ProfileItem
             key={id}
@@ -32,7 +32,7 @@ function ProfileList(props: ProfileListProps) {
           />
         ))}
         <ProfileAddButton isSquare={isSquare} onAddClick={onAddClick} />
-      </StItemContainer>
+      </StItemWrapper>
     </StProfileListWrapper>
   );
 }

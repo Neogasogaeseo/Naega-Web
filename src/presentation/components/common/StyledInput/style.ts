@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const St = styled.div`
+export const StInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const InputContainer = styled.div<{ width: string }>`
+export const StInputContainerWrapper = styled.div<{ width: string }>`
   display: flex;
   align-items: center;
   width: ${(props) => props.width};

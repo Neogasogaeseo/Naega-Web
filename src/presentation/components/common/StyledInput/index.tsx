@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { St, InputContainer, Input, ErrorMsg } from './style';
+import { StInputWrapper, StInputContainerWrapper, Input, ErrorMsg } from './style';
 
-interface Props {
+interface StyledInputProps {
   width: string;
   errorMsg?: string;
   placeholder?: string;
@@ -12,16 +12,9 @@ interface Props {
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const StyledInput = ({
-  width,
-  errorMsg,
-  placeholder,
-  maxLength,
-  value,
-  isConditionMet,
-  onChange,
-  onKeyPress,
-}: Props): React.ReactElement => {
+function StyledInput(props: StyledInputProps): React.ReactElement {
+  const { width, errorMsg, placeholder, maxLength, value, isConditionMet, onChange, onKeyPress } =
+    props;
   const [isInput, setIsInput] = useState('');
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -30,8 +23,8 @@ const StyledInput = ({
   }
 
   return (
-    <St>
-      <InputContainer width={width}>
+    <StInputWrapper>
+      <StInputContainerWrapper width={width}>
         <Input
           width={width}
           onChange={handleOnChange}
@@ -40,10 +33,10 @@ const StyledInput = ({
           placeholder={placeholder || ''}
           value={value}
         />
-      </InputContainer>
+      </StInputContainerWrapper>
       {!isConditionMet && isInput !== '' && errorMsg !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
-    </St>
+    </StInputWrapper>
   );
-};
+}
 
 export default StyledInput;

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { ADD_BUTTON } from '@styles/common/button';
+import { PROFILE_ADD_BUTTON } from '@styles/common/button';
 
 export const StAddButton = styled.button<{ isSquare: boolean }>`
-  ${ADD_BUTTON}
+  ${PROFILE_ADD_BUTTON}
 
   width: ${(props) => (props.isSquare ? '60px' : '48px')};
   height: ${(props) => (props.isSquare ? '60px' : '48px')};

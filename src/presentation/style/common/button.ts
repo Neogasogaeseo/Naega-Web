@@ -13,7 +13,7 @@ export const FULL_WIDTH_BUTTON = css`
   font-size: 16px;
 `;
 
-export const ADD_BUTTON = css`
+export const PROFILE_ADD_BUTTON = css`
   display: flex;
   align-items: center;
   justify-content: center;

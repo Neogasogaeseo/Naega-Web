@@ -15,3 +15,10 @@ export const FULL_WIDTH_BUTTON = css`
   text-align: center;
   line-height: 58px;
 `;
+
+export const PROFILE_ADD_BUTTON = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${COLOR.GRAY_1};
+`;

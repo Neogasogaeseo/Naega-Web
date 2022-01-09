@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StStyledInput, StInputWrapper, StInput, StErrorMsg } from './style';
+import { StCommonInput, StInputWrapper, StInput, StErrorMsg } from './style';
 
-interface StyledInputProps {
+interface CommonInputProps {
   width: string;
   errorMsg?: string;
   placeholder?: string;
@@ -12,7 +12,7 @@ interface StyledInputProps {
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-function StyledInput(props: StyledInputProps): React.ReactElement {
+function CommonInput(props: CommonInputProps): React.ReactElement {
   const { width, errorMsg, placeholder, maxLength, value, isConditionMet, onChange, onKeyPress } =
     props;
   const [isInput, setIsInput] = useState('');
@@ -23,7 +23,7 @@ function StyledInput(props: StyledInputProps): React.ReactElement {
   }
 
   return (
-    <StStyledInput>
+    <StCommonInput>
       <StInputWrapper width={width}>
         <StInput
           width={width}
@@ -35,8 +35,8 @@ function StyledInput(props: StyledInputProps): React.ReactElement {
         />
       </StInputWrapper>
       {!isConditionMet && isInput !== '' && errorMsg !== '' && <StErrorMsg>{errorMsg}</StErrorMsg>}
-    </StStyledInput>
+    </StCommonInput>
   );
 }
 
-export default StyledInput;
+export default CommonInput;

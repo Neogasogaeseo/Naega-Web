@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StStyledInput = styled.div`
+export const StCommonInput = styled.div`
   display: flex;
   flex-direction: column;
 `;

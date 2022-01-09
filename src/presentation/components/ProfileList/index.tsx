@@ -4,11 +4,13 @@ import { StProfileListWrapper, StItemContainer } from './style';
 import { Logo } from '@assets/images/index';
 
 interface ProfileListProps {
-  type: string;
+  isSquare: boolean;
+  onProfileClick: (id: number) => void;
+  onAddClick: () => void;
 }
 
 function ProfileList(props: ProfileListProps) {
-  const { type } = props;
+  const { isSquare, onProfileClick, onAddClick } = props;
   const tempData = [
     {
       id: 1,
@@ -39,7 +41,7 @@ function ProfileList(props: ProfileListProps) {
 
   return (
     <StProfileListWrapper>
-      <StItemContainer type={type}>
+      <StItemContainer isSquare={isSquare}>
         {tempData &&
           tempData.map(({ id, profileImage, profileName }) => (
             <ProfileItem
@@ -47,10 +49,11 @@ function ProfileList(props: ProfileListProps) {
               id={id}
               profileImage={profileImage}
               profileName={profileName}
-              type={type}
+              isSquare={isSquare}
+              onProfileClick={() => onProfileClick(id)}
             />
           ))}
-        <ProfileAddButton type={type} />
+        <ProfileAddButton isSquare={isSquare} onAddClick={onAddClick} />
       </StItemContainer>
     </StProfileListWrapper>
   );

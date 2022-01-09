@@ -10,14 +10,14 @@ export const StProfileListWrapper = styled.div`
   }
 `;
 
-export const StItemContainer = styled.div<{ type: string }>`
+export const StItemContainer = styled.div<{ isSquare: boolean }>`
   display: flex;
   flex-wrap: nowrap;
   width: max-content;
   min-width: 100%;
-  padding: ${(props) => (props.type === 'team' ? '0 16px' : '0 24px')};
+  padding: ${(props) => (props.isSquare ? '0 16px' : '0 24px')};
 
   & > div {
-    margin-right: ${(props) => (props.type === 'team' ? '14px' : '16px')};
+    margin-right: ${(props) => (props.isSquare ? '14px' : '16px')};
   }
 `;

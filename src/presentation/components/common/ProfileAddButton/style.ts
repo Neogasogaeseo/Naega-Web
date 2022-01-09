@@ -1,23 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ADD_BUTTON } from '@styles/common/button';
 
-export const StAddTeamButton = styled.button`
+export const StAddButton = styled.button<{ isSquare: boolean }>`
   ${ADD_BUTTON}
 
-  width: 60px;
-  height: 60px;
-  border-radius: 22px;
-`;
+  width: ${(props) => (props.isSquare ? '60px' : '48px')};
+  height: ${(props) => (props.isSquare ? '60px' : '48px')};
+  border-radius: ${(props) => (props.isSquare ? '22px' : '50%')};
 
-export const StAddMemberButton = styled.button`
-  ${ADD_BUTTON}
-
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-
-  & > img {
-    width: 12px;
-    height: 12px;
-  }
+  ${(props) =>
+    props.isSquare &&
+    css`
+      & > img {
+        width: 12px;
+        height: 12px;
+      }
+    `}
 `;

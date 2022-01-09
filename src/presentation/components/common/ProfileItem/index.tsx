@@ -1,26 +1,19 @@
 import { StProfileItemWrapper } from './style';
 import { imgEmptyProfile } from '@assets/images/index';
-import { useNavigate } from 'react-router-dom';
 
 interface ProfileItemProps {
   id: number;
   profileImage?: string;
   profileName: string;
-  type: string;
+  isSquare: boolean;
+  onProfileClick: (id: number) => void;
 }
 
 function ProfileItem(props: ProfileItemProps) {
-  const { id, profileImage, profileName, type } = props;
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    if (type === 'team') {
-      navigate(`/team/${id}`);
-    }
-  };
+  const { id, profileImage, profileName, isSquare, onProfileClick } = props;
 
   return (
-    <StProfileItemWrapper type={type} onClick={handleClick}>
+    <StProfileItemWrapper isSquare={isSquare} onClick={() => onProfileClick(id)}>
       <div>{profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}</div>
       <div>{profileName}</div>
     </StProfileItemWrapper>

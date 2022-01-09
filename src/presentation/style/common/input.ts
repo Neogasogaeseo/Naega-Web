@@ -11,3 +11,9 @@ export const COMMON_INPUT = css`
     color: ${COLOR.GRAY_5};
   }
 `;
+
+export const COMMON_LABEL = css`
+  font-weight: 600;
+  font-size: 16px;
+  color: ${COLOR.GRAY_7};
+`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './assets/fonts/font.css';
+import '@assets/fonts/font.css';
 
 ReactDOM.render(
   <React.StrictMode>

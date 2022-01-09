@@ -1,2 +1,1 @@
-export { default as AlertIcon } from './alertIcon.svg';
-export { default as TeamImageAddIcon } from './TeamImageAddIcon.svg';
+export { default as icPlus } from './ic_plus.svg';

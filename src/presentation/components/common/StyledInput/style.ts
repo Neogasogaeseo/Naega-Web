@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StInputWrapper = styled.div`
+export const StStyledInput = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const StInputContainerWrapper = styled.div<{ width: string }>`
+export const StInputWrapper = styled.div<{ width: string }>`
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
 `;
 
-export const Input = styled.input<{ width: string }>`
+export const StInput = styled.input<{ width: string }>`
   border: 1px solid ${COLOR.GRAY_3};
   box-sizing: border-box;
   border-radius: 16px;
@@ -25,7 +25,7 @@ export const Input = styled.input<{ width: string }>`
   }
 `;
 
-export const ErrorMsg = styled.div`
+export const StErrorMsg = styled.div`
   color: ${COLOR.CORAL_MAIN};
   font-size: 14px;
   line-height: 140%;

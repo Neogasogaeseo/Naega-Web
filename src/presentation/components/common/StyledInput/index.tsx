@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StInputWrapper, StInputContainerWrapper, Input, ErrorMsg } from './style';
+import { StStyledInput, StInputWrapper, StInput, StErrorMsg } from './style';
 
 interface StyledInputProps {
   width: string;
@@ -23,9 +23,9 @@ function StyledInput(props: StyledInputProps): React.ReactElement {
   }
 
   return (
-    <StInputWrapper>
-      <StInputContainerWrapper width={width}>
-        <Input
+    <StStyledInput>
+      <StInputWrapper width={width}>
+        <StInput
           width={width}
           onChange={handleOnChange}
           onKeyPress={onKeyPress}
@@ -33,9 +33,9 @@ function StyledInput(props: StyledInputProps): React.ReactElement {
           placeholder={placeholder || ''}
           value={value}
         />
-      </StInputContainerWrapper>
-      {!isConditionMet && isInput !== '' && errorMsg !== '' && <ErrorMsg>{errorMsg}</ErrorMsg>}
-    </StInputWrapper>
+      </StInputWrapper>
+      {!isConditionMet && isInput !== '' && errorMsg !== '' && <StErrorMsg>{errorMsg}</StErrorMsg>}
+    </StStyledInput>
   );
 }
 

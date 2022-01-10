@@ -13,9 +13,15 @@ import {
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 
+interface Keyword {
+  content: string;
+  color: string;
+}
+
 function TeamIssueFeedback() {
   const teamIssue = useRecoilValue(teamIssueState);
   const [selectedUserID, setSelectedUserID] = useState<number | null>(null);
+  const [keywordList, setKeywordList] = useState<Keyword[]>([]);
 
   return (
     <>
@@ -43,7 +49,16 @@ function TeamIssueFeedback() {
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>
-      <Outlet />
+      <Outlet
+        context={{
+          keywordList,
+          addKeyword: (keyword: Keyword) => setKeywordList((prev) => [...prev, keyword]),
+          removeKeyword: (targetKeyword: Keyword) =>
+            setKeywordList((prev) =>
+              prev.filter((keyword) => keyword.content !== targetKeyword.content),
+            ),
+        }}
+      />
     </>
   );
 }

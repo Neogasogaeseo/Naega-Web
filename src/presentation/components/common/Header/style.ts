@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { NavLink } from 'react-router-dom';
 
 export const StHeaderWrapper = styled.div`
   width: 100vw;
@@ -14,18 +15,20 @@ export const StHeaderWrapper = styled.div`
     margin-top: 18px;
     padding-bottom: 12px;
     border-bottom: 1px solid ${COLOR.GRAY_2};
+  }
+`;
 
-    & > a {
-      margin-right: 16px;
-      padding-bottom: 10px;
-      color: ${COLOR.GRAY_4};
-      cursor: pointer;
-    }
+export const StNavLink = styled(NavLink)<{ current: string }>`
+  margin-right: 16px;
+  padding-bottom: 10px;
+  color: ${COLOR.GRAY_4};
+  cursor: pointer;
 
-    & > a.current {
+  ${(props) =>
+    props.current &&
+    css`
       font-weight: 600;
       color: ${COLOR.GRAY_8};
       border-bottom: 2px solid ${COLOR.GRAY_8};
-    }
-  }
+    `}
 `;

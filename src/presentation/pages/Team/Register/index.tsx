@@ -4,8 +4,11 @@ import { imgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
 import ProfileList, { ProfileListData } from '@components/ProfileList';
+import { useState } from 'react';
+import PhotoUpload from '@components/common/FileUpload';
 
 function TeamRegister() {
+  const [image, setImage] = useState<File | null>();
   const tempMemberList: ProfileListData[] = [
     {
       id: 0,
@@ -14,11 +17,13 @@ function TeamRegister() {
       profileName: 'finn',
     },
   ];
-  const tempAddMember = () => console.log();
+  const tempAddMember = () => console.log(image);
   return (
     <StTeamRegister>
       <TeamRegisterTitle title="팀 등록하기" />
-      <StImgTeamAdd src={imgTeamAdd} />
+      <PhotoUpload width="104px" height="104px" setFile={setImage}>
+        <StImgTeamAdd src={imgTeamAdd} />
+      </PhotoUpload>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
       <CommonInput width="100%" placeholder="직접 입력해주세요" />
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />

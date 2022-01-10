@@ -20,6 +20,6 @@ export const StUploadBtn = styled.button<{
   background-color: white;
 `;
 
-export const StPhotoUpload = styled.div`
+export const StFileUpload = styled.div`
   cursor: pointer;
 `;

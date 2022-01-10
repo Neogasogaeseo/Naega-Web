@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StImgPreview, StPhotoUpload, StUploadBtn } from './style';
+import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
-interface PhotoUploadProps {
+interface FileUploadProps {
   children: React.ReactElement | string;
   width: string;
   height: string;
@@ -9,7 +9,7 @@ interface PhotoUploadProps {
   setFile: (e: File) => void;
 }
 
-function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
+function FileUpload(props: FileUploadProps): React.ReactElement {
   const { children, width, height, borderRadius, setFile } = props;
   const [newFile, setNewFile] = useState<File | null>(null);
   const [fileThumbnail, setFileThumbnail] = useState('');
@@ -40,7 +40,7 @@ function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
   };
 
   return (
-    <StPhotoUpload>
+    <StFileUpload>
       <input
         hidden={true}
         ref={inputRef}
@@ -61,8 +61,8 @@ function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
           />
         )}
       </StUploadBtn>
-    </StPhotoUpload>
+    </StFileUpload>
   );
 }
 
-export default PhotoUpload;
+export default FileUpload;

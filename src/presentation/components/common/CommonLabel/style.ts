@@ -28,4 +28,5 @@ export const StLabelWithOptional = styled.span`
 export const StOptional = styled.span`
   font-size: 16px;
   color: ${COLOR.GRAY_5};
+  margin-left: 5px;
 `;

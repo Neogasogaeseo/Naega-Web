@@ -12,7 +12,7 @@ export default function CommonLabel(props: CommonLabelProps) {
   return isOptional ? (
     <StCommonLabel marginTop={marginTop} marginBottom={marginBottom}>
       <StLabelWithOptional>{content}</StLabelWithOptional>
-      <StOptional> (선택)</StOptional>
+      <StOptional>(선택)</StOptional>
     </StCommonLabel>
   ) : (
     <StLabel marginTop={marginTop} marginBottom={marginBottom}>

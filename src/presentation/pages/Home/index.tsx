@@ -1,10 +1,10 @@
-import Header from '@components/common/Header';
+import HomeHeader from '@components/common/Header';
 import HomeRouter from '@routes/HomeRouter';
 
 function Home() {
   return (
     <div>
-      <Header />
+      <HomeHeader />
       <HomeRouter />
     </div>
   );

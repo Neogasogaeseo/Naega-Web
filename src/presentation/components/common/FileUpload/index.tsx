@@ -5,12 +5,12 @@ interface FileUploadProps {
   children: React.ReactElement | string;
   width: string;
   height: string;
-  borderRadius: string;
+  borderRadius?: string;
   setFile: (e: File) => void;
 }
 
 function FileUpload(props: FileUploadProps): React.ReactElement {
-  const { children, width, height, borderRadius, setFile } = props;
+  const { children, width, height, borderRadius = '0px', setFile } = props;
   const [newFile, setNewFile] = useState<File | null>(null);
   const [fileThumbnail, setFileThumbnail] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);

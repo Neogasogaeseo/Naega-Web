@@ -9,8 +9,8 @@ export const StDetailWrapper = styled.div`
   font-size: 15px;
   line-height: 100%;
   color: #909090;
-  margin-top: 21px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 35px;
 `;
 export const StNoticeWrapper = styled.div`
   font-weight: 600;
@@ -21,18 +21,48 @@ export const StNoticeWrapper = styled.div`
 export const StInputWrapper = styled.div`
   font-size: 16px;
   line-height: 162%;
-  margin-top: 44px;
+  margin-top: 20px;
+  & > p {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 162%;
+    color: ${COLOR.GRAY_7};
+  }
 `;
 
 export const StButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 156px;
+  margin-top: 70px;
   width: 350px;
   height: 58px;
   background-color: ${COLOR.CORAL_MAIN};
   color: white;
   border-radius: 18px;
   font-size: 16px;
+`;
+
+export const StProfileImg = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StButtonGray = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  width: 350px;
+  height: 58px;
+  background-color: ${COLOR.GRAY_5};
+  color: white;
+  border-radius: 18px;
+  font-size: 16px;
+`;
+
+export const StPhotoUploadImage = styled.img`
+  display: flex;
+  justify-content: center;
 `;

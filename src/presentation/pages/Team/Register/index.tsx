@@ -1,5 +1,4 @@
-import TeamRegisterTitle from '@components/TeamRegisterTitle';
-import { StTeamRegister, StTextarea, StSubmitButton } from './style';
+import { StTitle, StTeamRegister, StTextarea, StSubmitButton } from './style';
 import { ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
@@ -20,7 +19,7 @@ function TeamRegister() {
   const tempAddMember = () => console.log(image);
   return (
     <StTeamRegister>
-      <TeamRegisterTitle title="팀 등록하기" />
+      <StTitle>팀 등록하기</StTitle>
       <PhotoUpload width="104px" height="104px" borderRadius="36px" setFile={setImage}>
         <ImgTeamAdd />
       </PhotoUpload>

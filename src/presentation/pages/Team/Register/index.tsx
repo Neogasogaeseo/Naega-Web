@@ -1,6 +1,6 @@
 import TeamRegisterTitle from '@components/TeamRegisterTitle';
-import { StTeamRegister, StImgTeamAdd, StTextarea, StSubmitButton } from './style';
-import { imgTeamAdd } from '@assets/images';
+import { StTeamRegister, StTextarea, StSubmitButton } from './style';
+import { ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
 import ProfileList, { ProfileListData } from '@components/ProfileList';
@@ -22,7 +22,7 @@ function TeamRegister() {
     <StTeamRegister>
       <TeamRegisterTitle title="팀 등록하기" />
       <PhotoUpload width="104px" height="104px" setFile={setImage}>
-        <StImgTeamAdd src={imgTeamAdd} />
+        <ImgTeamAdd />
       </PhotoUpload>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
       <CommonInput width="100%" placeholder="직접 입력해주세요" />

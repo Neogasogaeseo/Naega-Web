@@ -10,12 +10,6 @@ export const StTeamRegister = styled.div`
   justify-content: flex-start;
 `;
 
-export const StImgTeamAdd = styled.img`
-  width: 104px;
-  height: 104px;
-  margin-top: 30px;
-`;
-
 export const StTextarea = styled.textarea`
   ${COMMON_INPUT}
   margin-top: 18px;

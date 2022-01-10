@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { StHeaderWrapper } from './style';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { StHeaderWrapper, StNavLink } from './style';
 import { imgLogo } from '@assets/images';
 
-function Header() {
+function HomeHeader() {
   const location = useLocation();
   const pathName = location.pathname;
   const [currentTab, setCurrentTab] = useState(pathName);
@@ -14,6 +14,10 @@ function Header() {
     { name: 'MY', href: '/home/mypage' },
   ];
 
+  useEffect(() => {
+    setCurrentTab(pathName);
+  }, [location]);
+
   return (
     <StHeaderWrapper>
       <Link to="/home/you">
@@ -21,18 +25,18 @@ function Header() {
       </Link>
       <div>
         {tabList.map((tab) => (
-          <NavLink
+          <StNavLink
             key={tab.name}
             to={tab.href}
             onClick={() => setCurrentTab(tab.href)}
-            className={currentTab === tab.href ? 'current' : ''}
+            current={currentTab === tab.href ? 'current' : ''}
           >
             {tab.name}
-          </NavLink>
+          </StNavLink>
         ))}
       </div>
     </StHeaderWrapper>
   );
 }
 
-export default Header;
+export default HomeHeader;

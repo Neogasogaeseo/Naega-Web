@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
   body, button {
     font-family: 'Pretendard';
   }
+
+  a { 
+    text-decoration: none;
+  }
 `;
 
 export default GlobalStyle;

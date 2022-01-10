@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { StImgPreview, StPhotoUpload, StUploadBtn } from './style';
+import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
-interface PhotoUploadProps {
+interface FileUploadProps {
   children: React.ReactElement | string;
   width: string;
   height: string;
+  borderRadius?: string;
   setFile: (e: File) => void;
 }
 
-function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
-  const { children, width, height, setFile } = props;
+function FileUpload(props: FileUploadProps): React.ReactElement {
+  const { children, width, height, borderRadius = '0px', setFile } = props;
   const [newFile, setNewFile] = useState<File | null>(null);
   const [fileThumbnail, setFileThumbnail] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -39,7 +40,7 @@ function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
   };
 
   return (
-    <StPhotoUpload>
+    <StFileUpload>
       <input
         hidden={true}
         ref={inputRef}
@@ -52,11 +53,16 @@ function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
           children
         ) : (
           //업로드된 파일이 사진일 경우
-          <StImgPreview src={fileThumbnail} width={width} height={height} />
+          <StImgPreview
+            src={fileThumbnail}
+            width={width}
+            height={height}
+            borderRadius={borderRadius}
+          />
         )}
       </StUploadBtn>
-    </StPhotoUpload>
+    </StFileUpload>
   );
 }
 
-export default PhotoUpload;
+export default FileUpload;

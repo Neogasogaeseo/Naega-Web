@@ -8,7 +8,7 @@ export const CORAL_MAIN_BUTTON = css`
 
 export const FULL_WIDTH_BUTTON = css`
   width: 100%;
-  height: 58px;
+  min-height: 58px;
   border-radius: 14px;
   font-size: 16px;
 `;

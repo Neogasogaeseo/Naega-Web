@@ -34,7 +34,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
           value={value}
         />
       </StInputWrapper>
-      {!isConditionMet && isInput !== '' && errorMsg !== '' && <StErrorMsg>{errorMsg}</StErrorMsg>}
+      {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>
   );
 }

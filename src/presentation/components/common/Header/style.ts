@@ -4,7 +4,7 @@ import { COLOR } from '@styles/common/color';
 export const StHeaderWrapper = styled.div`
   width: 100vw;
 
-  & > img,
+  & > a > img,
   & > div {
     padding: 0 20px;
   }
@@ -20,6 +20,12 @@ export const StHeaderWrapper = styled.div`
       padding-bottom: 10px;
       color: ${COLOR.GRAY_4};
       cursor: pointer;
+    }
+
+    & > a.current {
+      font-weight: 600;
+      color: ${COLOR.GRAY_8};
+      border-bottom: 2px solid ${COLOR.GRAY_8};
     }
   }
 `;

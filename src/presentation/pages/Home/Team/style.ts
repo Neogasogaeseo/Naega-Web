@@ -8,13 +8,13 @@ export const StTeamMainWrapper = styled.div`
     color: ${COLOR.GRAY_8};
     margin-top: 28px;
     margin-bottom: 18px;
-    padding: 0 20px;
   }
 `;
 
 export const StDivisionLine = styled.div`
-  width: 100%;
+  width: calc(100% + 2 * 20px);
   height: 8px;
   background-color: ${COLOR.GRAY_1};
   margin-top: 24px;
+  margin-left: -20px;
 `;

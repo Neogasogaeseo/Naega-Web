@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
 export const StProfileListWrapper = styled.div`
-  width: 100vw;
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
+  width: calc(100% + 2 * 20px);
+  margin-left: -20px;
+  padding: 0 20px;
 `;
 
 export const StItemWrapper = styled.div<{ isSquare: boolean }>`
@@ -15,7 +17,6 @@ export const StItemWrapper = styled.div<{ isSquare: boolean }>`
   flex-wrap: nowrap;
   width: max-content;
   min-width: 100%;
-  padding: ${(props) => (props.isSquare ? '0 16px' : '0 24px')};
 
   & > div {
     margin-right: ${(props) => (props.isSquare ? '14px' : '16px')};

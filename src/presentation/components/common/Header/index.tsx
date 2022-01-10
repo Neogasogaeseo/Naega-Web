@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { StHeaderWrapper, StNavLink } from './style';
+import { StHeaderWrapper, StNavLink, StNavBottomLine } from './style';
 import { imgLogo } from '@assets/images';
 
 function HomeHeader() {
@@ -35,6 +35,7 @@ function HomeHeader() {
           </StNavLink>
         ))}
       </div>
+      <StNavBottomLine />
     </StHeaderWrapper>
   );
 }

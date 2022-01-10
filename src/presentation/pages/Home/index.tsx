@@ -1,12 +1,13 @@
 import HomeHeader from '@components/common/Header';
 import HomeRouter from '@routes/HomeRouter';
+import { StHome } from './style';
 
 function Home() {
   return (
-    <div>
+    <StHome>
       <HomeHeader />
       <HomeRouter />
-    </div>
+    </StHome>
   );
 }
 

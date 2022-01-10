@@ -1,5 +1,5 @@
 import React from 'react';
-import { StWrapper } from './style';
+import { StKeywordItem } from './style';
 
 interface Keyword {
   content: string;
@@ -15,10 +15,10 @@ interface Props extends Keyword {
 function KeywordItem(props: Props) {
   const { isMutable, content, color, onDeleteClick, onItemClick } = props;
   return (
-    <StWrapper color={color} onClick={onItemClick}>
+    <StKeywordItem color={color} onClick={onItemClick}>
       <div>{content}</div>
       {isMutable && <div onClick={onDeleteClick}>X</div>}
-    </StWrapper>
+    </StKeywordItem>
   );
 }
 

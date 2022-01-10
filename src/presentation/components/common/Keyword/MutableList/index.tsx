@@ -7,13 +7,13 @@ interface Keyword {
   color: string;
 }
 
-interface Props {
+interface MutableKeywordListProps {
   keywordList: Keyword[];
   deleteKeyword: (keyword: Keyword) => void;
   viewMode?: 'linear' | 'flex';
 }
 
-function MutableKeywordList(props: Props) {
+function MutableKeywordList(props: MutableKeywordListProps) {
   const { keywordList, deleteKeyword, viewMode } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>

@@ -1,7 +1,7 @@
 import { COLOR } from '@styles/common/color';
 import styled from 'styled-components';
 
-export const StWrapper = styled.div<{ color: string }>`
+export const StKeywordItem = styled.div<{ color: string }>`
   background-color: ${({ color }) => color};
   color: ${COLOR.WHITE};
   font-size: 13px;

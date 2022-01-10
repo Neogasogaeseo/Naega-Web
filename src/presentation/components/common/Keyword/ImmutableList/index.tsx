@@ -7,13 +7,13 @@ interface Keyword {
   color: string;
 }
 
-interface Props {
+interface ImmutableKeywordListProps {
   keywordList: Keyword[];
   viewMode?: 'linear' | 'flex';
   onItemClick: (keyword: Keyword) => void;
 }
 
-function ImmutableKeywordList(props: Props) {
+function ImmutableKeywordList(props: ImmutableKeywordListProps) {
   const { keywordList, viewMode, onItemClick } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>

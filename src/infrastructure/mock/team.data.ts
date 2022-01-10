@@ -9,7 +9,7 @@ export const TEAM_DATA = {
           id: 1,
           profileName: '주영주영',
           profileImage:
-            'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+            'https://ww.namu.la/s/b2d724ec88064819836995aa7afe60619c0f89cf045b7f2070f8831f2b00afba7448a1b98099e4a3a729c2b541204bb06eacd71768e57446bbd625a2a630d7f279bff5fc3180ae96b2f7e2c5233482c24a97f8523fc9085cce2f9374fdf3a0b8',
         },
         {
           id: 2,

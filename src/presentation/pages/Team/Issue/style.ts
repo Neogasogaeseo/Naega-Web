@@ -8,6 +8,8 @@ export const StWrapper = styled.div`
   height: 100vh;
   width: 100vw;
   grid-template-rows: auto 100px;
+  overflow-x: hidden;
+  position: relative;
 `;
 
 export const StLink = styled(Link)`

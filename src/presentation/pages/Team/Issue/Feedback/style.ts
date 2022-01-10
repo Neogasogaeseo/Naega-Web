@@ -28,15 +28,22 @@ export const StWrapper = styled.div`
   background-color: ${COLOR.WHITE};
   bottom: 0;
   padding: 44px 24px;
-
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   animation: ${ANIMATION.SWIPE_UP({ from: 0 })} 1s;
+`;
+
+export const StSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 `;
 
 export const StSectionTitle = styled.div`
   color: ${COLOR.GRAY_8};
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 18px;
 `;
 
 export const StButton = styled.div`

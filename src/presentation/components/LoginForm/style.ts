@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StLoginWrapper = styled.div`
-  align-self: center;
+  margin-bottom: 200px;
 `;
 export const Login = styled.div`
   font-weight: 600;

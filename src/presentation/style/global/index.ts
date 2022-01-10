@@ -36,6 +36,14 @@ const GlobalStyle = createGlobalStyle`
   body, button {
     font-family: 'Pretendard';
   }
+
+  a {
+    text-decoration:none;
+  }
+
+  input[disabled] {
+    background-color: transparent;
+  }
 `;
 
 export default GlobalStyle;

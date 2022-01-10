@@ -9,9 +9,15 @@ export type IssueData = {
 };
 
 type TeamData = {
-  teammates: string[];
+  teammates: Teammate[];
   thumbnail: string;
   title: string;
+};
+
+type Teammate = {
+  id: number;
+  profileImage: string;
+  profileName: string;
 };
 
 type IssueDetail = {

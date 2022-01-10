@@ -1,13 +1,13 @@
 import ProfileList from '@components/ProfileList';
 import { StTeamMainWrapper, StDivisionLine } from './style';
 import { useNavigate } from 'react-router-dom';
-import { Logo } from '@assets/images/index';
+import { imgLogo } from '@assets/images/index';
 
 function HomeTeam() {
   const profileListData = [
     {
       id: 1,
-      profileImage: Logo,
+      profileImage: imgLogo,
       profileName: '너가소개서',
     },
     {

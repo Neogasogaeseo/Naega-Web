@@ -9,12 +9,13 @@ interface Keyword {
 interface Props extends Keyword {
   isMutable: boolean;
   onDeleteClick?: () => void;
+  onItemClick?: () => void;
 }
 
 function KeywordItem(props: Props) {
-  const { isMutable, content, color, onDeleteClick } = props;
+  const { isMutable, content, color, onDeleteClick, onItemClick } = props;
   return (
-    <StWrapper color={color}>
+    <StWrapper color={color} onClick={onItemClick}>
       <div>{content}</div>
       {isMutable && <div onClick={onDeleteClick}>X</div>}
     </StWrapper>

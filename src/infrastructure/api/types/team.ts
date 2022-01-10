@@ -1,3 +1,5 @@
+import { Keyword } from './user';
+
 export type IssueData = {
   createdAt: string;
   title: string;
@@ -25,5 +27,5 @@ type IssueDetail = {
   target: string;
   body: string;
   createdAt: string;
-  keywordList: string[];
+  keywordList: Keyword[];
 };

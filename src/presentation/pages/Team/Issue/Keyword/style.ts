@@ -10,3 +10,29 @@ export const StAbsoluteWrapper = styled.div`
   z-index: 3;
   animation: ${ANIMATION.SWIPE_FROM_RIGHT} 1s;
 `;
+
+export const StTitleWrapper = styled.div`
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 12px;
+  background-color: ${COLOR.GRAY_1};
+
+  & > span:nth-child(1) {
+    color: ${COLOR.CORAL_MAIN};
+  }
+`;
+
+export const StWhiteWrapper = styled.div`
+  padding: 20px 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const StAbsoluteButton = styled.div`
+  position: absolute;
+  top: 38px;
+  right: 32px;
+  cursor: pointer;
+`;

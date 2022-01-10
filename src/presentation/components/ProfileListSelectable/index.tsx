@@ -1,6 +1,5 @@
 import ProfileItem from '@components/common/ProfileItem';
 import { StItemWrapper } from '@components/ProfileList/style';
-import React from 'react';
 
 interface ProfileListData {
   id: number;
@@ -11,12 +10,12 @@ interface ProfileListData {
 interface ProfileListProps {
   isSquare: boolean;
   profiles: ProfileListData[];
-  selectedProfileID: ProfileListData['id'] | null;
-  setSelectedProfileID: (id: number) => void;
+  selectedProfile: ProfileListData | null;
+  setSelectedProfile: (profile: ProfileListData) => void;
 }
 
 function ProfileListSelectable(props: ProfileListProps) {
-  const { isSquare, profiles, selectedProfileID, setSelectedProfileID } = props;
+  const { isSquare, profiles, selectedProfile, setSelectedProfile } = props;
 
   return (
     <StItemWrapper isSquare={isSquare} style={{ padding: 0 }}>
@@ -27,8 +26,8 @@ function ProfileListSelectable(props: ProfileListProps) {
           profileImage={profileImage}
           profileName={profileName}
           isSquare={isSquare}
-          isSelected={selectedProfileID === id}
-          onProfileClick={() => setSelectedProfileID(id)}
+          isSelected={selectedProfile?.id === id}
+          onProfileClick={() => setSelectedProfile({ id, profileImage, profileName })}
         />
       ))}
     </StItemWrapper>

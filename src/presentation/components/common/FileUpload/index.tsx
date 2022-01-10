@@ -40,7 +40,13 @@ function PhotoUpload(props: PhotoUploadProps): React.ReactElement {
 
   return (
     <StPhotoUpload>
-      <input hidden={true} ref={inputRef} type="file" onChange={fileInputHandler} />
+      <input
+        hidden={true}
+        ref={inputRef}
+        type="file"
+        onChange={fileInputHandler}
+        accept="imgFileForm"
+      />
       <StUploadBtn onClick={buttonHandler} width={width} height={height}>
         {!newFile ? ( //파일이 없는 경우
           children

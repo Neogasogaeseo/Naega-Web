@@ -5,6 +5,7 @@ import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 export const StTeamRegister = styled.div`
   width: 100vw;
   height: 100vh;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -21,7 +21,7 @@ function TeamRegister() {
   return (
     <StTeamRegister>
       <TeamRegisterTitle title="팀 등록하기" />
-      <PhotoUpload width="104px" height="104px" setFile={setImage}>
+      <PhotoUpload width="104px" height="104px" borderRadius="36px" setFile={setImage}>
         <ImgTeamAdd />
       </PhotoUpload>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />

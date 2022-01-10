@@ -8,13 +8,23 @@ interface CommonInputProps {
   maxLength?: number;
   value?: string;
   isConditionMet?: boolean;
+  img?: string;
   onChange?: (value: string) => void;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 function CommonInput(props: CommonInputProps): React.ReactElement {
-  const { width, errorMsg, placeholder, maxLength, value, isConditionMet, onChange, onKeyPress } =
-    props;
+  const {
+    width,
+    errorMsg,
+    placeholder,
+    maxLength,
+    value,
+    isConditionMet,
+    onChange,
+    onKeyPress,
+    img,
+  } = props;
   const [isInput, setIsInput] = useState('');
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -32,6 +42,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}
+          img={img}
         />
       </StInputWrapper>
       {!isConditionMet && isInput !== '' && errorMsg !== '' && <StErrorMsg>{errorMsg}</StErrorMsg>}

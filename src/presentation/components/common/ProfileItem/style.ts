@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StProfileItemWrapper = styled.div<{ isSquare: boolean }>`
+export const StProfileItemWrapper = styled.div<{ isSquare: boolean; isSelected: boolean }>`
   display: flex;
   flex-direction: column;
   width: ${(props) => (props.isSquare ? '60px' : '48px')};
@@ -15,6 +15,7 @@ export const StProfileItemWrapper = styled.div<{ isSquare: boolean }>`
       height: 100%;
       object-fit: cover;
       border-radius: ${(props) => (props.isSquare ? '22px' : '50%')};
+      border: ${(props) => (props.isSelected ? `1px solid ${COLOR.PINK}` : '0')};
     }
   }
 

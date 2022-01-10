@@ -6,14 +6,19 @@ interface ProfileItemProps {
   profileImage?: string;
   profileName: string;
   isSquare: boolean;
+  isSelected?: boolean;
   onProfileClick: (id: number) => void;
 }
 
 function ProfileItem(props: ProfileItemProps) {
-  const { id, profileImage, profileName, isSquare, onProfileClick } = props;
+  const { id, profileImage, profileName, isSquare, onProfileClick, isSelected = false } = props;
 
   return (
-    <StProfileItemWrapper isSquare={isSquare} onClick={() => onProfileClick(id)}>
+    <StProfileItemWrapper
+      isSquare={isSquare}
+      isSelected={isSelected}
+      onClick={() => onProfileClick(id)}
+    >
       <div>{profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}</div>
       <div>{profileName}</div>
     </StProfileItemWrapper>

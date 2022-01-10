@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StProfileItemWrapper = styled.div<{ isSquare: boolean; isSelected: boolean }>`
+export const StProfileItemWrapper = styled.div<{
+  isSquare: boolean;
+  isSelected: boolean | undefined;
+}>`
   display: flex;
   flex-direction: column;
   width: ${(props) => (props.isSquare ? '60px' : '48px')};
@@ -23,7 +26,14 @@ export const StProfileItemWrapper = styled.div<{ isSquare: boolean; isSelected: 
     margin-top: 10px;
     text-align: center;
     font-size: ${(props) => (props.isSquare ? '14px' : '12px')};
-    color: ${(props) => (props.isSquare ? COLOR.GRAY_8 : COLOR.GRAY_7)};
+    color: ${(props) =>
+      props.isSelected === undefined
+        ? props.isSquare
+          ? COLOR.GRAY_8
+          : COLOR.GRAY_7
+        : props.isSelected
+        ? COLOR.GRAY_7
+        : COLOR.GRAY_5};
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

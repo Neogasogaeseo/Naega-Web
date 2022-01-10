@@ -1,5 +1,5 @@
 import ProfileItem from '@components/common/ProfileItem';
-import { StItemWrapper, StProfileListWrapper } from '@components/ProfileList/style';
+import { StItemWrapper } from '@components/ProfileList/style';
 import React from 'react';
 
 interface ProfileListData {
@@ -11,7 +11,7 @@ interface ProfileListData {
 interface ProfileListProps {
   isSquare: boolean;
   profiles: ProfileListData[];
-  selectedProfileID: ProfileListData['id'];
+  selectedProfileID: ProfileListData['id'] | null;
   setSelectedProfileID: (id: number) => void;
 }
 
@@ -19,21 +19,19 @@ function ProfileListSelectable(props: ProfileListProps) {
   const { isSquare, profiles, selectedProfileID, setSelectedProfileID } = props;
 
   return (
-    <StProfileListWrapper>
-      <StItemWrapper isSquare={isSquare}>
-        {profiles.map(({ id, profileImage, profileName }) => (
-          <ProfileItem
-            key={id}
-            id={id}
-            profileImage={profileImage}
-            profileName={profileName}
-            isSquare={isSquare}
-            isSelected={selectedProfileID === id}
-            onProfileClick={() => setSelectedProfileID(id)}
-          />
-        ))}
-      </StItemWrapper>
-    </StProfileListWrapper>
+    <StItemWrapper isSquare={isSquare} style={{ padding: 0 }}>
+      {profiles.map(({ id, profileImage, profileName }) => (
+        <ProfileItem
+          key={id}
+          id={id}
+          profileImage={profileImage}
+          profileName={profileName}
+          isSquare={isSquare}
+          isSelected={selectedProfileID === id}
+          onProfileClick={() => setSelectedProfileID(id)}
+        />
+      ))}
+    </StItemWrapper>
   );
 }
 

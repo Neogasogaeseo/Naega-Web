@@ -6,12 +6,12 @@ interface ProfileItemProps {
   profileImage?: string;
   profileName: string;
   isSquare: boolean;
-  isSelected?: boolean;
+  isSelected?: boolean | undefined;
   onProfileClick: (id: number) => void;
 }
 
 function ProfileItem(props: ProfileItemProps) {
-  const { id, profileImage, profileName, isSquare, onProfileClick, isSelected = false } = props;
+  const { id, profileImage, profileName, isSquare, onProfileClick, isSelected } = props;
 
   return (
     <StProfileItemWrapper

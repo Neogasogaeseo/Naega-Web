@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const StImgPreview = styled.img<{
   width: string;
   height: string;
+  borderRadius: string;
 }>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  border-radius: ${(props) => props.borderRadius};
   object-fit: cover;
-  border-radius: 16px;
 `;
 
 export const StUploadBtn = styled.button<{

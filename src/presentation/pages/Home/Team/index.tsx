@@ -1,7 +1,8 @@
-import ProfileList from '@components/ProfileList';
 import { StTeamMain, StDivisionLine } from './style';
 import { useNavigate } from 'react-router-dom';
 import { imgLogo } from '@assets/images/index';
+import ProfileList from '@components/ProfileList';
+import IssueCardList from '@components/common/IssueCardList';
 
 function HomeTeam() {
   const profileListData = [
@@ -32,6 +33,23 @@ function HomeTeam() {
     },
   ];
 
+  const issueListData = [
+    {
+      id: 1,
+      category: '팀컬쳐',
+      dates: '2021-12-27',
+      content:
+        '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+    },
+    {
+      id: 2,
+      category: '개발',
+      dates: '2021-12-27',
+      content:
+        '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+    },
+  ];
+
   const navigate = useNavigate();
 
   const handleProfileClick = (id: number) => {
@@ -53,6 +71,8 @@ function HomeTeam() {
           onAddClick={handleAddClick}
         />
         <StDivisionLine />
+        <h1>나와 관련된 이슈 확인</h1>
+        <IssueCardList issueListData={issueListData} />
       </StTeamMain>
     </>
   );

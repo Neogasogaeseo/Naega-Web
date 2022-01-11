@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StTeamMainWrapper = styled.div`
+export const StTeamMain = styled.div`
   & h1 {
     font-weight: 600;
     font-size: 18px;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { NavLink } from 'react-router-dom';
 
-export const StHeaderWrapper = styled.div`
+export const StHomeHeader = styled.div`
   & > div {
     font-size: 16px;
     margin-top: 18px;

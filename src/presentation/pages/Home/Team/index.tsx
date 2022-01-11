@@ -1,5 +1,5 @@
 import ProfileList from '@components/ProfileList';
-import { StTeamMainWrapper, StDivisionLine } from './style';
+import { StTeamMain, StDivisionLine } from './style';
 import { useNavigate } from 'react-router-dom';
 import { imgLogo } from '@assets/images/index';
 
@@ -44,7 +44,7 @@ function HomeTeam() {
 
   return (
     <>
-      <StTeamMainWrapper>
+      <StTeamMain>
         <h1>나의 팀</h1>
         <ProfileList
           isSquare={true}
@@ -53,7 +53,7 @@ function HomeTeam() {
           onAddClick={handleAddClick}
         />
         <StDivisionLine />
-      </StTeamMainWrapper>
+      </StTeamMain>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StProfileListWrapper = styled.div`
+export const StProfileList = styled.div`
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

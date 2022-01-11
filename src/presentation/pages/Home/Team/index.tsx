@@ -40,6 +40,9 @@ function HomeTeam() {
       dates: '2021-12-27',
       content:
         '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+      teamImage: imgLogo,
+      teamName: '너가소개서',
+      memberName: '강쥐',
     },
     {
       id: 2,
@@ -47,6 +50,8 @@ function HomeTeam() {
       dates: '2021-12-27',
       content:
         '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+      teamName: '너가소개서',
+      memberName: '강쥐',
     },
   ];
 

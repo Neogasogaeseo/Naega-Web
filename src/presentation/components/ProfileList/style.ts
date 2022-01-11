@@ -7,9 +7,6 @@ export const StProfileListWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  width: calc(100% + 2 * 20px);
-  margin-left: -20px;
-  padding: 0 20px;
 `;
 
 export const StItemWrapper = styled.div<{ isSquare: boolean }>`

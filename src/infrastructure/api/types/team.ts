@@ -1,3 +1,5 @@
+import { Keyword } from './user';
+
 export type IssueData = {
   createdAt: string;
   title: string;
@@ -9,9 +11,15 @@ export type IssueData = {
 };
 
 type TeamData = {
-  teammates: string[];
+  teammates: Teammate[];
   thumbnail: string;
   title: string;
+};
+
+type Teammate = {
+  id: number;
+  profileImage: string;
+  profileName: string;
 };
 
 type IssueDetail = {
@@ -19,5 +27,5 @@ type IssueDetail = {
   target: string;
   body: string;
   createdAt: string;
-  keywordList: string[];
+  keywordList: Keyword[];
 };

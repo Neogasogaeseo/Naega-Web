@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StProfileItemWrapper = styled.div<{
+export const StProfileItem = styled.div<{
   isSquare: boolean;
   isSelected: boolean | undefined;
 }>`

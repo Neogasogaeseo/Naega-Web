@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { COMMON_INPUT } from '@styles/common/input';
 
 export const StCommonInput = styled.div`
   display: flex;
@@ -13,11 +14,7 @@ export const StInputWrapper = styled.div<{ width: string }>`
 `;
 
 export const StInput = styled.input<{ width: string }>`
-  border: 1px solid ${COLOR.GRAY_3};
-  box-sizing: border-box;
-  border-radius: 16px;
-  padding: 16px;
-  font-size: 16px;
+  ${COMMON_INPUT}
   height: 52px;
   width: ${(props) => props.width};
   :focus {

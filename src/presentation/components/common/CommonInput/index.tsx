@@ -45,7 +45,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
           disabled={disabled}
         />
       </StInputWrapper>
-      {!isConditionMet && isInput !== '' && errorMsg !== '' && <StErrorMsg>{errorMsg}</StErrorMsg>}
+      {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>
   );
 }

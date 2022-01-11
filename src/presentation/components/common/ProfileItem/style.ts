@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StProfileItemWrapper = styled.div<{ isSquare: boolean }>`
+export const StProfileItem = styled.div<{ isSquare: boolean }>`
   display: flex;
   flex-direction: column;
   width: ${(props) => (props.isSquare ? '60px' : '48px')};

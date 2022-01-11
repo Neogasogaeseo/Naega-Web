@@ -37,8 +37,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Pretendard';
   }
 
-  a { 
-    text-decoration: none;
+  a {
+    text-decoration:none;
+  }
+
+  input[disabled] {
+    background-color: transparent;
   }
 `;
 

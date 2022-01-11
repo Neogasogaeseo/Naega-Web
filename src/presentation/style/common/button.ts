@@ -11,6 +11,9 @@ export const FULL_WIDTH_BUTTON = css`
   min-height: 58px;
   border-radius: 14px;
   font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 58px;
 `;
 
 export const PROFILE_ADD_BUTTON = css`

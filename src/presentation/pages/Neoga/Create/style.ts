@@ -19,7 +19,6 @@ export const StWhiteWrapper = styled(StWrapper)`
     font-size: 24px;
     font-weight: 600;
     line-height: 144%;
-    word-spacing: -1.5%;
     margin-top: 16px;
   }
   & > div:nth-child(3) {
@@ -27,17 +26,17 @@ export const StWhiteWrapper = styled(StWrapper)`
     font-size: 15px;
     color: ${COLOR.GRAY_5};
     line-height: 144%;
-    word-spacing: -1.5%;
+    margin-bottom: 48px;
   }
 `;
 
 export const StGreyWrapper = styled(StWrapper)`
   background-color: ${COLOR.GRAY_1};
   padding-top: 40px;
-  & > div:nth-child(2) {
-    font-size: 24px;
-    font-weight: 600;
+  & > div:nth-child(1) {
+    font-size: 20px;
     line-height: 144%;
     word-spacing: -1.5%;
+    margin-bottom: 12px;
   }
 `;

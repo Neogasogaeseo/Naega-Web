@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { StHeaderWrapper, StNavLink, StNavBottomLine } from './style';
+import { StHomeHeader, StNavLink, StNavBottomLine } from './style';
 import { imgLogo } from '@assets/images';
 
 function HomeHeader() {
@@ -19,7 +19,7 @@ function HomeHeader() {
   }, [location]);
 
   return (
-    <StHeaderWrapper>
+    <StHomeHeader>
       <Link to="/home/you">
         <img src={imgLogo} />
       </Link>
@@ -28,7 +28,6 @@ function HomeHeader() {
           <StNavLink
             key={tab.name}
             to={tab.href}
-            onClick={() => setCurrentTab(tab.href)}
             current={currentTab === tab.href ? 'current' : ''}
           >
             {tab.name}
@@ -36,7 +35,7 @@ function HomeHeader() {
         ))}
       </div>
       <StNavBottomLine />
-    </StHeaderWrapper>
+    </StHomeHeader>
   );
 }
 

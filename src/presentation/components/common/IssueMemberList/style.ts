@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FONT_STYLES } from '@styles/common/font-style';
+import { COLOR } from '@styles/common/color';
 
 export const StIssueMemberList = styled.div`
   display: flex;
@@ -36,6 +37,7 @@ export const StIssueMemberList = styled.div`
 
   & span {
     ${FONT_STYLES.M_14_TITLE};
+    color: ${COLOR.GRAY_7};
     margin-left: 4px;
   }
 `;

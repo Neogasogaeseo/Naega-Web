@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StIssueCard = styled.div<{ issueCardImage?: string }>`
   box-shadow: 0px 2px 20px rgba(88, 99, 109, 0.12);
@@ -41,8 +42,7 @@ export const StCardContent = styled.div`
   color: ${COLOR.GRAY_8};
   margin-bottom: 28px;
   line-height: 160%;
-  font-weight: 600;
-  font-size: 16px;
+  ${FONT_STYLES.SB_16_TITLE};
 `;
 
 export const StCardFooter = styled.div`

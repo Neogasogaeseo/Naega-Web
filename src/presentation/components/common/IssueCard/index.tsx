@@ -7,13 +7,14 @@ interface IssueCardProps {
   category: string;
   dates: string;
   content: string;
+  issueMembers: string[];
   teamImage?: string;
   teamName: string;
   memberName: string;
 }
 
 function IssueCard(props: IssueCardProps) {
-  const { category, dates, content, teamImage, teamName, memberName } = props;
+  const { id, category, dates, content, issueMembers, teamImage, teamName, memberName } = props;
   return (
     <StIssueCard>
       <StTopLeft>
@@ -22,7 +23,7 @@ function IssueCard(props: IssueCardProps) {
       </StTopLeft>
       <StContent>{content}</StContent>
       <StBottom>
-        <IssueMemberList />
+        <IssueMemberList id={id} issueMembers={issueMembers} />
         <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
       </StBottom>
     </StIssueCard>

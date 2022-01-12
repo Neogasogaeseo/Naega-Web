@@ -5,6 +5,7 @@ export interface IssueListData {
   category: string;
   dates: string;
   content: string;
+  issueMembers: string[];
   teamImage?: string;
   teamName: string;
   memberName: string;

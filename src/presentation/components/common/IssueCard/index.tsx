@@ -1,13 +1,6 @@
 import IssueMemberList from '../IssueMemberList';
 import IssueTeamInfo from '../IssueTeamInfo';
-import {
-  StIssueCard,
-  StCardImage,
-  StCardText,
-  StCardHeader,
-  StCardContent,
-  StCardFooter,
-} from './style';
+import { StIssueCard, StCardHeader, StCardContent, StCardFooter } from './style';
 
 interface IssueCardProps {
   id: number;
@@ -34,9 +27,9 @@ function IssueCard(props: IssueCardProps) {
     memberName,
   } = props;
   return (
-    <StIssueCard>
-      {issueCardImage ? <StCardImage issueCardImage={issueCardImage} /> : null}
-      <StCardText>
+    <StIssueCard issueCardImage={issueCardImage}>
+      {issueCardImage && <div></div>}
+      <div>
         <StCardHeader>
           <span>{category}</span>
           <span>{dates}</span>
@@ -46,7 +39,7 @@ function IssueCard(props: IssueCardProps) {
           <IssueMemberList id={id} issueMembers={issueMembers} />
           <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
         </StCardFooter>
-      </StCardText>
+      </div>
     </StIssueCard>
   );
 }

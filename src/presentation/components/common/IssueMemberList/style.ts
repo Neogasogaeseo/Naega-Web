@@ -12,6 +12,7 @@ export const StIssueMemberList = styled.div`
   & img {
     width: 32px;
     height: 32px;
+    object-fit: cover;
     position: relative;
     border-radius: 50%;
     margin-right: -11px;

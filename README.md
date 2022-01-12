@@ -43,7 +43,7 @@
 │   │   └── api : API 처리 관련 파일 작성 <br />
 │   └── presentation <br />
 │       ├── components : 컴포넌트 관련 파일 <br />
-│				├── style : GlobalStyle 관련 파일 <br />
+│	├── style : GlobalStyle 관련 파일 <br />
 │       ├── routes : 라우터 파일 <br />
 │       └── pages : 리라돔 관련 페이지 관련 파일 <br />
 └── 각종 세팅 파일들과 리드 <br />

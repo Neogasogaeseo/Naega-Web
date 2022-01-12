@@ -18,17 +18,8 @@ function IssueCardList(props: IssueListProps) {
   const { issueListData } = props;
   return (
     <div>
-      {issueListData.map(({ id, category, dates, content, teamImage, teamName, memberName }) => (
-        <IssueCard
-          key={id}
-          id={id}
-          category={category}
-          dates={dates}
-          content={content}
-          teamImage={teamImage}
-          teamName={teamName}
-          memberName={memberName}
-        />
+      {issueListData.map((issue) => (
+        <IssueCard key={issue.id} {...issue} />
       ))}
     </div>
   );

@@ -52,7 +52,7 @@ function TeamNewIssue() {
           <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
         </StUploadContainer>
       </FileUpload>
-      <StButton type="submit" onClick={onClickSubmitIssue} disabled={button ? false : true}>
+      <StButton type="submit" onClick={onClickSubmitIssue} disabled={!button}>
         완료
       </StButton>
     </StNewIssue>

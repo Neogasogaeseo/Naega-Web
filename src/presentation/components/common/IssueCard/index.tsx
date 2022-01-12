@@ -1,3 +1,4 @@
+import IssueMemberList from '../IssueMemberList';
 import IssueTeamInfo from '../IssueTeamInfo';
 import { StIssueCard, StTopLeft, StContent, StBottom } from './style';
 
@@ -21,7 +22,7 @@ function IssueCard(props: IssueCardProps) {
       </StTopLeft>
       <StContent>{content}</StContent>
       <StBottom>
-        <div>이미지</div>
+        <IssueMemberList />
         <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
       </StBottom>
     </StIssueCard>

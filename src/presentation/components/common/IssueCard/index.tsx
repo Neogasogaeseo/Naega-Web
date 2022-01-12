@@ -4,6 +4,7 @@ import { StIssueCard, StCardHeader, StCardContent, StCardFooter } from './style'
 
 interface IssueCardProps {
   id: number;
+  issueNumber: number;
   issueCardImage?: string;
   category: string;
   dates: string;
@@ -12,11 +13,13 @@ interface IssueCardProps {
   teamImage?: string;
   teamName: string;
   memberName: string;
+  onIssueClick: (id: number, issueNumber: number) => void;
 }
 
 function IssueCard(props: IssueCardProps) {
   const {
     id,
+    issueNumber,
     issueCardImage,
     category,
     dates,
@@ -25,9 +28,10 @@ function IssueCard(props: IssueCardProps) {
     teamImage,
     teamName,
     memberName,
+    onIssueClick,
   } = props;
   return (
-    <StIssueCard issueCardImage={issueCardImage}>
+    <StIssueCard issueCardImage={issueCardImage} onClick={() => onIssueClick(id, issueNumber)}>
       {issueCardImage && <div></div>}
       <div>
         <StCardHeader>
@@ -36,7 +40,7 @@ function IssueCard(props: IssueCardProps) {
         </StCardHeader>
         <StCardContent>{content}</StCardContent>
         <StCardFooter>
-          <IssueMemberList id={id} issueMembers={issueMembers} />
+          <IssueMemberList id={id} issueNumber={issueNumber} issueMembers={issueMembers} />
           <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
         </StCardFooter>
       </div>

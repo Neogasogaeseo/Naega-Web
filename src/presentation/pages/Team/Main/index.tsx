@@ -1,6 +1,6 @@
 import { imgLogo } from '@assets/images';
 import IssueCardList from '@components/common/IssueCardList';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { StTeamMain } from './style';
 
 function TeamMain() {
@@ -8,6 +8,7 @@ function TeamMain() {
   const issueListData = [
     {
       id: 1,
+      issueNumber: 1,
       category: '개발',
       dates: '2021-12-27',
       content:
@@ -24,6 +25,7 @@ function TeamMain() {
     },
     {
       id: 2,
+      issueNumber: 2,
       issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
       category: '팀컬쳐',
       dates: '2021-12-27',
@@ -38,10 +40,15 @@ function TeamMain() {
     },
   ];
 
+  const navigate = useNavigate();
+  const handleIssueClick = (id: number, issueNumber: number) => {
+    navigate(`/team/${id}/${issueNumber}`);
+  };
+
   return (
     <StTeamMain>
       팀원소개서 메인, 팀 번호는 {teamID}
-      <IssueCardList issueListData={issueListData} />
+      <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
     </StTeamMain>
   );
 }

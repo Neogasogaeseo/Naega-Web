@@ -36,6 +36,7 @@ function HomeTeam() {
   const issueListData = [
     {
       id: 1,
+      issueNumber: 1,
       category: '개발',
       dates: '2021-12-27',
       content:
@@ -52,6 +53,7 @@ function HomeTeam() {
     },
     {
       id: 2,
+      issueNumber: 2,
       issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
       category: '팀컬쳐',
       dates: '2021-12-27',
@@ -76,6 +78,10 @@ function HomeTeam() {
     navigate('/team/register');
   };
 
+  const handleIssueClick = (id: number, issueNumber: number) => {
+    navigate(`/team/${id}/${issueNumber}`);
+  };
+
   return (
     <>
       <StTeamMain>
@@ -88,7 +94,7 @@ function HomeTeam() {
         />
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        <IssueCardList issueListData={issueListData} />
+        <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
       </StTeamMain>
     </>
   );

@@ -27,9 +27,10 @@
   <img src="https://img.shields.io/badge/React%20Testing%20Library-121212?style=flat-square&logo=Testing Library&logoColor=E33332"/>
   <img src="https://img.shields.io/badge/github action-2671E5?style=flat-square&logo=GitHub%20Actions&logoColor=white"/>
 </div>
-- 프로젝트 폴더 구조
 
+## 📓 폴더 구조
 
+```
 ├── .github : 워크플로우 관련 파일 <br />
 ├── public : index.html이 있는 곳  <br />
 ├── src <br />
@@ -46,3 +47,4 @@
 │       ├── routes : 라우터 파일 <br />
 │       └── pages : 리라돔 관련 페이지 관련 파일 <br />
 └── 각종 세팅 파일들과 리드 <br />
+```

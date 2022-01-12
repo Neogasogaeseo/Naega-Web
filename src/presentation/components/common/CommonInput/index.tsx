@@ -11,6 +11,7 @@ interface CommonInputProps {
   img?: string;
   onChange?: (value: string) => void;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 function CommonInput(props: CommonInputProps): React.ReactElement {
@@ -24,6 +25,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
     onChange,
     onKeyPress,
     img,
+    disabled = false,
   } = props;
   const [isInput, setIsInput] = useState('');
 
@@ -43,6 +45,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
           placeholder={placeholder || ''}
           value={value}
           img={img}
+          disabled={disabled}
         />
       </StInputWrapper>
       {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}

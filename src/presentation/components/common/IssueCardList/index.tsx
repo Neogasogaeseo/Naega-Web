@@ -2,6 +2,7 @@ import IssueCard from '../IssueCard';
 
 export interface IssueListData {
   id: number;
+  issueCardImage?: string;
   category: string;
   dates: string;
   content: string;

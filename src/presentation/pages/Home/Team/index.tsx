@@ -36,6 +36,7 @@ function HomeTeam() {
   const issueListData = [
     {
       id: 1,
+      issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
       category: '팀컬쳐',
       dates: '2021-12-27',
       content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',

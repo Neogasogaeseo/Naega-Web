@@ -6,10 +6,23 @@ export const StIssueCard = styled.div`
   border: 1px solid ${COLOR.GRAY_1};
   border-radius: 20px;
   margin-bottom: 14px;
-  padding: 20px;
 `;
 
-export const StTopLeft = styled.div`
+export const StCardImage = styled.div<{ issueCardImage: string }>`
+  height: 96px;
+  border-radius: 20px 20px 0px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(${(props) => props.issueCardImage});
+`;
+
+export const StCardText = styled.div`
+  padding: 20px;
+  padding: 24px 20px;
+`;
+
+export const StCardHeader = styled.div`
   margin-bottom: 8px;
 
   & > span:first-child {
@@ -23,7 +36,7 @@ export const StTopLeft = styled.div`
   }
 `;
 
-export const StContent = styled.div`
+export const StCardContent = styled.div`
   color: ${COLOR.GRAY_8};
   margin-bottom: 28px;
   line-height: 160%;
@@ -31,7 +44,7 @@ export const StContent = styled.div`
   font-size: 16px;
 `;
 
-export const StBottom = styled.div`
+export const StCardFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;

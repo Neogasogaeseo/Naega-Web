@@ -1,7 +1,11 @@
-import React from 'react';
+import LoginForm from '@components/LoginForm/index';
 
-const index = () => {
-  return <div>로그인</div>;
-};
+function LoginPage() {
+  return (
+    <>
+      <LoginForm />
+    </>
+  );
+}
 
-export default index;
+export default LoginPage;

@@ -1,7 +1,11 @@
-import React from 'react';
+import JoinForm from '@components/JoinForm';
 
-const index = () => {
-  return <div>회원가입</div>;
-};
+function JoinPage() {
+  return (
+    <>
+      <JoinForm />
+    </>
+  );
+}
 
-export default index;
+export default JoinPage;

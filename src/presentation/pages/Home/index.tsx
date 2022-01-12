@@ -1,4 +1,4 @@
-import HomeHeader from '@components/common/Header';
+import HomeHeader from '@components/common/HomeHeader';
 import HomeRouter from '@routes/HomeRouter';
 import { StHome } from './style';
 

@@ -11,13 +11,13 @@ export type IssueData = {
 };
 
 type TeamData = {
-  teammates: Teammate[];
+  teammates: TeamMember[];
   thumbnail: string;
   title: string;
 };
 
-type Teammate = {
-  id: number;
+export type TeamMember = {
+  id: string;
   profileImage: string;
   profileName: string;
 };

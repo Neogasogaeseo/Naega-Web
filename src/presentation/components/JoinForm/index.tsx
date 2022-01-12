@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import {
-  StJoinWrapper,
+  StJoinForm,
   StDetailWrapper,
   StNoticeWrapper,
   StInputWrapper,
@@ -15,7 +15,7 @@ import FileUpload from '@components/common/FileUpload';
 import { imgEmptyJoinProfile } from '@assets/images';
 import { icEmail } from '@assets/icons';
 
-function index() {
+function JoinForm() {
   const [isConditionMet, setIsConditionMet] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
@@ -30,7 +30,7 @@ function index() {
     e.preventDefault();
   };
   return (
-    <StJoinWrapper>
+    <StJoinForm>
       <StNoticeWrapper>
         아이디와 사용자 이름을
         <br /> 입력해주세요
@@ -66,8 +66,8 @@ function index() {
       ) : (
         <StButtonGray>완료</StButtonGray>
       )}
-    </StJoinWrapper>
+    </StJoinForm>
   );
 }
 
-export default index;
+export default JoinForm;

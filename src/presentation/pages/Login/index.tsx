@@ -1,11 +1,11 @@
 import LoginForm from '@components/LoginForm/index';
 
-const index = () => {
+function LoginPage() {
   return (
     <>
       <LoginForm />
     </>
   );
-};
+}
 
-export default index;
+export default LoginPage;

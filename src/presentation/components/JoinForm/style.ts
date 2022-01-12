@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StJoinWrapper = styled.div`
+export const StJoinForm = styled.div`
   align-self: center;
   margin: 20px;
 `;
 export const StDetailWrapper = styled.div`
   font-size: 15px;
   line-height: 100%;
-  color: #909090;
+  color: ${COLOR.GRAY_5};
   margin-top: 20px;
   margin-bottom: 35px;
 `;

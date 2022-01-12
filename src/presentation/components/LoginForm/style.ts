@@ -1,14 +1,15 @@
 import styled from 'styled-components';
+import { COLOR } from '@styles/common/color';
 
-export const StLoginWrapper = styled.div`
+export const StLoginForm = styled.div`
   margin-bottom: 200px;
 `;
-export const Login = styled.div`
+export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
   line-height: 100%;
 `;
-export const NoticeWrapper = styled.div`
+export const StNoticeWrapper = styled.div`
   display: flex;
   font-weight: 600;
   font-size: 20px;
@@ -17,10 +18,10 @@ export const NoticeWrapper = styled.div`
   margin-bottom: 102px;
   & > p {
     display: flex;
-    color: #ff6262;
+    color: ${COLOR.CORAL_MAIN};
   }
 `;
-export const LoginButton = styled.button`
+export const StLoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,5 +42,3 @@ export const LoginButton = styled.button`
     line-height: 100%;
   }
 `;
-
-export const KakaoImg = styled.img``;

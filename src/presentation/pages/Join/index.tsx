@@ -1,11 +1,11 @@
 import JoinForm from '@components/JoinForm';
 
-const index = () => {
+function JoinPage() {
   return (
     <>
       <JoinForm />
     </>
   );
-};
+}
 
-export default index;
+export default JoinPage;

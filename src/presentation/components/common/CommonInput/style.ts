@@ -13,10 +13,14 @@ export const StInputWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
 `;
 
-export const StInput = styled.input<{ width: string }>`
+export const StInput = styled.input<{ width: string; img?: string }>`
   ${COMMON_INPUT}
   height: 52px;
   width: ${(props) => props.width};
+  background-image: url(${(props) => props.img});
+  background-position: left;
+  background-repeat: no-repeat;
+  padding: 20px;
   :focus {
     outline: none;
   }

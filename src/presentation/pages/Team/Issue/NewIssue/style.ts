@@ -83,10 +83,13 @@ export const StButton = styled.button`
   margin-top: 156px;
   width: 350px;
   height: 58px;
-  background-color: ${COLOR.CORAL_MAIN};
+  background-color: ${COLOR.GRAY_5};
   color: white;
   border-radius: 18px;
   font-size: 16px;
+  :not(:disabled) {
+    background-color: ${COLOR.CORAL_MAIN};
+  }
 `;
 
 export const StPhotoUploadMiddleDesc = styled.div`
@@ -97,17 +100,4 @@ export const StPhotoUploadMiddleDesc = styled.div`
 export const StPhotoUploadImage = styled.img`
   width: 55px;
   height: 55px;
-`;
-
-export const StButtonGray = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 156px;
-  width: 350px;
-  height: 58px;
-  background-color: ${COLOR.GRAY_5};
-  color: white;
-  border-radius: 18px;
-  font-size: 16px;
 `;

@@ -13,7 +13,6 @@ import {
   StPhotoUploadImage,
   StPhotoUploadMiddleDesc,
   StSelectCategory,
-  StButtonGray,
 } from './style';
 
 function TeamNewIssue() {
@@ -27,7 +26,6 @@ function TeamNewIssue() {
 
   const onClickSubmitIssue = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setButton(false);
     console.log('전송!', issueTextarea);
   };
 
@@ -54,13 +52,9 @@ function TeamNewIssue() {
           <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
         </StUploadContainer>
       </FileUpload>
-      {button ? (
-        <StButton type="submit" onClick={onClickSubmitIssue}>
-          완료
-        </StButton>
-      ) : (
-        <StButtonGray type="submit">완료</StButtonGray>
-      )}
+      <StButton type="submit" onClick={onClickSubmitIssue} disabled={button ? false : true}>
+        완료
+      </StButton>
     </StNewIssue>
   );
 }

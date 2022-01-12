@@ -4,7 +4,7 @@ import { COLOR } from '@styles/common/color';
 
 interface Keyword {
   content: string;
-  color?: string;
+  color: string;
 }
 
 interface MutableKeywordListProps {

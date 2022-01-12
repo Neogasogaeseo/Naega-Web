@@ -18,7 +18,7 @@ type TeamData = {
 
 export type TeamMember = {
   id: string;
-  profileImage: string;
+  profileImage?: string;
   profileName: string;
 };
 

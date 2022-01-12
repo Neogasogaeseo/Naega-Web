@@ -30,7 +30,7 @@ const getLetterSpacing = (position: Font['position']) => {
 };
 
 export const FONT = ({ size, weight, position }: Font) => css`
-  font-size: ${size};
+  font-size: ${size}px;
   font-weight: ${getFontWeight(weight)};
   letter-spacing: ${getLetterSpacing(position)};
 `;

@@ -20,7 +20,7 @@ interface Keyword {
 }
 
 interface User {
-  id: number;
+  id: string;
   profileImage?: string;
   profileName: string;
 }

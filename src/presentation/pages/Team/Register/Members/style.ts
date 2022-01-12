@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StTeamRegisterMembers = styled.div`
   width: 100vw;
@@ -20,20 +21,14 @@ export const StHeader = styled.div`
   }
   & > button {
     background-color: transparent;
-    font-weight: 500;
-    font-size: 15px;
+    ${FONT_STYLES.M_15_TITLE}
     color: ${COLOR.CORAL_MAIN};
   }
 `;
 
-export const StTeamMembersSearchResult = styled.div`
-  padding: 0 20px;
-`;
-
 export const StTeamMembersSearchResultTitle = styled.div`
-  margin-top: 40px;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 100%;
-  letter-spacing: -0.01em;
+  padding: 40px 20px 12px 20px;
+  margin-bottom: 7px;
+  ${FONT_STYLES.SB_13_TITLE}
+  background-color: ${COLOR.GRAY_1};
 `;

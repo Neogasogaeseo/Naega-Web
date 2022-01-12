@@ -1,5 +1,7 @@
+import { neogaDataMock } from '../mock/neoga';
 import { teamDataMock } from '../mock/team';
 import { userDataMock } from '../mock/user';
+import { NeogaService } from './neoga';
 import { TeamService } from './team';
 import { UserService } from './user';
 
@@ -12,11 +14,13 @@ function getAPIMethod(): APIService {
 function provideMockAPIService(): APIService {
   const teamService = teamDataMock();
   const userService = userDataMock();
+  const neogaService = neogaDataMock();
 
-  return { teamService, userService };
+  return { teamService, userService, neogaService };
 }
 
 export interface APIService {
   teamService: TeamService;
   userService: UserService;
+  neogaService: NeogaService;
 }

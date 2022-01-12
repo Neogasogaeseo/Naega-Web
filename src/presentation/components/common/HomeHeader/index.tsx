@@ -9,13 +9,13 @@ function HomeHeader() {
   const [currentTab, setCurrentTab] = useState(pathName);
 
   const tabList = [
-    { name: '너가소개서', href: '/home/you' },
+    { name: '너가소개서', href: '/home/neoga' },
     { name: '팀원소개서', href: '/home/team' },
     { name: 'MY', href: '/home/mypage' },
   ];
 
   useEffect(() => {
-    setCurrentTab(pathName);
+    setCurrentTab(pathName === '/home' ? '/home/neoga' : pathName);
   }, [location]);
 
   return (

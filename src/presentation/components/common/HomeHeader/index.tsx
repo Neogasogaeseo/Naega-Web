@@ -20,7 +20,7 @@ function HomeHeader() {
 
   return (
     <StHomeHeader>
-      <Link to="/home/you">
+      <Link to="/home/neoga">
         <img src={imgLogo} />
       </Link>
       <div>

@@ -1,5 +1,5 @@
-import { icKakao } from '../../../assets/icons/index';
-import { Logo } from '../../../assets/images/index';
+import { icKakao } from '@assets/icons/index';
+import { imgLogo } from '@assets/images/index';
 import { StLoginForm, StLoginButton, StLogin, StNoticeWrapper } from './style';
 import { KAKAO_AUTH_URL } from './OAuth';
 
@@ -9,7 +9,7 @@ function LoginForm() {
   }
   return (
     <StLoginForm>
-      <img src={Logo} />
+      <img src={imgLogo} />
       <StLogin>로그인</StLogin>
       <StNoticeWrapper>
         환영합니다! 너가소개서에 가입하고 <br />

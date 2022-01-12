@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StIssueMemberList = styled.div`
   display: flex;
+  align-items: center;
+
+  & div {
+    width: 73px;
+  }
 
   & img {
     width: 32px;
@@ -11,22 +17,24 @@ export const StIssueMemberList = styled.div`
     margin-right: -11px;
   }
 
-  & img:not(div:nth-of-type(1)) {
+  & img:not(img:nth-of-type(1)) {
     opacity: 0.7;
   }
 
   & img:nth-of-type(1) {
     z-index: 3;
-    background: red;
   }
 
   & img:nth-of-type(2) {
     z-index: 2;
-    background: green;
   }
 
   & img:nth-of-type(3) {
     z-index: 1;
-    background: yellow;
+  }
+
+  & span {
+    ${FONT_STYLES.M_14_TITLE};
+    margin-left: 4px;
   }
 `;

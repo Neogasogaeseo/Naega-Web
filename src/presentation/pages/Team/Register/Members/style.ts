@@ -25,3 +25,15 @@ export const StHeader = styled.div`
     color: ${COLOR.CORAL_MAIN};
   }
 `;
+
+export const StTeamMembersSearchResult = styled.div`
+  padding: 0 20px;
+`;
+
+export const StTeamMembersSearchResultTitle = styled.div`
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+`;

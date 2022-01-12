@@ -1,4 +1,9 @@
-import { StTeamRegisterMembers, StHeader } from './style';
+import {
+  StTeamRegisterMembers,
+  StHeader,
+  StTeamMembersSearchResult,
+  StTeamMembersSearchResultTitle,
+} from './style';
 import { IcBack } from '@assets/icons';
 import TeamMembersSearchBar from '@components/TeamMembersSearchBar';
 
@@ -11,6 +16,9 @@ function TeamRegisterMembers() {
         <button>완료</button>
       </StHeader>
       <TeamMembersSearchBar />
+      <StTeamMembersSearchResult>
+        <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
+      </StTeamMembersSearchResult>
     </StTeamRegisterMembers>
   );
 }

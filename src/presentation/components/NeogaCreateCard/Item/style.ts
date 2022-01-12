@@ -16,6 +16,11 @@ export const StNeogaCreateCardItem = styled.div`
     line-height: 1.5em;
   }
 
+  & div {
+    position: relative;
+    z-index: 1;
+  }
+
   & img {
     width: 100px;
     height: 100px;

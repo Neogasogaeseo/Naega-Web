@@ -15,7 +15,7 @@ interface ImmutableKeywordListProps {
 }
 
 function ImmutableKeywordList(props: ImmutableKeywordListProps) {
-  const { keywordList, viewMode, onItemClick } = props;
+  const { keywordList, viewMode = 'flex', onItemClick } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
       {keywordList.map((keyword) => (
@@ -24,6 +24,7 @@ function ImmutableKeywordList(props: ImmutableKeywordListProps) {
           isMutable={false}
           key={keyword.content}
           onItemClick={() => onItemClick(keyword)}
+          viewMode={viewMode}
         />
       ))}
     </StKeywordListLayout>

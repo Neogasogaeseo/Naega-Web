@@ -33,14 +33,14 @@ export const TEAM_DATA = {
         target: '서진서진',
         body: '서진아고맙다',
         createdAt: '12/20',
-        keywordList: [{ content: '유사 사랑의 열매', color: '#4C48FF' }],
+        keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
       },
       {
         writer: '효인효인',
         target: '서진서진',
         body: '서진아\n고맙다',
         createdAt: '12/20',
-        keywordList: [{ content: '멋있는 캐서린', color: '#FF4B77' }],
+        keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
       },
       {
         writer: '지연지연',
@@ -48,8 +48,8 @@ export const TEAM_DATA = {
         body: '서진아\n\n고맙다',
         createdAt: '12/20',
         keywordList: [
-          { content: '유사 사랑의 열매', color: '#4C48FF' },
-          { content: '멋있는 캐서린', color: '#FF4B77' },
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+          { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
       },
     ],

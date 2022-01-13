@@ -15,6 +15,7 @@ import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 
 interface Keyword {
+  id: string;
   content: string;
   color: string;
 }

@@ -3,8 +3,9 @@ import { StKeywordListLayout } from '../style';
 import { COLOR } from '@styles/common/color';
 
 interface Keyword {
+  id: string;
   content: string;
-  color: string;
+  color?: string;
 }
 
 interface MutableKeywordListProps {
@@ -21,7 +22,7 @@ function MutableKeywordList(props: MutableKeywordListProps) {
         <KeywordItem
           {...{ ...keyword, color: keyword.color ?? COLOR.GRAY_3 }}
           isMutable={true}
-          key={keyword.content}
+          key={keyword.id}
           onDeleteClick={() => deleteKeyword(keyword)}
         />
       ))}

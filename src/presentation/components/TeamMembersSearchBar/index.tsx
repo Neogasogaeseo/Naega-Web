@@ -6,13 +6,13 @@ import {
   StSearchButton,
 } from './style';
 import { IcSearch } from '@assets/icons';
-import TeamMembersSelectedMember from '@components/TeamMembersSelectedMember';
+import MutableKeywordList from '@components/common/Keyword/MutableList';
 
 export default function TeamMembersSearchBar() {
   const selectedMembers = [
-    { id: 0, name: '박박서진' },
-    { id: 1, name: '나나지연' },
-    { id: 2, name: '짜짜효인' },
+    { id: '0', name: '박박서진' },
+    { id: '1', name: '나나지연' },
+    { id: '2', name: '짜짜효인' },
   ];
   return (
     <StTeamMembersSearchBar>
@@ -25,9 +25,11 @@ export default function TeamMembersSearchBar() {
           <StSearchButton>검색</StSearchButton>
         </StSearchButtonWrapper>
       </div>
-      {selectedMembers.map((member) => (
-        <TeamMembersSelectedMember key={member.id} name={member.name} />
-      ))}
+      <MutableKeywordList
+        keywordList={selectedMembers.map((member) => ({ id: member.id, content: member.name }))}
+        deleteKeyword={() => console.log()}
+        viewMode="flex"
+      />
     </StTeamMembersSearchBar>
   );
 }

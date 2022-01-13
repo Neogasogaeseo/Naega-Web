@@ -45,6 +45,7 @@ export const StHeader = styled.div`
       white-space: pre-wrap;
       margin-bottom: 32px;
       color: ${COLOR.GRAY_8};
+      line-height: 150%;
       ${FONT_STYLES.SB_24_BODY}
     }
     &:nth-child(4) {

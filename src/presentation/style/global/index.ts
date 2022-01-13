@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
     -webkit-border-radius: 0;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   body, button, input, textarea {
     font-family: 'Pretendard';
   }

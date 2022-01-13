@@ -8,8 +8,9 @@ import { useOutletContext } from 'react-router-dom';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StAbsoluteButton } from './style';
 
 interface Keyword {
+  id: string;
   content: string;
-  color: string;
+  color?: string;
 }
 
 interface OutletContextProps {
@@ -41,7 +42,11 @@ function TeamIssueKeyword() {
   }, []);
 
   const createKeyword = () => {
-    const newKeyword: Keyword = { content: newKeywordContent, color: randomSelect(colorsList) };
+    const newKeyword: Keyword = {
+      id: Date.now().toString(),
+      content: newKeywordContent,
+      color: randomSelect(colorsList),
+    };
     addKeyword(newKeyword);
     setNewKeywordContent('');
   };

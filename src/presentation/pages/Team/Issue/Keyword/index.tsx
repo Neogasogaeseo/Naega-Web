@@ -27,6 +27,8 @@ function TeamIssueKeyword() {
   const [colorsList, setColorsList] = useState<string[]>([]);
   const [newKeywordContent, setNewKeywordContent] = useState('');
 
+  if (!targetUser) history.back();
+
   useEffect(() => {
     (async () => {
       const data = await api.userService.getKeywords(targetUser.id);

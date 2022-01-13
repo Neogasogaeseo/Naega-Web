@@ -7,7 +7,7 @@ function TeamMain() {
   const { teamID } = useParams();
   const issueListData = [
     {
-      id: 1,
+      teamId: 1,
       issueNumber: 1,
       category: '개발',
       dates: '2021-12-27',
@@ -24,7 +24,7 @@ function TeamMain() {
       memberName: '강쥐',
     },
     {
-      id: 2,
+      teamId: 2,
       issueNumber: 2,
       issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
       category: '팀컬쳐',
@@ -41,8 +41,8 @@ function TeamMain() {
   ];
 
   const navigate = useNavigate();
-  const handleIssueClick = (id: number, issueNumber: number) => {
-    navigate(`/team/${id}/${issueNumber}`);
+  const handleIssueClick = (teamId: number, issueNumber: number) => {
+    navigate(`/team/${teamId}/${issueNumber}`);
   };
 
   return (

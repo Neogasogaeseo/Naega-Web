@@ -1,7 +1,7 @@
 import IssueCard from '../IssueCard';
 
 export interface IssueListData {
-  id: number;
+  teamId: number;
   issueNumber: number;
   issueCardImage?: string;
   category: string;
@@ -15,7 +15,7 @@ export interface IssueListData {
 
 interface IssueListProps {
   issueListData: IssueListData[];
-  onIssueClick: (id: number, issueNumber: number) => void;
+  onIssueClick: (teamId: number, issueNumber: number) => void;
 }
 
 function IssueCardList(props: IssueListProps) {
@@ -24,8 +24,8 @@ function IssueCardList(props: IssueListProps) {
     <div>
       {issueListData.map((issue) => (
         <IssueCard
-          key={issue.id}
-          onIssueClick={() => onIssueClick(issue.id, issue.issueNumber)}
+          key={issue.teamId}
+          onIssueClick={() => onIssueClick(issue.teamId, issue.issueNumber)}
           {...issue}
         />
       ))}

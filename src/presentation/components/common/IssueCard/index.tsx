@@ -3,7 +3,7 @@ import IssueTeamInfo from '../IssueTeamInfo';
 import { StIssueCard, StCardHeader, StCardContent, StCardFooter } from './style';
 
 interface IssueCardProps {
-  id: number;
+  teamId: number;
   issueNumber: number;
   issueCardImage?: string;
   category: string;
@@ -18,7 +18,7 @@ interface IssueCardProps {
 
 function IssueCard(props: IssueCardProps) {
   const {
-    id,
+    teamId,
     issueNumber,
     issueCardImage,
     category,
@@ -31,7 +31,7 @@ function IssueCard(props: IssueCardProps) {
     onIssueClick,
   } = props;
   return (
-    <StIssueCard issueCardImage={issueCardImage} onClick={() => onIssueClick(id, issueNumber)}>
+    <StIssueCard issueCardImage={issueCardImage} onClick={() => onIssueClick(teamId, issueNumber)}>
       {issueCardImage && <div></div>}
       <div>
         <StCardHeader>
@@ -40,7 +40,7 @@ function IssueCard(props: IssueCardProps) {
         </StCardHeader>
         <StCardContent>{content}</StCardContent>
         <StCardFooter>
-          <IssueMemberList id={id} issueNumber={issueNumber} issueMembers={issueMembers} />
+          <IssueMemberList teamId={teamId} issueNumber={issueNumber} issueMembers={issueMembers} />
           <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
         </StCardFooter>
       </div>

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
 import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
@@ -26,12 +26,12 @@ function TeamMain() {
     };
   }, []);
 
-  // const { teamID } = useParams();
+  const { teamID } = useParams();
   const navigate = useNavigate();
 
-  // const createIssue = () => {
-  //   navigate(`/team/${teamID}/create/newissue`);
-  // };
+  const createIssue = () => {
+    navigate(`/team/${teamID}/create`);
+  };
 
   const updateTeam = () => {
     navigate(`/team/register`);
@@ -61,7 +61,7 @@ function TeamMain() {
         </div>
         <img src={icPencil} onClick={updateTeam} />
       </StTeamInfo>
-      <button>
+      <button onClick={createIssue}>
         <img src={icPlusMini} />
         이슈 추가
       </button>

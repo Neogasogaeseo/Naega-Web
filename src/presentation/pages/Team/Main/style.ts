@@ -62,8 +62,10 @@ export const StTeamInfo = styled.div`
         margin-right: 6px;
       }
 
-      span + span {
-        margin-left: 5px;
+      span:first-child,
+      span:nth-child(2),
+      span:nth-child(3) {
+        margin-right: 5px;
       }
     }
   }

@@ -6,19 +6,22 @@ const linearViewMode = css`
   gap: 26px;
   padding: 13px 0;
   border-top: 1px solid ${COLOR.GRAY_2};
-  & > div {
+  & > div > div {
     width: fit-content;
-    position: relative;
     margin-left: 20px;
     & ::after {
       position: absolute;
-      left: -20px;
+      left: 0;
+      right: 0;
       top: 39px;
       content: '';
       border-bottom: 1px solid ${COLOR.GRAY_2};
-      width: 100vw;
       display: block;
     }
+  }
+  & > div > div > img:nth-child(2) {
+    position: absolute;
+    right: 0;
   }
 `;
 

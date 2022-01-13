@@ -12,3 +12,7 @@ export { ReactComponent as IcMemberAdd } from './ic_member_add.svg';
 export { default as icCloseGrey } from './ic_close_grey.svg';
 export { default as icCloseWhite } from './ic_close_white.svg';
 export { ReactComponent as IcPencil } from './ic_pencil.svg';
+export { default as icPencil } from './ic_pencil.svg';
+export { default as icPlusMini } from './ic_plus_mini.svg';
+export { default as icCoralCheck } from './ic_coral_check.svg';
+export { default as icGrayCheck } from './ic_gray_check.svg';

@@ -4,6 +4,7 @@ import { api } from '@api/index';
 import { StLink, StWrapper } from './style';
 import { useRecoilState } from 'recoil';
 import { teamIssueState } from '@stores/team';
+import IssueCard from '@components/IssueCard';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -30,6 +31,7 @@ function TeamIssue() {
         <div>팀원소개서 상세, 이슈 번호는 {issueID}</div>
         {isValidating && <div>로딩중</div>}
         <div>{issue !== null && issue.title}</div>
+        {issue !== null && issue.issueList.map((issue) => <IssueCard key={issue.id} {...issue} />)}
       </div>
       <StLink to={`/team/${teamID}/${issueID}/create`}></StLink>
       <Outlet />

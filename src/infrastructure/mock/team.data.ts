@@ -1,9 +1,13 @@
-import { IssueData } from '@api/types/team';
+import { IssueData, TeamIssueData, TeamProfileData } from '@api/types/team';
 
-export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
+export const TEAM_DATA: {
+  ISSUE_INFO: IssueData;
+  TEAM_ISSUE_INFO: TeamIssueData;
+  TEAM_PROFILE: TeamProfileData;
+} = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
-    title: '깃알못이라 iOS 프로젝트가 엉켜서 망가졌다',
+    title: '깃알못이라 iOS 프로젝트가 \n엉켜서 망가졌다',
     category: '팀컬쳐',
     team: {
       teammates: [
@@ -26,7 +30,8 @@ export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
             'https://ww.namu.la/s/73448969f15f0b462181de8c3fbee648fb398c0e49b9b2376b87a0d0176b790d301d604b944ea4fb3ed2311c6207b5efee83afcee194b5fb89521efcc037bc4fce76b86a1fe6f6336e92a547d138f815',
         },
       ],
-      thumbnail: 'https://m.media-amazon.com/images/I/61EeKaRVyUL._AC_SL1100_.jpg',
+      thumbnail:
+        'https://w.namu.la/s/cf540b42db6aa012f45ec8e7eada6fb14c0578dddc81705a6a65ce649036c7870be294ad2c2c8163819de544dcde5faaa50df4c4d1c52fa21da8b1aa86479abbc25c7254c3019843510ff3e9e39ff9eec48b20008ab7962248d4146108618d29',
       title: '포켓몬주식회사',
     },
     issueList: [
@@ -78,5 +83,70 @@ export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
       },
     ],
     writer: '주영주영',
+  },
+  TEAM_ISSUE_INFO: {
+    issueListData: [
+      {
+        teamID: '1',
+        issueNumber: 1,
+        category: '개발',
+        dates: '2021-12-27',
+        content:
+          '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+        issueMembers: [
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        ],
+        teamName: '너가소개서',
+        memberName: '강쥐',
+      },
+      {
+        teamID: '2',
+        issueNumber: 2,
+        issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
+        category: '팀컬쳐',
+        dates: '2021-12-27',
+        content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+        issueMembers: [
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        ],
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '너가소개서',
+        memberName: '강쥐',
+      },
+    ],
+  },
+  TEAM_PROFILE: {
+    profileListData: [
+      {
+        id: '1',
+        profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        profileName: '너가소개서',
+      },
+      {
+        id: '2',
+        profileName: 'SOPT',
+      },
+      {
+        id: '3',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '4',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '5',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '6',
+        profileName: '기업적디자인',
+      },
+    ],
   },
 };

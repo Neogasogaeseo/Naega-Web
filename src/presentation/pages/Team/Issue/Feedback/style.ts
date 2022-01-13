@@ -16,6 +16,7 @@ export const StBlackBlur = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.44);
+  z-index: 50;
 
   animation: ${ANIMATION.FADE_IN} 1s;
 `;
@@ -31,6 +32,7 @@ export const StWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  z-index: 60;
   animation: ${ANIMATION.SWIPE_UP({ from: 0 })} 1s;
 `;
 

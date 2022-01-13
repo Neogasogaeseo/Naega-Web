@@ -1,4 +1,11 @@
-import { StTitle, StTeamRegister, StTextarea, StSubmitButton } from './style';
+import {
+  StTitle,
+  StTeamRegister,
+  StTextarea,
+  StSubmitButton,
+  StAbsoluteWrapper,
+  StIcPencil,
+} from './style';
 import { ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
@@ -17,9 +24,12 @@ function TeamRegister() {
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
-      <PhotoUpload width="112px" height="112px" borderRadius="36px" setFile={setImage}>
-        <ImgTeamAdd />
-      </PhotoUpload>
+      <StAbsoluteWrapper>
+        <PhotoUpload width="104px" height="104px" borderRadius="36px" setFile={setImage}>
+          <ImgTeamAdd />
+        </PhotoUpload>
+        {!image && <StIcPencil />}
+      </StAbsoluteWrapper>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
       <CommonInput width="100%" placeholder="직접 입력해주세요" />
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />

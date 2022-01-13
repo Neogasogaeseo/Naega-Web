@@ -7,7 +7,12 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.ISSUE_INFO;
   };
 
-  return { getIssueInfo };
+  const postFeedbackBookmark = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
+  return { getIssueInfo, postFeedbackBookmark };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

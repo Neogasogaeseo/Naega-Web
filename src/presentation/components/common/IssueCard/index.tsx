@@ -13,7 +13,7 @@ interface IssueCardProps {
   teamImage?: string;
   teamName: string;
   memberName: string;
-  onIssueClick: (id: number, issueNumber: number) => void;
+  onIssueClick: (teamID: number, issueNumber: number) => void;
 }
 
 function IssueCard(props: IssueCardProps) {

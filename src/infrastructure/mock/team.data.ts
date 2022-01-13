@@ -153,9 +153,149 @@ export const TEAM_DATA: {
   TEAM_DETAIL_INFO: {
     teamInfoData: [
       {
+        teamID: '0',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '너가소개서',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '캐서린',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '웬디',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '콩콩이',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '크왕',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
+      },
+      {
         teamID: '1',
         teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-        teamName: '솝트',
+        teamName: 'SOPT',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '지연',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '효인',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '서진',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '주영',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
+      },
+      {
+        teamID: '2',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '기업적디자인',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '캐서린',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '웬디',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '콩콩이',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '크왕',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
+      },
+      {
+        teamID: '3',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '기업적디자인',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '캐서린',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '웬디',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '콩콩이',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '크왕',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
+      },
+      {
+        teamID: '4',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '기업적디자인',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '캐서린',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '웬디',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '콩콩이',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '크왕',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
+      },
+      {
+        teamID: '5',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '기업적디자인',
         teamDescription: '대학생연합 IT벤처창업 동아리',
         teamMembers: [
           {

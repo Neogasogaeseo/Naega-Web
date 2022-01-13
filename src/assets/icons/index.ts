@@ -11,3 +11,4 @@ export { ReactComponent as IcDelete } from './ic_delete.svg';
 export { ReactComponent as IcMemberAdd } from './ic_member_add.svg';
 export { default as icCloseGrey } from './ic_close_grey.svg';
 export { default as icCloseWhite } from './ic_close_white.svg';
+export { ReactComponent as IcPencil } from './ic_pencil.svg';

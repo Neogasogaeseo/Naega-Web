@@ -5,6 +5,7 @@ import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
 import { TeamInfoData, TeamIssueData } from '@api/types/team';
+import { imgEmptyProfile } from '@assets/images';
 
 function TeamMain() {
   const [isChecked, setIsChecked] = useState(false);
@@ -61,7 +62,7 @@ function TeamMain() {
     <StTeamMain>
       {team && (
         <StTeamInfo>
-          <img src={team.teamImage} />
+          {team.teamImage ? <img src={team.teamImage} /> : <img src={imgEmptyProfile} />}
           <div>
             <h1>{team.teamName}</h1>
             <h2>{team.teamDescription}</h2>

@@ -36,7 +36,7 @@ export const StTeamInfo = styled.div`
     border-radius: 30px;
   }
 
-  & > div {
+  div {
     flex: 1;
 
     h1 {
@@ -74,10 +74,10 @@ export const StCheckWrapper = styled.div`
   align-items: center;
   margin-bottom: 20px;
 
-  & img {
+  button {
+    background: transparent;
     width: 24px;
     height: 24px;
-    cursor: pointer;
     margin-right: 5px;
   }
 `;

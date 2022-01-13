@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input[disabled] {
-    background-color: transparent;
+    background-color: white;
   }
 `;
 

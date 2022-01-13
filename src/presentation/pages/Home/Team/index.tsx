@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { imgLogo } from '@assets/images/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
+import { api } from '@api/index';
+import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { teamIssueCardState } from '@stores/team';
 
 function HomeTeam() {
   const profileListData = [
@@ -33,40 +37,20 @@ function HomeTeam() {
     },
   ];
 
-  const issueListData = [
-    {
-      teamId: 1,
-      issueNumber: 1,
-      category: '개발',
-      dates: '2021-12-27',
-      content:
-        '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
-      issueMembers: [
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-        'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-        'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-      ],
-      teamName: '너가소개서',
-      memberName: '강쥐',
-    },
-    {
-      teamId: 2,
-      issueNumber: 2,
-      issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
-      category: '팀컬쳐',
-      dates: '2021-12-27',
-      content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
-      issueMembers: [
-        'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-      ],
-      teamImage: imgLogo,
-      teamName: '너가소개서',
-      memberName: '강쥐',
-    },
-  ];
+  const [issueListData, setIssueListData] = useRecoilState(teamIssueCardState);
+  const [isValidating, setIsValidating] = useState(false);
+  useEffect(() => {
+    (async () => {
+      setIsValidating(true);
+      const data = await api.teamService.getTeamIssue();
+      setIssueListData(data);
+      setIsValidating(false);
+    })();
+  }, []);
+
+  useEffect(() => {
+    return () => setIssueListData(null);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -78,8 +62,8 @@ function HomeTeam() {
     navigate('/team/register');
   };
 
-  const handleIssueClick = (teamId: number, issueNumber: number) => {
-    navigate(`/team/${teamId}/${issueNumber}`);
+  const handleIssueClick = (teamID: number, issueNumber: number) => {
+    navigate(`/team/${teamID}/${issueNumber}`);
   };
 
   return (
@@ -94,7 +78,13 @@ function HomeTeam() {
         />
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
+        {isValidating && <div>로딩중</div>}
+        {issueListData && (
+          <IssueCardList
+            issueListData={issueListData.issueListData}
+            onIssueClick={handleIssueClick}
+          />
+        )}
       </StTeamMain>
     </>
   );

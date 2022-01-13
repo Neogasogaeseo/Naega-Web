@@ -1,6 +1,6 @@
-import { IssueData } from '@api/types/team';
+import { IssueData, TeamIssueData } from '@api/types/team';
 
-export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
+export const TEAM_DATA: { ISSUE_INFO: IssueData; TEAM_ISSUE_INFO: TeamIssueData } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
     title: '깃알못이라 iOS 프로젝트가 엉켜서 망가졌다',
@@ -78,5 +78,41 @@ export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
       },
     ],
     writer: '주영주영',
+  },
+  TEAM_ISSUE_INFO: {
+    issueListData: [
+      {
+        teamID: 1,
+        issueNumber: 1,
+        category: '개발',
+        dates: '2021-12-27',
+        content:
+          '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+        issueMembers: [
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        ],
+        teamName: '너가소개서',
+        memberName: '강쥐',
+      },
+      {
+        teamID: 2,
+        issueNumber: 2,
+        issueCardImage: 'https://cdn.pixabay.com/photo/2019/03/28/10/19/sunset-4086848_1280.jpg',
+        category: '팀컬쳐',
+        dates: '2021-12-27',
+        content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
+        issueMembers: [
+          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        ],
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '너가소개서',
+        memberName: '강쥐',
+      },
+    ],
   },
 };

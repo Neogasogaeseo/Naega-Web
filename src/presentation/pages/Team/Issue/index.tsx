@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import { api } from '@api/index';
-import { StLink, StWrapper } from './style';
+import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
 import { useRecoilState } from 'recoil';
 import { teamIssueState } from '@stores/team';
 import IssueCard from '@components/IssueCard';
 import CommonInput from '@components/common/CommonInput';
+import IssueMemberList from '@components/common/IssueMemberList';
+import { imgEmptyProfile, imgLogo } from '@assets/images';
+import IssueTeamInfo from '@components/common/IssueTeamInfo';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -27,18 +30,40 @@ function TeamIssue() {
   }, []);
 
   return (
-    <StWrapper>
-      <div>
-        <div>팀원소개서 상세, 이슈 번호는 {issueID}</div>
-        {isValidating && <div>로딩중</div>}
-        <div>{issue !== null && issue.title}</div>
-        {issue !== null && issue.issueList.map((issue) => <IssueCard key={issue.id} {...issue} />)}
-      </div>
+    <StTeamIssue>
+      {isValidating && <div>로딩중</div>}
+      {issue !== null && teamID && issueID && (
+        <StWrapper>
+          <StHeader>
+            <img src={imgLogo} />
+            <div>
+              <div>{issue.category}</div>
+              <div>{issue.createdAt}</div>
+            </div>
+            <div>{issue.title}</div>
+            <div>
+              <IssueMemberList
+                teamID={teamID}
+                issueNumber={+issueID}
+                issueMembers={issue.team.teammates.map(
+                  (teammates) => teammates.profileImage ?? imgEmptyProfile,
+                )}
+              />
+              <IssueTeamInfo teamName={issue.team.title} memberName={issue.writer} />
+            </div>
+          </StHeader>
+          {issue.team.thumbnail && (
+            <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
+          )}
+          {issue !== null &&
+            issue.issueList.map((issue) => <IssueCard key={issue.id} {...issue} />)}
+        </StWrapper>
+      )}
       <StLink to={`/team/${teamID}/${issueID}/create`}>
         <CommonInput width="100%" placeholder="피드백을 입력해주세요" disabled={true} />
       </StLink>
       <Outlet />
-    </StWrapper>
+    </StTeamIssue>
   );
 }
 

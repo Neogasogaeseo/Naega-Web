@@ -36,3 +36,24 @@ export type FeedbackDetail = {
 export type PostFeedbackBookmarkResponse = {
   isSuccess: boolean;
 };
+
+export type TeamIssueData = {
+  issueListData: TeamIssueCard[];
+};
+
+export type TeamIssueCard = {
+  teamID: string;
+  issueNumber: number;
+  issueCardImage?: string;
+  category: string;
+  dates: string;
+  content: string;
+  issueMembers: string[];
+  teamImage?: string;
+  teamName: string;
+  memberName: string;
+};
+
+export type TeamProfileData = {
+  profileListData: TeamMember[];
+};

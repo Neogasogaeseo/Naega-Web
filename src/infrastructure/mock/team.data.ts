@@ -1,4 +1,6 @@
-export const TEAM_DATA = {
+import { IssueData } from '@api/types/team';
+
+export const TEAM_DATA: { ISSUE_INFO: IssueData } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
     title: '깃알못이라 iOS 프로젝트가 엉켜서 망가졌다',
@@ -29,20 +31,27 @@ export const TEAM_DATA = {
     },
     issueList: [
       {
+        id: '11',
         writer: '주영주영',
         target: '서진서진',
         body: '서진아고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
+        isMine: true,
+        isBookmarked: false,
       },
       {
+        id: '12',
         writer: '효인효인',
         target: '서진서진',
         body: '서진아\n고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
+        isMine: true,
+        isBookmarked: false,
       },
       {
+        id: '13',
         writer: '지연지연',
         target: '서진서진',
         body: '서진아\n\n고맙다',
@@ -51,6 +60,21 @@ export const TEAM_DATA = {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
+        isMine: true,
+        isBookmarked: true,
+      },
+      {
+        id: '14',
+        writer: '서진서진',
+        target: '주영주영',
+        body: '주영언니\n\n고맙다',
+        createdAt: '12/20',
+        keywordList: [
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77' },
+        ],
+        isMine: false,
+        isBookmarked: false,
       },
     ],
     writer: '주영주영',

@@ -57,3 +57,21 @@ export type TeamIssueCard = {
 export type TeamProfileData = {
   profileListData: TeamMember[];
 };
+
+export type TeamMembers = {
+  memberID: string;
+  memberName: string;
+  memberImage: string;
+};
+
+export type TeamInfoDetail = {
+  teamID: string;
+  teamImage?: string;
+  teamName: string;
+  teamDescription: string;
+  teamMembers: TeamMembers[];
+};
+
+export type TeamInfoData = {
+  teamInfoData: TeamInfoDetail[];
+};

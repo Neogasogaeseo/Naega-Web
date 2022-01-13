@@ -4,17 +4,22 @@ import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@asse
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
-import { TeamIssueData } from '@api/types/team';
+import { TeamInfoData, TeamIssueData } from '@api/types/team';
 
 function TeamMain() {
   const [isChecked, setIsChecked] = useState(false);
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
+  const { teamID } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       setIsValidating(true);
-      const issueData = await api.teamService.getTeamIssue();
+      const infoData = await api.teamService.getTeamInfo(teamID);
+      const issueData = await api.teamService.getTeamIssue(teamID);
+      setTeamInfoData(infoData);
       setIssueListData(issueData);
       setIsValidating(false);
     })();
@@ -22,12 +27,10 @@ function TeamMain() {
 
   useEffect(() => {
     return () => {
+      setTeamInfoData(null);
       setIssueListData(null);
     };
   }, []);
-
-  const { teamID } = useParams();
-  const navigate = useNavigate();
 
   const createIssue = () => {
     navigate(`/team/${teamID}/create`);
@@ -45,22 +48,33 @@ function TeamMain() {
     navigate(`/team/${teamID}/${issueNumber}`);
   };
 
+  const team = teamInfoData?.teamInfoData[Number(teamID)];
+  const members = teamInfoData?.teamInfoData[Number(teamID)].teamMembers;
+  const names = members?.map((member, index) => (
+    <span key={member.memberID}>
+      {member.memberName}
+      {index < members.length - 1 ? ',\u00a0' : ''}
+    </span>
+  ));
+
   return (
     <StTeamMain>
-      <StTeamInfo>
-        <img src="https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg" />
-        <div>
-          <h1>솝트</h1>
-          <h2>대학생연합 IT벤처창업 동아리</h2>
-          <h3>
-            <img src={icPerson} />
-            <span>4명</span>
-            <span>|</span>
-            <span>캐서린, 웬디, 콩콩이, 크왕</span>
-          </h3>
-        </div>
-        <img src={icPencil} onClick={updateTeam} />
-      </StTeamInfo>
+      {team && (
+        <StTeamInfo>
+          <img src={team.teamImage} />
+          <div>
+            <h1>{team.teamName}</h1>
+            <h2>{team.teamDescription}</h2>
+            <h3>
+              <img src={icPerson} />
+              <span>{team.teamMembers.length}명</span>
+              <span>|</span>
+              {names}
+            </h3>
+          </div>
+          <img src={icPencil} onClick={updateTeam} />
+        </StTeamInfo>
+      )}
       <button onClick={createIssue}>
         <img src={icPlusMini} />
         이슈 추가

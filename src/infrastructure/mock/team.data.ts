@@ -1,9 +1,10 @@
-import { IssueData, TeamIssueData, TeamProfileData } from '@api/types/team';
+import { IssueData, TeamInfoData, TeamIssueData, TeamProfileData } from '@api/types/team';
 
 export const TEAM_DATA: {
   ISSUE_INFO: IssueData;
   TEAM_ISSUE_INFO: TeamIssueData;
   TEAM_PROFILE: TeamProfileData;
+  TEAM_DETAIL_INFO: TeamInfoData;
 } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
@@ -146,6 +147,38 @@ export const TEAM_DATA: {
       {
         id: '6',
         profileName: '기업적디자인',
+      },
+    ],
+  },
+  TEAM_DETAIL_INFO: {
+    teamInfoData: [
+      {
+        teamID: '1',
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '솝트',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
+        teamMembers: [
+          {
+            memberID: '1',
+            memberName: '캐서린',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '2',
+            memberName: '웬디',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '3',
+            memberName: '콩콩이',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            memberID: '4',
+            memberName: '크왕',
+            memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+        ],
       },
     ],
   },

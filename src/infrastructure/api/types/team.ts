@@ -53,3 +53,7 @@ export type TeamIssueCard = {
   teamName: string;
   memberName: string;
 };
+
+export type TeamProfileData = {
+  profileListData: TeamMember[];
+};

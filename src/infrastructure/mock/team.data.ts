@@ -1,6 +1,10 @@
-import { IssueData, TeamIssueData } from '@api/types/team';
+import { IssueData, TeamIssueData, TeamProfileData } from '@api/types/team';
 
-export const TEAM_DATA: { ISSUE_INFO: IssueData; TEAM_ISSUE_INFO: TeamIssueData } = {
+export const TEAM_DATA: {
+  ISSUE_INFO: IssueData;
+  TEAM_ISSUE_INFO: TeamIssueData;
+  TEAM_PROFILE: TeamProfileData;
+} = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
     title: '깃알못이라 iOS 프로젝트가 엉켜서 망가졌다',
@@ -112,6 +116,35 @@ export const TEAM_DATA: { ISSUE_INFO: IssueData; TEAM_ISSUE_INFO: TeamIssueData 
         teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
         teamName: '너가소개서',
         memberName: '강쥐',
+      },
+    ],
+  },
+  TEAM_PROFILE: {
+    profileListData: [
+      {
+        id: '1',
+        profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        profileName: '너가소개서',
+      },
+      {
+        id: '2',
+        profileName: 'SOPT',
+      },
+      {
+        id: '3',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '4',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '5',
+        profileName: '기업적디자인',
+      },
+      {
+        id: '6',
+        profileName: '기업적디자인',
       },
     ],
   },

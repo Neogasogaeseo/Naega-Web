@@ -5,7 +5,7 @@ import { COLOR } from '@styles/common/color';
 
 export const StTeamRegister = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 20px;
   display: flex;
   flex-direction: column;

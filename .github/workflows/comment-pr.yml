@@ -17,5 +17,5 @@ jobs:
         uses: thollander/actions-comment-pull-request@v1
 
         with:
-          message: '울 웹쁜이 고생많았어 !  <a href="htts://naegasogaeseo-dev.kro.kr">여기</a>서 미리보기로 보면서 쉬어~ 다른 웹쁜이들한테도 자랑해줘~'
+          message: '울 웹쁜이 고생많았어 !  <a href="https://naegasogaeseo-dev.kro.kr">여기</a>서 미리보기로 보면서 쉬어~ 다른 웹쁜이들한테도 자랑해줘~'
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

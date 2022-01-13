@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
-import { teamProfileState, teamIssueCardState } from '@stores/team';
 import { StTeamMain, StDivisionLine } from './style';
+import { TeamProfileData, TeamIssueData } from '@api/types/team';
 
 function HomeTeam() {
-  const [profileListData, setProfileListData] = useRecoilState(teamProfileState);
-  const [issueListData, setIssueListData] = useRecoilState(teamIssueCardState);
+  const [profileListData, setProfileListData] = useState<TeamProfileData | null>(null);
+  const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   useEffect(() => {
     (async () => {

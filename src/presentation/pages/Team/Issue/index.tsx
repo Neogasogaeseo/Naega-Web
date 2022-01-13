@@ -5,6 +5,7 @@ import { StLink, StWrapper } from './style';
 import { useRecoilState } from 'recoil';
 import { teamIssueState } from '@stores/team';
 import IssueCard from '@components/IssueCard';
+import CommonInput from '@components/common/CommonInput';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -33,7 +34,9 @@ function TeamIssue() {
         <div>{issue !== null && issue.title}</div>
         {issue !== null && issue.issueList.map((issue) => <IssueCard key={issue.id} {...issue} />)}
       </div>
-      <StLink to={`/team/${teamID}/${issueID}/create`}></StLink>
+      <StLink to={`/team/${teamID}/${issueID}/create`}>
+        <CommonInput width="100%" placeholder="피드백을 입력해주세요" disabled={true} />
+      </StLink>
       <Outlet />
     </StWrapper>
   );

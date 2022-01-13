@@ -14,4 +14,7 @@ export const StWrapper = styled.div`
 
 export const StLink = styled(Link)`
   background-color: ${COLOR.GRAY_2};
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
 `;

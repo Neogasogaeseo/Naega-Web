@@ -10,14 +10,15 @@ function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamProfileData | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       setIsValidating(true);
       const profileData = await api.teamService.getTeamProfile();
       const issueData = await api.teamService.getTeamIssue();
-      setIssueListData(issueData);
       setProfileListData(profileData);
+      setIssueListData(issueData);
       setIsValidating(false);
     })();
   }, []);
@@ -28,8 +29,6 @@ function HomeTeam() {
       setIssueListData(null);
     };
   }, []);
-
-  const navigate = useNavigate();
 
   const handleProfileClick = (id: string) => {
     navigate(`/team/${id}`);

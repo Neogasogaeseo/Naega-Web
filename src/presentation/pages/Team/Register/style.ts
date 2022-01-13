@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COMMON_INPUT } from '@styles/common/input';
 import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
+import { IcPencil } from '@assets/icons';
 
 export const StTeamRegister = styled.div`
   width: 100vw;
@@ -32,4 +33,16 @@ export const StSubmitButton = styled.button`
   ${CORAL_MAIN_BUTTON}
   ${FULL_WIDTH_BUTTON}
   margin-top: 44px;
+`;
+
+export const StAbsoluteWrapper = styled.div`
+  position: relative;
+  width: 104px;
+  height: 104px;
+`;
+
+export const StIcPencil = styled(IcPencil)`
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;

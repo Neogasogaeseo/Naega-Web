@@ -26,6 +26,9 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: none;
     outline: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding: 0;
   }
 
   input {

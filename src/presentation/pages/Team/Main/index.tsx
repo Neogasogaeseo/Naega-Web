@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
-import { icGrayCheck, icCoralCheck, icPencil, icPlusMini } from '@assets/icons';
+import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
@@ -53,7 +53,7 @@ function TeamMain() {
           <h1>솝트</h1>
           <h2>대학생연합 IT벤처창업 동아리</h2>
           <h3>
-            <img />
+            <img src={icPerson} />
             <span>4명</span>
             <span>|</span>
             <span>캐서린, 웬디, 콩콩이, 크왕</span>

@@ -7,28 +7,28 @@ import IssueCardList from '@components/common/IssueCardList';
 function HomeTeam() {
   const profileListData = [
     {
-      id: 1,
+      id: '1',
       profileImage: imgLogo,
       profileName: '너가소개서',
     },
     {
-      id: 2,
+      id: '2',
       profileName: 'SOPT',
     },
     {
-      id: 3,
+      id: '3',
       profileName: '기업적디자인',
     },
     {
-      id: 4,
+      id: '4',
       profileName: '기업적디자인',
     },
     {
-      id: 5,
+      id: '5',
       profileName: '기업적디자인',
     },
     {
-      id: 6,
+      id: '6',
       profileName: '기업적디자인',
     },
   ];
@@ -70,7 +70,7 @@ function HomeTeam() {
 
   const navigate = useNavigate();
 
-  const handleProfileClick = (id: number) => {
+  const handleProfileClick = (id: string) => {
     navigate(`/team/${id}`);
   };
 

@@ -2,12 +2,12 @@ import { StProfileItem } from './style';
 import { imgEmptyProfile } from '@assets/images/index';
 
 interface ProfileItemProps {
-  id: number;
+  id: string;
   profileImage?: string;
   profileName: string;
   isSquare: boolean;
   isSelected?: boolean | undefined;
-  onProfileClick: (id: number) => void;
+  onProfileClick: (id: string) => void;
 }
 
 function ProfileItem(props: ProfileItemProps) {

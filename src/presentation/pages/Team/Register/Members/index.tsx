@@ -28,12 +28,12 @@ function TeamRegisterMembers() {
       </StHeader>
       <TeamMembersSearchBar />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
-      {searchedMemberList.map((member) => (
+      {searchedMemberList.map(({ id, profileImage, profileName }) => (
         <TeamMembersSearchResult
-          key={member.id}
-          id={member.id}
-          profileImage={member.profileImage}
-          profileName={member.profileName}
+          key={id}
+          id={id}
+          profileImage={profileImage}
+          profileName={profileName}
         />
       ))}
     </StTeamRegisterMembers>

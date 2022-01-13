@@ -7,7 +7,7 @@ export const TEAM_DATA: {
 } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
-    title: '깃알못이라 iOS 프로젝트가 엉켜서 망가졌다',
+    title: '깃알못이라 iOS 프로젝트가 \n엉켜서 망가졌다',
     category: '팀컬쳐',
     team: {
       teammates: [
@@ -30,7 +30,8 @@ export const TEAM_DATA: {
             'https://ww.namu.la/s/73448969f15f0b462181de8c3fbee648fb398c0e49b9b2376b87a0d0176b790d301d604b944ea4fb3ed2311c6207b5efee83afcee194b5fb89521efcc037bc4fce76b86a1fe6f6336e92a547d138f815',
         },
       ],
-      thumbnail: 'https://m.media-amazon.com/images/I/61EeKaRVyUL._AC_SL1100_.jpg',
+      thumbnail:
+        'https://w.namu.la/s/cf540b42db6aa012f45ec8e7eada6fb14c0578dddc81705a6a65ce649036c7870be294ad2c2c8163819de544dcde5faaa50df4c4d1c52fa21da8b1aa86479abbc25c7254c3019843510ff3e9e39ff9eec48b20008ab7962248d4146108618d29',
       title: '포켓몬주식회사',
     },
     issueList: [

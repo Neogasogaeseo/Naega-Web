@@ -40,7 +40,7 @@ function IssueCard(props: IssueCardProps) {
         </StCardHeader>
         <StCardContent>{content}</StCardContent>
         <StCardFooter>
-          <IssueMemberList issueMembers={issueMembers} />
+          <IssueMemberList teamID={teamID} issueNumber={issueNumber} issueMembers={issueMembers} />
           <IssueTeamInfo teamImage={teamImage} teamName={teamName} memberName={memberName} />
         </StCardFooter>
       </div>

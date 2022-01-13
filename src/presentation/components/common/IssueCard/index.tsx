@@ -3,7 +3,7 @@ import IssueTeamInfo from '../IssueTeamInfo';
 import { StIssueCard, StCardHeader, StCardContent, StCardFooter } from './style';
 
 interface IssueCardProps {
-  teamID: number;
+  teamID: string;
   issueNumber: number;
   issueCardImage?: string;
   category: string;
@@ -13,7 +13,7 @@ interface IssueCardProps {
   teamImage?: string;
   teamName: string;
   memberName: string;
-  onIssueClick: (teamID: number, issueNumber: number) => void;
+  onIssueClick: (teamID: string, issueNumber: number) => void;
 }
 
 function IssueCard(props: IssueCardProps) {

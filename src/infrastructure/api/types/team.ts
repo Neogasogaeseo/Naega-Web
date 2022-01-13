@@ -42,7 +42,7 @@ export type TeamIssueData = {
 };
 
 export type TeamIssueCard = {
-  teamID: number;
+  teamID: string;
   issueNumber: number;
   issueCardImage?: string;
   category: string;

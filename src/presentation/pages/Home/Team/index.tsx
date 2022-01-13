@@ -10,6 +10,7 @@ function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamProfileData | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
+
   useEffect(() => {
     (async () => {
       setIsValidating(true);
@@ -38,7 +39,7 @@ function HomeTeam() {
     navigate('/team/register');
   };
 
-  const handleIssueClick = (teamID: number, issueNumber: number) => {
+  const handleIssueClick = (teamID: string, issueNumber: number) => {
     navigate(`/team/${teamID}/${issueNumber}`);
   };
 

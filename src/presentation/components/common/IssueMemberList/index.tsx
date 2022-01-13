@@ -1,7 +1,7 @@
 import { StIssueMemberList } from './style';
 
 interface IssueMemberListProps {
-  teamID: number;
+  teamID: string;
   issueNumber: number;
   issueMembers: string[];
 }

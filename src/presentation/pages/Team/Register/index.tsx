@@ -10,7 +10,7 @@ function TeamRegister() {
   const [image, setImage] = useState<File | null>();
   const tempMemberList: ProfileListData[] = [
     {
-      id: 0,
+      id: '0',
       profileImage:
         'https://user-images.githubusercontent.com/73823388/148749098-3e775179-8814-4237-948a-35c1702a2ae7.png',
       profileName: 'finn',

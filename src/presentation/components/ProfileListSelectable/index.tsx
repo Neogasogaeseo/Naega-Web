@@ -2,7 +2,7 @@ import ProfileItem from '@components/common/ProfileItem';
 import { StItemWrapper } from '@components/ProfileList/style';
 
 interface ProfileListData {
-  id: number;
+  id: string;
   profileImage?: string;
   profileName: string;
 }

@@ -5,3 +5,7 @@ export { default as icDot } from './ic_dot.svg';
 export { default as icEmail } from './ic_email.svg';
 export { default as icBookmarkSelected } from './ic_bookmark_selected.svg';
 export { default as icBookmarkUnselected } from './ic_bookmark_unselected.svg';
+export { ReactComponent as IcSearch } from './ic_search.svg';
+export { ReactComponent as IcBack } from './ic_back.svg';
+export { ReactComponent as IcDelete } from './ic_delete.svg';
+export { ReactComponent as IcMemberAdd } from './ic_member_add.svg';

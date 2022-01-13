@@ -60,6 +60,7 @@ function TeamMain() {
 
   return (
     <StTeamMain>
+      {isValidating && <div>로딩중</div>}
       {team && (
         <StTeamInfo>
           {team.teamImage ? <img src={team.teamImage} /> : <img src={imgEmptyProfile} />}

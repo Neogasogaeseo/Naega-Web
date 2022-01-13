@@ -1,12 +1,19 @@
-import { IssueDetail } from '@api/types/team';
+import { api } from '@api/index';
+import { FeedbackDetail } from '@api/types/team';
 import { icDot } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import { useState } from 'react';
 import { StIssueCard, StHeader, StBody, StBookmark } from './style';
 
-type IssueCardProps = IssueDetail;
+type IssueCardProps = FeedbackDetail;
 
 function IssueCard(props: IssueCardProps) {
-  const { writer, target, body, createdAt, keywordList, isMine, isBookmarked } = props;
+  const { id, writer, target, body, createdAt, keywordList, isMine } = props;
+  const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
+  const bookmarkFeedback = async () => {
+    const response = await api.teamService.postFeedbackBookmark(id);
+    if (response.isSuccess) setIsBookmarked((prev) => !prev);
+  };
   return (
     <StIssueCard>
       <StHeader>
@@ -16,7 +23,7 @@ function IssueCard(props: IssueCardProps) {
           <img src={icDot} alt="dot" />
           <div>{createdAt}</div>
         </div>
-        {isMine && <StBookmark selected={isBookmarked} />}
+        {isMine && <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />}
       </StHeader>
       <StBody>{body}</StBody>
       <ImmutableKeywordList

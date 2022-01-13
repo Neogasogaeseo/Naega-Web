@@ -5,7 +5,7 @@ export type IssueData = {
   title: string;
   category: string;
   team: TeamData;
-  issueList: IssueDetail[];
+  issueList: FeedbackDetail[];
   writer: string;
   thumbnail?: string;
 };
@@ -22,7 +22,7 @@ type Teammate = {
   profileName: string;
 };
 
-export type IssueDetail = {
+export type FeedbackDetail = {
   id: string;
   writer: string;
   target: string;
@@ -31,4 +31,8 @@ export type IssueDetail = {
   keywordList: Keyword[];
   isMine: boolean;
   isBookmarked: boolean;
+};
+
+export type PostFeedbackBookmarkResponse = {
+  isSuccess: boolean;
 };

@@ -22,10 +22,13 @@ type Teammate = {
   profileName: string;
 };
 
-type IssueDetail = {
+export type IssueDetail = {
+  id: string;
   writer: string;
   target: string;
   body: string;
   createdAt: string;
   keywordList: Keyword[];
+  isMine: boolean;
+  isBookmarked: boolean;
 };

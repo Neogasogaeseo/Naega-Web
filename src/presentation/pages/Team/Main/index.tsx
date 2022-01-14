@@ -4,12 +4,12 @@ import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@asse
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
-import { TeamInfoDetail, TeamIssueCard } from '@api/types/team';
+import { TeamInfoData, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 
 function TeamMain() {
   const [isChecked, setIsChecked] = useState(false);
-  const [teamInfoData, setTeamInfoData] = useState<TeamInfoDetail[] | null>(null);
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const { teamID } = useParams();
@@ -19,9 +19,9 @@ function TeamMain() {
     (async () => {
       setIsValidating(true);
       if (teamID === undefined) return;
-      const { teamInfoData } = await api.teamService.getTeamInfo(teamID);
+      const teamDetailData = await api.teamService.getTeamInfo(teamID);
       const { issueListData } = await api.teamService.getTeamIssue(teamID);
-      setTeamInfoData(teamInfoData);
+      setTeamInfoData(teamDetailData);
       setIssueListData(issueListData);
       setIsValidating(false);
     })();
@@ -53,18 +53,18 @@ function TeamMain() {
       {isValidating && <div>로딩중</div>}
       {teamInfoData && (
         <StTeamInfo>
-          <img src={teamInfoData?.[Number(teamID)].teamImage ?? imgEmptyProfile} />
+          <img src={teamInfoData.teamImage ?? imgEmptyProfile} />
           <div>
-            <h1>{teamInfoData?.[Number(teamID)].teamName}</h1>
-            <h2>{teamInfoData?.[Number(teamID)].teamDescription}</h2>
+            <h1>{teamInfoData.teamName}</h1>
+            <h2>{teamInfoData.teamDescription}</h2>
             <h3>
               <img src={icPerson} />
-              <span>{teamInfoData?.[Number(teamID)].teamMembers.length}명</span>
+              <span>{teamInfoData.teamMembers.length}명</span>
               <span>|</span>
-              {teamInfoData?.[Number(teamID)].teamMembers.map((member, index) => (
+              {teamInfoData.teamMembers.map((member, index) => (
                 <span key={member.memberID}>
                   {member.memberName}
-                  {index < teamInfoData?.[Number(teamID)].teamMembers.length - 1 ? ',\u00a0' : ''}
+                  {index < teamInfoData.teamMembers.length - 1 ? ',\u00a0' : ''}
                 </span>
               ))}
             </h3>

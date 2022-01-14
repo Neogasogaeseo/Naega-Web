@@ -64,14 +64,10 @@ export type TeamMembers = {
   memberImage: string;
 };
 
-export type TeamInfoDetail = {
+export type TeamInfoData = {
   teamID: string;
   teamImage?: string;
   teamName: string;
   teamDescription: string;
   teamMembers: TeamMembers[];
-};
-
-export type TeamInfoData = {
-  teamInfoData: TeamInfoDetail[];
 };

@@ -7,7 +7,6 @@ export const StTeamMemberPopup = styled.div`
   left: 40px;
   z-index: 4;
   width: 168px;
-  /* visibility: hidden; */
   background: ${COLOR.WHITE};
   border-radius: 8.07692px;
   border: 0.8px solid ${COLOR.GRAY_3};

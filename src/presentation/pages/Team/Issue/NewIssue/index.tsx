@@ -2,7 +2,6 @@
 import { icCamera } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
 import FileUpload from '@components/common/FileUpload';
-import { COLOR } from '@styles/common/color';
 import {
   StNewIssue,
   StTitleWrapper,
@@ -16,25 +15,8 @@ import {
   StSelectCategory,
 } from './style';
 
-const categoryList: string[] = ['팀컬처', '기획', '개발', '디자인'];
-
-type selectedStyle = {
-  backgroundColor: string;
-  color: string;
-};
-
-type selectedStyleButton = {
-  [key: string]: selectedStyle;
-};
-
-const categoryStyle: selectedStyleButton = {
-  팀컬처: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
-  기획: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
-  개발: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
-  디자인: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
-};
-
 function TeamNewIssue() {
+  const categoryList: string[] = ['팀컬처', '기획', '개발', '디자인'];
   const [image, setImage] = useState<File | null>();
   const [button, setButton] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
@@ -60,24 +42,7 @@ function TeamNewIssue() {
       setSelectedCategory(selectedCategory.filter((v) => v !== category));
     }
     setIsClickCategory(!isClickCategory);
-  };
-
-  const selectButton = (id: number, category: string) => {
-    return (
-      <StSelectCategory
-        key={id}
-        onClick={() => {
-          onClickSelectedHandler(category);
-        }}
-        style={
-          categoryStyle[category] && selectedCategory.indexOf(category)
-            ? {}
-            : categoryStyle[category]
-        }
-      >
-        {category}
-      </StSelectCategory>
-    );
+    console.log(selectedCategory.indexOf(category));
   };
 
   return (
@@ -87,7 +52,17 @@ function TeamNewIssue() {
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
       <div>
         {categoryList.map((category, id) => {
-          return selectButton(id, category);
+          return (
+            <StSelectCategory
+              selected={selectedCategory.indexOf(category)}
+              key={id}
+              onClick={() => {
+                onClickSelectedHandler(category);
+              }}
+            >
+              {category}
+            </StSelectCategory>
+          );
         })}
       </div>
       <StTextera
@@ -97,7 +72,9 @@ function TeamNewIssue() {
         onChange={onChangeIssue}
       />
       <StOptionWrapper>
-        <StQuestionWrapper>기억하고 싶은 순간을 이미지로 남겨보세요 (선택)</StQuestionWrapper>
+        <StQuestionWrapper>
+          기억하고 싶은 순간을 이미지로 남겨보세요<p>(선택)</p>{' '}
+        </StQuestionWrapper>
       </StOptionWrapper>
       <FileUpload width="350px" height="149px" setFile={setImage} borderRadius="16px">
         <StUploadContainer>
@@ -108,7 +85,7 @@ function TeamNewIssue() {
       <StButton
         type="submit"
         onClick={onClickSubmitIssue}
-        disabled={!button && issueTextarea == ''}
+        disabled={(!button && issueTextarea == '') || selectedCategory.length === 0}
       >
         완료
       </StButton>

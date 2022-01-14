@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
-import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
+import { icPerson, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
@@ -34,37 +34,19 @@ function TeamMain() {
     };
   }, []);
 
-  const openMemberPopup = () => {
-    setIsMemberPopupOpened(!isMemberPopupOpened);
-  };
-
-  const updateTeam = () => {
-    navigate(`/team/register`);
-  };
-
-  const createIssue = () => {
-    navigate(`/team/${teamID}/create`);
-  };
-
-  const findMyIssue = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleIssueClick = (teamID: string, issueNumber: number) => {
-    navigate(`/team/${teamID}/${issueNumber}`);
-  };
-
   return (
     <StTeamMain>
       {isValidating && <div>로딩중</div>}
       {teamInfoData && (
         <StTeamInfo>
+          <div>
+            <button onClick={() => navigate(`/team/register`)}>수정</button>
+          </div>
           <img src={teamInfoData.teamImage ?? imgEmptyProfile} />
           <div>
             <h1>{teamInfoData.teamName}</h1>
-            <h2>{teamInfoData.teamDescription}</h2>
             <h3>
-              <img src={icPerson} onClick={openMemberPopup} />
+              <img src={icPerson} onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)} />
               <span>{teamInfoData.teamMembers.length}명</span>
               <span>|</span>
               {teamInfoData.teamMembers.map((member, index) => (
@@ -75,23 +57,28 @@ function TeamMain() {
               ))}
             </h3>
             {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMembers} />}
+            <h2>{teamInfoData.teamDescription}</h2>
           </div>
-          <img src={icPencil} onClick={updateTeam} />
         </StTeamInfo>
       )}
-      <button onClick={createIssue}>
+      <button onClick={() => navigate(`/team/${teamID}/create`)}>
         <img src={icPlusMini} />
         이슈 추가
       </button>
       <StCheckWrapper>
-        <button onClick={findMyIssue}>
+        <button onClick={() => setIsChecked(!isChecked)}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
         나와 관련된 이슈만 보기
       </StCheckWrapper>
       {isValidating && <div>로딩중</div>}
       {issueListData && (
-        <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
+        <IssueCardList
+          issueListData={issueListData}
+          onIssueClick={(teamID, issueNumber) => {
+            navigate(`/team/${teamID}/${issueNumber}`);
+          }}
+        />
       )}
     </StTeamMain>
   );

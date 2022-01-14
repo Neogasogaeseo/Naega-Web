@@ -8,6 +8,7 @@ export const StIssueCard = styled.div<{ issueCardImage?: string }>`
   border-radius: 20px;
   margin-bottom: 14px;
   padding: ${(props) => !props.issueCardImage && '24px 20px'};
+  cursor: pointer;
 
   ${(props) =>
     props.issueCardImage &&

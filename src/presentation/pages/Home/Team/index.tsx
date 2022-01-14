@@ -4,21 +4,21 @@ import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
 import { StTeamMain, StDivisionLine } from './style';
-import { TeamProfileData, TeamIssueData } from '@api/types/team';
+import { TeamIssueCard, TeamMember } from '@api/types/team';
 
 function HomeTeam() {
-  const [profileListData, setProfileListData] = useState<TeamProfileData | null>(null);
-  const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
+  const [profileListData, setProfileListData] = useState<TeamMember[] | null>(null);
+  const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       setIsValidating(true);
-      const profileData = await api.teamService.getTeamProfile();
-      const issueData = await api.teamService.getTeamIssue();
-      setProfileListData(profileData);
-      setIssueListData(issueData);
+      const { profileListData } = await api.teamService.getTeamProfile();
+      const { issueListData } = await api.teamService.getTeamIssue();
+      setProfileListData(profileListData);
+      setIssueListData(issueListData);
       setIsValidating(false);
     })();
   }, []);
@@ -50,7 +50,7 @@ function HomeTeam() {
         {profileListData && (
           <ProfileList
             isSquare={true}
-            profileListData={profileListData.profileListData}
+            profileListData={profileListData}
             onProfileClick={handleProfileClick}
             onAddClick={handleAddClick}
           />
@@ -59,10 +59,7 @@ function HomeTeam() {
         <h1>나와 관련된 이슈 확인</h1>
         {isValidating && <div>로딩중</div>}
         {issueListData && (
-          <IssueCardList
-            issueListData={issueListData.issueListData}
-            onIssueClick={handleIssueClick}
-          />
+          <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
         )}
       </StTeamMain>
     </>

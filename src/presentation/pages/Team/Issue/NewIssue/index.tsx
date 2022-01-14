@@ -42,7 +42,6 @@ function TeamNewIssue() {
       setSelectedCategory(selectedCategory.filter((v) => v !== category));
     }
     setIsClickCategory(!isClickCategory);
-    console.log(selectedCategory.indexOf(category));
   };
 
   return (

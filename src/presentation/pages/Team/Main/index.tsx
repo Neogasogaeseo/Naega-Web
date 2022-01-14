@@ -9,7 +9,7 @@ import { imgEmptyProfile } from '@assets/images';
 import TeamMemberPopup from './MemberPopup';
 
 function TeamMain() {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
@@ -34,8 +34,8 @@ function TeamMain() {
     };
   }, []);
 
-  const showMembers = () => {
-    setIsClicked(!isClicked);
+  const openMemberPopup = () => {
+    setIsMemberPopupOpened(!isMemberPopupOpened);
   };
 
   const updateTeam = () => {
@@ -64,7 +64,7 @@ function TeamMain() {
             <h1>{teamInfoData.teamName}</h1>
             <h2>{teamInfoData.teamDescription}</h2>
             <h3>
-              <img src={icPerson} onClick={showMembers} />
+              <img src={icPerson} onClick={openMemberPopup} />
               <span>{teamInfoData.teamMembers.length}명</span>
               <span>|</span>
               {teamInfoData.teamMembers.map((member, index) => (
@@ -74,7 +74,7 @@ function TeamMain() {
                 </span>
               ))}
             </h3>
-            {isClicked && <TeamMemberPopup />}
+            {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMembers} />}
           </div>
           <img src={icPencil} onClick={updateTeam} />
         </StTeamInfo>

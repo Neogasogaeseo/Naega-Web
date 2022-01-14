@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StCommonInput, StInputWrapper, StInput, StErrorMsg } from './style';
+import { StCommonInput, StInputWrapper, StInput, StErrorMsg, StSubmitButton } from './style';
 
 interface CommonInputProps {
   width: string;
@@ -12,6 +12,10 @@ interface CommonInputProps {
   onChange?: (value: string) => void;
   onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  submitButton?: {
+    value: string;
+    onClick: () => void;
+  };
 }
 
 function CommonInput(props: CommonInputProps): React.ReactElement {
@@ -26,6 +30,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
     onKeyPress,
     img,
     disabled = false,
+    submitButton,
   } = props;
   const [isInput, setIsInput] = useState('');
 
@@ -46,7 +51,11 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
           value={value}
           img={img}
           disabled={disabled}
+          hasButton={submitButton !== undefined}
         />
+        {submitButton && (
+          <StSubmitButton onClick={submitButton.onClick}>{submitButton.value}</StSubmitButton>
+        )}
       </StInputWrapper>
       {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>

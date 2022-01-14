@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { COMMON_INPUT } from '@styles/common/input';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StCommonInput = styled.div`
   display: flex;
@@ -11,19 +12,19 @@ export const StInputWrapper = styled.div<{ width: string }>`
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
+  position: relative;
 `;
 
-export const StInput = styled.input<{ width: string; img?: string }>`
+export const StInput = styled.input<{ width: string; img?: string; hasButton: boolean }>`
   ${COMMON_INPUT}
   height: 52px;
   width: ${(props) => props.width};
   background-image: url(${(props) => props.img});
   background-position: left;
   background-repeat: no-repeat;
-  padding: 20px;
-  :focus {
-    outline: none;
-  }
+  padding: 10px 20px;
+  ${({ img }) => img && 'padding-left: 34px; background-position: 12px center;'}
+  ${({ hasButton }) => hasButton && 'padding-right: 56px;'}
 `;
 
 export const StErrorMsg = styled.div`
@@ -31,4 +32,17 @@ export const StErrorMsg = styled.div`
   font-size: 14px;
   line-height: 140%;
   margin-top: 8px;
+`;
+
+export const StSubmitButton = styled.div`
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  border-left: 1px solid ${COLOR.GRAY_3};
+  color: ${COLOR.GRAY_7};
+  ${FONT_STYLES.M_15_TITLE}
+  cursor: pointer;
 `;

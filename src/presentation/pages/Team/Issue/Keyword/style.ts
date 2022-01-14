@@ -29,10 +29,3 @@ export const StWhiteWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
-
-export const StAbsoluteButton = styled.div`
-  position: absolute;
-  top: 38px;
-  right: 32px;
-  cursor: pointer;
-`;

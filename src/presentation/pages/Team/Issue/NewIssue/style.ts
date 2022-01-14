@@ -16,14 +16,14 @@ export const StTitleWrapper = styled.div`
   line-height: 143.99%;
 `;
 
-export const StSelectCategory = styled.select`
-  display: block;
-  width: 96px;
-  border: 1px solid ${COLOR.GRAY_3};
+export const StSelectCategory = styled.button`
+  width: 83px;
+  margin-right: 6px;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 14px;
   margin-bottom: 11px;
   padding: 10px;
+  background-color: ${COLOR.GRAY_1};
   color: ${COLOR.GRAY_5};
 `;
 

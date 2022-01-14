@@ -78,7 +78,7 @@ function TeamMain() {
       </button>
       <StCheckWrapper>
         <button onClick={findMyIssue}>
-          {isChecked ? <img src={icCoralCheck} /> : <img src={icGrayCheck} />}
+          <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
         나와 관련된 이슈만 보기
       </StCheckWrapper>

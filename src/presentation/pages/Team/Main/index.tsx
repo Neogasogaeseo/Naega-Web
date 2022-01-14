@@ -18,6 +18,7 @@ function TeamMain() {
   useEffect(() => {
     (async () => {
       setIsValidating(true);
+      if (teamID === undefined) return;
       const { teamInfoData } = await api.teamService.getTeamInfo(teamID);
       const { issueListData } = await api.teamService.getTeamIssue(teamID);
       setTeamInfoData(teamInfoData);

@@ -16,7 +16,7 @@ function HomeTeam() {
     (async () => {
       setIsValidating(true);
       const { profileListData } = await api.teamService.getTeamProfile();
-      const { issueListData } = await api.teamService.getTeamIssue();
+      const { issueListData } = await api.teamService.getMyIssue();
       setProfileListData(profileListData);
       setIssueListData(issueListData);
       setIsValidating(false);

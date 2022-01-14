@@ -8,10 +8,15 @@ export function useLoginUser() {
   const [isAuthenticated, setIsAuthenticated] = useRecoilState(authState);
   const [error, setError] = useRecoilState(errorState);
 
-  const setAccessToken = (token: string) =>
-    setLoginUser((prev) => ({ ...prev, accessToken: token }));
+  const setAccessToken = (token: string) => {
+    localStorage.setItem('token', token);
+    initLoginUser();
+  };
 
-  const removeAccessToken = () => setLoginUser((prev) => ({ ...prev, accessToken: '' }));
+  const removeAccessToken = () => {
+    localStorage.removeItem('token');
+    setLoginUser({ accessToken: '', username: '', userID: '', profileImage: '' });
+  };
 
   const initLoginUser = async () => {
     try {

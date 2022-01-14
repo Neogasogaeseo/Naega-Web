@@ -2,7 +2,6 @@ import { api } from '@api/index';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import { randomSelect } from '@utils/array';
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper } from './style';
@@ -24,7 +23,6 @@ function TeamIssueKeyword() {
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
   const [userKeywordList, setUserKeywordList] = useState<Keyword[]>([]);
-  const [colorsList, setColorsList] = useState<string[]>([]);
   const [newKeywordContent, setNewKeywordContent] = useState('');
 
   if (!targetUser) history.back();
@@ -36,19 +34,9 @@ function TeamIssueKeyword() {
     })();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const data = await api.userService.getKeywordColors();
-      setColorsList(data);
-    })();
-  }, []);
-
-  const createKeyword = () => {
-    const newKeyword: Keyword = {
-      id: Date.now().toString(),
-      content: newKeywordContent,
-      color: randomSelect(colorsList),
-    };
+  const createKeyword = async () => {
+    if (newKeywordContent === '') return;
+    const newKeyword = await api.userService.postKeyword(targetUser.id, newKeywordContent);
     addKeyword(newKeyword);
     setNewKeywordContent('');
   };

@@ -1,5 +1,6 @@
 import { ANIMATION } from '@styles/common/animation';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StAbsoluteWrapper = styled.div`
@@ -28,4 +29,22 @@ export const StWhiteWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+`;
+
+export const StHeader = styled.div`
+  padding: 12px;
+  border-bottom: 1px solid ${COLOR.GRAY_2};
+  position: relative;
+  & > div:nth-child(1) {
+    color: ${COLOR.GRAY_8};
+    text-align: center;
+    ${FONT_STYLES.SB_17_BODY}
+  }
+  & > div:nth-child(2) {
+    position: absolute;
+    color: ${COLOR.CORAL_MAIN};
+    right: 24px;
+    top: 13px;
+    ${FONT_STYLES.M_15_TITLE}
+  }
 `;

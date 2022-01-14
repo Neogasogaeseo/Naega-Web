@@ -3,8 +3,8 @@ import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper } from './style';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
 
 interface Keyword {
   id: string;
@@ -24,6 +24,7 @@ function TeamIssueKeyword() {
     useOutletContext<OutletContextProps>();
   const [userKeywordList, setUserKeywordList] = useState<Keyword[]>([]);
   const [newKeywordContent, setNewKeywordContent] = useState('');
+  const navigate = useNavigate();
 
   if (!targetUser) history.back();
 
@@ -43,6 +44,10 @@ function TeamIssueKeyword() {
 
   return (
     <StAbsoluteWrapper>
+      <StHeader>
+        <div>키워드 입력</div>
+        <div onClick={() => navigate(-1)}>완료</div>
+      </StHeader>
       <StWhiteWrapper>
         <CommonInput
           width="100%"

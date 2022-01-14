@@ -1,12 +1,12 @@
 import { api } from '@api/index';
-import { loginUserState } from '@stores/login-user';
-import { useState } from 'react';
+import { errorState } from '@stores/error';
+import { authState, loginUserState } from '@stores/login-user';
 import { useRecoilState } from 'recoil';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [error, setError] = useState<unknown>(null);
+  const [isAuthenticated, setIsAuthenticated] = useRecoilState(authState);
+  const [error, setError] = useRecoilState(errorState);
 
   const setAccessToken = (token: string) =>
     setLoginUser((prev) => ({ ...prev, accessToken: token }));

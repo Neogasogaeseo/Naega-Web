@@ -3,11 +3,11 @@ import axios from 'axios';
 const BASEURL = '추가예정';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
-const basePrivateHeaders = {
+const getBasePrivateHeaders = () => ({
   Accept: `*/*`,
   'Content-Type': `application/json`,
   accesstoken: getAccessToken(),
-};
+});
 
 const basePublicHeaders = {
   Accept: `*/*`,
@@ -30,7 +30,8 @@ interface RequestWithData extends Request {
 }
 
 const sendRequest = ({ url, params, method, headers, isPrivate }: RequestWithParams) => {
-  const baseHeaders = isPrivate ? basePrivateHeaders : basePublicHeaders;
+  const baseHeaders = isPrivate ? getBasePrivateHeaders() : basePublicHeaders;
+  console.log(baseHeaders);
   return axios[method](BASEURL + url, {
     headers: { ...baseHeaders, ...headers },
     params,
@@ -40,7 +41,7 @@ const sendRequest = ({ url, params, method, headers, isPrivate }: RequestWithPar
 };
 
 const sendRequestForData = ({ url, data, method, headers, isPrivate }: RequestWithData) => {
-  const baseHeaders = isPrivate ? basePrivateHeaders : basePublicHeaders;
+  const baseHeaders = isPrivate ? getBasePrivateHeaders() : basePublicHeaders;
   return axios[method](BASEURL + url, data, {
     headers: { ...baseHeaders, ...headers },
   }).then((response) => {

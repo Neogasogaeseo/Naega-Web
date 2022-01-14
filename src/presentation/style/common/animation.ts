@@ -5,11 +5,18 @@ export const ANIMATION = {
         from {
             transform: translateY(calc(100vh - ${from}px));
         }
+        to {
+          transform: translateY(0);
+        }
     `,
   SWIPE_FROM_RIGHT: keyframes`
     from {
         transform: translateX(100vw);
-    }`,
+    }
+    to {
+      transform: translateX(0);
+    }
+    `,
   FADE_IN: keyframes`
     from {
         opacity: 0;

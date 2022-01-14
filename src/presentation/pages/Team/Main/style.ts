@@ -14,7 +14,7 @@ export const StTeamMain = styled.div`
     ${CORAL_MAIN_BUTTON}
     ${FULL_WIDTH_BUTTON}
     ${FONT_STYLES.M_16_TITLE};
-    margin-top: 49px;
+    margin-top: 31.17px;
     margin-bottom: 27px;
 
     & > img {
@@ -57,9 +57,11 @@ export const StTeamInfo = styled.div`
       color: ${COLOR.GRAY_5};
       display: flex;
       align-items: center;
+      margin-bottom: 16.83px;
 
       img {
         margin-right: 6px;
+        cursor: pointer;
       }
 
       span:first-child,

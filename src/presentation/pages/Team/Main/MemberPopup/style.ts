@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StTeamMemberPopup = styled.div`
-  position: absolute; /* relative */
-  z-index: 1;
+  position: absolute;
+  left: 40px;
+  z-index: 4;
   width: 168px;
-  height: 207.17px;
   /* visibility: hidden; */
   background: ${COLOR.WHITE};
   border-radius: 8.07692px;
@@ -25,5 +26,28 @@ export const StTeamMemberPopup = styled.div`
     border-top: inherit;
     border-right: inherit;
     box-shadow: inherit;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    span {
+      ${FONT_STYLES.M_13_BODY};
+      color: ${COLOR.GRAY_6};
+      line-height: 18.72px;
+    }
+  }
+
+  div + div {
+    margin-top: 13px;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 77.0833px;
   }
 `;

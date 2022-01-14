@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { api } from '@api/index';
 import { TeamInfoData, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
+import TeamMemberPopup from './MemberPopup';
 
 function TeamMain() {
   const [isChecked, setIsChecked] = useState(false);
@@ -68,6 +69,7 @@ function TeamMain() {
                 </span>
               ))}
             </h3>
+            <TeamMemberPopup />
           </div>
           <img src={icPencil} onClick={updateTeam} />
         </StTeamInfo>

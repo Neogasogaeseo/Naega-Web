@@ -7,7 +7,7 @@ interface IssueMemberListProps {
 }
 
 function IssueMemberList(props: IssueMemberListProps) {
-  const { teamID, issueNumber, issueMembers } = props;
+  const { issueMembers } = props;
   const length = issueMembers.length;
   const MAX_IMAGE_NUM = 3;
 
@@ -15,7 +15,7 @@ function IssueMemberList(props: IssueMemberListProps) {
     <StIssueMemberList>
       <div>
         {issueMembers.slice(0, MAX_IMAGE_NUM).map((member, index) => (
-          <img key={`Team ${teamID}-Issue ${issueNumber}-Index ${index}`} src={member} />
+          <img key={index} src={member} />
         ))}
       </div>
       {length <= MAX_IMAGE_NUM ? null : <span>+{length - MAX_IMAGE_NUM}</span>}

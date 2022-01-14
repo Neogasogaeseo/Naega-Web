@@ -4,13 +4,13 @@ import { icPerson, icPencil, icPlusMini, icCoralCheck, icGrayCheck } from '@asse
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
-import { TeamInfoData, TeamIssueData } from '@api/types/team';
+import { TeamInfoDetail, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 
 function TeamMain() {
   const [isChecked, setIsChecked] = useState(false);
-  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | null>(null);
-  const [issueListData, setIssueListData] = useState<TeamIssueData | null>(null);
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoDetail[] | null>(null);
+  const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const { teamID } = useParams();
   const navigate = useNavigate();
@@ -18,15 +18,13 @@ function TeamMain() {
   useEffect(() => {
     (async () => {
       setIsValidating(true);
-      const infoData = await api.teamService.getTeamInfo(teamID);
-      const issueData = await api.teamService.getTeamIssue(teamID);
-      setTeamInfoData(infoData);
-      setIssueListData(issueData);
+      const { teamInfoData } = await api.teamService.getTeamInfo(teamID);
+      const { issueListData } = await api.teamService.getTeamIssue(teamID);
+      setTeamInfoData(teamInfoData);
+      setIssueListData(issueListData);
       setIsValidating(false);
     })();
-  }, []);
 
-  useEffect(() => {
     return () => {
       setTeamInfoData(null);
       setIssueListData(null);
@@ -49,29 +47,25 @@ function TeamMain() {
     navigate(`/team/${teamID}/${issueNumber}`);
   };
 
-  const team = teamInfoData?.teamInfoData[Number(teamID)];
-  const members = teamInfoData?.teamInfoData[Number(teamID)].teamMembers;
-  const names = members?.map((member, index) => (
-    <span key={member.memberID}>
-      {member.memberName}
-      {index < members.length - 1 ? ',\u00a0' : ''}
-    </span>
-  ));
-
   return (
     <StTeamMain>
       {isValidating && <div>로딩중</div>}
-      {team && (
+      {teamInfoData && (
         <StTeamInfo>
-          {team.teamImage ? <img src={team.teamImage} /> : <img src={imgEmptyProfile} />}
+          <img src={teamInfoData?.[Number(teamID)].teamImage ?? imgEmptyProfile} />
           <div>
-            <h1>{team.teamName}</h1>
-            <h2>{team.teamDescription}</h2>
+            <h1>{teamInfoData?.[Number(teamID)].teamName}</h1>
+            <h2>{teamInfoData?.[Number(teamID)].teamDescription}</h2>
             <h3>
               <img src={icPerson} />
-              <span>{team.teamMembers.length}명</span>
+              <span>{teamInfoData?.[Number(teamID)].teamMembers.length}명</span>
               <span>|</span>
-              {names}
+              {teamInfoData?.[Number(teamID)].teamMembers.map((member, index) => (
+                <span key={member.memberID}>
+                  {member.memberName}
+                  {index < teamInfoData?.[Number(teamID)].teamMembers.length - 1 ? ',\u00a0' : ''}
+                </span>
+              ))}
             </h3>
           </div>
           <img src={icPencil} onClick={updateTeam} />
@@ -89,10 +83,7 @@ function TeamMain() {
       </StCheckWrapper>
       {isValidating && <div>로딩중</div>}
       {issueListData && (
-        <IssueCardList
-          issueListData={issueListData.issueListData}
-          onIssueClick={handleIssueClick}
-        />
+        <IssueCardList issueListData={issueListData} onIssueClick={handleIssueClick} />
       )}
     </StTeamMain>
   );

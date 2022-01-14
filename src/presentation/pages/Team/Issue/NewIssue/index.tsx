@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { icCamera } from '@assets/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FileUpload from '@components/common/FileUpload';
+import { COLOR } from '@styles/common/color';
 import {
   StNewIssue,
   StTitleWrapper,
@@ -15,9 +16,29 @@ import {
   StSelectCategory,
 } from './style';
 
+const categoryList: string[] = ['팀컬처', '기획', '개발', '디자인'];
+
+type selectedStyle = {
+  backgroundColor: string;
+  color: string;
+};
+
+type selectedStyleButton = {
+  [key: string]: selectedStyle;
+};
+
+const categoryStyle: selectedStyleButton = {
+  팀컬처: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
+  기획: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
+  개발: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
+  디자인: { backgroundColor: '#FFF1F1', color: COLOR.CORAL_MAIN },
+};
+
 function TeamNewIssue() {
   const [image, setImage] = useState<File | null>();
   const [button, setButton] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [isClickCategory, setIsClickCategory] = useState(false);
   const [issueTextarea, setIssueTextarea] = useState('');
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIssueTextarea(e.currentTarget.value);
@@ -26,7 +47,37 @@ function TeamNewIssue() {
 
   const onClickSubmitIssue = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log('전송!', issueTextarea);
+  };
+
+  useEffect(() => {
+    setButton(false);
+  }, [issueTextarea]);
+
+  const onClickSelectedHandler = (category: string) => {
+    if (selectedCategory.length === 0) {
+      setSelectedCategory([category]);
+    } else if (selectedCategory.includes(category)) {
+      setSelectedCategory(selectedCategory.filter((v) => v !== category));
+    }
+    setIsClickCategory(!isClickCategory);
+  };
+
+  const selectButton = (id: number, category: string) => {
+    return (
+      <StSelectCategory
+        key={id}
+        onClick={() => {
+          onClickSelectedHandler(category);
+        }}
+        style={
+          categoryStyle[category] && selectedCategory.indexOf(category)
+            ? {}
+            : categoryStyle[category]
+        }
+      >
+        {category}
+      </StSelectCategory>
+    );
   };
 
   return (
@@ -34,9 +85,11 @@ function TeamNewIssue() {
       <StTitleWrapper>솝트에 이슈 등록하기</StTitleWrapper>
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
-      <StSelectCategory>
-        <option value="">선택</option>
-      </StSelectCategory>
+      <div>
+        {categoryList.map((category, id) => {
+          return selectButton(id, category);
+        })}
+      </div>
       <StTextera
         placeholder="직접 입력해주세요"
         name="issueTextarea"
@@ -52,7 +105,11 @@ function TeamNewIssue() {
           <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
         </StUploadContainer>
       </FileUpload>
-      <StButton type="submit" onClick={onClickSubmitIssue} disabled={!button}>
+      <StButton
+        type="submit"
+        onClick={onClickSubmitIssue}
+        disabled={!button && issueTextarea == ''}
+      >
         완료
       </StButton>
     </StNewIssue>

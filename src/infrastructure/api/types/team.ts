@@ -52,7 +52,7 @@ export type TeamIssueCard = {
   category: string;
   dates: string;
   content: string;
-  issueMembers: string[];
+  issueMembers: TeamMember[];
   teamImage?: string;
   teamName: string;
   memberName: string;
@@ -76,4 +76,4 @@ export type TeamInfoData = {
   teamMembers: TeamMembers[];
 };
 
-export type TeamInviteData = Omit<TeamInfoData, 'teamImage' | 'teamDescription' | 'teamMembers'>;
+export type TeamInviteData = Pick<TeamInfoData, 'teamID' | 'teamName'>;

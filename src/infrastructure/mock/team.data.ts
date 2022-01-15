@@ -102,11 +102,31 @@ export const TEAM_DATA: {
         content:
           '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          {
+            id: '1',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          },
+          {
+            id: '2',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '3',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '4',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '5',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
         ],
         teamName: '너가소개서',
         memberName: '강쥐',
@@ -119,8 +139,15 @@ export const TEAM_DATA: {
         dates: '2021-12-27',
         content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          {
+            id: '1',
+            profileName: '지연',
+          },
+          {
+            id: '2',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
         ],
         teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
         teamName: '너가소개서',

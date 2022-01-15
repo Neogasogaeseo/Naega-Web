@@ -18,7 +18,7 @@ export const StInvitation = styled.div`
   justify-content: space-between;
   background-color: ${COLOR.GRAY_1};
   color: ${COLOR.GRAY_6};
-  width: calc(100% + 2 * 20px);
+  width: calc(100% + 40px);
   height: 57px;
   margin-left: -20px;
   ${FONT_STYLES.R_14_TITLE};
@@ -54,7 +54,7 @@ export const StInvitation = styled.div`
 `;
 
 export const StDivisionLine = styled.div`
-  width: calc(100% + 2 * 20px);
+  width: calc(100% + 40px);
   height: 8px;
   background-color: ${COLOR.GRAY_1};
   margin-top: 24px;

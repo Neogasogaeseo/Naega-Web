@@ -75,17 +75,28 @@ export const StTeamInfo = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: 14.83px;
 
       img {
-        margin-right: 4px;
-        cursor: pointer;
+        margin-right: 2px;
       }
 
-      span:first-child,
-      span:nth-child(2),
-      span:nth-child(3) {
+      button {
+        display: flex;
+        align-items: center;
+        background: ${COLOR.GRAY_2};
+        color: ${COLOR.GRAY_5};
+        padding: 3px 7px;
+        ${FONT_STYLES.R_13_TITLE};
+        border-radius: 9px;
         margin-right: 5px;
+      }
+
+      span {
+        line-height: 19px;
+        color: ${COLOR.GRAY_5};
+        font-size: 13px;
+        letter-spacing: -0.01em;
       }
     }
   }

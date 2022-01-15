@@ -46,9 +46,10 @@ function TeamMain() {
           <div>
             <h1>{teamInfoData.teamName}</h1>
             <h3>
-              <img src={icPerson} onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)} />
-              <span>{teamInfoData.teamMembers.length}명</span>
-              <span>|</span>
+              <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
+                <img src={icPerson} />
+                <span>{teamInfoData.teamMembers.length}명</span>
+              </button>
               {teamInfoData.teamMembers.map((member, index) => (
                 <span key={member.memberID}>
                   {member.memberName}

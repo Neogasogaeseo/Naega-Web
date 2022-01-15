@@ -12,7 +12,12 @@ export function userDataMock(): UserService {
     return USER_DATA.KEYWORD_COLORS;
   };
 
-  return { getKeywords, getKeywordColors };
+  const getUserInfo = async () => {
+    await wait(2000);
+    return USER_DATA._;
+  };
+
+  return { getKeywords, getKeywordColors, getUserInfo };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

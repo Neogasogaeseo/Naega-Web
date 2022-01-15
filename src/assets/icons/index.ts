@@ -17,3 +17,4 @@ export { default as icPerson } from './ic_person.svg';
 export { default as icPlusMini } from './ic_plus_mini.svg';
 export { default as icCoralCheck } from './ic_coral_check.svg';
 export { default as icGrayCheck } from './ic_gray_check.svg';
+export { default as icMessage } from './ic_message.svg';

@@ -14,8 +14,8 @@ export const StTeamMain = styled.div`
     ${CORAL_MAIN_BUTTON}
     ${FULL_WIDTH_BUTTON}
     ${FONT_STYLES.M_16_TITLE};
-    margin-top: 49px;
-    margin-bottom: 27px;
+    margin-top: 36px;
+    margin-bottom: 35px;
 
     & > img {
       margin-right: 8px;
@@ -25,30 +25,47 @@ export const StTeamMain = styled.div`
 
 export const StTeamInfo = styled.div`
   display: flex;
-  margin-top: 43px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7px;
 
-  & > img:first-child {
+  & > div:first-child {
+    display: flex;
+    justify-content: end;
+    padding-top: 13px;
+    padding-bottom: 15px;
+    padding-right: 4px;
+    width: 100%;
+
+    button {
+      background-color: transparent;
+      color: ${COLOR.CORAL_MAIN};
+      ${FONT_STYLES.M_15_TITLE};
+    }
+  }
+
+  & > img:nth-of-type(1) {
     width: 82px;
     height: 82px;
     object-fit: cover;
-    margin-right: 18px;
-    margin-bottom: 1px;
+    margin-bottom: 18px;
     border-radius: 30px;
   }
 
-  div {
+  div:nth-of-type(2) {
     flex: 1;
+    text-align: center;
 
     h1 {
-      ${FONT_STYLES.B_24_TITLE};
-      margin-top: 5px;
-      margin-bottom: 10px;
-      color: ${COLOR.BLACK};
+      margin-bottom: 8px;
+      color: ${COLOR.GRAY_8};
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.015em;
     }
 
     h2 {
-      ${FONT_STYLES.R_14_TITLE};
-      margin-bottom: 15px;
+      ${FONT_STYLES.R_15_TITLE};
       color: ${COLOR.GRAY_7};
     }
 
@@ -57,9 +74,12 @@ export const StTeamInfo = styled.div`
       color: ${COLOR.GRAY_5};
       display: flex;
       align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
 
       img {
-        margin-right: 6px;
+        margin-right: 4px;
+        cursor: pointer;
       }
 
       span:first-child,
@@ -80,12 +100,14 @@ export const StTeamInfo = styled.div`
 export const StCheckWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  color: ${COLOR.GRAY_7};
+  font-weight: 600;
 
   button {
     background: transparent;
     width: 24px;
     height: 24px;
-    margin-right: 5px;
+    margin-right: 8px;
   }
 `;

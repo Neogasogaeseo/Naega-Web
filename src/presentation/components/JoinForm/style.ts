@@ -38,28 +38,18 @@ export const StButton = styled.button`
   margin-top: 70px;
   width: 350px;
   height: 58px;
-  background-color: ${COLOR.CORAL_MAIN};
+  background-color: ${COLOR.GRAY_5};
   color: white;
   border-radius: 18px;
   font-size: 16px;
+  :not(:disabled) {
+    background-color: ${COLOR.CORAL_MAIN};
+  }
 `;
 
 export const StProfileImg = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-export const StButtonGray = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 70px;
-  width: 350px;
-  height: 58px;
-  background-color: ${COLOR.GRAY_5};
-  color: white;
-  border-radius: 18px;
-  font-size: 16px;
 `;
 
 export const StPhotoUploadImage = styled.img`

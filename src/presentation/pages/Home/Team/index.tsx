@@ -23,9 +23,7 @@ function HomeTeam() {
       setIssueListData(issueListData);
       setIsValidating(false);
     })();
-  }, []);
 
-  useEffect(() => {
     return () => {
       setProfileListData(null);
       setIssueListData(null);

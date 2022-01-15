@@ -1,6 +1,6 @@
 import ProfileListSelectable from '@components/ProfileListSelectable';
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { teamIssueState } from '@stores/team';
 import {
@@ -30,6 +30,7 @@ function TeamIssueFeedback() {
   const teamIssue = useRecoilValue(teamIssueState);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (teamIssue?.team.teammates[0] !== undefined) setSelectedUser(teamIssue?.team.teammates[0]);
@@ -38,7 +39,7 @@ function TeamIssueFeedback() {
   return (
     <>
       <StAbsoluteWrapper>
-        <StBlackBlur />
+        <StBlackBlur onClick={() => navigate(-1)} />
         <StWrapper>
           <StSection>
             <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>

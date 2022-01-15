@@ -60,3 +60,25 @@ export const NEOGA_DATA = {
     },
   ],
 };
+
+export const NEOGA_RESULT = {
+  NEOGA_TEMPLATES: [
+    {
+      id: 1,
+      title: '2020, 임인년',
+      date: '2022-01-12',
+      keywordList: [
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+        { id: '0', content: '멋있는 캐서린', color: '#FF4B77' },
+        { id: '0', content: '서진이는 최고야', color: 'brown' },
+        { id: '0', content: '지연이는 최고야', color: 'red' },
+        { id: '0', content: '주영이는 최고야', color: 'pink' },
+        { id: '0', content: '효인이는 최고야', color: 'orange' },
+      ],
+      relation: '동네 친구',
+      writer: 'bakbak지연',
+      content:
+        '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~~!~!',
+    },
+  ],
+};

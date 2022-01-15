@@ -19,6 +19,12 @@ export const StTitle = styled.div`
   font-size: 24px;
   line-height: 150%;
   letter-spacing: -0.01em;
+  & > p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 162%;
+    letter-spacing: -0.01em;
+  }
 `;
 
 export const StButton = styled.button`

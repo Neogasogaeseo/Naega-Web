@@ -41,7 +41,9 @@ function NeogaDetailForm() {
         <p>키워드모음</p>
       </StKeyword>
       <StFeedWrapper>
-        <StFeedTitle>5개의 답변 피드</StFeedTitle>
+        <StFeedTitle>
+          <p>5개</p>의 답변 피드
+        </StFeedTitle>
         <StFeedNickname>동네친구 수진</StFeedNickname>
         <StFeedContent>
           강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자

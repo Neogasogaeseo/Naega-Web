@@ -2,10 +2,9 @@ import { api } from '@api/index';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import { randomSelect } from '@utils/array';
 import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
-import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StAbsoluteButton } from './style';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
 
 interface Keyword {
   id: string;
@@ -24,8 +23,8 @@ function TeamIssueKeyword() {
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
   const [userKeywordList, setUserKeywordList] = useState<Keyword[]>([]);
-  const [colorsList, setColorsList] = useState<string[]>([]);
   const [newKeywordContent, setNewKeywordContent] = useState('');
+  const navigate = useNavigate();
 
   if (!targetUser) history.back();
 
@@ -36,33 +35,27 @@ function TeamIssueKeyword() {
     })();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const data = await api.userService.getKeywordColors();
-      setColorsList(data);
-    })();
-  }, []);
-
-  const createKeyword = () => {
-    const newKeyword: Keyword = {
-      id: Date.now().toString(),
-      content: newKeywordContent,
-      color: randomSelect(colorsList),
-    };
+  const createKeyword = async () => {
+    if (newKeywordContent === '') return;
+    const newKeyword = await api.userService.postKeyword(targetUser.id, newKeywordContent);
     addKeyword(newKeyword);
     setNewKeywordContent('');
   };
 
   return (
     <StAbsoluteWrapper>
+      <StHeader>
+        <div>키워드 입력</div>
+        <div onClick={() => navigate(-1)}>완료</div>
+      </StHeader>
       <StWhiteWrapper>
         <CommonInput
           width="100%"
           placeholder="새로 입력하고 싶은 키워드를 작성해주세요"
           value={newKeywordContent}
           onChange={(value: string) => setNewKeywordContent(value)}
+          submitButton={{ value: '생성', onClick: createKeyword }}
         />
-        <StAbsoluteButton onClick={createKeyword}>생성</StAbsoluteButton>
         <MutableKeywordList keywordList={keywordList} deleteKeyword={removeKeyword} />
       </StWhiteWrapper>
       <StTitleWrapper>

@@ -25,4 +25,12 @@ export const ANIMATION = {
         opacity: 1;
     }
 `,
+  FADE_OUT: keyframes`
+      from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+`,
 };

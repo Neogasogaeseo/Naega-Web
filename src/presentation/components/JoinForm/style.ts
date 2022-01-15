@@ -38,7 +38,7 @@ export const StButton = styled.button`
   margin-top: 70px;
   width: 350px;
   height: 58px;
-  background-color: ${COLOR.GRAY_5};
+  background-color: ${COLOR.GRAY_3};
   color: white;
   border-radius: 18px;
   font-size: 16px;

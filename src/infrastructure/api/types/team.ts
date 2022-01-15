@@ -75,3 +75,5 @@ export type TeamInfoData = {
   teamDescription: string;
   teamMembers: TeamMembers[];
 };
+
+export type TeamInviteData = Omit<TeamInfoData, 'teamImage' | 'teamDescription' | 'teamMembers'>;

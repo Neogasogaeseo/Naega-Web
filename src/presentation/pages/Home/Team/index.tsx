@@ -4,13 +4,14 @@ import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
 import { StTeamMain, StInvitation, StDivisionLine, StEmptyView } from './style';
-import { TeamIssueCard, TeamMember } from '@api/types/team';
+import { TeamInviteData, TeamIssueCard, TeamMember } from '@api/types/team';
 import { icMessage } from '@assets/icons';
 import { imgEmptyMain } from '@assets/images';
 
 function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamMember[] | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
+  const [inviteData, setInviteData] = useState<TeamInviteData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [isInviting, setIsInviting] = useState(true); // false로 변경
   const navigate = useNavigate();
@@ -20,8 +21,10 @@ function HomeTeam() {
       setIsValidating(true);
       const { profileListData } = await api.teamService.getTeamProfile();
       const { issueListData } = await api.teamService.getMyIssue();
+      const teamInviteData = await api.teamService.getInviteInfo();
       setProfileListData(profileListData);
       setIssueListData(issueListData);
+      setInviteData(teamInviteData);
       setIsValidating(false);
     })();
 
@@ -38,7 +41,7 @@ function HomeTeam() {
           <StInvitation>
             <div>
               <img src={icMessage} />
-              <span>너가소개서너가소개서팀</span>의 초대
+              <span>{inviteData?.teamName}팀</span>의 초대
             </div>
             <div>
               <button onClick={() => setIsInviting(true)}>수락</button>

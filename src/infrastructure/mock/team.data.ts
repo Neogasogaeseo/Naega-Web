@@ -1,10 +1,17 @@
-import { IssueData, TeamInfoData, TeamIssueData, TeamProfileData } from '@api/types/team';
+import {
+  IssueData,
+  TeamInfoData,
+  TeamInviteData,
+  TeamIssueData,
+  TeamProfileData,
+} from '@api/types/team';
 
 export const TEAM_DATA: {
   ISSUE_INFO: IssueData;
   TEAM_ISSUE_INFO: TeamIssueData;
   TEAM_PROFILE: TeamProfileData;
   TEAM_DETAIL_INFO: TeamInfoData;
+  TEAM_INVITE_INFO: TeamInviteData;
 } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
@@ -177,5 +184,9 @@ export const TEAM_DATA: {
         memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
     ],
+  },
+  TEAM_INVITE_INFO: {
+    teamID: '0',
+    teamName: '너가소개서',
   },
 };

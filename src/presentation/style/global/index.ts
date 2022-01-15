@@ -1,3 +1,4 @@
+import { COLOR } from '@styles/common/color';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -38,10 +39,23 @@ const GlobalStyle = createGlobalStyle`
 
   input:focus {
     outline: none;
+    box-shadow: 0 0 0 2px ${COLOR.CORAL_MAIN};
   }
 
   body, button, input, textarea {
     font-family: 'Pretendard';
+  }
+
+  textarea {
+    box-sizing: border-box;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+
+  textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${COLOR.CORAL_MAIN};
   }
 
   a {

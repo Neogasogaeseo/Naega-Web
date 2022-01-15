@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
-import { StTeamMain, StInvitation, StDivisionLine } from './style';
+import { StTeamMain, StInvitation, StDivisionLine, StEmptyView } from './style';
 import { TeamIssueCard, TeamMember } from '@api/types/team';
 import { icMessage } from '@assets/icons';
+import { imgEmptyMain } from '@assets/images';
 
 function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamMember[] | null>(null);
@@ -62,13 +63,19 @@ function HomeTeam() {
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
         {isValidating && <div>로딩중</div>}
-        {issueListData && (
+        {issueListData ? (
           <IssueCardList
             issueListData={issueListData}
             onIssueClick={(teamID, issueNumber) => {
               navigate(`/team/${teamID}/${issueNumber}`);
             }}
           />
+        ) : (
+          <StEmptyView>
+            <img src={imgEmptyMain} />
+            <div>아직 팀원소개서 컨텐츠가 없어요!</div>
+            <div>팀이나 이슈를 추가해보세요.</div>
+          </StEmptyView>
         )}
       </StTeamMain>
     </>

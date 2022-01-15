@@ -3,6 +3,7 @@ import { COLOR } from '@styles/common/color';
 
 export const StJoinCompleteForm = styled.div`
   text-align-last: center;
+  margin-top: 150px;
   & > p {
     margin-top: 18px;
     text-align: center;

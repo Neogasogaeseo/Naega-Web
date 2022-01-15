@@ -3,8 +3,7 @@ import { ANIMATION } from '@styles/common/animation';
 
 export const StToastItem = styled.div<{ bottom?: number; isClosing: boolean }>`
   position: absolute;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 0 20px;
   background-color: rgb(0, 0, 0, 0.5);
   height: 40px;
   border-radius: 20px;

@@ -16,11 +16,15 @@ type TeamData = {
   title: string;
 };
 
-export type TeamMember = {
+export interface TeamMember {
   id: string;
   profileImage?: string;
   profileName: string;
-};
+}
+
+export interface SearchedMember extends TeamMember {
+  isAdded: boolean;
+}
 
 export type FeedbackDetail = {
   id: string;

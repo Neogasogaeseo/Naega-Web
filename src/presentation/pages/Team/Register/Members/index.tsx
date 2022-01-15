@@ -1,11 +1,19 @@
 import { StTeamRegisterMembers, StHeader, StTeamMembersSearchResultTitle } from './style';
 import { IcBack } from '@assets/icons';
 import TeamMembersSearchBar from '@components/TeamMembersSearchBar';
+import TeamMembersSearchResult from '@components/TeamMembersSearchedMember';
+import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { selectedMemberListState } from '@stores/team';
 import { TeamMember } from '@api/types/team';
-import TeamMembersSearchResult from '@components/TeamMembersSearchResult';
+import { useEffect } from 'react';
+import { SearchedMember } from '@api/types/team';
+import { imgEmptyProfile } from '@assets/images';
+import { useNavigate } from 'react-router';
 
-function TeamRegisterMembers() {
-  const searchedMemberList: TeamMember[] = [
+export default function TeamRegisterMembers() {
+  const navigate = useNavigate();
+  const mockData: TeamMember[] = [
     {
       id: 'minsu',
       profileName: '짠돌이',
@@ -19,25 +27,66 @@ function TeamRegisterMembers() {
         'https://user-images.githubusercontent.com/73823388/149194902-76a30e2d-684f-4a71-9503-734c818c5406.jpeg',
     },
   ];
+  const [searchedMemberList, setSearchedMemberList] = useState<SearchedMember[]>([]);
+  const [selectedMemberList, setSelectedMemberList] = useRecoilState(selectedMemberListState);
+
+  const toggleMember = (
+    id: string,
+    profileName: string,
+    profileImage: string,
+    isAdded: boolean,
+  ): void => {
+    setSearchedMemberList((currentData) =>
+      currentData.map((member) =>
+        member.id === id ? { ...member, isAdded: !member.isAdded } : { ...member },
+      ),
+    );
+    if (isAdded) {
+      setSelectedMemberList((currentData) => currentData.filter((member) => member.id !== id));
+    } else {
+      setSelectedMemberList((currentData) => [
+        ...currentData,
+        { id: id, profileName: profileName, profileImage: profileImage },
+      ]);
+    }
+  };
+
+  useEffect(() => {
+    const idList = selectedMemberList.map(({ id }) => id);
+    const tempData = [];
+    for (const member of mockData) {
+      tempData.push({ ...member, isAdded: idList.includes(member.id) });
+    }
+    setSearchedMemberList(tempData);
+  }, []);
+  useEffect(() => {
+    const idList = selectedMemberList.map(({ id }) => id);
+    const tempData = [];
+    for (const member of mockData) {
+      tempData.push({ ...member, isAdded: idList.includes(member.id) });
+    }
+    setSearchedMemberList(tempData);
+  }, [selectedMemberList]);
+
   return (
     <StTeamRegisterMembers>
       <StHeader>
-        <IcBack />
+        <IcBack onClick={() => navigate(-1)} />
         <div>팀원 추가</div>
-        <button>완료</button>
+        <button onClick={() => navigate(-1)}>완료</button>
       </StHeader>
       <TeamMembersSearchBar />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
-      {searchedMemberList.map(({ id, profileImage, profileName }) => (
-        <TeamMembersSearchResult
-          key={id}
-          id={id}
-          profileImage={profileImage}
-          profileName={profileName}
-        />
-      ))}
+      {searchedMemberList.map((member) => {
+        const { id, profileName, profileImage = imgEmptyProfile, isAdded } = member;
+        return (
+          <TeamMembersSearchResult
+            key={id}
+            onClickButton={() => toggleMember(id, profileName, profileImage, isAdded)}
+            member={member}
+          />
+        );
+      })}
     </StTeamRegisterMembers>
   );
 }
-
-export default TeamRegisterMembers;

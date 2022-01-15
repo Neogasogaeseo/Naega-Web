@@ -12,7 +12,12 @@ export function userDataMock(): UserService {
     return USER_DATA.KEYWORD(content);
   };
 
-  return { getKeywords, postKeyword };
+  const getUserInfo = async () => {
+    await wait(2000);
+    return USER_DATA._;
+  };
+
+  return { getKeywords, postKeyword, getUserInfo };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

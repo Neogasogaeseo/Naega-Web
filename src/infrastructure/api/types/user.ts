@@ -3,3 +3,10 @@ export interface Keyword {
   content: string;
   color: string;
 }
+
+export interface LoginUser {
+  accessToken: string;
+  username: string;
+  userID: string;
+  profileImage: string;
+}

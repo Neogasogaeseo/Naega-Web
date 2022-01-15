@@ -13,7 +13,7 @@ function HomeTeam() {
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [inviteData, setInviteData] = useState<TeamInviteData | null>(null);
   const [isValidating, setIsValidating] = useState(false);
-  const [isInviting, setIsInviting] = useState(true); // false로 변경
+  const [isInviting, setIsInviting] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +25,7 @@ function HomeTeam() {
       setProfileListData(profileListData);
       setIssueListData(issueListData);
       setInviteData(teamInviteData);
+      teamInviteData && setIsInviting(true);
       setIsValidating(false);
     })();
 
@@ -44,7 +45,7 @@ function HomeTeam() {
               <span>{inviteData?.teamName}팀</span>의 초대
             </div>
             <div>
-              <button onClick={() => setIsInviting(true)}>수락</button>
+              <button onClick={() => setIsInviting(false)}>수락</button>
               <button onClick={() => setIsInviting(false)}>거절</button>
             </div>
           </StInvitation>
@@ -65,7 +66,6 @@ function HomeTeam() {
         )}
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        {isValidating && <div>로딩중</div>}
         {issueListData ? (
           <IssueCardList
             issueListData={issueListData}

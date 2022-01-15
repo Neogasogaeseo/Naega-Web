@@ -51,8 +51,8 @@ function TeamMain() {
                 <span>{teamInfoData.teamMembers.length}명</span>
               </button>
               {teamInfoData.teamMembers.map((member, index) => (
-                <span key={member.memberID}>
-                  {member.memberName}
+                <span key={member.id}>
+                  {member.profileName}
                   {index < teamInfoData.teamMembers.length - 1 ? ',\u00a0' : ''}
                 </span>
               ))}

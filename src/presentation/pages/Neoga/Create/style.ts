@@ -29,14 +29,3 @@ export const StWhiteWrapper = styled(StWrapper)`
     margin-bottom: 48px;
   }
 `;
-
-export const StGreyWrapper = styled(StWrapper)`
-  background-color: ${COLOR.GRAY_1};
-  padding-top: 40px;
-  & > div:nth-child(1) {
-    font-size: 20px;
-    line-height: 144%;
-    word-spacing: -1.5%;
-    margin-bottom: 12px;
-  }
-`;

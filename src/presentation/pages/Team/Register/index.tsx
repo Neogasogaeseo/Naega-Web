@@ -9,21 +9,18 @@ import {
 import { ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
-import ProfileList, { ProfileListData } from '@components/ProfileList';
+import ProfileList from '@components/ProfileList';
 import { useState } from 'react';
 import PhotoUpload from '@components/common/FileUpload';
+import { selectedMemberListState } from '@stores/team';
+import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 function TeamRegister() {
   const [image, setImage] = useState<File | null>();
-  const tempMemberList: ProfileListData[] = [
-    {
-      id: '0',
-      profileImage:
-        'https://user-images.githubusercontent.com/73823388/148749098-3e775179-8814-4237-948a-35c1702a2ae7.png',
-      profileName: 'finn',
-    },
-  ];
-  const tempAddMember = () => console.log(image);
+  console.log(image);
+  const navigate = useNavigate();
+  const selectedMemberList = useRecoilValue(selectedMemberListState);
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
@@ -38,7 +35,11 @@ function TeamRegister() {
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />
       <StTextarea placeholder="직접 입력해주세요" />
       <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
-      <ProfileList isSquare={false} profileListData={tempMemberList} onAddClick={tempAddMember} />
+      <ProfileList
+        isSquare={false}
+        profileListData={selectedMemberList}
+        onAddClick={() => navigate('/team/register/members')}
+      />
       <StSubmitButton>완료</StSubmitButton>
     </StTeamRegister>
   );

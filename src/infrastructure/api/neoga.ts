@@ -1,5 +1,5 @@
 import { NeogaCardItem } from './types/neoga';
 
 export interface NeogaService {
-  getAllTemplates(): Promise<NeogaCardItem[]>;
+  getAllTemplates(viewMode: 'recent' | 'popular'): Promise<NeogaCardItem[]>;
 }

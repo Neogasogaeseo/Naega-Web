@@ -1,5 +1,5 @@
 import NeogaResultCard from '@components/common/NeogaResultCard';
-import { StBanner, StForm, StHomeNeoga, StResult } from './styles';
+import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea } from './styles';
 import { icWhole } from '@assets/icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ function HomeNeoga() {
 
   return (
     <StHomeNeoga>
-      <StBanner>배너</StBanner>
+      <StBanner></StBanner>
       <StForm>
         <h1>너가소개서 설문 만들기</h1>
         <div>
@@ -29,7 +29,9 @@ function HomeNeoga() {
           </button>
         </div>
         <NeogaResultCard />
-        <NeogaResultCard />
+        <StButtonArea>
+          <button onClick={() => navigate('/neoga/result')}>외 3개 더보기</button>
+        </StButtonArea>
       </StResult>
     </StHomeNeoga>
   );

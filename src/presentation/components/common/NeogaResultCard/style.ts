@@ -91,3 +91,22 @@ export const StNeogaCardContent = styled.div`
     }
   }
 `;
+
+export const StNeogaNoReply = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${COLOR.GRAY_4};
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 142.5%;
+  letter-spacing: -0.01em;
+  padding-top: 55px;
+  padding-bottom: 72px;
+}
+
+  img {
+    display: block;
+    margin-bottom: 16px;
+  }
+`;

@@ -65,3 +65,14 @@ export const StResult = styled.div`
     margin-bottom: 24px;
   }
 `;
+
+export const StButtonArea = styled.div`
+  padding-top: 12px;
+  padding-bottom: 61px;
+
+  & > button {
+    margin: 0 auto;
+    color: ${COLOR.GRAY_5};
+    ${FONT_STYLES.R_15_TITLE};
+  }
+`;

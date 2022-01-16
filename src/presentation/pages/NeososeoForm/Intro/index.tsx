@@ -1,5 +1,5 @@
 import CommonInput from '@components/common/CommonInput';
-import { neoseosoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -14,14 +14,13 @@ import {
 
 function NeososeoFormIntro() {
   const neososeoFormData = useRecoilValue(neososeoFormState);
-  const [neososeoAnswerState, setNeososeoAnswerState] = useRecoilState(neoseosoAnswerState);
+  const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
 
   const setUserName = (userName: string) =>
-    setNeososeoAnswerState((prev) => ({ ...prev, name: userName }));
+    setNeososeoAnswer((prev) => ({ ...prev, name: userName }));
 
-  const setRelation = (relation: string) =>
-    setNeososeoAnswerState((prev) => ({ ...prev, relation }));
+  const setRelation = (relation: string) => setNeososeoAnswer((prev) => ({ ...prev, relation }));
 
   useEffect(() => {
     if (!neososeoFormData) return;
@@ -47,7 +46,7 @@ function NeososeoFormIntro() {
           {neososeoFormData.relation.map((relation) => (
             <StRelation
               key={relation}
-              selected={neososeoAnswerState.relation === relation}
+              selected={neososeoAnswer.relation === relation}
               onClick={() => setRelation(relation)}
             >
               {relation}

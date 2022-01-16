@@ -1,6 +1,6 @@
 import { api } from '@api/index';
 import FormRouter from '@routes/FormRouter';
-import { neoseosoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -9,15 +9,14 @@ import { StNeososeoFormPage, StNeososeoFormHeader } from './style';
 function NeososeoFormPage() {
   const { userID, formID } = useParams();
   const [neososeoForm, setNeososeoForm] = useRecoilState(neososeoFormState);
-  const setNeoseosoAnswerResponse = useSetRecoilState(neoseosoAnswerState);
+  const setNeoseosoAnswer = useSetRecoilState(neososeoAnswerState);
 
   useEffect(() => {
     if (!userID || !formID) return;
-    if (isNaN(+userID) || isNaN(+formID)) return;
     (async () => {
-      const data = await api.neososeoFormService.getFormInfo(+userID, +formID);
+      const data = await api.neososeoFormService.getFormInfo(userID, formID);
       setNeososeoForm(data);
-      setNeoseosoAnswerResponse((prev) => ({ ...prev, userID: data.userID, formID: data.formID }));
+      setNeoseosoAnswer((prev) => ({ ...prev, userID: data.userID, formID: data.formID }));
     })();
   }, [userID, formID]);
 

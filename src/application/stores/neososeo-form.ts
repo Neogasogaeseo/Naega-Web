@@ -6,8 +6,8 @@ export const neososeoFormState = atom<NeososeoFormData | null>({
   default: null,
 });
 
-export const neoseosoAnswerState = atom<NeososeoAnswerData>({
-  key: 'neoseosoAnswerState',
+export const neososeoAnswerState = atom<NeososeoAnswerData>({
+  key: 'neososeoAnswerState',
   default: {
     userID: 0,
     formID: 0,

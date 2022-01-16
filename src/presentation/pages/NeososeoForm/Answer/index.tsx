@@ -2,7 +2,8 @@ import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { neoseosoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { StButton, StNeososeoFormLayout, StNeososeoTitle, StSubTitle } from '../style';
@@ -10,15 +11,20 @@ import { StTextarea, StKeywordListWrapper } from './style';
 
 function NeososeoFormAnswer() {
   const neososeoFormData = useRecoilValue(neososeoFormState);
-  const [neososeoAnswerState, setNeososeoAnswerState] = useRecoilState(neoseosoAnswerState);
+  const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+  const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
 
   const postNeososeoForm = async () => {
-    const response = await api.neososeoFormService.postFormAnswer(neososeoAnswerState);
+    const response = await api.neososeoFormService.postFormAnswer(neososeoAnswer);
     if (response.isSuccess) navigate('../finish');
   };
 
-  const setAnswer = (answer: string) => setNeososeoAnswerState((prev) => ({ ...prev, answer }));
+  const setAnswer = (answer: string) => setNeososeoAnswer((prev) => ({ ...prev, answer }));
+
+  useEffect(() => {
+    setNeososeoAnswer((prev) => ({ ...prev, keyword: keywordList.map((k) => k.id) }));
+  }, [keywordList]);
 
   if (!neososeoFormData) return <></>;
 
@@ -41,29 +47,24 @@ function NeososeoFormAnswer() {
             />
           </Link>
           <StKeywordListWrapper>
-            <ImmutableKeywordList
-              keywordList={neososeoAnswerState.keyword}
-              onItemClick={() => null}
-            />
+            <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
           </StKeywordListWrapper>
         </div>
         <StButton onClick={postNeososeoForm}>답변 작성하기</StButton>
       </StNeososeoFormLayout>
       <Outlet
         context={{
-          keywordList: neososeoAnswerState.keyword,
+          keywordList: keywordList,
           addKeyword: (keyword: Keyword) =>
-            setNeososeoAnswerState((prev) => ({
-              ...prev,
-              keyword: prev.keyword.map((k) => k.content).includes(keyword.content)
-                ? prev.keyword
-                : [...prev.keyword, keyword],
-            })),
+            setKeywordList((prev) =>
+              prev.map((prev) => prev.content).includes(keyword.content)
+                ? prev
+                : [...prev, keyword],
+            ),
           removeKeyword: (targetKeyword: Keyword) =>
-            setNeososeoAnswerState((prev) => ({
-              ...prev,
-              keyword: prev.keyword.filter((keyword) => keyword.content !== targetKeyword.content),
-            })),
+            setKeywordList((prev) =>
+              prev.filter((keyword) => keyword.content !== targetKeyword.content),
+            ),
           targetUser: neososeoFormData.userID,
         }}
       />

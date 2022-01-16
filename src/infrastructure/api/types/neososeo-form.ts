@@ -1,5 +1,3 @@
-import { Keyword } from './user';
-
 export type NeososeoFormData = {
   title: string;
   content: string;
@@ -16,5 +14,5 @@ export type NeososeoAnswerData = {
   name: string;
   relation: string;
   answer: string;
-  keyword: Keyword[];
+  keyword: string[];
 };

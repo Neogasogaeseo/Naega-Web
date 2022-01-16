@@ -1,42 +1,30 @@
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StNeogaCreateCardItem = styled.div`
   background-color: ${(props) => props.color};
-  height: 170px;
   position: relative;
   border-radius: 18px;
   padding: 19px;
   color: ${COLOR.WHITE};
   white-space: pre-line;
-
-  & div:nth-child(1) {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 1.5em;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   & div {
-    position: relative;
-    z-index: 1;
+    & > div:nth-child(1) {
+      margin-bottom: 6px;
+      ${FONT_STYLES.SB_16_TITLE}
+    }
+    & > div:nth-child(2) {
+      ${FONT_STYLES.R_14_TITLE}
+    }
   }
 
   & img {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    width: 60px;
+    height: 60px;
   }
-`;
-
-export const StNew = styled.div`
-  background-color: ${COLOR.CORAL_MAIN};
-  border-radius: 18px;
-  height: 27px;
-  width: 61px;
-  text-align: center;
-  line-height: 27px;
-  margin-top: 8px;
-  font-size: 13px;
 `;

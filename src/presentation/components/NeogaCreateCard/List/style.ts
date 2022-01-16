@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StNeogaCreateCardList = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 10px 12px;
-  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 `;

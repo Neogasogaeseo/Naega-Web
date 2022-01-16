@@ -9,6 +9,7 @@ export const StNeogaCreate = styled.div`
 
 const StWrapper = styled.div`
   padding: 20px;
+  padding-top: 0;
 `;
 
 export const StWhiteWrapper = styled(StWrapper)`

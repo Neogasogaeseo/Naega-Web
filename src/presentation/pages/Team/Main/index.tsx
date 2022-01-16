@@ -48,16 +48,16 @@ function TeamMain() {
             <h3>
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} />
-                <span>{teamInfoData.teamMembers.length}명</span>
+                <span>{teamInfoData.teamMemberList.length}명</span>
               </button>
-              {teamInfoData.teamMembers.map((member, index) => (
+              {teamInfoData.teamMemberList.map((member, index) => (
                 <span key={member.id}>
                   {member.profileName}
-                  {index < teamInfoData.teamMembers.length - 1 ? ',\u00a0' : ''}
+                  {index < teamInfoData.teamMemberList.length - 1 ? ',\u00a0' : ''}
                 </span>
               ))}
             </h3>
-            {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMembers} />}
+            {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
             <h2>{teamInfoData.teamDescription}</h2>
           </div>
         </StTeamInfo>

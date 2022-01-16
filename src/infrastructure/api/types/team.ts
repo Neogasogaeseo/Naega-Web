@@ -67,7 +67,7 @@ export type TeamInfoData = {
   teamImage?: string;
   teamName: string;
   teamDescription: string;
-  teamMembers: TeamMember[];
+  teamMemberList: TeamMember[];
 };
 
 export type TeamInviteData = Pick<TeamInfoData, 'teamID' | 'teamName'>;

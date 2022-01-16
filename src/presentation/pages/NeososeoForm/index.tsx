@@ -1,10 +1,11 @@
 import { api } from '@api/index';
+import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
 import FormRouter from '@routes/FormRouter';
 import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { StNeososeoFormPage, StNeososeoFormHeader } from './style';
+import { StNeososeoFormPage } from './style';
 
 function NeososeoFormPage() {
   const { userID, formID } = useParams();
@@ -23,10 +24,7 @@ function NeososeoFormPage() {
   return (
     <StNeososeoFormPage>
       {neososeoForm && (
-        <StNeososeoFormHeader>
-          <div>{neososeoForm.title}</div>
-          <img src={neososeoForm.imageSub} alt={neososeoForm.title} />
-        </StNeososeoFormHeader>
+        <NeososeoFormHeader title={neososeoForm.title} image={neososeoForm.imageSub} />
       )}
       <FormRouter />
     </StNeososeoFormPage>

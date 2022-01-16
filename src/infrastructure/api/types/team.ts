@@ -70,4 +70,11 @@ export type TeamInfoData = {
   teamMemberList: TeamMember[];
 };
 
-export type TeamInviteData = Pick<TeamInfoData, 'teamID' | 'teamName'>;
+export type TeamInvite = {
+  id: number;
+  name: string;
+};
+
+export type TeamInviteData = {
+  inviteListData: TeamInvite[];
+};

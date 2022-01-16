@@ -212,7 +212,19 @@ export const TEAM_DATA: {
     ],
   },
   TEAM_INVITE_INFO: {
-    teamID: '0',
-    teamName: '너가소개서',
+    inviteListData: [
+      {
+        id: 26,
+        name: '너가소개서',
+      },
+      {
+        id: 27,
+        name: '너가소개서',
+      },
+      {
+        id: 28,
+        name: '너가소개서',
+      },
+    ],
   },
 };

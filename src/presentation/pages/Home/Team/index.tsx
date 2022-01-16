@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
-import { StTeamMain, StInvitation, StDivisionLine, StEmptyView } from './style';
-import { TeamInviteData, TeamIssueCard, TeamMember } from '@api/types/team';
-import { icMessage } from '@assets/icons';
+import { StTeamMain, StDivisionLine, StEmptyView } from './style';
+import { TeamInvite, TeamIssueCard, TeamMember } from '@api/types/team';
 import { imgEmptyMain } from '@assets/images';
+import TeamInvitation from './Invitation';
 
 function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamMember[] | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
-  const [inviteData, setInviteData] = useState<TeamInviteData | null>(null);
+  const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
   const [isValidating, setIsValidating] = useState(false);
   const [isInviting, setIsInviting] = useState(false);
   const navigate = useNavigate();
@@ -21,11 +21,11 @@ function HomeTeam() {
       setIsValidating(true);
       const { profileListData } = await api.teamService.getTeamProfile();
       const { issueListData } = await api.teamService.getMyIssue();
-      const teamInviteData = await api.teamService.getInviteInfo();
+      const { inviteListData } = await api.teamService.getInviteInfo();
       setProfileListData(profileListData);
       setIssueListData(issueListData);
-      setInviteData(teamInviteData);
-      teamInviteData && setIsInviting(true);
+      setInviteData(inviteListData);
+      inviteListData && setIsInviting(true);
       setIsValidating(false);
     })();
 
@@ -38,18 +38,8 @@ function HomeTeam() {
   return (
     <>
       <StTeamMain>
-        {isInviting && (
-          <StInvitation>
-            <div>
-              <img src={icMessage} />
-              <span>{inviteData?.teamName}팀</span>의 초대
-            </div>
-            <div>
-              <button onClick={() => setIsInviting(false)}>수락</button>
-              <button onClick={() => setIsInviting(false)}>거절</button>
-            </div>
-          </StInvitation>
-        )}
+        {isInviting &&
+          inviteData?.map((invitation) => <TeamInvitation key={invitation.id} {...invitation} />)}
         <h1>나의 팀</h1>
         {isValidating && <div>로딩중</div>}
         {profileListData && (

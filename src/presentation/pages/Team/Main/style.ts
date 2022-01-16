@@ -8,7 +8,7 @@ export const StTeamMain = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 0 20px;
 
   & > button {
     ${CORAL_MAIN_BUTTON}

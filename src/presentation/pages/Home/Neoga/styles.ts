@@ -36,7 +36,7 @@ export const StHomeNeoga = styled.div`
 
 export const StBanner = styled.div`
   width: calc(100% + 40px);
-  height: 96px;
+  min-height: 96px;
   margin-left: -20px;
   background-color: #4c48ff;
   color: ${COLOR.WHITE};

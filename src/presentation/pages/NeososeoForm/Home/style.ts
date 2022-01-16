@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const StNeososeoFormHome = styled.div`
-  width: calc(100vw - 40px);
+  width: calc(100vw);
+  padding: 0 20px;
   height: 100%;
   display: grid;
   grid-template-rows: auto 58px;

@@ -7,6 +7,7 @@ export type NeososeoFormData = {
   relation: string[];
   userName: string;
   userID: number;
+  formID: number;
 };
 
 export type NeososeoAnswerData = {

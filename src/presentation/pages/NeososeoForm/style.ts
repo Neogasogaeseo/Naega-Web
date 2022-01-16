@@ -5,17 +5,19 @@ import styled from 'styled-components';
 
 export const StNeososeoFormPage = styled.div`
   min-height: 100vh;
-  width: calc(100vw - 40px);
+  width: 100vw;
   padding: 50px 0;
   display: grid;
   grid-template-rows: 70px auto;
+  position: relative;
 `;
 
 export const StNeososeoFormHeader = styled.div`
-  width: calc(100vw - 40px);
+  width: 100vw;
   display: grid;
   grid-template-columns: auto 68px;
   white-space: pre;
+  padding: 0 20px;
 
   & div {
     line-height: 33px;
@@ -80,4 +82,5 @@ export const StButton = styled.div`
 export const StNeososeoFormLayout = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 20px;
 `;

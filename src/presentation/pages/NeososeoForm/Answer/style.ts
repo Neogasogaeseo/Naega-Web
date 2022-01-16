@@ -7,3 +7,7 @@ export const StTextarea = styled.textarea`
   resize: unset;
   height: 104px;
 `;
+
+export const StKeywordListWrapper = styled.div`
+  margin-top: 18px;
+`;

@@ -6,6 +6,7 @@ export type NeososeoFormData = {
   imageSub: string;
   relation: string[];
   userName: string;
+  userID: number;
 };
 
 export type NeososeoAnswerData = {

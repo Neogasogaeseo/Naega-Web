@@ -76,11 +76,12 @@ export const StTeamInfo = styled.div`
       justify-content: center;
       margin-bottom: 14.83px;
 
-      img {
+      & > button > img {
         margin-right: 2px;
       }
 
       button {
+        position: relative;
         display: flex;
         align-items: center;
         background: ${COLOR.GRAY_2};

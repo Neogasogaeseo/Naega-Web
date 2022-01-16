@@ -12,7 +12,7 @@ export const neososeoAnswerState = atom<NeososeoAnswerData>({
     userID: 0,
     formID: 0,
     name: '',
-    relation: '',
+    relationID: 0,
     answer: '',
     keyword: [],
   },

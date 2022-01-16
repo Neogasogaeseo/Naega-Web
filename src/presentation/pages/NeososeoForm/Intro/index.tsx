@@ -1,7 +1,8 @@
+import { Relation } from '@api/types/neososeo-form';
 import CommonInput from '@components/common/CommonInput';
 import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -15,13 +16,20 @@ import {
 
 function NeososeoFormIntro() {
   const neososeoFormData = useRecoilValue(neososeoFormState);
+  const [relation, setRelation] = useState<Relation | null>(null);
   const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
 
   const setUserName = (userName: string) =>
     setNeososeoAnswer((prev) => ({ ...prev, name: userName }));
 
-  const setRelation = (relation: string) => setNeososeoAnswer((prev) => ({ ...prev, relation }));
+  const setAnswerRelation = (relationID: number) =>
+    setNeososeoAnswer((prev) => ({ ...prev, relationID }));
+
+  useEffect(() => {
+    if (!relation) return;
+    setAnswerRelation(relation.id);
+  }, [relation]);
 
   useEffect(() => {
     if (!neososeoFormData) return;
@@ -46,11 +54,11 @@ function NeososeoFormIntro() {
         <StRelationWrapper>
           {neososeoFormData.relation.map((relation) => (
             <StRelation
-              key={relation}
-              selected={neososeoAnswer.relation === relation}
+              key={relation.id}
+              selected={neososeoAnswer.relationID === relation.id}
               onClick={() => setRelation(relation)}
             >
-              {relation}
+              {relation.content}
             </StRelation>
           ))}
         </StRelationWrapper>

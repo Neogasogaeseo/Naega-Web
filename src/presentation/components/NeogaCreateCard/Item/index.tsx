@@ -1,21 +1,25 @@
+import { IcArrowRight } from '@assets/icons';
 import React from 'react';
-import { StNeogaCreateCardItem, StNew } from './style';
+import { StNeogaCreateCardItem } from './style';
 
 interface NeogaCreateCardItemProps {
+  title: string;
   content: string;
-  isNew: boolean;
   src: string;
   backgroundColor: string;
   onClick: () => void;
 }
 
 function NeogaCreateCardItem(props: NeogaCreateCardItemProps) {
-  const { content, isNew, src, backgroundColor } = props;
+  const { title, content, src, backgroundColor } = props;
   return (
     <StNeogaCreateCardItem color={backgroundColor}>
-      <div>{content}</div>
-      {isNew && <StNew>NEW</StNew>}
       <img src={src} alt={content} />
+      <div>
+        <div>{title}</div>
+        <div>{content}</div>
+      </div>
+      <IcArrowRight />
     </StNeogaCreateCardItem>
   );
 }

@@ -3,6 +3,7 @@ import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -50,7 +51,12 @@ function NeososeoFormAnswer() {
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
           </StKeywordListWrapper>
         </div>
-        <StButton onClick={postNeososeoForm}>답변 작성하기</StButton>
+        <StButton
+          disabled={!isAllFilled(neososeoAnswer.answer) || !(neososeoAnswer.keyword.length !== 0)}
+          onClick={postNeososeoForm}
+        >
+          답변 작성하기
+        </StButton>
       </StNeososeoFormLayout>
       <Outlet
         context={{

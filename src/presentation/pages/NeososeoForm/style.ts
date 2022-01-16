@@ -55,10 +55,15 @@ export const StRelation = styled.div<{ selected: boolean }>`
   background-color: ${({ selected }) => (selected ? '#FFEFEF' : COLOR.GRAY_1)};
 `;
 
-export const StButton = styled.div`
+export const StButton = styled.button`
   ${FULL_WIDTH_BUTTON}
-  ${CORAL_MAIN_BUTTON}
+  background-color: ${COLOR.GRAY_3};
+  color: ${COLOR.WHITE};
   margin-top: auto;
+
+  :not(:disabled) {
+    ${CORAL_MAIN_BUTTON}
+  }
 `;
 
 export const StNeososeoFormLayout = styled.div`

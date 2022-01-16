@@ -1,5 +1,6 @@
 import CommonInput from '@components/common/CommonInput';
 import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { isAllFilled } from '@utils/string';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -54,7 +55,9 @@ function NeososeoFormIntro() {
           ))}
         </StRelationWrapper>
       </div>
-      <StButton onClick={() => navigate('../answer')}>다음</StButton>
+      <StButton onClick={() => navigate('../answer')} disabled={!isAllFilled(neososeoAnswer.name)}>
+        다음
+      </StButton>
     </StNeososeoFormLayout>
   );
 }

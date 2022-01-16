@@ -20,3 +20,4 @@ export { default as icCoralCheck } from './ic_coral_check.svg';
 export { default as icGrayCheck } from './ic_gray_check.svg';
 export { default as icProfile } from './ic_profile.svg';
 export { ReactComponent as IcArrowRight } from './ic_arrow_right.svg';
+export { default as icWhole } from './ic_whole.svg';

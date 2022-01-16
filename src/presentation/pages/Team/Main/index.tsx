@@ -64,7 +64,7 @@ function TeamMain() {
       )}
       <button onClick={() => navigate(`/team/${teamID}/create`)}>
         <img src={icPlusMini} />
-        이슈 추가
+        이슈 추가하기
       </button>
       <StCheckWrapper>
         <button onClick={() => setIsChecked(!isChecked)}>

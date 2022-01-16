@@ -1,3 +1,4 @@
+import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
@@ -16,5 +17,7 @@ export const StNeososeoFormHeader = styled.div`
   & img {
     width: 68px;
     height: 68px;
+    border-radius: 34px;
+    background-color: ${COLOR.GRAY_1};
   }
 `;

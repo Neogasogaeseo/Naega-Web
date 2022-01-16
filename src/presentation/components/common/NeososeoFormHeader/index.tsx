@@ -11,7 +11,9 @@ function NeososeoFormHeader(props: NeososeoFormHeaderProps) {
   return (
     <StNeososeoFormHeader>
       <div>{title}</div>
-      <img src={image} alt={title} />
+      <div>
+        <img src={image} alt={title} />
+      </div>
     </StNeososeoFormHeader>
   );
 }

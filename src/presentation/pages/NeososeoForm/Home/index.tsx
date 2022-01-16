@@ -1,7 +1,8 @@
 import { neososeoFormState } from '@stores/neososeo-form';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { StButton, StNeososeoFormHome } from './style';
+import { StButton } from '../style';
+import { StNeososeoFormHome } from './style';
 
 function NeososeoFormHome() {
   const neososeoFormData = useRecoilValue(neososeoFormState);

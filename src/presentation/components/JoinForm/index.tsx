@@ -33,8 +33,6 @@ function JoinForm() {
     }
   },[inputId])
 
-  console.log(!inputId && !inputName&& inputId=='' && inputName=='' && !isConditionMet.id);
-
   const onChangeId = (value: string) => {
     setInputId(value);
   };

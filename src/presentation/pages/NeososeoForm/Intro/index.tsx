@@ -3,8 +3,14 @@ import { neososeoFormState } from '@stores/neososeo-form';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { StButton, StNeososeoTitle, StRelation, StRelationWrapper, StSubTitle } from '../style';
-import { StBody } from './style';
+import {
+  StButton,
+  StNeososeoFormLayout,
+  StNeososeoTitle,
+  StRelation,
+  StRelationWrapper,
+  StSubTitle,
+} from '../style';
 
 function NeososeoFormIntro() {
   const neososeoFormData = useRecoilValue(neososeoFormState);
@@ -17,12 +23,12 @@ function NeososeoFormIntro() {
   }, [neososeoFormData]);
   if (!neososeoFormData) return <></>;
   return (
-    <div>
+    <StNeososeoFormLayout>
       <StNeososeoTitle>
         <span>Q.</span>
         <span>{neososeoFormData.content}</span>
       </StNeososeoTitle>
-      <StBody>
+      <div>
         <StSubTitle>나를 소개해주세요</StSubTitle>
         <CommonInput width="100%" placeholder="나를 나타내는 별명을 입력해주세요" />
         <StSubTitle>{neososeoFormData.userName}님과의 관계를 선택해주세요</StSubTitle>
@@ -37,9 +43,9 @@ function NeososeoFormIntro() {
             </StRelation>
           ))}
         </StRelationWrapper>
-        <StButton onClick={() => navigate('intro')}>다음</StButton>
-      </StBody>
-    </div>
+      </div>
+      <StButton onClick={() => navigate('../answer')}>다음</StButton>
+    </StNeososeoFormLayout>
   );
 }
 

@@ -74,4 +74,10 @@ export const StRelation = styled.div<{ selected: boolean }>`
 export const StButton = styled.div`
   ${FULL_WIDTH_BUTTON}
   ${CORAL_MAIN_BUTTON}
+  margin-top: auto;
+`;
+
+export const StNeososeoFormLayout = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

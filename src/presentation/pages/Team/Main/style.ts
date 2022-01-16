@@ -30,12 +30,11 @@ export const StTeamInfo = styled.div`
   margin-top: 7px;
 
   & > div:first-child {
-    display: flex;
-    justify-content: end;
+    width: 100%;
+    text-align: end;
     padding-top: 13px;
     padding-bottom: 15px;
     padding-right: 4px;
-    width: 100%;
 
     button {
       background-color: transparent;

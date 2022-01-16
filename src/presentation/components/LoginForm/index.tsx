@@ -10,10 +10,10 @@ function LoginForm() {
   return (
     <StLoginForm>
       <img src={imgLogo} />
-      <StLogin>로그인</StLogin>
+      <StLogin>너를 통해 발견하는 나</StLogin>
       <StNoticeWrapper>
-        환영합니다! 너가소개서에 가입하고 <br />
-        다양한 서비스를 이용해보세요
+        나와 함께한 사람들이 써주는 <br />
+        나의 소개서, 너가소개서
       </StNoticeWrapper>
       <StLoginButton onClick={loginWithKakao}>
         <img src={icKakao} />

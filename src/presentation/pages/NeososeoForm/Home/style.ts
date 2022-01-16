@@ -22,5 +22,3 @@ export const StNeososeoFormHome = styled.div`
     width: calc(100vw - 40px);
   }
 `;
-
-export const StImage = styled.img``;

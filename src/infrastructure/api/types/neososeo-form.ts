@@ -4,7 +4,6 @@ export type NeososeoFormData = {
   title: string;
   content: string;
   imageSub: string;
-  imageMain: string;
   relation: string[];
 };
 

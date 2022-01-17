@@ -1,16 +1,9 @@
-import {
-  Keyword,
-  MyPageKeywords,
-  NeososeoAnswerBookmark,
-  TeamFeedbackBookmark,
-  User,
-} from './types/user';
+import { Keyword, MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from './types/user';
 
 export interface UserService {
   getKeywords(userID: number): Promise<Keyword[]>;
   postKeyword(userID: number, content: string): Promise<Keyword>;
-  getUserInfo(userID: string): Promise<User>;
-  getMyPageKeywords(userID: string): Promise<MyPageKeywords>;
+  getMyPageInfo(userID: string): Promise<MyPageInfo>;
   getNeososeoBookmark(userID: string): Promise<NeososeoAnswerBookmark>;
   getFeedbackBookmark(userID: string): Promise<TeamFeedbackBookmark>;
 }

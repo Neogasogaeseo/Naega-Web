@@ -12,14 +12,9 @@ export function userDataMock(): UserService {
     return USER_DATA.KEYWORD(content);
   };
 
-  const getUserInfo = async (userID: string) => {
+  const getMyPageInfo = async (userID: string) => {
     await wait(1000);
-    return USER_DATA.INFO(userID);
-  };
-
-  const getMyPageKeywords = async () => {
-    await wait(1000);
-    return USER_DATA.MY_PAGE_KEYWORD;
+    return USER_DATA.MY_PAGE_INFO(userID);
   };
 
   const getNeososeoBookmark = async () => {
@@ -35,8 +30,7 @@ export function userDataMock(): UserService {
   return {
     getKeywords,
     postKeyword,
-    getUserInfo,
-    getMyPageKeywords,
+    getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,
   };

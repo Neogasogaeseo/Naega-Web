@@ -30,7 +30,7 @@ export interface NeososeoAnswerBookmark {
   answerList: AnswerDetail[];
 }
 
-export interface MyPageKeywords {
+export interface MyPageInfo extends User {
   neososeo: Keyword[];
   team: Keyword[];
 }

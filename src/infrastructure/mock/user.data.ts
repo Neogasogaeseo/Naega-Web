@@ -1,28 +1,19 @@
-import {
-  Keyword,
-  MyPageKeywords,
-  NeososeoAnswerBookmark,
-  TeamFeedbackBookmark,
-  User,
-} from '@api/types/user';
+import { Keyword, MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from '@api/types/user';
 
 export const USER_DATA: {
   KEYWORDS: Keyword[];
   KEYWORD: (content: string) => Keyword;
-  INFO: (userID: string) => User;
-  MY_PAGE_KEYWORD: MyPageKeywords;
+  MY_PAGE_INFO: (userID: string) => MyPageInfo;
   NEOSOSEO_BOOKMARK: NeososeoAnswerBookmark;
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF' }),
-  INFO: (userID: string) => ({
+  MY_PAGE_INFO: (userID: string) => ({
     username: '강쥐',
     userID,
     profileImage:
       'https://ww.namu.la/s/0144d366d34ef61c639d8e9305eb60c3528a0e2cfde2543ca1bce47228901c569c07111bdd0ad6b5aebb252b2d61ef02cf6ff8cf00eee0cb7652eaf5c901e14763c567024f4d2b94f490c794ceebb862',
-  }),
-  MY_PAGE_KEYWORD: {
     neososeo: [
       { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
       { id: '1', content: '홍대할리스', color: '#FFB72B' },
@@ -30,7 +21,7 @@ export const USER_DATA: {
       { id: '3', content: '배려왕', color: '#4C48FF' },
     ],
     team: [{ id: '1', content: '유사 사랑의 열매', color: '#4C48FF' }],
-  },
+  }),
   NEOSOSEO_BOOKMARK: {
     count: 3,
     answerList: [

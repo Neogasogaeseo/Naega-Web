@@ -21,20 +21,21 @@ import {
   StMoreWrapper,
   StMoreButton,
 } from './style';
-import { Keywordlists, ResultFormList } from '@api/types/neoga';
+import { ResultFormList } from '@api/types/neoga';
 import { imgEmptyFeedback } from '@assets/images';
 import { useParams } from 'react-router-dom';
+import { Keyword } from '@api/types/user';
 
 function NeogaDetailForm() {
-  const {formID} = useParams();
-  const [resultKeywordList, setResultKeywordList] = useState<Keywordlists[]>([]);
+  const { formID } = useParams();
+  const [resultKeywordList, setResultKeywordList] = useState<Keyword[]>([]);
   const [resultList, setResultList] = useState<ResultFormList[]>([]);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
 
   useEffect(() => {
-    if(!formID) return;
-    if(isNaN(+formID)) return;
+    if (!formID) return;
+    if (isNaN(+formID)) return;
     (async () => {
       const data = await api.neogaService.getResultKeywords(+formID);
       setResultBoolean(true);
@@ -43,8 +44,8 @@ function NeogaDetailForm() {
   }, [resultKeywordList]);
 
   useEffect(() => {
-    if(!formID) return;
-    if(isNaN(+formID)) return;
+    if (!formID) return;
+    if (isNaN(+formID)) return;
     (async () => {
       const data = await api.neogaService.getAllResultListTemplates(+formID);
       setResultBoolean(true);
@@ -97,13 +98,15 @@ function NeogaDetailForm() {
                     접기<img src={IcArrowUp}></img>
                   </StMoreButton>
                 </>
-              ) : resultKeywordList.length > 7 && (
-                <>
-                  <hr />
-                  <StMoreButton onClick={onClickMore}>
-                    더보기<img src={IcArrowDown}></img>
-                  </StMoreButton>
-                </>
+              ) : (
+                resultKeywordList.length > 7 && (
+                  <>
+                    <hr />
+                    <StMoreButton onClick={onClickMore}>
+                      더보기<img src={IcArrowDown}></img>
+                    </StMoreButton>
+                  </>
+                )
               )}
             </StMoreWrapper>
           </StKeyword>
@@ -130,10 +133,10 @@ function NeogaDetailForm() {
           })}
         </>
       ) : (
-          <StEmptyFeedback>
-            <img src={imgEmptyFeedback} alt="" />
-            <StButton>링크 복사하기</StButton>
-          </StEmptyFeedback>
+        <StEmptyFeedback>
+          <img src={imgEmptyFeedback} alt="" />
+          <StButton>링크 복사하기</StButton>
+        </StEmptyFeedback>
       )}
     </StNeogaDetailForm>
   );

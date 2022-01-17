@@ -1,9 +1,9 @@
-import { TeamMember } from '@api/types/team';
+import { TeamMemberNoneId } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { StTeamMemberPopup } from './style';
 
 interface TeamMemberPopupProps {
-  members: TeamMember[];
+  members: TeamMemberNoneId[];
 }
 
 function TeamMemberPopup(props: TeamMemberPopupProps) {

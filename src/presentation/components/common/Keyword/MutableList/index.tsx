@@ -1,12 +1,7 @@
 import KeywordItem from '../Item';
 import { StKeywordListLayout } from '../style';
 import { COLOR } from '@styles/common/color';
-
-interface Keyword {
-  id: string;
-  content: string;
-  color?: string;
-}
+import { Keyword } from '@api/types/user';
 
 interface MutableKeywordListProps {
   keywordList: Keyword[];

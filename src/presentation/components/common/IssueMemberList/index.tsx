@@ -1,11 +1,11 @@
-import { TeamMember } from '@api/types/team';
+import { TeamMemberNoneId } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { StIssueMemberList } from './style';
 
 interface IssueMemberListProps {
   teamID: string;
   issueNumber: number;
-  issueMembers: TeamMember[];
+  issueMembers: TeamMemberNoneId[];
 }
 
 function IssueMemberList(props: IssueMemberListProps) {

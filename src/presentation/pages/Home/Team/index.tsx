@@ -4,12 +4,12 @@ import { api } from '@api/index';
 import ProfileList from '@components/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
 import { StTeamMain, StDivisionLine, StEmptyView } from './style';
-import { TeamInvite, TeamIssueCard, TeamMember } from '@api/types/team';
+import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
 import { imgEmptyMain } from '@assets/images';
 import TeamInvitation from './Invitation';
 
 function HomeTeam() {
-  const [profileListData, setProfileListData] = useState<TeamMember[] | null>(null);
+  const [profileListData, setProfileListData] = useState<TeamMemberNoneId[] | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
   const [isValidating, setIsValidating] = useState(false);

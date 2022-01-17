@@ -7,6 +7,8 @@ export const StAbsoluteWrapper = styled.div`
   position: absolute;
   width: 100vw;
   height: 100vh;
+  top: 0;
+  left: 0;
   background-color: ${COLOR.WHITE};
   z-index: 300;
   animation: ${ANIMATION.SWIPE_FROM_RIGHT} 1s;

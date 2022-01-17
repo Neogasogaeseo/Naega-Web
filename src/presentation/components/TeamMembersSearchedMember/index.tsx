@@ -5,7 +5,7 @@ import { IcMemberAdd, IcMemberAdded } from '@assets/icons';
 
 interface TeamMembersSearchedMemberProps {
   member: SearchedMember;
-  onClickButton: (id: string, profileName: string, isAdded: boolean) => void;
+  onClickButton: (id: number, profileName: string, isAdded: boolean) => void;
 }
 
 export default function TeamMembersSearchedMember(props: TeamMembersSearchedMemberProps) {

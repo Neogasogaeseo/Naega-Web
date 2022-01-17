@@ -15,13 +15,15 @@ export default function TeamRegisterMembers() {
   const navigate = useNavigate();
   const mockData: TeamMember[] = [
     {
-      id: 'minsu',
+      id: 1,
+      profileId: 'minsu',
       profileName: '짠돌이',
       profileImage:
         'https://user-images.githubusercontent.com/73823388/149194885-8609eb8e-5255-491b-9594-84137caf7265.jpeg',
     },
     {
-      id: 'minsuminsu',
+      id: 12,
+      profileId: 'minsuminsu',
       profileName: '수민',
       profileImage:
         'https://user-images.githubusercontent.com/73823388/149194902-76a30e2d-684f-4a71-9503-734c818c5406.jpeg',
@@ -31,14 +33,15 @@ export default function TeamRegisterMembers() {
   const [selectedMemberList, setSelectedMemberList] = useRecoilState(selectedMemberListState);
 
   const toggleMember = (
-    id: string,
+    id: number,
+    profileId: string,
     profileName: string,
     profileImage: string,
     isAdded: boolean,
   ): void => {
     setSearchedMemberList((currentData) =>
       currentData.map((member) =>
-        member.id === id ? { ...member, isAdded: !member.isAdded } : { ...member },
+        member.profileId === profileId ? { ...member, isAdded: !member.isAdded } : { ...member },
       ),
     );
     if (isAdded) {
@@ -46,7 +49,7 @@ export default function TeamRegisterMembers() {
     } else {
       setSelectedMemberList((currentData) => [
         ...currentData,
-        { id: id, profileName: profileName, profileImage: profileImage },
+        { id, profileId, profileName, profileImage },
       ]);
     }
   };
@@ -78,11 +81,11 @@ export default function TeamRegisterMembers() {
       <TeamMembersSearchBar />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
       {searchedMemberList.map((member) => {
-        const { id, profileName, profileImage = imgEmptyProfile, isAdded } = member;
+        const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = member;
         return (
           <TeamMembersSearchResult
             key={id}
-            onClickButton={() => toggleMember(id, profileName, profileImage, isAdded)}
+            onClickButton={() => toggleMember(id, profileId, profileName, profileImage, isAdded)}
             member={member}
           />
         );

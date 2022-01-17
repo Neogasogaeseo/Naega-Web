@@ -3,7 +3,7 @@ import ProfileAddButton from '@components/common/ProfileAddButton';
 import { StProfileList, StItemWrapper } from './style';
 
 export interface ProfileListData {
-  id: string;
+  id: number;
   profileImage?: string;
   profileName: string;
 }
@@ -11,7 +11,7 @@ export interface ProfileListData {
 interface ProfileListProps {
   isSquare: boolean;
   profileListData: ProfileListData[];
-  onProfileClick?: (id: string) => void;
+  onProfileClick?: (id: number) => void;
   onAddClick: () => void;
 }
 

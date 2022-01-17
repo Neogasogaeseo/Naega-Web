@@ -17,10 +17,13 @@ type TeamData = {
 };
 
 export interface TeamMember {
-  id: string;
+  id: number;
+  profileId: string;
   profileImage?: string;
   profileName: string;
 }
+
+export type TeamMemberNoneId = Omit<TeamMember, 'profileId'>;
 
 export interface SearchedMember extends TeamMember {
   isAdded: boolean;
@@ -52,14 +55,14 @@ export type TeamIssueCard = {
   category: string;
   dates: string;
   content: string;
-  issueMembers: TeamMember[];
+  issueMembers: TeamMemberNoneId[];
   teamImage?: string;
   teamName: string;
   memberName: string;
 };
 
 export type TeamProfileData = {
-  profileListData: TeamMember[];
+  profileListData: TeamMemberNoneId[];
 };
 
 export type TeamInfoData = {
@@ -67,7 +70,7 @@ export type TeamInfoData = {
   teamImage?: string;
   teamName: string;
   teamDescription: string;
-  teamMemberList: TeamMember[];
+  teamMemberList: TeamMemberNoneId[];
 };
 
 export type TeamInvite = {

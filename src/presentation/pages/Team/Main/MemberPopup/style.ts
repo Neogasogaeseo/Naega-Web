@@ -4,6 +4,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StTeamMemberPopup = styled.div`
   position: absolute;
+  top: calc(100% + 14.83px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 4;

@@ -25,7 +25,7 @@ export const StNavLink = styled(NavLink)<{ current: string }>`
 `;
 
 export const StNavBottomLine = styled.div`
-  width: calc(100% + 2 * 20px);
+  width: calc(100% + 40px);
   height: 1px;
   background-color: ${COLOR.GRAY_2};
   margin-left: -20px;

@@ -11,9 +11,11 @@ export const StNeogaLink = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & > *:first-child {
+    margin-top: 50px;
+    margin-bottom: 69px;
+  }
 `;
-
-export const StTitle = styled.div``;
 
 export const StLinkCreateButton = styled.button`
   ${CORAL_MAIN_BUTTON}

@@ -79,5 +79,6 @@ export const StLinkBox = styled.div`
     position: absolute;
     right: 14px;
     top: 12px;
+    cursor: pointer;
   }
 `;

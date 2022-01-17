@@ -20,19 +20,22 @@ export const TEAM_DATA: {
     team: {
       teammates: [
         {
-          id: '1',
+          profileId: 'aaa',
+          id: 1,
           profileName: '주영주영',
           profileImage:
             'https://ww.namu.la/s/b2d724ec88064819836995aa7afe60619c0f89cf045b7f2070f8831f2b00afba7448a1b98099e4a3a729c2b541204bb06eacd71768e57446bbd625a2a630d7f279bff5fc3180ae96b2f7e2c5233482c24a97f8523fc9085cce2f9374fdf3a0b8',
         },
         {
-          id: '2',
+          profileId: 'bbb',
+          id: 2,
           profileName: '효인효인',
           profileImage:
             'https://ww.namu.la/s/0e30b51afeaedaccb096046b25d42d73599c54d16e44e0ea6ffd88a96f81d724e9d38cc3703b7c11ba2a70a4d136b02c68d7a2559a3da2e2dbdb1066424f5728449bc216de079e38f19434a086f7081437e4f833a8aabde3674cd34188c8c839',
         },
         {
-          id: '3',
+          profileId: 'ccc',
+          id: 3,
           profileName: '지연지연',
           profileImage:
             'https://ww.namu.la/s/73448969f15f0b462181de8c3fbee648fb398c0e49b9b2376b87a0d0176b790d301d604b944ea4fb3ed2311c6207b5efee83afcee194b5fb89521efcc037bc4fce76b86a1fe6f6336e92a547d138f815',
@@ -103,27 +106,27 @@ export const TEAM_DATA: {
           '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
           {
-            id: '1',
+            id: 1,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
           },
           {
-            id: '2',
+            id: 2,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
           },
           {
-            id: '3',
+            id: 3,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
           },
           {
-            id: '4',
+            id: 4,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
           },
           {
-            id: '5',
+            id: 5,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
           },
@@ -140,11 +143,11 @@ export const TEAM_DATA: {
         content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
           {
-            id: '1',
+            id: 1,
             profileName: '지연',
           },
           {
-            id: '2',
+            id: 2,
             profileName: '지연',
             profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
           },
@@ -158,28 +161,28 @@ export const TEAM_DATA: {
   TEAM_PROFILE: {
     profileListData: [
       {
-        id: '1',
+        id: 6,
         profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
         profileName: '너가소개서',
       },
       {
-        id: '2',
+        id: 1,
         profileName: 'SOPT',
       },
       {
-        id: '3',
+        id: 2,
         profileName: '기업적디자인',
       },
       {
-        id: '4',
+        id: 3,
         profileName: '기업적디자인',
       },
       {
-        id: '5',
+        id: 4,
         profileName: '기업적디자인',
       },
       {
-        id: '6',
+        id: 5,
         profileName: '기업적디자인',
       },
     ],
@@ -191,21 +194,21 @@ export const TEAM_DATA: {
     teamDescription: '대학생연합 IT벤처창업 동아리',
     teamMemberList: [
       {
-        id: '1',
+        id: 1,
         profileName: '캐서린',
       },
       {
-        id: '2',
+        id: 12,
         profileName: '웬디',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
-        id: '3',
+        id: 13,
         profileName: '콩콩이',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
-        id: '4',
+        id: 14,
         profileName: '크왕',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },

@@ -62,7 +62,7 @@ export const NEOGA_DATA = {
   ],
   NEOGA_RESULT: [
     {
-      id: 0,
+      formID: 0,
       content: '지연아 넌 언제나 멋있는 사람이야 알지?',
       writer: '효인',
       category: '동네친구',
@@ -73,7 +73,7 @@ export const NEOGA_DATA = {
       ],
     },
     {
-      id: 1,
+      formID: 1,
       content: '효인아 넌 언제나 멋있는 사람이야 알지?',
       writer: '효인',
       category: '동네친구',
@@ -84,7 +84,7 @@ export const NEOGA_DATA = {
       ],
     },
     {
-      id: 2,
+      formID: 2,
       content: '서진아 넌 언제나 멋있는 사람이야 알지?',
       writer: '효인',
       category: '동네친구',
@@ -95,7 +95,7 @@ export const NEOGA_DATA = {
       ],
     },
     {
-      id: 3,
+      formID: 3,
       content: '주영아 넌 언제나 멋있는 사람이야 알지?',
       writer: '효인',
       category: '동네친구',

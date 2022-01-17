@@ -14,7 +14,7 @@ export type Keywordlists = {
 };
 
 export type ResultFormList = {
-  id: number;
+  formID: number;
   content: string;
   writer: string;
   category: string;

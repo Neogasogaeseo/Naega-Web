@@ -7,6 +7,7 @@ export const NEOGA_DATA = {
       isNew: true,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#434343',
+      isCreated: false,
     },
     {
       id: 2,
@@ -15,6 +16,7 @@ export const NEOGA_DATA = {
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#FF5D84',
+      isCreated: false,
     },
     {
       id: 3,
@@ -23,6 +25,7 @@ export const NEOGA_DATA = {
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#5451FF',
+      isCreated: false,
     },
     {
       id: 4,
@@ -31,6 +34,7 @@ export const NEOGA_DATA = {
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#3ACE90',
+      isCreated: false,
     },
     {
       id: 5,
@@ -39,6 +43,7 @@ export const NEOGA_DATA = {
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#5451FF',
+      isCreated: true,
     },
     {
       id: 6,
@@ -47,6 +52,7 @@ export const NEOGA_DATA = {
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#3ACE90',
+      isCreated: true,
     },
   ],
 };

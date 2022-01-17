@@ -22,3 +22,5 @@ export { default as icLink } from './ic_link.svg';
 export { default as icProfile } from './ic_profile.svg';
 export { ReactComponent as IcArrowRight } from './ic_arrow_right.svg';
 export { default as icMessage } from './ic_message.svg';
+export { default as IcArrowDown } from './ic_arrow_down.svg';
+export { default as IcArrowUp } from './ic_arrow_up.svg';

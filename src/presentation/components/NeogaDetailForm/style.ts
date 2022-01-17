@@ -155,16 +155,16 @@ export const StButton = styled.button`
 `;
 
 export const StMoreWrapper = styled.div`
-& > hr{
-  margin-top: 32px;
-  border: 1px solid ${COLOR.GRAY_2};
-  border-radius: 2px; 
-}
+  & > hr {
+    margin-top: 32px;
+    border: 1px solid ${COLOR.GRAY_2};
+    border-radius: 2px;
+  }
 `;
 export const StMoreButton = styled.div`
-color: ${COLOR.GRAY_4};
-cursor: pointer;
-display:flex;
-justify-content: center;
-margin-top: 18px;
+  color: ${COLOR.GRAY_4};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
 `;

@@ -1,7 +1,7 @@
 import { api } from '@api/index';
 import { useEffect, useState } from 'react';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { icLink, IcArrowDown,IcArrowUp } from '@assets/icons/index';
+import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 import {
   StNeogaDetailForm,
   StTitle,
@@ -18,7 +18,8 @@ import {
   StFeedDate,
   StEmptyFeedback,
   StButton,
-  StMoreWrapper,StMoreButton,
+  StMoreWrapper,
+  StMoreButton,
 } from './style';
 import { Keywordlists, ResultFormList } from '@api/types/neoga';
 import { imgEmptyFeedback } from '@assets/images';
@@ -29,29 +30,29 @@ function NeogaDetailForm() {
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
 
-  useEffect(()=>{
-    (async ()=>{
-      const data= await api.neogaService.getResultTemplates();
+  useEffect(() => {
+    (async () => {
+      const data = await api.neogaService.getResultTemplates();
       setResultBoolean(true);
       setResultKeywordList(data);
     })();
-  },[resultKeywordList]);
+  }, [resultKeywordList]);
 
-  useEffect(()=>{
-    (async ()=>{
-      const data= await api.neogaService.getAllResultListTemplates();
+  useEffect(() => {
+    (async () => {
+      const data = await api.neogaService.getAllResultListTemplates();
       setResultBoolean(true);
       setResultList(data);
     })();
-  },[resultList]);
+  }, [resultList]);
 
-  const onClickMore = ()=>{
+  const onClickMore = () => {
     setLookMoreButton(true);
-  }
+  };
 
-  const onClickFold = ()=>{
+  const onClickFold = () => {
     setLookMoreButton(false);
-  }
+  };
 
   return (
     <StNeogaDetailForm>
@@ -75,27 +76,29 @@ function NeogaDetailForm() {
         <>
           <StKeyword>
             <p>키워드모음</p>
-            {
-              !lookMoreButton ? (
-                <ImmutableKeywordList keywordList={resultKeywordList.slice(0,7)} onItemClick={() => null} />
-              ):null
-            }
+            {!lookMoreButton ? (
+              <ImmutableKeywordList
+                keywordList={resultKeywordList.slice(0, 7)}
+                onItemClick={() => null}
+              />
+            ) : null}
             <StMoreWrapper>
-              {
-                lookMoreButton && resultKeywordList.length > 7 ? (
+              {lookMoreButton && resultKeywordList.length > 7 ? (
                 <>
                   <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} />
-                  <hr/>
-                  <StMoreButton onClick={onClickFold}>접기<img src={IcArrowUp}></img></StMoreButton>
+                  <hr />
+                  <StMoreButton onClick={onClickFold}>
+                    접기<img src={IcArrowUp}></img>
+                  </StMoreButton>
                 </>
-                )
-                : resultKeywordList.length > 7 ? (
+              ) : resultKeywordList.length > 7 ? (
                 <>
-                  <hr/>
-                  <StMoreButton onClick={onClickMore}>더보기<img src={IcArrowDown}></img></StMoreButton>
+                  <hr />
+                  <StMoreButton onClick={onClickMore}>
+                    더보기<img src={IcArrowDown}></img>
+                  </StMoreButton>
                 </>
-                ) : null
-              }
+              ) : null}
             </StMoreWrapper>
           </StKeyword>
           <hr />
@@ -122,10 +125,10 @@ function NeogaDetailForm() {
         </>
       ) : (
         <>
-        <StEmptyFeedback>
-          <img src={imgEmptyFeedback} alt="" />
-          <StButton>링크 복사하기</StButton>
-        </StEmptyFeedback>
+          <StEmptyFeedback>
+            <img src={imgEmptyFeedback} alt="" />
+            <StButton>링크 복사하기</StButton>
+          </StEmptyFeedback>
         </>
       )}
     </StNeogaDetailForm>

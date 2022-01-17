@@ -1,9 +1,5 @@
-import { IssueData, TeamMember } from '@api/types/team';
+import { IssueData, SearchedMember } from '@api/types/team';
 import { atom } from 'recoil';
-
-interface SearchedMember extends TeamMember {
-  isAdded: boolean;
-}
 
 export const teamIssueState = atom<IssueData | null>({
   key: 'teamIssueState',

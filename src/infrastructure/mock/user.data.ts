@@ -18,7 +18,7 @@ export const USER_DATA: {
       { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
       { id: '1', content: '홍대할리스', color: '#FFB72B' },
       { id: '2', content: '강쥐바보', color: '#444444' },
-      { id: '3', content: '배려왕', color: '#4C48FF' },
+      { id: '3', content: '배려왕왕와오앙왕왕', color: '#4C48FF' },
     ],
     team: [{ id: '1', content: '유사 사랑의 열매', color: '#4C48FF' }],
   }),

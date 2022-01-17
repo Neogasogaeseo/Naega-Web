@@ -20,6 +20,7 @@ import {
   StShare,
   StTitle,
   StMyPageProfile,
+  StNeososeoAnswerCard,
 } from './style';
 
 function HomeMyPage() {
@@ -94,6 +95,16 @@ function HomeMyPage() {
               <IcArrowViewAll />
             </StDetailLink>
           </StTitle>
+          {neososeoBookmark.answerList.map((answer) => (
+            <StNeososeoAnswerCard key={answer.id}>
+              <div>
+                <img src={answer.icon} alt={answer.id.toString()} />
+                <div>{answer.question}</div>
+              </div>
+              <div>{answer.content}</div>
+              <ImmutableKeywordList keywordList={answer.keywordList} onItemClick={() => null} />
+            </StNeososeoAnswerCard>
+          ))}
           <StMoreButton>
             <span>더보기</span>
             <IcArrowViewMore />

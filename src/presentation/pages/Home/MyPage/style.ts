@@ -116,3 +116,30 @@ export const StMyPageProfile = styled.div`
     right: 0;
   }
 `;
+
+export const StNeososeoAnswerCard = styled.div`
+  margin: 24px 0;
+  border-bottom: 1px solid ${COLOR.GRAY_3};
+  padding-bottom: 24px;
+
+  & img {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+  }
+  & > div:nth-child(1) {
+    display: grid;
+    grid-template-columns: 32px auto 32px;
+    align-items: center;
+    gap: 8px;
+    color: ${COLOR.GRAY_5};
+  }
+  & > div:nth-child(2) {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    ${FONT_STYLES.R_14_BODY}
+    color: ${COLOR.GRAY_7};
+    word-break: keep-all;
+    line-height: 20px;
+  }
+`;

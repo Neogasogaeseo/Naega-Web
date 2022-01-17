@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useToast } from '@hooks/useToast';
 
 export default function NeogaLinkResult() {
-  const { formId, type } = useParams();
+  const { formID, type } = useParams();
   const navigate = useNavigate();
   const [isCopy, setIsCopy, copyClipboard] = useCopyClipboard();
   const { fireToast } = useToast();
@@ -38,7 +38,7 @@ export default function NeogaLinkResult() {
         <div></div>
         <IcLinkCopy onClick={() => copyClipboard(link)} />
       </StLinkBox>
-      <button onClick={() => navigate(`/neoga/${formId}/detail/form`)}>
+      <button onClick={() => navigate(`/neoga/${formID}/detail/form`)}>
         {type === 'new' ? '완료' : '답변 보러가기'}
       </button>
     </StNeogaLinkResult>

@@ -7,7 +7,7 @@ function NeogaRouter() {
   return (
     <Routes>
       <Route path="/create" element={<NeogaCreate />} />
-      <Route path="/detail/form" element={<FormDetail />} />
+      <Route path="/:formID/detail/form" element={<FormDetail />} />
     </Routes>
   );
 }

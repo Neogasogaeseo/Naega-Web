@@ -1,6 +1,6 @@
 import { ImgCreatedLink, ImgNewLink } from '@assets/images';
 import { IcLinkCopy } from '@assets/icons';
-import { StLinkResultLayout, StLinkBox } from '../style';
+import { StNeogaLinkResult, StLinkBox } from './style';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCopyClipboard from '@hooks/useCopyClipboard';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ export default function NeogaLinkResult() {
   }, []);
 
   return (
-    <StLinkResultLayout>
+    <StNeogaLinkResult>
       {type === 'new' ? <ImgNewLink /> : <ImgCreatedLink />}
       <div>
         <div>{type === 'new' ? '링크 생성 완료!' : '이미 생성된 링크예요!'}</div>
@@ -41,6 +41,6 @@ export default function NeogaLinkResult() {
       <button onClick={() => navigate(`/neoga/${formId}/detail/form`)}>
         {type === 'new' ? '완료' : '답변 보러가기'}
       </button>
-    </StLinkResultLayout>
+    </StNeogaLinkResult>
   );
 }

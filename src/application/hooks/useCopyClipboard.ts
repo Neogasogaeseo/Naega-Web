@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-export default function useCopyClipboard(): [boolean, (text: string) => Promise<boolean>] {
+export default function useCopyClipboard(): [
+  boolean,
+  React.Dispatch<React.SetStateAction<boolean>>,
+  (text: string) => Promise<boolean>,
+] {
   const [isCopy, setIsCopy] = useState<boolean>(false);
   const copyClipboard = async (text: string) => {
     try {
@@ -13,5 +17,5 @@ export default function useCopyClipboard(): [boolean, (text: string) => Promise<
       return false;
     }
   };
-  return [isCopy, copyClipboard];
+  return [isCopy, setIsCopy, copyClipboard];
 }

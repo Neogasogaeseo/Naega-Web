@@ -4,18 +4,22 @@ import { StLinkResultLayout, StLinkBox } from '../style';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCopyClipboard from '@hooks/useCopyClipboard';
 import { useEffect } from 'react';
+import { useToast } from '@hooks/useToast';
 
 export default function NeogaLinkCreated() {
   const { formId } = useParams();
   const navigate = useNavigate();
-  const [isCopy, copyClipboard] = useCopyClipboard();
+  const [isCopy, setIsCopy, copyClipboard] = useCopyClipboard();
+  const { fireToast } = useToast();
+
   const iv = 'qmffkqmffk';
   const q = 'qmffhqmffh';
   const link = `http://localhost:3000/neososeoform/${iv}/${q}`;
 
   useEffect(() => {
     if (isCopy) {
-      console.log('toast');
+      fireToast({ content: '링크가 클립보드에 저장되었습니다.', bottom: 190 });
+      setIsCopy(false);
     }
   }, [isCopy]);
   return (

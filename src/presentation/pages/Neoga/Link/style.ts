@@ -31,6 +31,7 @@ export const StLinkResultLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   & > *:first-child {
     margin-top: 189px;
   }

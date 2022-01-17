@@ -8,7 +8,7 @@ export const StTeamMain = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 0 20px;
 
   & > button {
     ${CORAL_MAIN_BUTTON}
@@ -30,12 +30,11 @@ export const StTeamInfo = styled.div`
   margin-top: 7px;
 
   & > div:first-child {
-    display: flex;
-    justify-content: end;
+    width: 100%;
+    text-align: end;
     padding-top: 13px;
     padding-bottom: 15px;
     padding-right: 4px;
-    width: 100%;
 
     button {
       background-color: transparent;
@@ -75,17 +74,29 @@ export const StTeamInfo = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: 14.83px;
 
-      img {
-        margin-right: 4px;
-        cursor: pointer;
+      & > button > img {
+        margin-right: 2px;
       }
 
-      span:first-child,
-      span:nth-child(2),
-      span:nth-child(3) {
+      button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: ${COLOR.GRAY_2};
+        color: ${COLOR.GRAY_5};
+        padding: 3px 7px;
+        ${FONT_STYLES.R_13_TITLE};
+        border-radius: 9px;
         margin-right: 5px;
+      }
+
+      span {
+        line-height: 19px;
+        color: ${COLOR.GRAY_5};
+        font-size: 13px;
+        letter-spacing: -0.01em;
       }
     }
   }

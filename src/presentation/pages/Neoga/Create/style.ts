@@ -1,4 +1,5 @@
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StNeogaCreate = styled.div`
@@ -8,6 +9,7 @@ export const StNeogaCreate = styled.div`
 
 const StWrapper = styled.div`
   padding: 20px;
+  padding-top: 0;
 `;
 
 export const StWhiteWrapper = styled(StWrapper)`
@@ -28,15 +30,17 @@ export const StWhiteWrapper = styled(StWrapper)`
     line-height: 144%;
     margin-bottom: 48px;
   }
-`;
-
-export const StGreyWrapper = styled(StWrapper)`
-  background-color: ${COLOR.GRAY_1};
-  padding-top: 40px;
-  & > div:nth-child(1) {
-    font-size: 20px;
-    line-height: 144%;
-    word-spacing: -1.5%;
+  & > div:nth-child(4) {
+    display: flex;
+    gap: 8px;
     margin-bottom: 12px;
   }
+`;
+
+export const StViewModeSelector = styled.div<{ selected: boolean }>`
+  border-radius: 12px;
+  padding: 8px 20px;
+  color: ${({ selected }) => (selected ? COLOR.WHITE : COLOR.GRAY_5)};
+  background-color: ${({ selected }) => (selected ? COLOR.GRAY_7 : COLOR.GRAY_1)};
+  ${FONT_STYLES.R_13_TITLE}
 `;

@@ -8,6 +8,7 @@ interface CardItem {
   isNew: boolean;
   src: string;
   backgroundColor: string;
+  title: string;
 }
 
 interface NeogaCreateCardListProps {

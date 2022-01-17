@@ -23,15 +23,15 @@ function JoinForm() {
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
 
-  useEffect(()=>{
-    const idCheck=/^[a-z|0-9|.|_]+$/;
+  useEffect(() => {
+    const idCheck = /^[a-z|0-9|.|_]+$/;
     const idStartCheck = /^[^.|^_]/;
-    if(idCheck.test(inputId) && idStartCheck.test(inputId)){
-      setIsConditionMet({...isConditionMet, id:true});
+    if (idCheck.test(inputId) && idStartCheck.test(inputId)) {
+      setIsConditionMet({ ...isConditionMet, id: true });
     } else {
       setIsConditionMet({ ...isConditionMet, id: false });
     }
-  },[inputId])
+  }, [inputId]);
 
   const onChangeId = (value: string) => {
     setInputId(value);
@@ -75,8 +75,13 @@ function JoinForm() {
           onChange={onChangeName}
         />
       </StInputWrapper>
-        <StButton type="submit" 
-        onClick={onClickSubmitUserInfo} disabled={ inputId==='' || inputName==='' || !isConditionMet.id}>완료</StButton>
+      <StButton
+        type="submit"
+        onClick={onClickSubmitUserInfo}
+        disabled={inputId === '' || inputName === '' || !isConditionMet.id}
+      >
+        완료
+      </StButton>
     </StJoinForm>
   );
 }

@@ -1,18 +1,19 @@
-import { TeamMembers } from '@api/types/team';
+import { TeamMemberNoneId } from '@api/types/team';
+import { imgEmptyProfile } from '@assets/images';
 import { StTeamMemberPopup } from './style';
 
 interface TeamMemberPopupProps {
-  members: TeamMembers[];
+  members: TeamMemberNoneId[];
 }
 
 function TeamMemberPopup(props: TeamMemberPopupProps) {
   const { members } = props;
   return (
     <StTeamMemberPopup>
-      {members.map((member) => (
-        <div key={member.memberID}>
-          <img src={member.memberImage} />
-          <span>{member.memberName}</span>
+      {members.map(({ id, profileName, profileImage }) => (
+        <div key={id}>
+          <img src={profileImage ?? imgEmptyProfile} />
+          <span>{profileName}</span>
         </div>
       ))}
     </StTeamMemberPopup>

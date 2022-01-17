@@ -7,7 +7,7 @@ import { teamIssueState } from '@stores/team';
 import IssueCard from '@components/IssueCard';
 import CommonInput from '@components/common/CommonInput';
 import IssueMemberList from '@components/common/IssueMemberList';
-import { imgEmptyProfile, imgLogo } from '@assets/images';
+import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 
 function TeamIssue() {
@@ -45,9 +45,7 @@ function TeamIssue() {
               <IssueMemberList
                 teamID={teamID}
                 issueNumber={+issueID}
-                issueMembers={issue.team.teammates.map(
-                  (teammates) => teammates.profileImage ?? imgEmptyProfile,
-                )}
+                issueMembers={issue.team.teammates}
               />
               <IssueTeamInfo teamName={issue.team.title} memberName={issue.writer} />
             </div>

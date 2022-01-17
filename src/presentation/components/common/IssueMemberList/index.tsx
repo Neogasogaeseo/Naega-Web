@@ -1,9 +1,11 @@
+import { TeamMemberNoneId } from '@api/types/team';
+import { imgEmptyProfile } from '@assets/images';
 import { StIssueMemberList } from './style';
 
 interface IssueMemberListProps {
   teamID: string;
   issueNumber: number;
-  issueMembers: string[];
+  issueMembers: TeamMemberNoneId[];
 }
 
 function IssueMemberList(props: IssueMemberListProps) {
@@ -14,8 +16,8 @@ function IssueMemberList(props: IssueMemberListProps) {
   return (
     <StIssueMemberList>
       <div>
-        {issueMembers.slice(0, MAX_IMAGE_NUM).map((member, index) => (
-          <img key={index} src={member} />
+        {issueMembers.slice(0, MAX_IMAGE_NUM).map(({ id, profileImage }) => (
+          <img key={id} src={profileImage ?? imgEmptyProfile} />
         ))}
       </div>
       {length <= MAX_IMAGE_NUM ? null : <span>+{length - MAX_IMAGE_NUM}</span>}

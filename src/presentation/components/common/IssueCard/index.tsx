@@ -1,3 +1,4 @@
+import { TeamMemberNoneId } from '@api/types/team';
 import IssueMemberList from '../IssueMemberList';
 import IssueTeamInfo from '../IssueTeamInfo';
 import { StIssueCard, StCardHeader, StCardContent, StCardFooter } from './style';
@@ -9,7 +10,7 @@ interface IssueCardProps {
   category: string;
   dates: string;
   content: string;
-  issueMembers: string[];
+  issueMembers: TeamMemberNoneId[];
   teamImage?: string;
   teamName: string;
   memberName: string;

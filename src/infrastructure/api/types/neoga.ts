@@ -1,3 +1,5 @@
+import { Keyword } from './user';
+
 export type NeogaCardItem = {
   id: number;
   content: string;
@@ -6,4 +8,13 @@ export type NeogaCardItem = {
   src: string;
   backgroundColor: string;
   isCreated: boolean;
+};
+
+export type ResultFormList = {
+  formID: number;
+  content: string;
+  writer: string;
+  category: string;
+  createdAt: string;
+  keywordlists: Keyword[];
 };

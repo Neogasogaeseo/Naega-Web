@@ -1,16 +1,11 @@
 import { api } from '@api/index';
+import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
-
-interface Keyword {
-  id: string;
-  content: string;
-  color?: string;
-}
 
 interface OutletContextProps {
   keywordList: Keyword[];

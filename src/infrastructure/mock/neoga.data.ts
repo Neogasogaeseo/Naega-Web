@@ -55,4 +55,61 @@ export const NEOGA_DATA = {
       isCreated: true,
     },
   ],
+  KEYWORD_LISTS: [
+    { id: '0', content: '제일멋있는파트는', color: '#4C48FF' },
+    { id: '1', content: '웹파트ㅋ', color: '#FF4B77' },
+    { id: '2', content: '서진최고', color: '#4C48FF' },
+    { id: '3', content: '주영최고', color: '#FF4B77' },
+    { id: '4', content: '지연최고', color: '#4C48FF' },
+    { id: '5', content: '효인최고', color: '#FF4B77' },
+    { id: '6', content: '너소서최고', color: '#4C48FF' },
+    { id: '7', content: '우리모두최고', color: '#FF4B77' },
+    { id: '8', content: '화이팅최고', color: '#4C48FF' },
+  ],
+  NEOGA_RESULT: [
+    {
+      formID: 0,
+      content: '지연아 넌 언제나 멋있는 사람이야 알지?',
+      writer: '효인',
+      category: '동네친구',
+      createdAt: '2021-01-17',
+      keywordlists: [
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+      ],
+    },
+    {
+      formID: 1,
+      content: '효인아 넌 언제나 멋있는 사람이야 알지?',
+      writer: '효인',
+      category: '동네친구',
+      createdAt: '2021-01-17',
+      keywordlists: [
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+      ],
+    },
+    {
+      formID: 2,
+      content: '서진아 넌 언제나 멋있는 사람이야 알지?',
+      writer: '효인',
+      category: '동네친구',
+      createdAt: '2021-01-17',
+      keywordlists: [
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+      ],
+    },
+    {
+      formID: 3,
+      content: '주영아 넌 언제나 멋있는 사람이야 알지?',
+      writer: '효인',
+      category: '동네친구',
+      createdAt: '2021-01-17',
+      keywordlists: [
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+      ],
+    },
+  ],
 };

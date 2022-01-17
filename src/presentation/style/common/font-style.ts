@@ -50,6 +50,7 @@ export const FONT_STYLES = {
   M_15_TITLE: FONT({ size: 15, weight: 'M', position: 'Title' }),
   SB_15_BODY: FONT({ size: 15, weight: 'SB', position: 'Body' }),
   R_16_BODY: FONT({ size: 16, weight: 'R', position: 'Body' }),
+  R_16_TITLE: FONT({ size: 16, weight: 'R', position: 'Title' }),
   M_16_TITLE: FONT({ size: 16, weight: 'M', position: 'Title' }),
   M_16_BODY: FONT({ size: 16, weight: 'M', position: 'Body' }),
   SB_16_BODY: FONT({ size: 16, weight: 'SB', position: 'Body' }),

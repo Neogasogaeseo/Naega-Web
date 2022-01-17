@@ -1,3 +1,4 @@
+import { TeamMemberNoneId } from '@api/types/team';
 import IssueCard from '../IssueCard';
 
 export interface IssueListData {
@@ -7,7 +8,7 @@ export interface IssueListData {
   category: string;
   dates: string;
   content: string;
-  issueMembers: string[];
+  issueMembers: TeamMemberNoneId[];
   teamImage?: string;
   teamName: string;
   memberName: string;

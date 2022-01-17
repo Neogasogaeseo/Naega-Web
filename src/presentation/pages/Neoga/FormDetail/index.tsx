@@ -3,9 +3,7 @@ import React from 'react';
 
 function FormDetail() {
   return (
-    <>
       <NeogaDetailForm />
-    </>
   );
 }
 

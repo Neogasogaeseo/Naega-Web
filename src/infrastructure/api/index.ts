@@ -1,7 +1,7 @@
 import { neogaDataMock } from '../mock/neoga';
 import { neososeoFormDataMock } from '../mock/neososeo-form';
-import { teamDataMock } from '../mock/team';
 import { userDataMock } from '../mock/user';
+import { teamDataRemote } from '../remote/team';
 import { NeogaService } from './neoga';
 import { NeososeoFormService } from './neososeo-form';
 import { TeamService } from './team';
@@ -14,7 +14,7 @@ function getAPIMethod(): APIService {
 }
 
 function provideMockAPIService(): APIService {
-  const teamService = teamDataMock();
+  const teamService = teamDataRemote();
   const userService = userDataMock();
   const neogaService = neogaDataMock();
   const neososeoFormService = neososeoFormDataMock();

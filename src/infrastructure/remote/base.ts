@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASEURL = '추가예정';
+const BASEURL = 'https://asia-northeast3-neogasogaeseo-9aaf5.cloudfunctions.net/api';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
 const getBasePrivateHeaders = () => ({

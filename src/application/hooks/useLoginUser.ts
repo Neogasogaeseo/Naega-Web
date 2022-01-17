@@ -25,7 +25,7 @@ export function useLoginUser() {
       const user = await api.userService.getUserInfo(token);
       setLoginUser(user);
       setIsAuthenticated(true);
-      localStorage.setItem('token', user.accessToken);
+      // localStorage.setItem('token', user.accessToken);
     } catch (error) {
       setError(error);
     }

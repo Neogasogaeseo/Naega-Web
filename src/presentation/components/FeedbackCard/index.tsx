@@ -3,11 +3,11 @@ import { FeedbackDetail } from '@api/types/team';
 import { icDot } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useState } from 'react';
-import { StIssueCard, StHeader, StBody, StBookmark } from './style';
+import { StFeedbackCard, StHeader, StBody, StBookmark } from './style';
 
-type IssueCardProps = FeedbackDetail;
+type FeedbackCardProps = FeedbackDetail;
 
-function IssueCard(props: IssueCardProps) {
+function FeedbackCard(props: FeedbackCardProps) {
   const { id, writer, target, body, createdAt, keywordList, isMine } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
   const bookmarkFeedback = async () => {
@@ -15,7 +15,7 @@ function IssueCard(props: IssueCardProps) {
     if (response.isSuccess) setIsBookmarked((prev) => !prev);
   };
   return (
-    <StIssueCard>
+    <StFeedbackCard>
       <StHeader>
         <div>@{target}</div>
         <div>
@@ -32,8 +32,8 @@ function IssueCard(props: IssueCardProps) {
           return;
         }}
       />
-    </StIssueCard>
+    </StFeedbackCard>
   );
 }
 
-export default IssueCard;
+export default FeedbackCard;

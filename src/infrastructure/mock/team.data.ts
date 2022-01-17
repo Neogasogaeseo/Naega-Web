@@ -45,7 +45,7 @@ export const TEAM_DATA: {
         'https://w.namu.la/s/cf540b42db6aa012f45ec8e7eada6fb14c0578dddc81705a6a65ce649036c7870be294ad2c2c8163819de544dcde5faaa50df4c4d1c52fa21da8b1aa86479abbc25c7254c3019843510ff3e9e39ff9eec48b20008ab7962248d4146108618d29',
       title: '포켓몬주식회사',
     },
-    issueList: [
+    feedbackList: [
       {
         id: '11',
         writer: '주영주영',

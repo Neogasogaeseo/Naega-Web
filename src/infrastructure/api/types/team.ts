@@ -5,7 +5,7 @@ export type IssueData = {
   title: string;
   category: string;
   team: TeamData;
-  issueList: FeedbackDetail[];
+  feedbackList: FeedbackDetail[];
   writer: string;
   thumbnail?: string;
 };

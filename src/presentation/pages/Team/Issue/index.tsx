@@ -4,7 +4,7 @@ import { api } from '@api/index';
 import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
 import { useRecoilState } from 'recoil';
 import { teamIssueState } from '@stores/team';
-import IssueCard from '@components/IssueCard';
+import FeedbackCard from '@components/FeedbackCard';
 import CommonInput from '@components/common/CommonInput';
 import IssueMemberList from '@components/common/IssueMemberList';
 import { imgLogo } from '@assets/images';
@@ -54,7 +54,7 @@ function TeamIssue() {
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
           {issue !== null &&
-            issue.issueList.map((issue) => <IssueCard key={issue.id} {...issue} />)}
+            issue.feedbackList.map((issue) => <FeedbackCard key={issue.id} {...issue} />)}
         </StWrapper>
       )}
       <StLink to={`/team/${teamID}/${issueID}/create`}>

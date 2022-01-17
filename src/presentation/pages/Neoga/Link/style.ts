@@ -19,6 +19,7 @@ export const StLinkCreateButton = styled.button`
   ${CORAL_MAIN_BUTTON}
   ${FULL_WIDTH_BUTTON}
   margin-top: 121px;
+  margin-bottom: 48px;
 `;
 
 export const StLinkResultLayout = styled.div`
@@ -50,6 +51,7 @@ export const StLinkResultLayout = styled.div`
   & > button {
     ${CORAL_MAIN_BUTTON}
     ${FULL_WIDTH_BUTTON}
+    margin-bottom: 48px;
   }
 `;
 

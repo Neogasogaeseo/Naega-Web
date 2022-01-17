@@ -7,6 +7,7 @@ export type NeogaCardItem = {
   isNew: boolean;
   src: string;
   backgroundColor: string;
+  isCreated: boolean;
 };
 
 export type ResultFormList = {

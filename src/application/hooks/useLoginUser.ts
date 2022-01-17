@@ -22,10 +22,9 @@ export function useLoginUser() {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw '토큰이 없습니다';
-      const user = await api.userService.getUserInfo(token);
+      const user = await api.loginUserService.getUserInfo(token);
       setLoginUser(user);
       setIsAuthenticated(true);
-      localStorage.setItem('token', user.accessToken);
     } catch (error) {
       setError(error);
     }

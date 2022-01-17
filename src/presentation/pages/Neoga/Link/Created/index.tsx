@@ -1,8 +1,11 @@
 import { ImgCreatedLink } from '@assets/images';
 import { IcLinkCopy } from '@assets/icons';
 import { StLinkResultLayout, StLinkBox } from '../style';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function NeogaLinkCreated() {
+  const { formId } = useParams();
+  const navigate = useNavigate();
   const iv = 'qmffkqmffk';
   const q = 'qmffhqmffh';
   return (
@@ -17,7 +20,7 @@ export default function NeogaLinkCreated() {
         <div></div>
         <IcLinkCopy />
       </StLinkBox>
-      <button>답변 보러가기</button>
+      <button onClick={() => navigate(`/neoga/${formId}/detail/form`)}>답변 보러가기</button>
     </StLinkResultLayout>
   );
 }

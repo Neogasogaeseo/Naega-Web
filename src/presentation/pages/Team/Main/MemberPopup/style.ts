@@ -9,6 +9,8 @@ export const StTeamMemberPopup = styled.div`
   transform: translateX(-50%);
   z-index: 4;
   width: 168px;
+  max-height: 207.168px;
+  overflow: scroll;
   background: ${COLOR.WHITE};
   border-radius: 8.07692px;
   border: 0.8px solid ${COLOR.GRAY_3};

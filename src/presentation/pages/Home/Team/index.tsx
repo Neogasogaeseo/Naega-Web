@@ -12,25 +12,27 @@ function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamMemberNoneId[] | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
-  const [isValidating, setIsValidating] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      setIsValidating(true);
       const { profileListData } = await api.teamService.getTeamProfile();
-      const { issueListData } = await api.teamService.getMyIssue();
-      const { inviteListData } = await api.teamService.getInviteInfo();
       setProfileListData(profileListData);
-      setIssueListData(issueListData);
-      setInviteData(inviteListData);
-      setIsValidating(false);
     })();
+  }, []);
 
-    return () => {
-      setProfileListData(null);
-      setIssueListData(null);
-    };
+  useEffect(() => {
+    (async () => {
+      const { issueListData } = await api.teamService.getMyIssue();
+      setIssueListData(issueListData);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const { inviteListData } = await api.teamService.getInviteInfo();
+      setInviteData(inviteListData);
+    })();
   }, []);
 
   return (
@@ -40,7 +42,6 @@ function HomeTeam() {
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
         <h1>내가 함께하는 팀</h1>
-        {isValidating && <div>로딩중</div>}
         {profileListData && (
           <ProfileList
             isSquare={true}

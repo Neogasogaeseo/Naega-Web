@@ -52,7 +52,7 @@ export type TeamIssueCard = {
   category: string;
   dates: string;
   content: string;
-  issueMembers: string[];
+  issueMembers: TeamMember[];
   teamImage?: string;
   teamName: string;
   memberName: string;
@@ -62,16 +62,19 @@ export type TeamProfileData = {
   profileListData: TeamMember[];
 };
 
-export type TeamMembers = {
-  memberID: string;
-  memberName: string;
-  memberImage: string;
-};
-
 export type TeamInfoData = {
   teamID: string;
   teamImage?: string;
   teamName: string;
   teamDescription: string;
-  teamMembers: TeamMembers[];
+  teamMemberList: TeamMember[];
+};
+
+export type TeamInvite = {
+  id: number;
+  name: string;
+};
+
+export type TeamInviteData = {
+  inviteListData: TeamInvite[];
 };

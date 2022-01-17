@@ -46,24 +46,25 @@ function TeamMain() {
           <div>
             <h1>{teamInfoData.teamName}</h1>
             <h3>
-              <img src={icPerson} onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)} />
-              <span>{teamInfoData.teamMembers.length}명</span>
-              <span>|</span>
-              {teamInfoData.teamMembers.map((member, index) => (
-                <span key={member.memberID}>
-                  {member.memberName}
-                  {index < teamInfoData.teamMembers.length - 1 ? ',\u00a0' : ''}
+              <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
+                <img src={icPerson} />
+                <span>{teamInfoData.teamMemberList.length}명</span>
+                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
+              </button>
+              {teamInfoData.teamMemberList.map((member, index) => (
+                <span key={member.id}>
+                  {member.profileName}
+                  {index < teamInfoData.teamMemberList.length - 1 ? ',\u00a0' : ''}
                 </span>
               ))}
             </h3>
-            {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMembers} />}
             <h2>{teamInfoData.teamDescription}</h2>
           </div>
         </StTeamInfo>
       )}
       <button onClick={() => navigate(`/team/${teamID}/create`)}>
         <img src={icPlusMini} />
-        이슈 추가
+        이슈 추가하기
       </button>
       <StCheckWrapper>
         <button onClick={() => setIsChecked(!isChecked)}>

@@ -10,8 +10,8 @@ export type NeogaCardItem = {
 export type Keywordlists = {
   id: string;
   content: string;
-  color:string;
-}
+  color: string;
+};
 
 export type ResultFormList = {
   id: string;
@@ -19,5 +19,5 @@ export type ResultFormList = {
   writer: string;
   category: string;
   createdAt: string;
-  keywordlists :Keywordlists[];
-}
+  keywordlists: Keywordlists[];
+};

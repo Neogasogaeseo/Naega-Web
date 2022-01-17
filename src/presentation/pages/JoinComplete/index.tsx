@@ -1,9 +1,7 @@
 import JoinCompleteForm from '@components/JoinCompleteForm';
 
 function joinComplete() {
-  return (
-      <JoinCompleteForm />
-  );
+  return <JoinCompleteForm />;
 }
 
 export default joinComplete;

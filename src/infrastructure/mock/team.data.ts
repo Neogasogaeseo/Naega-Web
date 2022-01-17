@@ -1,10 +1,17 @@
-import { IssueData, TeamInfoData, TeamIssueData, TeamProfileData } from '@api/types/team';
+import {
+  IssueData,
+  TeamInfoData,
+  TeamInviteData,
+  TeamIssueData,
+  TeamProfileData,
+} from '@api/types/team';
 
 export const TEAM_DATA: {
   ISSUE_INFO: IssueData;
   TEAM_ISSUE_INFO: TeamIssueData;
   TEAM_PROFILE: TeamProfileData;
   TEAM_DETAIL_INFO: TeamInfoData;
+  TEAM_INVITE_INFO: TeamInviteData;
 } = {
   ISSUE_INFO: {
     createdAt: '2021-12-27',
@@ -95,11 +102,31 @@ export const TEAM_DATA: {
         content:
           '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다 깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          {
+            id: '1',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          },
+          {
+            id: '2',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '3',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '4',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
+          {
+            id: '5',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
         ],
         teamName: '너가소개서',
         memberName: '강쥐',
@@ -112,8 +139,15 @@ export const TEAM_DATA: {
         dates: '2021-12-27',
         content: '깃알못이라 IOS 프로젝트가 엉켜서 망가졌다',
         issueMembers: [
-          'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-          'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+          {
+            id: '1',
+            profileName: '지연',
+          },
+          {
+            id: '2',
+            profileName: '지연',
+            profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+          },
         ],
         teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
         teamName: '너가소개서',
@@ -155,26 +189,41 @@ export const TEAM_DATA: {
     teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
     teamName: '너가소개서',
     teamDescription: '대학생연합 IT벤처창업 동아리',
-    teamMembers: [
+    teamMemberList: [
       {
-        memberID: '1',
-        memberName: '캐서린',
-        memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        id: '1',
+        profileName: '캐서린',
       },
       {
-        memberID: '2',
-        memberName: '웬디',
-        memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        id: '2',
+        profileName: '웬디',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
-        memberID: '3',
-        memberName: '콩콩이',
-        memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        id: '3',
+        profileName: '콩콩이',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
-        memberID: '4',
-        memberName: '크왕',
-        memberImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        id: '4',
+        profileName: '크왕',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      },
+    ],
+  },
+  TEAM_INVITE_INFO: {
+    inviteListData: [
+      {
+        id: 26,
+        name: '너가소개서',
+      },
+      {
+        id: 27,
+        name: '너가소개서',
+      },
+      {
+        id: 28,
+        name: '너가소개서',
       },
     ],
   },

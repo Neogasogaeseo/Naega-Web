@@ -7,12 +7,17 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.ALL_TEMPLATES;
   };
 
-  const getCreatedTemplates = async () => {
+  const getResultKeywords = async () => {
     await wait(2000);
-    return NEOGA_DATA.CREATED_TEMPLATES;
+    return NEOGA_DATA.KEYWORD_LISTS;
   };
 
-  return { getAllTemplates, getCreatedTemplates };
+  const getAllResultListTemplates = async () => {
+    await wait(2000);
+    return NEOGA_DATA.NEOGA_RESULT;
+  };
+
+  return { getAllTemplates, getResultKeywords, getAllResultListTemplates };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

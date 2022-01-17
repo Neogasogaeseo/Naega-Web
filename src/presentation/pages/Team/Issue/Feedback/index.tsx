@@ -13,26 +13,17 @@ import {
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-
-interface Keyword {
-  id: string;
-  content: string;
-  color: string;
-}
-
-interface User {
-  id: string;
-  profileImage?: string;
-  profileName: string;
-}
+import { Keyword } from '@api/types/user';
+import { TeamMemberNoneId } from '@api/types/team';
 
 function TeamIssueFeedback() {
   const teamIssue = useRecoilValue(teamIssueState);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!teamIssue) return;
     if (teamIssue?.team.teammates[0] !== undefined) setSelectedUser(teamIssue?.team.teammates[0]);
   }, [teamIssue]);
 

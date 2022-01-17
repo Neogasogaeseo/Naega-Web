@@ -1,11 +1,7 @@
+import { Keyword } from '@api/types/user';
 import { icCloseGrey, icCloseWhite } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
 import { StKeywordItem } from './style';
-
-interface Keyword {
-  content: string;
-  color: string;
-}
 
 interface Props extends Keyword {
   isMutable: boolean;

@@ -36,7 +36,6 @@ function HomeMyPage() {
   const { fireToast } = useToast();
 
   useEffect(() => {
-    console.log(userID, loginID);
     setIsMyPage(userID === loginID);
   }, [userID, loginID]);
 

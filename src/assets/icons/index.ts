@@ -15,7 +15,6 @@ export { default as icCloseWhite } from './ic_close_white.svg';
 export { ReactComponent as IcPencil } from './ic_pencil.svg';
 export { default as icPencil } from './ic_pencil.svg';
 export { default as icPerson } from './ic_person.svg';
-export { default as icPlusMini } from './ic_plus_mini.svg';
 export { default as icCoralCheck } from './ic_coral_check.svg';
 export { default as icGrayCheck } from './ic_gray_check.svg';
 export { default as icLink } from './ic_link.svg';

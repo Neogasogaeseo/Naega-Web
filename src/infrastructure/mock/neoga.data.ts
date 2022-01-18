@@ -1,4 +1,34 @@
 export const NEOGA_DATA = {
+  MAIN_TEMPLATE: [
+    {
+      id: 1,
+      title: '너가 닮고 싶은 나의 일잘러 모습?',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#434343',
+      isCreated: false,
+    },
+    {
+      id: 2,
+      title: '너가 기억하는 나의 첫인상',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#FF5D84',
+      isCreated: false,
+    },
+    {
+      id: 3,
+      title: '나에게 어울리는 제2의 직업',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#5451FF',
+      isCreated: false,
+    },
+    {
+      id: 4,
+      title: '나와 함께한 최고의 순간',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#3ACE90',
+      isCreated: false,
+    },
+  ],
   ALL_TEMPLATES: [
     {
       id: 1,

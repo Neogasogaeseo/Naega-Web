@@ -1,5 +1,7 @@
 import { Keyword } from './user';
 
+export type NeogaMainCardItem = Omit<NeogaCardItem, 'content' | 'isNew'>;
+
 export type NeogaCardItem = {
   id: number;
   content: string;

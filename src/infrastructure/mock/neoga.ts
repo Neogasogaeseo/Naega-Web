@@ -21,8 +21,14 @@ export function neogaDataMock(): NeogaService {
     await wait(2000);
     return NEOGA_DATA.NEOGA_RESULT;
   };
+  
+  const postAnswerBookmark = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
 
-  return { getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates };
+  return { getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates, postAnswerBookmark };
+
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

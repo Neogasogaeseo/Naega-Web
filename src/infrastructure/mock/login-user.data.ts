@@ -1,5 +1,6 @@
 export const LOGIN_USER_DATA = {
   _: {
+    id: 2,
     accessToken: 'token',
     username: '서진서진',
     userID: 'seojin',

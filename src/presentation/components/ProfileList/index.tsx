@@ -13,6 +13,7 @@ interface ProfileListProps {
   profileListData: ProfileListData[];
   onProfileClick?: (id: number) => void;
   onAddClick: () => void;
+  isAddNeeded?: boolean;
 }
 
 function ProfileList(props: ProfileListProps) {
@@ -23,6 +24,7 @@ function ProfileList(props: ProfileListProps) {
       return;
     },
     onAddClick,
+    isAddNeeded = true,
   } = props;
 
   return (
@@ -38,7 +40,7 @@ function ProfileList(props: ProfileListProps) {
             onProfileClick={() => onProfileClick(id)}
           />
         ))}
-        <ProfileAddButton isSquare={isSquare} onAddClick={onAddClick} />
+        {isAddNeeded && <ProfileAddButton isSquare={isSquare} onAddClick={onAddClick} />}
       </StItemWrapper>
     </StProfileList>
   );

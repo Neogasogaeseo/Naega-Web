@@ -9,7 +9,7 @@ function HomeRouter() {
       <Route path="/" element={<HomeNeoga />} />
       <Route path="neoga" element={<HomeNeoga />} />
       <Route path="team" element={<HomeTeam />} />
-      <Route path="mypage" element={<HomeMyPage />} />
+      <Route path="mypage/:userID" element={<HomeMyPage />} />
     </Routes>
   );
 }

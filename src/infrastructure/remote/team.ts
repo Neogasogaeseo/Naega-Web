@@ -48,6 +48,8 @@ export function teamDataRemote(): TeamService {
           category: team.categoryName,
           createdAt: team.dates,
           content: team.content,
+          teamID: team.teamId,
+          issueCardImage: team.teamImage,
           teamName: team.teamname,
           memberName: team.username,
         })),

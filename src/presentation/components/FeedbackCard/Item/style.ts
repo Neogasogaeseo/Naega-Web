@@ -3,7 +3,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StIssueCard = styled.div`
+export const StFeedbackCard = styled.div`
   margin: 24px;
   padding-bottom: 24px;
   display: flex;

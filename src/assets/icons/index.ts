@@ -25,3 +25,8 @@ export { ReactComponent as IcArrowRight } from './ic_arrow_right.svg';
 export { default as icMessage } from './ic_message.svg';
 export { default as IcArrowDown } from './ic_arrow_down.svg';
 export { default as IcArrowUp } from './ic_arrow_up.svg';
+export { ReactComponent as IcArrowViewAll } from './ic_arrow_view_all.svg';
+export { ReactComponent as IcArrowViewMore } from './ic_arrow_view_more.svg';
+export { ReactComponent as IcArrowViewMoreClose } from './ic_arrow_view_more_close.svg';
+export { ReactComponent as IcCopyMypage } from './ic_copy_mypage.svg';
+export { ReactComponent as IcMypageEdit } from './ic_mypage_edit.svg';

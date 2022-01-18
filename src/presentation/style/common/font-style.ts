@@ -82,4 +82,5 @@ export const FONT_STYLES = {
   M_26_TITLE: FONT({ size: 26, weight: 'M', position: 'Title' }),
   SB_30_TITLE: FONT({ size: 30, weight: 'SB', position: 'Title' }),
   M_38_TITLE: FONT({ size: 38, weight: 'M', position: 'Title' }),
+  R_14_BODY: FONT({ size: 14, weight: 'R', position: 'Body' }),
 };

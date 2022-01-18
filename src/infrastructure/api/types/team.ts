@@ -70,6 +70,7 @@ export type TeamInfoData = {
   teamImage?: string;
   teamName: string;
   teamDescription: string;
+  teamMemberCount: number;
   teamMemberList: TeamMemberNoneId[];
 };
 

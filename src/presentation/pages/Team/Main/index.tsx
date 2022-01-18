@@ -1,42 +1,52 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
-import { icPerson, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
+import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
 import { TeamInfoData, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import TeamMemberPopup from './MemberPopup';
+import { privateAPI } from '@infrastructure/remote/base';
 
 function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | null>(null);
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
-  const [isValidating, setIsValidating] = useState(false);
   const { teamID } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
-      setIsValidating(true);
       if (teamID === undefined) return;
-      const teamDetailData = await api.teamService.getTeamInfo(teamID);
-      const { issueListData } = await api.teamService.getTeamIssue(teamID);
-      setTeamInfoData(teamDetailData);
-      setIssueListData(issueListData);
-      setIsValidating(false);
+      const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
+      if (response.status === 200)
+        setTeamInfoData({
+          teamID: response.data.team.id,
+          teamImage: response.data.team.image ?? imgEmptyProfile,
+          teamName: response.data.team.name,
+          teamDescription: response.data.team.description,
+          teamMemberCount: response.data.memberCount,
+          teamMemberList: response.data.member.map((memberDetail: any) => ({
+            id: memberDetail.id,
+            profileName: memberDetail.name,
+            profileImage: memberDetail.image ?? imgEmptyProfile,
+          })),
+        });
     })();
-
-    return () => {
-      setTeamInfoData(null);
-      setIssueListData(null);
-    };
+  }, []);
+  
+  useEffect(() => {
+    (async () => {
+      if (teamID === undefined) return;
+      const { issueListData } = await api.teamService.getTeamIssue(teamID);
+      setIssueListData(issueListData);
+    })();
   }, []);
 
   return (
     <StTeamMain>
-      {isValidating && <div>로딩중</div>}
       {teamInfoData && (
         <StTeamInfo>
           <div>
@@ -48,13 +58,13 @@ function TeamMain() {
             <h3>
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} />
-                <span>{teamInfoData.teamMemberList.length}명</span>
+                <span>{teamInfoData.teamMemberCount}명</span>
                 {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
               </button>
               {teamInfoData.teamMemberList.map((member, index) => (
                 <span key={member.id}>
                   {member.profileName}
-                  {index < teamInfoData.teamMemberList.length - 1 ? ',\u00a0' : ''}
+                  {index < teamInfoData.teamMemberCount - 1 ? ',\u00a0' : ''}
                 </span>
               ))}
             </h3>
@@ -62,17 +72,13 @@ function TeamMain() {
           </div>
         </StTeamInfo>
       )}
-      <button onClick={() => navigate(`/team/${teamID}/create`)}>
-        <img src={icPlusMini} />
-        이슈 추가하기
-      </button>
+      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가하기</button>
       <StCheckWrapper>
         <button onClick={() => setIsChecked(!isChecked)}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
         나와 관련된 이슈만 보기
       </StCheckWrapper>
-      {isValidating && <div>로딩중</div>}
       {issueListData && (
         <IssueCardList
           issueListData={issueListData}

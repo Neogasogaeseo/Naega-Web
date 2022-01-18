@@ -3,7 +3,6 @@ import {
   PostFeedbackBookmarkResponse,
   TeamProfileData,
   TeamIssueData,
-  TeamInfoData,
   TeamInviteData,
 } from './types/team';
 
@@ -13,6 +12,5 @@ export interface TeamService {
   getTeamProfile(): Promise<TeamProfileData>;
   getMyIssue(): Promise<TeamIssueData>;
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
-  getTeamInfo(teamID: string): Promise<TeamInfoData>;
   getInviteInfo(): Promise<TeamInviteData>;
 }

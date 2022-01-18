@@ -10,3 +10,12 @@ export interface LoginUser {
   userID: string;
   profileImage: string;
 }
+
+export interface IJoin {
+  profileId: string;
+  name: string;
+  image: string;
+  provider: string;
+  accesstoken: string;
+  refreshtoken: string;
+}

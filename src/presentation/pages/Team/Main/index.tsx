@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
-import { icPerson, icPlusMini, icCoralCheck, icGrayCheck } from '@assets/icons';
+import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
 import { api } from '@api/index';
@@ -39,9 +39,7 @@ function TeamMain() {
       {isValidating && <div>로딩중</div>}
       {teamInfoData && (
         <StTeamInfo>
-          <div>
-            <button onClick={() => navigate(`/team/register`)}>수정</button>
-          </div>
+          <div>{/* <button onClick={() => navigate(`/team/register`)}>수정</button> */}</div>
           <img src={teamInfoData.teamImage ?? imgEmptyProfile} />
           <div>
             <h1>{teamInfoData.teamName}</h1>
@@ -51,21 +49,20 @@ function TeamMain() {
                 <span>{teamInfoData.teamMemberList.length}명</span>
                 {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
               </button>
-              {teamInfoData.teamMemberList.map((member, index) => (
-                <span key={member.id}>
-                  {member.profileName}
-                  {index < teamInfoData.teamMemberList.length - 1 ? ',\u00a0' : ''}
-                </span>
-              ))}
+              <div>
+                {teamInfoData.teamMemberList.map((member, index) => (
+                  <span key={member.id}>
+                    {member.profileName}
+                    {index < teamInfoData.teamMemberList.length - 1 ? ',\u00a0' : ''}
+                  </span>
+                ))}
+              </div>
             </h3>
             <h2>{teamInfoData.teamDescription}</h2>
           </div>
         </StTeamInfo>
       )}
-      <button onClick={() => navigate(`/team/${teamID}/create`)}>
-        <img src={icPlusMini} />
-        이슈 추가하기
-      </button>
+      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가하기</button>
       <StCheckWrapper>
         <button onClick={() => setIsChecked(!isChecked)}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />

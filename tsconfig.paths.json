@@ -11,7 +11,8 @@
       "@models/*": ["src/application/models/*"],
       "@stores/*": ["src/application/stores/*"],
       "@hooks/*": ["src/application/hooks/*"],
-      "@api/*": ["src/infrastructure/api/*"]
+      "@api/*": ["src/infrastructure/api/*"],
+      "@infrastructure/*": ["src/infrastructure/*"]
     }
   }
 }

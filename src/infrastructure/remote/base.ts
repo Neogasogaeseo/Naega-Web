@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASEURL = '추가예정';
+const BASEURL = 'https://asia-northeast3-neogasogaeseo-9aaf5.cloudfunctions.net/api';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
 const getBasePrivateHeaders = () => ({
@@ -9,9 +9,20 @@ const getBasePrivateHeaders = () => ({
   accesstoken: getAccessToken(),
 });
 
+const getBasePrivateMultipartHeaders = () => ({
+  Accept: `*/*`,
+  'Content-Type': `multipart/form-data`,
+  accesstoken: getAccessToken(),
+});
+
 const basePublicHeaders = {
   Accept: `*/*`,
   'Content-Type': `application/json`,
+};
+
+const basePublicMultipartHeaders = {
+  Accept: `*/*`,
+  'Content-Type': `multipart/form-data`,
 };
 
 interface Request {
@@ -27,11 +38,11 @@ interface RequestWithParams extends Request {
 
 interface RequestWithData extends Request {
   data?: object;
+  type?: 'multipart' | 'json';
 }
 
 const sendRequest = ({ url, params, method, headers, isPrivate }: RequestWithParams) => {
   const baseHeaders = isPrivate ? getBasePrivateHeaders() : basePublicHeaders;
-  console.log(baseHeaders);
   return axios[method](BASEURL + url, {
     headers: { ...baseHeaders, ...headers },
     params,
@@ -40,8 +51,14 @@ const sendRequest = ({ url, params, method, headers, isPrivate }: RequestWithPar
   });
 };
 
-const sendRequestForData = ({ url, data, method, headers, isPrivate }: RequestWithData) => {
-  const baseHeaders = isPrivate ? getBasePrivateHeaders() : basePublicHeaders;
+const sendRequestForData = ({ url, data, method, headers, isPrivate, type }: RequestWithData) => {
+  const baseHeaders = isPrivate
+    ? type === 'json'
+      ? getBasePrivateHeaders()
+      : getBasePrivateMultipartHeaders()
+    : type === 'json'
+    ? basePublicHeaders
+    : basePublicMultipartHeaders;
   return axios[method](BASEURL + url, data, {
     headers: { ...baseHeaders, ...headers },
   }).then((response) => {
@@ -50,23 +67,51 @@ const sendRequestForData = ({ url, data, method, headers, isPrivate }: RequestWi
 };
 
 export const privateAPI = {
-  get: ({ url, params, headers }: { url: string; params?: object; headers?: object }) =>
+  get: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
     sendRequest({ url, params, method: 'get', headers, isPrivate: true }),
-  post: ({ url, data, headers }: { url: string; data?: object; headers?: object }) =>
-    sendRequestForData({ url, data, method: 'post', headers, isPrivate: true }),
-  put: ({ url, data, headers }: { url: string; data?: object; headers?: object }) =>
-    sendRequestForData({ url, data, method: 'put', headers, isPrivate: true }),
-  delete: ({ url, params, headers }: { url: string; params?: object; headers?: object }) =>
+  post: ({ url, data, headers, type }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'post',
+      headers,
+      isPrivate: true,
+      type: type ?? 'json',
+    }),
+  put: ({ url, data, headers, type }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'put',
+      headers,
+      isPrivate: true,
+      type: type ?? 'json',
+    }),
+  delete: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
     sendRequest({ url, params, method: 'delete', headers, isPrivate: true }),
 };
 
 export const publicAPI = {
-  get: ({ url, params, headers }: { url: string; params?: object; headers?: object }) =>
+  get: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
     sendRequest({ url, params, method: 'get', headers, isPrivate: false }),
-  post: ({ url, data, headers }: { url: string; data?: object; headers?: object }) =>
-    sendRequestForData({ url, data, method: 'post', headers, isPrivate: false }),
-  put: ({ url, data, headers }: { url: string; data?: object; headers?: object }) =>
-    sendRequestForData({ url, data, method: 'put', headers, isPrivate: false }),
-  delete: ({ url, params, headers }: { url: string; params?: object; headers?: object }) =>
+  post: ({ url, data, headers, type }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'post',
+      headers,
+      isPrivate: false,
+      type: type ?? 'json',
+    }),
+  put: ({ url, data, headers, type }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'put',
+      headers,
+      isPrivate: false,
+      type: type ?? 'json',
+    }),
+  delete: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
     sendRequest({ url, params, method: 'delete', headers, isPrivate: false }),
 };

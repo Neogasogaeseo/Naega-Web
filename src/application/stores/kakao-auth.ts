@@ -1,16 +1,11 @@
 import { atom } from 'recoil';
 
-export const kakaoAuthTokenState = atom<string>({
-    key: 'kakaoAuthTokenState',
-    default: '',
-  });
-
-export const kakaoAccessToken = atom<string>({
-  key: 'kakaoAccessToken',
+export const kakaoAccessTokenState = atom<string>({
+  key: 'kakaoAccessTokenState',
   default: '',
 });
   
-export const kakaoRefreshToken = atom<string>({
-  key: 'kakaoRefreshToken',
+export const kakaoRefreshTokenState = atom<string>({
+  key: 'kakaoRefreshTokenState',
   default: '',
 });

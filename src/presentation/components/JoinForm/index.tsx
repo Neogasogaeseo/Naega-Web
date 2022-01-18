@@ -13,14 +13,16 @@ import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
 import { icProfile,icEmail } from '@assets/icons';
 import { useRecoilValue } from 'recoil';
-import {kakaoAccessToken,kakaoRefreshToken} from "@stores/kakao-auth";
+import {kakaoAccessTokenState,kakaoRefreshTokenState} from "@stores/kakao-auth";
 import {postJoin} from '@api/login-user';
-import { Navigate } from 'react-router-dom';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { createWatchProgram } from 'typescript';
+import { useNavigate } from 'react-router-dom';
 
 
 function JoinForm() {
-  const accessToken = useRecoilValue(kakaoAccessToken);
-  const refreshToken = useRecoilValue(kakaoRefreshToken);
+  const accessToken = useRecoilValue(kakaoAccessTokenState);
+  const refreshToken = useRecoilValue(kakaoRefreshTokenState);
   console.log("조인페이지코드",accessToken);
   console.log("조인페이지코드2",refreshToken);
   const [isConditionMet, setIsConditionMet] = useState({
@@ -30,14 +32,8 @@ function JoinForm() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
-  const [userData, setUserData] = useState({
-    id: inputId,
-    name: inputName,
-    image: '',
-    provider:'카카오톡',
-    accesstoken: accessToken,
-    refreshtoken: refreshToken,
-  })
+  const { setAccessToken} = useLoginUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]+$/;
@@ -55,18 +51,27 @@ function JoinForm() {
   const onChangeName = (value: string) => {
     setInputName(value);
   };
-  const onClickSubmitUserInfo = async()=> {
-    const postData = {
-      profileId: userData.id,
-      name: userData.name,
-      image: userData.image,
-      provider: userData.provider,
-      accesstoken: userData.accesstoken,
-      refreshtoken: userData.refreshtoken,
-    };
-    const getData = await postJoin(postData);
-    getData;
+
+  const onClickSubmitUserInfo = async(e: React.MouseEvent<HTMLButtonElement>)=> {
+    e.preventDefault();
+    try {
+      const form = new FormData();
+      form.append('profileId', inputId); 
+      form.append('name',inputName);
+      image && form.append('image',image);
+      form.append('provider','kakao');
+      form.append('accesstoken',accessToken);
+      form.append('refreshtoken',refreshToken);
+ 
+     const getData = await postJoin(form);
+     setAccessToken(getData.accesstoken);
+      navigate('/home')
+    } catch(error) {
+      console.error(error); //나중에 또 처리합시다.
+    }
+
   };
+
   return (
     <StJoinForm>
       <StNoticeWrapper>

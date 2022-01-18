@@ -1,20 +1,32 @@
-import { LoginUser, IJoin } from './types/user';
+import { LoginUser } from './types/user';
 import { publicAPI } from '../remote/base';
 
 export interface LoginUserService {
   getUserInfo(token: string): Promise<LoginUser>;
 }
 
-export const postJoin = async (joinData: IJoin) => {
-  try {
-    const response = await publicAPI.post({url:`/auth/register`,data: joinData});
-    console.log("대답말해라",response);
-    if(response.status === 200){
-      console.log(response.data);
-    }
+export const postLogin = async (kakaoToken:string) : Promise<{authUser?:object;accesstoken:string;refreshtoken:string}> => {
+  try{
+    const response = await publicAPI.post({url:`/auth/login`,data:{authenticationCode:kakaoToken, provider:'kakao'} })
+    console.log(response);
+    if(response.status===200) return response.data
+    else throw '로그인 실패'
   }catch (e){
-    console.log("잘못됨",e);
+    console.error(e)
+    throw '로그인 실패' //후에 처리할거
+   }
+}
 
+export const postJoin = async (joinData: FormData) => {
+  try {
+    const response = await publicAPI.post({url:`/auth/register`,data: joinData, type:'multipart'});
+    if(response.status === 200){
+      return response.data
+    }
+    throw '회원가입 실패'
+  }catch (e){
+    console.error(e)
+    throw '회원가입 실패'
   }
 
 }

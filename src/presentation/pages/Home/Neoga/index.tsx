@@ -80,7 +80,7 @@ function HomeNeoga() {
             <img src={imgEmptyMain} />
             <div>아직 생성된 너가소개서가 없어요!</div>
             <div>첫 너가소개서, 만들러 갈래요?</div>
-            <button>너가소개서 생성</button>
+            <button onClick={() => navigate('/neoga/create')}>너가소개서 생성</button>
           </StEmptyView>
         )}
       </StResult>

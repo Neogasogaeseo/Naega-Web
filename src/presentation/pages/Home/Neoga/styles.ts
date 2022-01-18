@@ -34,12 +34,12 @@ export const StHomeNeoga = styled.div`
   }
 `;
 
-export const StBanner = styled.div`
+export const StBanner = styled.div<{ color: string | undefined }>`
   position: relative;
   width: calc(100% + 40px);
-  min-height: 96px;
+  height: 96px;
   margin-left: -20px;
-  background-color: #4c48ff;
+  background-color: ${(props) => props.color};
   color: ${COLOR.WHITE};
   display: flex;
   justify-content: space-between;
@@ -67,16 +67,16 @@ export const StBanner = styled.div`
   }
 
   img:nth-of-type(1) {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+  }
+
+  img:nth-of-type(2) {
     position: absolute;
     z-index: 1;
     top: 12px;
     right: 12px;
-  }
-
-  img:nth-of-type(2) {
-    width: 96px;
-    height: 96px;
-    object-fit: cover;
   }
 `;
 

@@ -11,10 +11,18 @@ import {
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
-import { icProfile } from '@assets/icons';
-import { icEmail } from '@assets/icons';
+import { icProfile,icEmail } from '@assets/icons';
+import { useRecoilValue } from 'recoil';
+import {kakaoAccessToken,kakaoRefreshToken} from "@stores/kakao-auth";
+import {postJoin} from '@api/login-user';
+import { Navigate } from 'react-router-dom';
+
 
 function JoinForm() {
+  const accessToken = useRecoilValue(kakaoAccessToken);
+  const refreshToken = useRecoilValue(kakaoRefreshToken);
+  console.log("조인페이지코드",accessToken);
+  console.log("조인페이지코드2",refreshToken);
   const [isConditionMet, setIsConditionMet] = useState({
     id: false,
     name: false,
@@ -22,6 +30,14 @@ function JoinForm() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
+  const [userData, setUserData] = useState({
+    id: inputId,
+    name: inputName,
+    image: '',
+    provider:'카카오톡',
+    accesstoken: accessToken,
+    refreshtoken: refreshToken,
+  })
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]+$/;
@@ -39,8 +55,17 @@ function JoinForm() {
   const onChangeName = (value: string) => {
     setInputName(value);
   };
-  const onClickSubmitUserInfo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const onClickSubmitUserInfo = async()=> {
+    const postData = {
+      profileId: userData.id,
+      name: userData.name,
+      image: userData.image,
+      provider: userData.provider,
+      accesstoken: userData.accesstoken,
+      refreshtoken: userData.refreshtoken,
+    };
+    const getData = await postJoin(postData);
+    getData;
   };
   return (
     <StJoinForm>

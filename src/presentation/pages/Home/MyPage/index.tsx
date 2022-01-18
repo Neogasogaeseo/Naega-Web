@@ -5,9 +5,11 @@ import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
 import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
 import ProfileList from '@components/ProfileList';
+import useCopyClipboard from '@hooks/useCopyClipboard';
 import { useLoginUser } from '@hooks/useLoginUser';
+import { useToast } from '@hooks/useToast';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {
   StDetailLink,
   StFeedbackTeamWrapper,
@@ -29,6 +31,9 @@ function HomeMyPage() {
   const [neososeoBookmark, setNeososeoBookmark] = useState<NeososeoAnswerBookmark | null>(null);
   const [feedbackBookmark, setFeedbackBookmark] = useState<TeamFeedbackBookmark | null>(null);
   const [isMyPage, setIsMyPage] = useState(false);
+  const { pathname } = useLocation();
+  const [isCopy, setIsCopy, copyClipboard] = useCopyClipboard();
+  const { fireToast } = useToast();
 
   useEffect(() => {
     console.log(userID, loginID);
@@ -59,6 +64,13 @@ function HomeMyPage() {
     })();
   }, [userID]);
 
+  useEffect(() => {
+    if (isCopy) {
+      fireToast({ content: '링크가 클립보드에 저장되었습니다.' });
+      setIsCopy(false);
+    }
+  }, [isCopy]);
+
   return (
     <StHomeMyPage>
       {mypageInfo && (
@@ -73,7 +85,7 @@ function HomeMyPage() {
               <div>@{mypageInfo.userID}</div>
             </div>
             {isMyPage && (
-              <StShare>
+              <StShare onClick={() => copyClipboard(pathname)}>
                 <IcCopyMypage />
                 <span>My 공유하기</span>
               </StShare>

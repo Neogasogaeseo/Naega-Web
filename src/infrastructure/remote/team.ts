@@ -10,10 +10,26 @@ export function teamDataRemote(): TeamService {
   };
 
   const getTeamIssue = async (teamID: string) => {
-    const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
-    if (response.status === 200) console.log(response.data);
+    const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue` });
+    if (response.status === 200)
+      return {
+        issueListData: response.data.map((team: any) => ({
+          issueNumber: team.id,
+          issueMembers: team.feedback.map((member: any) => ({
+            id: member.userId,
+            profileName: member.name,
+            profileImage: member.image,
+          })),
+          category: team.categoryName,
+          createdAt: team.dates,
+          content: team.content,
+          teamID: team.teamId,
+          issueCardImage: team.teamImage,
+          teamName: team.teamname,
+          memberName: team.username,
+        })),
+      };
     else throw '서버 통신 실패';
-    return TEAM_DATA.TEAM_ISSUE_INFO;
   };
 
   const postFeedbackBookmark = async () => {

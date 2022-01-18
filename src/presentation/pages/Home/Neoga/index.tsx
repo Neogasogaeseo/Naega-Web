@@ -1,5 +1,5 @@
 import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea } from './styles';
-import { icWhole } from '@assets/icons';
+import { icNewTag, icWhole } from '@assets/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '@api/index';
@@ -20,7 +20,14 @@ function HomeNeoga() {
 
   return (
     <StHomeNeoga>
-      <StBanner></StBanner>
+      <StBanner>
+        <div>
+          <div>너가 닮고 싶은 나의 일잘러 모습</div>
+          <div>당신이 닮고 싶었던 능력이 있었나요?</div>
+        </div>
+        <img src={icNewTag} />
+        <img src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg" />
+      </StBanner>
       <StForm>
         <h1>너가소개서 설문 만들기</h1>
         <div>

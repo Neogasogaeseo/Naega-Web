@@ -35,11 +35,49 @@ export const StHomeNeoga = styled.div`
 `;
 
 export const StBanner = styled.div`
+  position: relative;
   width: calc(100% + 40px);
   min-height: 96px;
   margin-left: -20px;
   background-color: #4c48ff;
   color: ${COLOR.WHITE};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 26px;
+  padding-right: 18px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > div div:nth-of-type(1) {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-top: 30px;
+    margin-bottom: 9px;
+  }
+
+  & > div div:nth-of-type(2) {
+    ${FONT_STYLES.R_14_TITLE};
+    opacity: 0.6;
+    margin-bottom: 26px;
+  }
+
+  img:nth-of-type(1) {
+    position: absolute;
+    z-index: 1;
+    top: 12px;
+    right: 12px;
+  }
+
+  img:nth-of-type(2) {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+  }
 `;
 
 export const StForm = styled.div`

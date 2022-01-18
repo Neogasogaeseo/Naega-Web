@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
+import { CORAL_MAIN_BUTTON } from '@styles/common/button';
 
 export const StHomeNeoga = styled.div`
   width: calc(100vw - 40px);
@@ -113,5 +114,43 @@ export const StButtonArea = styled.div`
     margin: 0 auto;
     color: ${COLOR.GRAY_5};
     ${FONT_STYLES.R_15_TITLE};
+  }
+`;
+
+export const StEmptyView = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  div:nth-of-type(1) {
+    ${FONT_STYLES.SB_18_TITLE};
+    color: ${COLOR.GRAY_6};
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  div:nth-of-type(2) {
+    ${FONT_STYLES.R_15_TITLE};
+    color: ${COLOR.GRAY_5};
+    margin-bottom: 34px;
+  }
+
+  button {
+    ${CORAL_MAIN_BUTTON};
+    width: 156px;
+    margin-bottom: 62px;
+    padding: 15px 0;
+    border-radius: 14px;
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 21.6px;
+    letter-spacing: -0.015em;
   }
 `;

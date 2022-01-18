@@ -1,5 +1,6 @@
-import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea } from './styles';
+import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea, StEmptyView } from './styles';
 import { icNewTag, icWhole } from '@assets/icons';
+import { imgEmptyMain } from '@assets/images';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '@api/index';
@@ -11,6 +12,7 @@ function HomeNeoga() {
   const navigate = useNavigate();
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
+  const isData = false; // 임시 변수
 
   useEffect(() => {
     (async () => {
@@ -59,15 +61,28 @@ function HomeNeoga() {
         <h1>지연님이 만든 너가소개서</h1>
         <div>
           <h2>내가 생성한 너가소개서를 확인하세요!</h2>
-          <button onClick={() => navigate('/neoga/result')}>
-            전체보기
-            <img src={icWhole} />
-          </button>
+          {isData && (
+            <button onClick={() => navigate('/neoga/result')}>
+              전체보기
+              <img src={icWhole} />
+            </button>
+          )}
         </div>
-        <NeogaResultCard />
-        <StButtonArea>
-          <button onClick={() => navigate('/neoga/result')}>외 3개 더보기</button>
-        </StButtonArea>
+        {isData ? (
+          <>
+            <NeogaResultCard />
+            <StButtonArea>
+              <button onClick={() => navigate('/neoga/result')}>외 3개 더보기</button>
+            </StButtonArea>
+          </>
+        ) : (
+          <StEmptyView>
+            <img src={imgEmptyMain} />
+            <div>아직 생성된 너가소개서가 없어요!</div>
+            <div>첫 너가소개서, 만들러 갈래요?</div>
+            <button>너가소개서 생성</button>
+          </StEmptyView>
+        )}
       </StResult>
     </StHomeNeoga>
   );

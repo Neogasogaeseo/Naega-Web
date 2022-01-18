@@ -33,8 +33,7 @@ function HomeNeoga() {
         <NeogaMainCardList
           cards={templateList}
           onItemClick={(id) => {
-            // navigate(`/neoga/${id}`);
-            console.log(id);
+            navigate(`/neoga/create/${id}`);
           }}
         />
       </StForm>

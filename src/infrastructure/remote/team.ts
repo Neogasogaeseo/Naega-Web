@@ -50,7 +50,7 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getMyIssue = async () => {
+  const getMyTeamIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
     if (response.status === 200)
       return {
@@ -88,7 +88,7 @@ export function teamDataRemote(): TeamService {
   return {
     postFeedbackBookmark,
     getTeamProfile,
-    getMyIssue,
+    getMyTeamIssue,
     getTeamIssue,
     getInviteInfo,
     getIssueInfo,

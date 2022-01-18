@@ -36,7 +36,7 @@ function TeamMain() {
         });
     })();
   }, []);
-  
+
   useEffect(() => {
     (async () => {
       if (teamID === undefined) return;
@@ -44,6 +44,23 @@ function TeamMain() {
       setIssueListData(issueListData);
     })();
   }, []);
+
+  const checkMyIssue = () => {
+    setIsChecked(!isChecked);
+    if (!isChecked) {
+      (async () => {
+        if (teamID === undefined) return;
+        const { issueListData } = await api.teamService.getMyIssue(teamID);
+        setIssueListData(issueListData);
+      })();
+    } else {
+      (async () => {
+        if (teamID === undefined) return;
+        const { issueListData } = await api.teamService.getTeamIssue(teamID);
+        setIssueListData(issueListData);
+      })();
+    }
+  };
 
   return (
     <StTeamMain>
@@ -74,7 +91,7 @@ function TeamMain() {
       )}
       <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가하기</button>
       <StCheckWrapper>
-        <button onClick={() => setIsChecked(!isChecked)}>
+        <button onClick={() => checkMyIssue()}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
         나와 관련된 이슈만 보기

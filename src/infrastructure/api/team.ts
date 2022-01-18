@@ -12,5 +12,6 @@ export interface TeamService {
   getTeamProfile(): Promise<TeamProfileData>;
   getMyTeamIssue(): Promise<TeamIssueData>;
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
+  getMyIssue(teamID:string): Promise<TeamIssueData>;
   getInviteInfo(): Promise<TeamInviteData>;
 }

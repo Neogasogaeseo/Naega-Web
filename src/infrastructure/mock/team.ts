@@ -27,6 +27,11 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.TEAM_ISSUE_INFO;
   };
 
+  const getMyIssue = async () => {
+    await wait(2000);
+    return TEAM_DATA.TEAM_ISSUE_INFO;
+  };
+
   const getInviteInfo = async () => {
     await wait(2000);
     return TEAM_DATA.TEAM_INVITE_INFO;
@@ -38,6 +43,7 @@ export function teamDataMock(): TeamService {
     getTeamProfile,
     getMyTeamIssue,
     getTeamIssue,
+    getMyIssue,
     getInviteInfo,
   };
 }

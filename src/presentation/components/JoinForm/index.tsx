@@ -65,7 +65,7 @@ function JoinForm() {
  
      const getData = await postJoin(form);
      setAccessToken(getData.accesstoken);
-      navigate('/home')
+      navigate('/joinComplete');
     } catch(error) {
       console.error(error); //나중에 또 처리합시다.
     }

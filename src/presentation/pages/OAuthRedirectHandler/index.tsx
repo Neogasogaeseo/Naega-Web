@@ -17,7 +17,7 @@ const OAuthRedirectHandler = () => {
         postLogin(code).then(response => {
             if(response.user) {
                 setAccessToken(response.accesstoken);
-                navigate("/home");
+                navigate("/join");
             } else {
                 setKakaoAccessToken(response.accesstoken);
                 setKakaoRefreshToken(response.refreshtoken);

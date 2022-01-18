@@ -1,7 +1,9 @@
 import { StJoinCompleteForm, StButton, StNoticeWrapper, StTitleWrapper } from './style';
 import { imgParty } from '@assets/images';
+import { useNavigate } from 'react-router-dom';
 
 const JoinCompleteForm = () => {
+  const navigate = useNavigate();
   return (
     <>
       <StJoinCompleteForm>
@@ -12,7 +14,7 @@ const JoinCompleteForm = () => {
         </StTitleWrapper>
         <p>너가소개서를 이용해보세요!</p>
       </StJoinCompleteForm>
-      <StButton type="submit">확인</StButton>
+      <StButton type="submit" onClick={()=>{navigate('/home')}}>확인</StButton>
     </>
   );
 };

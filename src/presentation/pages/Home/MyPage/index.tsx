@@ -3,6 +3,7 @@ import { MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from '@api/t
 import { IcArrowViewAll, IcArrowViewMore, IcCopyMypage, IcMypageEdit } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import FeedbackCard from '@components/FeedbackCard';
+import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
 import ProfileList from '@components/ProfileList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useEffect, useState } from 'react';
@@ -20,7 +21,6 @@ import {
   StShare,
   StTitle,
   StMyPageProfile,
-  StNeososeoAnswerCard,
 } from './style';
 
 function HomeMyPage() {
@@ -95,16 +95,7 @@ function HomeMyPage() {
               <IcArrowViewAll />
             </StDetailLink>
           </StTitle>
-          {neososeoBookmark.answerList.map((answer) => (
-            <StNeososeoAnswerCard key={answer.id}>
-              <div>
-                <img src={answer.icon} alt={answer.id.toString()} />
-                <div>{answer.question}</div>
-              </div>
-              <div>{answer.content}</div>
-              <ImmutableKeywordList keywordList={answer.keywordList} onItemClick={() => null} />
-            </StNeososeoAnswerCard>
-          ))}
+          <NeososeoAnswerCardList answers={neososeoBookmark.answerList} />
           <StMoreButton>
             <span>더보기</span>
             <IcArrowViewMore />

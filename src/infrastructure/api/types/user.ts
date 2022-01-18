@@ -35,7 +35,7 @@ export interface MyPageInfo extends User {
   team: Keyword[];
 }
 
-interface AnswerDetail {
+export interface AnswerDetail {
   id: number;
   icon: string;
   question: string;

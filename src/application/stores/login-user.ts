@@ -4,6 +4,7 @@ import { atom } from 'recoil';
 export const loginUserState = atom<LoginUser>({
   key: 'loginUserState',
   default: {
+    id: -1,
     accessToken: '',
     username: '',
     userID: '',

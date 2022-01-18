@@ -53,7 +53,7 @@ export const TEAM_DATA: {
         body: '서진아고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: false,
       },
       {
@@ -63,7 +63,7 @@ export const TEAM_DATA: {
         body: '서진아\n고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: false,
       },
       {
@@ -76,7 +76,7 @@ export const TEAM_DATA: {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: true,
       },
       {
@@ -89,7 +89,7 @@ export const TEAM_DATA: {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '0', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
-        isMine: false,
+        targetProfileID: 'seojin123',
         isBookmarked: false,
       },
     ],

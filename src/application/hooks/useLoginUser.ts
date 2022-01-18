@@ -15,7 +15,7 @@ export function useLoginUser() {
 
   const removeAccessToken = () => {
     localStorage.removeItem('token');
-    setLoginUser({ accessToken: '', username: '', userID: '', profileImage: '' });
+    setLoginUser({ id: -1, accessToken: '', username: '', userID: '', profileImage: '' });
   };
 
   const initLoginUser = async () => {

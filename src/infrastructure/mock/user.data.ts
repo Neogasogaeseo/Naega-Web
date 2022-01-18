@@ -36,6 +36,7 @@ export const USER_DATA: {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '1', content: '홍대할리스', color: '#FFB72B' },
         ],
+        targetUserID: 2,
       },
       {
         id: 1,
@@ -48,6 +49,7 @@ export const USER_DATA: {
           { id: '2', content: '강쥐바보', color: '#444444' },
           { id: '3', content: '배려왕', color: '#4C48FF' },
         ],
+        targetUserID: 2,
       },
       {
         id: 2,
@@ -60,6 +62,7 @@ export const USER_DATA: {
           { id: '2', content: '강쥐바보', color: '#444444' },
           { id: '3', content: '배려왕', color: '#4C48FF' },
         ],
+        targetUserID: 2,
       },
     ],
   },
@@ -88,7 +91,7 @@ export const USER_DATA: {
         body: '서진아고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: true,
       },
       {
@@ -98,7 +101,7 @@ export const USER_DATA: {
         body: '서진아\n고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: true,
       },
       {
@@ -108,7 +111,7 @@ export const USER_DATA: {
         body: '서진아\n고맙다',
         createdAt: '12/21',
         keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: true,
       },
     ],

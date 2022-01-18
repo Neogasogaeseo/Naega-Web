@@ -7,6 +7,7 @@ export interface Keyword {
 }
 
 export interface LoginUser {
+  id: number;
   accessToken: string;
   username: string;
   userID: string;
@@ -42,4 +43,5 @@ export interface AnswerDetail {
   content: string;
   isBookmarked: boolean;
   keywordList: Keyword[];
+  targetUserID: number;
 }

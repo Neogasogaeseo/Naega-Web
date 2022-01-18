@@ -28,6 +28,12 @@ function HomeMyPage() {
   const [mypageInfo, setMypageInfo] = useState<MyPageInfo | null>(null);
   const [neososeoBookmark, setNeososeoBookmark] = useState<NeososeoAnswerBookmark | null>(null);
   const [feedbackBookmark, setFeedbackBookmark] = useState<TeamFeedbackBookmark | null>(null);
+  const [isMyPage, setIsMyPage] = useState(false);
+
+  useEffect(() => {
+    console.log(userID, loginID);
+    setIsMyPage(userID === loginID);
+  }, [userID, loginID]);
 
   useEffect(() => {
     if (!userID) return;
@@ -60,13 +66,13 @@ function HomeMyPage() {
           <StHomeMyPageHeader>
             <StMyPageProfile>
               <img src={mypageInfo.profileImage} />
-              <IcMypageEdit />
+              {isMyPage && <IcMypageEdit />}
             </StMyPageProfile>
             <div>
               <div>{mypageInfo.username}</div>
               <div>@{mypageInfo.userID}</div>
             </div>
-            {loginID === mypageInfo.userID && (
+            {isMyPage && (
               <StShare>
                 <IcCopyMypage />
                 <span>My 공유하기</span>
@@ -89,10 +95,12 @@ function HomeMyPage() {
               <span>내가 사랑한 소개</span>
               <span>{neososeoBookmark.count}</span>
             </div>
-            <StDetailLink to="/home/neoga">
-              <span>전체보기</span>
-              <IcArrowViewAll />
-            </StDetailLink>
+            {isMyPage && (
+              <StDetailLink to="/home/neoga">
+                <span>전체보기</span>
+                <IcArrowViewAll />
+              </StDetailLink>
+            )}
           </StTitle>
           <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
         </div>
@@ -106,10 +114,12 @@ function HomeMyPage() {
                 <span>일하며 받은 피드백</span>
                 <span>{feedbackBookmark.count}</span>
               </div>
-              <StDetailLink to="/home/team">
-                <span>전체보기</span>
-                <IcArrowViewAll />
-              </StDetailLink>
+              {isMyPage && (
+                <StDetailLink to="/home/team">
+                  <span>전체보기</span>
+                  <IcArrowViewAll />
+                </StDetailLink>
+              )}
             </StTitle>
             <ProfileList
               isSquare={true}

@@ -7,7 +7,7 @@ import { StFeedbackCard, StHeader, StBody, StBookmark } from './style';
 
 type FeedbackCardProps = FeedbackDetail;
 
-function FeedbackCard(props: FeedbackCardProps) {
+function FeedbackCardItem(props: FeedbackCardProps) {
   const { id, writer, target, body, createdAt, keywordList, isMine } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
   const bookmarkFeedback = async () => {
@@ -36,4 +36,4 @@ function FeedbackCard(props: FeedbackCardProps) {
   );
 }
 
-export default FeedbackCard;
+export default FeedbackCardItem;

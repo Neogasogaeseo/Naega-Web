@@ -2,9 +2,9 @@ import { AnswerDetail } from '@api/types/user';
 import React from 'react';
 import NeososeoAnswerCardItem from '../Item';
 
-type NeososeoAnswerCardItemProps = { answers: AnswerDetail[] };
+type NeososeoAnswerCardListProps = { answers: AnswerDetail[] };
 
-function NeososeoAnswerCardList(props: NeososeoAnswerCardItemProps) {
+function NeososeoAnswerCardList(props: NeososeoAnswerCardListProps) {
   const { answers } = props;
   return (
     <>

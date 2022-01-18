@@ -16,6 +16,7 @@ function HomeHeader() {
   ];
 
   useEffect(() => {
+    if (!location) return;
     setCurrentTab(location.pathname.split('/')[2]);
   }, [location]);
 

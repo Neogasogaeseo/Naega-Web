@@ -1,9 +1,9 @@
 import { api } from '@api/index';
 import { MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from '@api/types/user';
-import { IcArrowViewAll, IcArrowViewMore, IcCopyMypage, IcMypageEdit } from '@assets/icons';
+import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import FeedbackCard from '@components/FeedbackCard';
-import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
+import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
+import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
 import ProfileList from '@components/ProfileList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,6 @@ import {
   StHomeMyPage,
   StHomeMyPageHeader,
   StKeywordTitle,
-  StMoreButton,
   StNegativeMarginWrapper,
   StShare,
   StTitle,
@@ -90,16 +89,12 @@ function HomeMyPage() {
               <span>내가 사랑한 소개</span>
               <span>{neososeoBookmark.count}</span>
             </div>
-            <StDetailLink>
+            <StDetailLink to="/home/neoga">
               <span>전체보기</span>
               <IcArrowViewAll />
             </StDetailLink>
           </StTitle>
-          <NeososeoAnswerCardList answers={neososeoBookmark.answerList} />
-          <StMoreButton>
-            <span>더보기</span>
-            <IcArrowViewMore />
-          </StMoreButton>
+          <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
         </div>
       )}
       <StGreyBorder />
@@ -111,7 +106,7 @@ function HomeMyPage() {
                 <span>일하며 받은 피드백</span>
                 <span>{feedbackBookmark.count}</span>
               </div>
-              <StDetailLink>
+              <StDetailLink to="/home/team">
                 <span>전체보기</span>
                 <IcArrowViewAll />
               </StDetailLink>
@@ -124,13 +119,7 @@ function HomeMyPage() {
               isAddNeeded={false}
             />
           </StFeedbackTeamWrapper>
-          {feedbackBookmark.feedbackList.map((feedback) => (
-            <FeedbackCard key={feedback.id} {...feedback} />
-          ))}
-          <StMoreButton>
-            <span>더보기</span>
-            <IcArrowViewMore />
-          </StMoreButton>
+          <FeedbackCardExpandableList feedbacks={feedbackBookmark.feedbackList} />
         </StNegativeMarginWrapper>
       )}
       <StGreyBorderTall />

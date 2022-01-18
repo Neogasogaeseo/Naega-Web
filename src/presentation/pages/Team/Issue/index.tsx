@@ -4,11 +4,11 @@ import { api } from '@api/index';
 import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
 import { useRecoilState } from 'recoil';
 import { teamIssueState } from '@stores/team';
-import FeedbackCard from '@components/FeedbackCard';
 import CommonInput from '@components/common/CommonInput';
 import IssueMemberList from '@components/common/IssueMemberList';
 import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
+import FeedbackCardList from '@components/FeedbackCard/List';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -53,8 +53,7 @@ function TeamIssue() {
           {issue.team.thumbnail && (
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
-          {issue !== null &&
-            issue.feedbackList.map((issue) => <FeedbackCard key={issue.id} {...issue} />)}
+          {issue !== null && <FeedbackCardList feedbacks={issue.feedbackList} />}
         </StWrapper>
       )}
       <StLink to={`/team/${teamID}/${issueID}/create`}>

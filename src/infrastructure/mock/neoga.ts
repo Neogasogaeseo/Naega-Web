@@ -3,7 +3,7 @@ import { NEOGA_DATA } from './neoga.data';
 
 export function neogaDataMock(): NeogaService {
   const getBannerTemplate = async () => {
-    await wait(2000);
+    await wait(20);
     return NEOGA_DATA.BANNER_TEMPLATE;
   };
 
@@ -26,14 +26,20 @@ export function neogaDataMock(): NeogaService {
     await wait(2000);
     return NEOGA_DATA.NEOGA_RESULT;
   };
-  
+
   const postAnswerBookmark = async () => {
     await wait(1000);
     return { isSuccess: true };
   };
 
-  return { getBannerTemplate, getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates, postAnswerBookmark };
-
+  return {
+    getBannerTemplate,
+    getMainTemplate,
+    getAllTemplates,
+    getResultKeywords,
+    getAllResultListTemplates,
+    postAnswerBookmark,
+  };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

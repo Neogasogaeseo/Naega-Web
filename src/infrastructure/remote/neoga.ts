@@ -4,7 +4,7 @@ import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
   const getBannerTemplate = async () => {
-    await wait(1000);
+    await wait(20);
     return NEOGA_DATA.BANNER_TEMPLATE;
   };
 

@@ -13,7 +13,6 @@ const OAuthRedirectHandler = () => {
 
     useEffect(()=>{
         const code = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
-        console.log(code);
         postLogin(code).then(response => {
             if(response.user) {
                 setAccessToken(response.accesstoken);

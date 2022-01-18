@@ -23,8 +23,6 @@ import { useNavigate } from 'react-router-dom';
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
   const refreshToken = useRecoilValue(kakaoRefreshTokenState);
-  console.log("조인페이지코드",accessToken);
-  console.log("조인페이지코드2",refreshToken);
   const [isConditionMet, setIsConditionMet] = useState({
     id: false,
     name: false,

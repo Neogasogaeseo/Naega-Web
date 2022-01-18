@@ -2,20 +2,24 @@ import { api } from '@api/index';
 import { FeedbackDetail } from '@api/types/team';
 import { icDot } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import { useLoginUser } from '@hooks/useLoginUser';
 import { useState } from 'react';
-import { StIssueCard, StHeader, StBody, StBookmark } from './style';
+import { StFeedbackCard, StHeader, StBody, StBookmark } from './style';
 
-type IssueCardProps = FeedbackDetail;
+type FeedbackCardProps = FeedbackDetail;
 
-function IssueCard(props: IssueCardProps) {
-  const { id, writer, target, body, createdAt, keywordList, isMine } = props;
+function FeedbackCardItem(props: FeedbackCardProps) {
+  const { id, writer, target, body, createdAt, keywordList, targetProfileID } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
+  const { userID } = useLoginUser();
+
   const bookmarkFeedback = async () => {
     const response = await api.teamService.postFeedbackBookmark(id);
     if (response.isSuccess) setIsBookmarked((prev) => !prev);
   };
+
   return (
-    <StIssueCard>
+    <StFeedbackCard>
       <StHeader>
         <div>@{target}</div>
         <div>
@@ -23,7 +27,9 @@ function IssueCard(props: IssueCardProps) {
           <img src={icDot} alt="dot" />
           <div>{createdAt}</div>
         </div>
-        {isMine && <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />}
+        {targetProfileID === userID && (
+          <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />
+        )}
       </StHeader>
       <StBody>{body}</StBody>
       <ImmutableKeywordList
@@ -32,8 +38,8 @@ function IssueCard(props: IssueCardProps) {
           return;
         }}
       />
-    </StIssueCard>
+    </StFeedbackCard>
   );
 }
 
-export default IssueCard;
+export default FeedbackCardItem;

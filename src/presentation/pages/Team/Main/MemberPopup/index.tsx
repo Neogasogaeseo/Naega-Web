@@ -10,12 +10,14 @@ function TeamMemberPopup(props: TeamMemberPopupProps) {
   const { members } = props;
   return (
     <StTeamMemberPopup>
-      {members.map(({ id, profileName, profileImage }) => (
-        <div key={id}>
-          <img src={profileImage ?? imgEmptyProfile} />
-          <span>{profileName}</span>
-        </div>
-      ))}
+      <div>
+        {members.map(({ id, profileName, profileImage }) => (
+          <div key={id}>
+            <img src={profileImage ?? imgEmptyProfile} />
+            <span>{profileName}</span>
+          </div>
+        ))}
+      </div>
     </StTeamMemberPopup>
   );
 }

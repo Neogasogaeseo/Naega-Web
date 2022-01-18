@@ -1,4 +1,13 @@
 export const NEOGA_DATA = {
+  BANNER_TEMPLATE: {
+    id: 1,
+    title: '너가 닮고 싶은 나의 일잘러 모습?',
+    content: '당신이 닮고 싶었던 능력이 있나요?',
+    src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+    backgroundColor: '#434343',
+    isBanner: true,
+    isNew: true,
+  },
   MAIN_TEMPLATE: [
     {
       id: 1,

@@ -2,6 +2,11 @@ import { NeogaService } from '@api/neoga';
 import { NEOGA_DATA } from './neoga.data';
 
 export function neogaDataMock(): NeogaService {
+  const getBannerTemplate = async () => {
+    await wait(2000);
+    return NEOGA_DATA.BANNER_TEMPLATE;
+  };
+
   const getMainTemplate = async () => {
     await wait(2000);
     return NEOGA_DATA.MAIN_TEMPLATE;
@@ -27,7 +32,7 @@ export function neogaDataMock(): NeogaService {
     return { isSuccess: true };
   };
 
-  return { getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates, postAnswerBookmark };
+  return { getBannerTemplate, getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates, postAnswerBookmark };
 
 }
 

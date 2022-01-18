@@ -3,12 +3,13 @@ import { icNewTag, icWhole } from '@assets/icons';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '@api/index';
-import { NeogaMainCardItem } from '@api/types/neoga';
+import { NeogaMainCardItem, NeogaBannerItem } from '@api/types/neoga';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 
 function HomeNeoga() {
   const navigate = useNavigate();
+  const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
 
   useEffect(() => {
@@ -18,15 +19,22 @@ function HomeNeoga() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      const data = await api.neogaService.getBannerTemplate();
+      setBanner(data);
+    })();
+  }, []);
+
   return (
     <StHomeNeoga>
-      <StBanner>
+      <StBanner color={banner?.backgroundColor}>
         <div>
-          <div>너가 닮고 싶은 나의 일잘러 모습</div>
-          <div>당신이 닮고 싶었던 능력이 있었나요?</div>
+          <div>{banner?.title}</div>
+          <div>{banner?.content}</div>
         </div>
-        <img src={icNewTag} />
-        <img src="https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg" />
+        <img src={banner?.src} />
+        {banner?.isNew && <img src={icNewTag} />}
       </StBanner>
       <StForm>
         <h1>너가소개서 설문 만들기</h1>

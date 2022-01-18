@@ -3,6 +3,11 @@ import { NEOGA_DATA } from '../mock/neoga.data';
 import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
+  const getBannerTemplate = async () => {
+    await wait(1000);
+    return NEOGA_DATA.BANNER_TEMPLATE;
+  };
+
   const getMainTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/template/popular` });
     if (response.status === 200)
@@ -46,7 +51,14 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: true };
   };
 
-  return { getMainTemplate, getAllTemplates, getResultKeywords, getAllResultListTemplates, postAnswerBookmark };
+  return {
+    getBannerTemplate,
+    getMainTemplate,
+    getAllTemplates,
+    getResultKeywords,
+    getAllResultListTemplates,
+    postAnswerBookmark,
+  };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

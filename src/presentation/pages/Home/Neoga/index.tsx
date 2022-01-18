@@ -28,7 +28,10 @@ function HomeNeoga() {
 
   return (
     <StHomeNeoga>
-      <StBanner color={banner?.backgroundColor}>
+      <StBanner
+        color={banner?.backgroundColor}
+        onClick={() => navigate(`/neoga/create/${banner?.id}`)}
+      >
         <div>
           <div>{banner?.title}</div>
           <div>{banner?.content}</div>

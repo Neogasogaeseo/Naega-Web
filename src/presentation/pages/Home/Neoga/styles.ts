@@ -46,6 +46,7 @@ export const StBanner = styled.div<{ color: string | undefined }>`
   align-items: center;
   padding-left: 26px;
   padding-right: 18px;
+  cursor: pointer;
 
   & > div {
     display: flex;

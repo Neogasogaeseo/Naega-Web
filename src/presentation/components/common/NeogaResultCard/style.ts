@@ -46,7 +46,7 @@ export const StNeogaCardLine = styled.div`
 `;
 
 export const StNeogaCardContent = styled.div`
-  div:first-child {
+  & > div:first-child {
     margin-bottom: 12px;
 
     span + span {
@@ -65,7 +65,7 @@ export const StNeogaCardContent = styled.div`
     }
   }
 
-  div:nth-child(2) {
+  & > div:nth-child(2) {
     ${FONT_STYLES.R_14_TITLE};
     color: ${COLOR.GRAY_7};
     overflow: hidden;
@@ -74,20 +74,11 @@ export const StNeogaCardContent = styled.div`
     margin-bottom: 14px;
   }
 
-  div:last-child {
+  & > div:last-child {
     padding-bottom: 22px;
 
-    span + span {
-      margin-left: 8px;
-    }
-
-    span {
-      ${FONT_STYLES.M_13_TITLE};
-      color: ${COLOR.WHITE};
-      padding: 7px 12px;
-      border-radius: 18px;
-      background: #42a4ff;
-      display: inline-block;
+    div {
+      gap: 8px;
     }
   }
 `;

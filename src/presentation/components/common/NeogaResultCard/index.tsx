@@ -1,5 +1,9 @@
+import { Keyword } from '@api/types/user';
 import { icNoReply } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import ImmutableKeywordList from '../Keyword/ImmutableList';
+import { useState, useEffect } from 'react';
+import { api } from '@api/index';
 import {
   StNeogaResultCard,
   StNeogaCardHeader,
@@ -9,6 +13,15 @@ import {
 } from './style';
 
 function NeogaResultCard() {
+  const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await api.neogaService.getResultKeywords(1); // getResultKeywords와 1은 임시
+      setKeywordList(data.slice(0, 2));
+    })();
+  }, [keywordList]);
+
   return (
     <>
       <StNeogaResultCard>
@@ -28,8 +41,7 @@ function NeogaResultCard() {
           </div>
           <div>너가소개서 너가소개서 너가소개서 너가소개서 너가소개서</div>
           <div>
-            <span>너가소개서최대10자</span>
-            <span>너가소개서최대10자</span>
+            <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
           </div>
         </StNeogaCardContent>
         <StNeogaCardContent>
@@ -40,8 +52,7 @@ function NeogaResultCard() {
           </div>
           <div>너가소개서 너가소개서 너가소개서 너가소개서 너가소개서</div>
           <div>
-            <span>너가소개서최대10자</span>
-            <span>너가소개서최대10자</span>
+            <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
           </div>
         </StNeogaCardContent>
       </StNeogaResultCard>

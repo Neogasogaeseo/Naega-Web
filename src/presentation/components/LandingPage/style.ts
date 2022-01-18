@@ -36,7 +36,6 @@ export const StMain = styled.div`
 `;
 export const StContent = styled.div`
     font-size: 15px;
-    line-height: 100%;
     text-align: center;
     line-height: 21px;
     letter-spacing: -0.01em;
@@ -44,12 +43,13 @@ export const StContent = styled.div`
     margin: 17px 0px 56px 0px;
 `;
 
-export const StServiceButton = styled.button`
+export const StServiceButton = styled.button<{isBlack:boolean}>`
     width: 202px;
     height: 52px;
     display: block;
-    background-color: ${COLOR.CORAL_MAIN};
-    color: white;
+    background-color: ${({isBlack})=> (!isBlack? COLOR.CORAL_MAIN: COLOR.GRAY_8)};
+    color: ${({isBlack})=> (!isBlack? 'white': COLOR.GRAY_1)};;
+    font-size: 15px;
     border-radius: 18px;
     margin: 57.6px 0px 0px 90px;
 `;
@@ -63,22 +63,68 @@ export const StMiddle = styled.div`
 
 export const StMiddleTitle = styled.div`
 &>h2{
-    margin: 70px 0px 20px 0px;
+    padding-top: 70px;
+    margin: 0px 0px 20px 0px;
     font-weight: bold;
     font-size: 24px;
-    line-height: 30px;
+    line-height: 34px;
     text-align: center;
     letter-spacing: -0.01em;
     color: ${COLOR.GRAY_8};
+
+    &>span{
+        color: ${COLOR.CORAL_MAIN};
+    }
 }
 `;
 export const StMiddleContent = styled.div`
     font-size: 15px;
-    line-height: 100%;
+    line-height: 25px;
     text-align: center;
     letter-spacing: -0.01em;
     color: ${COLOR.GRAY_5};
     margin-bottom: 22px;
 `;
 export const StMiddleImg = styled.img``;
+export const StMiddleBlack = styled.div`
+    height: 853px;
+    width: 100%;
+    background-color: ${COLOR.GRAY_8};
+&>h2{
+    padding-top: 80px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    color: white;
 
+    &>span{
+        color: ${COLOR.CORAL_MAIN};
+    }
+}
+`;
+
+export const StMiddleMypage = styled.div`
+
+height: 1160px;
+width: 100%;
+`;
+
+export const StFooter = styled.div`
+    width: 100%;
+    height: 612px;
+    background-color: black;
+    text-align: center;
+    letter-spacing: -0.01em;
+&>h2{
+    padding-top: 80px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 143.99%;
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+`;

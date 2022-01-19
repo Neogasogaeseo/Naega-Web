@@ -16,10 +16,10 @@ function TeamIssue() {
   const [isValidating, setIsValidating] = useState(false);
 
   useEffect(() => {
-    if (!teamID || !issueID) return;
+    if (!issueID) return;
     (async () => {
       setIsValidating(true);
-      const data = await api.teamService.getIssueInfo(teamID, issueID);
+      const data = await api.teamService.getIssueInfo(issueID);
       setIssue(data);
       setIsValidating(false);
     })();

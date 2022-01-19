@@ -23,7 +23,7 @@ function HomeTeam() {
 
   useEffect(() => {
     (async () => {
-      const { issueListData } = await api.teamService.getMyIssue();
+      const { issueListData } = await api.teamService.getMyTeamIssue();
       setIssueListData(issueListData);
     })();
   }, []);

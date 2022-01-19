@@ -5,16 +5,24 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useCopyClipboard from '@hooks/useCopyClipboard';
 import { useEffect } from 'react';
 import { useToast } from '@hooks/useToast';
+import { api } from '@api/index';
+import { useState } from 'react';
 
 export default function NeogaLinkResult() {
   const { formID, type } = useParams();
   const navigate = useNavigate();
   const [isCopy, setIsCopy, copyClipboard] = useCopyClipboard();
   const { fireToast } = useToast();
+  const [link, setLink] = useState<string>('');
 
-  const iv = 'qmffkqmffk';
-  const q = 'qmffhqmffh';
-  const link = `http://localhost:3000/neososeoform/${iv}/${q}`;
+  const createLink = async () => {
+    if (!formID || !type) return;
+    if (isNaN(+formID)) return;
+    const q = await api.neososeoFormService.postCreateForm(Number(formID), () =>
+      navigate(`/neoga/create/${formID}/created`),
+    );
+    setLink(`http://localhost:3000/neososeoform/${q}`);
+  };
 
   useEffect(() => {
     if (isCopy) {
@@ -25,7 +33,11 @@ export default function NeogaLinkResult() {
     }
   }, [isCopy]);
   useEffect(() => {
+    createLink();
+  }, [formID, type]);
+  useEffect(() => {
     if (!(type === 'new' || type === 'created')) navigate('/');
+    createLink();
   }, []);
 
   return (

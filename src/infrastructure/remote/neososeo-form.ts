@@ -1,6 +1,7 @@
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
 import { NEOSOSEO_FORM_DATA } from '@infrastructure/mock/neososeo-form.data';
+import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function neososeoFormDataRemote(): NeososeoFormService {
@@ -16,19 +17,20 @@ export function neososeoFormDataRemote(): NeososeoFormService {
   };
 
   const postCreateForm = async (formID: number, navigate: () => void) => {
-    try {
-      const response = await privateAPI.post({
+    const response = await privateAPI
+      .post({
         url: `/form/create`,
         data: { formId: formID },
+      })
+      .catch((e: AxiosError) => {
+        console.log(e.response);
       });
-      if (response.status === 200) {
-        console.log(response);
-        return response.data;
-      } else if (response.status === 400 && response.success) {
-        navigate();
-      } else throw response.message;
-    } catch (e) {
-      console.error(e);
+    if (response.status === 200) {
+      console.log(response);
+      return response.data;
+    } else if (response.status === 400 && response.success) {
+      navigate();
+      console.log(response);
     }
   };
 

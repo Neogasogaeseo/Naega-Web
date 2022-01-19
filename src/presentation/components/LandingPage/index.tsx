@@ -1,4 +1,11 @@
-import {imgLogo,ImgMainPage,ImgMainPhone} from '@assets/images';
+import {imgLogo,
+    ImgMainPage,
+    ImgMainPhone,
+    ImgMypage,
+    ImgTeamsoseo,
+    ImgGlass,
+    ImgLink,
+} from '@assets/images';
 import { useNavigate } from 'react-router-dom';
 import {
     StLandingPage,
@@ -54,6 +61,7 @@ function LandingPage(){
                 <h2><span>링크</span>를 통해 간편하게 <br/>
                 답변을 받아보세요
                 </h2>
+                <img src={ImgLink}/>
             </StMiddleTitle>
             <StMiddleBlack>
                 <h2><span>팀원소개서</span>로<br/>
@@ -63,6 +71,7 @@ function LandingPage(){
                     팀원들과 협업하며 일어난 이슈들을 기록하고 <br/>
                     그에 대한 피드백을 주고 받으세요!
                 </StMiddleContent>
+                <img src={ImgTeamsoseo}/>
             </StMiddleBlack>
             <StMiddleMypage>
                 <StMiddleTitle>
@@ -74,11 +83,13 @@ function LandingPage(){
                     나를 잘 표현하는 소개를 pick하고 <br/>
                     링크로 공유해서 주변에 자랑해보세요
                 </StMiddleContent>
+                <img src={ImgMypage}/>
             </StMiddleMypage>
             <StFooter>
                 <h2>나의 너가소개서도<br/>
                 궁금하다면?
                 </h2>
+                <img src={ImgGlass}/>
                 <StServiceButton  isBlack={true} onClick={()=>{
                     navigate(`/login`);
                 }}>지금 시작하기</StServiceButton>

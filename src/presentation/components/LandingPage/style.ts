@@ -104,12 +104,22 @@ export const StMiddleBlack = styled.div`
         color: ${COLOR.CORAL_MAIN};
     }
 }
+
+&>img{
+    width: 390px;
+    height: 522px;
+}
 `;
 
 export const StMiddleMypage = styled.div`
 
 height: 1160px;
 width: 100%;
+
+&>img{
+    width: 390px;
+    height: 842px;
+}
 `;
 
 export const StFooter = styled.div`
@@ -126,5 +136,9 @@ export const StFooter = styled.div`
     line-height: 143.99%;
     text-align: center;
     letter-spacing: -0.01em;
+}
+&>img{
+    width: 390px;
+    height: 239px;
 }
 `;

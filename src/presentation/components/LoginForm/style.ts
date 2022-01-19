@@ -8,18 +8,17 @@ export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
   line-height: 100%;
+  margin-top: 12px;
 `;
 export const StNoticeWrapper = styled.div`
   display: flex;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 140%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 143.99%;
+  letter-spacing: -0.01em;
   margin-top: 32px;
   margin-bottom: 102px;
-  & > p {
-    display: flex;
-    color: ${COLOR.CORAL_MAIN};
-  }
+  color: ${COLOR.GRAY_5};
 `;
 export const StLoginButton = styled.button`
   display: flex;

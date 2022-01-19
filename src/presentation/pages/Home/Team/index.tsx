@@ -56,7 +56,7 @@ function HomeTeam() {
         )}
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        {issueListData ? (
+        {issueListData && issueListData.length ? (
           <IssueCardList
             issueListData={issueListData}
             onIssueClick={(teamID, issueNumber) => {

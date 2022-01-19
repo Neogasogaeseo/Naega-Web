@@ -28,12 +28,19 @@ export const postJoin = async (joinData: FormData) => {
       data: joinData,
       type: 'multipart',
     });
-    if (response.status === 200) {
-      return response.data;
+    try{
+      if (response.status === 200) {
+        return response.data;
+      }
+    }catch(e){
+      if( response.status === 400 ){
+        console.log("중복발생");
+        return response.status;
+      }
     }
     throw '회원가입 실패';
   } catch (e) {
     console.error(e);
-    throw '회원가입 실패';
+    throw '회원가입 실패00';
   }
 };

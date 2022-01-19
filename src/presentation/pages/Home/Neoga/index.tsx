@@ -7,12 +7,14 @@ import { api } from '@api/index';
 import { NeogaMainCardItem, NeogaBannerItem } from '@api/types/neoga';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 function HomeNeoga() {
   const navigate = useNavigate();
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
-  const isData = false; // 임시 변수
+  const { username } = useLoginUser();
+  const isData = true; // 임시 변수
 
   useEffect(() => {
     (async () => {
@@ -58,7 +60,7 @@ function HomeNeoga() {
         />
       </StForm>
       <StResult>
-        <h1>지연님이 만든 너가소개서</h1>
+        <h1>{username}님이 만든 너가소개서</h1>
         <div>
           <h2>내가 생성한 너가소개서를 확인하세요!</h2>
           {isData && (

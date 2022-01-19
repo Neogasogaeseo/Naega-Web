@@ -1,7 +1,7 @@
 import { StJoinCompleteForm, StButton, StNoticeWrapper, StTitleWrapper } from './style';
 import { imgParty } from '@assets/images';
 import { useNavigate } from 'react-router-dom';
-import {loginUserState} from '@stores/login-user';
+import { loginUserState } from '@stores/login-user';
 import { useRecoilState } from 'recoil';
 
 const JoinCompleteForm = () => {

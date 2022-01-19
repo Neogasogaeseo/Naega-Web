@@ -62,7 +62,9 @@ function TeamMain() {
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} />
                 <span>{teamInfoData.teamDetailData.teamMemberCount}명</span>
-                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />}
+                {isMemberPopupOpened && (
+                  <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />
+                )}
               </button>
               {teamInfoData.teamDetailData.teamMemberList.map((member, index) => (
                 <span key={member.id}>

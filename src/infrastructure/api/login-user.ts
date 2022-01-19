@@ -28,11 +28,11 @@ export const postJoin = async (joinData: FormData) => {
       data: joinData,
       type: 'multipart',
     });
-      if (response.status === 200) {
-        return response.data;
-      }else{
-        return response;
-      }
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return response;
+    }
   } catch (e) {
     throw '회원가입 실패';
   }

@@ -18,7 +18,7 @@ const OAuthRedirectHandler = () => {
         const { id, profileId, name, image } = response.user;
         const accessToken = response.accesstoken;
         saveLoginUser({ id, accessToken, username: name, userID: profileId, profileImage: image });
-        navigate('/home');
+        navigate('/joinComplete');
       } else {
         setKakaoAccessToken(response.accesstoken);
         setKakaoRefreshToken(response.refreshtoken ?? '');

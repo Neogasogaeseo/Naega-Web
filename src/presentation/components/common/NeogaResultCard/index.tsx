@@ -8,11 +8,13 @@ import NeogaResultComment from '../NeogaResultComment';
 
 function NeogaResultCard() {
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
-  const isData = false; // 임시 변수
+  // 임시 변수
+  const userID = 1;
+  const isData = true;
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getResultKeywords(1); // getResultKeywords와 1은 임시
+      const data = await api.neogaService.getResultKeywords(userID); // getResultKeywords와 userID는 임시
       setKeywordList(data.slice(0, 2));
     })();
   }, [keywordList]);

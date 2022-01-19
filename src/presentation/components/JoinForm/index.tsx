@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   StJoinForm,
@@ -28,7 +27,7 @@ function JoinForm() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
-  const { setAccessToken } = useLoginUser();
+  const { saveLoginUser } = useLoginUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,8 +58,15 @@ function JoinForm() {
       form.append('accesstoken', accessToken);
       form.append('refreshtoken', refreshToken);
 
-      const getData = await postJoin(form);
-      setAccessToken(getData.accesstoken);
+      const response = await postJoin(form);
+
+      saveLoginUser({
+        id: response.user,
+        accessToken: response.accesstoken,
+        username: response.user.name,
+        userID: response.user.profileId,
+        profileImage: response.user.image,
+      });
       navigate('/joinComplete');
     } catch (error) {
       console.error(error); //나중에 또 처리합시다.

@@ -25,32 +25,37 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team` });
     if (response.status === 200)
       return {
-        profileListData: response.data.map((team: any) => ({
-          id: team.id,
-          profileImage: team.image ?? imgEmptyProfile,
-          profileName: team.name,
-        })),
+        profileListData: response.data
+          ? response.data.map((team: any) => ({
+              id: team.id,
+              profileImage: team.image ?? imgEmptyProfile,
+              profileName: team.name,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
   };
 
   const getMyIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
+    console.log(response);
     if (response.status === 200)
       return {
-        issueListData: response.data.map((team: any) => ({
-          issueNumber: team.id,
-          issueMembers: team.feedback.map((member: any) => ({
-            id: member.userId,
-            profileName: member.name,
-            profileImage: member.image,
-          })),
-          category: team.categoryName,
-          createdAt: team.dates,
-          content: team.content,
-          teamName: team.teamname,
-          memberName: team.username,
-        })),
+        issueListData: response.data
+          ? response.data.map((team: any) => ({
+              issueNumber: team.id,
+              issueMembers: team.feedback.map((member: any) => ({
+                id: member.userId,
+                profileName: member.name,
+                profileImage: member.image,
+              })),
+              category: team.categoryName,
+              createdAt: team.dates,
+              content: team.content,
+              teamName: team.teamname,
+              memberName: team.username,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
   };

@@ -7,7 +7,7 @@ export interface LoginUserService {
 
 export const postLogin = async (
   kakaoToken: string,
-): Promise<{ user?: object; accesstoken: string; refreshtoken: string }> => {
+): Promise<{ user?: any; accesstoken: string; refreshtoken?: string }> => {
   try {
     const response = await publicAPI.post({
       url: `/auth/login`,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
 import { useRecoilState } from 'recoil';
@@ -14,6 +14,7 @@ function TeamIssue() {
   const { teamID, issueID } = useParams();
   const [issue, setIssue] = useRecoilState(teamIssueState);
   const [isValidating, setIsValidating] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!issueID) return;
@@ -31,11 +32,11 @@ function TeamIssue() {
 
   return (
     <StTeamIssue>
-      {isValidating && <div>로딩중</div>}
+      {isValidating && <div></div>}
       {issue !== null && teamID && issueID && (
         <StWrapper>
           <StHeader>
-            <img src={imgLogo} />
+            <img src={imgLogo} onClick={() => navigate('/home')} />
             <div>
               <div>{issue.category}</div>
               <div>{issue.createdAt}</div>

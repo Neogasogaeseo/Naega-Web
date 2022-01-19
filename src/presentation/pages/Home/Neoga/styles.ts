@@ -104,11 +104,14 @@ export const StResult = styled.div`
     justify-content: space-between;
     margin-bottom: 24px;
   }
+
+  & > div:last-of-type {
+    margin-bottom: 70px;
+  }
 `;
 
 export const StButtonArea = styled.div`
   padding-top: 12px;
-  padding-bottom: 61px;
 
   & > button {
     margin: 0 auto;

@@ -14,7 +14,7 @@ function HomeNeoga() {
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
   const { username } = useLoginUser();
-  
+
   // 임시 변수
   const isData = true;
   const RESULT_COUNT = 5;
@@ -76,11 +76,14 @@ function HomeNeoga() {
         {isData ? (
           <>
             <NeogaResultCard />
-            <StButtonArea>
-              <button onClick={() => navigate('/neoga/result')}>
-                외 {RESULT_COUNT - 2}개 더보기
-              </button>
-            </StButtonArea>
+            <NeogaResultCard />
+            {RESULT_COUNT > 2 && (
+              <StButtonArea>
+                <button onClick={() => navigate('/neoga/result')}>
+                  외 {RESULT_COUNT - 2}개 더보기
+                </button>
+              </StButtonArea>
+            )}
           </>
         ) : (
           <StEmptyView>

@@ -20,4 +20,8 @@ export const StNeogaResult = styled.div`
     color: ${COLOR.GRAY_5};
     margin-bottom: 32px;
   }
+
+  & > div:last-child {
+    margin-bottom: 70px;
+  }
 `;

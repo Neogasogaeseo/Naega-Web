@@ -8,7 +8,6 @@ export const StNeogaMainCardItem = styled.div`
   border-radius: 18.1233px;
   color: ${COLOR.WHITE};
   width: 136px;
-  height: 156px;
   padding: 14px 16px 20px 8px;
   word-break: keep-all;
 
@@ -25,5 +24,6 @@ export const StNeogaMainCardItem = styled.div`
 
   & div {
     padding-left: 8px;
+    line-height: 144%;
   }
 `;

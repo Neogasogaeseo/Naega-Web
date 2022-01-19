@@ -13,3 +13,7 @@ export { default as imgEmptyMain } from './img_empty_main.svg';
 export { ReactComponent as ImgAnswerDone } from './img_answerdone.svg';
 export { default as ImgMainPage } from './img_main_character.svg';
 export { ReactComponent as ImgMainPhone } from './img_landing_phone.svg';
+export { default as ImgGlass } from './img_glass.webp';
+export { default as ImgLink } from './img_link.svg';
+export { default as ImgMypage } from './img_mypage.webp';
+export { default as ImgTeamsoseo } from './img_teamsoseo.webp';

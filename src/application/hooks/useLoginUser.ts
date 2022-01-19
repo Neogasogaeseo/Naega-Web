@@ -22,14 +22,12 @@ export function useLoginUser() {
   const saveLoginUser = (loginUser: LoginUser) => {
     setLoginUser(loginUser);
     setIsAuthenticated(true);
-    console.log(loginUser);
     localStorage.setItem('token', loginUser.accessToken);
   };
 
   const initLoginUser = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log(token);
       if (!token) throw '토큰이 없습니다';
       const user = await api.loginUserService.getUserInfo(token);
       saveLoginUser(user);

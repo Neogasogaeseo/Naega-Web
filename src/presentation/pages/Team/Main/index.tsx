@@ -16,6 +16,7 @@ function TeamMain() {
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const { teamID } = useParams();
   const navigate = useNavigate();
+  const checkMyIssue = () => setIsChecked((prev) => !prev);
 
   useEffect(() => {
     (async () => {
@@ -45,22 +46,20 @@ function TeamMain() {
     })();
   }, []);
 
-  const checkMyIssue = () => {
-    setIsChecked(!isChecked);
+  useEffect(() => {
+    if (teamID === undefined) return;
     if (!isChecked) {
       (async () => {
-        if (teamID === undefined) return;
         const { issueListData } = await api.teamService.getMyIssue(teamID);
         setIssueListData(issueListData);
       })();
     } else {
       (async () => {
-        if (teamID === undefined) return;
         const { issueListData } = await api.teamService.getTeamIssue(teamID);
         setIssueListData(issueListData);
       })();
     }
-  };
+  }, [isChecked, teamID]);
 
   return (
     <StTeamMain>

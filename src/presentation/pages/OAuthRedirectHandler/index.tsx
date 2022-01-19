@@ -7,7 +7,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 
 const OAuthRedirectHandler = () => {
   const navigate = useNavigate();
-  const { setAccessToken } = useLoginUser();
+  const { saveLoginUser } = useLoginUser();
   const setKakaoAccessToken = useSetRecoilState(kakaoAccessTokenState);
   const setKakaoRefreshToken = useSetRecoilState(kakaoRefreshTokenState);
 
@@ -15,11 +15,13 @@ const OAuthRedirectHandler = () => {
     const code = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
     postLogin(code).then((response) => {
       if (response.user) {
-        setAccessToken(response.accesstoken);
+        const { id, profileId, name, image } = response.user;
+        const accessToken = response.accesstoken;
+        saveLoginUser({ id, accessToken, username: name, userID: profileId, profileImage: image });
         navigate('/home');
       } else {
         setKakaoAccessToken(response.accesstoken);
-        setKakaoRefreshToken(response.refreshtoken);
+        setKakaoRefreshToken(response.refreshtoken ?? '');
         navigate('/join');
       }
     });

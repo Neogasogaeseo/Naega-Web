@@ -4,8 +4,18 @@ import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
   const getBannerTemplate = async () => {
-    await wait(20);
-    return NEOGA_DATA.BANNER_TEMPLATE;
+    const response = await privateAPI.get({ url: `/form/banner` });
+    if (response.status === 200)
+      return {
+        id: response.data.id,
+        title: response.data.title,
+        content: response.data.subtitle,
+        isNew: response.data.isNew,
+        isBanner: response.data.isBanner,
+        src: response.data.lightIconImage,
+        backgroundColor: response.data.colorCode,
+      };
+    else throw '서버 통신 실패';
   };
 
   const getMainTemplate = async () => {

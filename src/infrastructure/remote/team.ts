@@ -106,6 +106,7 @@ export function teamDataRemote(): TeamService {
       return {
         issueListData: response.data
           ? response.data.map((team: any) => ({
+              teamID: team.teamId,
               issueNumber: team.id,
               issueMembers: team.feedback.map((member: any) => ({
                 id: member.userId,
@@ -113,10 +114,10 @@ export function teamDataRemote(): TeamService {
                 profileImage: member.image,
               })),
               category: team.categoryName,
-              createdAt: team.dates,
+              createdAt: team.createdAt,
               content: team.content,
-              teamName: team.teamname,
-              memberName: team.username,
+              teamName: team.teamName,
+              memberName: team.userName,
             }))
           : [],
       };

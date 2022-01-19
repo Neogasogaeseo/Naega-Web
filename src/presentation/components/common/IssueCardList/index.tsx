@@ -21,6 +21,7 @@ interface IssueListProps {
 
 function IssueCardList(props: IssueListProps) {
   const { issueListData, onIssueClick } = props;
+  console.log(issueListData);
   return (
     <div>
       {issueListData.map((issue) => (

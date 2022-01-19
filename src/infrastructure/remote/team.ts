@@ -20,7 +20,7 @@ export function teamDataRemote(): TeamService {
       team: {
         teammates: issueDetailData.data.feedbackTagged.map((member: any) => ({
           profileId: member.userId,
-          id: member.id,
+          id: member.userId,
           profileName: member.name,
           profileImage: member.image,
         })),

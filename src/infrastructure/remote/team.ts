@@ -4,21 +4,64 @@ import { TEAM_DATA } from '../mock/team.data';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
+  const postFeedbackBookmark = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   const getIssueInfo = async () => {
     await wait(2000);
     return TEAM_DATA.ISSUE_INFO;
   };
 
   const getTeamIssue = async (teamID: string) => {
-    const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
-    if (response.status === 200) console.log(response.data);
+    const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue` });
+    if (response.status === 200)
+      return {
+        issueListData: response.data
+          ? response.data.map((team: any) => ({
+              issueNumber: team.id,
+              issueMembers: team.feedback.map((member: any) => ({
+                id: member.userId,
+                profileName: member.name,
+                profileImage: member.image,
+              })),
+              category: team.categoryName,
+              createdAt: team.dates,
+              content: team.content,
+              teamID: team.teamId,
+              issueCardImage: team.teamImage,
+              teamName: team.teamname,
+              memberName: team.username,
+            }))
+          : [],
+      };
     else throw '서버 통신 실패';
-    return TEAM_DATA.TEAM_ISSUE_INFO;
   };
 
-  const postFeedbackBookmark = async () => {
-    await wait(1000);
-    return { isSuccess: true };
+  const getMyIssue = async (teamID: string) => {
+    const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue/my` });
+    if (response.status === 200)
+      return {
+        issueListData: response.data
+          ? response.data.map((team: any) => ({
+              issueNumber: team.id,
+              issueMembers: team.feedback.map((member: any) => ({
+                id: member.userId,
+                profileName: member.name,
+                profileImage: member.image,
+              })),
+              category: team.categoryName,
+              createdAt: team.dates,
+              content: team.content,
+              teamID: team.teamId,
+              issueCardImage: team.teamImage,
+              teamName: team.teamname,
+              memberName: team.username,
+            }))
+          : [],
+      };
+    else throw '서버 통신 실패';
   };
 
   const getTeamProfile = async () => {
@@ -36,9 +79,29 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getMyIssue = async () => {
+  const getTeamInfo = async (teamID: number) => {
+    const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
+    if (response.status === 200)
+      return {
+        teamDetailData: {
+          teamDetail: {
+            teamID: response.data.team.id,
+            teamImage: response.data.team.image ?? imgEmptyProfile,
+            teamName: response.data.team.name,
+            teamDescription: response.data.team.description,
+          },
+          teamMemberCount: response.data.memberCount,
+          teamMemberList: response.data.member.map((memberDetail: any) => ({
+            id: memberDetail.id,
+            profileName: memberDetail.name,
+            profileImage: memberDetail.image ?? imgEmptyProfile,
+          })),
+        },
+      };
+  };
+
+  const getMyTeamIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
-    console.log(response);
     if (response.status === 200)
       return {
         issueListData: response.data
@@ -60,19 +123,16 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getTeamInfo = async () => {
-    await wait(2000);
-    return TEAM_DATA.TEAM_DETAIL_INFO;
-  };
-
   const getInviteInfo = async () => {
     const response = await privateAPI.get({ url: `/team/invite` });
     if (response.status === 200)
       return {
-        inviteListData: response.data.map((team: any) => ({
-          id: team.id,
-          name: team.name,
-        })),
+        inviteListData: response.data
+          ? response.data.map((team: any) => ({
+              id: team.id,
+              name: team.name,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
   };
@@ -80,9 +140,10 @@ export function teamDataRemote(): TeamService {
   return {
     postFeedbackBookmark,
     getTeamProfile,
-    getMyIssue,
-    getTeamIssue,
     getTeamInfo,
+    getMyTeamIssue,
+    getTeamIssue,
+    getMyIssue,
     getInviteInfo,
     getIssueInfo,
   };

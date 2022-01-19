@@ -4,6 +4,11 @@ import { TEAM_DATA } from '../mock/team.data';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
+  const postFeedbackBookmark = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   const getIssueInfo = async () => {
     await wait(2000);
     return TEAM_DATA.ISSUE_INFO;
@@ -13,21 +18,23 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue` });
     if (response.status === 200)
       return {
-        issueListData: response.data.map((team: any) => ({
-          issueNumber: team.id,
-          issueMembers: team.feedback.map((member: any) => ({
-            id: member.userId,
-            profileName: member.name,
-            profileImage: member.image,
-          })),
-          category: team.categoryName,
-          createdAt: team.dates,
-          content: team.content,
-          teamID: team.teamId,
-          issueCardImage: team.teamImage,
-          teamName: team.teamname,
-          memberName: team.username,
-        })),
+        issueListData: response.data
+          ? response.data.map((team: any) => ({
+              issueNumber: team.id,
+              issueMembers: team.feedback.map((member: any) => ({
+                id: member.userId,
+                profileName: member.name,
+                profileImage: member.image,
+              })),
+              category: team.categoryName,
+              createdAt: team.dates,
+              content: team.content,
+              teamID: team.teamId,
+              issueCardImage: team.teamImage,
+              teamName: team.teamname,
+              memberName: team.username,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
   };
@@ -36,28 +43,25 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue/my` });
     if (response.status === 200)
       return {
-        issueListData: response.data.map((team: any) => ({
-          issueNumber: team.id,
-          issueMembers: team.feedback.map((member: any) => ({
-            id: member.userId,
-            profileName: member.name,
-            profileImage: member.image,
-          })),
-          category: team.categoryName,
-          createdAt: team.dates,
-          content: team.content,
-          teamID: team.teamId,
-          issueCardImage: team.teamImage,
-          teamName: team.teamname,
-          memberName: team.username,
-        })),
+        issueListData: response.data
+          ? response.data.map((team: any) => ({
+              issueNumber: team.id,
+              issueMembers: team.feedback.map((member: any) => ({
+                id: member.userId,
+                profileName: member.name,
+                profileImage: member.image,
+              })),
+              category: team.categoryName,
+              createdAt: team.dates,
+              content: team.content,
+              teamID: team.teamId,
+              issueCardImage: team.teamImage,
+              teamName: team.teamname,
+              memberName: team.username,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
-  };
-
-  const postFeedbackBookmark = async () => {
-    await wait(1000);
-    return { isSuccess: true };
   };
 
   const getTeamProfile = async () => {
@@ -124,10 +128,12 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/invite` });
     if (response.status === 200)
       return {
-        inviteListData: response.data.map((team: any) => ({
-          id: team.id,
-          name: team.name,
-        })),
+        inviteListData: response.data
+          ? response.data.map((team: any) => ({
+              id: team.id,
+              name: team.name,
+            }))
+          : [],
       };
     else throw '서버 통신 실패';
   };

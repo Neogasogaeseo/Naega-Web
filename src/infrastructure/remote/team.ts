@@ -102,7 +102,6 @@ export function teamDataRemote(): TeamService {
 
   const getMyTeamIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
-    console.log(response);
     if (response.status === 200)
       return {
         issueListData: response.data

@@ -72,6 +72,19 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
+  const getSearchedTeamMemberList = async (profileId: string, teamId: number) => {
+    const response = await privateAPI.get({
+      url: `/search?profileId=${profileId}&teamId=${teamId}`,
+    });
+    if (response.status === 200)
+      return response.data.map((member: any) => ({
+        id: member.id,
+        profileId: member.profileId,
+        profileName: member.name,
+        profileImage: member.image,
+      }));
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -80,6 +93,7 @@ export function teamDataRemote(): TeamService {
     getTeamInfo,
     getInviteInfo,
     getIssueInfo,
+    getSearchedTeamMemberList,
   };
 }
 

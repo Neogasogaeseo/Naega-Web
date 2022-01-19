@@ -5,6 +5,7 @@ import {
   TeamIssueData,
   TeamInfoData,
   TeamInviteData,
+  TeamMember,
 } from './types/team';
 
 export interface TeamService {
@@ -15,4 +16,5 @@ export interface TeamService {
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
   getTeamInfo(teamID: string): Promise<TeamInfoData>;
   getInviteInfo(): Promise<TeamInviteData>;
+  getSearchedTeamMemberList(profileId: string, teamId: number): Promise<TeamMember[]>;
 }

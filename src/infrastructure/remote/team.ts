@@ -73,6 +73,27 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
+  const getTeamInfo = async (teamID: number) => {
+    const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
+    if (response.status === 200)
+      return {
+        teamDetailData: {
+          teamDetail: {
+            teamID: response.data.team.id,
+            teamImage: response.data.team.image ?? imgEmptyProfile,
+            teamName: response.data.team.name,
+            teamDescription: response.data.team.description,
+          },
+          teamMemberCount: response.data.memberCount,
+          teamMemberList: response.data.member.map((memberDetail: any) => ({
+            id: memberDetail.id,
+            profileName: memberDetail.name,
+            profileImage: memberDetail.image ?? imgEmptyProfile,
+          })),
+        },
+      };
+  };
+
   const getMyTeamIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
     if (response.status === 200)
@@ -111,6 +132,7 @@ export function teamDataRemote(): TeamService {
   return {
     postFeedbackBookmark,
     getTeamProfile,
+    getTeamInfo,
     getMyTeamIssue,
     getTeamIssue,
     getMyIssue,

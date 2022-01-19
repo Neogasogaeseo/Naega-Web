@@ -65,13 +65,19 @@ export type TeamProfileData = {
   profileListData: TeamMemberNoneId[];
 };
 
-export type TeamInfoData = {
-  teamID: string;
+export type TeamDetail = {
+  teamID: number;
   teamImage?: string;
   teamName: string;
   teamDescription: string;
-  teamMemberCount: number;
-  teamMemberList: TeamMemberNoneId[];
+};
+
+export type TeamInfoData = {
+  teamDetailData: {
+    teamDetail: TeamDetail;
+    teamMemberCount: number;
+    teamMemberList: TeamMemberNoneId[];
+  };
 };
 
 export type TeamInvite = {

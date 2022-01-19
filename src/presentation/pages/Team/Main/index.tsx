@@ -7,7 +7,6 @@ import { api } from '@api/index';
 import { TeamInfoData, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import TeamMemberPopup from './MemberPopup';
-import { privateAPI } from '@infrastructure/remote/base';
 
 function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
@@ -21,20 +20,8 @@ function TeamMain() {
   useEffect(() => {
     (async () => {
       if (teamID === undefined) return;
-      const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
-      if (response.status === 200)
-        setTeamInfoData({
-          teamID: response.data.team.id,
-          teamImage: response.data.team.image ?? imgEmptyProfile,
-          teamName: response.data.team.name,
-          teamDescription: response.data.team.description,
-          teamMemberCount: response.data.memberCount,
-          teamMemberList: response.data.member.map((memberDetail: any) => ({
-            id: memberDetail.id,
-            profileName: memberDetail.name,
-            profileImage: memberDetail.image ?? imgEmptyProfile,
-          })),
-        });
+      const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
+      setTeamInfoData(teamDetailData);
     })();
   }, []);
 
@@ -68,23 +55,23 @@ function TeamMain() {
           <div>
             <button onClick={() => navigate(`/team/register`)}>수정</button>
           </div>
-          <img src={teamInfoData.teamImage ?? imgEmptyProfile} />
+          <img src={teamInfoData.teamDetailData.teamDetail.teamImage ?? imgEmptyProfile} />
           <div>
-            <h1>{teamInfoData.teamName}</h1>
+            <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
             <h3>
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} />
-                <span>{teamInfoData.teamMemberCount}명</span>
-                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
+                <span>{teamInfoData.teamDetailData.teamMemberCount}명</span>
+                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />}
               </button>
-              {teamInfoData.teamMemberList.map((member, index) => (
+              {teamInfoData.teamDetailData.teamMemberList.map((member, index) => (
                 <span key={member.id}>
                   {member.profileName}
-                  {index < teamInfoData.teamMemberCount - 1 ? ',\u00a0' : ''}
+                  {index < teamInfoData.teamDetailData.teamMemberCount - 1 ? ',\u00a0' : ''}
                 </span>
               ))}
             </h3>
-            <h2>{teamInfoData.teamDescription}</h2>
+            <h2>{teamInfoData.teamDetailData.teamDetail.teamDescription}</h2>
           </div>
         </StTeamInfo>
       )}

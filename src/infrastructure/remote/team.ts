@@ -142,16 +142,13 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({
       url: `/user/search?profileId=${profileId}`,
     });
-    console.log('개빡침', response.status);
-    if (response.status === 200) {
-      console.log('remote', response.data);
+    if (response.status === 200)
       return response.data.map((member: any) => ({
         id: member.id,
         profileId: member.profileId,
         profileName: member.name,
         profileImage: member.image,
       }));
-    }
   };
 
   return {

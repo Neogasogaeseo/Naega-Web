@@ -8,7 +8,7 @@ export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
   line-height: 100%;
-  margin-top:12px;
+  margin-top: 12px;
 `;
 export const StNoticeWrapper = styled.div`
   display: flex;

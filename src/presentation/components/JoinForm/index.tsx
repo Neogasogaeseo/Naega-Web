@@ -11,14 +11,13 @@ import {
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
-import { icProfile,icEmail } from '@assets/icons';
+import { icProfile, icEmail } from '@assets/icons';
 import { useRecoilValue } from 'recoil';
-import {kakaoAccessTokenState,kakaoRefreshTokenState} from "@stores/kakao-auth";
-import {postJoin} from '@api/login-user';
+import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
+import { postJoin } from '@api/login-user';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { createWatchProgram } from 'typescript';
 import { useNavigate } from 'react-router-dom';
-
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
@@ -30,7 +29,7 @@ function JoinForm() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
-  const { setAccessToken} = useLoginUser();
+  const { setAccessToken } = useLoginUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,24 +49,23 @@ function JoinForm() {
     setInputName(value);
   };
 
-  const onClickSubmitUserInfo = async(e: React.MouseEvent<HTMLButtonElement>)=> {
+  const onClickSubmitUserInfo = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const form = new FormData();
-      form.append('profileId', inputId); 
-      form.append('name',inputName);
-      image && form.append('image',image);
-      form.append('provider','kakao');
-      form.append('accesstoken',accessToken);
-      form.append('refreshtoken',refreshToken);
- 
-     const getData = await postJoin(form);
-     setAccessToken(getData.accesstoken);
+      form.append('profileId', inputId);
+      form.append('name', inputName);
+      image && form.append('image', image);
+      form.append('provider', 'kakao');
+      form.append('accesstoken', accessToken);
+      form.append('refreshtoken', refreshToken);
+
+      const getData = await postJoin(form);
+      setAccessToken(getData.accesstoken);
       navigate('/joinComplete');
-    } catch(error) {
+    } catch (error) {
       console.error(error); //나중에 또 처리합시다.
     }
-
   };
 
   return (

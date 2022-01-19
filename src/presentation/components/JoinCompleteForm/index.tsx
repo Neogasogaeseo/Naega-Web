@@ -14,7 +14,14 @@ const JoinCompleteForm = () => {
         </StTitleWrapper>
         <p>너가소개서를 이용해보세요!</p>
       </StJoinCompleteForm>
-      <StButton type="submit" onClick={()=>{navigate('/home')}}>확인</StButton>
+      <StButton
+        type="submit"
+        onClick={() => {
+          navigate('/home');
+        }}
+      >
+        확인
+      </StButton>
     </>
   );
 };

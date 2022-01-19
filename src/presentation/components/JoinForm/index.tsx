@@ -69,7 +69,7 @@ function JoinForm() {
           userID: response.user.profileId,
           profileImage: response.user.image,
         });
-        navigate('/joinComplete');
+        navigate('/join/complete');
       }else {
         fireToast({content: '중복된 아이디입니다. '});
       }

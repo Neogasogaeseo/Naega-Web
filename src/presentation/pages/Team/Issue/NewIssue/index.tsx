@@ -14,9 +14,12 @@ import {
   StPhotoUploadMiddleDesc,
   StSelectCategory,
 } from './style';
+import { getTeamIssueCategory } from '@infrastructure/remote/issue';
+import { TeamIssueCategory } from '@api/types/team';
 
 function TeamNewIssue() {
-  const categoryList: string[] = ['팀컬처', '기획', '개발', '디자인'];
+  const [categoryList, setCategoryList] = useState<TeamIssueCategory[] | null>(null);
+  const categoryData: string[] = ['팀컬처', '기획', '개발', '디자인'];
   const [image, setImage] = useState<File | null>();
   const [button, setButton] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
@@ -35,6 +38,14 @@ function TeamNewIssue() {
     setButton(false);
   }, [issueTextarea]);
 
+  useEffect(()=>{
+    (async ()=>{
+      const getCategoryList = await getTeamIssueCategory();
+      setCategoryList(getCategoryList);
+      console.log("리스트",getCategoryList);
+    })();
+  },[]);
+
   const onClickSelectedHandler = (category: string) => {
     if (selectedCategory.length === 0) {
       setSelectedCategory([category]);
@@ -50,7 +61,7 @@ function TeamNewIssue() {
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
       <div>
-        {categoryList.map((category, id) => {
+        {categoryData.map((category, id) => {
           return (
             <StSelectCategory
               selected={selectedCategory.indexOf(category)}

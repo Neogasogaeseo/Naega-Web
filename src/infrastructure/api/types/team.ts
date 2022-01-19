@@ -81,3 +81,12 @@ export type TeamInvite = {
 export type TeamInviteData = {
   inviteListData: TeamInvite[];
 };
+
+export type TeamIssueCategory = {
+  IssueCategoryData: IssueCategory[];
+}
+
+export type IssueCategory = {
+  id: number;
+  name: string;
+}

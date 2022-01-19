@@ -22,9 +22,10 @@ export default function TeamRegisterMembers() {
 
   const mapSearchedUserList = () => {
     const idList = selectedUserList.map(({ id }) => id);
-    setSearchedUserList(
-      searchedUserListResponse.map((user) => ({ ...user, isAdded: idList.includes(user.id) })),
-    );
+    searchedUserListResponse &&
+      setSearchedUserList(
+        searchedUserListResponse.map((user) => ({ ...user, isAdded: idList.includes(user.id) })),
+      );
   };
 
   const searchUser = async () => {

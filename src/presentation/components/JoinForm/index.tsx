@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   StJoinForm,
@@ -11,10 +10,16 @@ import {
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
-import { icProfile } from '@assets/icons';
-import { icEmail } from '@assets/icons';
+import { icProfile, icEmail } from '@assets/icons';
+import { useRecoilValue } from 'recoil';
+import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
+import { postJoin } from '@api/login-user';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { useNavigate } from 'react-router-dom';
 
 function JoinForm() {
+  const accessToken = useRecoilValue(kakaoAccessTokenState);
+  const refreshToken = useRecoilValue(kakaoRefreshTokenState);
   const [isConditionMet, setIsConditionMet] = useState({
     id: false,
     name: false,
@@ -22,6 +27,8 @@ function JoinForm() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
+  const { saveLoginUser } = useLoginUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]+$/;
@@ -39,9 +46,33 @@ function JoinForm() {
   const onChangeName = (value: string) => {
     setInputName(value);
   };
-  const onClickSubmitUserInfo = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const onClickSubmitUserInfo = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    try {
+      const form = new FormData();
+      form.append('profileId', inputId);
+      form.append('name', inputName);
+      image && form.append('image', image);
+      form.append('provider', 'kakao');
+      form.append('accesstoken', accessToken);
+      form.append('refreshtoken', refreshToken);
+
+      const response = await postJoin(form);
+
+      saveLoginUser({
+        id: response.user,
+        accessToken: response.accesstoken,
+        username: response.user.name,
+        userID: response.user.profileId,
+        profileImage: response.user.image,
+      });
+      navigate('/joinComplete');
+    } catch (error) {
+      console.error(error); //나중에 또 처리합시다.
+    }
   };
+
   return (
     <StJoinForm>
       <StNoticeWrapper>

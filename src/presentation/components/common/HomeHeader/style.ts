@@ -9,14 +9,14 @@ export const StHomeHeader = styled.div`
   }
 `;
 
-export const StNavLink = styled(NavLink)<{ current: string }>`
+export const StNavLink = styled(NavLink)<{ selected: boolean }>`
   margin-right: 16px;
   padding-bottom: 16px;
   color: ${COLOR.GRAY_4};
   cursor: pointer;
 
   ${(props) =>
-    props.current &&
+    props.selected &&
     css`
       font-weight: 600;
       color: ${COLOR.GRAY_8};

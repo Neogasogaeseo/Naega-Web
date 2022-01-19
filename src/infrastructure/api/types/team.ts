@@ -5,7 +5,7 @@ export type IssueData = {
   title: string;
   category: string;
   team: TeamData;
-  issueList: FeedbackDetail[];
+  feedbackList: FeedbackDetail[];
   writer: string;
   thumbnail?: string;
 };
@@ -33,10 +33,10 @@ export type FeedbackDetail = {
   id: string;
   writer: string;
   target: string;
+  targetProfileID: string;
   body: string;
   createdAt: string;
   keywordList: Keyword[];
-  isMine: boolean;
   isBookmarked: boolean;
 };
 
@@ -65,12 +65,19 @@ export type TeamProfileData = {
   profileListData: TeamMemberNoneId[];
 };
 
-export type TeamInfoData = {
-  teamID: string;
+export type TeamDetail = {
+  teamID: number;
   teamImage?: string;
   teamName: string;
   teamDescription: string;
-  teamMemberList: TeamMemberNoneId[];
+};
+
+export type TeamInfoData = {
+  teamDetailData: {
+    teamDetail: TeamDetail;
+    teamMemberCount: number;
+    teamMemberList: TeamMemberNoneId[];
+  };
 };
 
 export type TeamInvite = {

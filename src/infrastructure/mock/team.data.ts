@@ -45,7 +45,7 @@ export const TEAM_DATA: {
         'https://w.namu.la/s/cf540b42db6aa012f45ec8e7eada6fb14c0578dddc81705a6a65ce649036c7870be294ad2c2c8163819de544dcde5faaa50df4c4d1c52fa21da8b1aa86479abbc25c7254c3019843510ff3e9e39ff9eec48b20008ab7962248d4146108618d29',
       title: '포켓몬주식회사',
     },
-    issueList: [
+    feedbackList: [
       {
         id: '11',
         writer: '주영주영',
@@ -53,7 +53,7 @@ export const TEAM_DATA: {
         body: '서진아고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: false,
       },
       {
@@ -63,7 +63,7 @@ export const TEAM_DATA: {
         body: '서진아\n고맙다',
         createdAt: '12/20',
         keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: false,
       },
       {
@@ -76,7 +76,7 @@ export const TEAM_DATA: {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
-        isMine: true,
+        targetProfileID: 'seojin',
         isBookmarked: true,
       },
       {
@@ -89,7 +89,7 @@ export const TEAM_DATA: {
           { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
           { id: '0', content: '멋있는 캐서린', color: '#FF4B77' },
         ],
-        isMine: false,
+        targetProfileID: 'seojin123',
         isBookmarked: false,
       },
     ],
@@ -188,31 +188,36 @@ export const TEAM_DATA: {
     ],
   },
   TEAM_DETAIL_INFO: {
-    teamID: '0',
-    teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-    teamName: '너가소개서',
-    teamDescription: '대학생연합 IT벤처창업 동아리',
-    teamMemberList: [
-      {
-        id: 1,
-        profileName: '캐서린',
+    teamDetailData: {
+      teamDetail: {
+        teamID: 1,
+        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        teamName: '너가소개서',
+        teamDescription: '대학생연합 IT벤처창업 동아리',
       },
-      {
-        id: 12,
-        profileName: '웬디',
-        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-      },
-      {
-        id: 13,
-        profileName: '콩콩이',
-        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-      },
-      {
-        id: 14,
-        profileName: '크왕',
-        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-      },
-    ],
+      teamMemberCount: 4,
+      teamMemberList: [
+        {
+          id: 1,
+          profileName: '캐서린',
+        },
+        {
+          id: 12,
+          profileName: '웬디',
+          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        },
+        {
+          id: 13,
+          profileName: '콩콩이',
+          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        },
+        {
+          id: 14,
+          profileName: '크왕',
+          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        },
+      ],
+    },
   },
   TEAM_INVITE_INFO: {
     inviteListData: [

@@ -32,3 +32,8 @@ export const StId = styled.div`
   ${FONT_STYLES.R_12_TITLE}
   color:${COLOR.GRAY_5};
 `;
+
+export const StAddToggleButton = styled.img`
+  width: 24px;
+  height: 24px;
+`;

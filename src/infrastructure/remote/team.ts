@@ -138,17 +138,20 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getSearchedTeamMemberList = async (profileId: string, teamId: number) => {
+  const getSearchedUserList = async (profileId: string) => {
     const response = await privateAPI.get({
-      url: `/search?profileId=${profileId}&teamId=${teamId}`,
+      url: `/user/search?profileId=${profileId}`,
     });
-    if (response.status === 200)
+    console.log('개빡침', response.status);
+    if (response.status === 200) {
+      console.log('remote', response.data);
       return response.data.map((member: any) => ({
         id: member.id,
         profileId: member.profileId,
         profileName: member.name,
         profileImage: member.image,
       }));
+    }
   };
 
   return {
@@ -160,7 +163,7 @@ export function teamDataRemote(): TeamService {
     getMyIssue,
     getInviteInfo,
     getIssueInfo,
-    getSearchedTeamMemberList,
+    getSearchedUserList,
   };
 }
 

@@ -6,21 +6,23 @@ import {
   StAbsoluteWrapper,
   StIcPencil,
 } from './style';
-import { ImgTeamAdd } from '@assets/images';
+import { imgEmptyProfile, ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
 import ProfileList from '@components/ProfileList';
 import { useState } from 'react';
 import PhotoUpload from '@components/common/FileUpload';
-import { selectedMemberListState } from '@stores/team';
+import { selectedUserListState } from '@stores/team';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 function TeamRegister() {
   const [image, setImage] = useState<File | null>();
   console.log(image);
   const navigate = useNavigate();
-  const selectedMemberList = useRecoilValue(selectedMemberListState);
+  const selectedUserList = useRecoilValue(selectedUserListState);
+  const { id, username, profileImage } = useLoginUser();
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
@@ -37,7 +39,10 @@ function TeamRegister() {
       <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
       <ProfileList
         isSquare={false}
-        profileListData={selectedMemberList}
+        profileListData={[
+          { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
+          ...selectedUserList,
+        ]}
         onAddClick={() => navigate('/team/register/members')}
       />
       <StSubmitButton>완료</StSubmitButton>

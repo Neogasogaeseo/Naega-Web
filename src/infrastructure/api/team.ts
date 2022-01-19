@@ -15,7 +15,7 @@ export interface TeamService {
   getMyTeamIssue(): Promise<TeamIssueData>;
   getTeamInfo(teamID: number): Promise<TeamInfoData | undefined>;
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
-  getMyIssue(teamID:string): Promise<TeamIssueData>;
+  getMyIssue(teamID: string): Promise<TeamIssueData>;
   getInviteInfo(): Promise<TeamInviteData>;
-  getSearchedTeamMemberList(profileId: string, teamId: number): Promise<TeamMember[]>;
+  getSearchedUserList(profileId: string): Promise<TeamMember[]>;
 }

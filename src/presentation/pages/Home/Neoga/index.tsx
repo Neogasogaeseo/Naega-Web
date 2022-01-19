@@ -14,7 +14,10 @@ function HomeNeoga() {
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
   const { username } = useLoginUser();
-  const isData = true; // 임시 변수
+  
+  // 임시 변수
+  const isData = true;
+  const RESULT_COUNT = 5;
 
   useEffect(() => {
     (async () => {
@@ -74,7 +77,9 @@ function HomeNeoga() {
           <>
             <NeogaResultCard />
             <StButtonArea>
-              <button onClick={() => navigate('/neoga/result')}>외 3개 더보기</button>
+              <button onClick={() => navigate('/neoga/result')}>
+                외 {RESULT_COUNT - 2}개 더보기
+              </button>
             </StButtonArea>
           </>
         ) : (

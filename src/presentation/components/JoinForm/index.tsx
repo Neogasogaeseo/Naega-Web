@@ -16,7 +16,6 @@ import { useRecoilValue } from 'recoil';
 import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
 import { postJoin } from '@api/login-user';
 import { useLoginUser } from '@hooks/useLoginUser';
-import { createWatchProgram } from 'typescript';
 import { useNavigate } from 'react-router-dom';
 
 function JoinForm() {

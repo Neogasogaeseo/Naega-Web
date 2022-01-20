@@ -3,13 +3,13 @@ import { imgEmptyProfile } from '@assets/images';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
-  const postFeedbackBookmark = async () => {
-    await wait(1000);
-    return { isSuccess: true };
+  const postFeedbackBookmark = async (feedbackID: string) => {
+    const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
+    if (response.status === 200) return { isSuccess: true, isBookmarked: response.data.isPinned };
+    else return { isSuccess: false };
   };
 
   const getIssueInfo = async (issueID: string) => {
-    await wait(2000);
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
@@ -193,5 +193,3 @@ export function teamDataRemote(): TeamService {
     getSearchedUserList,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

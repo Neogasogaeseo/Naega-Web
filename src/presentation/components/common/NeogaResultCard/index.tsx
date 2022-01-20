@@ -20,31 +20,29 @@ function NeogaResultCard() {
   }, [keywordList]);
 
   return (
-    <>
-      <StNeogaResultCard>
-        <StNeogaCardHeader>
-          <img src={imgEmptyProfile} />
-          <div>
-            <div>너가 닮고 싶은 나의 일잘러 모습</div>
-            <div>2022-01-12</div>
-          </div>
-        </StNeogaCardHeader>
-        <StNeogaCardLine />
+    <StNeogaResultCard>
+      <StNeogaCardHeader>
+        <img src={imgEmptyProfile} />
         <div>
-          {isData ? (
-            <>
-              <NeogaResultComment keywordList={keywordList} />
-              <NeogaResultComment keywordList={keywordList} />
-            </>
-          ) : (
-            <StNeogaNoReply>
-              <img src={icNoReply} />
-              아직 답변이 없어요
-            </StNeogaNoReply>
-          )}
+          <div>너가 닮고 싶은 나의 일잘러 모습</div>
+          <div>2022-01-12</div>
         </div>
-      </StNeogaResultCard>
-    </>
+      </StNeogaCardHeader>
+      <StNeogaCardLine />
+      <div>
+        {isData ? (
+          <>
+            <NeogaResultComment keywordList={keywordList} />
+            <NeogaResultComment keywordList={keywordList} />
+          </>
+        ) : (
+          <StNeogaNoReply>
+            <img src={icNoReply} />
+            아직 답변이 없어요
+          </StNeogaNoReply>
+        )}
+      </div>
+    </StNeogaResultCard>
   );
 }
 

@@ -1,3 +1,4 @@
+import Question from '@components/common/Question';
 import { neososeoFormState } from '@stores/neososeo-form';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -12,9 +13,11 @@ function NeososeoFormHome() {
   return (
     <StNeososeoFormHome>
       <div>
-        <div>{neososeoFormData.content}</div>
+        <Question content={neososeoFormData.content} />
       </div>
-      <StButton onClick={() => navigate('intro')}>답변 작성하기</StButton>
+      <div>
+        <StButton onClick={() => navigate('intro')}>답변 작성하기</StButton>
+      </div>
     </StNeososeoFormHome>
   );
 }

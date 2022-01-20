@@ -25,7 +25,7 @@ export interface TeamMember {
 
 export type TeamMemberNoneId = Omit<TeamMember, 'profileId'>;
 
-export interface SearchedMember extends TeamMember {
+export interface SearchedUser extends TeamMember {
   isAdded: boolean;
 }
 

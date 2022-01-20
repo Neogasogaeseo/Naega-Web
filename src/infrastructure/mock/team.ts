@@ -42,6 +42,11 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.TEAM_INVITE_INFO;
   };
 
+  const getSearchedUserList = async () => {
+    await wait(2000);
+    return [];
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -51,6 +56,7 @@ export function teamDataMock(): TeamService {
     getTeamIssue,
     getMyIssue,
     getInviteInfo,
+    getSearchedUserList,
   };
 }
 

@@ -168,6 +168,19 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
+  const getSearchedUserList = async (profileId: string) => {
+    const response = await privateAPI.get({
+      url: `/user/search?profileId=${profileId}`,
+    });
+    if (response.status === 200)
+      return response.data.map((member: any) => ({
+        id: member.id,
+        profileId: member.profileId,
+        profileName: member.name,
+        profileImage: member.image,
+      }));
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -177,6 +190,7 @@ export function teamDataRemote(): TeamService {
     getMyIssue,
     getInviteInfo,
     getIssueInfo,
+    getSearchedUserList,
   };
 }
 

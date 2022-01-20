@@ -20,12 +20,19 @@ export function NeososeoFormRemote(): NeososeoFormService {
   };
 
   const postFormAnswer = async (body: NeososeoAnswerData) => {
-    console.log(body);
-    await wait(2000);
-    return { isSuccess: true };
+    const response = await publicAPI.post({
+      url: '/form/answer',
+      data: {
+        relationshipId: body.relationID,
+        content: body.answer,
+        keywordList: body.keyword,
+        userId: body.userID,
+        formId: body.formID,
+        name: body.name,
+      },
+    });
+    return { isSuccess: response.status === 200 };
   };
 
   return { getFormInfo, postFormAnswer };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

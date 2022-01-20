@@ -24,11 +24,14 @@ import {
 import { ResultFormList } from '@api/types/neoga';
 import { imgEmptyFeedback } from '@assets/images';
 import { useParams } from 'react-router-dom';
-import { Keyword } from '@api/types/user';
+import { ResultDetailList } from '@api/types/neoga';
+import {getNeogaResult} from '@infrastructure/remote/neoga-result';
+import {useNavigate} from 'react-router-dom';
 
 function NeogaDetailForm() {
+  const navigate = useNavigate();
   const { formID } = useParams();
-  const [resultKeywordList, setResultKeywordList] = useState<Keyword[]>([]);
+  const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
   const [resultList, setResultList] = useState<ResultFormList[]>([]);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
@@ -37,11 +40,11 @@ function NeogaDetailForm() {
     if (!formID) return;
     if (isNaN(+formID)) return;
     (async () => {
-      const data = await api.neogaService.getResultKeywords(+formID);
+      const data = await getNeogaResult(+formID);
       setResultBoolean(true);
       setResultKeywordList(data);
     })();
-  }, [resultKeywordList]);
+  }, []);
 
   useEffect(() => {
     if (!formID) return;
@@ -61,22 +64,27 @@ function NeogaDetailForm() {
     setLookMoreButton(false);
   };
 
+  const onClickCopyLink = () => {
+    navigate(`/neososeoform/${resultKeywordList&&resultKeywordList.q}`);
+  }
+
+if(!resultKeywordList)
+return <></>
   return (
     <StNeogaDetailForm>
       <div>
         <StHeader>
           <StTitle>
-            2022, 임인년 <br />
-            강쥐에게 기대하는 모습은?
+            {resultKeywordList.title} <br />
           </StTitle>
         </StHeader>
         <StLink>
           <img src={icLink} />
-          <p>링크 복사하기</p>
+          <p onClick={onClickCopyLink}>링크 복사하기</p>
         </StLink>
-        <StDate>2021-01-17 에 생성</StDate>
+        <StDate>{resultKeywordList.createdAt} 에 생성</StDate>
         <StQuestion>
-          <span>Q.</span>나와 함께하며 당신이 닮고 싶었던 능력이 있었을까요 ?
+          <span>Q.</span>{resultKeywordList.subtitle}
         </StQuestion>
       </div>
       {resultBoolean ? (
@@ -85,21 +93,21 @@ function NeogaDetailForm() {
             <p>키워드모음</p>
             {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultKeywordList.slice(0, 7)}
+                keywordList={resultKeywordList?resultKeywordList.keywordlists.slice(0, 7):[]}
                 onItemClick={() => null}
               />
             )}
             <StMoreWrapper>
-              {lookMoreButton && resultKeywordList.length > 7 ? (
+              {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
                 <>
-                  <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} />
+                  <ImmutableKeywordList keywordList={resultKeywordList?.keywordlists??[]} onItemClick={() => null} />
                   <hr />
                   <StMoreButton onClick={onClickFold}>
                     접기<img src={IcArrowUp}></img>
                   </StMoreButton>
                 </>
               ) : (
-                resultKeywordList.length > 7 && (
+                resultKeywordList.keywordlists.length > 7 && (
                   <>
                     <hr />
                     <StMoreButton onClick={onClickMore}>
@@ -125,7 +133,7 @@ function NeogaDetailForm() {
                     <StFeedDate>{data.createdAt}</StFeedDate>
                   </StFeedHeader>
                   <StFeedContent>{data.content}</StFeedContent>
-                  <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} />
+                  {/* <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} /> */}
                   <hr />
                 </StFeedWrapper>
               </>

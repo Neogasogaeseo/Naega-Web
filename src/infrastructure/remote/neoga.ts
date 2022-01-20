@@ -51,6 +51,11 @@ export function NeogaDataRemote(): NeogaService {
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
 
+  const getFormResultCard = async () => {
+    await wait(2000);
+    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+  };
+
   const getResultKeywords = async () => {
     await wait(2000);
     return NEOGA_DATA.KEYWORD_LISTS;
@@ -71,6 +76,7 @@ export function NeogaDataRemote(): NeogaService {
     getMainTemplate,
     getAllTemplates,
     getMainResultCard,
+    getFormResultCard,
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,

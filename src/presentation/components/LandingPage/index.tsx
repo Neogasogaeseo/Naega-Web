@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {imgLogo,
     ImgMainPage,
     ImgMainPhone,
@@ -9,13 +8,10 @@ import {imgLogo,
 } from '@assets/images';
 import { useNavigate } from 'react-router-dom';
 import {
-    StLandingPage,
-    StLogoImg,
     StLogin,
     StHeader,
     StMain,
     StContent,
-    StMainImg,
     StServiceButton,
     StMiddle,
     StMiddleTitle,
@@ -23,6 +19,7 @@ import {
     StMiddleBlack,
     StFooter,
     StMiddleMypage,
+    StImgMainPhone,
 } from './style';
 import NeogaLottie from '@assets/lottie/NeogaLottie';
 import TeamLottie from '@assets/lottie/TeamLottie';
@@ -30,24 +27,23 @@ import TeamLottie from '@assets/lottie/TeamLottie';
 function LandingPage(){
     const navigate = useNavigate();
     return (
-        <StLandingPage>
+        <div>
             <StHeader>
-                <StLogoImg src={imgLogo}></StLogoImg>
+                <img src={imgLogo}></img>
                 <StLogin onClick={()=>{
                     navigate(`/login`);
                 }}>로그인</StLogin>
             </StHeader>
             <StMain>
-                <p>너가 나좀..소개해줄래?</p>
-                <h2>너를 통해 발견하는 나</h2>
-                <StContent>내가 나를 말하기는 낯 간지럽고<br/>
-                누군가 이렇게 괜찮은 나를 설명해줬음 할 때<br/>
-                모두 너가소개서 하세요!
+                <p>나와 함께한 당신이 써 주는</p>
+                <h2>너가소개서</h2>
+                <StContent>내가 스스로 말하기는 낯간지럽고<br/>
+                누군가 나를 대신 설명해줬음 할 때,
                 </StContent>
-                <StMainImg src={ImgMainPage} />
+                <img src={ImgMainPage} />
                 <StServiceButton isBlack={false} onClick={()=>{
                     navigate(`/login`);
-                }}>서비스 시작하기</StServiceButton>
+                }}>너가소개서 받으러 가기</StServiceButton>
             </StMain>
             <StMiddle style={{position:'relative'}}>
                 <StMiddleTitle>
@@ -58,7 +54,7 @@ function LandingPage(){
                     주변에 궁금했던 설문을 골라 <br/>
                     친구들의 답변으로 새로운 나를 발견하세요
                 </StMiddleContent>
-                <div style={{zIndex:300}}><img src={ImgMainPhone} alt=""/></div>
+                <StImgMainPhone><img src={ImgMainPhone} alt=""/></StImgMainPhone>
                 <NeogaLottie/>
             </StMiddle>
             <StMiddleTitle>
@@ -99,7 +95,7 @@ function LandingPage(){
                     navigate(`/login`);
                 }}>지금 시작하기</StServiceButton>
             </StFooter>
-        </StLandingPage>
+        </div>
     );
 };
 

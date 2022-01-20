@@ -30,14 +30,50 @@ export function userDataRemote(): UserService {
     return USER_DATA.MY_PAGE_INFO(userID);
   };
 
-  const getNeososeoBookmark = async () => {
-    await wait(1000);
-    return USER_DATA.NEOSOSEO_BOOKMARK;
+  const getNeososeoBookmark = async (userID: string) => {
+    const response = await publicAPI.get({ url: `/user/${userID}/answer` });
+    return {
+      count: response.data.length,
+      answerList: response.data.map((bookmark: any) => ({
+        id: bookmark.answerId,
+        icon: bookmark.lightIconImage,
+        question: bookmark.title,
+        content: bookmark.content,
+        isBookmarked: bookmark.isPinned,
+        keywordList: bookmark.keywords.map((keyword: any) => ({
+          id: keyword.answerId,
+          content: keyword.name,
+          color: keyword.colorCode,
+        })),
+        targetUserID: bookmark.userId,
+      })),
+    };
   };
 
-  const getFeedbackBookmark = async () => {
-    await wait(1000);
-    return USER_DATA.TEAM_FEEDBACK_BOOKMARK;
+  const getFeedbackBookmark = async (userID: string) => {
+    const response = await publicAPI.get({ url: `/user/${userID}/team` });
+    return {
+      count: response.data.pinnedFeedbackList.length,
+      teamList: response.data.teamList.map((team: any) => ({
+        id: team.id,
+        profileImage: team.image,
+        profileName: team.name,
+      })),
+      feedbackList: response.data.pinnedFeedbackList.map((feedback: any) => ({
+        id: feedback.id,
+        writer: feedback.writerName,
+        target: feedback.name,
+        body: feedback.content,
+        createdAt: feedback.createdAt,
+        keywordList: feedback.keywords.map((keyword: any) => ({
+          id: keyword.answerId,
+          content: keyword.name,
+          color: keyword.colorCode,
+        })),
+        targetProfileID: feedback.profileId,
+        isBookmarked: feedback.isPinned,
+      })),
+    };
   };
 
   return {

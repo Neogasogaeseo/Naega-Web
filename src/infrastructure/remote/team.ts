@@ -12,7 +12,6 @@ export function teamDataRemote(): TeamService {
     await wait(2000);
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
-    console.log({ issueDetailData, issueFeedbacksData });
     return {
       createdAt: issueDetailData.data.createdAt,
       title: issueDetailData.data.content,

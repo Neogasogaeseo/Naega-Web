@@ -31,7 +31,6 @@ export function useLoginUser() {
       if (!token) throw '토큰이 없습니다';
       const user = await api.loginUserService.getUserInfo(token);
       saveLoginUser(user);
-      console.log(user);
     } catch (error) {
       setError(error);
     }

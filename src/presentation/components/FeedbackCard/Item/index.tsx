@@ -11,7 +11,7 @@ type FeedbackCardProps = FeedbackDetail;
 function FeedbackCardItem(props: FeedbackCardProps) {
   const { id, writer, target, body, createdAt, keywordList, targetProfileID } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
-  const { userID } = useLoginUser();
+  const { id: loginUserID } = useLoginUser();
 
   const bookmarkFeedback = async () => {
     const response = await api.teamService.postFeedbackBookmark(id);
@@ -27,7 +27,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           <img src={icDot} alt="dot" />
           <div>{createdAt}</div>
         </div>
-        {targetProfileID === userID && (
+        {+targetProfileID === loginUserID && (
           <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />
         )}
       </StHeader>

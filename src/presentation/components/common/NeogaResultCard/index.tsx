@@ -29,7 +29,7 @@ function NeogaResultCard(props: NeogaResultCardProps) {
       <StNeogaCardLine />
       <div>
         {answer ? (
-          answer.map((answer) => <NeogaResultComment key={id} {...answer} />)
+          answer.map((answer) => <NeogaResultComment key={answer.id} {...answer} />)
         ) : (
           <StNeogaNoReply>
             <img src={icNoReply} />

@@ -30,6 +30,16 @@ export const StTeamMemberPopup = styled.div`
   }
 
   div {
+    max-height: 166.96px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  div > div {
     display: flex;
     align-items: center;
 
@@ -37,6 +47,7 @@ export const StTeamMemberPopup = styled.div`
       ${FONT_STYLES.M_13_BODY};
       color: ${COLOR.GRAY_6};
       line-height: 18.72px;
+      text-align: left;
     }
   }
 

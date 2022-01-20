@@ -1,40 +1,35 @@
-import { Keyword } from '@api/types/user';
 import { icNoReply } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
-import { useState, useEffect } from 'react';
-import { api } from '@api/index';
 import { StNeogaResultCard, StNeogaCardHeader, StNeogaCardLine, StNeogaNoReply } from './style';
 import NeogaResultComment from '../NeogaResultComment';
+import { useNavigate } from 'react-router-dom';
+import { NeogaAnswerList } from '@api/types/neoga';
 
-function NeogaResultCard() {
-  const [keywordList, setKeywordList] = useState<Keyword[]>([]);
-  // 임시 변수
-  const userID = 1;
-  const isData = true;
+interface NeogaResultCardProps {
+  id: number;
+  title: string;
+  darkIconImage: string;
+  createdAt: string;
+  answer?: NeogaAnswerList[];
+}
 
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getResultKeywords(userID); // getResultKeywords와 userID는 임시
-      setKeywordList(data.slice(0, 2));
-    })();
-  }, [keywordList]);
+function NeogaResultCard(props: NeogaResultCardProps) {
+  const { id, title, darkIconImage, createdAt, answer } = props;
+  const navigate = useNavigate();
 
   return (
-    <StNeogaResultCard>
+    <StNeogaResultCard onClick={() => navigate(`/neoga/${id}/detail/form`)}>
       <StNeogaCardHeader>
-        <img src={imgEmptyProfile} />
+        <img src={darkIconImage ?? imgEmptyProfile} />
         <div>
-          <div>너가 닮고 싶은 나의 일잘러 모습</div>
-          <div>2022-01-12</div>
+          <div>{title}</div>
+          <div>{createdAt}</div>
         </div>
       </StNeogaCardHeader>
       <StNeogaCardLine />
       <div>
-        {isData ? (
-          <>
-            <NeogaResultComment keywordList={keywordList} />
-            <NeogaResultComment keywordList={keywordList} />
-          </>
+        {answer && answer?.length !== 0 ? (
+          answer.map((answer) => <NeogaResultComment key={answer.id} {...answer} />)
         ) : (
           <StNeogaNoReply>
             <img src={icNoReply} />

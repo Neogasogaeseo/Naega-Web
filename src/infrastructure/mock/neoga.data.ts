@@ -38,6 +38,63 @@ export const NEOGA_DATA = {
       isCreated: false,
     },
   ],
+  RESULT_CARD_TEMPLATE: {
+    resultList: [
+      {
+        id: 4,
+        title: '가장 기억에 남는 순간의 내 모습',
+        darkIconImage:
+          'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/d_light_200x200.png?alt=media',
+        createdAt: '2022-01-19',
+        answer: [
+          {
+            id: 9,
+            name: '강쥐',
+            relationship: '동네친구',
+            content: '실물로 처음 본 게, 거대한 눈사람처럼 입은 채 우당탕탕탕탕탕',
+            keyword: [
+              {
+                id: '19',
+                content: '고막도둑',
+                color: '#FF4B77',
+              },
+              {
+                id: '20',
+                content: '눈사람',
+                color: '#FF806F',
+              },
+            ],
+          },
+          {
+            id: 10,
+            name: '강쥐',
+            relationship: '동네친구',
+            content: '내가 만나본 infp 중에서 제일 infp라고 생각했다 처음에는',
+            keyword: [
+              {
+                id: '199',
+                content: 'INFP 인간화',
+                color: '#FF4B77',
+              },
+              {
+                id: '200',
+                content: '천사',
+                color: '#FF806F',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 5,
+        title: '너가 닮고 싶은 나의 일잘러 모습',
+        darkIconImage:
+          'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/d_light_200x200.png?alt=media',
+        createdAt: '2022-01-19',
+      },
+    ],
+    count: 5,
+  },
   ALL_TEMPLATES: [
     {
       id: 1,

@@ -1,9 +1,7 @@
-import LandingPage from "@components/LandingPage";
+import LandingPage from '@components/LandingPage';
 
-function Landing(){
-    return (
-        <LandingPage/>
-    );
-};
+function Landing() {
+  return <LandingPage />;
+}
 
 export default Landing;

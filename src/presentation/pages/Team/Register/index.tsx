@@ -19,10 +19,21 @@ import { useLoginUser } from '@hooks/useLoginUser';
 
 function TeamRegister() {
   const [image, setImage] = useState<File | null>();
-  console.log(image);
+  const [teamName, setTeamName] = useState('');
+  const [description, setDescription] = useState('');
   const navigate = useNavigate();
   const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
+
+  const submitTeamInfo = () => {
+    const form = new FormData();
+    form.append('teamName', teamName);
+    image && form.append('image', image);
+    description && form.append('description', description);
+    selectedUserList.length &&
+      form.append('userIdList', selectedUserList.map((user) => user.id).join(' '));
+  };
+
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
@@ -33,9 +44,18 @@ function TeamRegister() {
         {!image && <StIcPencil />}
       </StAbsoluteWrapper>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
-      <CommonInput width="100%" placeholder="직접 입력해주세요" />
+      <CommonInput
+        value={teamName}
+        onChange={(value) => setTeamName(value)}
+        width="100%"
+        placeholder="직접 입력해주세요"
+      />
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />
-      <StTextarea placeholder="직접 입력해주세요" />
+      <StTextarea
+        placeholder="직접 입력해주세요"
+        value={description}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+      />
       <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
       <ProfileList
         isSquare={false}
@@ -45,7 +65,7 @@ function TeamRegister() {
         ]}
         onAddClick={() => navigate('/team/register/members')}
       />
-      <StSubmitButton>완료</StSubmitButton>
+      <StSubmitButton onClick={submitTeamInfo}>완료</StSubmitButton>
     </StTeamRegister>
   );
 }

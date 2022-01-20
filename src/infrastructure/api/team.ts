@@ -23,4 +23,5 @@ export interface TeamService {
   getSearchedUserList(profileId: string): Promise<TeamMember[]>;
   getTeamMembers(teamID: string): Promise<TeamMemberNoneId[]>;
   postFeedback(body: PostFeedbackRequestBody): Promise<PostFeedbackResponse>;
+  postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;
 }

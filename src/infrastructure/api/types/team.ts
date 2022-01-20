@@ -90,6 +90,15 @@ export type TeamInviteData = {
   inviteListData: TeamInvite[];
 };
 
+export type TeamIssueCategory = {
+  IssueCategoryData: IssueCategory[];
+};
+
+export type IssueCategory = {
+  id: number;
+  name: string;
+}
+
 export type PostFeedbackResponse = {
   isSuccess: boolean;
   createdFeedbackID: number;

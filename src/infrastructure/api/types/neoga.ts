@@ -32,7 +32,7 @@ export type NeogaAnswerList = {
   relationship: string;
   content: string;
   keyword: Keyword[];
-}
+};
 
 export type NeogaResultList = {
   id: number;
@@ -40,9 +40,16 @@ export type NeogaResultList = {
   darkIconImage: string;
   createdAt: string;
   answer?: NeogaAnswerList[];
-}
+};
 
 export type NeogaResultCardItem = {
   resultList: NeogaResultList[];
   count: number;
-}
+};
+
+export type CreateFormInfo = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image: string;
+};

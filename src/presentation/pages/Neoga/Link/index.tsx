@@ -21,7 +21,6 @@ export default function NeogaLink() {
     if (formID && !isNaN(+formID))
       (async () => {
         const formData = await api.neogaService.getCreateFormInfo(Number(formID));
-        console.log(formData);
         setFormData(formData);
       })();
   }, []);

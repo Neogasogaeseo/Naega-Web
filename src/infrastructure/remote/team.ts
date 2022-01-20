@@ -1,6 +1,5 @@
 import { TeamService } from '@api/team';
 import { imgEmptyProfile } from '@assets/images';
-import { TEAM_DATA } from '../mock/team.data';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
@@ -9,9 +8,40 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: true };
   };
 
-  const getIssueInfo = async () => {
+  const getIssueInfo = async (issueID: string) => {
     await wait(2000);
-    return TEAM_DATA.ISSUE_INFO;
+    const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
+    const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
+    return {
+      createdAt: issueDetailData.data.createdAt,
+      title: issueDetailData.data.content,
+      category: issueDetailData.data.categoryName,
+      team: {
+        teammates: issueDetailData.data.feedbackTagged.map((member: any) => ({
+          profileId: member.userId,
+          id: member.userId,
+          profileName: member.name,
+          profileImage: member.image,
+        })),
+        thumbnail: issueDetailData.data.team.image,
+        title: issueDetailData.data.team.name,
+      },
+      writer: issueDetailData.data.team.host,
+      feedbackList: issueFeedbacksData.data.map((feedback: any) => ({
+        id: feedback.id.toString(),
+        writer: feedback.name,
+        target: feedback.taggedusername,
+        body: feedback.content,
+        createdAt: feedback.createdAt,
+        keywordList: feedback.keywords.map((keyword: any) => ({
+          id: keyword.id.toString(),
+          content: keyword.name,
+          color: keyword.colorcode,
+        })),
+        targetProfileID: feedback.taggedUserId,
+        isBookmarked: feedback.isPinned,
+      })),
+    };
   };
 
   const getTeamIssue = async (teamID: string) => {

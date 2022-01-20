@@ -3,7 +3,6 @@ import ImmutableKeywordList from '../Keyword/ImmutableList';
 import { StNeogaResultComment } from './style';
 
 interface NeogaResultCommentProps {
-  id: number;
   name: string;
   relationship: string;
   content: string;
@@ -11,7 +10,7 @@ interface NeogaResultCommentProps {
 }
 
 function NeogaResultComment(props: NeogaResultCommentProps) {
-  const { id, name, relationship, content, keyword } = props;
+  const { name, relationship, content, keyword } = props;
 
   return (
     <StNeogaResultComment>
@@ -22,7 +21,12 @@ function NeogaResultComment(props: NeogaResultCommentProps) {
       </div>
       <div>{content}</div>
       <div>
-        <ImmutableKeywordList keywordList={keyword} onItemClick={() => console.log(id)} />
+        <ImmutableKeywordList
+          keywordList={keyword}
+          onItemClick={() => {
+            return;
+          }}
+        />
       </div>
     </StNeogaResultComment>
   );

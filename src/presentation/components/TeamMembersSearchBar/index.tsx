@@ -6,11 +6,13 @@ import { COLOR } from '@styles/common/color';
 import CommonInput from '@components/common/CommonInput';
 import { icSearch } from '@assets/icons';
 
-export default function TeamMembersSearchBar({
-  onClickSearchButton,
-}: {
+interface TeamMembersSearchBarProps {
   onClickSearchButton: () => Promise<void>;
-}) {
+  onKeypressSearchInput: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+}
+
+export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
+  const { onClickSearchButton, onKeypressSearchInput } = props;
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const [userSearchWord, setUserSearchWord] = useRecoilState(userSearchWordState);
   return (
@@ -22,6 +24,7 @@ export default function TeamMembersSearchBar({
         width="100%"
         submitButton={{ value: '검색', onClick: onClickSearchButton }}
         img={icSearch}
+        onKeyPress={onKeypressSearchInput}
       />
       {selectedUserList && (
         <MutableKeywordList

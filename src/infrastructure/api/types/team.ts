@@ -42,6 +42,7 @@ export type FeedbackDetail = {
 
 export type PostFeedbackBookmarkResponse = {
   isSuccess: boolean;
+  isBookmarked?: boolean;
 };
 
 export type TeamIssueData = {

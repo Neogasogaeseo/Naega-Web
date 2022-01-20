@@ -1,4 +1,5 @@
 import { TeamService } from '@api/team';
+import { PostFeedbackRequestBody } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { privateAPI } from './base';
 
@@ -7,6 +8,25 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
     if (response.status === 200) return { isSuccess: true, isBookmarked: response.data.isPinned };
     else return { isSuccess: false };
+  };
+
+  const getTeamMembers = async (teamID: string) => {
+    const response = await privateAPI.get({ url: `/team/member/${teamID}` });
+    return response.data.map((member: any) => ({
+      id: member.id,
+      profileName: member.name,
+      profileImage: member.image,
+    }));
+  };
+
+  const postFeedback = async (body: PostFeedbackRequestBody) => {
+    const response = await privateAPI.post({ url: `/team/feedback`, data: body });
+    return {
+      isSuccess: response.status === 200,
+      createdFeedbackID: response.data.feecbackId,
+      createdAt: response.data.feecbackId,
+      targetUserProfileID: response.data.targetUserProfileId,
+    };
   };
 
   const getIssueInfo = async (issueID: string) => {
@@ -191,5 +211,7 @@ export function teamDataRemote(): TeamService {
     getInviteInfo,
     getIssueInfo,
     getSearchedUserList,
+    getTeamMembers,
+    postFeedback,
   };
 }

@@ -20,8 +20,6 @@ export function userDataRemote(): UserService {
       data: { name: content, userId: userID },
     });
 
-    console.log(response);
-
     return { id: response.data.id, content: response.data.name, color: response.data.colorCode };
   };
 

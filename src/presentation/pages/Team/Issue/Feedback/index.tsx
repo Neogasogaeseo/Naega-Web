@@ -1,8 +1,6 @@
 import ProfileListSelectable from '@components/ProfileListSelectable';
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { teamIssueState } from '@stores/team';
+import { useEffect, useState } from 'react';
+import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   StAbsoluteWrapper,
   StBlackBlur,
@@ -10,23 +8,63 @@ import {
   StSection,
   StSectionTitle,
   StButton,
+  StTextarea,
 } from './style';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { Keyword } from '@api/types/user';
 import { TeamMemberNoneId } from '@api/types/team';
+import { api } from '@api/index';
+import { useSetRecoilState } from 'recoil';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { teamFeedbackState } from '@stores/team';
 
 function TeamIssueFeedback() {
-  const teamIssue = useRecoilValue(teamIssueState);
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
+  const [content, setContent] = useState<string>('');
+  const [teamMembers, setTeamMembers] = useState<TeamMemberNoneId[] | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+  const setFeedbacks = useSetRecoilState(teamFeedbackState);
   const navigate = useNavigate();
+  const { teamID, issueID } = useParams();
+  const { username } = useLoginUser();
 
   useEffect(() => {
-    if (!teamIssue) return;
-    if (teamIssue?.team.teammates[0] !== undefined) setSelectedUser(teamIssue?.team.teammates[0]);
-    console.log(teamIssue.team.teammates);
-  }, [teamIssue]);
+    if (!teamID) return;
+    (async () => {
+      const data = await api.teamService.getTeamMembers(teamID);
+      setTeamMembers(data);
+      setSelectedUser(data[0]);
+    })();
+  }, [teamID]);
+
+  const onPostFeedback = async () => {
+    if (!issueID) return;
+    if (isNaN(+issueID)) return;
+    if (!selectedUser) return;
+    const response = await api.teamService.postFeedback({
+      issueId: +issueID,
+      taggedUserId: selectedUser.id,
+      content,
+      keywordIds: keywordList.map((keyword) => +keyword.id),
+    });
+    if (response.isSuccess) {
+      setFeedbacks((prev) => [
+        ...prev,
+        {
+          id: response.createdFeedbackID.toString(),
+          writer: username.toString(),
+          target: selectedUser.profileName.toString(),
+          targetProfileID: '',
+          body: content.toString(),
+          createdAt: '',
+          keywordList: [...keywordList],
+          isBookmarked: false,
+        },
+      ]);
+      navigate('../');
+    }
+  };
 
   return (
     <>
@@ -35,15 +73,19 @@ function TeamIssueFeedback() {
         <StWrapper>
           <StSection>
             <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
-            {teamIssue && (
+            {teamMembers && (
               <ProfileListSelectable
                 isSquare={false}
-                profiles={teamIssue.team.teammates}
+                profiles={teamMembers}
                 selectedProfile={selectedUser}
                 setSelectedProfile={setSelectedUser}
               />
             )}
-            <CommonInput width="100%" placeholder="직접 입력해주세요" />
+            <StTextarea
+              placeholder="직접 입력해주세요"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </StSection>
           <StSection>
             <StSectionTitle>키워드를 입력해주세요</StSectionTitle>
@@ -51,7 +93,7 @@ function TeamIssueFeedback() {
               <CommonInput width="100%" placeholder="키워드를 입력해주세요" disabled={true} />
             </Link>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton>이슈 추가</StButton>
+            <StButton onClick={onPostFeedback}>완료</StButton>
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>

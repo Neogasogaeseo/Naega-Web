@@ -89,3 +89,17 @@ export type TeamInvite = {
 export type TeamInviteData = {
   inviteListData: TeamInvite[];
 };
+
+export type PostFeedbackResponse = {
+  isSuccess: boolean;
+  createdFeedbackID: number;
+  createdAt: string;
+  targetUserProfileID: string;
+};
+
+export type PostFeedbackRequestBody = {
+  issueId: number;
+  taggedUserId: number;
+  content: string;
+  keywordIds: number[];
+};

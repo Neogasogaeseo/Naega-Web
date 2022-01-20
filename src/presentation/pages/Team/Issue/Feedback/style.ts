@@ -1,6 +1,7 @@
 import { ANIMATION } from '@styles/common/animation';
 import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
+import { COMMON_INPUT } from '@styles/common/input';
 import styled from 'styled-components';
 
 export const StAbsoluteWrapper = styled.div`
@@ -51,4 +52,11 @@ export const StSectionTitle = styled.div`
 export const StButton = styled.div`
   ${CORAL_MAIN_BUTTON}
   ${FULL_WIDTH_BUTTON}
+`;
+
+export const StTextarea = styled.textarea`
+  ${COMMON_INPUT}
+  width: 100%;
+  resize: unset;
+  height: 104px;
 `;

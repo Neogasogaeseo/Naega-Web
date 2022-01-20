@@ -9,7 +9,7 @@ const LoginRouter = () => (
   <Routes>
     <Route path="/login" element={<Login />} />
     <Route path="/join" element={<Join />} />
-    <Route path="/joinComplete" element={<JoinComplete />} />
+    <Route path="/join/complete" element={<JoinComplete />} />
     <Route path="/home/*" element={<Home />} />
 
     <Route path="/auth/kakao/callback" element={<OAuthRedirectHandler />} />

@@ -16,6 +16,7 @@ import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-aut
 import { postJoin } from '@api/login-user';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@hooks/useToast';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
@@ -29,6 +30,7 @@ function JoinForm() {
   const [inputName, setInputName] = useState('');
   const { saveLoginUser } = useLoginUser();
   const navigate = useNavigate();
+  const { fireToast } = useToast();
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]+$/;
@@ -59,15 +61,18 @@ function JoinForm() {
       form.append('refreshtoken', refreshToken);
 
       const response = await postJoin(form);
-
-      saveLoginUser({
-        id: response.user,
-        accessToken: response.accesstoken,
-        username: response.user.name,
-        userID: response.user.profileId,
-        profileImage: response.user.image,
-      });
-      navigate('/joinComplete');
+      if (response.data) {
+        saveLoginUser({
+          id: response.user,
+          accessToken: response.accesstoken,
+          username: response.user.name,
+          userID: response.user.profileId,
+          profileImage: response.user.image,
+        });
+        navigate('/join/complete');
+      } else {
+        fireToast({ content: '중복된 아이디입니다. ' });
+      }
     } catch (error) {
       console.error(error); //나중에 또 처리합시다.
     }

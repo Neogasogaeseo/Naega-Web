@@ -30,10 +30,10 @@ export const postJoin = async (joinData: FormData) => {
     });
     if (response.status === 200) {
       return response.data;
+    } else {
+      return response;
     }
-    throw '회원가입 실패';
   } catch (e) {
-    console.error(e);
     throw '회원가입 실패';
   }
 };

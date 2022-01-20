@@ -9,6 +9,13 @@ export type NeogaCardItem = {
   backgroundColor: string;
   isCreated: boolean;
 };
+export type NeogaMainCardItem = Omit<NeogaCardItem, 'content' | 'isNew'>;
+
+export type NeogaBannerInfo = Omit<NeogaCardItem, 'isCreated'>;
+
+export type NeogaBannerItem = NeogaBannerInfo & {
+  isBanner: boolean;
+};
 
 export type ResultFormList = {
   formID: number;

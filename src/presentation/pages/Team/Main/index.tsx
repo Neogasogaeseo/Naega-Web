@@ -52,9 +52,7 @@ function TeamMain() {
     <StTeamMain>
       {teamInfoData && (
         <StTeamInfo>
-          <div>
-            <button onClick={() => navigate(`/team/register`)}>수정</button>
-          </div>
+          <div>{/* <button onClick={() => navigate(`/team/register`)}>수정</button> */}</div>
           <img src={teamInfoData.teamDetailData.teamDetail.teamImage ?? imgEmptyProfile} />
           <div>
             <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
@@ -66,12 +64,14 @@ function TeamMain() {
                   <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />
                 )}
               </button>
-              {teamInfoData.teamDetailData.teamMemberList.map((member, index) => (
-                <span key={member.id}>
-                  {member.profileName}
-                  {index < teamInfoData.teamDetailData.teamMemberCount - 1 ? ',\u00a0' : ''}
-                </span>
-              ))}
+              <div>
+                {teamInfoData.teamDetailData.teamMemberList.map((member, index) => (
+                  <span key={member.id}>
+                    {member.profileName}
+                    {index < teamInfoData.teamDetailData.teamMemberCount - 1 ? ',\u00a0' : ''}
+                  </span>
+                ))}
+              </div>
             </h3>
             <h2>{teamInfoData.teamDetailData.teamDetail.teamDescription}</h2>
           </div>

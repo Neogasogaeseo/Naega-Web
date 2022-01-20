@@ -25,7 +25,7 @@ export interface TeamMember {
 
 export type TeamMemberNoneId = Omit<TeamMember, 'profileId'>;
 
-export interface SearchedMember extends TeamMember {
+export interface SearchedUser extends TeamMember {
   isAdded: boolean;
 }
 
@@ -42,6 +42,7 @@ export type FeedbackDetail = {
 
 export type PostFeedbackBookmarkResponse = {
   isSuccess: boolean;
+  isBookmarked?: boolean;
 };
 
 export type TeamIssueData = {

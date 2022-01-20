@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
-export const StTeamMembersSearchedMember = styled.div`
+export const StTeamMembersSearchedUser = styled.div`
   padding: 15px 0;
   margin: 0 20px;
   display: flex;
@@ -31,4 +31,9 @@ export const StProfileName = styled.div`
 export const StId = styled.div`
   ${FONT_STYLES.R_12_TITLE}
   color:${COLOR.GRAY_5};
+`;
+
+export const StAddToggleButton = styled.img`
+  width: 24px;
+  height: 24px;
 `;

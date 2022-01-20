@@ -16,10 +16,6 @@ export const StTeamMain = styled.div`
     ${FONT_STYLES.M_16_TITLE};
     margin-top: 36px;
     margin-bottom: 35px;
-
-    & > img {
-      margin-right: 8px;
-    }
   }
 `;
 
@@ -27,7 +23,6 @@ export const StTeamInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7px;
 
   & > div:first-child {
     width: 100%;
@@ -35,6 +30,7 @@ export const StTeamInfo = styled.div`
     padding-top: 13px;
     padding-bottom: 15px;
     padding-right: 4px;
+    height: 43px;
 
     button {
       background-color: transparent;
@@ -47,6 +43,7 @@ export const StTeamInfo = styled.div`
     width: 82px;
     height: 82px;
     object-fit: cover;
+    margin-top: 7px;
     margin-bottom: 18px;
     border-radius: 30px;
   }
@@ -90,6 +87,11 @@ export const StTeamInfo = styled.div`
         ${FONT_STYLES.R_13_TITLE};
         border-radius: 9px;
         margin-right: 5px;
+      }
+
+      & > div {
+        max-width: 150px;
+        text-align: center;
       }
 
       span {

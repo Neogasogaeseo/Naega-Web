@@ -3,13 +3,13 @@ import { imgEmptyProfile } from '@assets/images';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
-  const postFeedbackBookmark = async () => {
-    await wait(1000);
-    return { isSuccess: true };
+  const postFeedbackBookmark = async (feedbackID: string) => {
+    const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
+    if (response.status === 200) return { isSuccess: true, isBookmarked: response.data.isPinned };
+    else return { isSuccess: false };
   };
 
   const getIssueInfo = async (issueID: string) => {
-    await wait(2000);
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
@@ -168,6 +168,19 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
+  const getSearchedUserList = async (profileId: string) => {
+    const response = await privateAPI.get({
+      url: `/user/search?profileId=${profileId}`,
+    });
+    if (response.status === 200)
+      return response.data.map((member: any) => ({
+        id: member.id,
+        profileId: member.profileId,
+        profileName: member.name,
+        profileImage: member.image,
+      }));
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -177,7 +190,6 @@ export function teamDataRemote(): TeamService {
     getMyIssue,
     getInviteInfo,
     getIssueInfo,
+    getSearchedUserList,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

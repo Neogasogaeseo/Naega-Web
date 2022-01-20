@@ -10,7 +10,7 @@ function ExpandListButton(props: ExpandListButtonProps) {
   const { onClick, isExpanded } = props;
   return (
     <StExpandListButton onClick={onClick}>
-      <span>더보기</span>
+      <span>{isExpanded ? '접기' : '더보기'}</span>
       {isExpanded ? <IcArrowViewMoreClose /> : <IcArrowViewMore />}
     </StExpandListButton>
   );

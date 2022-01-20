@@ -25,6 +25,7 @@ function TeamIssueFeedback() {
   useEffect(() => {
     if (!teamIssue) return;
     if (teamIssue?.team.teammates[0] !== undefined) setSelectedUser(teamIssue?.team.teammates[0]);
+    console.log(teamIssue.team.teammates);
   }, [teamIssue]);
 
   return (

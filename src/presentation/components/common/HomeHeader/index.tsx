@@ -18,7 +18,8 @@ function HomeHeader() {
 
   useEffect(() => {
     if (!location) return;
-    setCurrentTab(location.pathname.split('/')[2]);
+    const selectedTab = location.pathname.split('/')[2];
+    setCurrentTab(selectedTab ?? 'neoga');
   }, [location]);
 
   /*

@@ -14,7 +14,13 @@ export default function NeogaLink() {
     <StNeogaLink>
       <NeososeoFormHeader title={title} image={image} />
       <Question content={question} />
-      <StLinkCreateButton onClick={() => navigate(`./new`)}>링크 생성하기</StLinkCreateButton>
+      <StLinkCreateButton
+        onClick={() => {
+          navigate(`./new`);
+        }}
+      >
+        링크 생성하기
+      </StLinkCreateButton>
     </StNeogaLink>
   );
 }

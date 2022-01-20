@@ -25,12 +25,12 @@ export function neososeoFormDataRemote(): NeososeoFormService {
       .catch((e: AxiosError) => {
         console.log(e.response);
       });
-    if (response.status === 200) {
-      console.log(response);
+    if (response.status === 200 && response.message === '폼 생성 성공') {
+      console.log(response.data);
       return response.data;
-    } else if (response.status === 400 && response.success) {
+    } else {
       navigate();
-      console.log(response);
+      return response.data;
     }
   };
 

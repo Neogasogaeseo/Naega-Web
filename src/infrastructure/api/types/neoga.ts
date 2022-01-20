@@ -26,7 +26,6 @@ export type ResultFormList = {
   keywordlists: Keyword[];
 };
 
-
 export type ResultDetailList = {
   id: number;
   title: string;
@@ -34,5 +33,5 @@ export type ResultDetailList = {
   darkIconImage: string;
   createdAt: string;
   q: string;
-  keywordlists :Keyword[];
-}
+  keywordlists: Keyword[];
+};

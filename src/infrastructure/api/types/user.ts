@@ -11,7 +11,7 @@ export interface LoginUser {
   accessToken: string;
   username: string;
   userID: string;
-  profileImage: string;
+  profileImage: string | null;
 }
 
 export interface User {

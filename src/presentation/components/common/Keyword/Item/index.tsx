@@ -19,7 +19,7 @@ function KeywordItem(props: Props) {
         {isMutable && (
           <img
             onClick={onDeleteClick}
-            src={viewMode === 'linear' || color === COLOR.GRAY_3 ? icCloseGrey : icCloseWhite}
+            src={viewMode === 'linear' || color === COLOR.GRAY_2 ? icCloseGrey : icCloseWhite}
           />
         )}
       </div>

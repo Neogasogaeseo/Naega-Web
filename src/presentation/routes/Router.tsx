@@ -1,3 +1,4 @@
+import ScrollToTop from '@components/common/ScrollToTop';
 import NeososeoFormPage from '@pages/NeososeoForm';
 import NeososeoFormFinish from '@pages/NeososeoForm/Finish';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -8,6 +9,7 @@ import UserRouter from './UserRouter';
 const Router = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/*" element={<UserRouter />} />
         <Route path="/team/*" element={<TeamRouter />} />

@@ -17,7 +17,12 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.TEAM_PROFILE;
   };
 
-  const getMyIssue = async () => {
+  const getTeamInfo = async () => {
+    await wait(2000);
+    return TEAM_DATA.TEAM_DETAIL_INFO;
+  };
+
+  const getMyTeamIssue = async () => {
     await wait(2000);
     return TEAM_DATA.TEAM_ISSUE_INFO;
   };
@@ -27,9 +32,9 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.TEAM_ISSUE_INFO;
   };
 
-  const getTeamInfo = async () => {
+  const getMyIssue = async () => {
     await wait(2000);
-    return TEAM_DATA.TEAM_DETAIL_INFO;
+    return TEAM_DATA.TEAM_ISSUE_INFO;
   };
 
   const getInviteInfo = async () => {
@@ -37,14 +42,21 @@ export function teamDataMock(): TeamService {
     return TEAM_DATA.TEAM_INVITE_INFO;
   };
 
+  const getSearchedUserList = async () => {
+    await wait(2000);
+    return [];
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
     getTeamProfile,
-    getMyIssue,
-    getTeamIssue,
     getTeamInfo,
+    getMyTeamIssue,
+    getTeamIssue,
+    getMyIssue,
     getInviteInfo,
+    getSearchedUserList,
   };
 }
 

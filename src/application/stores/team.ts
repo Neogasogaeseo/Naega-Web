@@ -1,4 +1,4 @@
-import { IssueData, SearchedMember } from '@api/types/team';
+import { IssueData, SearchedUser, TeamMember } from '@api/types/team';
 import { atom } from 'recoil';
 
 export const teamIssueState = atom<IssueData | null>({
@@ -6,12 +6,17 @@ export const teamIssueState = atom<IssueData | null>({
   default: null,
 });
 
-export const searchedMemberListState = atom<SearchedMember[]>({
-  key: 'searchedMemberListState',
+export const searchedUserListState = atom<SearchedUser[]>({
+  key: 'searchedUserListState',
   default: [],
 });
 
-export const selectedMemberListState = atom<Required<Omit<SearchedMember, 'isAdded'>>[]>({
-  key: 'selectedMemberListState',
+export const selectedUserListState = atom<Required<TeamMember>[]>({
+  key: 'selectedUserListState',
   default: [],
+});
+
+export const userSearchWordState = atom<string>({
+  key: 'userSearchWordState',
+  default: '',
 });

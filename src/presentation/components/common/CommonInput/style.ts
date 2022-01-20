@@ -43,5 +43,6 @@ export const StSubmitButton = styled.div`
   padding-left: 12px;
   border-left: 1px solid ${COLOR.GRAY_3};
   color: ${COLOR.GRAY_7};
+  cursor: pointer;
   ${FONT_STYLES.M_15_TITLE}
 `;

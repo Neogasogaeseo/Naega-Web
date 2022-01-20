@@ -25,3 +25,14 @@ export type ResultFormList = {
   createdAt: string;
   keywordlists: Keyword[];
 };
+
+
+export type ResultDetailList = {
+  id: number;
+  title: string;
+  subtitle: string;
+  darkIconImage: string;
+  createdAt: string;
+  q: string;
+  keywordlists :Keyword[];
+}

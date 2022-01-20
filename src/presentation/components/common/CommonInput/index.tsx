@@ -45,7 +45,7 @@ function CommonInput(props: CommonInputProps): React.ReactElement {
         <StInput
           width={width}
           onChange={handleOnChange}
-          onKeyPress={onKeyPress}
+          onKeyPress={(e) => onKeyPress && onKeyPress(e)}
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}

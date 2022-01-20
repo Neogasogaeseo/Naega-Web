@@ -17,7 +17,7 @@ function ImmutableKeywordList(props: ImmutableKeywordListProps) {
         <KeywordItem
           {...{ ...keyword, color: keyword.color ?? COLOR.GRAY_3 }}
           isMutable={false}
-          key={keyword.content}
+          key={keyword.id}
           onItemClick={() => onItemClick(keyword)}
           viewMode={viewMode}
         />

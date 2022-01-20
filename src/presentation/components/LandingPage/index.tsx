@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {imgLogo,
     ImgMainPage,
     ImgMainPhone,
@@ -23,6 +24,8 @@ import {
     StFooter,
     StMiddleMypage,
 } from './style';
+import NeogaLottie from '@assets/lottie/NeogaLottie';
+import TeamLottie from '@assets/lottie/TeamLottie';
 
 function LandingPage(){
     const navigate = useNavigate();
@@ -46,7 +49,7 @@ function LandingPage(){
                     navigate(`/login`);
                 }}>서비스 시작하기</StServiceButton>
             </StMain>
-            <StMiddle>
+            <StMiddle style={{position:'relative'}}>
                 <StMiddleTitle>
                 <h2>나를 알아갈 수 있는<br/>
                 다양한 질문, <span> 너가소개서</span></h2>
@@ -55,7 +58,8 @@ function LandingPage(){
                     주변에 궁금했던 설문을 골라 <br/>
                     친구들의 답변으로 새로운 나를 발견하세요
                 </StMiddleContent>
-                <ImgMainPhone />
+                <div style={{zIndex:300}}><img src={ImgMainPhone} alt=""/></div>
+                <NeogaLottie/>
             </StMiddle>
             <StMiddleTitle>
                 <h2><span>링크</span>를 통해 간편하게 <br/>
@@ -63,6 +67,7 @@ function LandingPage(){
                 </h2>
                 <img src={ImgLink}/>
             </StMiddleTitle>
+            <StMiddleMypage>
             <StMiddleBlack>
                 <h2><span>팀원소개서</span>로<br/>
                 협업 경험을 기록해보세요.
@@ -71,9 +76,9 @@ function LandingPage(){
                     팀원들과 협업하며 일어난 이슈들을 기록하고 <br/>
                     그에 대한 피드백을 주고 받으세요!
                 </StMiddleContent>
+                <TeamLottie/>
                 <img src={ImgTeamsoseo}/>
             </StMiddleBlack>
-            <StMiddleMypage>
                 <StMiddleTitle>
                     <h2>마음에 들었던 소개로<br/>
                     <span>MY</span>를 채우고 공유하세요

@@ -59,6 +59,10 @@ export const StMiddle = styled.div`
     height: 852px;
     background-color: ${COLOR.GRAY_1};
     margin-top: 69px;
+
+    & > img{
+        z-index: 5;
+    }
 `;
 
 export const StMiddleTitle = styled.div`
@@ -83,7 +87,7 @@ export const StMiddleContent = styled.div`
     text-align: center;
     letter-spacing: -0.01em;
     color: ${COLOR.GRAY_5};
-    margin-bottom: 22px;
+    margin-bottom: 40px;
 `;
 export const StMiddleImg = styled.img``;
 export const StMiddleBlack = styled.div`
@@ -106,6 +110,7 @@ export const StMiddleBlack = styled.div`
 }
 
 &>img{
+    margin-top: 40px;
     width: 390px;
     height: 522px;
 }
@@ -113,9 +118,8 @@ export const StMiddleBlack = styled.div`
 
 export const StMiddleMypage = styled.div`
 
-height: 1160px;
+height: 2013px;
 width: 100%;
-
 &>img{
     width: 390px;
     height: 842px;
@@ -140,5 +144,6 @@ export const StFooter = styled.div`
 &>img{
     width: 390px;
     height: 239px;
+    margin-top: 23px;
 }
 `;

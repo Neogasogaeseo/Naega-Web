@@ -61,8 +61,8 @@ export function teamDataRemote(): TeamService {
               content: team.content,
               teamID: team.teamId,
               issueCardImage: team.teamImage,
-              teamName: team.teamname,
-              memberName: team.username,
+              teamName: team.teamName,
+              memberName: team.userName,
             }))
           : [],
       };
@@ -86,8 +86,8 @@ export function teamDataRemote(): TeamService {
               content: team.content,
               teamID: team.teamId,
               issueCardImage: team.teamImage,
-              teamName: team.teamname,
-              memberName: team.username,
+              teamName: team.teamName,
+              memberName: team.userName,
             }))
           : [],
       };

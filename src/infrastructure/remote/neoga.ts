@@ -46,7 +46,7 @@ export function NeogaDataRemote(): NeogaService {
     else throw '서버 통신 실패';
   };
 
-  const getResultCard = async () => {
+  const getMainResultCard = async () => {
     await wait(2000);
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
@@ -70,7 +70,7 @@ export function NeogaDataRemote(): NeogaService {
     getBannerTemplate,
     getMainTemplate,
     getAllTemplates,
-    getResultCard,
+    getMainResultCard,
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,

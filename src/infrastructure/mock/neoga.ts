@@ -17,7 +17,7 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.ALL_TEMPLATES;
   };
 
-  const getResultCard = async() => {
+  const getMainResultCard = async() => {
     await wait(2000);
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   }
@@ -41,7 +41,7 @@ export function neogaDataMock(): NeogaService {
     getBannerTemplate,
     getMainTemplate,
     getAllTemplates,
-    getResultCard,
+    getMainResultCard,
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,

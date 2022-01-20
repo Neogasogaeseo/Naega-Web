@@ -32,7 +32,7 @@ function HomeNeoga() {
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getResultCard();
+      const data = await api.neogaService.getMainResultCard();
       setCardItem(data);
     })();
   }, []);

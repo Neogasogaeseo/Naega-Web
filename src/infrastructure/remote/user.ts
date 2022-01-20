@@ -1,10 +1,10 @@
 import { UserService } from '@api/user';
 import { USER_DATA } from '@infrastructure/mock/user.data';
-import { privateAPI } from './base';
+import { publicAPI } from './base';
 
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number) => {
-    const response = await privateAPI.get({
+    const response = await publicAPI.get({
       url: `/user/keyword?userId=${userID}&offset=0&limit=40`,
     });
     return response.data.keyword.map((keyword: any) => ({
@@ -15,8 +15,14 @@ export function userDataRemote(): UserService {
   };
 
   const postKeyword = async (userID: number, content: string) => {
-    await wait(1000);
-    return USER_DATA.KEYWORD(content);
+    const response = await publicAPI.post({
+      url: '/user/keyword',
+      data: { name: content, userId: userID },
+    });
+
+    console.log(response);
+
+    return { id: response.data.id, content: response.data.name, color: response.data.colorCode };
   };
 
   const getMyPageInfo = async (userID: string) => {

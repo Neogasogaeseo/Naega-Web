@@ -8,18 +8,18 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { StNeososeoFormPage } from './style';
 
 function NeososeoFormPage() {
-  const { userID, formID } = useParams();
+  const { q } = useParams();
   const [neososeoForm, setNeososeoForm] = useRecoilState(neososeoFormState);
   const setNeoseosoAnswer = useSetRecoilState(neososeoAnswerState);
 
   useEffect(() => {
-    if (!userID || !formID) return;
+    if (!q) return;
     (async () => {
-      const data = await api.neososeoFormService.getFormInfo(userID, formID);
+      const data = await api.neososeoFormService.getFormInfo(q);
       setNeososeoForm(data);
       setNeoseosoAnswer((prev) => ({ ...prev, userID: data.userID, formID: data.formID }));
     })();
-  }, [userID, formID]);
+  }, [q]);
 
   return (
     <StNeososeoFormPage>

@@ -63,15 +63,11 @@ function NeososeoFormAnswer() {
           keywordList: keywordList,
           addKeyword: (keyword: Keyword) =>
             setKeywordList((prev) =>
-              prev.map((prev) => prev.content).includes(keyword.content)
-                ? prev
-                : [...prev, keyword],
+              prev.map((prev) => prev.id).includes(keyword.id) ? prev : [...prev, keyword],
             ),
           removeKeyword: (targetKeyword: Keyword) =>
-            setKeywordList((prev) =>
-              prev.filter((keyword) => keyword.content !== targetKeyword.content),
-            ),
-          targetUser: neososeoFormData.userID,
+            setKeywordList((prev) => prev.filter((keyword) => keyword.id !== targetKeyword.id)),
+          targetUser: { id: neososeoFormData.userID, profileName: neososeoFormData.userName },
         }}
       />
     </>

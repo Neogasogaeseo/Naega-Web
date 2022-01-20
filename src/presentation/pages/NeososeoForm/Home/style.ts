@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StNeososeoFormHome = styled.div`
   width: calc(100vw);
-  padding: 0 20px;
   height: 100%;
   display: grid;
   grid-template-rows: auto 58px;
@@ -11,6 +10,10 @@ export const StNeososeoFormHome = styled.div`
     display: flex;
     align-items: center;
     padding-bottom: 40px;
+  }
+
+  & > div:nth-child(2) {
+    padding: 0 20px;
   }
 
   & img {

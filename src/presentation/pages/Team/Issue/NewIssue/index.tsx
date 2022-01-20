@@ -17,10 +17,13 @@ import { getTeamIssueCategory } from '@infrastructure/remote/issue';
 import { IssueCategory } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
 import { postTeamIssue } from '@infrastructure/remote/issue';
+import { TeamInfoData } from '@api/types/team';
+import { api } from '@api/index';
 
 function TeamNewIssue() {
   const navigate = useNavigate();
   const { teamID } = useParams();
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
   const [categoryList, setCategoryList] = useState<IssueCategory[] | null>(null);
   const [image, setImage] = useState<File | null>();
   const [button, setButton] = useState(false);
@@ -40,6 +43,10 @@ function TeamNewIssue() {
     (async () => {
       const getCategoryList = await getTeamIssueCategory();
       setCategoryList(getCategoryList);
+
+      if (teamID === undefined) return;
+      const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
+      setTeamInfoData(teamDetailData);
     })();
   }, []);
 
@@ -61,9 +68,9 @@ function TeamNewIssue() {
       form.append('content', issueTextarea);
       image && form.append('image', image);
       const response = await postTeamIssue(form);
-      console.log('response', response);
+      console.log(response);
       if (response.status === 200) {
-        navigate('/');
+        navigate(`/team/${teamID}`);
       }
     } catch (error) {
       console.log(error);
@@ -72,7 +79,9 @@ function TeamNewIssue() {
 
   return (
     <StNewIssue>
-      <StTitleWrapper>솝트에 이슈 등록하기</StTitleWrapper>
+      <StTitleWrapper>
+        {teamInfoData && teamInfoData.teamDetailData.teamDetail.teamName}에 이슈 등록하기
+      </StTitleWrapper>
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
       <div>

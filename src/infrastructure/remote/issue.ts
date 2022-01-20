@@ -4,7 +4,6 @@ import { IssueCategory } from '@api/types/team';
 export const getTeamIssueCategory = async (): Promise<IssueCategory[] | null> => {
   const response = await privateAPI.get({ url: `/team/issue/category` });
   if (response.status === 200) {
-    console.log('response', response.data);
     return response.data;
   } else throw '서버 통신 실패';
 };
@@ -20,9 +19,8 @@ export const postTeamIssue = async (issueData: FormData) => {
       .catch((error) => {
         console.log(error.response);
       });
-    console.log('response', response.data);
     if (response.status === 200) {
-      return response.data;
+      return response;
     } else {
       return response;
     }

@@ -9,7 +9,7 @@ import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './s
 
 interface OutletContextProps {
   keywordList: Keyword[];
-  targetUser: { id: number; profileImage?: string; profileName: string };
+  targetUser: { id: number; profileName: string };
   addKeyword: (keyword: Keyword) => void;
   removeKeyword: (keyword: Keyword) => void;
 }

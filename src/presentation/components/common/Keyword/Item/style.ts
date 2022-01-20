@@ -5,7 +5,7 @@ export const StKeywordItem = styled.div<{ color: string }>`
   position: relative;
   & > div {
     background-color: ${({ color }) => color};
-    color: ${(props) => (props.color === COLOR.GRAY_3 ? COLOR.BLACK : COLOR.WHITE)};
+    color: ${(props) => (props.color === COLOR.GRAY_2 ? COLOR.BLACK : COLOR.WHITE)};
     font-size: 13px;
     border-radius: 18px;
     padding: 7px 12px;

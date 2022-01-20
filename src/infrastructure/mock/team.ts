@@ -47,6 +47,21 @@ export function teamDataMock(): TeamService {
     return [];
   };
 
+  const getTeamMembers = async () => {
+    await wait(2000);
+    return [];
+  };
+
+  const postFeedback = async () => {
+    await wait(2000);
+    return {
+      isSuccess: true,
+      createdFeedbackID: 2,
+      createdAt: '2021-01-21',
+      targetUserProfileID: 'suziep',
+    };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -57,6 +72,8 @@ export function teamDataMock(): TeamService {
     getMyIssue,
     getInviteInfo,
     getSearchedUserList,
+    getTeamMembers,
+    postFeedback,
   };
 }
 

@@ -97,4 +97,18 @@ export type TeamIssueCategory = {
 export type IssueCategory = {
   id: number;
   name: string;
+}
+
+export type PostFeedbackResponse = {
+  isSuccess: boolean;
+  createdFeedbackID: number;
+  createdAt: string;
+  targetUserProfileID: string;
+};
+
+export type PostFeedbackRequestBody = {
+  issueId: number;
+  taggedUserId: number;
+  content: string;
+  keywordIds: number[];
 };

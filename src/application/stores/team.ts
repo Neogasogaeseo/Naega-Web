@@ -1,9 +1,9 @@
-import { IssueData, SearchedUser, TeamMember } from '@api/types/team';
+import { FeedbackDetail, SearchedUser, TeamMember } from '@api/types/team';
 import { atom } from 'recoil';
 
-export const teamIssueState = atom<IssueData | null>({
+export const teamFeedbackState = atom<FeedbackDetail[]>({
   key: 'teamIssueState',
-  default: null,
+  default: [],
 });
 
 export const searchedUserListState = atom<SearchedUser[]>({

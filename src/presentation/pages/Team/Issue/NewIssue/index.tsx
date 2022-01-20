@@ -36,12 +36,12 @@ function TeamNewIssue() {
     setButton(false);
   }, [issueTextarea]);
 
-  useEffect(()=>{
-    (async ()=>{
+  useEffect(() => {
+    (async () => {
       const getCategoryList = await getTeamIssueCategory();
       setCategoryList(getCategoryList);
     })();
-  },[]);
+  }, []);
 
   const onClickSelectedHandler = (category: IssueCategory) => {
     if (selectedCategory.length === 0) {
@@ -54,18 +54,18 @@ function TeamNewIssue() {
 
   const onClickSubmitIssue = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try{
+    try {
       const form = new FormData();
-      teamID && form.append('teamId',teamID);
-      form.append('categoryId',selectedCategory.map(category => category.id).join(''));
-      form.append('content',issueTextarea);
-      image && form.append('image',image);
+      teamID && form.append('teamId', teamID);
+      form.append('categoryId', selectedCategory.map((category) => category.id).join(''));
+      form.append('content', issueTextarea);
+      image && form.append('image', image);
       const response = await postTeamIssue(form);
-      console.log("response",response);
-      if(response.status===200){
+      console.log('response', response);
+      if (response.status === 200) {
         navigate('/');
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -76,19 +76,20 @@ function TeamNewIssue() {
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
       <div>
-        {categoryList && categoryList.map((category, id) => {
-          return (
-            <StSelectCategory
-              selected={selectedCategory.indexOf(category)}
-              key={id}
-              onClick={() => {
-                onClickSelectedHandler(category);
-              }}
-            >
-              {category.name}
-            </StSelectCategory>
-          );
-        })}
+        {categoryList &&
+          categoryList.map((category, id) => {
+            return (
+              <StSelectCategory
+                selected={selectedCategory.indexOf(category)}
+                key={id}
+                onClick={() => {
+                  onClickSelectedHandler(category);
+                }}
+              >
+                {category.name}
+              </StSelectCategory>
+            );
+          })}
       </div>
       <StTextera
         placeholder="직접 입력해주세요"

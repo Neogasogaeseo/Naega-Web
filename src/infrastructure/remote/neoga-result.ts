@@ -1,23 +1,22 @@
 import {privateAPI} from './base';
-import { Keyword } from '@infrastructure/api/types/user';
-
-export type ResultDetailList = {
-    id: number;
-    title: string;
-    subtitle: string;
-    darkIconImage: string;
-    createAt: string;
-    q: string;
-    keywordlists :Keyword[];
-  }
+import { ResultDetailList } from '@api/types/neoga';
   
-export const getNeogaResult = async(formID: number) => {
-    try{
+export const getNeogaResult = async(formID: number): Promise<ResultDetailList|undefined> => {
+try{
         const response = await privateAPI.get({url:`/form/detail/${formID}`});
-        if(response.status === 200 ){
-            console.log(response);
-            return response.data;
-        }
+            return {
+                id: response.data.id,
+                title: response.data.title,
+                subtitle: response.data.subtitle,
+                darkIconImage: response.data.darkIconImage,
+                createdAt: response.data.createdAt,
+                q:response.data.q,
+                keywordlists: response.data.keyword.map((keyword:any)=>({
+                    id: keyword.id,
+                    content: keyword.name,
+                    color: keyword.colorcode,
+                }))
+            }
     }
     catch(e){
         throw '서버 통신 실패';

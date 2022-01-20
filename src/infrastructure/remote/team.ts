@@ -24,8 +24,8 @@ export function teamDataRemote(): TeamService {
     return {
       isSuccess: response.status === 200,
       createdFeedbackID: response.data.feecbackId,
-      createdAt: response.data.feecbackId,
-      targetUserProfileID: response.data.targetUserProfileId,
+      createdAt: response.data.createdAt,
+      targetUserProfileID: response.data.taggedUserProfileId,
     };
   };
 

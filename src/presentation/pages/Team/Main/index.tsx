@@ -37,16 +37,16 @@ function TeamMain() {
     if (teamID === undefined) return;
     if (!isChecked) {
       (async () => {
-        const { issueListData } = await api.teamService.getMyIssue(teamID);
+        const { issueListData } = await api.teamService.getTeamIssue(teamID);
         setIssueListData(issueListData);
       })();
     } else {
       (async () => {
-        const { issueListData } = await api.teamService.getTeamIssue(teamID);
+        const { issueListData } = await api.teamService.getMyIssue(teamID);
         setIssueListData(issueListData);
       })();
     }
-  }, [isChecked, teamID]);
+  }, [isChecked]);
 
   return (
     <StTeamMain>

@@ -4,7 +4,7 @@ import { imgEmptyMain } from '@assets/images';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '@api/index';
-import { NeogaMainCardItem, NeogaBannerItem } from '@api/types/neoga';
+import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 import { useLoginUser } from '@hooks/useLoginUser';
@@ -13,11 +13,8 @@ function HomeNeoga() {
   const navigate = useNavigate();
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
+  const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
   const { username } = useLoginUser();
-
-  // 임시 변수
-  const isData = true;
-  const RESULT_COUNT = 5;
 
   useEffect(() => {
     (async () => {
@@ -30,6 +27,13 @@ function HomeNeoga() {
     (async () => {
       const data = await api.neogaService.getBannerTemplate();
       setBanner(data);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const data = await api.neogaService.getMainResultCard();
+      setCardItem(data);
     })();
   }, []);
 
@@ -66,21 +70,22 @@ function HomeNeoga() {
         <h1>{username}님이 만든 너가소개서</h1>
         <div>
           <h2>내가 생성한 너가소개서를 확인하세요!</h2>
-          {isData && (
+          {cardItem && (
             <button onClick={() => navigate('/neoga/result')}>
               전체보기
               <img src={icWhole} />
             </button>
           )}
         </div>
-        {isData ? (
+        {cardItem ? (
           <>
-            <NeogaResultCard />
-            <NeogaResultCard />
-            {RESULT_COUNT > 2 && (
+            {cardItem.resultList.map((result) => (
+              <NeogaResultCard key={result.id} {...result} />
+            ))}
+            {cardItem.count > 2 && (
               <StButtonArea>
                 <button onClick={() => navigate('/neoga/result')}>
-                  외 {RESULT_COUNT - 2}개 더보기
+                  외 {cardItem.count - 2}개 더보기
                 </button>
               </StButtonArea>
             )}

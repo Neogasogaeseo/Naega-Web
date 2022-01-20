@@ -35,3 +35,23 @@ export type ResultDetailList = {
   q: string;
   keywordlists: Keyword[];
 };
+export type NeogaAnswerList = {
+  id: number;
+  name: string;
+  relationship: string;
+  content: string;
+  keyword: Keyword[];
+}
+
+export type NeogaResultList = {
+  id: number;
+  title: string;
+  darkIconImage: string;
+  createdAt: string;
+  answer?: NeogaAnswerList[];
+}
+
+export type NeogaResultCardItem = {
+  resultList: NeogaResultList[];
+  count: number;
+}

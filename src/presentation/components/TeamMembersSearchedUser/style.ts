@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
-export const StTeamMembersSearchedMember = styled.div`
+export const StTeamMembersSearchedUser = styled.div`
   padding: 15px 0;
   margin: 0 20px;
   display: flex;

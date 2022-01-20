@@ -1,7 +1,7 @@
 import { StTeamRegisterMembers, StHeader, StTeamMembersSearchResultTitle } from './style';
 import { IcBack } from '@assets/icons';
 import TeamMembersSearchBar from '@components/TeamMembersSearchBar';
-import TeamMembersSearchResult from '@components/TeamMembersSearchedMember';
+import TeamMembersSearchedUser from '@components/TeamMembersSearchedUser';
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
@@ -72,13 +72,13 @@ export default function TeamRegisterMembers() {
       </StHeader>
       <TeamMembersSearchBar onClickSearchButton={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
-      {searchedUserList.map((member) => {
-        const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = member;
+      {searchedUserList.map((user) => {
+        const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;
         return (
-          <TeamMembersSearchResult
+          <TeamMembersSearchedUser
             key={id}
             onClickButton={() => toggleMember(id, profileId, profileName, profileImage, isAdded)}
-            member={member}
+            user={user}
           />
         );
       })}

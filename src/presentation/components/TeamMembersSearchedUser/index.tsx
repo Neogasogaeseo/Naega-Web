@@ -1,18 +1,18 @@
-import { StTeamMembersSearchedMember, StProfileName, StId, StAddToggleButton } from './style';
+import { StTeamMembersSearchedUser, StProfileName, StId, StAddToggleButton } from './style';
 import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { icMemberAdd, icMemberAdded } from '@assets/icons';
 
-interface TeamMembersSearchedMemberProps {
-  member: SearchedUser;
+interface TeamMembersSearchedUserProps {
+  user: SearchedUser;
   onClickButton: (id: number, profileName: string, isAdded: boolean) => void;
 }
 
-export default function TeamMembersSearchedMember(props: TeamMembersSearchedMemberProps) {
-  const { member, onClickButton } = props;
-  const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = member;
+export default function TeamMembersSearchedUser(props: TeamMembersSearchedUserProps) {
+  const { user, onClickButton } = props;
+  const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;
   return (
-    <StTeamMembersSearchedMember>
+    <StTeamMembersSearchedUser>
       <div>
         <img src={profileImage} />
         <div>
@@ -24,6 +24,6 @@ export default function TeamMembersSearchedMember(props: TeamMembersSearchedMemb
         src={isAdded ? icMemberAdded : icMemberAdd}
         onClick={() => onClickButton(id, profileName, isAdded)}
       />
-    </StTeamMembersSearchedMember>
+    </StTeamMembersSearchedUser>
   );
 }

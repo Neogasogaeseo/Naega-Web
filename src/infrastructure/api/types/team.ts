@@ -92,9 +92,9 @@ export type TeamInviteData = {
 
 export type TeamIssueCategory = {
   IssueCategoryData: IssueCategory[];
-}
+};
 
 export type IssueCategory = {
   id: number;
   name: string;
-}
+};

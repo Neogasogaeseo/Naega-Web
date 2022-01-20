@@ -2,6 +2,13 @@ import { api } from '@api/index';
 import { useEffect, useState } from 'react';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
+import { ResultFormList } from '@api/types/neoga';
+import { imgEmptyFeedback } from '@assets/images';
+import { ResultDetailList } from '@api/types/neoga';
+import { getNeogaResult } from '@infrastructure/remote/neoga-result';
+import { useToast } from '@hooks/useToast';
+import { copyClipboard } from '@utils/copyClipboard';
+import { useParams } from 'react-router-dom';
 import {
   StNeogaDetailForm,
   StTitle,
@@ -20,21 +27,17 @@ import {
   StButton,
   StMoreWrapper,
   StMoreButton,
+  StIcon,
 } from './style';
-import { ResultFormList } from '@api/types/neoga';
-import { imgEmptyFeedback } from '@assets/images';
-import { useParams } from 'react-router-dom';
-import { ResultDetailList } from '@api/types/neoga';
-import {getNeogaResult} from '@infrastructure/remote/neoga-result';
-import {useNavigate} from 'react-router-dom';
 
 function NeogaDetailForm() {
-  const navigate = useNavigate();
   const { formID } = useParams();
   const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
   const [resultList, setResultList] = useState<ResultFormList[]>([]);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
+  const link = `http://localhost:3000/neososeoform/${resultKeywordList && resultKeywordList.q}`;
+  const { fireToast } = useToast();
 
   useEffect(() => {
     if (!formID) return;
@@ -64,12 +67,7 @@ function NeogaDetailForm() {
     setLookMoreButton(false);
   };
 
-  const onClickCopyLink = () => {
-    navigate(`/neososeoform/${resultKeywordList&&resultKeywordList.q}`);
-  }
-
-if(!resultKeywordList)
-return <></>
+  if (!resultKeywordList) return <></>;
   return (
     <StNeogaDetailForm>
       <div>
@@ -77,14 +75,24 @@ return <></>
           <StTitle>
             {resultKeywordList.title} <br />
           </StTitle>
+          <StIcon>
+            <img src={resultKeywordList.darkIconImage} />
+          </StIcon>
         </StHeader>
         <StLink>
           <img src={icLink} />
-          <p onClick={onClickCopyLink}>링크 복사하기</p>
+          <p
+            onClick={() =>
+              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
+            }
+          >
+            링크 복사하기
+          </p>
         </StLink>
         <StDate>{resultKeywordList.createdAt} 에 생성</StDate>
         <StQuestion>
-          <span>Q.</span>{resultKeywordList.subtitle}
+          <span>Q.</span>
+          {resultKeywordList.subtitle}
         </StQuestion>
       </div>
       {resultBoolean ? (
@@ -93,14 +101,17 @@ return <></>
             <p>키워드모음</p>
             {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultKeywordList?resultKeywordList.keywordlists.slice(0, 7):[]}
+                keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
                 onItemClick={() => null}
               />
             )}
             <StMoreWrapper>
               {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
                 <>
-                  <ImmutableKeywordList keywordList={resultKeywordList?.keywordlists??[]} onItemClick={() => null} />
+                  <ImmutableKeywordList
+                    keywordList={resultKeywordList?.keywordlists ?? []}
+                    onItemClick={() => null}
+                  />
                   <hr />
                   <StMoreButton onClick={onClickFold}>
                     접기<img src={IcArrowUp}></img>
@@ -143,7 +154,13 @@ return <></>
       ) : (
         <StEmptyFeedback>
           <img src={imgEmptyFeedback} alt="" />
-          <StButton>링크 복사하기</StButton>
+          <StButton
+            onClick={() =>
+              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
+            }
+          >
+            링크 복사하기
+          </StButton>
         </StEmptyFeedback>
       )}
     </StNeogaDetailForm>

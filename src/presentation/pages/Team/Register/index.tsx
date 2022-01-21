@@ -21,22 +21,25 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
+import { useEffect, useRef } from 'react';
 
 function TeamRegister() {
   const [image, setImage] = useRecoilState(teamImageState);
-  const [teamName, setTeamName] = useRecoilState(teamNameState);
+  const [name, setName] = useRecoilState(teamNameState);
   const [description, setDescription] = useRecoilState(teamDescriptionState);
   const resetImage = useResetRecoilState(teamImageState);
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
   const resetSelectedUserList = useResetRecoilState(selectedUserListState);
+  const nameRef = useRef<HTMLInputElement>(null);
+
   const navigate = useNavigate();
   const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
 
   const submitTeamInfo = async () => {
     const form = new FormData();
-    form.append('teamName', teamName);
+    form.append('teamName', name);
     image && form.append('image', image);
     description && form.append('description', description);
     selectedUserList.length &&
@@ -52,6 +55,10 @@ function TeamRegister() {
     resetSelectedUserList();
   };
 
+  useEffect(() => {
+    nameRef.current && (nameRef.current.value = name);
+  }, []);
+
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
@@ -63,10 +70,10 @@ function TeamRegister() {
       </StAbsoluteWrapper>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
       <CommonInput
-        value={teamName}
-        onChange={(value) => setTeamName(value)}
+        ref={nameRef}
         width="100%"
         placeholder="직접 입력해주세요"
+        onChange={() => nameRef.current && setName(nameRef.current.value)}
       />
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />
       <StTextarea
@@ -88,7 +95,7 @@ function TeamRegister() {
           submitTeamInfo();
           navigate('/home/team');
         }}
-        isActive={teamName.length > 0}
+        isActive={name.length > 0}
       >
         완료
       </StSubmitButton>

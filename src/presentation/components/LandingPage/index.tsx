@@ -1,4 +1,12 @@
-import { imgLogo, ImgMainPage, ImgMypage, ImgTeamsoseo, ImgGlass, ImgLink } from '@assets/images';
+import {
+  imgLogo,
+  ImgMainPage,
+  ImgMypage,
+  ImgTeamsoseo,
+  ImgGlass,
+  ImgLink,
+  ImgLanding,
+} from '@assets/images';
 import { useNavigate } from 'react-router-dom';
 import {
   StLogin,
@@ -62,7 +70,7 @@ function LandingPage() {
           친구들의 답변으로 새로운 나를 발견하세요
         </StMiddleContent>
         <StImgMainPhone>
-          <img src="https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/landing%2Fimg_question.svg?alt=media" />
+          <img src={ImgLanding} />
         </StImgMainPhone>
         <NeogaLottie />
       </StMiddle>

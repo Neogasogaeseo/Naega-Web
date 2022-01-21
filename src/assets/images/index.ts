@@ -18,3 +18,4 @@ export { default as ImgLink } from './img_link.svg';
 export { default as ImgMypage } from './img_mypage.svg';
 export { default as ImgTeamsoseo } from './img_teamsoseo.webp';
 export { default as ImgLoginCharacter } from './img_loginChar.svg';
+export { default as ImgLanding } from './img_landing.png';

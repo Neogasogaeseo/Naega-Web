@@ -42,7 +42,7 @@ export type NeogaAnswerList = {
   relationship: string;
   content: string;
   keyword: Keyword[];
-}
+};
 
 export type NeogaResultList = {
   id: number;
@@ -50,32 +50,32 @@ export type NeogaResultList = {
   darkIconImage: string;
   createdAt: string;
   answer?: NeogaAnswerList[];
-}
+};
 
 export type NeogaResultCardItem = {
   resultList: NeogaResultList[];
   count: number;
-}
+};
 
 export type ResultFeedList = {
-  answerCount: number,
+  answerCount: number;
   answer: FeedAnswer[];
-}
+};
 
 export type FeedAnswer = {
-  formID: number,
-  id: number,
-  name: string,
-  relationship: string,
-  content: string,
-  isPinned: boolean,
+  formID: number;
+  id: number;
+  name: string;
+  relationship: string;
+  content: string;
+  isPinned: boolean;
   createdAt: string;
   keywords: AnswerKeyword[];
-}
+};
 
 export type AnswerKeyword = {
-  id: number,
-  name: string,
-  colorcode: string,
-  answerId: number,
-}
+  id: number;
+  name: string;
+  colorcode: string;
+  answerId: number;
+};

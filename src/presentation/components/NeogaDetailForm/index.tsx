@@ -33,7 +33,7 @@ import {
 function NeogaDetailForm() {
   const { formID } = useParams();
   const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
-  const [resultFeedback, setResultFeedback] = useState<ResultFeedList|null>(null);
+  const [resultFeedback, setResultFeedback] = useState<ResultFeedList | null>(null);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
   const link = `www.neogasogaeseo.com/neososeoform/${resultKeywordList && resultKeywordList.q}`;
@@ -133,23 +133,29 @@ function NeogaDetailForm() {
           <StFeedTitle>
             <span>{resultFeedback?.answerCount}개</span>의 답변 피드
           </StFeedTitle>
-          {resultFeedback&&resultFeedback.answer.map((feedback:any) => {
-            return (
-              <>
-                <StFeedWrapper>
-                  <StFeedHeader>
-                    <StFeedName>
-                      {feedback.name}<p>·</p><span>{feedback.relationship}</span>
-                    </StFeedName>
-                    <StFeedDate>{feedback.createdAt}</StFeedDate>
-                  </StFeedHeader>
-                  <StFeedContent>{feedback.content}</StFeedContent>
-                  <ImmutableKeywordList keywordList={feedback.keywords} onItemClick={() => null} />
-                  <hr />
-                </StFeedWrapper>
-              </>
-            );
-          })}
+          {resultFeedback &&
+            resultFeedback.answer.map((feedback: any) => {
+              return (
+                <>
+                  <StFeedWrapper>
+                    <StFeedHeader>
+                      <StFeedName>
+                        {feedback.name}
+                        <p>·</p>
+                        <span>{feedback.relationship}</span>
+                      </StFeedName>
+                      <StFeedDate>{feedback.createdAt}</StFeedDate>
+                    </StFeedHeader>
+                    <StFeedContent>{feedback.content}</StFeedContent>
+                    <ImmutableKeywordList
+                      keywordList={feedback.keywords}
+                      onItemClick={() => null}
+                    />
+                    <hr />
+                  </StFeedWrapper>
+                </>
+              );
+            })}
         </>
       ) : (
         <StEmptyFeedback>

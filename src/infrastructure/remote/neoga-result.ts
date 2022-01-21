@@ -23,27 +23,27 @@ export const getNeogaResult = async (formID: number): Promise<ResultDetailList |
 };
 
 export const getNeogaFeedbackResult = async (formID: number): Promise<ResultFeedList | null> => {
-  try{
-    const response = await privateAPI.get({ url: `/form/detail/${formID}/answer`});
+  try {
+    const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
     return {
       answerCount: response.data.answerCount,
-      answer: response.data.answer.map((feedback:any)=> ({
+      answer: response.data.answer.map((feedback: any) => ({
         formID: feedback.formID,
         id: feedback.id,
-        name:feedback.name,
+        name: feedback.name,
         relationship: feedback.relationship,
         content: feedback.content,
         isPinned: feedback.isPinned,
         createdAt: feedback.createdAt,
-        keywords: feedback.keywords.map((keyword:any)=>({
-          id:keyword.id,
-          content:keyword.name,
-          color:keyword.colorcode,
-          answerId:keyword.answerId
+        keywords: feedback.keywords.map((keyword: any) => ({
+          id: keyword.id,
+          content: keyword.name,
+          color: keyword.colorcode,
+          answerId: keyword.answerId,
         })),
       })),
     };
-  }catch(e){
+  } catch (e) {
     throw '서버 통신 실패';
   }
-}
+};

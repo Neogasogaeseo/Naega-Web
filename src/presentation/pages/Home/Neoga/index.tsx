@@ -41,7 +41,11 @@ function HomeNeoga() {
     <StHomeNeoga>
       <StBanner
         color={banner?.backgroundColor}
-        onClick={(isCreated) => navigate(isCreated ? `/neoga/create/${banner?.id}/created` : `/neoga/create/${banner?.id}`)}
+        onClick={(isCreated) =>
+          navigate(
+            isCreated ? `/neoga/create/${banner?.id}/created` : `/neoga/create/${banner?.id}`,
+          )
+        }
       >
         <div>
           <div>{banner?.title}</div>
@@ -70,14 +74,14 @@ function HomeNeoga() {
         <h1>{username}님이 만든 너가소개서</h1>
         <div>
           <h2>내가 생성한 너가소개서를 확인하세요!</h2>
-          {cardItem && (
+          {cardItem && cardItem.resultList.length > 0 && (
             <button onClick={() => navigate('/neoga/result')}>
               전체보기
               <img src={icWhole} />
             </button>
           )}
         </div>
-        {cardItem ? (
+        {cardItem && cardItem?.resultList.length > 0 ? (
           <>
             {cardItem.resultList.map((result) => (
               <NeogaResultCard key={result.id} {...result} />

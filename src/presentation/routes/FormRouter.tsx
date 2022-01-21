@@ -3,7 +3,7 @@ import { lazy } from 'react';
 const NeososeoFormAnswer = lazy(() => import('@pages/NeososeoForm/Answer'));
 const NeososeoFormHome = lazy(() => import('@pages/NeososeoForm/Home'));
 const NeososeoFormIntro = lazy(() => import('@pages/NeososeoForm/Intro'));
-const TeamIssueKeyword = lazy(() => import('@pages/Team/Issue/Keyword'));
+import TeamIssueKeyword from '@pages/Team/Issue/Keyword';
 
 function FormRouter() {
   return (

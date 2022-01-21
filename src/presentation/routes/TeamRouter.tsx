@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import PrivateRoute from './common/PrivateRoute';
+import TeamIssueFeedback from '@pages/Team/Issue/Feedback';
+import TeamIssueKeyword from '@pages/Team/Issue/Keyword';
 const TeamIssue = lazy(() => import('@pages/Team/Issue'));
-const TeamIssueFeedback = lazy(() => import('@pages/Team/Issue/Feedback'));
-const TeamIssueKeyword = lazy(() => import('@pages/Team/Issue/Keyword'));
 const TeamNewIssue = lazy(() => import('@pages/Team/Issue/NewIssue'));
 const TeamMain = lazy(() => import('@pages/Team/Main'));
 const TeamRegister = lazy(() => import('@pages/Team/Register'));

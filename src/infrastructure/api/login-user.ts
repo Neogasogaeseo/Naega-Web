@@ -28,8 +28,7 @@ export const postJoin = async (joinData: FormData) => {
       data: joinData,
       type: 'multipart',
     });
-      console.log("response1",response);
-      return response;
+    return response;
   } catch (e) {
     throw '회원가입 실패';
   }

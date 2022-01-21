@@ -7,6 +7,7 @@ export const NEOGA_DATA = {
     backgroundColor: '#434343',
     isBanner: true,
     isNew: true,
+    isCreated: true,
   },
   MAIN_TEMPLATE: [
     {

@@ -22,7 +22,7 @@ function NeogaResultComment(props: NeogaResultCommentProps) {
       <div>{content}</div>
       <div>
         <ImmutableKeywordList
-          keywordList={keyword}
+          keywordList={keyword.slice(0, 2)}
           onItemClick={() => {
             return;
           }}

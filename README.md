@@ -1,4 +1,4 @@
-(수정중)
+![image](https://user-images.githubusercontent.com/73823388/150393581-05b5d78e-6283-48d4-b983-f75ebaaca34b.png)
 
 # 너가소개서<img src="https://user-images.githubusercontent.com/73823388/150399439-ae1c9902-8e37-45a3-a6a5-f3d29e7601a4.png" align=left width=100>
 
@@ -11,7 +11,11 @@
 
 </div>
 
+
+
 ## 📓 Main Service
+
+
 
 #### `너가소개서` <br />
 나를 알아갈 수 있는 다양한 질문의 설문 링크를 열고, 친구들의 답변으로 나를 알아가세요! <br />
@@ -19,25 +23,24 @@
 <img src="https://user-images.githubusercontent.com/73823388/150408607-bf7d2bf2-16ab-4dfa-b27f-320b52af827a.png" width=200>
 <img src="https://user-images.githubusercontent.com/73823388/150408727-93c3744a-444c-480c-a941-1346ff4ea2d0.png" width=200>
   <img src="https://user-images.githubusercontent.com/73823388/150408869-d1c5a594-9d08-436d-9054-4ce74e51a7b9.png" width=200>
-   <img src="https://user-images.githubusercontent.com/73823388/150410268-9d6daf89-1c0b-4a31-9263-1806e405dfdd.png" width=200>
+   <img src="https://user-images.githubusercontent.com/73823388/150532865-59f7396d-c94b-4d87-83a8-a03da379bea1.png" width=200>
 </div>
 
 
 #### `팀원소개서` <br />
 팀원들과 협업하며 일어난 이슈들을 기록하고 그에 대한 피드백을 주고 받으세요! <br />
 <div align="left">
-<img src="https://user-images.githubusercontent.com/73823388/150412007-98f414e7-5b99-4410-b582-0a32782cec21.png" width=200>
+<img src="https://user-images.githubusercontent.com/73823388/150534199-9f5ba65c-a77f-4a85-bc5b-0d2dced5e0b2.png" width=200>
 <img src="https://user-images.githubusercontent.com/73823388/150412223-db984eb7-c2db-4018-bf20-e4a77ca7c08d.png" width=200>
-  <img src="https://user-images.githubusercontent.com/73823388/150408869-d1c5a594-9d08-436d-9054-4ce74e51a7b9.png" width=200>
-   <img src="https://user-images.githubusercontent.com/73823388/150410268-9d6daf89-1c0b-4a31-9263-1806e405dfdd.png" width=200>
+  <img src="https://user-images.githubusercontent.com/73823388/150533927-b9bbc079-e366-4dce-b2f8-dcf277c4a3ce.png" width=200>
+   <img src="https://user-images.githubusercontent.com/73823388/150533291-a5ee42b2-81ca-43fd-9b48-fa7604d40af6.png" width=200>
 </div>
 
 #### `마이페이지` <br />
-나에게 많이 나온 키워드로 나를 소개하세요. 나를 잘 표현하는 소개를 Pick해서 마이페이지를 구성하고 링크로 공유해서 주변에 자랑해보세요
-
-<br />
-
-![image](https://user-images.githubusercontent.com/73823388/150393581-05b5d78e-6283-48d4-b983-f75ebaaca34b.png)
+나에게 많이 나온 키워드로 나를 소개하세요. 나를 잘 표현하는 소개를 Pick해서 마이페이지를 구성하고 링크로 공유해서 주변에 자랑해보세요! <br />
+<div align="left">
+<img src="https://user-images.githubusercontent.com/73823388/150534348-973cdf41-034a-4c6f-81e0-9206ce536bd5.png" width=200>
+</div>
 
 <br />
 

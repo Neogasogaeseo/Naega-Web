@@ -5,8 +5,12 @@ export const StJoinCompleteForm = styled.div`
   text-align-last: center;
   margin-top: 150px;
   & > p {
-    margin-top: 18px;
+    margin-top: 21px;
     text-align: center;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: -0.01em;
+    color: ${COLOR.GRAY_5};
   }
 `;
 

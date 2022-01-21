@@ -57,6 +57,13 @@ export type NeogaResultCardItem = {
   count: number;
 };
 
+export type CreateFormInfo = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image: string;
+};
+
 export type ResultFeedList = {
   answerCount: number;
   answer: FeedAnswer[];

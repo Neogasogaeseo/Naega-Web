@@ -42,6 +42,17 @@ export function neogaDataMock(): NeogaService {
     return { isSuccess: true };
   };
 
+  const postCreateForm = async (formID: number) => {
+    console.log(formID);
+    await wait(2000);
+    return '큐';
+  };
+
+  const getCreateFormInfo = async () => {
+    await wait(2000);
+    return { id: 0, title: '', subtitle: '', image: '' };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -51,6 +62,8 @@ export function neogaDataMock(): NeogaService {
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,
+    postCreateForm,
+    getCreateFormInfo,
   };
 }
 

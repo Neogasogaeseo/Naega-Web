@@ -1,19 +1,34 @@
-import { imgComputer } from '@assets/images';
 import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
 import Question from '@components/common/Question';
 import { StNeogaLink, StLinkCreateButton } from './style';
 import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { api } from '@api/index';
+import { useState } from 'react';
+import { CreateFormInfo } from '@api/types/neoga';
 
 export default function NeogaLink() {
   const navigate = useNavigate();
-  const title = '너가 닮고 싶은\n나의 일잘러 모습';
-  const image = imgComputer;
-  const question = '나와 함께하며 당신이\n닮고 싶었던 능력이 있었나요?';
+  const { formID } = useParams();
+  const [formData, setFormData] = useState<Omit<CreateFormInfo, 'id'>>({
+    title: '',
+    subtitle: '',
+    image: '',
+  });
+
+  useEffect(() => {
+    if (formID && !isNaN(+formID))
+      (async () => {
+        const formData = await api.neogaService.getCreateFormInfo(Number(formID));
+        setFormData(formData);
+      })();
+  }, []);
 
   return (
     <StNeogaLink>
-      <NeososeoFormHeader title={title} image={image} />
-      <Question content={question} />
+      <NeososeoFormHeader title={formData.title} image={formData.image} />
+      <Question content={formData.subtitle} />
       <StLinkCreateButton onClick={() => navigate(`./new`)}>링크 생성하기</StLinkCreateButton>
     </StNeogaLink>
   );

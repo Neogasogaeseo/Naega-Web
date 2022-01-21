@@ -61,8 +61,8 @@ function HomeNeoga() {
         </div>
         <NeogaMainCardList
           cards={templateList}
-          onItemClick={(id) => {
-            navigate(`/neoga/create/${id}`);
+          onItemClick={(id, isCreated) => {
+            navigate(isCreated ? `/neoga/create/${id}/created` : `/neoga/create/${id}`);
           }}
         />
       </StForm>

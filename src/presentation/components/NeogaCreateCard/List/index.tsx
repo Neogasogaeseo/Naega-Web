@@ -1,4 +1,3 @@
-import React from 'react';
 import NeogaCreateCardItem from '../Item';
 import { StNeogaCreateCardList } from './style';
 
@@ -9,11 +8,12 @@ interface CardItem {
   src: string;
   backgroundColor: string;
   title: string;
+  isCreated: boolean;
 }
 
 interface NeogaCreateCardListProps {
   cards: CardItem[];
-  onItemClick: (id: number) => void;
+  onItemClick: (id: number, isCreated: boolean) => void;
 }
 
 function NeogaCreateCardList(props: NeogaCreateCardListProps) {
@@ -21,7 +21,13 @@ function NeogaCreateCardList(props: NeogaCreateCardListProps) {
   return (
     <StNeogaCreateCardList>
       {cards.map((card) => (
-        <NeogaCreateCardItem key={card.id} {...card} onClick={() => onItemClick(card.id)} />
+        <NeogaCreateCardItem
+          key={card.id}
+          {...card}
+          onClick={() => {
+            onItemClick(card.id, card.isCreated);
+          }}
+        />
       ))}
     </StNeogaCreateCardList>
   );

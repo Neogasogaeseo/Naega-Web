@@ -6,11 +6,12 @@ interface MainCardItem {
   title: string;
   src: string;
   backgroundColor: string;
+  isCreated: boolean;
 }
 
 interface NeogaMainCardListProps {
   cards: MainCardItem[];
-  onItemClick: (id: number) => void;
+  onItemClick: (id: number, isCreated: boolean) => void;
 }
 
 function NeogaMainCardList(props: NeogaMainCardListProps) {
@@ -19,7 +20,11 @@ function NeogaMainCardList(props: NeogaMainCardListProps) {
     <StNeogaMainCardList>
       <StCardWrapper>
         {cards.map((card) => (
-          <NeogaMainCardItem key={card.id} {...card} onItemClick={() => onItemClick(card.id)} />
+          <NeogaMainCardItem
+            key={card.id}
+            {...card}
+            onItemClick={() => onItemClick(card.id, card.isCreated)}
+          />
         ))}
       </StCardWrapper>
     </StNeogaMainCardList>

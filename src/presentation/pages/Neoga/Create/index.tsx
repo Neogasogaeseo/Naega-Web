@@ -3,12 +3,13 @@ import { NeogaCardItem } from '@api/types/neoga';
 import { imgLogo } from '@assets/images';
 import NeogaCreateCardList from '@components/NeogaCreateCard/List';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StNeogaCreate, StWhiteWrapper, StViewModeSelector } from './style';
 
 function NeogaCreate() {
   const [allTemplateList, setallTemplateList] = useState<NeogaCardItem[]>([]);
   const [viewMode, setViewMode] = useState<'recent' | 'popular'>('recent');
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
@@ -23,8 +24,8 @@ function NeogaCreate() {
         <Link to="/home">
           <img src={imgLogo} />
         </Link>
-        <div>너가소개서 만들기</div>
-        <div>원하는 테마 링크를 생성하여 공유하세요!</div>
+        <div>너가소개서 설문 만들기</div>
+        <div>원하는 설문의 링크를 생성하고 공유해보세요</div>
         <div>
           <StViewModeSelector
             selected={viewMode === 'recent'}
@@ -39,7 +40,12 @@ function NeogaCreate() {
             인기순
           </StViewModeSelector>
         </div>
-        <NeogaCreateCardList cards={allTemplateList} onItemClick={(id) => console.log(id)} />
+        <NeogaCreateCardList
+          cards={allTemplateList}
+          onItemClick={(id, isCreated) => {
+            navigate(isCreated ? `/neoga/create/${id}/created` : `/neoga/create/${id}`);
+          }}
+        />
       </StWhiteWrapper>
     </StNeogaCreate>
   );

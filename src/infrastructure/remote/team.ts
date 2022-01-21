@@ -1,6 +1,7 @@
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
+import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
@@ -213,8 +214,8 @@ export function teamDataRemote(): TeamService {
           data: teamInfo,
           type: 'multipart',
         })
-        .catch((error) => {
-          console.log(error.response);
+        .catch((e: AxiosError) => {
+          console.log(e.response);
         });
       if (response.status === 200) {
         console.log(response);
@@ -223,7 +224,6 @@ export function teamDataRemote(): TeamService {
         return { isSuccess: false };
       }
     } catch (e) {
-      console.log(e.response);
       throw '데이터 전송 실패';
     }
   };

@@ -16,6 +16,7 @@ import { selectedUserListState } from '@stores/team';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
+import { api } from '@api/index';
 
 function TeamRegister() {
   const [image, setImage] = useState<File | null>();
@@ -25,13 +26,14 @@ function TeamRegister() {
   const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
 
-  const submitTeamInfo = () => {
+  const submitTeamInfo = async () => {
     const form = new FormData();
     form.append('teamName', teamName);
     image && form.append('image', image);
     description && form.append('description', description);
     selectedUserList.length &&
       form.append('userIdList', selectedUserList.map((user) => user.id).join(' '));
+    await api.teamService.postTeamInfo(form);
   };
 
   return (

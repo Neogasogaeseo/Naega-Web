@@ -48,7 +48,6 @@ function NeososeoFormIntro() {
         <CommonInput
           width="100%"
           placeholder="나를 나타내는 별명을 입력해주세요"
-          value={neososeoAnswer.name}
           onChange={(name) => setUserName(name)}
         />
         <StSubTitle>{neososeoFormData.userName}님과의 관계를 선택해주세요</StSubTitle>

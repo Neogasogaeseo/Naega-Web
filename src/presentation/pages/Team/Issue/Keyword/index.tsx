@@ -3,6 +3,7 @@ import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
+import KeywordEmptyView from '@components/common/Empty/Keyword';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
@@ -57,11 +58,15 @@ function TeamIssueKeyword() {
         <span>{targetUser.profileName}</span>
         <span>님이 받은 키워드</span>
       </StTitleWrapper>
-      <ImmutableKeywordList
-        keywordList={userKeywordList}
-        viewMode="linear"
-        onItemClick={(keyword: Keyword) => addKeyword(keyword)}
-      />
+      {userKeywordList.length > 0 ? (
+        <ImmutableKeywordList
+          keywordList={userKeywordList}
+          viewMode="linear"
+          onItemClick={(keyword: Keyword) => addKeyword(keyword)}
+        />
+      ) : (
+        <KeywordEmptyView />
+      )}
     </StAbsoluteWrapper>
   );
 }

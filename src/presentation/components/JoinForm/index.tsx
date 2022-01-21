@@ -60,6 +60,7 @@ function JoinForm() {
       form.append('refreshtoken', refreshToken);
 
       const response = await postJoin(form);
+      console.log("response2",response);
       if (response.data) {
         saveLoginUser({
           id: response.user,
@@ -69,7 +70,7 @@ function JoinForm() {
           profileImage: response.user.image,
         });
         navigate('/join/complete');
-      } else {
+      } else if (response.status === 204) {
         fireToast({ content: '중복된 아이디입니다. ' });
       }
     } catch (error) {

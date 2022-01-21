@@ -81,7 +81,9 @@ function TeamRegister() {
         ]}
         onAddClick={() => navigate('/team/register/members')}
       />
-      <StSubmitButton onClick={submitTeamInfo}>완료</StSubmitButton>
+      <StSubmitButton onClick={submitTeamInfo} isActive={teamName.length > 0}>
+        완료
+      </StSubmitButton>
     </StTeamRegister>
   );
 }

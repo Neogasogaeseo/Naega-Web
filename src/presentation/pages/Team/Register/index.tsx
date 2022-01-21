@@ -10,18 +10,25 @@ import { imgEmptyProfile, ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
 import ProfileList from '@components/ProfileList';
-import { useState } from 'react';
 import PhotoUpload from '@components/common/FileUpload';
-import { selectedUserListState } from '@stores/team';
-import { useRecoilValue } from 'recoil';
+import {
+  selectedUserListState,
+  teamDescriptionState,
+  teamImageState,
+  teamNameState,
+} from '@stores/team';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 
 function TeamRegister() {
-  const [image, setImage] = useState<File | null>();
-  const [teamName, setTeamName] = useState('');
-  const [description, setDescription] = useState('');
+  const [image, setImage] = useRecoilState(teamImageState);
+  const [teamName, setTeamName] = useRecoilState(teamNameState);
+  const [description, setDescription] = useRecoilState(teamDescriptionState);
+  const resetImage = useResetRecoilState(teamImageState);
+  const resetName = useResetRecoilState(teamNameState);
+  const resetDescription = useResetRecoilState(teamDescriptionState);
   const navigate = useNavigate();
   const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
@@ -34,6 +41,13 @@ function TeamRegister() {
     selectedUserList.length &&
       form.append('userIdList', `[${selectedUserList.map((user) => user.id).join(', ')}]`);
     await api.teamService.postTeamInfo(form);
+    resetTeamInfo();
+  };
+
+  const resetTeamInfo = () => {
+    resetImage();
+    resetName();
+    resetDescription();
   };
 
   return (

@@ -1,6 +1,7 @@
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
+import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
@@ -205,6 +206,28 @@ export function teamDataRemote(): TeamService {
       }));
   };
 
+  const postTeamInfo = async (teamInfo: FormData) => {
+    try {
+      const response = await privateAPI
+        .post({
+          url: `/team`,
+          data: teamInfo,
+          type: 'multipart',
+        })
+        .catch((e: AxiosError) => {
+          console.log(e.response);
+        });
+      if (response.status === 200) {
+        console.log(response);
+        return { isSuccess: true };
+      } else {
+        return { isSuccess: false };
+      }
+    } catch (e) {
+      throw '데이터 전송 실패';
+    }
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -217,5 +240,6 @@ export function teamDataRemote(): TeamService {
     getSearchedUserList,
     getTeamMembers,
     postFeedback,
+    postTeamInfo,
   };
 }

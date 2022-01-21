@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { COMMON_INPUT } from '@styles/common/input';
-import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
+import { FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
@@ -29,8 +29,9 @@ export const StTextarea = styled.textarea`
   resize: none;
 `;
 
-export const StSubmitButton = styled.button`
-  ${CORAL_MAIN_BUTTON}
+export const StSubmitButton = styled.button<{ isActive: boolean }>`
+  background-color: ${(props) => (props.isActive ? COLOR.CORAL_MAIN : COLOR.GRAY_3)};
+  color: ${COLOR.WHITE};
   ${FULL_WIDTH_BUTTON}
   margin-top: 44px;
   margin-bottom: 48px;

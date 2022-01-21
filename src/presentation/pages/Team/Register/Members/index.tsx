@@ -9,11 +9,9 @@ import { TeamMember } from '@api/types/team';
 import { useEffect } from 'react';
 import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
-import { useNavigate } from 'react-router';
 import { api } from '@api/index';
 
 export default function TeamRegisterMembers() {
-  const navigate = useNavigate();
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
@@ -66,9 +64,9 @@ export default function TeamRegisterMembers() {
   return (
     <StTeamRegisterMembers>
       <StHeader>
-        <IcBack onClick={() => navigate(-1)} />
+        <IcBack onClick={() => history.back()} />
         <div>팀원 추가</div>
-        <button onClick={() => navigate(-1)}>완료</button>
+        <button onClick={() => history.back()}>완료</button>
       </StHeader>
       <TeamMembersSearchBar
         onClickSearchButton={searchUser}

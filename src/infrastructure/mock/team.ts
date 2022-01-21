@@ -62,6 +62,14 @@ export function teamDataMock(): TeamService {
     };
   };
 
+  const postTeamInfo = async (teamInfo: FormData) => {
+    await wait(2000);
+    console.log(teamInfo);
+    return {
+      isSuccess: true,
+    };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -74,6 +82,7 @@ export function teamDataMock(): TeamService {
     getSearchedUserList,
     getTeamMembers,
     postFeedback,
+    postTeamInfo,
   };
 }
 

@@ -101,7 +101,7 @@ function HomeMyPage() {
         <div>
           <StTitle>
             <div>
-              <span>내가 사랑한 소개</span>
+              <span>내가 사랑한 내 소개</span>
               <span>{neososeoBookmark.count}</span>
             </div>
             {isMyPage && (
@@ -120,7 +120,7 @@ function HomeMyPage() {
           <StFeedbackTeamWrapper>
             <StTitle>
               <div>
-                <span>일하며 받은 피드백</span>
+                <span>팀에서 받은 내 소개</span>
                 <span>{feedbackBookmark.count}</span>
               </div>
               {isMyPage && (

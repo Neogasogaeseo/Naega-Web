@@ -6,7 +6,6 @@ import { privateAPI } from './base';
 export function NeogaDataRemote(): NeogaService {
   const getBannerTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/banner` });
-    console.log(response.data);
     if (response.status === 200)
       return response.data
         ? {
@@ -25,7 +24,6 @@ export function NeogaDataRemote(): NeogaService {
 
   const getMainTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/template/popular` });
-    console.log(response.data);
     if (response.status === 200)
       return response.data.map((data: any) => ({
         id: data.id,

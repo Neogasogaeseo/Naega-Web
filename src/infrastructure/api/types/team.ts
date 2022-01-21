@@ -97,7 +97,7 @@ export type TeamIssueCategory = {
 export type IssueCategory = {
   id: number;
   name: string;
-}
+};
 
 export type PostFeedbackResponse = {
   isSuccess: boolean;

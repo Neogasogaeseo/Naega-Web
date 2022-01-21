@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import NeogaCreate from '@pages/Neoga/Create';
-import NeogaResult from '@pages/Neoga/Result';
-import FormDetail from '@pages/Neoga/FormDetail';
-import NeogaLink from '@pages/Neoga/Link';
-import NeogaLinkResult from '@pages/Neoga/Link/Result';
-import PrivateRoute from './common/PrivateRoute';
+import { lazy } from 'react';
+const NeogaCreate = lazy(() => import('@pages/Neoga/Create'));
+const NeogaResult = lazy(() => import('@pages/Neoga/Result'));
+const FormDetail = lazy(() => import('@pages/Neoga/FormDetail'));
+const NeogaLink = lazy(() => import('@pages/Neoga/Link'));
+const NeogaLinkResult = lazy(() => import('@pages/Neoga/Link/Result'));
+const PrivateRoute = lazy(() => import('./common/PrivateRoute'));
 
 function NeogaRouter() {
   return (

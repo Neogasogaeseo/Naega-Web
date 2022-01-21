@@ -29,6 +29,7 @@ import {
   StMoreButton,
   StIcon,
 } from './style';
+import { DOMAIN } from '@utils/constant';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
@@ -36,7 +37,7 @@ function NeogaDetailForm() {
   const [resultFeedback, setResultFeedback] = useState<ResultFeedList | null>(null);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
-  const link = `www.neogasogaeseo.com/neososeoform/${resultKeywordList && resultKeywordList.q}`;
+  const link = `${DOMAIN}/neososeoform/${resultKeywordList && resultKeywordList.q}`;
   const { fireToast } = useToast();
 
   useEffect(() => {

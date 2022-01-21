@@ -62,6 +62,10 @@ export const StMiddle = styled.div`
 `;
 
 export const StImgMainPhone = styled.div`
+  & > object {
+    z-index: 999;
+    position: relative;
+  }
   & > img {
     z-index: 999;
     position: relative;

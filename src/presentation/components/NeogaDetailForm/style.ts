@@ -181,4 +181,7 @@ export const StMoreButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 18px;
+  & > img {
+    margin-left: 8px;
+  }
 `;

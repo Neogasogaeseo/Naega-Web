@@ -50,7 +50,8 @@ export const StServiceButton = styled.button<{ isBlack: boolean }>`
   color: ${({ isBlack }) => (!isBlack ? 'white' : COLOR.GRAY_1)};
   font-size: 15px;
   border-radius: 18px;
-  margin: ${({ isBlack }) => (!isBlack ? '57.6px 0px 0px 90px' : '30px 0px 0px 90px')};
+  margin: 0 auto;
+  margin-top: ${({ isBlack }) => (!isBlack ? '57.6px' : '30px')};
 `;
 
 export const StMiddle = styled.div`
@@ -61,9 +62,14 @@ export const StMiddle = styled.div`
 `;
 
 export const StImgMainPhone = styled.div`
+  & > object {
+    z-index: 999;
+    position: relative;
+  }
   & > img {
     z-index: 999;
     position: relative;
+    width: 100%;
   }
 `;
 
@@ -81,6 +87,9 @@ export const StMiddleTitle = styled.div`
     & > span {
       color: ${COLOR.CORAL_MAIN};
     }
+  }
+  & > img {
+    width: 100%;
   }
 `;
 export const StMiddleContent = styled.div`
@@ -114,7 +123,7 @@ export const StMiddleBlack = styled.div`
 
   & > img {
     margin-top: 40px;
-    width: 390px;
+    width: 100%;
     height: 522px;
   }
 `;
@@ -123,7 +132,7 @@ export const StMiddleMypage = styled.div`
   height: 2013px;
   width: 100%;
   & > img {
-    width: 390px;
+    width: 100%;
     height: 842px;
   }
 `;
@@ -144,7 +153,7 @@ export const StFooter = styled.div`
     letter-spacing: -0.01em;
   }
   & > img {
-    width: 390px;
+    width: 100%;
     height: 239px;
     margin-top: 23px;
   }

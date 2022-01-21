@@ -17,7 +17,7 @@ function NeogaLandingLottie() {
   return (
     <div
       id="neogaContainer"
-      style={{ width: '390px', height: '156px', margin: '-30px 0px 0px 0px' }}
+      style={{ width: '100%', height: '156px', margin: '-30px 0px 0px 0px' }}
     />
   );
 }

@@ -119,6 +119,22 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: true };
   };
 
+  const getCreateFormInfo = async (formID: number) => {
+    const response = await privateAPI.get({
+      url: `/form/create/${formID}`,
+    });
+
+    const { id, title, subtitle, darkIconImage } = response.data;
+    if (response.status === 200) {
+      return {
+        id: id,
+        title: title,
+        subtitle: subtitle,
+        image: darkIconImage,
+      };
+    } else throw '서버 통신 실패';
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -128,6 +144,7 @@ export function NeogaDataRemote(): NeogaService {
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,
+    getCreateFormInfo,
   };
 }
 

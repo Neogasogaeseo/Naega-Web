@@ -4,6 +4,7 @@ import {
   NeogaCardItem,
   NeogaResultCardItem,
   ResultFormList,
+  CreateFormInfo,
 } from './types/neoga';
 import { Keyword } from './types/user';
 
@@ -16,4 +17,5 @@ export interface NeogaService {
   getResultKeywords(formID: number): Promise<Keyword[]>;
   getAllResultListTemplates(formID: number): Promise<ResultFormList[]>;
   postAnswerBookmark(answerID: number): Promise<{ isSuccess: boolean }>;
+  getCreateFormInfo(formID: number): Promise<CreateFormInfo>;
 }

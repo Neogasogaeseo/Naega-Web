@@ -17,7 +17,7 @@ function NeogaResultComment(props: NeogaResultCommentProps) {
       <div>
         <span>{name}</span>
         <span>·</span>
-        <span>{relationship}</span>
+        <span>너를 {relationship}</span>
       </div>
       <div>{content}</div>
       <div>

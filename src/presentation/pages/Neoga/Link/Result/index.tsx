@@ -18,9 +18,7 @@ export default function NeogaLinkResult() {
   const createLink = async () => {
     if (!formID || !type) return;
     if (isNaN(+formID)) return;
-    const q = await api.neogaService.postCreateForm(Number(formID), () =>
-      navigate(`/neoga/create/${formID}/created`),
-    );
+    const q = await api.neogaService.postCreateForm(Number(formID));
     setLink(`${DOMAIN}/neososeoform/${q}`);
   };
 

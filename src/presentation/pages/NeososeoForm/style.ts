@@ -10,6 +10,10 @@ export const StNeososeoFormPage = styled.div`
   display: grid;
   grid-template-rows: 70px auto;
   position: relative;
+
+  & > *:first-child {
+    padding: 0 20px;
+  }
 `;
 
 export const StNeososeoTitle = styled.div`

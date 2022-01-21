@@ -70,9 +70,7 @@ function LandingPage() {
           친구들의 답변으로 새로운 나를 발견하세요
         </StMiddleContent>
         <StImgMainPhone>
-          <object type="image/svg+xml" data={ImgMainPhone}>
             <img src={ImgMainPhone} alt="" />
-          </object>
         </StImgMainPhone>
         <NeogaLottie />
       </StMiddle>

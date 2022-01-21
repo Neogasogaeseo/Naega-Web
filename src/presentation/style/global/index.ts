@@ -7,16 +7,9 @@ const GlobalStyle = createGlobalStyle`
 
   html,
   body {
-    width: 100%;
+    max-width: 390px;
     height: 100%;
-  }
-
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
+    margin: 0 auto;
   }
   
   * {

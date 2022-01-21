@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 export const StNeososeoFormPage = styled.div`
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   padding: 50px 0;
   display: grid;
   grid-template-rows: 70px auto;

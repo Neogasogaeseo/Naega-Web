@@ -7,14 +7,20 @@ import { FONT_STYLES } from '@styles/common/font-style';
 export const StTeamIssue = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   grid-template-rows: calc(100vh - 100px) 100px;
   overflow-x: hidden;
   position: relative;
 `;
 
 export const StWrapper = styled.div`
+  padding: 0 20px;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const StLink = styled(Link)`
@@ -25,12 +31,12 @@ export const StLink = styled(Link)`
 `;
 
 export const StHeader = styled.div`
-  overflow-y: scroll;
-  padding: 20px;
+  padding-bottom: 20px;
   & > div {
     display: flex;
     &:nth-child(2) {
       gap: 6px;
+      margin-top: 20px;
       margin-bottom: 8px;
       & > div:nth-child(1) {
         color: ${COLOR.PINK};
@@ -56,6 +62,7 @@ export const StHeader = styled.div`
 
 export const StIssueThumbnail = styled.img`
   height: 227px;
-  width: 100%;
+  width: calc(100% + 40px);
+  margin-left: -20px;
   object-fit: cover;
 `;

@@ -3,7 +3,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StTeamRegisterMembers = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 `;
 

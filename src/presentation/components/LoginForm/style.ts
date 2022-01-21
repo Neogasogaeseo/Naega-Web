@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StLoginForm = styled.div``;
+export const StLoginForm = styled.div`
+  padding: 0 20px;
+  & > img {
+    margin-top: 50px;
+  }
+`;
+
 export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
@@ -22,7 +28,7 @@ export const StLoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  width: 100%;
   height: 58px;
   background-color: #fee500;
   border-radius: 18px;

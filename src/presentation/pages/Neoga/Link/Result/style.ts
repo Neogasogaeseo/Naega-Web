@@ -6,7 +6,6 @@ import { COMMON_INPUT } from '@styles/common/input';
 
 export const StNeogaLinkResult = styled.div`
   padding: 0 20px;
-  width: 100vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

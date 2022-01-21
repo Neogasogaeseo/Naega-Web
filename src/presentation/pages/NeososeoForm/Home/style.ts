@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StNeososeoFormHome = styled.div`
-  width: calc(100vw);
+  width: 100%;
   height: 100%;
   display: grid;
   grid-template-rows: auto 58px;
@@ -17,6 +17,6 @@ export const StNeososeoFormHome = styled.div`
   }
 
   & img {
-    width: calc(100vw - 40px);
+    width: 100%;
   }
 `;

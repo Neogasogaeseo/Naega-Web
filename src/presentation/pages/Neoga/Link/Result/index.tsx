@@ -31,8 +31,6 @@ export default function NeogaLinkResult() {
     createLink();
   }, []);
 
-  useEffect(() => console.log('here'), [link]);
-
   return (
     <StNeogaLinkResult>
       {type === 'new' ? <ImgNewLink /> : <ImgCreatedLink />}

@@ -44,7 +44,6 @@ export function NeososeoFormRemote(): NeososeoFormService {
         console.log(e.response);
       });
     if (response.status === 200 && response.message === '폼 생성 성공') {
-      console.log(response.data);
       return response.data;
     } else {
       navigate();

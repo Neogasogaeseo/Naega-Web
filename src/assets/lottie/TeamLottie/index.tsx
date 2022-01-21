@@ -14,7 +14,7 @@ function TeamLandingLottie() {
         animationData: NeogaLottie,
       });
   }, []);
-  return <div id="teamContainer" style={{ width: '390px', height: '86px' }} />;
+  return <div id="teamContainer" style={{ width: '100%', height: '86px' }} />;
 }
 
 export default TeamLandingLottie;

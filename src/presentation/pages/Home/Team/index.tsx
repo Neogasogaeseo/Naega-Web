@@ -7,12 +7,30 @@ import { StTeamMain, StDivisionLine, StEmptyView } from './style';
 import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
 import { imgEmptyMain } from '@assets/images';
 import TeamInvitation from './Invitation';
+import {
+  selectedUserListState,
+  teamDescriptionState,
+  teamImageState,
+  teamNameState,
+} from '@stores/team';
+import { useResetRecoilState } from 'recoil';
 
 function HomeTeam() {
   const [profileListData, setProfileListData] = useState<TeamMemberNoneId[] | null>(null);
   const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
   const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
+  const resetImage = useResetRecoilState(teamImageState);
+  const resetName = useResetRecoilState(teamNameState);
+  const resetDescription = useResetRecoilState(teamDescriptionState);
+  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
   const navigate = useNavigate();
+
+  const resetTeamInfo = () => {
+    resetImage();
+    resetName();
+    resetDescription();
+    resetSelectedUserList();
+  };
 
   useEffect(() => {
     (async () => {
@@ -50,6 +68,7 @@ function HomeTeam() {
               navigate(`/team/${id}`);
             }}
             onAddClick={() => {
+              resetTeamInfo();
               navigate('/team/register');
             }}
           />

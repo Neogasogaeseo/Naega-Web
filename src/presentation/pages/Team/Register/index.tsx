@@ -29,6 +29,7 @@ function TeamRegister() {
   const resetImage = useResetRecoilState(teamImageState);
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
+  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
   const navigate = useNavigate();
   const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
@@ -48,6 +49,7 @@ function TeamRegister() {
     resetImage();
     resetName();
     resetDescription();
+    resetSelectedUserList();
   };
 
   return (

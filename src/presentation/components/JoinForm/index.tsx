@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   StJoinForm,
-  StDetailWrapper,
   StNoticeWrapper,
   StInputWrapper,
   StButton,
@@ -81,17 +80,15 @@ function JoinForm() {
   return (
     <StJoinForm>
       <StNoticeWrapper>
-        아이디와 사용자 이름을
-        <br /> 입력해주세요
+        회원가입
       </StNoticeWrapper>
-      <StDetailWrapper>너가소개서에서 사용되는 이름이에요!</StDetailWrapper>
       <StProfileImg>
         <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="80px">
           <StPhotoUploadImage src={icProfile} />
         </FileUpload>
       </StProfileImg>
       <StInputWrapper>
-        <p>아이디 입력</p>
+        <p>아이디</p>
         <CommonInput
           width="350px"
           isConditionMet={isConditionMet.id}
@@ -103,7 +100,7 @@ function JoinForm() {
         />
       </StInputWrapper>
       <StInputWrapper>
-        <p>사용자 이름 입력</p>
+        <p>이름</p>
         <CommonInput
           width="350px"
           isConditionMet={isConditionMet.name}

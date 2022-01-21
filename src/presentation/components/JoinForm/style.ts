@@ -5,17 +5,12 @@ export const StJoinForm = styled.div`
   align-self: center;
   margin: 20px;
 `;
-export const StDetailWrapper = styled.div`
-  font-size: 15px;
-  line-height: 100%;
-  color: ${COLOR.GRAY_5};
-  margin-top: 20px;
-  margin-bottom: 35px;
-`;
+
 export const StNoticeWrapper = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 140%;
+  margin: 20px 0px 72px 0px;
 `;
 
 export const StInputWrapper = styled.div`
@@ -23,7 +18,7 @@ export const StInputWrapper = styled.div`
   line-height: 162%;
   margin-top: 20px;
   & > p {
-    margin-left: 10px;
+    margin: 44px 0px 10px 10px;
     font-weight: 600;
     font-size: 16px;
     line-height: 162%;
@@ -35,7 +30,7 @@ export const StButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 70px;
+  margin-top: 137px;
   width: 350px;
   height: 58px;
   background-color: ${COLOR.GRAY_3};

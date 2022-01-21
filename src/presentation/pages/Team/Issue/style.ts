@@ -15,6 +15,11 @@ export const StTeamIssue = styled.div`
 
 export const StWrapper = styled.div`
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const StLink = styled(Link)`
@@ -25,7 +30,6 @@ export const StLink = styled(Link)`
 `;
 
 export const StHeader = styled.div`
-  overflow-y: scroll;
   padding: 20px;
   padding-top: 0;
   & > div {

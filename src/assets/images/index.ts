@@ -15,6 +15,6 @@ export { default as ImgMainPage } from './img_main_character.svg';
 export { default as ImgMainPhone } from './img_landing_phone.svg';
 export { default as ImgGlass } from './img_glass.webp';
 export { default as ImgLink } from './img_link.svg';
-export { default as ImgMypage } from './img_mypage.webp';
+export { default as ImgMypage } from './img_mypage.svg';
 export { default as ImgTeamsoseo } from './img_teamsoseo.webp';
 export { default as ImgLoginCharacter } from './img_loginChar.svg';

@@ -17,3 +17,4 @@ export { default as ImgGlass } from './img_glass.webp';
 export { default as ImgLink } from './img_link.svg';
 export { default as ImgMypage } from './img_mypage.webp';
 export { default as ImgTeamsoseo } from './img_teamsoseo.webp';
+export { default as ImgLoginCharacter } from './img_loginChar.svg';

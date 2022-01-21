@@ -12,10 +12,10 @@ const JoinCompleteForm = () => {
       <StJoinCompleteForm>
         <img src={imgParty} alt="" />
         <StTitleWrapper>
-          <StNoticeWrapper>{username}님 어서오세요!</StNoticeWrapper>
+          <StNoticeWrapper>{username}님 환영합니다!</StNoticeWrapper>
           <StNoticeWrapper>회원가입이 완료되었어요</StNoticeWrapper>
         </StTitleWrapper>
-        <p>너가소개서를 이용해보세요!</p>
+        <p>이제 내 너가소개서를 받아보세요</p>
       </StJoinCompleteForm>
       <StButton
         type="submit"

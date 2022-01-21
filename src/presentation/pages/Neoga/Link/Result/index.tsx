@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useToast } from '@hooks/useToast';
 import { api } from '@api/index';
 import { useState } from 'react';
+import { DOMAIN } from '@utils/constant';
 
 export default function NeogaLinkResult() {
   const { formID, type } = useParams();
@@ -20,7 +21,7 @@ export default function NeogaLinkResult() {
     const q = await api.neogaService.postCreateForm(Number(formID), () =>
       navigate(`/neoga/create/${formID}/created`),
     );
-    setLink(`https://neogasogaeseo.com/neososeoform/${q}`);
+    setLink(`${DOMAIN}/neososeoform/${q}`);
   };
 
   useEffect(() => {

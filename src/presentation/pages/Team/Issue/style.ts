@@ -14,6 +14,7 @@ export const StTeamIssue = styled.div`
 `;
 
 export const StWrapper = styled.div`
+  padding: 0 20px;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -30,12 +31,12 @@ export const StLink = styled(Link)`
 `;
 
 export const StHeader = styled.div`
-  padding: 20px;
-  padding-top: 0;
+  padding-bottom: 20px;
   & > div {
     display: flex;
     &:nth-child(2) {
       gap: 6px;
+      margin-top: 20px;
       margin-bottom: 8px;
       & > div:nth-child(1) {
         color: ${COLOR.PINK};
@@ -61,6 +62,7 @@ export const StHeader = styled.div`
 
 export const StIssueThumbnail = styled.img`
   height: 227px;
-  width: 100%;
+  width: calc(100% + 40px);
+  margin-left: -20px;
   object-fit: cover;
 `;

@@ -6,10 +6,10 @@ export const StNeososeoFormHeader = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: auto 68px;
+  align-items: center;
   white-space: pre;
 
   & div {
-    line-height: 33px;
     ${FONT_STYLES.SB_22_BODY}
   }
 

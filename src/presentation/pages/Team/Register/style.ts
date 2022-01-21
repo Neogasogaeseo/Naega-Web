@@ -33,6 +33,7 @@ export const StSubmitButton = styled.button`
   ${CORAL_MAIN_BUTTON}
   ${FULL_WIDTH_BUTTON}
   margin-top: 44px;
+  margin-bottom: 48px;
 `;
 
 export const StAbsoluteWrapper = styled.div`

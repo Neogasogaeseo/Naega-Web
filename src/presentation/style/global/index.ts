@@ -7,15 +7,9 @@ const GlobalStyle = createGlobalStyle`
 
   html,
   body {
-    width: 100%;
+    max-width: 390px;
     height: 100%;
-  }
-
-  body {
-    @media (min-width: 768px) {
-      width: 390px;
-      margin: 0 auto;
-    }
+    margin: 0 auto;
   }
   
   * {

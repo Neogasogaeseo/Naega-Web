@@ -1,7 +1,6 @@
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
-import { AxiosError } from 'axios';
-import { privateAPI, publicAPI } from './base';
+import { publicAPI } from './base';
 
 export function NeososeoFormRemote(): NeososeoFormService {
   const getFormInfo = async (q: string) => {
@@ -34,22 +33,5 @@ export function NeososeoFormRemote(): NeososeoFormService {
     return { isSuccess: response.status === 200 };
   };
 
-  const postCreateForm = async (formID: number, navigate: () => void) => {
-    const response = await privateAPI
-      .post({
-        url: `/form/create`,
-        data: { formId: formID },
-      })
-      .catch((e: AxiosError) => {
-        console.log(e.response);
-      });
-    if (response.status === 200 && response.message === '폼 생성 성공') {
-      return response.data;
-    } else {
-      navigate();
-      return response.data;
-    }
-  };
-
-  return { getFormInfo, postFormAnswer, postCreateForm };
+  return { getFormInfo, postFormAnswer };
 }

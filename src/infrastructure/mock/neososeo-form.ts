@@ -14,13 +14,7 @@ export function NeososeoFormMock(): NeososeoFormService {
     return { isSuccess: true };
   };
 
-  const postCreateForm = async (formID: number) => {
-    console.log(formID);
-    await wait(2000);
-    return '큐';
-  };
-
-  return { getFormInfo, postFormAnswer, postCreateForm };
+  return { getFormInfo, postFormAnswer };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

@@ -1,4 +1,5 @@
 import { NeogaService } from '@api/neoga';
+import { AxiosError } from 'axios';
 import { NEOGA_DATA } from '../mock/neoga.data';
 import { privateAPI } from './base';
 
@@ -83,19 +84,21 @@ export function NeogaDataRemote(): NeogaService {
           title: result.title,
           darkIconImage: result.darkIconImage,
           createdAt: result.createdAt,
-          answer: result.answer ? result.answer.map((comment: any) => ({
-            id: comment.id,
-            name: comment.name,
-            relationship: comment.relationship,
-            content: comment.content,
-            keyword: comment.keyword
-              ? comment.keyword.map((word: any) => ({
-                  id: word.id,
-                  content: word.name,
-                  color: word.colorCode,
-                }))
-              : [],
-          })) : [],
+          answer: result.answer
+            ? result.answer.map((comment: any) => ({
+                id: comment.id,
+                name: comment.name,
+                relationship: comment.relationship,
+                content: comment.content,
+                keyword: comment.keyword
+                  ? comment.keyword.map((word: any) => ({
+                      id: word.id,
+                      content: word.name,
+                      color: word.colorCode,
+                    }))
+                  : [],
+              }))
+            : [],
         })),
         count: response.data.count,
       };
@@ -117,6 +120,23 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: true };
   };
 
+  const postCreateForm = async (formID: number, navigate: () => void) => {
+    const response = await privateAPI
+      .post({
+        url: `/form/create`,
+        data: { formId: formID },
+      })
+      .catch((e: AxiosError) => {
+        console.log(e.response);
+      });
+    if (response.status === 200 && response.message === '폼 생성 성공') {
+      return response.data;
+    } else {
+      navigate();
+      return response.data;
+    }
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -126,6 +146,7 @@ export function NeogaDataRemote(): NeogaService {
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,
+    postCreateForm,
   };
 }
 

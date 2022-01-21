@@ -3,6 +3,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StNeogaMainCardItem = styled.div`
+  cursor: pointer;
   background-color: ${(props) => props.color};
   ${FONT_STYLES.M_15_TITLE};
   border-radius: 18.1233px;

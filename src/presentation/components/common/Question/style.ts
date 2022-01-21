@@ -3,18 +3,32 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
 export const StQuestion = styled.div`
-  width: 390px;
-  height: 390px;
+  width: 100vw;
+  height: min(400px, 100vw);
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const StFlexWrapper = styled.div`
   position: relative;
+  & img {
+    width: 100%;
+  }
 `;
 
 export const StContent = styled.div`
   position: absolute;
-  top: 105px;
-  left: 96px;
+  top: calc(min(400px, 100vw) * 3 / 10);
+  left: calc(min(400px, 100vw) * 8.6 / 39);
+  width: calc(min(400px, 100vw) * 21 / 39);
+  & > div {
+    width: calc(min(400px, 100vw) * 21 / 39);
+    word-break: keep-all;
+    word-wrap: break-word;
+    display: inline-block;
+    white-space: pre-line;
+  }
   & > div:first-child {
     margin-bottom: 6px;
     font-weight: 600;
@@ -25,7 +39,6 @@ export const StContent = styled.div`
   }
   & > div:last-child {
     ${FONT_STYLES.M_16_BODY}
-    white-space: pre;
     line-height: 143.99%;
     letter-spacing: -0.01em;
   }

@@ -2,7 +2,7 @@ import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
 import { NEOSOSEO_FORM_DATA } from './neososeo-form.data';
 
-export function neososeoFormDataMock(): NeososeoFormService {
+export function NeososeoFormMock(): NeososeoFormService {
   const getFormInfo = async () => {
     await wait(2000);
     return NEOSOSEO_FORM_DATA.FORM;

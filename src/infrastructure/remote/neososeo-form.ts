@@ -1,19 +1,37 @@
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
-import { NEOSOSEO_FORM_DATA } from '@infrastructure/mock/neososeo-form.data';
 import { AxiosError } from 'axios';
-import { privateAPI } from './base';
+import { privateAPI, publicAPI } from './base';
 
-export function neososeoFormDataRemote(): NeososeoFormService {
-  const getFormInfo = async () => {
-    await wait(2000);
-    return NEOSOSEO_FORM_DATA.FORM;
+export function NeososeoFormRemote(): NeososeoFormService {
+  const getFormInfo = async (q: string) => {
+    const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
+    return {
+      title: response.data.form.title,
+      content: response.data.form.subtitle,
+      imageSub: response.data.form.lightIconImage,
+      relation: response.data.relationship.map((relation: any) => ({
+        id: relation.id,
+        content: relation.name,
+      })),
+      userName: response.data.user.name,
+      userID: response.data.user.id,
+      formID: response.data.form.linkFormId,
+    };
   };
 
   const postFormAnswer = async (body: NeososeoAnswerData) => {
-    console.log(body);
-    await wait(2000);
-    return { isSuccess: true };
+    const response = await publicAPI.post({
+      url: '/form/answer',
+      data: {
+        linkFormId: body.formID,
+        name: body.name,
+        relationshipId: body.relationID,
+        content: body.answer,
+        keywordList: body.keyword,
+      },
+    });
+    return { isSuccess: response.status === 200 };
   };
 
   const postCreateForm = async (formID: number, navigate: () => void) => {
@@ -36,5 +54,3 @@ export function neososeoFormDataRemote(): NeososeoFormService {
 
   return { getFormInfo, postFormAnswer, postCreateForm };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

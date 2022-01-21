@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { icCamera } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
 import FileUpload from '@components/common/FileUpload';
@@ -14,12 +13,21 @@ import {
   StPhotoUploadMiddleDesc,
   StSelectCategory,
 } from './style';
+import { getTeamIssueCategory } from '@infrastructure/remote/issue';
+import { IssueCategory } from '@api/types/team';
+import { useNavigate, useParams } from 'react-router-dom';
+import { postTeamIssue } from '@infrastructure/remote/issue';
+import { TeamInfoData } from '@api/types/team';
+import { api } from '@api/index';
 
 function TeamNewIssue() {
-  const categoryList: string[] = ['팀컬처', '기획', '개발', '디자인'];
+  const navigate = useNavigate();
+  const { teamID } = useParams();
+  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
+  const [categoryList, setCategoryList] = useState<IssueCategory[] | null>(null);
   const [image, setImage] = useState<File | null>();
   const [button, setButton] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<IssueCategory[]>([]);
   const [isClickCategory, setIsClickCategory] = useState(false);
   const [issueTextarea, setIssueTextarea] = useState('');
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -27,15 +35,22 @@ function TeamNewIssue() {
     setButton(true);
   };
 
-  const onClickSubmitIssue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-  };
-
   useEffect(() => {
     setButton(false);
   }, [issueTextarea]);
 
-  const onClickSelectedHandler = (category: string) => {
+  useEffect(() => {
+    (async () => {
+      const getCategoryList = await getTeamIssueCategory();
+      setCategoryList(getCategoryList);
+
+      if (teamID === undefined) return;
+      const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
+      setTeamInfoData(teamDetailData);
+    })();
+  }, []);
+
+  const onClickSelectedHandler = (category: IssueCategory) => {
     if (selectedCategory.length === 0) {
       setSelectedCategory([category]);
     } else if (selectedCategory.includes(category)) {
@@ -44,25 +59,46 @@ function TeamNewIssue() {
     setIsClickCategory(!isClickCategory);
   };
 
+  const onClickSubmitIssue = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      const form = new FormData();
+      teamID && form.append('teamId', teamID);
+      form.append('categoryId', selectedCategory.map((category) => category.id).join(''));
+      form.append('content', issueTextarea);
+      image && form.append('image', image);
+      const response = await postTeamIssue(form);
+      console.log(response);
+      if (response.status === 200) {
+        navigate(`/team/${teamID}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <StNewIssue>
-      <StTitleWrapper>솝트에 이슈 등록하기</StTitleWrapper>
+      <StTitleWrapper>
+        {teamInfoData && teamInfoData.teamDetailData.teamDetail.teamName}에 이슈 등록하기
+      </StTitleWrapper>
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
       <div>
-        {categoryList.map((category, id) => {
-          return (
-            <StSelectCategory
-              selected={selectedCategory.indexOf(category)}
-              key={id}
-              onClick={() => {
-                onClickSelectedHandler(category);
-              }}
-            >
-              {category}
-            </StSelectCategory>
-          );
-        })}
+        {categoryList &&
+          categoryList.map((category, id) => {
+            return (
+              <StSelectCategory
+                selected={selectedCategory.indexOf(category)}
+                key={id}
+                onClick={() => {
+                  onClickSelectedHandler(category);
+                }}
+              >
+                {category.name}
+              </StSelectCategory>
+            );
+          })}
       </div>
       <StTextera
         placeholder="직접 입력해주세요"

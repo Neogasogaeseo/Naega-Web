@@ -26,6 +26,7 @@ function HomeNeoga() {
   useEffect(() => {
     (async () => {
       const data = await api.neogaService.getBannerTemplate();
+      console.log(data);
       data && setBanner(data);
     })();
   }, []);
@@ -39,25 +40,25 @@ function HomeNeoga() {
 
   return (
     <StHomeNeoga>
-      <StBanner
-        color={banner?.backgroundColor}
-        onClick={(isCreated) =>
-          navigate(
-            isCreated ? `/neoga/create/${banner?.id}/created` : `/neoga/create/${banner?.id}`,
-          )
-        }
-      >
-        {banner && (
-          <>
-            <div>
-              <div>{banner.title}</div>
-              <div>{banner.content}</div>
-            </div>
-            <img src={banner.src} />
-            {banner.isNew && <img src={icNewTag} />}
-          </>
-        )}
-      </StBanner>
+      {banner && (
+        <StBanner
+          color={banner.backgroundColor}
+          onClick={() =>
+            navigate(
+              banner.isCreated
+                ? `/neoga/create/${banner.id}/created`
+                : `/neoga/create/${banner.id}/new`,
+            )
+          }
+        >
+          <div>
+            <div>{banner.title}</div>
+            <div>{banner.content}</div>
+          </div>
+          <img src={banner.src} />
+          {banner.isNew && <img src={icNewTag} />}
+        </StBanner>
+      )}
       <StForm>
         <h1>너가소개서 설문 만들기</h1>
         <div>

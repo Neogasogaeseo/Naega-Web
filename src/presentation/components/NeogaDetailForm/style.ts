@@ -45,6 +45,10 @@ export const StFeedName = styled.div`
     font-size: 13px;
     color: ${COLOR.GRAY_5};
   }
+
+  & > p {
+    margin: 3px;
+  }
 `;
 
 export const StHeader = styled.div`
@@ -135,7 +139,7 @@ export const StFeedContent = styled.div`
 `;
 
 export const StFeedTitle = styled.div`
-  margin: 20px 20px 23px 20px;
+  margin: 32px 20px 23px 20px;
   display: flex;
   font-weight: 600;
   font-size: 16px;

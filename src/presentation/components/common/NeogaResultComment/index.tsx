@@ -15,9 +15,9 @@ function NeogaResultComment(props: NeogaResultCommentProps) {
   return (
     <StNeogaResultComment>
       <div>
-        <span>{relationship}</span>
-        <span>·</span>
         <span>{name}</span>
+        <span>·</span>
+        <span>{relationship}</span>
       </div>
       <div>{content}</div>
       <div>

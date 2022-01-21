@@ -89,10 +89,18 @@ function HomeMyPage() {
             )}
           </StHomeMyPageHeader>
           <div style={{ marginBottom: 32 }}>
-            <StKeywordTitle>친구가 말하는 강쥐</StKeywordTitle>
-            <ImmutableKeywordList keywordList={mypageInfo.neososeo} onItemClick={() => null} />
-            <StKeywordTitle>함께한 팀원이 말하는 강쥐</StKeywordTitle>
-            <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+            {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
+              <>
+                <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
+                <ImmutableKeywordList keywordList={mypageInfo.neososeo} onItemClick={() => null} />
+              </>
+            )}
+            {mypageInfo.team && mypageInfo.team.length !== 0 && (
+              <>
+                <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
+                <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+              </>
+            )}
           </div>
         </>
       )}

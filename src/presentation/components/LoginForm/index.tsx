@@ -15,7 +15,9 @@ function LoginForm() {
         나와 함께한 사람들이 써주는 <br />
         나의 소개서, 너가소개서
       </StNoticeWrapper>
-      <StImgLogin><img src={ImgLoginCharacter}/></StImgLogin>
+      <StImgLogin>
+        <img src={ImgLoginCharacter} />
+      </StImgLogin>
       <StLoginButton onClick={loginWithKakao}>
         <img src={icKakao} />
         <p>카카오로 계속하기</p>

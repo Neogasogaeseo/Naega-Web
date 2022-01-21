@@ -9,8 +9,8 @@ export const StJoinCompleteForm = styled.div`
     text-align: center;
     font-size: 15px;
     line-height: 100%;
-  letter-spacing: -0.01em;
-  color: ${COLOR.GRAY_5};
+    letter-spacing: -0.01em;
+    color: ${COLOR.GRAY_5};
   }
 `;
 

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StLoginForm = styled.div`
-`;
+export const StLoginForm = styled.div``;
 export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
@@ -42,12 +41,10 @@ export const StLoginButton = styled.button`
 `;
 
 export const StImgLogin = styled.div`
-display: flex;
-place-content: center;
+  display: flex;
+  place-content: center;
 
-& > img{
-  margin-bottom: 71.6px;
-}
-
+  & > img {
+    margin-bottom: 71.6px;
+  }
 `;
-

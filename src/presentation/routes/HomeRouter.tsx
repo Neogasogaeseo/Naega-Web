@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import HomeMyPage from '@pages/Home/MyPage';
-import HomeTeam from '@pages/Home/Team';
-import HomeNeoga from '@pages/Home/Neoga';
-import PrivateRoute from './common/PrivateRoute';
+import { lazy } from 'react';
+const HomeMyPage = lazy(() => import('@pages/Home/MyPage'));
+const HomeTeam = lazy(() => import('@pages/Home/Team'));
+const HomeNeoga = lazy(() => import('@pages/Home/Neoga'));
+const PrivateRoute = lazy(() => import('./common/PrivateRoute'));
 
 function HomeRouter() {
   return (

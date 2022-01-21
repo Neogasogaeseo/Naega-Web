@@ -81,7 +81,7 @@ export function teamDataRemote(): TeamService {
                   }))
                 : [],
               category: team.categoryName,
-              createdAt: team.dates,
+              dates: team.createdAt,
               content: team.content,
               teamID: team.teamId,
               issueCardImage: team.image ?? null,
@@ -108,7 +108,7 @@ export function teamDataRemote(): TeamService {
                   }))
                 : [],
               category: team.categoryName,
-              createdAt: team.dates,
+              dates: team.createdAt,
               content: team.content,
               teamID: team.teamId,
               issueCardImage: team.image ?? null,

@@ -25,9 +25,8 @@ function NeogaResult() {
       </Link>
       <h1>{username}님이 만든 너가소개서</h1>
       <h2>내가 생성한 너가소개서를 확인하세요</h2>
-      {cardItem && cardItem.resultList.map((result) => (
-        <NeogaResultCard key={result.id} {...result} />
-      ))}
+      {cardItem &&
+        cardItem.resultList.map((result) => <NeogaResultCard key={result.id} {...result} />)}
     </StNeogaResult>
   );
 }

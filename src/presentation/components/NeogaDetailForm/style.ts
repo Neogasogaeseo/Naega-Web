@@ -9,10 +9,19 @@ export const StNeogaDetailForm = styled.div`
   }
 `;
 
+export const StIcon = styled.div`
+  display: flex;
+  align-self: center;
+  width: 72x;
+  height: 72px;
+  border-radius: 34px;
+  background-color: ${COLOR.GRAY_1};
+`;
+
 export const StLink = styled.div`
   display: flex;
   cursor: pointer;
-  margin: 18px 0px 0px 20px;
+  margin: 10px 0px 0px 20px;
   color: ${COLOR.CORAL_MAIN};
   & > img {
     padding-right: 5px;
@@ -36,12 +45,16 @@ export const StFeedName = styled.div`
     font-size: 13px;
     color: ${COLOR.GRAY_5};
   }
+
+  & > p {
+    margin: 3px;
+  }
 `;
 
 export const StHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 20px 0 20px;
+  margin: 50px 20px 0 20px;
 `;
 
 export const StDate = styled.div`
@@ -62,8 +75,8 @@ export const StQuestion = styled.div`
   }
   display: flex;
   background-color: ${COLOR.GRAY_1};
-  width: 370px;
-  margin: 0px 12px 0px 12px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
   border-radius: 18px;
   padding: 16px 19px 16px 20px;
   font-size: 15px;
@@ -72,7 +85,8 @@ export const StQuestion = styled.div`
 `;
 
 export const StTitle = styled.div`
-  margin: 50px 20px 0 20px;
+  width: 50%;
+  word-break: keep-all;
   font-weight: 600;
   font-size: 24px;
   line-height: 150%;
@@ -125,7 +139,7 @@ export const StFeedContent = styled.div`
 `;
 
 export const StFeedTitle = styled.div`
-  margin: 20px 20px 23px 20px;
+  margin: 32px 20px 23px 20px;
   display: flex;
   font-weight: 600;
   font-size: 16px;

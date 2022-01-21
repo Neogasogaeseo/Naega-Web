@@ -4,8 +4,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StFeedbackCard = styled.div`
-  margin: 24px;
-  padding-bottom: 24px;
+  padding: 24px 4px 25px 4px;
   display: flex;
   gap: 16px;
   flex-direction: column;

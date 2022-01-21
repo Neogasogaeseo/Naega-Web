@@ -3,7 +3,11 @@ import { COLOR } from '@styles/common/color';
 
 export const StJoinCompleteForm = styled.div`
   text-align-last: center;
-  margin-top: 150px;
+  min-height: 100vh;
+  padding: 0 20px;
+  & > img {
+    margin-top: 150px;
+  }
   & > p {
     margin-top: 21px;
     text-align: center;
@@ -24,11 +28,9 @@ export const StNoticeWrapper = styled.div`
 export const StTitleWrapper = styled.div``;
 
 export const StButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 228px;
-  width: 350px;
+  margin-top: 204px;
+  margin-bottom: 48px;
+  width: 100%;
   height: 58px;
   color: white;
   border-radius: 18px;

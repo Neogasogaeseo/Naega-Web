@@ -4,7 +4,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import { CORAL_MAIN_BUTTON } from '@styles/common/button';
 
 export const StHomeNeoga = styled.div`
-  width: calc(100vw - 40px);
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,9 +37,8 @@ export const StHomeNeoga = styled.div`
 
 export const StBanner = styled.div<{ color: string | undefined }>`
   position: relative;
-  width: calc(100% + 40px);
+  width: 100%;
   height: 96px;
-  margin-left: -20px;
   background-color: ${(props) => props.color};
   color: ${COLOR.WHITE};
   display: flex;
@@ -83,6 +82,8 @@ export const StBanner = styled.div<{ color: string | undefined }>`
 `;
 
 export const StForm = styled.div`
+  padding: 0 20px;
+
   & > div:nth-of-type(1) {
     display: flex;
     align-items: center;
@@ -93,8 +94,7 @@ export const StForm = styled.div`
 
 export const StResult = styled.div`
   background: ${COLOR.GRAY_1};
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: 100%;
   padding: 0 20px;
   flex: 1;
 

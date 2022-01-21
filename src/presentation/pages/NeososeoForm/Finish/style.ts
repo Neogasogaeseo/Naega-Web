@@ -10,7 +10,7 @@ export const StBody = styled.div`
 
 export const StNeososeoFinish = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   padding: 50px 20px;
   display: grid;
   grid-template-rows: auto 58px;

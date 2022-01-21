@@ -3,7 +3,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StNeogaCreate = styled.div`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
 `;
 

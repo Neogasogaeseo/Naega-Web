@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 export const StAbsoluteWrapper = styled.div`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 `;
 
@@ -14,7 +14,7 @@ export const StBlackBlur = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.44);
   z-index: 50;
@@ -24,7 +24,7 @@ export const StBlackBlur = styled.div`
 
 export const StWrapper = styled.div`
   position: absolute;
-  width: 100vw;
+  width: 100%;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   background-color: ${COLOR.WHITE};

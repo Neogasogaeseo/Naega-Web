@@ -5,7 +5,7 @@ import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
 export const StTeamRegister = styled.div`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   padding: 0 20px;
   display: flex;
@@ -33,6 +33,7 @@ export const StSubmitButton = styled.button`
   ${CORAL_MAIN_BUTTON}
   ${FULL_WIDTH_BUTTON}
   margin-top: 44px;
+  margin-bottom: 48px;
 `;
 
 export const StAbsoluteWrapper = styled.div`

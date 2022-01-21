@@ -4,7 +4,6 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
 export const StTeamMain = styled.div`
-  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;

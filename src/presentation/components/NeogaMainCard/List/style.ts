@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const StNeogaMainCardList = styled.div`
+  padding: 0 20px;
   width: calc(100% + 40px);
   margin-left: -20px;
   margin-bottom: 44px;
-  padding: 0 20px;
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

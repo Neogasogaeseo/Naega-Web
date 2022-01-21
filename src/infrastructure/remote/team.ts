@@ -71,11 +71,13 @@ export function teamDataRemote(): TeamService {
         issueListData: response.data
           ? response.data.map((team: any) => ({
               issueNumber: team.id,
-              issueMembers: team.feedback? team.feedback.map((member: any) => ({
-                id: member.userId,
-                profileName: member.name,
-                profileImage: member.image,
-              })) : [],
+              issueMembers: team.feedback
+                ? team.feedback.map((member: any) => ({
+                    id: member.userId,
+                    profileName: member.name,
+                    profileImage: member.image,
+                  }))
+                : [],
               category: team.categoryName,
               createdAt: team.dates,
               content: team.content,
@@ -96,11 +98,13 @@ export function teamDataRemote(): TeamService {
         issueListData: response.data
           ? response.data.map((team: any) => ({
               issueNumber: team.id,
-              issueMembers: team.feedback? team.feedback.map((member: any) => ({
-                id: member.userId,
-                profileName: member.name,
-                profileImage: member.image,
-              })) : [],
+              issueMembers: team.feedback
+                ? team.feedback.map((member: any) => ({
+                    id: member.userId,
+                    profileName: member.name,
+                    profileImage: member.image,
+                  }))
+                : [],
               category: team.categoryName,
               createdAt: team.dates,
               content: team.content,

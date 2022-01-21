@@ -48,6 +48,11 @@ export function neogaDataMock(): NeogaService {
     return '큐';
   };
 
+  const getCreateFormInfo = async () => {
+    await wait(2000);
+    return { id: 0, title: '', subtitle: '', image: '' };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -58,6 +63,7 @@ export function neogaDataMock(): NeogaService {
     getAllResultListTemplates,
     postAnswerBookmark,
     postCreateForm,
+    getCreateFormInfo,
   };
 }
 

@@ -35,7 +35,6 @@ function NeogaDetailForm() {
   const { formID } = useParams();
   const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
   const [resultFeedback, setResultFeedback] = useState<ResultFeedList | null>(null);
-  const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
   const link = `${DOMAIN}/neososeoform/${resultKeywordList && resultKeywordList.q}`;
   const { fireToast } = useToast();
@@ -45,7 +44,6 @@ function NeogaDetailForm() {
     if (isNaN(+formID)) return;
     (async () => {
       const data = await getNeogaResult(+formID);
-      setResultBoolean(true);
       setResultKeywordList(data);
     })();
   }, []);
@@ -55,7 +53,6 @@ function NeogaDetailForm() {
     if (isNaN(+formID)) return;
     (async () => {
       const data = await getNeogaFeedbackResult(+formID);
-      setResultBoolean(true);
       setResultFeedback(data);
     })();
   }, []);
@@ -96,68 +93,62 @@ function NeogaDetailForm() {
           {resultKeywordList.subtitle}
         </StQuestion>
       </div>
-      {resultBoolean ? (
-        <>
-          <StKeyword>
-            <p>키워드모음</p>
-            {!lookMoreButton && (
+      <StKeyword>
+        <p>키워드모음</p>
+        {!lookMoreButton && (
+          <ImmutableKeywordList
+            keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
+            onItemClick={() => null}
+          />
+        )}
+        <StMoreWrapper>
+          {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
+            <>
               <ImmutableKeywordList
-                keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
+                keywordList={resultKeywordList?.keywordlists ?? []}
                 onItemClick={() => null}
               />
-            )}
-            <StMoreWrapper>
-              {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
-                <>
-                  <ImmutableKeywordList
-                    keywordList={resultKeywordList?.keywordlists ?? []}
-                    onItemClick={() => null}
-                  />
-                  <hr />
-                  <StMoreButton onClick={onClickFold}>
-                    접기<img src={IcArrowUp}></img>
-                  </StMoreButton>
-                </>
-              ) : (
-                resultKeywordList.keywordlists.length > 7 && (
-                  <>
-                    <hr />
-                    <StMoreButton onClick={onClickMore}>
-                      더보기<img src={IcArrowDown}></img>
-                    </StMoreButton>
-                  </>
-                )
-              )}
-            </StMoreWrapper>
-          </StKeyword>
-          <hr />
-          <StFeedTitle>
-            <span>{resultFeedback?.answerCount}개</span>의 답변 피드
-          </StFeedTitle>
-          {resultFeedback &&
-            resultFeedback.answer.map((feedback: any) => {
-              return (
-                <>
-                  <StFeedWrapper>
-                    <StFeedHeader>
-                      <StFeedName>
-                        {feedback.name}
-                        <p>·</p>
-                        <span>너를 {feedback.relationship}</span>
-                      </StFeedName>
-                      <StFeedDate>{feedback.createdAt}</StFeedDate>
-                    </StFeedHeader>
-                    <StFeedContent>{feedback.content}</StFeedContent>
-                    <ImmutableKeywordList
-                      keywordList={feedback.keywords}
-                      onItemClick={() => null}
-                    />
-                    <hr />
-                  </StFeedWrapper>
-                </>
-              );
-            })}
-        </>
+              <hr />
+              <StMoreButton onClick={onClickFold}>
+                접기<img src={IcArrowUp}></img>
+              </StMoreButton>
+            </>
+          ) : (
+            resultKeywordList.keywordlists.length > 7 && (
+              <>
+                <hr />
+                <StMoreButton onClick={onClickMore}>
+                  더보기<img src={IcArrowDown}></img>
+                </StMoreButton>
+              </>
+            )
+          )}
+        </StMoreWrapper>
+      </StKeyword>
+      <hr />
+      <StFeedTitle>
+        <span>{resultFeedback ? resultFeedback.answerCount : 0}개</span>의 답변 피드
+      </StFeedTitle>
+      {resultFeedback && resultFeedback.answer.length > 0 ? (
+        resultFeedback.answer.map((feedback: any) => {
+          return (
+            <>
+              <StFeedWrapper>
+                <StFeedHeader>
+                  <StFeedName>
+                    {feedback.name}
+                    <p>·</p>
+                    <span>너를 {feedback.relationship}</span>
+                  </StFeedName>
+                  <StFeedDate>{feedback.createdAt}</StFeedDate>
+                </StFeedHeader>
+                <StFeedContent>{feedback.content}</StFeedContent>
+                <ImmutableKeywordList keywordList={feedback.keywords} onItemClick={() => null} />
+                <hr />
+              </StFeedWrapper>
+            </>
+          );
+        })
       ) : (
         <StEmptyFeedback>
           <img src={imgEmptyFeedback} alt="" />

@@ -61,13 +61,14 @@ function JoinForm() {
 
       const response = await postJoin(form);
       console.log("response2",response);
-      if (response.data) {
+      if (response.status===200) {
+        console.log('aaa', response.data)
         saveLoginUser({
-          id: response.user,
-          accessToken: response.accesstoken,
-          username: response.user.name,
-          userID: response.user.profileId,
-          profileImage: response.user.image,
+          id: response.data.user,
+          accessToken: response.data.accesstoken,
+          username: response.data.user.name,
+          userID: response.data.user.profileId,
+          profileImage: response.data.user.image,
         });
         navigate('/join/complete');
       } else if (response.status === 204) {

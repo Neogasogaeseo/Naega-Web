@@ -35,6 +35,7 @@ export type ResultDetailList = {
   q: string;
   keywordlists: Keyword[];
 };
+
 export type NeogaAnswerList = {
   id: number;
   name: string;
@@ -54,4 +55,27 @@ export type NeogaResultList = {
 export type NeogaResultCardItem = {
   resultList: NeogaResultList[];
   count: number;
+}
+
+export type ResultFeedList = {
+  answerCount: number,
+  answer: FeedAnswer[];
+}
+
+export type FeedAnswer = {
+  formID: number,
+  id: number,
+  name: string,
+  relationship: string,
+  content: string,
+  isPinned: boolean,
+  createdAt: string;
+  keywords: AnswerKeyword[];
+}
+
+export type AnswerKeyword = {
+  id: number,
+  name: string,
+  colorcode: string,
+  answerId: number,
 }

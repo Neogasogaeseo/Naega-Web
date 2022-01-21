@@ -89,7 +89,7 @@ function HomeNeoga() {
             {cardItem.count > 2 && (
               <StButtonArea>
                 <button onClick={() => navigate('/neoga/result')}>
-                  외 {cardItem.count - 2}개 더보기
+                  외 {cardItem.count - 2}개 <span>더보기</span>
                 </button>
               </StButtonArea>
             )}

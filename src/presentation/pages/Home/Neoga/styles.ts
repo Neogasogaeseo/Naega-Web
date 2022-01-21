@@ -117,6 +117,11 @@ export const StButtonArea = styled.div`
     margin: 0 auto;
     color: ${COLOR.GRAY_5};
     ${FONT_STYLES.R_15_TITLE};
+
+    & > span {
+      font-weight: 600;
+      margin-left: 4px;
+    }
   }
 `;
 

@@ -47,7 +47,7 @@
 > 장기 해커톤 `APPJAM` <br />
 >  `너가소개서` 팀 웹 클라이언트 <br />
 
-|<img src="https://user-images.githubusercontent.com/73823388/150397401-f3d3da1d-c684-49af-9c09-b9249500b6f2.png">|<img src="https://user-images.githubusercontent.com/73823388/150397586-80771a1c-b238-4c6e-9110-d4f852d3eb04.png">|<img src="https://user-images.githubusercontent.com/73823388/150397971-bc6a3585-5d1f-42fe-8fc8-36edcb4dcd2b.png">|<img src="https://user-images.githubusercontent.com/73823388/150397746-6ade7bc1-3c5f-4cbc-b1a0-9fe8599c1230.png">|
+|<img src="https://user-images.githubusercontent.com/73823388/150397401-f3d3da1d-c684-49af-9c09-b9249500b6f2.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397586-80771a1c-b238-4c6e-9110-d4f852d3eb04.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397971-bc6a3585-5d1f-42fe-8fc8-36edcb4dcd2b.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397746-6ade7bc1-3c5f-4cbc-b1a0-9fe8599c1230.png" width=200>|
 |:--:|:--:|:--:|:--:|
 |**김서진**|**김효인**|**남주영**|**백지연**|
 |[@SeojinSeojin](https://github.com/SeojinSeojin)|[@Hyoin-Kim](https://github.com/Hyoin-Kim)|[@jynam17](https://github.com/jynam17)|[@100Gyeon](https://github.com/100Gyeon)|

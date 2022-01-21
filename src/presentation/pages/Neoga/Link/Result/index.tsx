@@ -18,17 +18,15 @@ export default function NeogaLinkResult() {
   const createLink = async () => {
     if (!formID || !type) return;
     if (isNaN(+formID)) return;
-    const q = await api.neogaService.postCreateForm(Number(formID));
+    const { q, isCreated } = await api.neogaService.postCreateForm(+formID);
     setLink(`${DOMAIN}/neososeoform/${q}`);
+    if (isCreated) navigate(`/neoga/create/${formID}/created`);
   };
 
   useEffect(() => {
-    createLink();
-  }, [formID, type]);
-  useEffect(() => {
     if (!(type === 'new' || type === 'created')) navigate('/');
     createLink();
-  }, []);
+  }, [formID, type]);
 
   return (
     <StNeogaLinkResult>

@@ -15,6 +15,7 @@ export type NeogaBannerInfo = Omit<NeogaCardItem, 'isCreated'>;
 
 export type NeogaBannerItem = NeogaBannerInfo & {
   isBanner: boolean;
+  isCreated?: boolean;
 };
 
 export type ResultFormList = {

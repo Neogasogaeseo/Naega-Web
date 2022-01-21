@@ -17,6 +17,6 @@ export interface NeogaService {
   getResultKeywords(formID: number): Promise<Keyword[]>;
   getAllResultListTemplates(formID: number): Promise<ResultFormList[]>;
   postAnswerBookmark(answerID: number): Promise<{ isSuccess: boolean }>;
-  postCreateForm(formID: number): Promise<string>;
+  postCreateForm(formID: number): Promise<{ isCreated: boolean; q: string }>;
   getCreateFormInfo(formID: number): Promise<CreateFormInfo>;
 }

@@ -52,30 +52,6 @@ export function NeogaDataRemote(): NeogaService {
 
   const getMainResultCard = async () => {
     const response = await privateAPI.get({ url: `/form` });
-    console.log({
-      resultList: response.data.resultList
-        ? response.data.resultList.map((result: any) => ({
-            id: result.id,
-            title: result.title,
-            darkIconImage: result.darkIconImage,
-            createdAt: result.createdAt,
-            answer: result.answer.map((comment: any) => ({
-              id: comment.id,
-              name: comment.name,
-              relationship: comment.relationship,
-              content: comment.content,
-              keyword: comment.keyword
-                ? comment.keyword.map((word: any) => ({
-                    id: word.id,
-                    content: word.name,
-                    color: word.colorCode,
-                  }))
-                : [],
-            })),
-          }))
-        : [],
-      count: response.data.count,
-    });
     if (response.status === 200)
       return {
         resultList: response.data.resultList
@@ -97,6 +73,14 @@ export function NeogaDataRemote(): NeogaService {
                     }))
                   : [],
               })),
+            }))
+          : response.data
+          ? response.data.map((result: any) => ({
+              id: result.id,
+              title: result.title,
+              darkIconImage: result.darkIconImage,
+              createdAt: result.createdAt,
+              answer: [],
             }))
           : [],
         count: response.data.count,
@@ -160,7 +144,7 @@ export function NeogaDataRemote(): NeogaService {
       .catch((e: AxiosError) => {
         console.log(e.response);
       });
-    return response.data;
+    return { isCreated: response.message === '이미 존재하는 폼입니다', q: response.data };
   };
 
   const getCreateFormInfo = async (formID: number) => {

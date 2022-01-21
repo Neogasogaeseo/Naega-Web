@@ -4,6 +4,10 @@ export const copyClipboard = async (
   failAction?: () => void,
 ) => {
   try {
+    if (!text) {
+      failAction && failAction();
+      return;
+    }
     await navigator.clipboard.writeText(text);
     successAction && successAction();
   } catch (error) {

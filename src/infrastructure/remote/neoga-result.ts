@@ -25,6 +25,7 @@ export const getNeogaResult = async (formID: number): Promise<ResultDetailList |
 export const getNeogaFeedbackResult = async (formID: number): Promise<ResultFeedList | null> => {
   try {
     const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
+    console.log(`/form/detail/${formID}/answer`, response);
     return {
       answerCount: response.data.answerCount,
       answer: response.data.answer.map((feedback: any) => ({

@@ -19,8 +19,8 @@ export const StFlexWrapper = styled.div`
 
 export const StContent = styled.div`
   position: absolute;
-  top: calc(min(400px, 100vw) * 3 / 10);
-  left: calc(min(400px, 100vw) * 8.6 / 39);
+  top: calc(min(400px, 100vw) * 10.5 / 39);
+  left: calc(min(400px, 100vw) * 9.6 / 39);
   width: calc(min(400px, 100vw) * 21 / 39);
   & > div {
     width: calc(min(400px, 100vw) * 21 / 39);
@@ -30,7 +30,7 @@ export const StContent = styled.div`
     white-space: pre-line;
   }
   & > div:first-child {
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     font-weight: 600;
     font-size: 19px;
     line-height: 100%;

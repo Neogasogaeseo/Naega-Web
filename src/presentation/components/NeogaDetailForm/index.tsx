@@ -1,14 +1,14 @@
-import { api } from '@api/index';
 import { useEffect, useState } from 'react';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
-import { ResultFormList } from '@api/types/neoga';
+import { ResultFeedList } from '@api/types/neoga';
 import { imgEmptyFeedback } from '@assets/images';
 import { ResultDetailList } from '@api/types/neoga';
-import { getNeogaResult } from '@infrastructure/remote/neoga-result';
+import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
 import { useToast } from '@hooks/useToast';
 import { copyClipboard } from '@utils/copyClipboard';
 import { useParams } from 'react-router-dom';
+
 import {
   StNeogaDetailForm,
   StTitle,
@@ -33,10 +33,10 @@ import {
 function NeogaDetailForm() {
   const { formID } = useParams();
   const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
-  const [resultList, setResultList] = useState<ResultFormList[]>([]);
+  const [resultFeedback, setResultFeedback] = useState<ResultFeedList|null>(null);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
-  const link = `http://localhost:3000/neososeoform/${resultKeywordList && resultKeywordList.q}`;
+  const link = `www.neogasogaeseo.com/neososeoform/${resultKeywordList && resultKeywordList.q}`;
   const { fireToast } = useToast();
 
   useEffect(() => {
@@ -53,11 +53,11 @@ function NeogaDetailForm() {
     if (!formID) return;
     if (isNaN(+formID)) return;
     (async () => {
-      const data = await api.neogaService.getAllResultListTemplates(+formID);
+      const data = await getNeogaFeedbackResult(+formID);
       setResultBoolean(true);
-      setResultList(data);
+      setResultFeedback(data);
     })();
-  }, [resultList]);
+  }, []);
 
   const onClickMore = () => {
     setLookMoreButton(true);
@@ -131,20 +131,20 @@ function NeogaDetailForm() {
           </StKeyword>
           <hr />
           <StFeedTitle>
-            <span>5개</span>의 답변 피드
+            <span>{resultFeedback?.answerCount}개</span>의 답변 피드
           </StFeedTitle>
-          {resultList.map((data) => {
+          {resultFeedback&&resultFeedback.answer.map((feedback:any) => {
             return (
               <>
                 <StFeedWrapper>
                   <StFeedHeader>
                     <StFeedName>
-                      {data.category}·<span>{data.writer}</span>
+                      {feedback.name}<p>·</p><span>{feedback.relationship}</span>
                     </StFeedName>
-                    <StFeedDate>{data.createdAt}</StFeedDate>
+                    <StFeedDate>{feedback.createdAt}</StFeedDate>
                   </StFeedHeader>
-                  <StFeedContent>{data.content}</StFeedContent>
-                  {/* <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} /> */}
+                  <StFeedContent>{feedback.content}</StFeedContent>
+                  <ImmutableKeywordList keywordList={feedback.keywords} onItemClick={() => null} />
                   <hr />
                 </StFeedWrapper>
               </>

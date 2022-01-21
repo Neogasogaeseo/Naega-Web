@@ -6,6 +6,7 @@ import { privateAPI } from './base';
 export function NeogaDataRemote(): NeogaService {
   const getBannerTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/banner` });
+    console.log(response);
     if (response.status === 200)
       return response.data
         ? {
@@ -90,6 +91,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getFormResultCard = async () => {
     const response = await privateAPI.get({ url: `/form/new` });
+    console.log(response);
     if (response.status === 200)
       return {
         resultList: response.data.resultList
@@ -114,8 +116,16 @@ export function NeogaDataRemote(): NeogaService {
                   }))
                 : [],
             }))
+          : response.data
+          ? response.data.map((result: any) => ({
+              id: result.id,
+              title: result.title,
+              darkIconImage: result.darkIconImage,
+              createdAt: result.createdAt,
+              answer: [],
+            }))
           : [],
-        count: response.data.count,
+        count: response.data.count ?? response.data,
       };
     else throw '서버 통신 실패';
   };

@@ -24,7 +24,6 @@ export function userDataRemote(): UserService {
 
   const getMyPageInfo = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}` });
-    console.log('aa', response.data.answerKeywordList);
     return {
       username: response.data.user.name,
       userID: response.data.user.profileId,

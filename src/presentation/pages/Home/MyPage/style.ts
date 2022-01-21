@@ -79,7 +79,6 @@ export const StGreyBorderTall = styled(StGreyBorder)`
 
 export const StNegativeMarginWrapper = styled.div`
   width: 100%;
-  margin-left: 0;
 `;
 
 export const StFeedbackTeamWrapper = styled.div`

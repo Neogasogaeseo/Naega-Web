@@ -36,5 +36,4 @@ export const StNavBottomLine = styled.div`
   width: 100%;
   height: 1px;
   background-color: ${COLOR.GRAY_2};
-  margin-left: 0;
 `;

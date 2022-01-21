@@ -10,7 +10,6 @@ export const StInvitation = styled.div`
   color: ${COLOR.GRAY_6};
   width: 100%;
   height: 57px;
-  margin-left: 0;
   ${FONT_STYLES.R_14_TITLE};
   padding-left: 14px;
   padding-right: 19px;

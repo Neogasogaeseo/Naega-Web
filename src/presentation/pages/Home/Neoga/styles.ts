@@ -39,7 +39,6 @@ export const StBanner = styled.div<{ color: string | undefined }>`
   position: relative;
   width: 100%;
   height: 96px;
-  margin-left: 0;
   background-color: ${(props) => props.color};
   color: ${COLOR.WHITE};
   display: flex;
@@ -96,7 +95,6 @@ export const StForm = styled.div`
 export const StResult = styled.div`
   background: ${COLOR.GRAY_1};
   width: 100%;
-  margin-left: 0;
   padding: 0 20px;
   flex: 1;
 

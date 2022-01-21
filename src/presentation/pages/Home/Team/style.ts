@@ -22,7 +22,6 @@ export const StDivisionLine = styled.div`
   height: 8px;
   background-color: ${COLOR.GRAY_1};
   margin-top: 24px;
-  margin-left: 0;
 `;
 
 export const StEmptyView = styled.div`

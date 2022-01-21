@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const StHomeMyPage = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 40px);
+  width: 100%;
 `;
 
 export const StHomeMyPageHeader = styled.div`
@@ -68,8 +68,8 @@ export const StTitle = styled.div`
 export const StGreyBorder = styled.div`
   background-color: ${COLOR.GRAY_1};
   height: 8px;
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: 100%;
+  margin-left: 0;
 `;
 
 export const StGreyBorderTall = styled(StGreyBorder)`
@@ -77,8 +77,8 @@ export const StGreyBorderTall = styled(StGreyBorder)`
 `;
 
 export const StNegativeMarginWrapper = styled.div`
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: 100%;
+  margin-left: 0;
 `;
 
 export const StFeedbackTeamWrapper = styled.div`

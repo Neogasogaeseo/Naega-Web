@@ -9,15 +9,20 @@ export const StTeamMain = styled.div`
     color: ${COLOR.GRAY_8};
     margin-top: 28px;
     margin-bottom: 18px;
+    padding: 0 20px;
+  }
+
+  & > div {
+    padding: 0 20px;
   }
 `;
 
 export const StDivisionLine = styled.div`
-  width: calc(100% + 40px);
+  width: 100%;
   height: 8px;
   background-color: ${COLOR.GRAY_1};
   margin-top: 24px;
-  margin-left: -20px;
+  margin-left: 0;
 `;
 
 export const StEmptyView = styled.div`

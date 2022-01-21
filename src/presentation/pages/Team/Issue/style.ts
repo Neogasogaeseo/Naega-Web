@@ -7,7 +7,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 export const StTeamIssue = styled.div`
   display: grid;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   grid-template-rows: calc(100vh - 100px) 100px;
   overflow-x: hidden;
   position: relative;
@@ -27,6 +27,7 @@ export const StLink = styled(Link)`
 export const StHeader = styled.div`
   overflow-y: scroll;
   padding: 20px;
+  padding-top: 0;
   & > div {
     display: flex;
     &:nth-child(2) {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 
 export const StNeogaLink = styled.div`
-  width: 100vw;
+  width: 100%;
   padding: 0 20px;
   display: flex;
   flex-direction: column;

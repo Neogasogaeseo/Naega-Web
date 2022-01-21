@@ -17,6 +17,6 @@ export const StNeososeoFormHome = styled.div`
   }
 
   & img {
-    width: calc(100vw - 40px);
+    width: 100%;
   }
 `;

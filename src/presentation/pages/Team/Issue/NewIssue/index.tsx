@@ -5,6 +5,7 @@ import {
   StNewIssue,
   StTitleWrapper,
   StQuestionWrapper,
+  StCategoryWrapper,
   StOptionWrapper,
   StTextera,
   StUploadContainer,
@@ -84,7 +85,7 @@ function TeamNewIssue() {
       </StTitleWrapper>
       <p>우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
-      <div>
+      <StCategoryWrapper>
         {categoryList &&
           categoryList.map((category, id) => {
             return (
@@ -99,7 +100,7 @@ function TeamNewIssue() {
               </StSelectCategory>
             );
           })}
-      </div>
+      </StCategoryWrapper>
       <StTextera
         placeholder="직접 입력해주세요"
         name="issueTextarea"

@@ -11,12 +11,11 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  #root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
+  body {
+    @media (min-width: 768px) {
+      width: 390px;
+      margin: 0 auto;
+    }
   }
   
   * {

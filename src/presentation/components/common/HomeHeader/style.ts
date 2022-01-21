@@ -7,6 +7,10 @@ export const StHomeHeader = styled.div`
     font-size: 16px;
     margin-top: 18px;
   }
+
+  & > a {
+    margin-left: 20px;
+  }
 `;
 
 export const StNavLink = styled(NavLink)<{ selected: boolean }>`
@@ -14,6 +18,10 @@ export const StNavLink = styled(NavLink)<{ selected: boolean }>`
   padding-bottom: 16px;
   color: ${COLOR.GRAY_4};
   cursor: pointer;
+
+  &:nth-of-type(1) {
+    margin-left: 20px;
+  }
 
   ${(props) =>
     props.selected &&
@@ -25,8 +33,8 @@ export const StNavLink = styled(NavLink)<{ selected: boolean }>`
 `;
 
 export const StNavBottomLine = styled.div`
-  width: calc(100% + 40px);
+  width: 100%;
   height: 1px;
   background-color: ${COLOR.GRAY_2};
-  margin-left: -20px;
+  margin-left: 0;
 `;

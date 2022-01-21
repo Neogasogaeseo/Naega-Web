@@ -10,7 +10,7 @@ export const StToastItem = styled.div<{ bottom?: number; isClosing: boolean }>`
   text-align: center;
   line-height: 40px;
   color: white;
-  width: calc(100vw - 40px);
+  width: 100%;
   bottom: ${({ bottom }) => bottom ?? 26}px;
   animation: 0.3s forwards
     ${({ isClosing }) => (isClosing ? ANIMATION.FADE_OUT : ANIMATION.FADE_IN)};

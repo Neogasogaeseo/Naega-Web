@@ -23,7 +23,7 @@ function NeogaCreate() {
         <Link to="/home">
           <img src={imgLogo} />
         </Link>
-        <div>너가 소개서 만들기</div>
+        <div>너가소개서 만들기</div>
         <div>원하는 테마 링크를 생성하여 공유하세요!</div>
         <div>
           <StViewModeSelector

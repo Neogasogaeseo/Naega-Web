@@ -8,9 +8,8 @@ export const StInvitation = styled.div`
   justify-content: space-between;
   background-color: ${COLOR.GRAY_1};
   color: ${COLOR.GRAY_6};
-  width: calc(100% + 40px);
+  width: 100%;
   height: 57px;
-  margin-left: -20px;
   ${FONT_STYLES.R_14_TITLE};
   padding-left: 14px;
   padding-right: 19px;

@@ -3,9 +3,9 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
 export const StNeogaResult = styled.div`
-  width: 100vw;
   min-height: 100vh;
   padding: 0 20px;
+  padding-bottom: 58px;
 
   h1 {
     ${FONT_STYLES.SB_24_TITLE};
@@ -19,9 +19,5 @@ export const StNeogaResult = styled.div`
     ${FONT_STYLES.R_15_TITLE};
     color: ${COLOR.GRAY_5};
     margin-bottom: 32px;
-  }
-
-  & > div:last-child {
-    margin-bottom: 70px;
   }
 `;

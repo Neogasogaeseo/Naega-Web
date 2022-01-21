@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
 export const StNewIssue = styled.div`
-  display: block;
-  margin-right: 10px;
-
+  padding: 50px 20px 48px 20px;
   & > p {
     font-size: 15px;
     line-height: 143.99%;
@@ -19,9 +17,14 @@ export const StTitleWrapper = styled.div`
   line-height: 143.99%;
 `;
 
+export const StCategoryWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+`;
+
 export const StSelectCategory = styled.button<{ selected: number }>`
   width: 83px;
-  margin-right: 6px;
   box-sizing: border-box;
   border-radius: 14px;
   margin-bottom: 11px;
@@ -52,7 +55,7 @@ export const StSelectWrapper = styled.div`
 `;
 
 export const StTextera = styled.textarea`
-  width: 350px;
+  width: 100%;
   height: 104px;
   border: 1px solid ${COLOR.GRAY_3};
   box-sizing: border-box;
@@ -71,7 +74,7 @@ export const StOptionWrapper = styled.div`
 `;
 
 export const StUploadContainer = styled.div`
-  width: 350px;
+  width: 100%;
   height: 149px;
   border: 1.4px dashed ${COLOR.GRAY_3};
   box-sizing: border-box;
@@ -94,7 +97,7 @@ export const StButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: 156px;
-  width: 350px;
+  width: 100%;
   height: 58px;
   background-color: ${COLOR.GRAY_5};
   color: white;

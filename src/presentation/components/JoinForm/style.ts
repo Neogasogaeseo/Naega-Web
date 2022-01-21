@@ -10,7 +10,7 @@ export const StNoticeWrapper = styled.div`
   font-weight: 600;
   font-size: 20px;
   line-height: 140%;
-  margin: 20px 0px 72px 0px;
+  margin: 54px 0px 72px 0px;
 `;
 
 export const StInputWrapper = styled.div`
@@ -27,11 +27,9 @@ export const StInputWrapper = styled.div`
 `;
 
 export const StButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 137px;
-  width: 350px;
+  margin-bottom: 48px;
+  width: 100%;
   height: 58px;
   background-color: ${COLOR.GRAY_3};
   color: white;

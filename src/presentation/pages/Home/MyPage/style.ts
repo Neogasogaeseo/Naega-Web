@@ -6,7 +6,8 @@ import styled from 'styled-components';
 export const StHomeMyPage = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100vw - 40px);
+  width: 100%;
+  padding: 0 20px;
 `;
 
 export const StHomeMyPageHeader = styled.div`
@@ -51,7 +52,7 @@ export const StKeywordTitle = styled.div`
 
 export const StTitle = styled.div`
   ${FONT_STYLES.SB_18_TITLE}
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
   justify-content: space-between;
   & > div:nth-child(1) {
@@ -77,12 +78,10 @@ export const StGreyBorderTall = styled(StGreyBorder)`
 `;
 
 export const StNegativeMarginWrapper = styled.div`
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: 100%;
 `;
 
 export const StFeedbackTeamWrapper = styled.div`
-  padding: 20px;
   & > div:last-of-type {
     margin-top: 20px;
   }

@@ -6,6 +6,7 @@ export const StNeososeoFormHeader = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: auto 68px;
+  padding: 0 20px;
   align-items: center;
   white-space: pre;
 

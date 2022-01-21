@@ -3,7 +3,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
 export const StQuestion = styled.div`
-  width: 100vw;
+  width: 100%;
   height: min(400px, 100vw);
   display: flex;
   justify-content: center;

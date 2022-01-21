@@ -15,6 +15,7 @@ export function NeogaDataRemote(): NeogaService {
         isBanner: response.data.isBanner,
         src: response.data.lightIconImage,
         backgroundColor: response.data.colorCode,
+        isCreated: response.data.isDeleted === undefined ? false : !response.data.isDeleted,
       };
     else throw '서버 통신 실패';
   };

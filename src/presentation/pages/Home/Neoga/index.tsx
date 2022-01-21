@@ -41,7 +41,7 @@ function HomeNeoga() {
     <StHomeNeoga>
       <StBanner
         color={banner?.backgroundColor}
-        onClick={() => navigate(`/neoga/create/${banner?.id}`)}
+        onClick={(isCreated) => navigate(isCreated ? `/neoga/create/${banner?.id}/created` : `/neoga/create/${banner?.id}`)}
       >
         <div>
           <div>{banner?.title}</div>

@@ -170,7 +170,7 @@ export function teamDataRemote(): TeamService {
                 profileImage: member.image,
               })),
               category: team.categoryName,
-              createdAt: team.createdAt,
+              dates: team.createdAt,
               content: team.content,
               teamName: team.teamName,
               memberName: team.userName,

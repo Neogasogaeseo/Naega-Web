@@ -16,8 +16,9 @@ export const StNeogaCardHeader = styled.div`
   align-items: center;
 
   img {
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
     margin-right: 12px;
     object-fit: cover;
     border-radius: 50%;

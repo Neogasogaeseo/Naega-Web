@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StLoginForm = styled.div`
-  margin-bottom: 200px;
-`;
+export const StLoginForm = styled.div``;
 export const StLogin = styled.div`
   font-weight: 600;
   font-size: 24px;
@@ -13,11 +11,11 @@ export const StLogin = styled.div`
 export const StNoticeWrapper = styled.div`
   display: flex;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 143.99%;
   letter-spacing: -0.01em;
   margin-top: 32px;
-  margin-bottom: 102px;
+  margin-bottom: 67px;
   color: ${COLOR.GRAY_5};
 `;
 export const StLoginButton = styled.button`
@@ -39,5 +37,14 @@ export const StLoginButton = styled.button`
     position: absolute;
     font-size: 16px;
     line-height: 100%;
+  }
+`;
+
+export const StImgLogin = styled.div`
+  display: flex;
+  place-content: center;
+
+  & > img {
+    margin-bottom: 71.6px;
   }
 `;

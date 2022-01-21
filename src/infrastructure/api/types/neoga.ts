@@ -25,3 +25,64 @@ export type ResultFormList = {
   createdAt: string;
   keywordlists: Keyword[];
 };
+
+export type ResultDetailList = {
+  id: number;
+  title: string;
+  subtitle: string;
+  darkIconImage: string;
+  createdAt: string;
+  q: string;
+  keywordlists: Keyword[];
+};
+
+export type NeogaAnswerList = {
+  id: number;
+  name: string;
+  relationship: string;
+  content: string;
+  keyword: Keyword[];
+};
+
+export type NeogaResultList = {
+  id: number;
+  title: string;
+  darkIconImage: string;
+  createdAt: string;
+  answer?: NeogaAnswerList[];
+};
+
+export type NeogaResultCardItem = {
+  resultList: NeogaResultList[];
+  count: number;
+};
+
+export type CreateFormInfo = {
+  id: number;
+  title: string;
+  subtitle: string;
+  image: string;
+};
+
+export type ResultFeedList = {
+  answerCount: number;
+  answer: FeedAnswer[];
+};
+
+export type FeedAnswer = {
+  formID: number;
+  id: number;
+  name: string;
+  relationship: string;
+  content: string;
+  isPinned: boolean;
+  createdAt: string;
+  keywords: AnswerKeyword[];
+};
+
+export type AnswerKeyword = {
+  id: number;
+  name: string;
+  colorcode: string;
+  answerId: number;
+};

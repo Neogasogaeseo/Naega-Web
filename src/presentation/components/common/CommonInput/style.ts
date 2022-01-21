@@ -31,7 +31,7 @@ export const StErrorMsg = styled.div`
   color: ${COLOR.CORAL_MAIN};
   font-size: 14px;
   line-height: 140%;
-  margin-top: 8px;
+  margin-top: 15px;
 `;
 
 export const StSubmitButton = styled.div`
@@ -43,5 +43,6 @@ export const StSubmitButton = styled.div`
   padding-left: 12px;
   border-left: 1px solid ${COLOR.GRAY_3};
   color: ${COLOR.GRAY_7};
+  cursor: pointer;
   ${FONT_STYLES.M_15_TITLE}
 `;

@@ -1,7 +1,14 @@
-import { api } from '@api/index';
 import { useEffect, useState } from 'react';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
+import { ResultFeedList } from '@api/types/neoga';
+import { imgEmptyFeedback } from '@assets/images';
+import { ResultDetailList } from '@api/types/neoga';
+import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
+import { useToast } from '@hooks/useToast';
+import { copyClipboard } from '@utils/copyClipboard';
+import { useParams } from 'react-router-dom';
+
 import {
   StNeogaDetailForm,
   StTitle,
@@ -20,38 +27,38 @@ import {
   StButton,
   StMoreWrapper,
   StMoreButton,
+  StIcon,
 } from './style';
-import { ResultFormList } from '@api/types/neoga';
-import { imgEmptyFeedback } from '@assets/images';
-import { useParams } from 'react-router-dom';
-import { Keyword } from '@api/types/user';
+import { DOMAIN } from '@utils/constant';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
-  const [resultKeywordList, setResultKeywordList] = useState<Keyword[]>([]);
-  const [resultList, setResultList] = useState<ResultFormList[]>([]);
+  const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
+  const [resultFeedback, setResultFeedback] = useState<ResultFeedList | null>(null);
   const [resultBoolean, setResultBoolean] = useState(false);
   const [lookMoreButton, setLookMoreButton] = useState(false);
+  const link = `${DOMAIN}/neososeoform/${resultKeywordList && resultKeywordList.q}`;
+  const { fireToast } = useToast();
 
   useEffect(() => {
     if (!formID) return;
     if (isNaN(+formID)) return;
     (async () => {
-      const data = await api.neogaService.getResultKeywords(+formID);
+      const data = await getNeogaResult(+formID);
       setResultBoolean(true);
       setResultKeywordList(data);
     })();
-  }, [resultKeywordList]);
+  }, []);
 
   useEffect(() => {
     if (!formID) return;
     if (isNaN(+formID)) return;
     (async () => {
-      const data = await api.neogaService.getAllResultListTemplates(+formID);
+      const data = await getNeogaFeedbackResult(+formID);
       setResultBoolean(true);
-      setResultList(data);
+      setResultFeedback(data);
     })();
-  }, [resultList]);
+  }, []);
 
   const onClickMore = () => {
     setLookMoreButton(true);
@@ -61,22 +68,32 @@ function NeogaDetailForm() {
     setLookMoreButton(false);
   };
 
+  if (!resultKeywordList) return <></>;
   return (
     <StNeogaDetailForm>
       <div>
         <StHeader>
           <StTitle>
-            2022, 임인년 <br />
-            강쥐에게 기대하는 모습은?
+            {resultKeywordList.title} <br />
           </StTitle>
+          <StIcon>
+            <img src={resultKeywordList.darkIconImage} />
+          </StIcon>
         </StHeader>
         <StLink>
           <img src={icLink} />
-          <p>링크 복사하기</p>
+          <p
+            onClick={() =>
+              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
+            }
+          >
+            링크 복사하기
+          </p>
         </StLink>
-        <StDate>2021-01-17 에 생성</StDate>
+        <StDate>{resultKeywordList.createdAt} 에 생성</StDate>
         <StQuestion>
-          <span>Q.</span>나와 함께하며 당신이 닮고 싶었던 능력이 있었을까요 ?
+          <span>Q.</span>
+          {resultKeywordList.subtitle}
         </StQuestion>
       </div>
       {resultBoolean ? (
@@ -85,21 +102,24 @@ function NeogaDetailForm() {
             <p>키워드모음</p>
             {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultKeywordList.slice(0, 7)}
+                keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
                 onItemClick={() => null}
               />
             )}
             <StMoreWrapper>
-              {lookMoreButton && resultKeywordList.length > 7 ? (
+              {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
                 <>
-                  <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} />
+                  <ImmutableKeywordList
+                    keywordList={resultKeywordList?.keywordlists ?? []}
+                    onItemClick={() => null}
+                  />
                   <hr />
                   <StMoreButton onClick={onClickFold}>
                     접기<img src={IcArrowUp}></img>
                   </StMoreButton>
                 </>
               ) : (
-                resultKeywordList.length > 7 && (
+                resultKeywordList.keywordlists.length > 7 && (
                   <>
                     <hr />
                     <StMoreButton onClick={onClickMore}>
@@ -112,30 +132,42 @@ function NeogaDetailForm() {
           </StKeyword>
           <hr />
           <StFeedTitle>
-            <span>5개</span>의 답변 피드
+            <span>{resultFeedback?.answerCount}개</span>의 답변 피드
           </StFeedTitle>
-          {resultList.map((data) => {
-            return (
-              <>
-                <StFeedWrapper>
-                  <StFeedHeader>
-                    <StFeedName>
-                      {data.category}·<span>{data.writer}</span>
-                    </StFeedName>
-                    <StFeedDate>{data.createdAt}</StFeedDate>
-                  </StFeedHeader>
-                  <StFeedContent>{data.content}</StFeedContent>
-                  <ImmutableKeywordList keywordList={resultKeywordList} onItemClick={() => null} />
-                  <hr />
-                </StFeedWrapper>
-              </>
-            );
-          })}
+          {resultFeedback &&
+            resultFeedback.answer.map((feedback: any) => {
+              return (
+                <>
+                  <StFeedWrapper>
+                    <StFeedHeader>
+                      <StFeedName>
+                        {feedback.name}
+                        <p>·</p>
+                        <span>{feedback.relationship}</span>
+                      </StFeedName>
+                      <StFeedDate>{feedback.createdAt}</StFeedDate>
+                    </StFeedHeader>
+                    <StFeedContent>{feedback.content}</StFeedContent>
+                    <ImmutableKeywordList
+                      keywordList={feedback.keywords}
+                      onItemClick={() => null}
+                    />
+                    <hr />
+                  </StFeedWrapper>
+                </>
+              );
+            })}
         </>
       ) : (
         <StEmptyFeedback>
           <img src={imgEmptyFeedback} alt="" />
-          <StButton>링크 복사하기</StButton>
+          <StButton
+            onClick={() =>
+              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
+            }
+          >
+            링크 복사하기
+          </StButton>
         </StEmptyFeedback>
       )}
     </StNeogaDetailForm>

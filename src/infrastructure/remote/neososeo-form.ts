@@ -15,7 +15,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
       })),
       userName: response.data.user.name,
       userID: response.data.user.id,
-      formID: response.data.form.id,
+      formID: response.data.form.linkFormId,
     };
   };
 
@@ -23,12 +23,11 @@ export function NeososeoFormRemote(): NeososeoFormService {
     const response = await publicAPI.post({
       url: '/form/answer',
       data: {
+        linkFormId: body.formID,
+        name: body.name,
         relationshipId: body.relationID,
         content: body.answer,
         keywordList: body.keyword,
-        userId: body.userID,
-        formId: body.formID,
-        name: body.name,
       },
     });
     return { isSuccess: response.status === 200 };

@@ -3,21 +3,30 @@ import ImmutableKeywordList from '../Keyword/ImmutableList';
 import { StNeogaResultComment } from './style';
 
 interface NeogaResultCommentProps {
-  keywordList: Keyword[];
+  name: string;
+  relationship: string;
+  content: string;
+  keyword: Keyword[];
 }
 
 function NeogaResultComment(props: NeogaResultCommentProps) {
-  const { keywordList } = props;
+  const { name, relationship, content, keyword } = props;
+
   return (
     <StNeogaResultComment>
       <div>
-        <span>동네친구</span>
+        <span>{relationship}</span>
         <span>·</span>
-        <span>백지연</span>
+        <span>{name}</span>
       </div>
-      <div>너가소개서 너가소개서 너가소개서 너가소개서 너가소개서</div>
+      <div>{content}</div>
       <div>
-        <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
+        <ImmutableKeywordList
+          keywordList={keyword}
+          onItemClick={() => {
+            return;
+          }}
+        />
       </div>
     </StNeogaResultComment>
   );

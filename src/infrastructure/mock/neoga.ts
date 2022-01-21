@@ -17,6 +17,16 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.ALL_TEMPLATES;
   };
 
+  const getMainResultCard = async () => {
+    await wait(2000);
+    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+  };
+
+  const getFormResultCard = async () => {
+    await wait(2000);
+    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+  };
+
   const getResultKeywords = async () => {
     await wait(2000);
     return NEOGA_DATA.KEYWORD_LISTS;
@@ -32,13 +42,28 @@ export function neogaDataMock(): NeogaService {
     return { isSuccess: true };
   };
 
+  const postCreateForm = async (formID: number) => {
+    console.log(formID);
+    await wait(2000);
+    return '큐';
+  };
+
+  const getCreateFormInfo = async () => {
+    await wait(2000);
+    return { id: 0, title: '', subtitle: '', image: '' };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
     getAllTemplates,
+    getMainResultCard,
+    getFormResultCard,
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,
+    postCreateForm,
+    getCreateFormInfo,
   };
 }
 

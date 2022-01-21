@@ -3,16 +3,18 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
 import { useRecoilState } from 'recoil';
-import { teamIssueState } from '@stores/team';
+import { teamFeedbackState } from '@stores/team';
 import CommonInput from '@components/common/CommonInput';
 import IssueMemberList from '@components/common/IssueMemberList';
 import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
+import { IssueData } from '@api/types/team';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
-  const [issue, setIssue] = useRecoilState(teamIssueState);
+  const [issue, setIssue] = useState<IssueData | null>(null);
+  const [feedbacks, setFeedbacks] = useRecoilState(teamFeedbackState);
   const [isValidating, setIsValidating] = useState(false);
   const navigate = useNavigate();
 
@@ -22,13 +24,10 @@ function TeamIssue() {
       setIsValidating(true);
       const data = await api.teamService.getIssueInfo(issueID);
       setIssue(data);
+      setFeedbacks(data.feedbackList);
       setIsValidating(false);
     })();
   }, [teamID, issueID]);
-
-  useEffect(() => {
-    return () => setIssue(null); // 언마운트 시 해제
-  }, []);
 
   return (
     <StTeamIssue>
@@ -54,10 +53,10 @@ function TeamIssue() {
           {issue.team.thumbnail && (
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
-          {issue !== null && <FeedbackCardList feedbacks={issue.feedbackList} />}
+          {issue !== null && <FeedbackCardList feedbacks={feedbacks} />}
         </StWrapper>
       )}
-      <StLink to={`/team/${teamID}/${issueID}/create`}>
+      <StLink to="./create">
         <CommonInput width="100%" placeholder="피드백을 입력해주세요" disabled={true} />
       </StLink>
       <Outlet />

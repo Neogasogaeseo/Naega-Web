@@ -1,12 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import Landing from '@pages/Landing';
-import Login from '@pages/Login';
-import Join from '@pages/Join';
-import OAuthRedirectHandler from '@pages/OAuthRedirectHandler';
-import Home from '@pages/Home';
-import JoinComplete from '@pages/JoinComplete';
+import { lazy } from 'react';
+const Login = lazy(() => import('@pages/Login'));
+const Join = lazy(() => import('@pages/Join'));
+const OAuthRedirectHandler = lazy(() => import('@pages/OAuthRedirectHandler'));
+const Home = lazy(() => import('@pages/Home'));
+const JoinComplete = lazy(() => import('@pages/JoinComplete'));
+const Landing = lazy(() => import('@pages/Landing'));
 
-const LoginRouter = () => (
+const UserRouter = () => (
   <Routes>
     <Route path="/" element={<Landing />} />
     <Route path="/login" element={<Login />} />
@@ -17,4 +18,4 @@ const LoginRouter = () => (
   </Routes>
 );
 
-export default LoginRouter;
+export default UserRouter;

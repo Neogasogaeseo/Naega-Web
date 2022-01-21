@@ -143,7 +143,7 @@ function NeogaDetailForm() {
                       <StFeedName>
                         {feedback.name}
                         <p>·</p>
-                        <span>{feedback.relationship}</span>
+                        <span>너를 {feedback.relationship}</span>
                       </StFeedName>
                       <StFeedDate>{feedback.createdAt}</StFeedDate>
                     </StFeedHeader>

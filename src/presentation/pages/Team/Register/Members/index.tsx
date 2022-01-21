@@ -32,6 +32,7 @@ export default function TeamRegisterMembers() {
   const searchUser = async () => {
     const searchedUserList = await api.teamService.getSearchedUserList(userSearchWord);
     setSearchedUserListResponse(searchedUserList);
+    resetUserSearchWord();
   };
 
   const toggleMember = (

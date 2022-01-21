@@ -26,9 +26,18 @@ export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
         }
         placeholder="팀원 검색하기"
         width="100%"
-        submitButton={{ value: '검색', onClick: onClickSearchButton }}
+        submitButton={{
+          value: '검색',
+          onClick: () => {
+            onClickSearchButton();
+            userSearchWordRef.current && (userSearchWordRef.current.value = '');
+          },
+        }}
         img={icSearch}
-        onKeyPress={onKeypressSearchInput}
+        onKeyPress={(e) => {
+          onKeypressSearchInput(e);
+          userSearchWordRef.current && (userSearchWordRef.current.value = '');
+        }}
       />
       {selectedUserList && (
         <MutableKeywordList

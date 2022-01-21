@@ -19,7 +19,7 @@ export function userDataRemote(): UserService {
       data: { name: content, userId: userID },
     });
 
-    return { id: response.data.id, content: response.data.name, color: response.data.colorCode };
+    return { id: response.data.id, content: response.data.name, color: response.data.colorcode };
   };
 
   const getMyPageInfo = async (userID: string) => {

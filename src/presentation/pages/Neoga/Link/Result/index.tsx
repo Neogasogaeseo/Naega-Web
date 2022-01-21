@@ -20,7 +20,7 @@ export default function NeogaLinkResult() {
     const q = await api.neososeoFormService.postCreateForm(Number(formID), () =>
       navigate(`/neoga/create/${formID}/created`),
     );
-    setLink(`http://localhost:3000/neososeoform/${q}`);
+    setLink(`https://neogasogaeseo.com/neososeoform/${q}`);
   };
 
   useEffect(() => {

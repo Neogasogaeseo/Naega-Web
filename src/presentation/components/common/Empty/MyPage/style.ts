@@ -31,6 +31,7 @@ export const StLabel = styled.div`
   text-align: center;
   color: ${COLOR.GRAY_5};
   ${FONT_STYLES.R_15_TITLE}
+  line-height: 1.4em;
 `;
 
 export const StButton = styled.div`

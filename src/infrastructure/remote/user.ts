@@ -1,5 +1,4 @@
 import { UserService } from '@api/user';
-import { USER_DATA } from '@infrastructure/mock/user.data';
 import { publicAPI } from './base';
 
 export function userDataRemote(): UserService {
@@ -24,32 +23,50 @@ export function userDataRemote(): UserService {
   };
 
   const getMyPageInfo = async (userID: string) => {
-    await wait(1000);
-    return USER_DATA.MY_PAGE_INFO(userID);
+    const response = await publicAPI.get({ url: `/user/${userID}` });
+    console.log('aa', response.data.answerKeywordList);
+    return {
+      username: response.data.user.name,
+      userID: response.data.user.profileId,
+      profileImage: response.data.user.image,
+      neososeo: response.data.answerKeywordList.map((keyword: any) => ({
+        id: keyword.keywordId,
+        content: keyword.keywordName,
+        color: keyword.colorCode,
+      })),
+      team: response.data.teamKeywordList.map((keyword: any) => ({
+        id: keyword.keywordId,
+        content: keyword.keywordName,
+        color: keyword.colorCode,
+      })),
+    };
   };
 
   const getNeososeoBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/answer` });
     return {
-      count: response.data.length,
-      answerList: response.data.map((bookmark: any) => ({
-        id: bookmark.answerId,
-        icon: bookmark.lightIconImage,
-        question: bookmark.title,
-        content: bookmark.content,
-        isBookmarked: bookmark.isPinned,
-        keywordList: bookmark.keywords.map((keyword: any) => ({
-          id: keyword.answerId,
-          content: keyword.name,
-          color: keyword.colorCode,
-        })),
-        targetUserID: bookmark.userId,
-      })),
+      count: response.data ? response.data.length : 0,
+      answerList: response.data
+        ? response.data.map((bookmark: any) => ({
+            id: bookmark.answerId,
+            icon: bookmark.lightIconImage,
+            question: bookmark.title,
+            content: bookmark.content,
+            isBookmarked: bookmark.isPinned,
+            keywordList: bookmark.keywords.map((keyword: any) => ({
+              id: keyword.answerId,
+              content: keyword.name,
+              color: keyword.colorCode,
+            })),
+            targetUserID: bookmark.userId,
+          }))
+        : [],
     };
   };
 
   const getFeedbackBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/team` });
+    console.log(response);
     return {
       count: response.data.pinnedFeedbackList.length,
       teamList: response.data.teamList.map((team: any) => ({
@@ -82,5 +99,3 @@ export function userDataRemote(): UserService {
     getFeedbackBookmark,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

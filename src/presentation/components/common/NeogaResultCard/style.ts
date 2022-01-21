@@ -8,6 +8,7 @@ export const StNeogaResultCard = styled.div`
   border-radius: 22px;
   padding: 24px 22px 2px 22px;
   margin-bottom: 12px;
+  background-color: ${COLOR.WHITE};
 `;
 
 export const StNeogaCardHeader = styled.div`
@@ -15,11 +16,13 @@ export const StNeogaCardHeader = styled.div`
   align-items: center;
 
   img {
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
+    padding: 8px;
     margin-right: 12px;
     object-fit: cover;
     border-radius: 50%;
+    background-color: ${COLOR.GRAY_1};
   }
 
   & > div {

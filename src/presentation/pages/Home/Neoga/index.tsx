@@ -26,7 +26,7 @@ function HomeNeoga() {
   useEffect(() => {
     (async () => {
       const data = await api.neogaService.getBannerTemplate();
-      setBanner(data);
+      data && setBanner(data);
     })();
   }, []);
 
@@ -47,12 +47,16 @@ function HomeNeoga() {
           )
         }
       >
-        <div>
-          <div>{banner?.title}</div>
-          <div>{banner?.content}</div>
-        </div>
-        <img src={banner?.src} />
-        {banner?.isNew && <img src={icNewTag} />}
+        {banner && (
+          <>
+            <div>
+              <div>{banner.title}</div>
+              <div>{banner.content}</div>
+            </div>
+            <img src={banner.src} />
+            {banner.isNew && <img src={icNewTag} />}
+          </>
+        )}
       </StBanner>
       <StForm>
         <h1>너가소개서 설문 만들기</h1>

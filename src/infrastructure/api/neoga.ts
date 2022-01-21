@@ -9,7 +9,7 @@ import {
 import { Keyword } from './types/user';
 
 export interface NeogaService {
-  getBannerTemplate(): Promise<NeogaBannerItem>;
+  getBannerTemplate(): Promise<NeogaBannerItem | null>;
   getMainTemplate(): Promise<NeogaMainCardItem[]>;
   getAllTemplates(viewMode: 'recent' | 'popular'): Promise<NeogaCardItem[]>;
   getMainResultCard(): Promise<NeogaResultCardItem>;

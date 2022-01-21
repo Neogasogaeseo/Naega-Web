@@ -1,10 +1,11 @@
 import { StTeamMembersSearchBar } from './style';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
 import { COLOR } from '@styles/common/color';
 import CommonInput from '@components/common/CommonInput';
 import { icSearch } from '@assets/icons';
+import { useRef } from 'react';
 
 interface TeamMembersSearchBarProps {
   onClickSearchButton: () => Promise<void>;
@@ -14,17 +15,29 @@ interface TeamMembersSearchBarProps {
 export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
   const { onClickSearchButton, onKeypressSearchInput } = props;
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
-  const [userSearchWord, setUserSearchWord] = useRecoilState(userSearchWordState);
+  const setUserSearchWord = useSetRecoilState(userSearchWordState);
+  const userSearchWordRef = useRef<HTMLInputElement>(null);
   return (
     <StTeamMembersSearchBar>
       <CommonInput
-        value={userSearchWord}
-        onChange={(value) => setUserSearchWord(value)}
+        ref={userSearchWordRef}
+        onChange={() =>
+          userSearchWordRef.current && setUserSearchWord(userSearchWordRef.current.value)
+        }
         placeholder="팀원 검색하기"
         width="100%"
-        submitButton={{ value: '검색', onClick: onClickSearchButton }}
+        submitButton={{
+          value: '검색',
+          onClick: () => {
+            onClickSearchButton();
+            userSearchWordRef.current && (userSearchWordRef.current.value = '');
+          },
+        }}
         img={icSearch}
-        onKeyPress={onKeypressSearchInput}
+        onKeyPress={(e) => {
+          onKeypressSearchInput(e);
+          userSearchWordRef.current && (userSearchWordRef.current.value = '');
+        }}
       />
       {selectedUserList && (
         <MutableKeywordList

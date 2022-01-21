@@ -1,5 +1,4 @@
 import { UserService } from '@api/user';
-import { USER_DATA } from '@infrastructure/mock/user.data';
 import { publicAPI } from './base';
 
 export function userDataRemote(): UserService {
@@ -24,18 +23,85 @@ export function userDataRemote(): UserService {
   };
 
   const getMyPageInfo = async (userID: string) => {
-    await wait(1000);
-    return USER_DATA.MY_PAGE_INFO(userID);
+    const response = await publicAPI.get({ url: `/user/${userID}` });
+    console.log('aa', response.data.answerKeywordList);
+    return {
+      username: response.data.user.name,
+      userID: response.data.user.profileId,
+      profileImage: response.data.user.image,
+      neososeo: response.data.answerKeywordList
+        ? response.data.answerKeywordList.map((keyword: any) => ({
+            id: keyword.keywordId,
+            content: keyword.keywordName,
+            color: keyword.colorCode,
+          }))
+        : [],
+      team: response.data.teamKeywordList
+        ? response.data.teamKeywordList.map((keyword: any) => ({
+            id: keyword.keywordId,
+            content: keyword.keywordName,
+            color: keyword.colorCode,
+          }))
+        : [],
+    };
   };
 
-  const getNeososeoBookmark = async () => {
-    await wait(1000);
-    return USER_DATA.NEOSOSEO_BOOKMARK;
+  const getNeososeoBookmark = async (userID: string) => {
+    const response = await publicAPI.get({ url: `/user/${userID}/answer` });
+    return {
+      count: response.data ? response.data.length : 0,
+      answerList: response.data
+        ? response.data.map((bookmark: any) => ({
+            id: bookmark.answerId,
+            icon: bookmark.lightIconImage,
+            question: bookmark.title,
+            content: bookmark.content,
+            isBookmarked: bookmark.isPinned,
+            keywordList: bookmark.keywords.map((keyword: any) => ({
+              id: keyword.answerId,
+              content: keyword.name,
+              color: keyword.colorCode,
+            })),
+            targetUserID: bookmark.userId,
+          }))
+        : [],
+    };
   };
 
-  const getFeedbackBookmark = async () => {
-    await wait(1000);
-    return USER_DATA.TEAM_FEEDBACK_BOOKMARK;
+  const getFeedbackBookmark = async (userID: string) => {
+    const response = await publicAPI.get({ url: `/user/${userID}/team` });
+    return {
+      count: response.data.pinnedFeedbackList ? response.data.pinnedFeedbackList.length : 0,
+      teamList: response.data.pinnedFeedbackList
+        ? response.data.teamList.map((team: any) => ({
+            // 피드백 목록과 팀 목록 모두 존재
+            id: team.id,
+            profileImage: team.image,
+            profileName: team.name,
+          }))
+        : response.data.map((team: any) => ({
+            // 팀 목록만 존재
+            id: team.id,
+            profileImage: team.image,
+            profileName: team.name,
+          })),
+      feedbackList: response.data.pinnedFeedbackList
+        ? response.data.pinnedFeedbackList.map((feedback: any) => ({
+            id: feedback.id,
+            writer: feedback.writerName,
+            target: feedback.name,
+            body: feedback.content,
+            createdAt: feedback.createdAt,
+            keywordList: feedback.keywords.map((keyword: any) => ({
+              id: keyword.answerId,
+              content: keyword.name,
+              color: keyword.colorCode,
+            })),
+            targetProfileID: feedback.profileId,
+            isBookmarked: feedback.isPinned,
+          }))
+        : [],
+    };
   };
 
   return {
@@ -46,5 +112,3 @@ export function userDataRemote(): UserService {
     getFeedbackBookmark,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

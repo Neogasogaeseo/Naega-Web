@@ -9,7 +9,7 @@ import { copyClipboard } from '@utils/copyClipboard';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   StDetailLink,
   StFeedbackTeamWrapper,
@@ -23,6 +23,7 @@ import {
   StTitle,
   StMyPageProfile,
 } from './style';
+import MyEmptyView from '@components/common/Empty/MyPage';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -33,6 +34,7 @@ function HomeMyPage() {
   const [isMyPage, setIsMyPage] = useState(false);
   const { pathname } = useLocation();
   const { fireToast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsMyPage(userID === loginID);
@@ -89,10 +91,18 @@ function HomeMyPage() {
             )}
           </StHomeMyPageHeader>
           <div style={{ marginBottom: 32 }}>
-            <StKeywordTitle>친구가 말하는 강쥐</StKeywordTitle>
-            <ImmutableKeywordList keywordList={mypageInfo.neososeo} onItemClick={() => null} />
-            <StKeywordTitle>함께한 팀원이 말하는 강쥐</StKeywordTitle>
-            <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+            {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
+              <>
+                <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
+                <ImmutableKeywordList keywordList={mypageInfo.neososeo} onItemClick={() => null} />
+              </>
+            )}
+            {mypageInfo.team && mypageInfo.team.length !== 0 && (
+              <>
+                <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
+                <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+              </>
+            )}
           </div>
         </>
       )}
@@ -111,7 +121,15 @@ function HomeMyPage() {
               </StDetailLink>
             )}
           </StTitle>
-          <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
+          {neososeoBookmark.count > 0 ? (
+            <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
+          ) : (
+            <MyEmptyView
+              isMyPage={isMyPage}
+              origin="너가소개서"
+              onPickButtonClicked={() => navigate('/home/neoga')}
+            />
+          )}
         </div>
       )}
       <StGreyBorder />
@@ -138,7 +156,15 @@ function HomeMyPage() {
               isAddNeeded={false}
             />
           </StFeedbackTeamWrapper>
-          <FeedbackCardExpandableList feedbacks={feedbackBookmark.feedbackList} />
+          {feedbackBookmark.feedbackList.length > 0 ? (
+            <FeedbackCardExpandableList feedbacks={feedbackBookmark.feedbackList} />
+          ) : (
+            <MyEmptyView
+              isMyPage={isMyPage}
+              origin="팀원소개서"
+              onPickButtonClicked={() => navigate('/home/team')}
+            />
+          )}
         </StNegativeMarginWrapper>
       )}
       <StGreyBorderTall />

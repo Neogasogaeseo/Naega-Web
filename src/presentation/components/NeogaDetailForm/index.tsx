@@ -11,9 +11,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   StNeogaDetailForm,
-  StTitle,
   StDate,
-  StHeader,
   StKeyword,
   StFeedWrapper,
   StFeedHeader,
@@ -27,9 +25,9 @@ import {
   StButton,
   StMoreWrapper,
   StMoreButton,
-  StIcon,
 } from './style';
 import { DOMAIN } from '@utils/constant';
+import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
@@ -69,14 +67,10 @@ function NeogaDetailForm() {
   return (
     <StNeogaDetailForm>
       <div>
-        <StHeader>
-          <StTitle>
-            {resultKeywordList.title} <br />
-          </StTitle>
-          <StIcon>
-            <img src={resultKeywordList.darkIconImage} />
-          </StIcon>
-        </StHeader>
+        <NeososeoFormHeader
+          title={resultKeywordList.title}
+          image={resultKeywordList.darkIconImage}
+        />
         <StLink>
           <img src={icLink} />
           <p

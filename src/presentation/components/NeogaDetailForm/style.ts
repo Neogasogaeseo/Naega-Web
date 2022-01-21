@@ -7,15 +7,12 @@ export const StNeogaDetailForm = styled.div`
     height: 8px;
     background-color: ${COLOR.GRAY_1};
   }
-`;
-
-export const StIcon = styled.div`
-  display: flex;
-  align-self: center;
-  width: 72x;
-  height: 72px;
-  border-radius: 34px;
-  background-color: ${COLOR.GRAY_1};
+  & > div:first-child {
+    & > *:first-child {
+      padding: 0 20px;
+      margin-top: 50px;
+    }
+  }
 `;
 
 export const StLink = styled.div`
@@ -51,12 +48,6 @@ export const StFeedName = styled.div`
   }
 `;
 
-export const StHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 20px 0 20px;
-`;
-
 export const StDate = styled.div`
   display: flex;
   float: right;
@@ -82,21 +73,6 @@ export const StQuestion = styled.div`
   font-size: 15px;
   line-height: 143.99%;
   color: ${COLOR.GRAY_7};
-`;
-
-export const StTitle = styled.div`
-  width: 50%;
-  word-break: keep-all;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 150%;
-  letter-spacing: -0.01em;
-  & > p {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 162%;
-    letter-spacing: -0.01em;
-  }
 `;
 
 export const StKeyword = styled.div`

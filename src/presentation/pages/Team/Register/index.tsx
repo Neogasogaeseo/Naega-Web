@@ -32,7 +32,7 @@ function TeamRegister() {
     image && form.append('image', image);
     description && form.append('description', description);
     selectedUserList.length &&
-      form.append('userIdList', selectedUserList.map((user) => user.id).join(' '));
+      form.append('userIdList', `[${selectedUserList.map((user) => user.id).join(', ')}]`);
     await api.teamService.postTeamInfo(form);
   };
 

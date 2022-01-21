@@ -1,4 +1,5 @@
 import { NeogaService } from '@api/neoga';
+import { AxiosError } from 'axios';
 import { NEOGA_DATA } from '../mock/neoga.data';
 import { privateAPI } from './base';
 
@@ -119,11 +120,27 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: true };
   };
 
+  const postCreateForm = async (formID: number, navigate: () => void) => {
+    const response = await privateAPI
+      .post({
+        url: `/form/create`,
+        data: { formId: formID },
+      })
+      .catch((e: AxiosError) => {
+        console.log(e.response);
+      });
+    if (response.status === 200 && response.message === '폼 생성 성공') {
+      return response.data;
+    } else {
+      navigate();
+      return response.data;
+    }
+  };
+
   const getCreateFormInfo = async (formID: number) => {
     const response = await privateAPI.get({
       url: `/form/create/${formID}`,
     });
-
     const { id, title, subtitle, darkIconImage } = response.data;
     if (response.status === 200) {
       return {
@@ -144,6 +161,7 @@ export function NeogaDataRemote(): NeogaService {
     getResultKeywords,
     getAllResultListTemplates,
     postAnswerBookmark,
+    postCreateForm,
     getCreateFormInfo,
   };
 }

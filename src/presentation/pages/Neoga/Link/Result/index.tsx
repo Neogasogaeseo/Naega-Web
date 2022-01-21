@@ -5,18 +5,30 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { copyClipboard } from '@utils/copyClipboard';
 import { useEffect } from 'react';
 import { useToast } from '@hooks/useToast';
+import { api } from '@api/index';
+import { useState } from 'react';
 
 export default function NeogaLinkResult() {
   const { formID, type } = useParams();
   const navigate = useNavigate();
   const { fireToast } = useToast();
+  const [link, setLink] = useState<string>('');
 
-  const iv = 'qmffkqmffk';
-  const q = 'qmffhqmffh';
-  const link = `http://localhost:3000/neososeoform/${iv}/${q}`;
+  const createLink = async () => {
+    if (!formID || !type) return;
+    if (isNaN(+formID)) return;
+    const q = await api.neogaService.postCreateForm(Number(formID), () =>
+      navigate(`/neoga/create/${formID}/created`),
+    );
+    setLink(`https://neogasogaeseo.com/neososeoform/${q}`);
+  };
 
   useEffect(() => {
+    createLink();
+  }, [formID, type]);
+  useEffect(() => {
     if (!(type === 'new' || type === 'created')) navigate('/');
+    createLink();
   }, []);
 
   return (

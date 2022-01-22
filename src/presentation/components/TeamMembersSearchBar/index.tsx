@@ -17,6 +17,7 @@ export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const setUserSearchWord = useSetRecoilState(userSearchWordState);
   const userSearchWordRef = useRef<HTMLInputElement>(null);
+  console.log(onKeypressSearchInput);
   return (
     <StTeamMembersSearchBar>
       <CommonInput
@@ -34,10 +35,6 @@ export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
           },
         }}
         img={icSearch}
-        onKeyPress={(e) => {
-          onKeypressSearchInput(e);
-          userSearchWordRef.current && (userSearchWordRef.current.value = '');
-        }}
       />
       {selectedUserList && (
         <MutableKeywordList

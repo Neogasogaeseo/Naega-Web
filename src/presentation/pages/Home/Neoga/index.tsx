@@ -43,11 +43,11 @@ function HomeNeoga() {
         <StBanner
           color={banner.backgroundColor}
           onClick={() => {
-            /*navigate(
+            navigate(
               banner.isCreated
                 ? `/neoga/create/${banner.id}/created`
-                : `/neoga/create/${banner.id}/new`,
-            )*/
+                : `/neoga/create/${banner.id}`,
+            );
           }}
         >
           <div>

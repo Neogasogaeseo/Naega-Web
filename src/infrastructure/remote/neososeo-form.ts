@@ -5,7 +5,6 @@ import { publicAPI } from './base';
 export function NeososeoFormRemote(): NeososeoFormService {
   const getFormInfo = async (q: string) => {
     const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
-    console.log(response.data);
     return {
       title: response.data.form.title,
       content: response.data.form.subtitle,
@@ -31,7 +30,6 @@ export function NeososeoFormRemote(): NeososeoFormService {
         keywordList: body.keyword,
       },
     });
-    console.log(response.data);
     return { isSuccess: response.status === 200 };
   };
 

@@ -219,7 +219,6 @@ export function teamDataRemote(): TeamService {
           console.log(e.response);
         });
       if (response.status === 200) {
-        console.log(response);
         return { isSuccess: true };
       } else {
         return { isSuccess: false };

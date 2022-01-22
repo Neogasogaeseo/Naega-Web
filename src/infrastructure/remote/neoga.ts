@@ -90,7 +90,6 @@ export function NeogaDataRemote(): NeogaService {
 
   const getFormResultCard = async () => {
     const response = await privateAPI.get({ url: `/form/new` });
-    console.log(response);
     if (response.status === 200)
       return {
         resultList: response.data.resultList

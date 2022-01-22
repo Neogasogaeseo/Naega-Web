@@ -26,7 +26,6 @@ function HomeNeoga() {
   useEffect(() => {
     (async () => {
       const data = await api.neogaService.getBannerTemplate();
-      console.log(data);
       data && setBanner(data);
     })();
   }, []);

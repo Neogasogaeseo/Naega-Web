@@ -69,7 +69,6 @@ function TeamNewIssue() {
       form.append('content', issueTextarea);
       image && form.append('image', image);
       const response = await postTeamIssue(form);
-      console.log(response);
       if (response.status === 200) {
         navigate(`/team/${teamID}`);
       }

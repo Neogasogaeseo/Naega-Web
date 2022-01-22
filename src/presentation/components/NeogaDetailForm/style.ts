@@ -138,6 +138,7 @@ export const StButton = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: 47px;
+  margin-bottom: 192px;
   width: 156px;
   height: 52px;
   background-color: ${COLOR.CORAL_MAIN};

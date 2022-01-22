@@ -20,6 +20,7 @@ export const StNeogaCreateCardItem = styled.div`
     }
     & > div:nth-child(2) {
       ${FONT_STYLES.R_14_TITLE}
+      opacity: 0.8;
     }
   }
 

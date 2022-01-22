@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { StTeamMain, StTeamInfo, StCheckWrapper } from './style';
+import { StTeamMain, StTeamInfo, StCheckWrapper, StOtherMember } from './style';
 import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { useState, useEffect } from 'react';
@@ -16,6 +16,8 @@ function TeamMain() {
   const { teamID } = useParams();
   const navigate = useNavigate();
   const checkMyIssue = () => setIsChecked((prev) => !prev);
+  const MAX_MEMBER = 4;
+  const slicedArray = teamInfoData && teamInfoData.teamDetailData.teamMemberList.slice(0, 4);
 
   useEffect(() => {
     (async () => {
@@ -65,12 +67,16 @@ function TeamMain() {
                 )}
               </button>
               <div>
-                {teamInfoData.teamDetailData.teamMemberList.map((member, index) => (
-                  <span key={member.id}>
-                    {member.profileName}
-                    {index < teamInfoData.teamDetailData.teamMemberCount - 1 ? ',\u00a0' : ''}
-                  </span>
-                ))}
+                {slicedArray &&
+                  slicedArray.map((member, index) => (
+                    <span key={member.id}>
+                      {member.profileName}
+                      {index + 1 < slicedArray.length ? ',\u00a0' : ''}
+                    </span>
+                  ))}
+                {teamInfoData.teamDetailData.teamMemberCount > MAX_MEMBER && (
+                  <StOtherMember>등</StOtherMember>
+                )}
               </div>
             </h3>
             <h2>{teamInfoData.teamDetailData.teamDetail.teamDescription}</h2>

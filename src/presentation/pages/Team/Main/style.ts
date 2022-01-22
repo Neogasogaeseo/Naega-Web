@@ -89,7 +89,7 @@ export const StTeamInfo = styled.div`
       }
 
       & > div {
-        max-width: 150px;
+        max-width: 170px;
         text-align: center;
       }
 
@@ -122,4 +122,8 @@ export const StCheckWrapper = styled.div`
     height: 24px;
     margin-right: 8px;
   }
+`;
+
+export const StOtherMember = styled.span`
+  margin-left: 4px;
 `;

@@ -41,5 +41,7 @@ export const StContent = styled.div`
     ${FONT_STYLES.M_16_BODY}
     line-height: 143.99%;
     letter-spacing: -0.01em;
+    padding-right: 24px;
+    word-break: keep-all;
   }
 `;

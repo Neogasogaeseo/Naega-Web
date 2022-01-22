@@ -7,7 +7,7 @@ import { ResultDetailList } from '@api/types/neoga';
 import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
 import { useToast } from '@hooks/useToast';
 import { copyClipboard } from '@utils/copyClipboard';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
   StNeogaDetailForm,
@@ -36,13 +36,15 @@ function NeogaDetailForm() {
   const [lookMoreButton, setLookMoreButton] = useState(false);
   const link = `${DOMAIN}/neososeoform/${resultKeywordList && resultKeywordList.q}`;
   const { fireToast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!formID) return;
     if (isNaN(+formID)) return;
     (async () => {
       const data = await getNeogaResult(+formID);
-      setResultKeywordList(data);
+      if (!data) navigate('/home');
+      else setResultKeywordList(data);
     })();
   }, []);
 
@@ -51,7 +53,8 @@ function NeogaDetailForm() {
     if (isNaN(+formID)) return;
     (async () => {
       const data = await getNeogaFeedbackResult(+formID);
-      setResultFeedback(data);
+      if (!data) navigate('/home');
+      else setResultFeedback(data);
     })();
   }, []);
 

@@ -2,8 +2,8 @@ import { privateAPI } from './base';
 import { ResultDetailList, ResultFeedList } from '@api/types/neoga';
 
 export const getNeogaResult = async (formID: number): Promise<ResultDetailList | undefined> => {
-  try {
-    const response = await privateAPI.get({ url: `/form/detail/${formID}` });
+  const response = await privateAPI.get({ url: `/form/detail/${formID}` });
+  if (response.status === 200 && response.data)
     return {
       id: response.data.id,
       title: response.data.title,
@@ -17,14 +17,13 @@ export const getNeogaResult = async (formID: number): Promise<ResultDetailList |
         color: keyword.colorcode,
       })),
     };
-  } catch (e) {
-    throw '서버 통신 실패';
-  }
 };
 
-export const getNeogaFeedbackResult = async (formID: number): Promise<ResultFeedList | null> => {
-  try {
-    const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
+export const getNeogaFeedbackResult = async (
+  formID: number,
+): Promise<ResultFeedList | undefined> => {
+  const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
+  if (response.status === 200 && response.data)
     return {
       answerCount: response.data.answerCount,
       answer: response.data.answer.map((feedback: any) => ({
@@ -43,7 +42,4 @@ export const getNeogaFeedbackResult = async (formID: number): Promise<ResultFeed
         })),
       })),
     };
-  } catch (e) {
-    throw '서버 통신 실패';
-  }
 };

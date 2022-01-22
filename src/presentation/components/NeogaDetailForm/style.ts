@@ -112,6 +112,8 @@ export const StFeedHeader = styled.div`
 `;
 export const StFeedContent = styled.div`
   margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 140%;
 `;
 
 export const StFeedTitle = styled.div`

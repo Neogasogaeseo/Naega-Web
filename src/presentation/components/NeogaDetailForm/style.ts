@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNeogaDetailForm = styled.div`
   & > hr {
@@ -90,9 +91,18 @@ export const StKeyword = styled.div`
 
 export const StFeedDate = styled.div`
   color: ${COLOR.GRAY_4};
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  & div {
+    ${FONT_STYLES.R_14_TITLE}
+  }
+  & img {
+    width: 22px;
+  }
 `;
 
-export const StFeedWrapper = styled.div`
+export const StNeogaDetailFormCard = styled.div`
   margin: 0 20px 0 20px;
   & > hr {
     margin-top: 24px;

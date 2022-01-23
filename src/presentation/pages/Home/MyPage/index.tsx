@@ -115,7 +115,7 @@ function HomeMyPage() {
               <span>{neososeoBookmark.count}</span>
             </div>
             {isMyPage && (
-              <StDetailLink to="/home/neoga">
+              <StDetailLink to="/neoga/result">
                 <span>전체보기</span>
                 <IcArrowViewAll />
               </StDetailLink>
@@ -127,7 +127,7 @@ function HomeMyPage() {
             <MyEmptyView
               isMyPage={isMyPage}
               origin="너가소개서"
-              onPickButtonClicked={() => navigate('/home/neoga')}
+              onPickButtonClicked={() => navigate('/neoga/result')}
             />
           )}
         </div>

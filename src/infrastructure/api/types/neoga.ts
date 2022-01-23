@@ -78,12 +78,5 @@ export type FeedAnswer = {
   content: string;
   isPinned: boolean;
   createdAt: string;
-  keywords: AnswerKeyword[];
-};
-
-export type AnswerKeyword = {
-  id: number;
-  name: string;
-  colorcode: string;
-  answerId: number;
+  keywords: Keyword[];
 };

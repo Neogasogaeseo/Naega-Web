@@ -24,6 +24,7 @@ import {
   StMyPageProfile,
 } from './style';
 import MyEmptyView from '@components/common/Empty/MyPage';
+import { DOMAIN } from '@utils/constant';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -80,7 +81,7 @@ function HomeMyPage() {
             {isMyPage && (
               <StShare
                 onClick={() =>
-                  copyClipboard(pathname, () =>
+                  copyClipboard(`${DOMAIN}${pathname}`, () =>
                     fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
                   )
                 }
@@ -115,7 +116,7 @@ function HomeMyPage() {
               <span>{neososeoBookmark.count}</span>
             </div>
             {isMyPage && (
-              <StDetailLink to="/home/neoga">
+              <StDetailLink to="/neoga/result">
                 <span>전체보기</span>
                 <IcArrowViewAll />
               </StDetailLink>
@@ -127,7 +128,7 @@ function HomeMyPage() {
             <MyEmptyView
               isMyPage={isMyPage}
               origin="너가소개서"
-              onPickButtonClicked={() => navigate('/home/neoga')}
+              onPickButtonClicked={() => navigate('/neoga/result')}
             />
           )}
         </div>

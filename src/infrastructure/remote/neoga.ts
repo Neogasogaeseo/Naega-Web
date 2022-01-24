@@ -138,9 +138,9 @@ export function NeogaDataRemote(): NeogaService {
     return NEOGA_DATA.NEOGA_RESULT;
   };
 
-  const postAnswerBookmark = async () => {
-    await wait(1000);
-    return { isSuccess: true };
+  const postAnswerBookmark = async (answerID: number) => {
+    const response = await privateAPI.put({ url: `/form/detail/answer/${answerID}/pin` });
+    return { isSuccess: response.success };
   };
 
   const postCreateForm = async (formID: number) => {

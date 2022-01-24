@@ -13,14 +13,9 @@ import {
   StNeogaDetailForm,
   StDate,
   StKeyword,
-  StFeedWrapper,
-  StFeedHeader,
-  StFeedContent,
   StFeedTitle,
   StQuestion,
   StLink,
-  StFeedName,
-  StFeedDate,
   StEmptyFeedback,
   StButton,
   StMoreWrapper,
@@ -28,6 +23,7 @@ import {
 } from './style';
 import { DOMAIN } from '@utils/constant';
 import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import NeogaDetailFormCard from './Card';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
@@ -127,25 +123,9 @@ function NeogaDetailForm() {
         <span>{resultFeedback ? resultFeedback.answerCount : 0}개</span>의 답변 피드
       </StFeedTitle>
       {resultFeedback && resultFeedback.answer.length > 0 ? (
-        resultFeedback.answer.map((feedback: any) => {
-          return (
-            <>
-              <StFeedWrapper>
-                <StFeedHeader>
-                  <StFeedName>
-                    {feedback.name}
-                    <p>·</p>
-                    <span>너를 {feedback.relationship}</span>
-                  </StFeedName>
-                  <StFeedDate>{feedback.createdAt}</StFeedDate>
-                </StFeedHeader>
-                <StFeedContent>{feedback.content}</StFeedContent>
-                <ImmutableKeywordList keywordList={feedback.keywords} onItemClick={() => null} />
-                <hr />
-              </StFeedWrapper>
-            </>
-          );
-        })
+        resultFeedback.answer.map((feedback) => (
+          <NeogaDetailFormCard key={feedback.id} {...feedback} />
+        ))
       ) : (
         <StEmptyFeedback>
           <img src={imgEmptyFeedback} alt="" />

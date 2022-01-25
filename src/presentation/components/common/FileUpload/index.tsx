@@ -1,3 +1,5 @@
+import { useToast } from '@hooks/useToast';
+import { resizeImage } from '@utils/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
@@ -11,30 +13,33 @@ interface FileUploadProps {
 
 function FileUpload(props: FileUploadProps): React.ReactElement {
   const { children, width, height, borderRadius = '0px', setFile } = props;
+  const imgFileForm = /(.*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/;
   const [newFile, setNewFile] = useState<File | null>(null);
   const [fileThumbnail, setFileThumbnail] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+  const { fireToast } = useToast();
+
   const buttonHandler = () => {
     if (inputRef.current !== null) {
       inputRef.current.click();
     }
   };
+
   useEffect(() => {
     newFile && setFile(newFile);
-  }, [newFile, setFile]);
+  }, [newFile]);
 
-  const fileInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const fileInputHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files !== null) {
       const file = e.target.files[0];
-      const imgFileForm = /(.*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF|bmp|BMP)$/;
-      // 이미지파일
-      if (file?.name?.match(imgFileForm)) {
-        //파일 확장자 체크
-        setNewFile(file);
-        setFileThumbnail(URL.createObjectURL(file));
+      if (!file) return fireToast({ content: '이미지 파일을 첨부해주세요' });
+      if (file.name.match(imgFileForm)) {
+        const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
+        setNewFile(resizedImageFile);
+        setFileThumbnail(URL.createObjectURL(imageBlob));
       } else {
-        alert('이미지 파일을 첨부해주세요');
+        fireToast({ content: '이미지 파일을 첨부해주세요' });
       }
     }
   };
@@ -46,7 +51,7 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
         ref={inputRef}
         type="file"
         onChange={fileInputHandler}
-        accept="imgFileForm"
+        accept="image/jpeg, image/png, image/gif"
       />
       <StUploadBtn onClick={buttonHandler} width={width} height={height}>
         {!newFile ? ( //파일이 없는 경우

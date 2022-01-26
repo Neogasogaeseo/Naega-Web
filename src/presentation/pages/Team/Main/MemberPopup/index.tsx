@@ -13,7 +13,7 @@ function TeamMemberPopup(props: TeamMemberPopupProps) {
       <div>
         {members.map(({ id, profileName, profileImage }) => (
           <div key={id}>
-            <img src={profileImage ?? imgEmptyProfile} />
+            {profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}
             <span>{profileName}</span>
           </div>
         ))}

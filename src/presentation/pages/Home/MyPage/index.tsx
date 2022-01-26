@@ -25,6 +25,7 @@ import {
 } from './style';
 import MyEmptyView from '@components/common/Empty/MyPage';
 import { DOMAIN } from '@utils/constant';
+import { imgEmptyProfile } from '@assets/images';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -71,7 +72,11 @@ function HomeMyPage() {
         <>
           <StHomeMyPageHeader>
             <StMyPageProfile>
-              <img src={mypageInfo.profileImage} />
+              {mypageInfo.profileImage ? (
+                <img src={mypageInfo.profileImage} />
+              ) : (
+                <img src={imgEmptyProfile} />
+              )}
               {isMyPage && <IcMypageEdit />}
             </StMyPageProfile>
             <div>

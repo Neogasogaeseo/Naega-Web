@@ -1,5 +1,4 @@
 import { icBookmarkSelected, IcEmptyFeedback } from '@assets/icons';
-import React from 'react';
 import { StButton, StLabel, StMyEmptyView } from './style';
 
 type MyEmptyViewProps = {

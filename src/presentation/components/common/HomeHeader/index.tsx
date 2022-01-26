@@ -37,7 +37,7 @@ function HomeHeader() {
   return (
     <StHomeHeader>
       <Link to="/home/neoga">
-        <img src={imgLogo} />
+        <img src={imgLogo} alt="로고" />
       </Link>
       {isHeaderVisible && (
         <>

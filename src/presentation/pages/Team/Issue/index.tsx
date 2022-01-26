@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
@@ -47,7 +47,7 @@ function TeamIssue() {
                 issueNumber={+issueID}
                 issueMembers={issue.team.teammates}
               />
-              <IssueTeamInfo teamName={issue.team.title} memberName={issue.writer} />
+              <IssueTeamInfo teamImage={issue.team.teamProfileImage} teamName={issue.team.title} memberName={issue.writer} />
             </div>
           </StHeader>
           {issue.team.thumbnail && (

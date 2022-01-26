@@ -4,7 +4,7 @@ import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
 import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
-import ProfileList from '@components/ProfileList';
+import ProfileList from '@components/common/ProfileList';
 import { copyClipboard } from '@utils/copyClipboard';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';

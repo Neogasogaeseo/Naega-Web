@@ -1,5 +1,5 @@
 import ProfileItem from '@components/common/ProfileItem';
-import { StItemWrapper, StProfileList } from '@components/ProfileList/style';
+import { StItemWrapper, StProfileList } from '@components/common/ProfileList/style';
 
 interface ProfileListData {
   id: number;

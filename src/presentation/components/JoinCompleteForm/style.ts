@@ -25,8 +25,6 @@ export const StNoticeWrapper = styled.div`
   text-align: center;
 `;
 
-export const StTitleWrapper = styled.div``;
-
 export const StButton = styled.button`
   margin-top: 204px;
   margin-bottom: 48px;

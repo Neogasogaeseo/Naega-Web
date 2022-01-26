@@ -16,6 +16,7 @@ export const StNeososeoAnswerCard = styled.div`
   & img:nth-child(3) {
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
   & > div:nth-child(1) {
     display: grid;

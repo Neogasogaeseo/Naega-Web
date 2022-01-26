@@ -9,7 +9,7 @@ import {
 import { imgEmptyProfile, ImgTeamAdd } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
 import CommonLabel from '@components/common/CommonLabel';
-import ProfileList from '@components/ProfileList';
+import ProfileList from '@components/common/ProfileList';
 import PhotoUpload from '@components/common/FileUpload';
 import {
   selectedUserListState,

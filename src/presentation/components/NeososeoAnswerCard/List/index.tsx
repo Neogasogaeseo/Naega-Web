@@ -1,5 +1,4 @@
 import { AnswerDetail } from '@api/types/user';
-import React from 'react';
 import NeososeoAnswerCardItem from '../Item';
 
 type NeososeoAnswerCardListProps = { answers: AnswerDetail[] };

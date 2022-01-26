@@ -9,7 +9,7 @@ function LoginForm() {
   }
   return (
     <StLoginForm>
-      <img src={imgLogo} />
+      <img src={imgLogo} alt="로고" />
       <StLogin>너가소개서</StLogin>
       <StNoticeWrapper>
         나와 함께한 사람들이 써주는 <br />

@@ -14,6 +14,7 @@ type TeamData = {
   teammates: TeamMember[];
   thumbnail: string;
   title: string;
+  teamProfileImage?: string;
 };
 
 export interface TeamMember {

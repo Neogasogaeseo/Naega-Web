@@ -36,4 +36,5 @@ export const StId = styled.div`
 export const StAddToggleButton = styled.img`
   width: 24px;
   height: 24px;
+  cursor: pointer;
 `;

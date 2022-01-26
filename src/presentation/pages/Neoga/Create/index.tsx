@@ -22,7 +22,7 @@ function NeogaCreate() {
     <StNeogaCreate>
       <StWhiteWrapper>
         <Link to="/home">
-          <img src={imgLogo} />
+          <img src={imgLogo} alt="로고" />
         </Link>
         <div>너가소개서 설문 만들기</div>
         <div>원하는 설문의 링크를 생성하고 공유해보세요</div>

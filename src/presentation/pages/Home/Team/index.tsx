@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@api/index';
-import ProfileList from '@components/ProfileList';
+import ProfileList from '@components/common/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
 import { StTeamMain, StDivisionLine, StEmptyView } from './style';
 import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';

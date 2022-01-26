@@ -41,6 +41,7 @@ export const StShare = styled.div`
   display: flex;
   flex-direction: row !important;
   gap: 4px;
+  cursor: pointer;
 `;
 
 export const StKeywordTitle = styled.div`

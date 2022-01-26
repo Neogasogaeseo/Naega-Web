@@ -38,6 +38,7 @@ export const StWhiteWrapper = styled(StWrapper)`
 `;
 
 export const StViewModeSelector = styled.div<{ selected: boolean }>`
+  cursor: pointer;
   border-radius: 12px;
   padding: 8px 20px;
   color: ${({ selected }) => (selected ? COLOR.WHITE : COLOR.GRAY_5)};

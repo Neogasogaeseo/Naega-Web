@@ -12,6 +12,7 @@ export const StNeogaCreateCardItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   & div {
     & > div:nth-child(1) {

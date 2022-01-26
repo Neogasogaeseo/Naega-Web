@@ -14,6 +14,9 @@ export const StHeader = styled.div`
   align-items: center;
   padding: 2px 20px 2px 10px;
   border-bottom: 1px solid ${COLOR.GRAY_2};
+  & > svg {
+    cursor: pointer;
+  }
   & > div {
     font-weight: 600;
     font-size: 17px;

@@ -99,6 +99,7 @@ export const StFeedDate = styled.div`
   }
   & img {
     width: 22px;
+    cursor: pointer;
   }
 `;
 

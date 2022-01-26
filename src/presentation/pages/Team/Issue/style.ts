@@ -32,6 +32,9 @@ export const StLink = styled(Link)`
 
 export const StHeader = styled.div`
   padding-bottom: 20px;
+  & > img {
+    cursor: pointer;
+  }
   & > div {
     display: flex;
     &:nth-child(2) {

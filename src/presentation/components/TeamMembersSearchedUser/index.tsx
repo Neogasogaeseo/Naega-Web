@@ -14,7 +14,7 @@ export default function TeamMembersSearchedUser(props: TeamMembersSearchedUserPr
   return (
     <StTeamMembersSearchedUser>
       <div>
-        <img src={profileImage} />
+        {profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}
         <div>
           <StProfileName>{profileName}</StProfileName>
           <StId>@{profileId}</StId>

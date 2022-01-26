@@ -47,7 +47,7 @@ function TeamIssue() {
                 issueNumber={+issueID}
                 issueMembers={issue.team.teammates}
               />
-              <IssueTeamInfo teamName={issue.team.title} memberName={issue.writer} />
+              <IssueTeamInfo teamImage={issue.team.teamProfileImage} teamName={issue.team.title} memberName={issue.writer} />
             </div>
           </StHeader>
           {issue.team.thumbnail && (

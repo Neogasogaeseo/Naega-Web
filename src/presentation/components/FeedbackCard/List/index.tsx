@@ -1,5 +1,4 @@
 import { FeedbackDetail } from '@api/types/team';
-import React from 'react';
 import FeedbackCardItem from '../Item';
 
 type FeedbackCardListProps = {

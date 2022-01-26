@@ -1,4 +1,3 @@
-import React from 'react';
 import { StNeososeoFormHeader } from './style';
 
 interface NeososeoFormHeaderProps {

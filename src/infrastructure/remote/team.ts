@@ -86,6 +86,7 @@ export function teamDataRemote(): TeamService {
               teamID: team.teamId,
               issueCardImage: team.image ?? null,
               teamName: team.teamName,
+              teamImage: team.teamImage,
               memberName: team.userName,
             }))
           : [],
@@ -113,6 +114,7 @@ export function teamDataRemote(): TeamService {
               teamID: team.teamId,
               issueCardImage: team.image ?? null,
               teamName: team.teamName,
+              teamImage: team.teamImage,
               memberName: team.userName,
             }))
           : [],
@@ -163,6 +165,7 @@ export function teamDataRemote(): TeamService {
         issueListData: response.data
           ? response.data.map((team: any) => ({
               teamID: team.teamId,
+              issueCardImage: team.image ?? null,
               issueNumber: team.id,
               issueMembers: team.feedback.map((member: any) => ({
                 id: member.userId,
@@ -173,6 +176,7 @@ export function teamDataRemote(): TeamService {
               dates: team.createdAt,
               content: team.content,
               teamName: team.teamName,
+              teamImage: team.teamImage,
               memberName: team.userName,
             }))
           : [],

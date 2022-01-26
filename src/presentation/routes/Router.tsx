@@ -1,15 +1,23 @@
 import ScrollToTop from '@components/common/ScrollToTop';
+import { useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
 import NeososeoFormPage from '@pages/NeososeoForm';
 import NeososeoFormFinish from '@pages/NeososeoForm/Finish';
-import { Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import NeogaRouter from './NeogaRouter';
 import TeamRouter from './TeamRouter';
 import UserRouter from './UserRouter';
+import ReactGA from 'react-ga';
 
 const Router = () => {
+  const location = useLocation();
+  const { isGoogleAnalyticsLoaded } = useGoogleAnalytics();
+
+  useEffect(() => {
+    if (isGoogleAnalyticsLoaded) ReactGA.pageview(location.pathname + location.search);
+  }, [isGoogleAnalyticsLoaded, location]);
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Suspense fallback={<></>}>
         <Routes>
@@ -20,7 +28,7 @@ const Router = () => {
           <Route path="/neososeoform/:q/finish" element={<NeososeoFormFinish />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };
 

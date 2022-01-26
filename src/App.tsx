@@ -3,9 +3,7 @@ import Router from '@routes/Router';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useEffect } from 'react';
 import ToastList from '@components/common/Toast/List';
-import { useLocation } from 'react-router-dom';
-import { useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
-import ReactGA from 'react-ga';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const { initLoginUser } = useLoginUser();
@@ -14,18 +12,13 @@ function App() {
     initLoginUser();
   }, []);
 
-  const location = useLocation();
-  const { isGoogleAnalyticsLoaded } = useGoogleAnalytics();
-
-  useEffect(() => {
-    if (isGoogleAnalyticsLoaded) ReactGA.pageview(location.pathname + location.search);
-  }, [isGoogleAnalyticsLoaded, location]);
-
   return (
     <>
       <GlobalStyle />
       <ToastList />
-      <Router />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </>
   );
 }

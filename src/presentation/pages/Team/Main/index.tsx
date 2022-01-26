@@ -60,7 +60,7 @@ function TeamMain() {
             <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
             <h3>
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
-                <img src={icPerson} />
+                <img src={icPerson} alt="팀원" />
                 <span>{teamInfoData.teamDetailData.teamMemberCount}명</span>
                 {isMemberPopupOpened && (
                   <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />

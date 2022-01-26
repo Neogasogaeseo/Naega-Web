@@ -12,7 +12,7 @@ function ProfileAddButton(props: ProfileAddButtonProps) {
   return (
     <>
       <StAddButton isSquare={isSquare} onClick={onAddClick}>
-        <img src={icPlus} />
+        <img src={icPlus} alt="+" />
       </StAddButton>
     </>
   );

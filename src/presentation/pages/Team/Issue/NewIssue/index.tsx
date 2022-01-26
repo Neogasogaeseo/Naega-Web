@@ -108,10 +108,10 @@ function TeamNewIssue() {
       />
       <StOptionWrapper>
         <StQuestionWrapper>
-          기억하고 싶은 순간을 이미지로 남겨보세요<p>(선택)</p>{' '}
+          기억하고 싶은 순간을 이미지로 남겨보세요<p>(선택)</p>
         </StQuestionWrapper>
       </StOptionWrapper>
-      <FileUpload width="350px" height="149px" setFile={setImage} borderRadius="16px">
+      <FileUpload width="100%" height="149px" setFile={setImage} borderRadius="16px">
         <StUploadContainer>
           <StPhotoUploadImage src={icCamera} />
           <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>

@@ -17,7 +17,7 @@ function TeamMain() {
   const navigate = useNavigate();
   const checkMyIssue = () => setIsChecked((prev) => !prev);
   const MAX_MEMBER = 4;
-  const slicedArray = teamInfoData && teamInfoData.teamDetailData.teamMemberList.slice(0, 4);
+  const slicedMemberList = teamInfoData && teamInfoData.teamDetailData.teamMemberList.slice(0, 4);
 
   useEffect(() => {
     (async () => {
@@ -67,11 +67,11 @@ function TeamMain() {
                 )}
               </button>
               <div>
-                {slicedArray &&
-                  slicedArray.map((member, index) => (
+                {slicedMemberList &&
+                  slicedMemberList.map((member, index) => (
                     <span key={member.id}>
                       {member.profileName}
-                      {index + 1 < slicedArray.length ? ',\u00a0' : ''}
+                      {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
                     </span>
                   ))}
                 {teamInfoData.teamDetailData.teamMemberCount > MAX_MEMBER && (

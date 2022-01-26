@@ -88,7 +88,7 @@ function JoinForm() {
       <StInputWrapper>
         <p>아이디</p>
         <CommonInput
-          width="350px"
+          width="100%"
           isConditionMet={isConditionMet.id}
           errorMsg="*영문, 숫자, 특수문자(._) 4~15자 이내"
           placeholder="neososeo_team"
@@ -100,7 +100,7 @@ function JoinForm() {
       <StInputWrapper>
         <p>이름</p>
         <CommonInput
-          width="350px"
+          width="100%"
           isConditionMet={isConditionMet.name}
           placeholder="너소서"
           onChange={onChangeName}

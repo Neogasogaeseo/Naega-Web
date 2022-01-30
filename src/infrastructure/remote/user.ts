@@ -69,6 +69,7 @@ export function userDataRemote(): UserService {
 
   const getFeedbackBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/team` });
+    console.log(response.data.pinnedFeedbackList);
     return {
       count: response.data.pinnedFeedbackList ? response.data.pinnedFeedbackList.length : 0,
       teamList: response.data.pinnedFeedbackList
@@ -86,7 +87,7 @@ export function userDataRemote(): UserService {
           })),
       feedbackList: response.data.pinnedFeedbackList
         ? response.data.pinnedFeedbackList.map((feedback: any) => ({
-            id: feedback.id,
+            id: feedback.feedbackId,
             writer: feedback.writerName,
             target: feedback.name,
             body: feedback.content,

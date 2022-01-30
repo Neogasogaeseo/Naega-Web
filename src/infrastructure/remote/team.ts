@@ -7,7 +7,7 @@ import { privateAPI } from './base';
 export function teamDataRemote(): TeamService {
   const postFeedbackBookmark = async (feedbackID: string) => {
     const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
-    if (response.status === 200) return { isSuccess: true, isBookmarked: response.data.isPinned };
+    if (response.status === 200) return { isSuccess: true, isBookmarked: response.data?.isPinned };
     else return { isSuccess: false };
   };
 

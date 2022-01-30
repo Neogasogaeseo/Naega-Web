@@ -12,13 +12,13 @@ type FeedbackCardProps = FeedbackDetail;
 function FeedbackCardItem(props: FeedbackCardProps) {
   const { id, writer, target, body, createdAt, keywordList, targetProfileID } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
-  const { id: loginUserID } = useLoginUser();
+  const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
 
   const bookmarkFeedback = async () => {
     const response = await api.teamService.postFeedbackBookmark(id);
     if (response.isSuccess) {
-      setIsBookmarked((prev) => response.isBookmarked ?? prev);
+      setIsBookmarked((prev) => response.isBookmarked ?? !prev);
       if (response.isBookmarked)
         fireToast({ content: 'MY에서 저장된 피드백을 확인할 수 있어요', bottom: 120 });
     }
@@ -33,7 +33,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           <img src={icDot} alt="dot" />
           <div>{createdAt}</div>
         </div>
-        {+targetProfileID === loginUserID && (
+        {(+targetProfileID === loginUserID || targetProfileID === loginUsername) && (
           <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />
         )}
       </StHeader>

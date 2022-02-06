@@ -25,15 +25,13 @@ export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
         onChange={() =>
           userSearchWordRef.current && setUserSearchWord(userSearchWordRef.current.value)
         }
+        onSubmit={() => {
+          onClickSearchButton();
+          userSearchWordRef.current && (userSearchWordRef.current.value = '');
+        }}
         placeholder="팀원 검색하기"
         width="100%"
-        submitButton={{
-          value: '검색',
-          onClick: () => {
-            onClickSearchButton();
-            userSearchWordRef.current && (userSearchWordRef.current.value = '');
-          },
-        }}
+        submitButtonValue="검색"
         img={icSearch}
       />
       {selectedUserList && (

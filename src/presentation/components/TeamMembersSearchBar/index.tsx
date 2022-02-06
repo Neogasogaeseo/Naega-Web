@@ -7,17 +7,14 @@ import CommonInput from '@components/common/CommonInput';
 import { icSearch } from '@assets/icons';
 import { useRef } from 'react';
 
-interface TeamMembersSearchBarProps {
-  onClickSearchButton: () => Promise<void>;
-  onKeypressSearchInput: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-}
-
-export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
-  const { onClickSearchButton, onKeypressSearchInput } = props;
+export default function TeamMembersSearchBar({
+  onSubmitSearch,
+}: {
+  onSubmitSearch: () => Promise<void>;
+}) {
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const setUserSearchWord = useSetRecoilState(userSearchWordState);
   const userSearchWordRef = useRef<HTMLInputElement>(null);
-  console.log(onKeypressSearchInput);
   return (
     <StTeamMembersSearchBar>
       <CommonInput
@@ -26,7 +23,7 @@ export default function TeamMembersSearchBar(props: TeamMembersSearchBarProps) {
           userSearchWordRef.current && setUserSearchWord(userSearchWordRef.current.value)
         }
         onSubmit={() => {
-          onClickSearchButton();
+          onSubmitSearch();
           userSearchWordRef.current && (userSearchWordRef.current.value = '');
         }}
         placeholder="팀원 검색하기"

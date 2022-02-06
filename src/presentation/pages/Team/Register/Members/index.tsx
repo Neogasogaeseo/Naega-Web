@@ -72,12 +72,7 @@ export default function TeamRegisterMembers() {
         <div>팀원 추가</div>
         <button onClick={() => history.back()}>완료</button>
       </StHeader>
-      <TeamMembersSearchBar
-        onClickSearchButton={searchUser}
-        onKeypressSearchInput={(e: React.KeyboardEvent<HTMLInputElement>) => {
-          if (e.key === 'Enter') searchUser();
-        }}
-      />
+      <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
       {searchedUserList.map((user) => {
         const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;

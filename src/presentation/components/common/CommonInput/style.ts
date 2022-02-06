@@ -8,7 +8,7 @@ export const StCommonInput = styled.div`
   flex-direction: column;
 `;
 
-export const StInputWrapper = styled.div<{ width: string }>`
+export const StInputWrapper = styled.form<{ width: string }>`
   display: flex;
   align-items: center;
   width: ${(props) => props.width};

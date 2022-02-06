@@ -50,10 +50,10 @@
 > 장기 해커톤 `APPJAM` <br />
 >  `너가소개서` 팀 웹 클라이언트 <br />
 
-|<img src="https://user-images.githubusercontent.com/73823388/150397401-f3d3da1d-c684-49af-9c09-b9249500b6f2.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397586-80771a1c-b238-4c6e-9110-d4f852d3eb04.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397971-bc6a3585-5d1f-42fe-8fc8-36edcb4dcd2b.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397746-6ade7bc1-3c5f-4cbc-b1a0-9fe8599c1230.png" width=200>|
+|<img src="https://user-images.githubusercontent.com/73823388/150397401-f3d3da1d-c684-49af-9c09-b9249500b6f2.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397586-80771a1c-b238-4c6e-9110-d4f852d3eb04.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397746-6ade7bc1-3c5f-4cbc-b1a0-9fe8599c1230.png" width=200>|<img src="https://user-images.githubusercontent.com/73823388/150397971-bc6a3585-5d1f-42fe-8fc8-36edcb4dcd2b.png" width=200>|
 |:--:|:--:|:--:|:--:|
-|**김서진**|**김효인**|**남주영**|**백지연**|
-|[@SeojinSeojin](https://github.com/SeojinSeojin)|[@Hyoin-Kim](https://github.com/Hyoin-Kim)|[@jynam17](https://github.com/jynam17)|[@100Gyeon](https://github.com/100Gyeon)|
+|**김서진**|**김효인**|**백지연**|**남주영**|
+|[@SeojinSeojin](https://github.com/SeojinSeojin)|[@Hyoin-Kim](https://github.com/Hyoin-Kim)|[@100Gyeon](https://github.com/100Gyeon)|[@NamJwong](https://github.com/NamJwong)|
 
 <br />
 
@@ -66,6 +66,12 @@
   <img src="https://img.shields.io/badge/axios-339933?style=flat-square&logo=&logoColor=white"/>
    <img src="https://img.shields.io/badge/styled--components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 </div>
+
+### 역할 분담
+**서진** : 팀원소개서_상세_피드백, 피드백생성, 키워드, 너가소개서_카드, 카드폼 <br />
+**지연** : 팀원소개서_메인, 팀상세, 너가소개서_메인, 답변보기 <br />
+**효인** : 팀원소개서_로그인, 회원가입, 이슈등록, 너가소개서_결과상세, 랜딩 페이지 <br />
+**주영** : 팀원소개서_팀등록, 팀원추가, 팀수정, 너가소개서_링크생성
 
 ### 폴더 구조
 

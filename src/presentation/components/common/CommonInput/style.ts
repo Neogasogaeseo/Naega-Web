@@ -8,7 +8,7 @@ export const StCommonInput = styled.div`
   flex-direction: column;
 `;
 
-export const StInputWrapper = styled.div<{ width: string }>`
+export const StInputWrapper = styled.form<{ width: string }>`
   display: flex;
   align-items: center;
   width: ${(props) => props.width};
@@ -34,15 +34,15 @@ export const StErrorMsg = styled.div`
   margin-top: 15px;
 `;
 
-export const StSubmitButton = styled.div`
+export const StSubmitButton = styled.button`
   position: absolute;
-  right: 14px;
-  top: 14px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  right: 16px;
+  top: calc(50%-26px);
+  height: 26px;
   padding-left: 12px;
   border-left: 1px solid ${COLOR.GRAY_3};
   color: ${COLOR.GRAY_7};
   cursor: pointer;
+  background-color: transparent;
   ${FONT_STYLES.M_15_TITLE}
 `;

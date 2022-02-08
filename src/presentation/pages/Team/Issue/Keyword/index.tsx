@@ -50,7 +50,8 @@ function TeamIssueKeyword() {
           placeholder="새로 입력하고 싶은 키워드를 작성해주세요"
           value={newKeywordContent}
           onChange={(value: string) => setNewKeywordContent(value)}
-          submitButton={{ value: '생성', onClick: createKeyword }}
+          onSubmit={createKeyword}
+          submitButtonValue="생성"
         />
         <MutableKeywordList keywordList={keywordList} deleteKeyword={removeKeyword} />
       </StWhiteWrapper>

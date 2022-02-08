@@ -10,12 +10,9 @@ interface CommonInputProps {
   isConditionMet?: boolean;
   img?: string;
   onChange?: (value: string) => void;
-  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
-  submitButton?: {
-    value: string;
-    onClick: () => void;
-  };
+  submitButtonValue?: string;
   inputRef?: React.RefObject<HTMLInputElement>;
 }
 
@@ -29,10 +26,10 @@ const CommonInput = React.forwardRef<HTMLInputElement, CommonInputProps>(
       value,
       isConditionMet,
       onChange,
-      onKeyPress,
+      onSubmit,
       img,
       disabled = false,
-      submitButton,
+      submitButtonValue,
     } = props;
     const [isInput, setIsInput] = useState('');
 
@@ -42,22 +39,25 @@ const CommonInput = React.forwardRef<HTMLInputElement, CommonInputProps>(
     }
     return (
       <StCommonInput>
-        <StInputWrapper width={width}>
+        <StInputWrapper
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit && onSubmit(e);
+          }}
+          width={width}
+        >
           <StInput
             width={width}
             onChange={handleOnChange}
-            onKeyPress={(e) => onKeyPress && onKeyPress(e)}
             maxLength={maxLength}
             placeholder={placeholder || ''}
             value={value}
             img={img}
             disabled={disabled}
-            hasButton={submitButton !== undefined}
+            hasButton={submitButtonValue !== undefined}
             ref={ref}
           />
-          {submitButton && (
-            <StSubmitButton onClick={submitButton.onClick}>{submitButton.value}</StSubmitButton>
-          )}
+          {submitButtonValue && <StSubmitButton>{submitButtonValue}</StSubmitButton>}
         </StInputWrapper>
         {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
       </StCommonInput>

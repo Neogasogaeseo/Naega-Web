@@ -21,7 +21,6 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
-import { useEffect, useRef } from 'react';
 
 function TeamRegister() {
   const [image, setImage] = useRecoilState(teamImageState);
@@ -31,7 +30,6 @@ function TeamRegister() {
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
   const resetSelectedUserList = useResetRecoilState(selectedUserListState);
-  const nameRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
   const selectedUserList = useRecoilValue(selectedUserListState);
@@ -55,10 +53,6 @@ function TeamRegister() {
     resetSelectedUserList();
   };
 
-  useEffect(() => {
-    nameRef.current && (nameRef.current.value = name);
-  }, []);
-
   return (
     <StTeamRegister>
       <StTitle>팀 등록하기</StTitle>
@@ -70,10 +64,9 @@ function TeamRegister() {
       </StAbsoluteWrapper>
       <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
       <CommonInput
-        ref={nameRef}
         width="100%"
         placeholder="직접 입력해주세요"
-        onChange={() => nameRef.current && setName(nameRef.current.value)}
+        onChange={(name) => setName(name)}
       />
       <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />
       <StTextarea

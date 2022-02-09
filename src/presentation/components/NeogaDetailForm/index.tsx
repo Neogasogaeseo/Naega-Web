@@ -120,7 +120,7 @@ function NeogaDetailForm() {
       </StKeyword>
       <hr />
       <StFeedTitle>
-        <span>{resultFeedback ? resultFeedback.answerCount : 0}개</span>의 답변 피드
+        <span>{resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개</span>의 답변 피드
       </StFeedTitle>
       {resultFeedback && resultFeedback.answer.length > 0 ? (
         resultFeedback.answer.map((feedback) => (

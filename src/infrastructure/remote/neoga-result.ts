@@ -26,20 +26,22 @@ export const getNeogaFeedbackResult = async (
   if (response.status === 200 && response.data)
     return {
       answerCount: response.data.answerCount,
-      answer: response.data.answer.map((feedback: any) => ({
-        formID: feedback.formID,
-        id: feedback.id,
-        name: feedback.name,
-        relationship: feedback.relationship,
-        content: feedback.content,
-        isPinned: feedback.isPinned,
-        createdAt: feedback.createdAt,
-        keywords: feedback.keywords.map((keyword: any) => ({
-          id: keyword.id,
-          content: keyword.name,
-          color: keyword.colorcode,
-          answerId: keyword.answerId,
-        })),
-      })),
+      answer: response.data.answer
+        ? response.data.answer.map((feedback: any) => ({
+            formID: feedback.formID,
+            id: feedback.id,
+            name: feedback.name,
+            relationship: feedback.relationship,
+            content: feedback.content,
+            isPinned: feedback.isPinned,
+            createdAt: feedback.createdAt,
+            keywords: feedback.keywords.map((keyword: any) => ({
+              id: keyword.id,
+              content: keyword.name,
+              color: keyword.colorcode,
+              answerId: keyword.answerId,
+            })),
+          }))
+        : [],
     };
 };

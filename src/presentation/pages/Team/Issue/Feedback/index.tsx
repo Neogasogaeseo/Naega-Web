@@ -93,7 +93,7 @@ function TeamIssueFeedback() {
               <CommonInput width="100%" placeholder="팀원을 표현하는 키워드를 입력해주세요" disabled={true} />
             </Link>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton onClick={onPostFeedback} isActive={content.length > 0 && keywordList.length > 0}>완료</StButton>
+            <StButton onClick={onPostFeedback} disabled={content.length == 0 || keywordList.length == 0}>완료</StButton>
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>

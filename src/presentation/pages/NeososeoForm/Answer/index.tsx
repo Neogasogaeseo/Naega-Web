@@ -37,13 +37,13 @@ function NeososeoFormAnswer() {
             <span>Q.</span>
             <span>{neososeoFormData.content}</span>
           </StNeososeoTitle>
-          <StSubTitle>답변 내용을 입력해주세요.</StSubTitle>
-          <StTextarea placeholder="직접 입력해주세요" onChange={(e) => setAnswer(e.target.value)} />
-          <StSubTitle>키워드를 입력해주세요.</StSubTitle>
+          <StSubTitle>답변을 입력해주세요</StSubTitle>
+          <StTextarea placeholder="질문에 대한 답변을 입력해주세요" onChange={(e) => setAnswer(e.target.value)} />
+          <StSubTitle>답변에 대한 내 키워드를 남겨주세요</StSubTitle>
           <Link to="keyword">
             <CommonInput
               width="100%"
-              placeholder="팀원을 표현하는 키워드를 입력해주세요."
+              placeholder="답변의 핵심 키워드로 나를 표현해주세요"
               disabled
             />
           </Link>
@@ -55,7 +55,7 @@ function NeososeoFormAnswer() {
           disabled={!isAllFilled(neososeoAnswer.answer) || !(neososeoAnswer.keyword.length !== 0)}
           onClick={postNeososeoForm}
         >
-          답변 작성하기
+          답변 제출하기
         </StButton>
       </StNeososeoFormLayout>
       <Outlet

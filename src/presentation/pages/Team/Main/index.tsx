@@ -83,12 +83,12 @@ function TeamMain() {
           </div>
         </StTeamInfo>
       )}
-      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가하기</button>
+      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가</button>
       <StCheckWrapper>
         <button onClick={() => checkMyIssue()}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
-        나와 관련된 이슈만 보기
+        내가 언급된 이슈만 보기
       </StCheckWrapper>
       {issueListData && (
         <IssueCardList

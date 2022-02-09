@@ -55,6 +55,7 @@ export const StRelation = styled.div<{ selected: boolean }>`
   padding: 15px 0;
   border-radius: 14px;
   text-align: center;
+  cursor: pointer;
   color: ${({ selected }) => (selected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
   background-color: ${({ selected }) => (selected ? '#FFEFEF' : COLOR.GRAY_1)};
 `;

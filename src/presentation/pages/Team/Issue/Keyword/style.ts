@@ -44,6 +44,7 @@ export const StHeader = styled.div`
   }
   & > div:nth-child(2) {
     position: absolute;
+    cursor: pointer;
     color: ${COLOR.CORAL_MAIN};
     right: 24px;
     top: 13px;

@@ -13,4 +13,7 @@ export const StKeywordItem = styled.div<{ color: string }>`
     justify-content: space-between;
     gap: 8px;
   }
+  img {
+    cursor: pointer;
+  }
 `;

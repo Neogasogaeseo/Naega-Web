@@ -86,46 +86,51 @@ function NeogaDetailForm() {
           {resultKeywordList.subtitle}
         </StQuestion>
       </div>
-      <StKeyword>
-        {resultKeywordList.keywordlists.length !== 0 && <p>키워드모음</p>}
-        {!lookMoreButton && (
-          <ImmutableKeywordList
-            keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
-            onItemClick={() => null}
-          />
-        )}
-        <StMoreWrapper>
-          {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
-            <>
+      {resultFeedback && resultFeedback.answer.length > 0 ? (
+        <>
+          <StKeyword>
+            {resultKeywordList.keywordlists.length !== 0 && <p>내가 받은 키워드</p>}
+            {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultKeywordList?.keywordlists ?? []}
+                keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
                 onItemClick={() => null}
               />
-              <hr />
-              <StMoreButton onClick={onClickFold}>
-                접기<img src={IcArrowUp}></img>
-              </StMoreButton>
-            </>
-          ) : (
-            resultKeywordList.keywordlists.length > 7 && (
-              <>
-                <hr />
-                <StMoreButton onClick={onClickMore}>
-                  더보기<img src={IcArrowDown}></img>
-                </StMoreButton>
-              </>
-            )
-          )}
-        </StMoreWrapper>
-      </StKeyword>
-      <hr />
-      <StFeedTitle>
-        <span>{resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개</span>의 답변 피드
-      </StFeedTitle>
-      {resultFeedback && resultFeedback.answer.length > 0 ? (
-        resultFeedback.answer.map((feedback) => (
-          <NeogaDetailFormCard key={feedback.id} {...feedback} />
-        ))
+            )}
+            <StMoreWrapper>
+              {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
+                <>
+                  <ImmutableKeywordList
+                    keywordList={resultKeywordList?.keywordlists ?? []}
+                    onItemClick={() => null}
+                  />
+                  <hr />
+                  <StMoreButton onClick={onClickFold}>
+                    접기<img src={IcArrowUp}></img>
+                  </StMoreButton>
+                </>
+              ) : (
+                resultKeywordList.keywordlists.length > 7 && (
+                  <>
+                    <hr />
+                    <StMoreButton onClick={onClickMore}>
+                      더보기<img src={IcArrowDown}></img>
+                    </StMoreButton>
+                  </>
+                )
+              )}
+            </StMoreWrapper>
+          </StKeyword>
+          <hr />
+          <StFeedTitle>
+            <span>
+              {resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개
+            </span>
+            의 답변을 받았어요
+          </StFeedTitle>
+          {resultFeedback.answer.map((feedback) => (
+            <NeogaDetailFormCard key={feedback.id} {...feedback} />
+          ))}
+        </>
       ) : (
         <StEmptyFeedback>
           <img src={imgEmptyForm} alt="아직 답변이 없어요. 링크를 공유하고 답변을 받아보세요." />

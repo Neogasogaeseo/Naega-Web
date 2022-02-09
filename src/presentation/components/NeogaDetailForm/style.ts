@@ -52,10 +52,9 @@ export const StFeedName = styled.div`
 export const StDate = styled.div`
   display: flex;
   float: right;
-  font-size: 13px;
-  line-height: 100%;
   margin: 5px 20px 9px 0px;
-  color: ${COLOR.GRAY_5};
+  color: ${COLOR.GRAY_4};
+  ${FONT_STYLES.R_13_TITLE};
 `;
 
 export const StQuestion = styled.div`
@@ -95,7 +94,7 @@ export const StFeedDate = styled.div`
   align-items: center;
   gap: 10px;
   & div {
-    ${FONT_STYLES.R_14_TITLE}
+    ${FONT_STYLES.R_14_TITLE};
   }
   & img {
     width: 22px;
@@ -121,6 +120,7 @@ export const StFeedHeader = styled.div`
   letter-spacing: -0.01em;
   color: ${COLOR.GRAY_7};
 `;
+
 export const StFeedContent = styled.div`
   margin-bottom: 14px;
   font-size: 14px;
@@ -146,17 +146,17 @@ export const StEmptyFeedback = styled.div`
 `;
 
 export const StButton = styled.button`
-  align-items: center;
-  justify-content: center;
   margin: 0 auto;
   margin-top: 47px;
   margin-bottom: 192px;
-  width: 156px;
-  height: 52px;
   background-color: ${COLOR.CORAL_MAIN};
   color: white;
-  border-radius: 18px;
-  font-size: 16px;
+  border-radius: 14px;
+  padding: 15px 38px 15px 37px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 143.99%;
+  letter-spacing: -0.015em;
 `;
 
 export const StMoreWrapper = styled.div`

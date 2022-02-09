@@ -5,7 +5,6 @@ import { selectedUserListState, userSearchWordState } from '@stores/team';
 import { COLOR } from '@styles/common/color';
 import CommonInput from '@components/common/CommonInput';
 import { icSearch } from '@assets/icons';
-import { useRef } from 'react';
 
 export default function TeamMembersSearchBar({
   onSubmitSearch,
@@ -14,17 +13,12 @@ export default function TeamMembersSearchBar({
 }) {
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const setUserSearchWord = useSetRecoilState(userSearchWordState);
-  const userSearchWordRef = useRef<HTMLInputElement>(null);
   return (
     <StTeamMembersSearchBar>
       <CommonInput
-        ref={userSearchWordRef}
-        onChange={() =>
-          userSearchWordRef.current && setUserSearchWord(userSearchWordRef.current.value)
-        }
+        onChange={(userSearchWord) => setUserSearchWord(userSearchWord)}
         onSubmit={() => {
           onSubmitSearch();
-          userSearchWordRef.current && (userSearchWordRef.current.value = '');
         }}
         placeholder="팀원 검색하기"
         width="100%"

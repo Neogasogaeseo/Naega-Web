@@ -42,4 +42,5 @@ export const StButton = styled.div`
   line-height: 1.44em;
   letter-spacing: -0.0015em;
   margin-top: 15px;
+  cursor: pointer;
 `;

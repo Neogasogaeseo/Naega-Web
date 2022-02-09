@@ -12,7 +12,7 @@ export const StQuestion = styled.div`
 
 export const StFlexWrapper = styled.div`
   position: relative;
-  & img {
+  & svg {
     width: 100%;
   }
 `;

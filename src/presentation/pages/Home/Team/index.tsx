@@ -59,7 +59,7 @@ function HomeTeam() {
         {inviteData?.map((invitation) => (
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
-        <h1>내가 함께하는 팀</h1>
+        <h1>나와 함께하는 팀</h1>
         {profileListData && (
           <ProfileList
             isSquare={true}

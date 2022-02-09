@@ -33,7 +33,6 @@ export function teamDataRemote(): TeamService {
   const getIssueInfo = async (issueID: string) => {
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
-    console.log({ issueDetailData, issueFeedbacksData });
     return {
       createdAt: issueDetailData.data.createdAt,
       title: issueDetailData.data.content,

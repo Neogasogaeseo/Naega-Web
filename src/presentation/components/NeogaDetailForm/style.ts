@@ -148,6 +148,7 @@ export const StEmptyFeedback = styled.div`
 export const StButton = styled.button`
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
   margin-top: 47px;
   margin-bottom: 192px;
   width: 156px;

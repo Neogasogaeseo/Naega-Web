@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 import { ResultFeedList } from '@api/types/neoga';
-import { imgEmptyFeedback } from '@assets/images';
+import { imgEmptyForm } from '@assets/images';
 import { ResultDetailList } from '@api/types/neoga';
 import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
 import { useToast } from '@hooks/useToast';
@@ -128,7 +128,7 @@ function NeogaDetailForm() {
         ))
       ) : (
         <StEmptyFeedback>
-          <img src={imgEmptyFeedback} alt="" />
+          <img src={imgEmptyForm} alt="아직 답변이 없어요. 링크를 공유하고 답변을 받아보세요." />
           <StButton
             onClick={() =>
               copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))

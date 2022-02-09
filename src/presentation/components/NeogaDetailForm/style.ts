@@ -10,7 +10,6 @@ export const StNeogaDetailForm = styled.div`
   }
   & > div:first-child {
     & > *:first-child {
-      padding: 0 20px;
       margin-top: 50px;
     }
   }

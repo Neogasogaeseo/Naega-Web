@@ -4,7 +4,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNeogaDetailForm = styled.div`
   & > hr {
-    border: 1px solid ${COLOR.GRAY_2};
+    border: none;
     height: 8px;
     background-color: ${COLOR.GRAY_1};
   }
@@ -19,6 +19,7 @@ export const StNeogaDetailForm = styled.div`
 export const StLink = styled.div`
   display: flex;
   cursor: pointer;
+  width: fit-content;
   margin: 10px 0px 0px 20px;
   color: ${COLOR.CORAL_MAIN};
   & > img {

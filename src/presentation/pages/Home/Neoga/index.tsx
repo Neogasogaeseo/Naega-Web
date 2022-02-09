@@ -18,15 +18,15 @@ function HomeNeoga() {
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getMainTemplate();
-      setTemplateList(data);
+      const data = await api.neogaService.getBannerTemplate();
+      data && setBanner(data);
     })();
   }, []);
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getBannerTemplate();
-      data && setBanner(data);
+      const data = await api.neogaService.getMainTemplate();
+      setTemplateList(data);
     })();
   }, []);
 

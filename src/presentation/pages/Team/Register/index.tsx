@@ -62,15 +62,15 @@ function TeamRegister() {
         </PhotoUpload>
         {!image && <StIcPencil />}
       </StAbsoluteWrapper>
-      <CommonLabel content="팀명을 입력해주세요" marginTop="32px" marginBottom="18px" />
+      <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
       <CommonInput
         width="100%"
-        placeholder="직접 입력해주세요"
+        placeholder="팀 이름을 입력해주세요"
         onChange={(name) => setName(name)}
       />
-      <CommonLabel content="팀에 관해 간략한 설명해주세요" marginTop="44px" />
+      <CommonLabel content="팀에 관해 간략히 설명해주세요" marginTop="44px" />
       <StTextarea
-        placeholder="직접 입력해주세요"
+        placeholder="설명을 입력해주세요"
         value={description}
         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
       />

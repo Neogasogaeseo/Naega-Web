@@ -59,8 +59,12 @@ export const StTextera = styled.textarea`
   border-radius: 16px;
   resize: none;
   padding: 18px 16px 18px 16px;
+  ${FONT_STYLES.R_16_BODY};
   :focus {
     outline: none;
+  }
+  ::placeholder {
+    color: ${COLOR.GRAY_4};
   }
 `;
 
@@ -81,7 +85,7 @@ export const StButton = styled.button`
   margin-top: 50px;
   width: 100%;
   height: 58px;
-  background-color: ${COLOR.GRAY_5};
+  background-color: ${COLOR.GRAY_3};
   color: white;
   border-radius: 18px;
   font-size: 16px;
@@ -91,8 +95,9 @@ export const StButton = styled.button`
 `;
 
 export const StPhotoUploadMiddleDesc = styled.div`
+  ${FONT_STYLES.R_16_TITLE};
+  color: ${COLOR.GRAY_4};
   margin-top: 14px;
-  text-align: center;
 `;
 
 export const StPhotoUploadImage = styled.img`

@@ -69,3 +69,10 @@ export const StIssueThumbnail = styled.img`
   margin-left: -20px;
   object-fit: cover;
 `;
+
+export const StDivisionLine = styled.div`
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  height: 8px;
+  background-color: ${COLOR.GRAY_1};
+`;

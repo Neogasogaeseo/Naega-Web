@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
-import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
+import {
+  StLink,
+  StWrapper,
+  StHeader,
+  StTeamIssue,
+  StIssueThumbnail,
+  StDivisionLine,
+} from './style';
 import { useRecoilState } from 'recoil';
 import { teamFeedbackState } from '@stores/team';
 import CommonInput from '@components/common/CommonInput';
@@ -58,7 +65,12 @@ function TeamIssue() {
           {issue.team.thumbnail && (
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
-          {issue.feedbackList.length !== 0 ? <FeedbackCardList feedbacks={feedbacks} /> : <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />}
+          <StDivisionLine />
+          {issue.feedbackList.length !== 0 ? (
+            <FeedbackCardList feedbacks={feedbacks} />
+          ) : (
+            <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
+          )}
         </StWrapper>
       )}
       <StLink to="./create">

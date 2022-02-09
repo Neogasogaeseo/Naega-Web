@@ -87,7 +87,7 @@ function NeogaDetailForm() {
         </StQuestion>
       </div>
       <StKeyword>
-        <p>키워드모음</p>
+        {resultKeywordList.keywordlists.length !== 0 && <p>키워드모음</p>}
         {!lookMoreButton && (
           <ImmutableKeywordList
             keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}

@@ -13,56 +13,52 @@ interface CommonInputProps {
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
   submitButtonValue?: string;
-  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
-const CommonInput = React.forwardRef<HTMLInputElement, CommonInputProps>(
-  (props: CommonInputProps, ref) => {
-    const {
-      width,
-      errorMsg,
-      placeholder,
-      maxLength,
-      value,
-      isConditionMet,
-      onChange,
-      onSubmit,
-      img,
-      disabled = false,
-      submitButtonValue,
-    } = props;
-    const [isInput, setIsInput] = useState('');
+function CommonInput(props: CommonInputProps) {
+  const {
+    width,
+    errorMsg,
+    placeholder,
+    maxLength,
+    value,
+    isConditionMet,
+    onChange,
+    onSubmit,
+    img,
+    disabled = false,
+    submitButtonValue,
+  } = props;
+  const [isInput, setIsInput] = useState('');
 
-    function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-      onChange?.(e.target.value);
-      setIsInput(e.target.value);
-    }
-    return (
-      <StCommonInput>
-        <StInputWrapper
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSubmit && onSubmit(e);
-          }}
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    onChange?.(e.target.value);
+    setIsInput(e.target.value);
+  }
+  return (
+    <StCommonInput>
+      <StInputWrapper
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit && onSubmit(e);
+        }}
+        width={width}
+      >
+        <StInput
           width={width}
-        >
-          <StInput
-            width={width}
-            onChange={handleOnChange}
-            maxLength={maxLength}
-            placeholder={placeholder || ''}
-            value={value}
-            img={img}
-            disabled={disabled}
-            hasButton={submitButtonValue !== undefined}
-            ref={ref}
-          />
-          {submitButtonValue && <StSubmitButton>{submitButtonValue}</StSubmitButton>}
-        </StInputWrapper>
-        {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
-      </StCommonInput>
-    );
-  },
-);
+          onChange={handleOnChange}
+          maxLength={maxLength}
+          placeholder={placeholder || ''}
+          value={value}
+          img={img}
+          disabled={disabled}
+          hasButton={submitButtonValue !== undefined}
+        />
+        {submitButtonValue && <StSubmitButton>{submitButtonValue}</StSubmitButton>}
+      </StInputWrapper>
+      {!isConditionMet && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
+    </StCommonInput>
+  );
+}
 
 export default CommonInput;

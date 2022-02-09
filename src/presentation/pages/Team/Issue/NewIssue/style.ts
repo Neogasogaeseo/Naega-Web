@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNewIssue = styled.div`
   padding: 50px 20px 48px 20px;
   & > p {
-    font-size: 15px;
+    ${FONT_STYLES.R_16_TITLE};
     line-height: 143.99%;
-    color: #575757;
-    margin-bottom: 22px;
+    color: ${COLOR.GRAY_5};
+    margin-top: 14px;
+    margin-bottom: 4px;
   }
 `;
 
 export const StTitleWrapper = styled.div`
-  font-weight: 600;
-  font-size: 24px;
+  ${FONT_STYLES.SB_24_TITLE};
   line-height: 143.99%;
 `;
 
@@ -27,7 +28,6 @@ export const StSelectCategory = styled.button<{ selected: number }>`
   width: 83px;
   box-sizing: border-box;
   border-radius: 14px;
-  margin-bottom: 11px;
   padding: 10px;
   ${(props) =>
     props.selected == -1 ? `background-color: ${COLOR.GRAY_1}` : `background-color:#FFF1F1`};
@@ -35,17 +35,14 @@ export const StSelectCategory = styled.button<{ selected: number }>`
 `;
 
 export const StQuestionWrapper = styled.div`
-  display: flex;
-  color: #575757;
-  font-weight: 600;
-  font-size: 16px;
+  ${FONT_STYLES.SB_16_TITLE};
+  color: ${COLOR.GRAY_7};
   line-height: 162%;
-  margin-bottom: 14px;
-  & > p {
-    display: flex;
+  margin-top: 44px;
+  margin-bottom: 24px;
+  & > span {
     color: ${COLOR.GRAY_5};
-    size: 16px;
-    font-weight: normal;
+    ${FONT_STYLES.R_16_TITLE};
     margin-left: 3px;
   }
 `;
@@ -62,15 +59,9 @@ export const StTextera = styled.textarea`
   border-radius: 16px;
   resize: none;
   padding: 18px 16px 18px 16px;
-  font-family: 'Pretendard';
   :focus {
     outline: none;
   }
-`;
-
-export const StOptionWrapper = styled.div`
-  display: flex;
-  margin-top: 40px;
 `;
 
 export const StUploadContainer = styled.div`
@@ -82,21 +73,12 @@ export const StUploadContainer = styled.div`
   color: ${COLOR.GRAY_5};
   font-size: 16px;
   line-height: 100%;
-  align-items: center;
-  justify-content: center;
   background-color: white;
   padding-top: 25px;
-
-  & > imput {
-    display: none;
-  }
 `;
 
 export const StButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 156px;
+  margin-top: 50px;
   width: 100%;
   height: 58px;
   background-color: ${COLOR.GRAY_5};

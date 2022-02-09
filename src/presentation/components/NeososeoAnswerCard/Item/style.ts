@@ -13,6 +13,10 @@ export const StNeososeoAnswerCard = styled.div`
     height: 32px;
     border-radius: 16px;
   }
+  & img:first-child {
+    padding: 6px;
+    background-color: ${COLOR.GRAY_1};
+  }
   & img:nth-child(3) {
     width: 24px;
     height: 24px;

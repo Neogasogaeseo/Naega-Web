@@ -11,30 +11,31 @@ import { useLoginUser } from '@hooks/useLoginUser';
 
 function HomeNeoga() {
   const navigate = useNavigate();
-  const [banner, setBanner] = useState<NeogaBannerItem>();
-  const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
-  const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
   const { username } = useLoginUser();
 
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getBannerTemplate();
-      data && setBanner(data);
-    })();
-  }, []);
+  const initialState = {
+    banner: null,
+    templateList: [],
+    cardItem: undefined,
+  };
+
+  const [state, setState] = useState<{
+    banner?: NeogaBannerItem | null;
+    templateList: NeogaMainCardItem[];
+    cardItem?: NeogaResultCardItem;
+  }>(initialState);
+  const { banner, templateList, cardItem } = state;
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getMainTemplate();
-      setTemplateList(data);
+      const data = await Promise.all([
+        api.neogaService.getBannerTemplate(),
+        api.neogaService.getMainTemplate(),
+        api.neogaService.getMainResultCard(),
+      ]);
+      setState({ banner: data[0], templateList: data[1], cardItem: data[2] });
     })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getMainResultCard();
-      setCardItem(data);
-    })();
+    return () => setState(initialState);
   }, []);
 
   return (

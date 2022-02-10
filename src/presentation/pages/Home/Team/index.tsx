@@ -16,9 +16,6 @@ import {
 import { useResetRecoilState } from 'recoil';
 
 function HomeTeam() {
-  const [profileListData, setProfileListData] = useState<TeamMemberNoneId[] | null>(null);
-  const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
-  const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
   const resetImage = useResetRecoilState(teamImageState);
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
@@ -32,31 +29,35 @@ function HomeTeam() {
     resetSelectedUserList();
   };
 
-  useEffect(() => {
-    (async () => {
-      const { profileListData } = await api.teamService.getTeamProfile();
-      setProfileListData(profileListData);
-    })();
-  }, []);
+  const initialState = {
+    profileListData: null,
+    issueListData: null,
+    inviteListData: null,
+  };
+
+  const [state, setState] = useState<{
+    profileListData?: TeamMemberNoneId[] | null;
+    issueListData: TeamIssueCard[] | null;
+    inviteListData?: TeamInvite[] | null;
+  }>(initialState);
+  const { profileListData, issueListData, inviteListData } = state;
 
   useEffect(() => {
     (async () => {
-      const { issueListData } = await api.teamService.getMyTeamIssue();
-      setIssueListData(issueListData);
+      const data = await Promise.all([
+        api.teamService.getTeamProfile(),
+        api.teamService.getMyTeamIssue(),
+        api.teamService.getInviteInfo(),
+      ]);
+      setState({ profileListData: data[0].profileListData, issueListData: data[1].issueListData, inviteListData: data[2].inviteListData });
     })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const { inviteListData } = await api.teamService.getInviteInfo();
-      setInviteData(inviteListData);
-    })();
+    return () => setState(initialState);
   }, []);
 
   return (
     <>
       <StTeamMain>
-        {inviteData?.map((invitation) => (
+        {inviteListData?.map((invitation) => (
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
         <h1>나와 함께하는 팀</h1>

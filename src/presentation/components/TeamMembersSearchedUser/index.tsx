@@ -10,11 +10,11 @@ interface TeamMembersSearchedUserProps {
 
 export default function TeamMembersSearchedUser(props: TeamMembersSearchedUserProps) {
   const { user, onClickButton } = props;
-  const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;
+  const { id, profileId, profileName, profileImage, isAdded } = user;
   return (
     <StTeamMembersSearchedUser>
       <div>
-        {profileImage ? <img src={profileImage} /> : <img src={imgEmptyProfile} />}
+        <img src={profileImage || imgEmptyProfile} />
         <div>
           <StProfileName>{profileName}</StProfileName>
           <StId>@{profileId}</StId>

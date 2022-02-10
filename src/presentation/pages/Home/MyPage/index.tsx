@@ -72,11 +72,7 @@ function HomeMyPage() {
         <>
           <StHomeMyPageHeader>
             <StMyPageProfile>
-              {mypageInfo.profileImage ? (
-                <img src={mypageInfo.profileImage} />
-              ) : (
-                <img src={imgEmptyProfile} />
-              )}
+              <img src={mypageInfo.profileImage || imgEmptyProfile} />
               {isMyPage && <IcMypageEdit />}
             </StMyPageProfile>
             <div>

@@ -20,7 +20,7 @@ function NeogaResultCard(props: NeogaResultCardProps) {
   return (
     <StNeogaResultCard onClick={() => navigate(`/neoga/${id}/detail/form`)}>
       <StNeogaCardHeader>
-        <img src={darkIconImage ?? imgEmptyProfile} />
+        <img src={darkIconImage || imgEmptyProfile} />
         <div>
           <div>{title}</div>
           <div>{createdAt}</div>
@@ -33,7 +33,7 @@ function NeogaResultCard(props: NeogaResultCardProps) {
         ) : (
           <StNeogaNoReply>
             <img src={icNoReply} />
-            아직 답변이 없어요
+            앗, 아직 답변이 없어요
           </StNeogaNoReply>
         )}
       </div>

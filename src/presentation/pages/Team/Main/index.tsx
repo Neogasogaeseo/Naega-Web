@@ -55,7 +55,7 @@ function TeamMain() {
       {teamInfoData && (
         <StTeamInfo>
           <div>{/* <button onClick={() => navigate(`/team/register`)}>수정</button> */}</div>
-          <img src={teamInfoData.teamDetailData.teamDetail.teamImage ?? imgEmptyProfile} />
+          <img src={teamInfoData.teamDetailData.teamDetail.teamImage || imgEmptyProfile} />
           <div>
             <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
             <h3>

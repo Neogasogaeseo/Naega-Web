@@ -24,12 +24,6 @@ function TeamMain() {
       if (teamID === undefined) return;
       const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
       setTeamInfoData(teamDetailData);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      if (teamID === undefined) return;
       const { issueListData } = await api.teamService.getTeamIssue(teamID);
       setIssueListData(issueListData);
     })();

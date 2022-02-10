@@ -11,9 +11,9 @@ function NeososeoFormFinish() {
       <StBody>
         <ImgAnswerDone />
         <div>답변이 전달되었어요</div>
-        <div>너가소개서, 좀 더 둘러보실래요?</div>
+        <div>내 너가소개서도 받아보세요.</div>
       </StBody>
-      <StButton onClick={() => navigate('/')}>서비스 둘러보기</StButton>
+      <StButton onClick={() => navigate('/')}>내 너가소개서도 받아보기</StButton>
     </StNeososeoFinish>
   );
 }

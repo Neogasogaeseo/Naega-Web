@@ -40,6 +40,7 @@ function HomeTeam() {
     issueListData: TeamIssueCard[] | null;
     inviteListData: TeamInvite[] | null;
   }>(initialState);
+  
   const { profileListData, issueListData, inviteListData } = state;
 
   useEffect(() => {

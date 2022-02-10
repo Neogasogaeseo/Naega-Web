@@ -16,14 +16,15 @@ function HomeNeoga() {
   const initialState = {
     banner: null,
     templateList: [],
-    cardItem: undefined,
+    cardItem: null,
   };
 
   const [state, setState] = useState<{
-    banner?: NeogaBannerItem | null;
+    banner: NeogaBannerItem | null;
     templateList: NeogaMainCardItem[];
-    cardItem?: NeogaResultCardItem;
+    cardItem: NeogaResultCardItem | null;
   }>(initialState);
+
   const { banner, templateList, cardItem } = state;
 
   useEffect(() => {

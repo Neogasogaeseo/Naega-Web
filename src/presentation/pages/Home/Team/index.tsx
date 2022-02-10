@@ -36,9 +36,9 @@ function HomeTeam() {
   };
 
   const [state, setState] = useState<{
-    profileListData?: TeamMemberNoneId[] | null;
+    profileListData: TeamMemberNoneId[] | null;
     issueListData: TeamIssueCard[] | null;
-    inviteListData?: TeamInvite[] | null;
+    inviteListData: TeamInvite[] | null;
   }>(initialState);
   const { profileListData, issueListData, inviteListData } = state;
 

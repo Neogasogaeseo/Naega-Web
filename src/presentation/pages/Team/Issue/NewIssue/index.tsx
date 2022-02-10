@@ -6,7 +6,6 @@ import {
   StTitleWrapper,
   StQuestionWrapper,
   StCategoryWrapper,
-  StOptionWrapper,
   StTextera,
   StUploadContainer,
   StButton,
@@ -82,8 +81,8 @@ function TeamNewIssue() {
       <StTitleWrapper>
         {teamInfoData && teamInfoData.teamDetailData.teamDetail.teamName}에 이슈 등록하기
       </StTitleWrapper>
-      <p>우리의 이슈를 등록하세요</p>
-      <StQuestionWrapper>어떤 일이 있었는지 기록해주세요</StQuestionWrapper>
+      <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
+      <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>
       <StCategoryWrapper>
         {categoryList &&
           categoryList.map((category, id) => {
@@ -100,17 +99,16 @@ function TeamNewIssue() {
             );
           })}
       </StCategoryWrapper>
+      <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
       <StTextera
-        placeholder="직접 입력해주세요"
+        placeholder="팀에서 겪은 상황을 작성해주세요"
         name="issueTextarea"
         value={issueTextarea}
         onChange={onChangeIssue}
       />
-      <StOptionWrapper>
-        <StQuestionWrapper>
-          기억하고 싶은 순간을 이미지로 남겨보세요<p>(선택)</p>
-        </StQuestionWrapper>
-      </StOptionWrapper>
+      <StQuestionWrapper>
+        이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
+      </StQuestionWrapper>
       <FileUpload width="100%" height="149px" setFile={setImage} borderRadius="16px">
         <StUploadContainer>
           <StPhotoUploadImage src={icCamera} />

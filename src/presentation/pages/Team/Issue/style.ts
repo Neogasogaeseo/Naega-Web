@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
@@ -64,8 +63,16 @@ export const StHeader = styled.div`
 `;
 
 export const StIssueThumbnail = styled.img`
+  display: block;
   height: 227px;
   width: calc(100% + 40px);
   margin-left: -20px;
   object-fit: cover;
+`;
+
+export const StDivisionLine = styled.div`
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  height: 8px;
+  background-color: ${COLOR.GRAY_1};
 `;

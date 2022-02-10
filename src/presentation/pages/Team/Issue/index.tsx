@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
-import { StLink, StWrapper, StHeader, StTeamIssue, StIssueThumbnail } from './style';
+import {
+  StLink,
+  StWrapper,
+  StHeader,
+  StTeamIssue,
+  StIssueThumbnail,
+  StDivisionLine,
+} from './style';
 import { useRecoilState } from 'recoil';
 import { teamFeedbackState } from '@stores/team';
 import CommonInput from '@components/common/CommonInput';
@@ -10,6 +17,7 @@ import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
 import { IssueData } from '@api/types/team';
+import FeedbackEmptyView from '@components/common/Empty/Feedback';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -47,17 +55,30 @@ function TeamIssue() {
                 issueNumber={+issueID}
                 issueMembers={issue.team.teammates}
               />
-              <IssueTeamInfo teamImage={issue.team.teamProfileImage} teamName={issue.team.title} memberName={issue.writer} />
+              <IssueTeamInfo
+                teamImage={issue.team.teamProfileImage}
+                teamName={issue.team.title}
+                memberName={issue.writer}
+              />
             </div>
           </StHeader>
           {issue.team.thumbnail && (
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
-          {issue !== null && <FeedbackCardList feedbacks={feedbacks} />}
+          <StDivisionLine />
+          {issue.feedbackList.length !== 0 ? (
+            <FeedbackCardList feedbacks={feedbacks} />
+          ) : (
+            <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
+          )}
         </StWrapper>
       )}
       <StLink to="./create">
-        <CommonInput width="100%" placeholder="피드백을 입력해주세요" disabled={true} />
+        <CommonInput
+          width="100%"
+          placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
+          disabled={true}
+        />
       </StLink>
       <Outlet />
     </StTeamIssue>

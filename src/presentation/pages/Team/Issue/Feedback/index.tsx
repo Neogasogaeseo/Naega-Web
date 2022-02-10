@@ -82,18 +82,18 @@ function TeamIssueFeedback() {
               />
             )}
             <StTextarea
-              placeholder="직접 입력해주세요"
+              placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
           </StSection>
           <StSection>
-            <StSectionTitle>키워드를 입력해주세요</StSectionTitle>
+            <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
             <Link to="keyword">
-              <CommonInput width="100%" placeholder="키워드를 입력해주세요" disabled={true} />
+              <CommonInput width="100%" placeholder="팀원을 표현하는 키워드를 입력해주세요" disabled={true} />
             </Link>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton onClick={onPostFeedback}>완료</StButton>
+            <StButton onClick={onPostFeedback} disabled={content.length == 0 || keywordList.length == 0}>완료</StButton>
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>

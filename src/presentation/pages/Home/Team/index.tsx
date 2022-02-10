@@ -59,7 +59,7 @@ function HomeTeam() {
         {inviteData?.map((invitation) => (
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
-        <h1>내가 함께하는 팀</h1>
+        <h1>나와 함께하는 팀</h1>
         {profileListData && (
           <ProfileList
             isSquare={true}
@@ -85,8 +85,8 @@ function HomeTeam() {
         ) : (
           <StEmptyView>
             <img src={imgEmptyMain} />
-            <div>아직 팀원소개서 컨텐츠가 없어요!</div>
-            <div>팀이나 이슈를 추가해보세요.</div>
+            <div>아직 팀원소개서 컨텐츠가 없어요</div>
+            <div>팀이나 이슈를 추가해보세요</div>
           </StEmptyView>
         )}
       </StTeamMain>

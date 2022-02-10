@@ -1,5 +1,5 @@
 import { ANIMATION } from '@styles/common/animation';
-import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
+import { FULL_WIDTH_BUTTON, CORAL_MAIN_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { COMMON_INPUT } from '@styles/common/input';
 import styled from 'styled-components';
@@ -49,9 +49,14 @@ export const StSectionTitle = styled.div`
   font-weight: 600;
 `;
 
-export const StButton = styled.div`
-  ${CORAL_MAIN_BUTTON}
-  ${FULL_WIDTH_BUTTON}
+export const StButton = styled.button`
+  ${FULL_WIDTH_BUTTON};
+  background-color: ${COLOR.GRAY_3};
+  color: ${COLOR.WHITE};
+  
+  :not(:disabled) {
+    ${CORAL_MAIN_BUTTON};
+  }
 `;
 
 export const StTextarea = styled.textarea`

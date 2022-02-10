@@ -1,6 +1,5 @@
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody } from '@api/types/team';
-import { imgEmptyProfile } from '@assets/images';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
@@ -129,7 +128,7 @@ export function teamDataRemote(): TeamService {
         profileListData: response.data
           ? response.data.map((team: any) => ({
               id: team.id,
-              profileImage: team.image ?? imgEmptyProfile,
+              profileImage: team.image,
               profileName: team.name,
             }))
           : [],
@@ -144,7 +143,7 @@ export function teamDataRemote(): TeamService {
         teamDetailData: {
           teamDetail: {
             teamID: response.data.team.id,
-            teamImage: response.data.team.image ?? imgEmptyProfile,
+            teamImage: response.data.team.image,
             teamName: response.data.team.name,
             teamDescription: response.data.team.description,
           },
@@ -152,7 +151,7 @@ export function teamDataRemote(): TeamService {
           teamMemberList: response.data.member.map((memberDetail: any) => ({
             id: memberDetail.id,
             profileName: memberDetail.name,
-            profileImage: memberDetail.image ?? imgEmptyProfile,
+            profileImage: memberDetail.image,
           })),
         },
       };

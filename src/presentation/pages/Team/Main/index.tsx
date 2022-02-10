@@ -55,7 +55,7 @@ function TeamMain() {
       {teamInfoData && (
         <StTeamInfo>
           <div>{/* <button onClick={() => navigate(`/team/register`)}>수정</button> */}</div>
-          <img src={teamInfoData.teamDetailData.teamDetail.teamImage ?? imgEmptyProfile} />
+          <img src={teamInfoData.teamDetailData.teamDetail.teamImage || imgEmptyProfile} />
           <div>
             <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
             <h3>
@@ -83,12 +83,12 @@ function TeamMain() {
           </div>
         </StTeamInfo>
       )}
-      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가하기</button>
+      <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가</button>
       <StCheckWrapper>
         <button onClick={() => checkMyIssue()}>
           <img src={isChecked ? icCoralCheck : icGrayCheck} />
         </button>
-        나와 관련된 이슈만 보기
+        내가 언급된 이슈만 보기
       </StCheckWrapper>
       {issueListData && (
         <IssueCardList

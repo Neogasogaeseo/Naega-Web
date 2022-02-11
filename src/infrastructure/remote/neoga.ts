@@ -149,8 +149,8 @@ export function NeogaDataRemote(): NeogaService {
         url: `/form/create`,
         data: { formId: formID },
       })
-      .catch((e: AxiosError) => {
-        console.error(e.response);
+      .catch((error: AxiosError) => {
+        console.error(error.response);
       });
     return { isCreated: response.message === '이미 존재하는 폼입니다', q: response.data };
   };

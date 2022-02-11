@@ -42,8 +42,7 @@ export function neogaDataMock(): NeogaService {
     return { isSuccess: true };
   };
 
-  const postCreateForm = async (formID: number) => {
-    console.log(formID);
+  const postCreateForm = async () => {
     await wait(2000);
     return { isCreated: true, q: '큐' };
   };

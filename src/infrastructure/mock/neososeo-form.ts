@@ -1,5 +1,4 @@
 import { NeososeoFormService } from '@api/neososeo-form';
-import { NeososeoAnswerData } from '@api/types/neososeo-form';
 import { NEOSOSEO_FORM_DATA } from './neososeo-form.data';
 
 export function NeososeoFormMock(): NeososeoFormService {
@@ -8,8 +7,7 @@ export function NeososeoFormMock(): NeososeoFormService {
     return NEOSOSEO_FORM_DATA.FORM;
   };
 
-  const postFormAnswer = async (body: NeososeoAnswerData) => {
-    console.log(body);
+  const postFormAnswer = async () => {
     await wait(2000);
     return { isSuccess: true };
   };

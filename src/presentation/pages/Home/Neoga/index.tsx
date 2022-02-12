@@ -12,6 +12,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 function HomeNeoga() {
   const navigate = useNavigate();
   const { username } = useLoginUser();
+  const MAX_CARD_ITEM = 2;
 
   const initialState = {
     banner: null,
@@ -87,15 +88,15 @@ function HomeNeoga() {
             </button>
           )}
         </div>
-        {cardItem && cardItem?.resultList.length > 0 ? (
+        {cardItem && cardItem.resultList.length > 0 ? (
           <>
             {cardItem.resultList.map((result) => (
               <NeogaResultCard key={result.id} {...result} />
             ))}
-            {cardItem.count > 2 && (
+            {cardItem.count > MAX_CARD_ITEM && (
               <StButtonArea>
                 <button onClick={() => navigate('/neoga/result')}>
-                  외 {cardItem.count - 2}개 <span>더보기</span>
+                  외 {cardItem.count - MAX_CARD_ITEM}개 <span>더보기</span>
                 </button>
               </StButtonArea>
             )}

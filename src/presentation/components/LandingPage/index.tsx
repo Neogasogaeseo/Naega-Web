@@ -30,7 +30,7 @@ function LandingPage() {
   return (
     <div>
       <StHeader>
-        <img src={imgLogo}></img>
+        <img src={imgLogo} />
         <StLogin
           onClick={() => {
             navigate(`/login`);
@@ -57,7 +57,7 @@ function LandingPage() {
           너가소개서 받으러 가기
         </StServiceButton>
       </StMain>
-      <StMiddle style={{ position: 'relative' }}>
+      <StMiddle>
         <StMiddleTitle>
           <h2>
             나를 알아갈 수 있는

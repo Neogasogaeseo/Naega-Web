@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '@api/index';
-import ProfileList from '@components/common/ProfileList';
-import IssueCardList from '@components/common/IssueCardList';
-import { StTeamMain, StDivisionLine, StEmptyView } from './style';
-import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
-import { imgEmptyMain } from '@assets/images';
-import TeamInvitation from './Invitation';
+import { useResetRecoilState } from 'recoil';
 import {
   selectedUserListState,
   teamDescriptionState,
   teamImageState,
   teamNameState,
 } from '@stores/team';
-import { useResetRecoilState } from 'recoil';
+import { api } from '@api/index';
+import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
+import TeamInvitation from './Invitation';
+import ProfileList from '@components/common/ProfileList';
+import IssueCardList from '@components/common/IssueCardList';
+import { StTeamMain, StDivisionLine, StEmptyView } from './style';
+import { imgEmptyMain } from '@assets/images';
 
 function HomeTeam() {
-  const [profileListData, setProfileListData] = useState<TeamMemberNoneId[] | null>(null);
-  const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
-  const [inviteData, setInviteData] = useState<TeamInvite[] | null>(null);
+  const [inviteList, setInviteList] = useState<TeamInvite[] | null>(null);
+  const [profileList, setProfileList] = useState<TeamMemberNoneId[] | null>(null);
+  const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const resetImage = useResetRecoilState(teamImageState);
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
@@ -34,36 +34,31 @@ function HomeTeam() {
 
   useEffect(() => {
     (async () => {
-      const { profileListData } = await api.teamService.getTeamProfile();
-      setProfileListData(profileListData);
+      const { inviteList } = await api.teamService.getInviteInfo();
+      setInviteList(inviteList);
+      const { profileList } = await api.teamService.getTeamProfile();
+      setProfileList(profileList);
+      const { issueList } = await api.teamService.getMyTeamIssue();
+      setIssueList(issueList);
     })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const { issueListData } = await api.teamService.getMyTeamIssue();
-      setIssueListData(issueListData);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const { inviteListData } = await api.teamService.getInviteInfo();
-      setInviteData(inviteListData);
-    })();
+    return () => {
+      setInviteList(null);
+      setProfileList(null);
+      setIssueList(null);
+    };
   }, []);
 
   return (
     <>
       <StTeamMain>
-        {inviteData?.map((invitation) => (
+        {inviteList?.map((invitation) => (
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
         <h1>나와 함께하는 팀</h1>
-        {profileListData && (
+        {profileList && (
           <ProfileList
             isSquare={true}
-            profileListData={profileListData}
+            profileList={profileList}
             onProfileClick={(id) => {
               navigate(`/team/${id}`);
             }}
@@ -75,9 +70,9 @@ function HomeTeam() {
         )}
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        {issueListData && issueListData.length ? (
+        {issueList && issueList.length ? (
           <IssueCardList
-            issueListData={issueListData}
+            issueList={issueList}
             onIssueClick={(teamID, issueNumber) => {
               navigate(`/team/${teamID}/${issueNumber}`);
             }}

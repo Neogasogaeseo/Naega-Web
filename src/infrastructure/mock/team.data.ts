@@ -96,7 +96,7 @@ export const TEAM_DATA: {
     writer: '주영주영',
   },
   TEAM_ISSUE_INFO: {
-    issueListData: [
+    issueList: [
       {
         teamID: '1',
         issueNumber: 1,
@@ -159,7 +159,7 @@ export const TEAM_DATA: {
     ],
   },
   TEAM_PROFILE: {
-    profileListData: [
+    profileList: [
       {
         id: 6,
         profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
@@ -220,7 +220,7 @@ export const TEAM_DATA: {
     },
   },
   TEAM_INVITE_INFO: {
-    inviteListData: [
+    inviteList: [
       {
         id: 26,
         name: '너가소개서',

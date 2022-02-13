@@ -77,7 +77,7 @@ function TeamRegister() {
       <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
       <ProfileList
         isSquare={false}
-        profileListData={[
+        profileList={[
           { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
           ...selectedUserList,
         ]}

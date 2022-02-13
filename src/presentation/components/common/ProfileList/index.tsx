@@ -2,7 +2,7 @@ import ProfileItem from '@components/common/ProfileItem';
 import ProfileAddButton from '@components/common/ProfileAddButton';
 import { StProfileList, StItemWrapper } from './style';
 
-export interface ProfileListData {
+export interface ProfileList {
   id: number;
   profileImage?: string;
   profileName: string;
@@ -10,7 +10,7 @@ export interface ProfileListData {
 
 interface ProfileListProps {
   isSquare: boolean;
-  profileListData: ProfileListData[];
+  profileList: ProfileList[];
   onProfileClick?: (id: number) => void;
   onAddClick: () => void;
   isAddNeeded?: boolean;
@@ -19,7 +19,7 @@ interface ProfileListProps {
 function ProfileList(props: ProfileListProps) {
   const {
     isSquare,
-    profileListData,
+    profileList,
     onProfileClick = () => {
       return;
     },
@@ -30,7 +30,7 @@ function ProfileList(props: ProfileListProps) {
   return (
     <StProfileList>
       <StItemWrapper isSquare={isSquare}>
-        {profileListData.map(({ id, profileImage, profileName }) => (
+        {profileList.map(({ id, profileImage, profileName }) => (
           <ProfileItem
             key={id}
             id={id}

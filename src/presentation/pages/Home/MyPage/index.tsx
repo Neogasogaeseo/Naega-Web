@@ -152,7 +152,7 @@ function HomeMyPage() {
             </StTitle>
             <ProfileList
               isSquare={true}
-              profileListData={feedbackBookmark.teamList}
+              profileList={feedbackBookmark.teamList}
               onProfileClick={() => null}
               onAddClick={() => null}
               isAddNeeded={false}

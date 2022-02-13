@@ -12,7 +12,7 @@ function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
-  const [issueListData, setIssueListData] = useState<TeamIssueCard[] | null>(null);
+  const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const { teamID } = useParams();
   const navigate = useNavigate();
   const checkMyIssue = () => setIsChecked((prev) => !prev);
@@ -24,14 +24,8 @@ function TeamMain() {
       if (teamID === undefined) return;
       const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
       setTeamInfoData(teamDetailData);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      if (teamID === undefined) return;
-      const { issueListData } = await api.teamService.getTeamIssue(teamID);
-      setIssueListData(issueListData);
+      const { issueList } = await api.teamService.getTeamIssue(teamID);
+      setIssueList(issueList);
     })();
   }, []);
 
@@ -39,13 +33,13 @@ function TeamMain() {
     if (teamID === undefined) return;
     if (!isChecked) {
       (async () => {
-        const { issueListData } = await api.teamService.getTeamIssue(teamID);
-        setIssueListData(issueListData);
+        const { issueList } = await api.teamService.getTeamIssue(teamID);
+        setIssueList(issueList);
       })();
     } else {
       (async () => {
-        const { issueListData } = await api.teamService.getMyIssue(teamID);
-        setIssueListData(issueListData);
+        const { issueList } = await api.teamService.getMyIssue(teamID);
+        setIssueList(issueList);
       })();
     }
   }, [isChecked]);
@@ -90,9 +84,9 @@ function TeamMain() {
         </button>
         내가 언급된 이슈만 보기
       </StCheckWrapper>
-      {issueListData && (
+      {issueList && (
         <IssueCardList
-          issueListData={issueListData}
+          issueList={issueList}
           onIssueClick={(teamID, issueNumber) => {
             navigate(`/team/${teamID}/${issueNumber}`);
           }}

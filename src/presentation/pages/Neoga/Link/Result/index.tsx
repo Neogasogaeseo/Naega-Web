@@ -32,8 +32,8 @@ export default function NeogaLinkResult() {
     <StNeogaLinkResult>
       {type === 'new' ? <ImgNewLink /> : <ImgCreatedLink />}
       <div>
-        <div>{type === 'new' ? '링크 생성 완료!' : '이미 생성된 링크예요!'}</div>
-        <div>해당 링크를 복사하여 공유해주세요</div>
+        <div>{type === 'new' ? '설문 링크 생성 완료!' : '이미 생성된 설문이에요'}</div>
+        <div>링크를 복사해서 친구들에게 공유해보세요</div>
       </div>
       <StLinkBox>
         <input type="text" value={link} disabled />

@@ -1,40 +1,36 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api } from '@api/index';
+import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
+import { useLoginUser } from '@hooks/useLoginUser';
+import NeogaMainCardList from '@components/NeogaMainCard/List';
+import NeogaResultCard from '@components/common/NeogaResultCard';
 import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea, StEmptyView } from './styles';
 import { icNewTag, icWhole } from '@assets/icons';
 import { imgEmptyMain } from '@assets/images';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { api } from '@api/index';
-import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
-import NeogaMainCardList from '@components/NeogaMainCard/List';
-import NeogaResultCard from '@components/common/NeogaResultCard';
-import { useLoginUser } from '@hooks/useLoginUser';
 
 function HomeNeoga() {
-  const navigate = useNavigate();
   const [banner, setBanner] = useState<NeogaBannerItem>();
   const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
   const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
+  const navigate = useNavigate();
   const { username } = useLoginUser();
+  const MAX_CARD_ITEM = 2;
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getBannerTemplate();
-      data && setBanner(data);
+      const banner = await api.neogaService.getBannerTemplate();
+      banner && setBanner(banner);
+      const templateList = await api.neogaService.getMainTemplate();
+      setTemplateList(templateList);
+      const cardItem = await api.neogaService.getMainResultCard();
+      setCardItem(cardItem);
     })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getMainTemplate();
-      setTemplateList(data);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getMainResultCard();
-      setCardItem(data);
-    })();
+    return () => {
+      setBanner(undefined);
+      setTemplateList([]);
+      setCardItem(undefined);
+    }
   }, []);
 
   return (
@@ -85,15 +81,15 @@ function HomeNeoga() {
             </button>
           )}
         </div>
-        {cardItem && cardItem?.resultList.length > 0 ? (
+        {cardItem && cardItem.resultList.length > 0 ? (
           <>
             {cardItem.resultList.map((result) => (
               <NeogaResultCard key={result.id} {...result} />
             ))}
-            {cardItem.count > 2 && (
+            {cardItem.count > MAX_CARD_ITEM && (
               <StButtonArea>
                 <button onClick={() => navigate('/neoga/result')}>
-                  외 {cardItem.count - 2}개 <span>더보기</span>
+                  외 {cardItem.count - MAX_CARD_ITEM}개 <span>더보기</span>
                 </button>
               </StButtonArea>
             )}

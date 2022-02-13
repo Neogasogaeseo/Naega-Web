@@ -59,7 +59,7 @@ function TeamIssueFeedback() {
           target: selectedUser.profileName.toString(),
           targetProfileID: '',
           body: content.toString(),
-          createdAt: '',
+          createdAt: response.createdAt.toString(),
           keywordList: [...keywordList],
           isBookmarked: false,
         },

@@ -30,6 +30,8 @@ function TeamNewIssue() {
   const [selectedCategory, setSelectedCategory] = useState<IssueCategory[]>([]);
   const [isClickCategory, setIsClickCategory] = useState(false);
   const [issueTextarea, setIssueTextarea] = useState('');
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIssueTextarea(e.currentTarget.value);
     setButton(true);
@@ -61,6 +63,7 @@ function TeamNewIssue() {
 
   const onClickSubmitIssue = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    setIsConfirmed(true);
     try {
       const form = new FormData();
       teamID && form.append('teamId', teamID);
@@ -118,7 +121,7 @@ function TeamNewIssue() {
       <StButton
         type="submit"
         onClick={onClickSubmitIssue}
-        disabled={(!button && issueTextarea == '') || selectedCategory.length === 0}
+        disabled={(!button && issueTextarea == '') || selectedCategory.length === 0 || isConfirmed}
       >
         완료
       </StButton>

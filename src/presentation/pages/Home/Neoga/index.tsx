@@ -1,43 +1,36 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { api } from '@api/index';
+import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
+import { useLoginUser } from '@hooks/useLoginUser';
+import NeogaMainCardList from '@components/NeogaMainCard/List';
+import NeogaResultCard from '@components/common/NeogaResultCard';
 import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea, StEmptyView } from './styles';
 import { icNewTag, icWhole } from '@assets/icons';
 import { imgEmptyMain } from '@assets/images';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { api } from '@api/index';
-import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
-import NeogaMainCardList from '@components/NeogaMainCard/List';
-import NeogaResultCard from '@components/common/NeogaResultCard';
-import { useLoginUser } from '@hooks/useLoginUser';
 
 function HomeNeoga() {
+  const [banner, setBanner] = useState<NeogaBannerItem>();
+  const [templateList, setTemplateList] = useState<NeogaMainCardItem[]>([]);
+  const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
   const navigate = useNavigate();
   const { username } = useLoginUser();
   const MAX_CARD_ITEM = 2;
 
-  const initialState = {
-    banner: null,
-    templateList: [],
-    cardItem: null,
-  };
-
-  const [state, setState] = useState<{
-    banner: NeogaBannerItem | null;
-    templateList: NeogaMainCardItem[];
-    cardItem: NeogaResultCardItem | null;
-  }>(initialState);
-
-  const { banner, templateList, cardItem } = state;
-
   useEffect(() => {
     (async () => {
-      const data = await Promise.all([
-        api.neogaService.getBannerTemplate(),
-        api.neogaService.getMainTemplate(),
-        api.neogaService.getMainResultCard(),
-      ]);
-      setState({ banner: data[0], templateList: data[1], cardItem: data[2] });
+      const banner = await api.neogaService.getBannerTemplate();
+      banner && setBanner(banner);
+      const templateList = await api.neogaService.getMainTemplate();
+      setTemplateList(templateList);
+      const cardItem = await api.neogaService.getMainResultCard();
+      setCardItem(cardItem);
     })();
-    return () => setState(initialState);
+    return () => {
+      setBanner(undefined);
+      setTemplateList([]);
+      setCardItem(undefined);
+    }
   }, []);
 
   return (

@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from '@api/index';
-import ProfileList from '@components/common/ProfileList';
-import IssueCardList from '@components/common/IssueCardList';
-import { StTeamMain, StDivisionLine, StEmptyView } from './style';
-import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
-import { imgEmptyMain } from '@assets/images';
-import TeamInvitation from './Invitation';
+import { useResetRecoilState } from 'recoil';
 import {
   selectedUserListState,
   teamDescriptionState,
   teamImageState,
   teamNameState,
 } from '@stores/team';
-import { useResetRecoilState } from 'recoil';
+import { api } from '@api/index';
+import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
+import TeamInvitation from './Invitation';
+import ProfileList from '@components/common/ProfileList';
+import IssueCardList from '@components/common/IssueCardList';
+import { StTeamMain, StDivisionLine, StEmptyView } from './style';
+import { imgEmptyMain } from '@assets/images';
 
 function HomeTeam() {
+  const [inviteList, setInviteList] = useState<TeamInvite[] | null>(null);
+  const [profileList, setProfileList] = useState<TeamMemberNoneId[] | null>(null);
+  const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const resetImage = useResetRecoilState(teamImageState);
   const resetName = useResetRecoilState(teamNameState);
   const resetDescription = useResetRecoilState(teamDescriptionState);
@@ -29,43 +32,33 @@ function HomeTeam() {
     resetSelectedUserList();
   };
 
-  const initialState = {
-    profileListData: null,
-    issueListData: null,
-    inviteListData: null,
-  };
-
-  const [state, setState] = useState<{
-    profileListData: TeamMemberNoneId[] | null;
-    issueListData: TeamIssueCard[] | null;
-    inviteListData: TeamInvite[] | null;
-  }>(initialState);
-  
-  const { profileListData, issueListData, inviteListData } = state;
-
   useEffect(() => {
     (async () => {
-      const data = await Promise.all([
-        api.teamService.getTeamProfile(),
-        api.teamService.getMyTeamIssue(),
-        api.teamService.getInviteInfo(),
-      ]);
-      setState({ profileListData: data[0].profileListData, issueListData: data[1].issueListData, inviteListData: data[2].inviteListData });
+      const { inviteList } = await api.teamService.getInviteInfo();
+      setInviteList(inviteList);
+      const { profileList } = await api.teamService.getTeamProfile();
+      setProfileList(profileList);
+      const { issueList } = await api.teamService.getMyTeamIssue();
+      setIssueList(issueList);
     })();
-    return () => setState(initialState);
+    return () => {
+      setInviteList(null);
+      setProfileList(null);
+      setIssueList(null);
+    };
   }, []);
 
   return (
     <>
       <StTeamMain>
-        {inviteListData?.map((invitation) => (
+        {inviteList?.map((invitation) => (
           <TeamInvitation key={invitation.id} {...invitation} />
         ))}
         <h1>나와 함께하는 팀</h1>
-        {profileListData && (
+        {profileList && (
           <ProfileList
             isSquare={true}
-            profileListData={profileListData}
+            profileList={profileList}
             onProfileClick={(id) => {
               navigate(`/team/${id}`);
             }}
@@ -77,9 +70,9 @@ function HomeTeam() {
         )}
         <StDivisionLine />
         <h1>나와 관련된 이슈 확인</h1>
-        {issueListData && issueListData.length ? (
+        {issueList && issueList.length ? (
           <IssueCardList
-            issueListData={issueListData}
+            issueList={issueList}
             onIssueClick={(teamID, issueNumber) => {
               navigate(`/team/${teamID}/${issueNumber}`);
             }}

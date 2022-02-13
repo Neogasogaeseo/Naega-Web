@@ -15,15 +15,15 @@ export interface IssueListData {
 }
 
 interface IssueListProps {
-  issueListData: IssueListData[];
+  issueList: IssueListData[];
   onIssueClick: (teamID: string, issueNumber: number) => void;
 }
 
 function IssueCardList(props: IssueListProps) {
-  const { issueListData, onIssueClick } = props;
+  const { issueList, onIssueClick } = props;
   return (
     <div>
-      {issueListData.map((issue) => (
+      {issueList.map((issue) => (
         <IssueCard
           key={issue.teamID}
           onIssueClick={() => onIssueClick(issue.teamID, issue.issueNumber)}

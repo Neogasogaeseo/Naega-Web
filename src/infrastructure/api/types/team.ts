@@ -47,7 +47,7 @@ export type PostFeedbackBookmarkResponse = {
 };
 
 export type TeamIssueData = {
-  issueListData: TeamIssueCard[];
+  issueList: TeamIssueCard[];
 };
 
 export type TeamIssueCard = {
@@ -64,7 +64,7 @@ export type TeamIssueCard = {
 };
 
 export type TeamProfileData = {
-  profileListData: TeamMemberNoneId[];
+  profileList: TeamMemberNoneId[];
 };
 
 export type TeamDetail = {
@@ -88,7 +88,7 @@ export type TeamInvite = {
 };
 
 export type TeamInviteData = {
-  inviteListData: TeamInvite[];
+  inviteList: TeamInvite[];
 };
 
 export type TeamIssueCategory = {

@@ -69,7 +69,7 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue` });
     if (response.status === 200)
       return {
-        issueListData: response.data
+        issueList: response.data
           ? response.data.map((team: any) => ({
               issueNumber: team.id,
               issueMembers: team.feedback
@@ -97,7 +97,7 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue/my` });
     if (response.status === 200)
       return {
-        issueListData: response.data
+        issueList: response.data
           ? response.data.map((team: any) => ({
               issueNumber: team.id,
               issueMembers: team.feedback
@@ -125,7 +125,7 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team` });
     if (response.status === 200)
       return {
-        profileListData: response.data
+        profileList: response.data
           ? response.data.map((team: any) => ({
               id: team.id,
               profileImage: team.image,
@@ -161,7 +161,7 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/issue` });
     if (response.status === 200)
       return {
-        issueListData: response.data
+        issueList: response.data
           ? response.data.map((team: any) => ({
               teamID: team.teamId,
               issueCardImage: team.image ?? null,
@@ -187,7 +187,7 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/invite` });
     if (response.status === 200)
       return {
-        inviteListData: response.data
+        inviteList: response.data
           ? response.data.map((team: any) => ({
               id: team.id,
               name: team.name,

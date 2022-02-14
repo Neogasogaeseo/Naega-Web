@@ -32,7 +32,7 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
 
   const fileInputHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files !== null && e.target.files[0]) {
+    if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (file.name.match(imgFileForm)) {
         if (checkBrowser('Internet Explorer')) {

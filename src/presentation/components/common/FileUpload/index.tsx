@@ -34,7 +34,6 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
     e.preventDefault();
     if (e.target.files !== null) {
       const file = e.target.files[0];
-      if (!file) return fireToast({ content: '이미지 파일을 첨부해주세요' });
       if (file.name.match(imgFileForm)) {
         if (checkBrowser('Internet Explorer')) {
           setNewFile(file);

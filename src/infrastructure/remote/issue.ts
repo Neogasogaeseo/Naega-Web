@@ -17,7 +17,7 @@ export const postTeamIssue = async (issueData: FormData) => {
         type: 'multipart',
       })
       .catch((error) => {
-        console.log(error.response);
+        console.error(error.response);
       });
     if (response.status === 200) {
       return response;

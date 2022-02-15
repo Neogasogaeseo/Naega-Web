@@ -218,8 +218,8 @@ export function teamDataRemote(): TeamService {
           data: teamInfo,
           type: 'multipart',
         })
-        .catch((e: AxiosError) => {
-          console.log(e.response);
+        .catch((error: AxiosError) => {
+          console.error(error.response);
         });
       if (response.status === 200) {
         return { isSuccess: true };

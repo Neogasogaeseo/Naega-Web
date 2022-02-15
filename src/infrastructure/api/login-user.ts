@@ -15,8 +15,8 @@ export const postLogin = async (
     });
     if (response.status === 200) return response.data;
     else throw '로그인 실패';
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
     throw '로그인 실패';
   }
 };

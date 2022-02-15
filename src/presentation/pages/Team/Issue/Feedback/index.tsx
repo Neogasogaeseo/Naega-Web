@@ -24,7 +24,7 @@ function TeamIssueFeedback() {
   const [content, setContent] = useState<string>('');
   const [teamMembers, setTeamMembers] = useState<TeamMemberNoneId[] | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
-  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
   const setFeedbacks = useSetRecoilState(teamFeedbackState);
   const navigate = useNavigate();
   const { teamID, issueID } = useParams();
@@ -43,7 +43,7 @@ function TeamIssueFeedback() {
     if (!issueID) return;
     if (isNaN(+issueID)) return;
     if (!selectedUser) return;
-    setIsConfirmed(true);
+    setIsConfirming(true);
     const response = await api.teamService.postFeedback({
       issueId: +issueID,
       taggedUserId: selectedUser.id,
@@ -92,10 +92,19 @@ function TeamIssueFeedback() {
           <StSection>
             <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
             <Link to="keyword">
-              <CommonInput width="100%" placeholder="팀원을 표현하는 키워드를 입력해주세요" disabled={true} />
+              <CommonInput
+                width="100%"
+                placeholder="팀원을 표현하는 키워드를 입력해주세요"
+                disabled={true}
+              />
             </Link>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton onClick={onPostFeedback} disabled={content.length == 0 || keywordList.length == 0 || isConfirmed}>완료</StButton>
+            <StButton
+              onClick={onPostFeedback}
+              disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
+            >
+              완료
+            </StButton>
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>

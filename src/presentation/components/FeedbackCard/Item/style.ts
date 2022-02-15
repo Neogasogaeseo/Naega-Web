@@ -32,7 +32,7 @@ export const StHeader = styled.div`
     color: ${COLOR.GRAY_5};
     align-items: center;
     gap: 4px;
-    ${FONT_STYLES.M_13_BODY}
+    ${FONT_STYLES.R_13_TITLE}
   }
   & > div:nth-child(3) {
     position: absolute;

@@ -28,9 +28,9 @@ function FeedbackCardItem(props: FeedbackCardProps) {
       <StHeader>
         <div>@{target}</div>
         <div>
-          <div>{writer}</div>
+          <span>{writer}</span>
           <span>·</span>
-          <div>{createdAt}</div>
+          <span>{createdAt}</span>
         </div>
         {(+targetProfileID === loginUserID || targetProfileID === loginUsername) && (
           <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />

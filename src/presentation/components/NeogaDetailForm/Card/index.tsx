@@ -26,8 +26,8 @@ function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
     <StNeogaDetailFormCard>
       <StFeedHeader>
         <StFeedName>
-          {name}
-          <p>·</p>
+          <span>{name}</span>
+          <span>·</span>
           <span>너를 {relationship}</span>
         </StFeedName>
         <div>

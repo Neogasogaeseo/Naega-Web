@@ -1,10 +1,9 @@
+import { useState } from 'react';
 import { api } from '@api/index';
 import { FeedbackDetail } from '@api/types/team';
-import { icDot } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
-import { useState } from 'react';
 import { StFeedbackCard, StHeader, StBody, StBookmark } from './style';
 
 type FeedbackCardProps = FeedbackDetail;
@@ -29,9 +28,9 @@ function FeedbackCardItem(props: FeedbackCardProps) {
       <StHeader>
         <div>@{target}</div>
         <div>
-          <div>{writer}</div>
-          <img src={icDot} alt="dot" />
-          <div>{createdAt}</div>
+          <span>{writer}</span>
+          <span>·</span>
+          <span>{createdAt}</span>
         </div>
         {(+targetProfileID === loginUserID || targetProfileID === loginUsername) && (
           <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />

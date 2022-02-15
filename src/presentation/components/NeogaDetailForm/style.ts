@@ -30,22 +30,16 @@ export const StLink = styled.div`
 `;
 
 export const StFeedName = styled.div`
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 100%;
   display: flex;
   align-items: center;
-  letter-spacing: -0.01em;
-  color: ${COLOR.GRAY_6};
-
+  gap: 4px;
   & > span {
-    font-weight: normal;
-    font-size: 13px;
+    ${FONT_STYLES.R_14_TITLE};
     color: ${COLOR.GRAY_5};
   }
-
-  & > p {
-    margin: 3px;
+  & > span:first-child {
+    ${FONT_STYLES.SB_14_TITLE};
+    color: ${COLOR.GRAY_6};
   }
 `;
 
@@ -106,7 +100,8 @@ export const StNeogaDetailFormCard = styled.div`
   margin: 0 20px 0 20px;
   & > hr {
     margin-top: 24px;
-    border: 1px solid #efefef;
+    border: none;
+    border-bottom: 1px solid #efefef;
     border-radius: 2px;
   }
 `;
@@ -162,7 +157,8 @@ export const StButton = styled.button`
 export const StMoreWrapper = styled.div`
   & > hr {
     margin-top: 32px;
-    border: 1px solid ${COLOR.GRAY_2};
+    border: none;
+    border-bottom: 1px solid ${COLOR.GRAY_2};
     border-radius: 2px;
   }
 `;

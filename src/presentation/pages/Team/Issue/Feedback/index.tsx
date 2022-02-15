@@ -1,6 +1,14 @@
-import ProfileListSelectable from '@components/ProfileListSelectable';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { teamFeedbackState } from '@stores/team';
+import { api } from '@api/index';
+import { Keyword } from '@api/types/user';
+import { TeamMemberNoneId } from '@api/types/team';
+import { useLoginUser } from '@hooks/useLoginUser';
+import ProfileListSelectable from '@components/ProfileListSelectable';
+import CommonInput from '@components/common/CommonInput';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import {
   StAbsoluteWrapper,
   StBlackBlur,
@@ -10,20 +18,13 @@ import {
   StButton,
   StTextarea,
 } from './style';
-import CommonInput from '@components/common/CommonInput';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { Keyword } from '@api/types/user';
-import { TeamMemberNoneId } from '@api/types/team';
-import { api } from '@api/index';
-import { useSetRecoilState } from 'recoil';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { teamFeedbackState } from '@stores/team';
 
 function TeamIssueFeedback() {
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
   const [teamMembers, setTeamMembers] = useState<TeamMemberNoneId[] | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+  const [isConfirming, setIsConfirming] = useState(false);
   const setFeedbacks = useSetRecoilState(teamFeedbackState);
   const navigate = useNavigate();
   const { teamID, issueID } = useParams();
@@ -42,6 +43,7 @@ function TeamIssueFeedback() {
     if (!issueID) return;
     if (isNaN(+issueID)) return;
     if (!selectedUser) return;
+    setIsConfirming(true);
     const response = await api.teamService.postFeedback({
       issueId: +issueID,
       taggedUserId: selectedUser.id,
@@ -57,7 +59,7 @@ function TeamIssueFeedback() {
           target: selectedUser.profileName.toString(),
           targetProfileID: '',
           body: content.toString(),
-          createdAt: '',
+          createdAt: response.createdAt.toString(),
           keywordList: [...keywordList],
           isBookmarked: false,
         },
@@ -90,10 +92,19 @@ function TeamIssueFeedback() {
           <StSection>
             <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
             <Link to="keyword">
-              <CommonInput width="100%" placeholder="팀원을 표현하는 키워드를 입력해주세요" disabled={true} />
+              <CommonInput
+                width="100%"
+                placeholder="팀원을 표현하는 키워드를 입력해주세요"
+                disabled={true}
+              />
             </Link>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton onClick={onPostFeedback} disabled={content.length == 0 || keywordList.length == 0}>완료</StButton>
+            <StButton
+              onClick={onPostFeedback}
+              disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
+            >
+              완료
+            </StButton>
           </StSection>
         </StWrapper>
       </StAbsoluteWrapper>

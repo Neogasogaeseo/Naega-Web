@@ -1,3 +1,4 @@
+import { splitIntoTwoLines } from '@utils/string';
 import { StNeososeoFormHeader } from './style';
 
 interface NeososeoFormHeaderProps {
@@ -9,7 +10,7 @@ function NeososeoFormHeader(props: NeososeoFormHeaderProps) {
   const { title, image } = props;
   return (
     <StNeososeoFormHeader>
-      <div>{title}</div>
+      <div>{splitIntoTwoLines(title)}</div>
       <div>
         <img src={image} alt={title} />
       </div>

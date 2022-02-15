@@ -75,7 +75,7 @@ function TeamNewIssue() {
         navigate(`/team/${teamID}`);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

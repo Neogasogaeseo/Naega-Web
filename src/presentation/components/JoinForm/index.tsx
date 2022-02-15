@@ -73,7 +73,8 @@ function JoinForm() {
         fireToast({ content: '중복된 아이디입니다. ' });
       }
     } catch (error) {
-      console.error(error); //나중에 또 처리합시다.
+      console.error(error);
+      navigate('/');
     }
   };
 

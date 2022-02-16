@@ -1,7 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { useToast } from '@hooks/useToast';
 import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
-import React, { useEffect, useRef, useState } from 'react';
 import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
 interface FileUploadProps {

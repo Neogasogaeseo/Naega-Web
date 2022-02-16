@@ -1,7 +1,8 @@
+import { useEffect, useRef, useState } from 'react';
+
 import { useToast } from '@hooks/useToast';
 import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
-import React, { useEffect, useRef, useState } from 'react';
 import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
 interface FileUploadProps {
@@ -32,9 +33,8 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
 
   const fileInputHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.files !== null) {
+    if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
-      if (!file) return fireToast({ content: '이미지 파일을 첨부해주세요' });
       if (file.name.match(imgFileForm)) {
         if (checkBrowser('Internet Explorer')) {
           setNewFile(file);

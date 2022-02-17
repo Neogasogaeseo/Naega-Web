@@ -44,13 +44,13 @@ function NeososeoFormIntro() {
         <span>{neososeoFormData.content}</span>
       </StNeososeoTitle>
       <div>
-        <StSubTitle>나를 소개해주세요</StSubTitle>
+        <StSubTitle>이름을 입력해주세요</StSubTitle>
         <CommonInput
           width="100%"
-          placeholder="나를 나타내는 별명을 입력해주세요"
+          placeholder="당신의 이름이나 별명을 입력해주세요"
           onChange={(name) => setUserName(name)}
         />
-        <StSubTitle>{neososeoFormData.userName}님과의 관계를 선택해주세요</StSubTitle>
+        <StSubTitle>{neososeoFormData.userName}님은 당신에게 어떤 사람인가요?</StSubTitle>
         <StRelationWrapper>
           {neososeoFormData.relation.map((relation) => (
             <StRelation

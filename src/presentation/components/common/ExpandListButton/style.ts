@@ -8,4 +8,5 @@ export const StExpandListButton = styled.div`
   align-items: center;
   color: ${COLOR.GRAY_4};
   margin: 18px 0;
+  cursor: pointer;
 `;

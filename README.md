@@ -72,10 +72,10 @@
 │   │   └── api : API 처리 관련 파일 작성 
 │   │   ├── mock : Mock API 로직 관련 파일 작성
 │   │   └── remote : 실서버 API 로직 관련 파일 작성
-│   └── presentation 
-│       ├── components : 컴포넌트 관련 파일 
-│	      ├── pages : 페이지 관련 파일 
-│       ├── routes : 라우터 관련 파일 
-│       └── style : GlobalStyle 관련 파일
+│   └── presentation
+│       ├── components : 컴포넌트 관련 파일
+│       ├── pages : 페이지 관련 파일
+│       ├── routes : 라우터 관련 파일
+│       └── style : GlobalStyle 관련 파일 
 └── 각종 세팅 파일들과 리드미 파일
 ```

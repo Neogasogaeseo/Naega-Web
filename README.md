@@ -69,7 +69,7 @@
 │   │   └── utils : 유틸 함수 작성
 │   ├── assets : 아이콘, 이미지, 로티 파일
 │   ├── infrastructure 
-│   │   └── api : API 처리 관련 파일 작성 
+│   │   ├── api : API 처리 관련 파일 작성 
 │   │   ├── mock : Mock API 로직 관련 파일 작성
 │   │   └── remote : 실서버 API 로직 관련 파일 작성
 │   └── presentation

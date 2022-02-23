@@ -64,7 +64,7 @@ function TeamIssueFeedback() {
           isBookmarked: false,
         },
       ]);
-      navigate('../');
+      navigate(-1);
     }
   };
 

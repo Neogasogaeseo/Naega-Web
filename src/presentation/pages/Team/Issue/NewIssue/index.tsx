@@ -34,8 +34,10 @@ function TeamNewIssue() {
     'teamIssueCategoryList',
     api.teamService.getTeamIssueCategory,
   );
-  const { data: teamInfoData } = useQuery(['teamDetailData', teamID], () =>
-    api.teamService.getTeamInfo(Number(teamID)),
+  const { data: teamInfoData } = useQuery(
+    ['teamDetailData', teamID],
+    () => api.teamService.getTeamInfo(Number(teamID)),
+    { onError: () => navigate('/home') },
   );
 
   const onClickSelectedHandler = (category: IssueCategory) => {
@@ -56,7 +58,7 @@ function TeamNewIssue() {
         image,
       );
       if (response.isSuccess) {
-        navigate(-1);
+        navigate('../');
       }
     } catch (error) {
       console.error(error);
@@ -66,7 +68,7 @@ function TeamNewIssue() {
   return (
     <StNewIssue>
       <StTitleWrapper>
-        {teamInfoData && teamInfoData.teamDetailData.teamDetail.teamName}에 이슈 등록하기
+        {teamInfoData && teamInfoData.teamDetail.teamName}에 이슈 등록하기
       </StTitleWrapper>
       <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>

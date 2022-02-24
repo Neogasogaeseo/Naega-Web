@@ -20,7 +20,7 @@ function TeamMain() {
   const { data: teamInfoData } = useQuery(['teamDetailData', teamID], () =>
     api.teamService.getTeamInfo(Number(teamID)),
   );
-  const slicedMemberList = teamInfoData && teamInfoData.teamDetailData.teamMemberList.slice(0, 4);
+  const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, 4);
 
   const { data: teamIssueList } = useQuery(
     ['teamIssueList', teamID],
@@ -38,16 +38,14 @@ function TeamMain() {
       {teamInfoData && (
         <StTeamInfo>
           <div>{/* <button onClick={() => navigate(`/team/register`)}>수정</button> */}</div>
-          <img src={teamInfoData.teamDetailData.teamDetail.teamImage || imgEmptyProfile} />
+          <img src={teamInfoData.teamDetail.teamImage || imgEmptyProfile} />
           <div>
-            <h1>{teamInfoData.teamDetailData.teamDetail.teamName}</h1>
+            <h1>{teamInfoData.teamDetail.teamName}</h1>
             <h3>
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} alt="팀원" />
-                <span>{teamInfoData.teamDetailData.teamMemberCount}명</span>
-                {isMemberPopupOpened && (
-                  <TeamMemberPopup members={teamInfoData.teamDetailData.teamMemberList} />
-                )}
+                <span>{teamInfoData.teamMemberCount}명</span>
+                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} />}
               </button>
               <div>
                 {slicedMemberList &&
@@ -57,12 +55,10 @@ function TeamMain() {
                       {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
                     </span>
                   ))}
-                {teamInfoData.teamDetailData.teamMemberCount > MAX_MEMBER && (
-                  <StOtherMember>등</StOtherMember>
-                )}
+                {teamInfoData.teamMemberCount > MAX_MEMBER && <StOtherMember>등</StOtherMember>}
               </div>
             </h3>
-            <h2>{teamInfoData.teamDetailData.teamDetail.teamDescription}</h2>
+            <h2>{teamInfoData.teamDetail.teamDescription}</h2>
           </div>
         </StTeamInfo>
       )}

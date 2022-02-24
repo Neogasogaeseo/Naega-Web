@@ -75,11 +75,9 @@ export type TeamDetail = {
 };
 
 export type TeamInfoData = {
-  teamDetailData: {
-    teamDetail: TeamDetail;
-    teamMemberCount: number;
-    teamMemberList: TeamMemberNoneId[];
-  };
+  teamDetail: TeamDetail;
+  teamMemberCount: number;
+  teamMemberList: TeamMemberNoneId[];
 };
 
 export type TeamInvite = {

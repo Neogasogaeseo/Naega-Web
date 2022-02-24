@@ -140,21 +140,20 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
     if (response.status === 200)
       return {
-        teamDetailData: {
-          teamDetail: {
-            teamID: response.data.team.id,
-            teamImage: response.data.team.image,
-            teamName: response.data.team.name,
-            teamDescription: response.data.team.description,
-          },
-          teamMemberCount: response.data.memberCount,
-          teamMemberList: response.data.member.map((memberDetail: any) => ({
-            id: memberDetail.id,
-            profileName: memberDetail.name,
-            profileImage: memberDetail.image,
-          })),
+        teamDetail: {
+          teamID: response.data.team.id,
+          teamImage: response.data.team.image,
+          teamName: response.data.team.name,
+          teamDescription: response.data.team.description,
         },
+        teamMemberCount: response.data.memberCount,
+        teamMemberList: response.data.member.map((memberDetail: any) => ({
+          id: memberDetail.id,
+          profileName: memberDetail.name,
+          profileImage: memberDetail.image,
+        })),
       };
+    else throw 'NOT FOUND';
   };
 
   const getMyTeamIssue = async () => {

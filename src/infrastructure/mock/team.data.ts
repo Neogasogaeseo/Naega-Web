@@ -188,36 +188,34 @@ export const TEAM_DATA: {
     ],
   },
   TEAM_DETAIL_INFO: {
-    teamDetailData: {
-      teamDetail: {
-        teamID: 1,
-        teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-        teamName: '너가소개서',
-        teamDescription: '대학생연합 IT벤처창업 동아리',
-      },
-      teamMemberCount: 4,
-      teamMemberList: [
-        {
-          id: 1,
-          profileName: '캐서린',
-        },
-        {
-          id: 12,
-          profileName: '웬디',
-          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        },
-        {
-          id: 13,
-          profileName: '콩콩이',
-          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        },
-        {
-          id: 14,
-          profileName: '크왕',
-          profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
-        },
-      ],
+    teamDetail: {
+      teamID: 1,
+      teamImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+      teamName: '너가소개서',
+      teamDescription: '대학생연합 IT벤처창업 동아리',
     },
+    teamMemberCount: 4,
+    teamMemberList: [
+      {
+        id: 1,
+        profileName: '캐서린',
+      },
+      {
+        id: 12,
+        profileName: '웬디',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      },
+      {
+        id: 13,
+        profileName: '콩콩이',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      },
+      {
+        id: 14,
+        profileName: '크왕',
+        profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+      },
+    ],
   },
   TEAM_INVITE_INFO: {
     inviteList: [

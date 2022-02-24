@@ -107,3 +107,11 @@ export type PostFeedbackRequestBody = {
   content: string;
   keywordIds: number[];
 };
+
+export type PostIssueResponse = {
+  categoryID: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  image?: string;
+};

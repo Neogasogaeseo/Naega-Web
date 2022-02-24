@@ -256,7 +256,8 @@ export function teamDataRemote(): TeamService {
         .catch((error) => {
           console.error(error.response);
         });
-      return { isSuccess: response.status === 200 };
+      console.log(response);
+      return response;
     } catch (e) {
       throw '데이터 전송 실패';
     }

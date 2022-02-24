@@ -77,7 +77,13 @@ export function teamDataMock(): TeamService {
     { id: 4, name: '기타' },
   ];
   const postTeamIssue = async () => {
-    return { isSuccess: true };
+    return {
+      categoryID: 1,
+      content: 'a',
+      createdAt: '2022-02-24T18:24:20.799Z',
+      id: 2,
+      image: null,
+    };
   };
 
   return {

@@ -10,6 +10,7 @@ import {
   PostFeedbackRequestBody,
   PostFeedbackResponse,
   IssueCategory,
+  PostIssueResponse,
 } from './types/team';
 
 export interface TeamService {
@@ -31,5 +32,5 @@ export interface TeamService {
     content: string,
     categoryID: number,
     image?: File,
-  ): Promise<{ isSuccess: boolean }>;
+  ): Promise<PostIssueResponse>;
 }

@@ -21,15 +21,6 @@ import { useQuery } from 'react-query';
 function TeamNewIssue() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const [image, setImage] = useState<File | undefined>();
-  const [selectedCategory, setSelectedCategory] = useState<IssueCategory | null>();
-  const [issueTextarea, setIssueTextarea] = useState('');
-  const [isConfirming, setIsConfirming] = useState(false);
-
-  const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setIssueTextarea(e.currentTarget.value);
-  };
-
   const { data: categoryList } = useQuery(
     'teamIssueCategoryList',
     api.teamService.getTeamIssueCategory,
@@ -39,6 +30,15 @@ function TeamNewIssue() {
     () => api.teamService.getTeamInfo(Number(teamID)),
     { onError: () => navigate('/home') },
   );
+
+  const [image, setImage] = useState<File | undefined>();
+  const [selectedCategory, setSelectedCategory] = useState<IssueCategory | null>();
+  const [issueTextarea, setIssueTextarea] = useState('');
+  const [isConfirming, setIsConfirming] = useState(false);
+
+  const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setIssueTextarea(e.currentTarget.value);
+  };
 
   const onClickSelectedHandler = (category: IssueCategory) => {
     if (selectedCategory?.id === category.id) {
@@ -57,8 +57,8 @@ function TeamNewIssue() {
         selectedCategory.id,
         image,
       );
-      if (response.isSuccess) {
-        navigate('../');
+      if (response.id) {
+        navigate(-1);
       }
     } catch (error) {
       console.error(error);

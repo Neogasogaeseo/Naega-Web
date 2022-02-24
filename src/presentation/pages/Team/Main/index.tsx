@@ -25,12 +25,12 @@ function TeamMain() {
   const { data: teamIssueList } = useQuery(
     ['teamIssueList', teamID],
     () => api.teamService.getTeamIssue(teamID ?? ''),
-    { enabled: teamID !== undefined && !isChecked },
+    { enabled: !isChecked },
   );
   const { data: myIssueList } = useQuery(
     ['myIssueList', teamID],
     () => api.teamService.getMyIssue(teamID ?? ''),
-    { enabled: teamID !== undefined && isChecked },
+    { enabled: isChecked },
   );
 
   return (

@@ -70,6 +70,16 @@ export function teamDataMock(): TeamService {
     };
   };
 
+  const getTeamIssueCategory = async () => [
+    { id: 1, name: '팀문화' },
+    { id: 2, name: '어쩌구' },
+    { id: 3, name: '저쩌구' },
+    { id: 4, name: '기타' },
+  ];
+  const postTeamIssue = async () => {
+    return { isSuccess: true };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -83,6 +93,8 @@ export function teamDataMock(): TeamService {
     getTeamMembers,
     postFeedback,
     postTeamInfo,
+    getTeamIssueCategory,
+    postTeamIssue,
   };
 }
 

@@ -91,10 +91,6 @@ export type TeamInviteData = {
   inviteList: TeamInvite[];
 };
 
-export type TeamIssueCategory = {
-  IssueCategoryData: IssueCategory[];
-};
-
 export type IssueCategory = {
   id: number;
   name: string;

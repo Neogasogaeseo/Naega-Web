@@ -9,6 +9,7 @@ import {
   TeamMemberNoneId,
   PostFeedbackRequestBody,
   PostFeedbackResponse,
+  IssueCategory,
 } from './types/team';
 
 export interface TeamService {
@@ -24,4 +25,11 @@ export interface TeamService {
   getTeamMembers(teamID: string): Promise<TeamMemberNoneId[]>;
   postFeedback(body: PostFeedbackRequestBody): Promise<PostFeedbackResponse>;
   postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;
+  getTeamIssueCategory(): Promise<IssueCategory[]>;
+  postTeamIssue(
+    teamID: string,
+    content: string,
+    categoryID: number,
+    image?: File,
+  ): Promise<{ isSuccess: boolean }>;
 }

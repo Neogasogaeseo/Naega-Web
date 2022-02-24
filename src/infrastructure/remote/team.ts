@@ -231,6 +231,38 @@ export function teamDataRemote(): TeamService {
     }
   };
 
+  const getTeamIssueCategory = async () => {
+    const response = await privateAPI.get({ url: `/team/issue/category` });
+    return response.data;
+  };
+
+  const postTeamIssue = async (
+    teamID: string,
+    content: string,
+    categoryID: number,
+    image?: File,
+  ) => {
+    try {
+      const formData = new FormData();
+      formData.append('teamId', teamID);
+      formData.append('categoryId', categoryID.toString());
+      formData.append('content', content);
+      image && formData.append('image', image);
+      const response = await privateAPI
+        .post({
+          url: `/team/issue`,
+          data: formData,
+          type: 'multipart',
+        })
+        .catch((error) => {
+          console.error(error.response);
+        });
+      return { isSuccess: response.status === 200 };
+    } catch (e) {
+      throw '데이터 전송 실패';
+    }
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -244,5 +276,7 @@ export function teamDataRemote(): TeamService {
     getTeamMembers,
     postFeedback,
     postTeamInfo,
+    getTeamIssueCategory,
+    postTeamIssue,
   };
 }

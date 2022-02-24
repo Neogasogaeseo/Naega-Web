@@ -1,48 +1,37 @@
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { StTeamMain, StTeamInfo, StCheckWrapper, StOtherMember } from './style';
 import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
-import { useState, useEffect } from 'react';
 import { api } from '@api/index';
-import { TeamInfoData, TeamIssueCard } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import TeamMemberPopup from './MemberPopup';
 
 function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
-  const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const { teamID } = useParams();
   const navigate = useNavigate();
   const checkMyIssue = () => setIsChecked((prev) => !prev);
   const MAX_MEMBER = 4;
+  if (teamID === undefined) navigate('/');
+
+  const { data: teamInfoData } = useQuery(['teamDetailData', teamID], () =>
+    api.teamService.getTeamInfo(Number(teamID)),
+  );
   const slicedMemberList = teamInfoData && teamInfoData.teamDetailData.teamMemberList.slice(0, 4);
 
-  useEffect(() => {
-    (async () => {
-      if (teamID === undefined) return;
-      const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
-      setTeamInfoData(teamDetailData);
-      const { issueList } = await api.teamService.getTeamIssue(teamID);
-      setIssueList(issueList);
-    })();
-  }, []);
-
-  useEffect(() => {
-    if (teamID === undefined) return;
-    if (!isChecked) {
-      (async () => {
-        const { issueList } = await api.teamService.getTeamIssue(teamID);
-        setIssueList(issueList);
-      })();
-    } else {
-      (async () => {
-        const { issueList } = await api.teamService.getMyIssue(teamID);
-        setIssueList(issueList);
-      })();
-    }
-  }, [isChecked]);
+  const { data: teamIssueList } = useQuery(
+    ['teamIssueList', teamID],
+    () => api.teamService.getTeamIssue(teamID ?? ''),
+    { enabled: teamID !== undefined && !isChecked },
+  );
+  const { data: myIssueList } = useQuery(
+    ['myIssueList', teamID],
+    () => api.teamService.getMyIssue(teamID ?? ''),
+    { enabled: teamID !== undefined && isChecked },
+  );
 
   return (
     <StTeamMain>
@@ -84,14 +73,12 @@ function TeamMain() {
         </button>
         내가 언급된 이슈만 보기
       </StCheckWrapper>
-      {issueList && (
-        <IssueCardList
-          issueList={issueList}
-          onIssueClick={(teamID, issueNumber) => {
-            navigate(`/team/${teamID}/${issueNumber}`);
-          }}
-        />
-      )}
+      <IssueCardList
+        issueList={isChecked ? myIssueList?.issueList ?? [] : teamIssueList?.issueList ?? []}
+        onIssueClick={(teamID, issueNumber) => {
+          navigate(`/team/${teamID}/${issueNumber}`);
+        }}
+      />
     </StTeamMain>
   );
 }

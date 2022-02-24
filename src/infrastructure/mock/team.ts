@@ -82,7 +82,7 @@ export function teamDataMock(): TeamService {
       content: 'a',
       createdAt: '2022-02-24T18:24:20.799Z',
       id: 2,
-      image: null,
+      image: undefined,
     };
   };
 

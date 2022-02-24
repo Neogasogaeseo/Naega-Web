@@ -66,7 +66,7 @@ function TeamIssue() {
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
           <StDivisionLine />
-          {issue.feedbackList.length !== 0 ? (
+          {feedbacks.length !== 0 ? (
             <FeedbackCardList feedbacks={feedbacks} />
           ) : (
             <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />

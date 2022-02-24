@@ -25,7 +25,7 @@ function IssueCardList(props: IssueListProps) {
     <div>
       {issueList.map((issue) => (
         <IssueCard
-          key={issue.teamID}
+          key={issue.issueNumber}
           onIssueClick={() => onIssueClick(issue.teamID, issue.issueNumber)}
           {...issue}
         />

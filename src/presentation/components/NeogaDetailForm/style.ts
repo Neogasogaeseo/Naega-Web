@@ -3,11 +3,6 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNeogaDetailForm = styled.div`
-  & > hr {
-    border: none;
-    height: 8px;
-    background-color: ${COLOR.GRAY_1};
-  }
   & > div:first-child {
     & > *:first-child {
       margin-top: 50px;
@@ -82,6 +77,11 @@ export const StKeyword = styled.div`
   }
 `;
 
+export const StDivisionLine = styled.div`
+  height: 8px;
+  background-color: ${COLOR.GRAY_1};
+`;
+
 export const StFeedDate = styled.div`
   color: ${COLOR.GRAY_4};
   display: flex;
@@ -97,12 +97,12 @@ export const StFeedDate = styled.div`
 `;
 
 export const StNeogaDetailFormCard = styled.div`
-  margin: 0 20px 0 20px;
-  & > hr {
-    margin-top: 24px;
-    border: none;
-    border-bottom: 1px solid #efefef;
-    border-radius: 2px;
+  margin: 0 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #efefef;
+
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
@@ -150,11 +150,13 @@ export const StMoreWrapper = styled.div`
 `;
 
 export const StMoreButton = styled.div`
+  border-top: 1px solid #efefef;
   color: ${COLOR.GRAY_4};
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin-top: 18px;
+  margin-top: 23px;
+  padding-top: 18px;
   & > img {
     margin-left: 8px;
   }

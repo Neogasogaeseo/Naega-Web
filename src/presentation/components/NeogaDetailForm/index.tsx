@@ -20,6 +20,7 @@ import {
   StLink,
   StMoreWrapper,
   StMoreButton,
+  StDivisionLine,
 } from './style';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 
@@ -90,32 +91,32 @@ function NeogaDetailForm() {
                     keywordList={resultDetailList?.keywordList ?? []}
                     onItemClick={() => null}
                   />
-                  <hr />
                   <StMoreButton
                     onClick={() => {
                       setLookMoreButton(false);
                     }}
                   >
-                    접기<img src={IcArrowUp}></img>
+                    접기
+                    <img src={IcArrowUp} />
                   </StMoreButton>
                 </>
               ) : (
                 resultDetailList.keywordList.length > 7 && (
                   <>
-                    <hr />
                     <StMoreButton
                       onClick={() => {
                         setLookMoreButton(true);
                       }}
                     >
-                      더보기<img src={IcArrowDown}></img>
+                      더보기
+                      <img src={IcArrowDown} />
                     </StMoreButton>
                   </>
                 )
               )}
             </StMoreWrapper>
           </StKeyword>
-          <hr />
+          <StDivisionLine />
           <StFeedTitle>
             <span>
               {resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개

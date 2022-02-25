@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
-import { ResultFeedbackList } from '@api/types/neoga';
-import { ResultDetailList } from '@api/types/neoga';
+import { ResultFeedback } from '@api/types/neoga';
+import { ResultDetail } from '@api/types/neoga';
 import { useToast } from '@hooks/useToast';
 import { copyClipboard } from '@utils/copyClipboard';
 import { DOMAIN } from '@utils/constant';
@@ -26,10 +26,10 @@ import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
-  const [resultDetailList, setResultDetailList] = useState<ResultDetailList>();
-  const [resultFeedback, setResultFeedback] = useState<ResultFeedbackList | null>(null);
+  const [resultDetail, setResultDetail] = useState<ResultDetail>();
+  const [resultFeedback, setResultFeedback] = useState<ResultFeedback | null>(null);
   const [lookMoreButton, setLookMoreButton] = useState(false);
-  const link = `${DOMAIN}/neososeoform/${resultDetailList && resultDetailList.q}`;
+  const link = `${DOMAIN}/neososeoform/${resultDetail && resultDetail.q}`;
   const { fireToast } = useToast();
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ function NeogaDetailForm() {
     (async () => {
       const data = await getNeogaResult(+formID);
       if (!data) navigate('/home');
-      else setResultDetailList(data);
+      else setResultDetail(data);
     })();
   }, []);
 
@@ -53,11 +53,11 @@ function NeogaDetailForm() {
     })();
   }, []);
 
-  if (!resultDetailList) return <></>;
+  if (!resultDetail) return <></>;
   return (
     <StNeogaDetailForm>
       <div>
-        <NeososeoFormHeader title={resultDetailList.title} image={resultDetailList.darkIconImage} />
+        <NeososeoFormHeader title={resultDetail.title} image={resultDetail.darkIconImage} />
         <StLink>
           <img src={icLink} />
           <p
@@ -68,27 +68,27 @@ function NeogaDetailForm() {
             링크 복사하기
           </p>
         </StLink>
-        <StDate>{resultDetailList.createdAt} 에 생성</StDate>
+        <StDate>{resultDetail.createdAt} 에 생성</StDate>
         <StQuestion>
           <span>Q.</span>
-          {resultDetailList.subtitle}
+          {resultDetail.subtitle}
         </StQuestion>
       </div>
-      {resultFeedback && resultFeedback.answer.length > 0 ? (
+      {resultFeedback && resultFeedback.answerList.length > 0 ? (
         <>
           <StKeyword>
-            {resultDetailList.keywordList.length !== 0 && <p>내가 받은 키워드</p>}
+            {resultDetail.keywordList.length !== 0 && <p>내가 받은 키워드</p>}
             {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultDetailList ? resultDetailList.keywordList.slice(0, 7) : []}
+                keywordList={resultDetail ? resultDetail.keywordList.slice(0, 7) : []}
                 onItemClick={() => null}
               />
             )}
             <StMoreWrapper>
-              {lookMoreButton && resultDetailList?.keywordList.length > 7 ? (
+              {lookMoreButton && resultDetail?.keywordList.length > 7 ? (
                 <>
                   <ImmutableKeywordList
-                    keywordList={resultDetailList?.keywordList ?? []}
+                    keywordList={resultDetail?.keywordList ?? []}
                     onItemClick={() => null}
                   />
                   <StMoreButton
@@ -101,7 +101,7 @@ function NeogaDetailForm() {
                   </StMoreButton>
                 </>
               ) : (
-                resultDetailList.keywordList.length > 7 && (
+                resultDetail.keywordList.length > 7 && (
                   <>
                     <StMoreButton
                       onClick={() => {
@@ -123,7 +123,7 @@ function NeogaDetailForm() {
             </span>
             의 답변을 받았어요
           </StFeedTitle>
-          {resultFeedback.answer.map((feedback) => (
+          {resultFeedback.answerList.map((feedback) => (
             <NeogaDetailFormCard key={feedback.id} {...feedback} />
           ))}
         </>

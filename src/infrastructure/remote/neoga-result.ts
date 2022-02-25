@@ -1,7 +1,7 @@
 import { privateAPI } from './base';
-import { ResultDetailList, ResultFeedbackList } from '@api/types/neoga';
+import { ResultDetail, ResultFeedback } from '@api/types/neoga';
 
-export const getNeogaResult = async (formID: number): Promise<ResultDetailList | undefined> => {
+export const getNeogaResult = async (formID: number): Promise<ResultDetail | undefined> => {
   const response = await privateAPI.get({ url: `/form/detail/${formID}` });
   if (response.status === 200 && response.data)
     return {
@@ -21,12 +21,12 @@ export const getNeogaResult = async (formID: number): Promise<ResultDetailList |
 
 export const getNeogaFeedbackResult = async (
   formID: number,
-): Promise<ResultFeedbackList | undefined> => {
+): Promise<ResultFeedback | undefined> => {
   const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
   if (response.status === 200 && response.data)
     return {
       answerCount: response.data.answerCount,
-      answer: response.data.answer
+      answerList: response.data.answer
         ? response.data.answer.map((feedback: any) => ({
             formID: feedback.formID,
             id: feedback.id,

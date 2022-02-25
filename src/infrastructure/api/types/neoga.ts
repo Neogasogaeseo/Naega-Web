@@ -27,7 +27,7 @@ export type ResultFormList = {
   keywordList: Keyword[];
 };
 
-export type ResultDetailList = {
+export type ResultDetail = {
   id: number;
   title: string;
   subtitle: string;
@@ -65,9 +65,9 @@ export type CreateFormInfo = {
   image: string;
 };
 
-export type ResultFeedbackList = {
+export type ResultFeedback = {
   answerCount: number;
-  answer: FeedAnswer[];
+  answerList: FeedAnswer[];
 };
 
 export type FeedAnswer = {

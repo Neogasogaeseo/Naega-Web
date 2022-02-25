@@ -78,5 +78,5 @@ export type FeedAnswer = {
   content: string;
   isPinned: boolean;
   createdAt: string;
-  keywords: Keyword[];
+  keywordList: Keyword[];
 };

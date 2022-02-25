@@ -35,7 +35,7 @@ export const getNeogaFeedbackResult = async (
             content: feedback.content,
             isPinned: feedback.isPinned,
             createdAt: feedback.createdAt,
-            keywords: feedback.keywords.map((keyword: any) => ({
+            keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.id,
               content: keyword.name,
               color: keyword.colorcode,

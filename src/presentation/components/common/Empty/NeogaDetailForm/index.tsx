@@ -1,8 +1,7 @@
-import { copyClipboard } from '@utils/copyClipboard';
-
 import { useToast } from '@hooks/useToast';
-import { imgEmptyForm } from '@assets/images';
+import { copyClipboard } from '@utils/copyClipboard';
 import { StNeogaDetailFormEmptyView } from './style';
+import { imgEmptyForm } from '@assets/images';
 
 interface NeogaDetailFormEmptyViewProps {
   link: string;

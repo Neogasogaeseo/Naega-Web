@@ -21,6 +21,8 @@ import { useQuery } from 'react-query';
 function TeamNewIssue() {
   const navigate = useNavigate();
   const { teamID } = useParams();
+  if (teamID === undefined) navigate('/');
+
   const { data: categoryList } = useQuery(
     'teamIssueCategoryList',
     api.teamService.getTeamIssueCategory,

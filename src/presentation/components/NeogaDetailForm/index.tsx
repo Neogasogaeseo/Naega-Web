@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
-import { ResultFeedList } from '@api/types/neoga';
-import { imgEmptyForm } from '@assets/images';
-import { ResultDetailList } from '@api/types/neoga';
-import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
-import { useToast } from '@hooks/useToast';
-import { copyClipboard } from '@utils/copyClipboard';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { getNeogaResult, getNeogaFeedbackResult } from '@infrastructure/remote/neoga-result';
+import { ResultFeedbackList } from '@api/types/neoga';
+import { ResultDetailList } from '@api/types/neoga';
+import { useToast } from '@hooks/useToast';
+import { copyClipboard } from '@utils/copyClipboard';
+import { DOMAIN } from '@utils/constant';
+import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import NeogaDetailFormEmptyView from '@components/common/Empty/NeogaDetailForm';
+import NeogaDetailFormCard from './Card';
 import {
   StNeogaDetailForm,
   StDate,
@@ -16,21 +18,17 @@ import {
   StFeedTitle,
   StQuestion,
   StLink,
-  StEmptyFeedback,
-  StButton,
   StMoreWrapper,
   StMoreButton,
 } from './style';
-import { DOMAIN } from '@utils/constant';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
-import NeogaDetailFormCard from './Card';
+import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
-  const [resultKeywordList, setResultKeywordList] = useState<ResultDetailList>();
-  const [resultFeedback, setResultFeedback] = useState<ResultFeedList | null>(null);
+  const [resultDetailList, setResultDetailList] = useState<ResultDetailList>();
+  const [resultFeedback, setResultFeedback] = useState<ResultFeedbackList | null>(null);
   const [lookMoreButton, setLookMoreButton] = useState(false);
-  const link = `${DOMAIN}/neososeoform/${resultKeywordList && resultKeywordList.q}`;
+  const link = `${DOMAIN}/neososeoform/${resultDetailList && resultDetailList.q}`;
   const { fireToast } = useToast();
   const navigate = useNavigate();
 
@@ -40,7 +38,7 @@ function NeogaDetailForm() {
     (async () => {
       const data = await getNeogaResult(+formID);
       if (!data) navigate('/home');
-      else setResultKeywordList(data);
+      else setResultDetailList(data);
     })();
   }, []);
 
@@ -54,22 +52,11 @@ function NeogaDetailForm() {
     })();
   }, []);
 
-  const onClickMore = () => {
-    setLookMoreButton(true);
-  };
-
-  const onClickFold = () => {
-    setLookMoreButton(false);
-  };
-
-  if (!resultKeywordList) return <></>;
+  if (!resultDetailList) return <></>;
   return (
     <StNeogaDetailForm>
       <div>
-        <NeososeoFormHeader
-          title={resultKeywordList.title}
-          image={resultKeywordList.darkIconImage}
-        />
+        <NeososeoFormHeader title={resultDetailList.title} image={resultDetailList.darkIconImage} />
         <StLink>
           <img src={icLink} />
           <p
@@ -80,39 +67,47 @@ function NeogaDetailForm() {
             링크 복사하기
           </p>
         </StLink>
-        <StDate>{resultKeywordList.createdAt} 에 생성</StDate>
+        <StDate>{resultDetailList.createdAt} 에 생성</StDate>
         <StQuestion>
           <span>Q.</span>
-          {resultKeywordList.subtitle}
+          {resultDetailList.subtitle}
         </StQuestion>
       </div>
       {resultFeedback && resultFeedback.answer.length > 0 ? (
         <>
           <StKeyword>
-            {resultKeywordList.keywordlists.length !== 0 && <p>내가 받은 키워드</p>}
+            {resultDetailList.keywordList.length !== 0 && <p>내가 받은 키워드</p>}
             {!lookMoreButton && (
               <ImmutableKeywordList
-                keywordList={resultKeywordList ? resultKeywordList.keywordlists.slice(0, 7) : []}
+                keywordList={resultDetailList ? resultDetailList.keywordList.slice(0, 7) : []}
                 onItemClick={() => null}
               />
             )}
             <StMoreWrapper>
-              {lookMoreButton && resultKeywordList?.keywordlists.length > 7 ? (
+              {lookMoreButton && resultDetailList?.keywordList.length > 7 ? (
                 <>
                   <ImmutableKeywordList
-                    keywordList={resultKeywordList?.keywordlists ?? []}
+                    keywordList={resultDetailList?.keywordList ?? []}
                     onItemClick={() => null}
                   />
                   <hr />
-                  <StMoreButton onClick={onClickFold}>
+                  <StMoreButton
+                    onClick={() => {
+                      setLookMoreButton(false);
+                    }}
+                  >
                     접기<img src={IcArrowUp}></img>
                   </StMoreButton>
                 </>
               ) : (
-                resultKeywordList.keywordlists.length > 7 && (
+                resultDetailList.keywordList.length > 7 && (
                   <>
                     <hr />
-                    <StMoreButton onClick={onClickMore}>
+                    <StMoreButton
+                      onClick={() => {
+                        setLookMoreButton(true);
+                      }}
+                    >
                       더보기<img src={IcArrowDown}></img>
                     </StMoreButton>
                   </>
@@ -132,16 +127,7 @@ function NeogaDetailForm() {
           ))}
         </>
       ) : (
-        <StEmptyFeedback>
-          <img src={imgEmptyForm} alt="아직 답변이 없어요. 링크를 공유하고 답변을 받아보세요." />
-          <StButton
-            onClick={() =>
-              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
-            }
-          >
-            링크 복사하기
-          </StButton>
-        </StEmptyFeedback>
+        <NeogaDetailFormEmptyView link={link} />
       )}
     </StNeogaDetailForm>
   );

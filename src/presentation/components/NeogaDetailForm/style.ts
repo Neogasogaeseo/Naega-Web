@@ -140,20 +140,6 @@ export const StEmptyFeedback = styled.div`
   margin-top: 127px;
 `;
 
-export const StButton = styled.button`
-  margin: 0 auto;
-  margin-top: 47px;
-  margin-bottom: 192px;
-  background-color: ${COLOR.CORAL_MAIN};
-  color: white;
-  border-radius: 14px;
-  padding: 15px 38px 15px 37px;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 143.99%;
-  letter-spacing: -0.015em;
-`;
-
 export const StMoreWrapper = styled.div`
   & > hr {
     margin-top: 32px;
@@ -162,6 +148,7 @@ export const StMoreWrapper = styled.div`
     border-radius: 2px;
   }
 `;
+
 export const StMoreButton = styled.div`
   color: ${COLOR.GRAY_4};
   cursor: pointer;

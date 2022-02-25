@@ -24,7 +24,7 @@ export type ResultFormList = {
   writer: string;
   category: string;
   createdAt: string;
-  keywordlists: Keyword[];
+  keywordList: Keyword[];
 };
 
 export type ResultDetailList = {
@@ -34,7 +34,7 @@ export type ResultDetailList = {
   darkIconImage: string;
   createdAt: string;
   q: string;
-  keywordlists: Keyword[];
+  keywordList: Keyword[];
 };
 
 export type NeogaAnswerList = {
@@ -65,7 +65,7 @@ export type CreateFormInfo = {
   image: string;
 };
 
-export type ResultFeedList = {
+export type ResultFeedbackList = {
   answerCount: number;
   answer: FeedAnswer[];
 };

@@ -75,11 +75,9 @@ export type TeamDetail = {
 };
 
 export type TeamInfoData = {
-  teamDetailData: {
-    teamDetail: TeamDetail;
-    teamMemberCount: number;
-    teamMemberList: TeamMemberNoneId[];
-  };
+  teamDetail: TeamDetail;
+  teamMemberCount: number;
+  teamMemberList: TeamMemberNoneId[];
 };
 
 export type TeamInvite = {
@@ -89,10 +87,6 @@ export type TeamInvite = {
 
 export type TeamInviteData = {
   inviteList: TeamInvite[];
-};
-
-export type TeamIssueCategory = {
-  IssueCategoryData: IssueCategory[];
 };
 
 export type IssueCategory = {
@@ -112,4 +106,12 @@ export type PostFeedbackRequestBody = {
   taggedUserId: number;
   content: string;
   keywordIds: number[];
+};
+
+export type PostIssueResponse = {
+  categoryID: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  image?: string;
 };

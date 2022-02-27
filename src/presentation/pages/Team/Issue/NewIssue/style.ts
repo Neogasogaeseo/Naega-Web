@@ -24,14 +24,13 @@ export const StCategoryWrapper = styled.div`
   gap: 6px;
 `;
 
-export const StSelectCategory = styled.button<{ selected: number }>`
+export const StCategory = styled.button<{ selected: boolean }>`
   width: 83px;
   box-sizing: border-box;
   border-radius: 14px;
   padding: 10px;
-  ${(props) =>
-    props.selected == -1 ? `background-color: ${COLOR.GRAY_1}` : `background-color:#FFF1F1`};
-  ${(props) => (props.selected == -1 ? `color: ${COLOR.GRAY_5}` : `color:${COLOR.CORAL_MAIN}`)};
+  background-color: ${({ selected }) => (selected ? '#FFF1F1' : COLOR.GRAY_1)};
+  color: ${({ selected }) => (selected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
 `;
 
 export const StQuestionWrapper = styled.div`

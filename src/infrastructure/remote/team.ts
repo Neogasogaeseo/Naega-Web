@@ -140,21 +140,20 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
     if (response.status === 200)
       return {
-        teamDetailData: {
-          teamDetail: {
-            teamID: response.data.team.id,
-            teamImage: response.data.team.image,
-            teamName: response.data.team.name,
-            teamDescription: response.data.team.description,
-          },
-          teamMemberCount: response.data.memberCount,
-          teamMemberList: response.data.member.map((memberDetail: any) => ({
-            id: memberDetail.id,
-            profileName: memberDetail.name,
-            profileImage: memberDetail.image,
-          })),
+        teamDetail: {
+          teamID: response.data.team.id,
+          teamImage: response.data.team.image,
+          teamName: response.data.team.name,
+          teamDescription: response.data.team.description,
         },
+        teamMemberCount: response.data.memberCount,
+        teamMemberList: response.data.member.map((memberDetail: any) => ({
+          id: memberDetail.id,
+          profileName: memberDetail.name,
+          profileImage: memberDetail.image,
+        })),
       };
+    else throw 'NOT FOUND';
   };
 
   const getMyTeamIssue = async () => {
@@ -231,6 +230,38 @@ export function teamDataRemote(): TeamService {
     }
   };
 
+  const getTeamIssueCategory = async () => {
+    const response = await privateAPI.get({ url: `/team/issue/category` });
+    return response.data;
+  };
+
+  const postTeamIssue = async (
+    teamID: string,
+    content: string,
+    categoryID: number,
+    image?: File,
+  ) => {
+    try {
+      const formData = new FormData();
+      formData.append('teamId', teamID);
+      formData.append('categoryId', categoryID.toString());
+      formData.append('content', content);
+      image && formData.append('image', image);
+      const response = await privateAPI
+        .post({
+          url: `/team/issue`,
+          data: formData,
+          type: 'multipart',
+        })
+        .catch((error) => {
+          console.error(error.response);
+        });
+      return response;
+    } catch (e) {
+      throw '데이터 전송 실패';
+    }
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -244,5 +275,7 @@ export function teamDataRemote(): TeamService {
     getTeamMembers,
     postFeedback,
     postTeamInfo,
+    getTeamIssueCategory,
+    postTeamIssue,
   };
 }

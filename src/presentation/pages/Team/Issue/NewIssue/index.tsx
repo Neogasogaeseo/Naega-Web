@@ -1,5 +1,5 @@
 import { icCamera } from '@assets/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FileUpload from '@components/common/FileUpload';
 import {
   StNewIssue,
@@ -11,68 +11,56 @@ import {
   StButton,
   StPhotoUploadImage,
   StPhotoUploadMiddleDesc,
-  StSelectCategory,
+  StCategory,
 } from './style';
-import { getTeamIssueCategory } from '@infrastructure/remote/issue';
 import { IssueCategory } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
-import { postTeamIssue } from '@infrastructure/remote/issue';
-import { TeamInfoData } from '@api/types/team';
 import { api } from '@api/index';
+import { useQuery } from 'react-query';
 
 function TeamNewIssue() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const [teamInfoData, setTeamInfoData] = useState<TeamInfoData | undefined>(undefined);
-  const [categoryList, setCategoryList] = useState<IssueCategory[] | null>(null);
-  const [image, setImage] = useState<File | null>();
-  const [button, setButton] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<IssueCategory[]>([]);
-  const [isClickCategory, setIsClickCategory] = useState(false);
+  if (teamID === undefined) navigate('/');
+
+  const { data: categoryList } = useQuery(
+    'teamIssueCategoryList',
+    api.teamService.getTeamIssueCategory,
+  );
+  const { data: teamInfoData } = useQuery(
+    ['teamDetailData', teamID],
+    () => api.teamService.getTeamInfo(Number(teamID)),
+    { onError: () => navigate('/home') },
+  );
+
+  const [image, setImage] = useState<File | undefined>();
+  const [selectedCategory, setSelectedCategory] = useState<IssueCategory | null>();
   const [issueTextarea, setIssueTextarea] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
 
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIssueTextarea(e.currentTarget.value);
-    setButton(true);
   };
 
-  useEffect(() => {
-    setButton(false);
-  }, [issueTextarea]);
-
-  useEffect(() => {
-    (async () => {
-      const getCategoryList = await getTeamIssueCategory();
-      setCategoryList(getCategoryList);
-
-      if (teamID === undefined) return;
-      const teamDetailData = await api.teamService.getTeamInfo(Number(teamID));
-      setTeamInfoData(teamDetailData);
-    })();
-  }, []);
-
   const onClickSelectedHandler = (category: IssueCategory) => {
-    if (selectedCategory.length === 0) {
-      setSelectedCategory([category]);
-    } else if (selectedCategory.includes(category)) {
-      setSelectedCategory(selectedCategory.filter((v) => v !== category));
-    }
-    setIsClickCategory(!isClickCategory);
+    if (selectedCategory?.id === category.id) {
+      setSelectedCategory(null);
+    } else setSelectedCategory(category);
   };
 
   const onClickSubmitIssue = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsConfirming(true);
+    if (!selectedCategory || !teamID) return;
     try {
-      const form = new FormData();
-      teamID && form.append('teamId', teamID);
-      form.append('categoryId', selectedCategory.map((category) => category.id).join(''));
-      form.append('content', issueTextarea);
-      image && form.append('image', image);
-      const response = await postTeamIssue(form);
-      if (response.status === 200) {
-        navigate(`/team/${teamID}`);
+      const response = await api.teamService.postTeamIssue(
+        teamID,
+        issueTextarea,
+        selectedCategory.id,
+        image,
+      );
+      if (response.id) {
+        navigate(-1);
       }
     } catch (error) {
       console.error(error);
@@ -82,23 +70,23 @@ function TeamNewIssue() {
   return (
     <StNewIssue>
       <StTitleWrapper>
-        {teamInfoData && teamInfoData.teamDetailData.teamDetail.teamName}에 이슈 등록하기
+        {teamInfoData && teamInfoData.teamDetail.teamName}에 이슈 등록하기
       </StTitleWrapper>
       <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
       <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>
       <StCategoryWrapper>
         {categoryList &&
-          categoryList.map((category, id) => {
+          categoryList.map((category) => {
             return (
-              <StSelectCategory
-                selected={selectedCategory.indexOf(category)}
-                key={id}
+              <StCategory
+                selected={selectedCategory?.id === category.id}
+                key={category.id}
                 onClick={() => {
                   onClickSelectedHandler(category);
                 }}
               >
                 {category.name}
-              </StSelectCategory>
+              </StCategory>
             );
           })}
       </StCategoryWrapper>
@@ -121,7 +109,7 @@ function TeamNewIssue() {
       <StButton
         type="submit"
         onClick={onClickSubmitIssue}
-        disabled={(!button && issueTextarea == '') || selectedCategory.length === 0 || isConfirming}
+        disabled={issueTextarea === '' || !selectedCategory || isConfirming}
       >
         완료
       </StButton>

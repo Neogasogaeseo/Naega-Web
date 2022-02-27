@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { api } from '@api/index';
 import { NeogaMainCardItem, NeogaBannerItem, NeogaResultCardItem } from '@api/types/neoga';
 import { useLoginUser } from '@hooks/useLoginUser';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
-import { StBanner, StForm, StHomeNeoga, StResult, StButtonArea, StEmptyView } from './styles';
+import HomeNeogaEmptyView from '@components/common/Empty/HomeNeoga';
+import { StBanner, StForm, StHomeNeoga, StResult, StMoreButtonArea, StWholeButton } from './styles';
 import { icNewTag, icWhole } from '@assets/icons';
-import { imgEmptyMain } from '@assets/images';
 
 function HomeNeoga() {
   const [banner, setBanner] = useState<NeogaBannerItem>();
@@ -30,7 +31,7 @@ function HomeNeoga() {
       setBanner(undefined);
       setTemplateList([]);
       setCardItem(undefined);
-    }
+    };
   }, []);
 
   return (
@@ -58,10 +59,10 @@ function HomeNeoga() {
         <h1>너가소개서 설문 만들기</h1>
         <div>
           <h2>지인에게 궁금한 내 모습을 물어보세요</h2>
-          <button onClick={() => navigate('/neoga/create')}>
+          <StWholeButton onClick={() => navigate('/neoga/create')}>
             전체보기
             <img src={icWhole} />
-          </button>
+          </StWholeButton>
         </div>
         <NeogaMainCardList
           cards={templateList}
@@ -75,10 +76,10 @@ function HomeNeoga() {
         <div>
           <h2>내가 생성한 너가소개서를 확인하세요!</h2>
           {cardItem && cardItem.resultList.length > 0 && (
-            <button onClick={() => navigate('/neoga/result')}>
+            <StWholeButton onClick={() => navigate('/neoga/result')}>
               전체보기
               <img src={icWhole} />
-            </button>
+            </StWholeButton>
           )}
         </div>
         {cardItem && cardItem.resultList.length > 0 ? (
@@ -87,20 +88,15 @@ function HomeNeoga() {
               <NeogaResultCard key={result.id} {...result} />
             ))}
             {cardItem.count > MAX_CARD_ITEM && (
-              <StButtonArea>
+              <StMoreButtonArea>
                 <button onClick={() => navigate('/neoga/result')}>
                   외 {cardItem.count - MAX_CARD_ITEM}개 <span>더보기</span>
                 </button>
-              </StButtonArea>
+              </StMoreButtonArea>
             )}
           </>
         ) : (
-          <StEmptyView>
-            <img src={imgEmptyMain} />
-            <div>아직 생성된 너가소개서가 없어요!</div>
-            <div>첫 너가소개서, 만들러 갈래요?</div>
-            <button onClick={() => navigate('/neoga/create')}>너가소개서 생성</button>
-          </StEmptyView>
+          <HomeNeogaEmptyView />
         )}
       </StResult>
     </StHomeNeoga>

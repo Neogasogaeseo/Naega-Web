@@ -14,7 +14,7 @@ import {
 type NeogaDetailFormCardProps = FeedAnswer;
 
 function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
-  const { id, name, relationship, content, createdAt, keywords } = props;
+  const { id, name, relationship, content, createdAt, keywordList } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isPinned);
 
   const bookmarkAnswer = async () => {
@@ -42,8 +42,7 @@ function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
         </div>
       </StFeedHeader>
       <StFeedContent>{content}</StFeedContent>
-      <ImmutableKeywordList keywordList={keywords} onItemClick={() => null} />
-      <hr />
+      <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
     </StNeogaDetailFormCard>
   );
 }

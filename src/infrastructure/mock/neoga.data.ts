@@ -170,7 +170,7 @@ export const NEOGA_DATA = {
       writer: '효인',
       category: '동네친구',
       createdAt: '2021-01-17',
-      keywordlists: [
+      keywordList: [
         { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
         { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
       ],
@@ -181,7 +181,7 @@ export const NEOGA_DATA = {
       writer: '효인',
       category: '동네친구',
       createdAt: '2021-01-17',
-      keywordlists: [
+      keywordList: [
         { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
         { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
       ],
@@ -192,7 +192,7 @@ export const NEOGA_DATA = {
       writer: '효인',
       category: '동네친구',
       createdAt: '2021-01-17',
-      keywordlists: [
+      keywordList: [
         { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
         { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
       ],
@@ -203,7 +203,7 @@ export const NEOGA_DATA = {
       writer: '효인',
       category: '동네친구',
       createdAt: '2021-01-17',
-      keywordlists: [
+      keywordList: [
         { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
         { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
       ],

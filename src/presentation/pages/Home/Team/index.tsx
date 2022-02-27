@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useResetRecoilState } from 'recoil';
+
 import {
   selectedUserListState,
   teamDescriptionState,
@@ -12,8 +13,8 @@ import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
 import TeamInvitation from './Invitation';
 import ProfileList from '@components/common/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
-import { StTeamMain, StDivisionLine, StEmptyView } from './style';
-import { imgEmptyMain } from '@assets/images';
+import HomeTeamEmptyView from '@components/common/Empty/HomeTeam';
+import { StTeamMain, StDivisionLine } from './style';
 
 function HomeTeam() {
   const [inviteList, setInviteList] = useState<TeamInvite[] | null>(null);
@@ -78,11 +79,7 @@ function HomeTeam() {
             }}
           />
         ) : (
-          <StEmptyView>
-            <img src={imgEmptyMain} />
-            <div>아직 팀원소개서 컨텐츠가 없어요</div>
-            <div>팀이나 이슈를 추가해보세요</div>
-          </StEmptyView>
+          <HomeTeamEmptyView />
         )}
       </StTeamMain>
     </>

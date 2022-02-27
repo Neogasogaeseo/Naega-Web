@@ -24,17 +24,17 @@ export type ResultFormList = {
   writer: string;
   category: string;
   createdAt: string;
-  keywordlists: Keyword[];
+  keywordList: Keyword[];
 };
 
-export type ResultDetailList = {
+export type ResultDetail = {
   id: number;
   title: string;
   subtitle: string;
   darkIconImage: string;
   createdAt: string;
   q: string;
-  keywordlists: Keyword[];
+  keywordList: Keyword[];
 };
 
 export type NeogaAnswerList = {
@@ -65,9 +65,9 @@ export type CreateFormInfo = {
   image: string;
 };
 
-export type ResultFeedList = {
+export type ResultFeedback = {
   answerCount: number;
-  answer: FeedAnswer[];
+  answerList: FeedAnswer[];
 };
 
 export type FeedAnswer = {
@@ -78,5 +78,5 @@ export type FeedAnswer = {
   content: string;
   isPinned: boolean;
   createdAt: string;
-  keywords: Keyword[];
+  keywordList: Keyword[];
 };

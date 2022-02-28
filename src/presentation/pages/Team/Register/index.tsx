@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function TeamRegister() {
   const [isVisibleMembers, setIsVisibleMembers] = useState(false);
@@ -43,15 +44,11 @@ function TeamRegister() {
     selectedUserList.length &&
       form.append('userIdList', `[${selectedUserList.map((user) => user.id).join(', ')}]`);
     await api.teamService.postTeamInfo(form);
-    resetTeamInfo();
   };
 
-  const resetTeamInfo = () => {
-    setImage(null);
-    setName('');
-    setDescription('');
-    resetSelectedUserList();
-  };
+  useEffect(() => {
+    return resetSelectedUserList();
+  }, []);
 
   return (
     <StTeamRegister isVisibleMembers={isVisibleMembers}>

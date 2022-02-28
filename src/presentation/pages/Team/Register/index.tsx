@@ -13,13 +13,8 @@ import CommonLabel from '@components/common/CommonLabel';
 import ProfileList from '@components/common/ProfileList';
 import PhotoUpload from '@components/common/FileUpload';
 import TeamMembers from '@components/TeamMembers';
-import {
-  selectedUserListState,
-  teamDescriptionState,
-  teamImageState,
-  teamNameState,
-} from '@stores/team';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { selectedUserListState } from '@stores/team';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
@@ -27,12 +22,9 @@ import { useState } from 'react';
 
 function TeamRegister() {
   const [isVisibleMembers, setIsVisibleMembers] = useState(false);
-  const [image, setImage] = useRecoilState(teamImageState);
-  const [name, setName] = useRecoilState(teamNameState);
-  const [description, setDescription] = useRecoilState(teamDescriptionState);
-  const resetImage = useResetRecoilState(teamImageState);
-  const resetName = useResetRecoilState(teamNameState);
-  const resetDescription = useResetRecoilState(teamDescriptionState);
+  const [image, setImage] = useState<File | null>(null);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const resetSelectedUserList = useResetRecoilState(selectedUserListState);
 
   const navigate = useNavigate();
@@ -55,9 +47,9 @@ function TeamRegister() {
   };
 
   const resetTeamInfo = () => {
-    resetImage();
-    resetName();
-    resetDescription();
+    setImage(null);
+    setName('');
+    setDescription('');
     resetSelectedUserList();
   };
 
@@ -74,6 +66,7 @@ function TeamRegister() {
         </StAbsoluteWrapper>
         <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
         <CommonInput
+          value={name}
           width="100%"
           placeholder="팀 이름을 입력해주세요"
           onChange={(name) => setName(name)}

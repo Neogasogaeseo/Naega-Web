@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useResetRecoilState } from 'recoil';
 
-import {
-  selectedUserListState,
-  teamDescriptionState,
-  teamImageState,
-  teamNameState,
-} from '@stores/team';
 import { api } from '@api/index';
 import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
 import TeamInvitation from './Invitation';
@@ -20,18 +13,7 @@ function HomeTeam() {
   const [inviteList, setInviteList] = useState<TeamInvite[] | null>(null);
   const [profileList, setProfileList] = useState<TeamMemberNoneId[] | null>(null);
   const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
-  const resetImage = useResetRecoilState(teamImageState);
-  const resetName = useResetRecoilState(teamNameState);
-  const resetDescription = useResetRecoilState(teamDescriptionState);
-  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
   const navigate = useNavigate();
-
-  const resetTeamInfo = () => {
-    resetImage();
-    resetName();
-    resetDescription();
-    resetSelectedUserList();
-  };
 
   useEffect(() => {
     (async () => {
@@ -64,7 +46,6 @@ function HomeTeam() {
               navigate(`/team/${id}`);
             }}
             onAddClick={() => {
-              resetTeamInfo();
               navigate('/team/register');
             }}
           />

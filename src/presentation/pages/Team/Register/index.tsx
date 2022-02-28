@@ -52,7 +52,7 @@ function TeamRegister() {
 
   return (
     <StTeamRegister isVisibleMembers={isVisibleMembers}>
-      <TeamMembers onClickSubmitButton={closeMembers} />
+      <TeamMembers onClickSubmitButton={closeMembers} isVisibleMembers={isVisibleMembers} />
       <StTeamRegisterWrapper>
         <StTitle>팀 등록하기</StTitle>
         <StAbsoluteWrapper>

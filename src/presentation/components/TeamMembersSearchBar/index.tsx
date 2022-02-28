@@ -1,6 +1,6 @@
 import { StTeamMembersSearchBar } from './style';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
 import { COLOR } from '@styles/common/color';
 import CommonInput from '@components/common/CommonInput';
@@ -12,10 +12,11 @@ export default function TeamMembersSearchBar({
   onSubmitSearch: () => Promise<void>;
 }) {
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
-  const setUserSearchWord = useSetRecoilState(userSearchWordState);
+  const [userSearchWord, setUserSearchWord] = useRecoilState(userSearchWordState);
   return (
     <StTeamMembersSearchBar>
       <CommonInput
+        value={userSearchWord}
         onChange={(userSearchWord) => setUserSearchWord(userSearchWord)}
         onSubmit={() => {
           onSubmitSearch();

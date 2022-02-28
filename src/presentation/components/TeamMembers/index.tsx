@@ -11,11 +11,14 @@ import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 
-export default function TeamMembers({
-  onClickSubmitButton: onClickSubmitButton,
-}: {
+interface TeamMembersProps {
   onClickSubmitButton: () => void;
-}) {
+  isVisibleMembers: boolean;
+}
+
+export default function TeamMembers(props: TeamMembersProps) {
+  const { onClickSubmitButton, isVisibleMembers } = props;
+
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
@@ -63,18 +66,29 @@ export default function TeamMembers({
 
   useEffect(() => {
     mapSearchedUserList();
-    return () => resetUserSearchWord();
-  }, []);
-  useEffect(() => {
-    mapSearchedUserList();
   }, [searchedUserListResponse, selectedUserList]);
+  useEffect(() => {
+    if (!isVisibleMembers) setSearchedUserList([]);
+  }, [isVisibleMembers]);
 
   return (
     <StTeamRegisterMembers>
       <StHeader>
-        <IcBack onClick={() => onClickSubmitButton()} />
+        <IcBack
+          onClick={() => {
+            onClickSubmitButton();
+            resetUserSearchWord();
+          }}
+        />
         <div>팀원 추가</div>
-        <button onClick={() => onClickSubmitButton()}>완료</button>
+        <button
+          onClick={() => {
+            onClickSubmitButton();
+            resetUserSearchWord();
+          }}
+        >
+          완료
+        </button>
       </StHeader>
       <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>

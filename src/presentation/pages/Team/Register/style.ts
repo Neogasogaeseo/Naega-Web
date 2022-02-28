@@ -4,7 +4,20 @@ import { FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
-export const StTeamRegister = styled.div`
+export const StTeamRegister = styled.div<{ isVisibleMembers: boolean }>`
+  position: relative;
+  & > * {
+    position: absolute;
+  }
+  & > *:first-child {
+    visibility: ${(props) => (props.isVisibleMembers ? 'visible' : 'hidden')};
+  }
+  & > *:last-child {
+    visibility: ${(props) => (props.isVisibleMembers ? 'hidden' : 'visible')};
+  }
+`;
+
+export const StTeamRegisterWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 0 20px;

@@ -11,7 +11,11 @@ import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 
-export default function TeamRegisterMembers() {
+export default function TeamMembers({
+  onClickSubmitButton: onClickSubmitButton,
+}: {
+  onClickSubmitButton: () => void;
+}) {
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
@@ -68,9 +72,9 @@ export default function TeamRegisterMembers() {
   return (
     <StTeamRegisterMembers>
       <StHeader>
-        <IcBack onClick={() => history.back()} />
+        <IcBack onClick={() => onClickSubmitButton()} />
         <div>팀원 추가</div>
-        <button onClick={() => history.back()}>완료</button>
+        <button onClick={() => onClickSubmitButton()}>완료</button>
       </StHeader>
       <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>

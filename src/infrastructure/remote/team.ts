@@ -70,23 +70,23 @@ export function teamDataRemote(): TeamService {
     if (response.status === 200)
       return {
         issueList: response.data
-          ? response.data.map((team: any) => ({
-              issueNumber: team.id,
-              issueMembers: team.feedback
-                ? team.feedback.map((member: any) => ({
-                    id: member.userId,
+          ? response.data.map((issue: any) => ({
+              issueNumber: issue.id,
+              issueCardImage: issue.image ?? null,
+              category: issue.categoryName,
+              dates: issue.createdAt,
+              content: issue.content,
+              issueMembers: issue.feedback
+                ? issue.feedback.map((member: any) => ({
+                    id: member.id,
                     profileName: member.name,
                     profileImage: member.image,
                   }))
                 : [],
-              category: team.categoryName,
-              dates: team.createdAt,
-              content: team.content,
-              teamID: team.teamId,
-              issueCardImage: team.image ?? null,
-              teamName: team.teamName,
-              teamImage: team.teamImage,
-              memberName: team.userName,
+              teamID: issue.team.id,
+              teamName: issue.team.name,
+              teamImage: issue.team.image,
+              memberName: issue.team.userName,
             }))
           : [],
       };
@@ -98,23 +98,23 @@ export function teamDataRemote(): TeamService {
     if (response.status === 200)
       return {
         issueList: response.data
-          ? response.data.map((team: any) => ({
-              issueNumber: team.id,
-              issueMembers: team.feedback
-                ? team.feedback.map((member: any) => ({
-                    id: member.userId,
+          ? response.data.map((issue: any) => ({
+              issueNumber: issue.id,
+              issueCardImage: issue.image ?? null,
+              category: issue.categoryName,
+              dates: issue.createdAt,
+              content: issue.content,
+              issueMembers: issue.feedback
+                ? issue.feedback.map((member: any) => ({
+                    id: member.id,
                     profileName: member.name,
                     profileImage: member.image,
                   }))
                 : [],
-              category: team.categoryName,
-              dates: team.createdAt,
-              content: team.content,
-              teamID: team.teamId,
-              issueCardImage: team.image ?? null,
-              teamName: team.teamName,
-              teamImage: team.teamImage,
-              memberName: team.userName,
+              teamID: issue.team.id,
+              teamName: issue.team.name,
+              teamImage: issue.team.image,
+              memberName: issue.team.userName,
             }))
           : [],
       };
@@ -161,21 +161,21 @@ export function teamDataRemote(): TeamService {
     if (response.status === 200)
       return {
         issueList: response.data
-          ? response.data.map((team: any) => ({
-              teamID: team.teamId,
-              issueCardImage: team.image ?? null,
-              issueNumber: team.id,
-              issueMembers: team.feedback.map((member: any) => ({
-                id: member.userId,
+          ? response.data.map((issue: any) => ({
+              issueNumber: issue.id,
+              issueCardImage: issue.image ?? null,
+              category: issue.categoryName,
+              dates: issue.createdAt,
+              content: issue.content,
+              issueMembers: issue.feedback.map((member: any) => ({
+                id: member.id,
                 profileName: member.name,
                 profileImage: member.image,
               })),
-              category: team.categoryName,
-              dates: team.createdAt,
-              content: team.content,
-              teamName: team.teamName,
-              teamImage: team.teamImage,
-              memberName: team.userName,
+              teamID: issue.team.id,
+              teamName: issue.team.name,
+              teamImage: issue.team.image,
+              memberName: issue.team.userName,
             }))
           : [],
       };

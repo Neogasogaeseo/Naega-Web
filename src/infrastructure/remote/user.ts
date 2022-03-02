@@ -69,21 +69,14 @@ export function userDataRemote(): UserService {
 
   const getFeedbackBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/team` });
+    if (response.axiosStatus === 204) return { count: 0, teamList: [], feedbackList: [] };
     return {
       count: response.data.pinnedFeedbackList ? response.data.pinnedFeedbackList.length : 0,
-      teamList: response.data.pinnedFeedbackList
-        ? response.data.teamList.map((team: any) => ({
-            // 피드백 목록과 팀 목록 모두 존재
-            id: team.id,
-            profileImage: team.image,
-            profileName: team.name,
-          }))
-        : response.data.map((team: any) => ({
-            // 팀 목록만 존재
-            id: team.id,
-            profileImage: team.image,
-            profileName: team.name,
-          })),
+      teamList: response.data.teamList.map((team: any) => ({
+        id: team.id,
+        profileImage: team.image,
+        profileName: team.name,
+      })),
       feedbackList: response.data.pinnedFeedbackList
         ? response.data.pinnedFeedbackList.map((feedback: any) => ({
             id: feedback.feedbackId,

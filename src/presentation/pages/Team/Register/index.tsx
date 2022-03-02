@@ -51,8 +51,8 @@ function TeamRegister() {
   }, []);
 
   return (
-    <StTeamRegister isMemberSelectMode={isMemberSelectMode}>
-      <TeamMembers onClickSubmitButton={closeMembers} isVisibleMembers={isMemberSelectMode} />
+    <StTeamRegister>
+      {isMemberSelectMode && <TeamMembers onClickSubmitButton={closeMembers} />}
       <StTeamRegisterWrapper>
         <StTitle>팀 등록하기</StTitle>
         <StAbsoluteWrapper>

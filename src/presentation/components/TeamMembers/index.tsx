@@ -11,14 +11,11 @@ import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 
-interface TeamMembersProps {
+export default function TeamMembers({
+  onClickSubmitButton: onClickSubmitButton,
+}: {
   onClickSubmitButton: () => void;
-  isVisibleMembers: boolean;
-}
-
-export default function TeamMembers(props: TeamMembersProps) {
-  const { onClickSubmitButton, isVisibleMembers } = props;
-
+}) {
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
@@ -67,9 +64,6 @@ export default function TeamMembers(props: TeamMembersProps) {
   useEffect(() => {
     mapSearchedUserList();
   }, [searchedUserListResponse, selectedUserList]);
-  useEffect(() => {
-    if (!isVisibleMembers) setSearchedUserList([]);
-  }, [isVisibleMembers]);
 
   return (
     <StTeamRegisterMembers>

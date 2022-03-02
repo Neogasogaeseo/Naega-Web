@@ -5,6 +5,8 @@ import { FONT_STYLES } from '@styles/common/font-style';
 export const StTeamRegisterMembers = styled.div`
   width: 100%;
   height: 100vh;
+  background-color: white;
+  z-index: 100;
 `;
 
 export const StHeader = styled.div`

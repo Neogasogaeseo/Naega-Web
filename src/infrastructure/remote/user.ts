@@ -2,9 +2,9 @@ import { UserService } from '@api/user';
 import { publicAPI } from './base';
 
 export function userDataRemote(): UserService {
-  const getKeywords = async (userID: number) => {
+  const getKeywords = async (userID: number, page: number) => {
     const response = await publicAPI.get({
-      url: `/user/keyword?userId=${userID}&offset=0&limit=40`,
+      url: `/user/keyword?userId=${userID}&offset=${page}&limit=30`,
     });
     return response.data.keyword.map((keyword: any) => ({
       id: keyword.id,

@@ -4,9 +4,10 @@ import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import KeywordEmptyView from '@components/common/Empty/Keyword';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
+import { useInfiniteQuery } from 'react-query';
 
 interface OutletContextProps {
   keywordList: Keyword[];
@@ -18,18 +19,16 @@ interface OutletContextProps {
 function TeamIssueKeyword() {
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
-  const [userKeywordList, setUserKeywordList] = useState<Keyword[]>([]);
-  const [newKeywordContent, setNewKeywordContent] = useState('');
   const navigate = useNavigate();
-
-  if (!targetUser) history.back();
-
-  useEffect(() => {
-    (async () => {
-      const data = await api.userService.getKeywords(targetUser.id);
-      setUserKeywordList(data);
-    })();
-  }, []);
+  if (!targetUser) navigate(-1);
+  const [newKeywordContent, setNewKeywordContent] = useState('');
+  const fetchKeywordsByPage = async ({ pageParam = 0 }) => {
+    const response = await api.userService.getKeywords(targetUser.id, pageParam);
+    return { result: response, nextPage: pageParam + 30, isLast: response.length < 30 };
+  };
+  const { data: userKeywordList } = useInfiniteQuery('keywords', fetchKeywordsByPage, {
+    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+  });
 
   const createKeyword = async () => {
     if (newKeywordContent === '') return;
@@ -59,9 +58,9 @@ function TeamIssueKeyword() {
         <span>{targetUser.profileName}</span>
         <span>님이 받은 키워드</span>
       </StTitleWrapper>
-      {userKeywordList.length > 0 ? (
+      {userKeywordList?.pages && userKeywordList.pages.length > 0 ? (
         <ImmutableKeywordList
-          keywordList={userKeywordList}
+          keywordList={userKeywordList.pages.map((page) => page.result).flat()}
           viewMode="linear"
           onItemClick={(keyword: Keyword) => addKeyword(keyword)}
         />

@@ -22,7 +22,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 function TeamRegister() {
-  const [isVisibleMembers, setIsVisibleMembers] = useState(false);
+  const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -33,7 +33,7 @@ function TeamRegister() {
   const { id, username, profileImage } = useLoginUser();
 
   const closeMembers = () => {
-    setIsVisibleMembers(false);
+    setIsMemberSelectMode(false);
   };
 
   const submitTeamInfo = async () => {
@@ -51,8 +51,8 @@ function TeamRegister() {
   }, []);
 
   return (
-    <StTeamRegister isVisibleMembers={isVisibleMembers}>
-      <TeamMembers onClickSubmitButton={closeMembers} isVisibleMembers={isVisibleMembers} />
+    <StTeamRegister isMemberSelectMode={isMemberSelectMode}>
+      <TeamMembers onClickSubmitButton={closeMembers} isVisibleMembers={isMemberSelectMode} />
       <StTeamRegisterWrapper>
         <StTitle>팀 등록하기</StTitle>
         <StAbsoluteWrapper>
@@ -81,7 +81,7 @@ function TeamRegister() {
             { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
             ...selectedUserList,
           ]}
-          onAddClick={() => setIsVisibleMembers(true)}
+          onAddClick={() => setIsMemberSelectMode(true)}
         />
         <StSubmitButton
           onClick={() => {

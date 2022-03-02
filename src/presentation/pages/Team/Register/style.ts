@@ -4,16 +4,16 @@ import { FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
-export const StTeamRegister = styled.div<{ isVisibleMembers: boolean }>`
+export const StTeamRegister = styled.div<{ isMemberSelectMode: boolean }>`
   position: relative;
   & > * {
     position: absolute;
   }
   & > *:first-child {
-    visibility: ${(props) => (props.isVisibleMembers ? 'visible' : 'hidden')};
+    visibility: ${(props) => (props.isMemberSelectMode ? 'visible' : 'hidden')};
   }
   & > *:last-child {
-    visibility: ${(props) => (props.isVisibleMembers ? 'hidden' : 'visible')};
+    visibility: ${(props) => (props.isMemberSelectMode ? 'hidden' : 'visible')};
   }
 `;
 

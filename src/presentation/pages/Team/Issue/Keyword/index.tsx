@@ -1,18 +1,16 @@
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useInfiniteQuery } from 'react-query';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
+import CommonLoader from '@components/common/Loader';
+import KeywordEmptyView from '@components/common/Empty/Keyword';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import KeywordEmptyView from '@components/common/Empty/Keyword';
-import { useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
-import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
-import { useInfiniteQuery } from 'react-query';
-import { useCallback } from 'react';
 import { useScrollHeight } from '@hooks/useScrollHeight';
-import { useEffect } from 'react';
-import CommonLoader from '@components/common/Loader';
 import { KEYWORD_PAGE } from '@utils/constant';
+import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
 
 interface OutletContextProps {
   keywordList: Keyword[];

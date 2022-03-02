@@ -1,17 +1,21 @@
+import { useState, useEffect } from 'react';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+
 import { StTeamRegisterMembers, StHeader, StTeamMembersSearchResultTitle } from './style';
 import { IcBack } from '@assets/icons';
 import TeamMembersSearchBar from '@components/TeamMembersSearchBar';
 import TeamMembersSearchedUser from '@components/TeamMembersSearchedUser';
-import { useState } from 'react';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
 import { TeamMember } from '@api/types/team';
-import { useEffect } from 'react';
 import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 
-export default function TeamRegisterMembers() {
+export default function TeamMembers({
+  onClickSubmitButton: onClickSubmitButton,
+}: {
+  onClickSubmitButton: () => void;
+}) {
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
@@ -59,18 +63,26 @@ export default function TeamRegisterMembers() {
 
   useEffect(() => {
     mapSearchedUserList();
-    return () => resetUserSearchWord();
-  }, []);
-  useEffect(() => {
-    mapSearchedUserList();
   }, [searchedUserListResponse, selectedUserList]);
 
   return (
     <StTeamRegisterMembers>
       <StHeader>
-        <IcBack onClick={() => history.back()} />
+        <IcBack
+          onClick={() => {
+            onClickSubmitButton();
+            resetUserSearchWord();
+          }}
+        />
         <div>팀원 추가</div>
-        <button onClick={() => history.back()}>완료</button>
+        <button
+          onClick={() => {
+            onClickSubmitButton();
+            resetUserSearchWord();
+          }}
+        >
+          완료
+        </button>
       </StHeader>
       <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>

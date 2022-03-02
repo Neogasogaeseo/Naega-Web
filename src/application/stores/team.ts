@@ -20,18 +20,3 @@ export const userSearchWordState = atom<string>({
   key: 'userSearchWordState',
   default: '',
 });
-
-export const teamImageState = atom<File | null>({
-  key: 'teamImageState',
-  default: null,
-});
-
-export const teamNameState = atom<string>({
-  key: 'teamNameState',
-  default: '',
-});
-
-export const teamDescriptionState = atom<string>({
-  key: 'teamDescriptionState',
-  default: '',
-});

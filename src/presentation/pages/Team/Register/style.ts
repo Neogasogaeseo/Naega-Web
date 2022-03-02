@@ -5,6 +5,13 @@ import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
 export const StTeamRegister = styled.div`
+  position: relative;
+  & > * {
+    position: absolute;
+  }
+`;
+
+export const StTeamRegisterWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 0 20px;

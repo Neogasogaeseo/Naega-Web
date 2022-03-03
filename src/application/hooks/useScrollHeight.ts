@@ -1,3 +1,4 @@
+import { SCROLL_BOTTOM_PADDING } from '@utils/constant';
 import { useCallback, useEffect, useState } from 'react';
 
 export function useScrollHeight() {
@@ -14,7 +15,7 @@ export function useScrollHeight() {
     );
     const scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     const documentHeight = document.documentElement.clientHeight;
-    if (scrollTop + documentHeight >= scrollHeight - 30) {
+    if (scrollTop + documentHeight >= scrollHeight - SCROLL_BOTTOM_PADDING) {
       setIsBottomReached([]);
       setIsInitialState(false);
     }

@@ -17,6 +17,6 @@ export const StHomeTeamEmptyView = styled.div`
 
   div:nth-of-type(2) {
     ${FONT_STYLES.M_14_TITLE};
-    color: #dedede;
+    color: ${COLOR.GRAY_35};
   }
 `;

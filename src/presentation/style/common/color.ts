@@ -15,6 +15,7 @@ export const COLOR = {
   GRAY_1: '#F8F8F8',
   GRAY_2: '#EFEFEF',
   GRAY_3: '#E9E9E9',
+  GRAY_35: '#DEDEDE',
   GRAY_4: '#BEBEBE',
   GRAY_5: '#909090',
   GRAY_6: '#606060',

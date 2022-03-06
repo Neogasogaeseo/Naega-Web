@@ -6,21 +6,17 @@ export const StHomeTeamEmptyView = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  img {
-    margin-top: 56px;
-    margin-bottom: 24px;
-  }
+  margin-top: 60px;
 
   div:nth-of-type(1) {
     ${FONT_STYLES.SB_18_TITLE};
-    color: ${COLOR.GRAY_6};
+    color: ${COLOR.GRAY_4};
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   div:nth-of-type(2) {
-    ${FONT_STYLES.R_15_TITLE};
-    color: ${COLOR.GRAY_5};
+    ${FONT_STYLES.M_14_TITLE};
+    color: #dedede;
   }
 `;

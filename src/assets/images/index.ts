@@ -9,7 +9,6 @@ export { ReactComponent as ImgBackgroundEllipse } from './img_background_ellipse
 export { ReactComponent as ImgQuestionFrame } from './img_question_frame.svg';
 export { ReactComponent as ImgNewLink } from './img_new_link.svg';
 export { ReactComponent as ImgCreatedLink } from './img_created_link.svg';
-export { default as imgEmptyMain } from './img_empty_main.svg';
 export { ReactComponent as ImgAnswerDone } from './img_answer_done.svg';
 export { default as ImgMainPage } from './img_main_character.svg';
 export { default as ImgMainPhone } from './img_landing_phone.svg';

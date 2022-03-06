@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
@@ -22,6 +23,8 @@ export const StTeamInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
 
   & > img:nth-of-type(1) {
     width: 82px;
@@ -74,7 +77,6 @@ export const StTeamInfo = styled.div`
       }
 
       & > div {
-        max-width: 170px;
         text-align: center;
         line-height: 19px;
         color: ${COLOR.GRAY_5};

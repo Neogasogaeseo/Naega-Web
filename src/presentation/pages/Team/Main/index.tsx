@@ -22,8 +22,6 @@ function TeamMain() {
     api.teamService.getTeamInfo(Number(teamID)),
   );
   const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, MAX_TEAM_MEMBER);
-  const memberNameList =
-    slicedMemberList && slicedMemberList.map((member) => member.profileName).join(', ');
 
   const { data: teamIssueList } = useQuery(
     ['teamIssueList', teamID],
@@ -53,7 +51,13 @@ function TeamMain() {
                 )}
               </button>
               <div>
-                {memberNameList}
+                {slicedMemberList &&
+                  slicedMemberList.map(({id, profileName}, index) => (
+                    <span key={id}>
+                      {profileName}
+                      {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
+                    </span>
+                  ))}
                 {teamInfoData.teamMemberCount > MAX_TEAM_MEMBER && (
                   <StOtherMember>등</StOtherMember>
                 )}

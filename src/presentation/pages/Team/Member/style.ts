@@ -12,6 +12,10 @@ export const StTeamMember = styled.div`
     padding-right: 24px;
     ${FONT_STYLES.SB_17_TITLE};
 
+    svg {
+      cursor: pointer;
+    }
+
     button {
       background-color: transparent;
       color: ${COLOR.CORAL_MAIN};

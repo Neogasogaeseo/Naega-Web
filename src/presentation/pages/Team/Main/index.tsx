@@ -22,6 +22,8 @@ function TeamMain() {
     api.teamService.getTeamInfo(Number(teamID)),
   );
   const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, MAX_TEAM_MEMBER);
+  const memberNameList =
+    slicedMemberList && slicedMemberList.map((member) => member.profileName).join(', ');
 
   const { data: teamIssueList } = useQuery(
     ['teamIssueList', teamID],
@@ -46,17 +48,15 @@ function TeamMain() {
               <button onClick={() => setIsMemberPopupOpened(!isMemberPopupOpened)}>
                 <img src={icPerson} alt="팀원" />
                 <span>{teamInfoData.teamMemberCount}명</span>
-                {isMemberPopupOpened && <TeamMemberPopup members={teamInfoData.teamMemberList} teamID={Number(teamID)} />}
+                {isMemberPopupOpened && (
+                  <TeamMemberPopup members={teamInfoData.teamMemberList} teamID={Number(teamID)} />
+                )}
               </button>
               <div>
-                {slicedMemberList &&
-                  slicedMemberList.map((member, index) => (
-                    <span key={member.id}>
-                      {member.profileName}
-                      {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
-                    </span>
-                  ))}
-                {teamInfoData.teamMemberCount > MAX_TEAM_MEMBER && <StOtherMember>등</StOtherMember>}
+                {memberNameList}
+                {teamInfoData.teamMemberCount > MAX_TEAM_MEMBER && (
+                  <StOtherMember>등</StOtherMember>
+                )}
               </div>
             </h3>
             <h2>{teamInfoData.teamDetail.teamDescription}</h2>

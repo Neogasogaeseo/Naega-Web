@@ -76,13 +76,11 @@ export const StTeamInfo = styled.div`
       & > div {
         max-width: 170px;
         text-align: center;
-      }
-
-      & > span {
         line-height: 19px;
         color: ${COLOR.GRAY_5};
         font-size: 13px;
         letter-spacing: -0.01em;
+        word-break: keep-all;
       }
     }
   }

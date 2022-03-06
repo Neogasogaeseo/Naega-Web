@@ -23,31 +23,16 @@ export const StTeamInfo = styled.div`
   flex-direction: column;
   align-items: center;
 
-  & > div:first-child {
-    width: 100%;
-    text-align: end;
-    padding-top: 13px;
-    padding-bottom: 15px;
-    padding-right: 4px;
-    height: 43px;
-
-    button {
-      background-color: transparent;
-      color: ${COLOR.CORAL_MAIN};
-      ${FONT_STYLES.M_15_TITLE};
-    }
-  }
-
   & > img:nth-of-type(1) {
     width: 82px;
     height: 82px;
     object-fit: cover;
-    margin-top: 7px;
+    margin-top: 50px;
     margin-bottom: 18px;
     border-radius: 30px;
   }
 
-  div:nth-of-type(2) {
+  div:first-of-type {
     flex: 1;
     text-align: center;
 
@@ -76,7 +61,7 @@ export const StTeamInfo = styled.div`
         margin-right: 2px;
       }
 
-      button {
+      & > button {
         position: relative;
         display: flex;
         align-items: center;

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
 export const StNeogaResultCard = styled.div`
   cursor: pointer;
   box-shadow: 0px 2px 30px rgba(88, 99, 109, 0.08);
+  border: 1px solid ${COLOR.GRAY_1};
   border-radius: 22px;
   padding: 24px 22px 2px 22px;
   margin-bottom: 12px;

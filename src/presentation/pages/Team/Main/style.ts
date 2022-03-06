@@ -78,7 +78,7 @@ export const StTeamInfo = styled.div`
         text-align: center;
       }
 
-      span {
+      & > span {
         line-height: 19px;
         color: ${COLOR.GRAY_5};
         font-size: 13px;

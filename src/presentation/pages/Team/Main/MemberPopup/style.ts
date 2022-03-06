@@ -53,16 +53,19 @@ export const StTeamMemberPopup = styled.div`
   div + div {
     margin-top: 14px;
   }
+`;
 
-  button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    background-color: transparent;
-    margin-top: 29px;
-    color: ${COLOR.GRAY_5};
-    ${FONT_STYLES.M_13_TITLE};
+export const StWholeButton = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 29px;
+  color: ${COLOR.GRAY_5};
+  ${FONT_STYLES.M_13_TITLE};
+
+  & > img {
+    width: 10px;
+    height: 13px;
   }
 `;

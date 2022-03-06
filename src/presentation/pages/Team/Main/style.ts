@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
@@ -22,32 +23,19 @@ export const StTeamInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  & > div:first-child {
-    width: 100%;
-    text-align: end;
-    padding-top: 13px;
-    padding-bottom: 15px;
-    padding-right: 4px;
-    height: 43px;
-
-    button {
-      background-color: transparent;
-      color: ${COLOR.CORAL_MAIN};
-      ${FONT_STYLES.M_15_TITLE};
-    }
-  }
+  max-width: calc(100% - 40px);
+  margin: 0 auto;
 
   & > img:nth-of-type(1) {
     width: 82px;
     height: 82px;
     object-fit: cover;
-    margin-top: 7px;
+    margin-top: 50px;
     margin-bottom: 18px;
     border-radius: 30px;
   }
 
-  div:nth-of-type(2) {
+  div:first-of-type {
     flex: 1;
     text-align: center;
 
@@ -76,7 +64,7 @@ export const StTeamInfo = styled.div`
         margin-right: 2px;
       }
 
-      button {
+      & > button {
         position: relative;
         display: flex;
         align-items: center;
@@ -89,15 +77,12 @@ export const StTeamInfo = styled.div`
       }
 
       & > div {
-        max-width: 170px;
         text-align: center;
-      }
-
-      span {
         line-height: 19px;
         color: ${COLOR.GRAY_5};
         font-size: 13px;
         letter-spacing: -0.01em;
+        word-break: keep-all;
       }
     }
   }

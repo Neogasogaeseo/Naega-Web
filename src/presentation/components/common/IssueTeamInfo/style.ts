@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
 export const StIssueTeamInfo = styled.div`
-  background-color: ${COLOR.GRAY_1};
   width: fit-content;
+  border: 1px solid ${COLOR.GRAY_2};
   border-radius: 10px;
   padding: 5px 7px;
   display: flex;
@@ -19,5 +19,17 @@ export const StIssueTeamInfo = styled.div`
     height: 22px;
     border-radius: 8px;
     object-fit: cover;
+  }
+
+  span {
+    color: ${COLOR.GRAY_4};
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  span:first-of-type {
+    color: ${COLOR.GRAY_7};
+    font-weight: 600;
   }
 `;

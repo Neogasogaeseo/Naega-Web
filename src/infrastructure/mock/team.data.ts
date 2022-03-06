@@ -198,20 +198,24 @@ export const TEAM_DATA: {
     teamMemberList: [
       {
         id: 1,
+        profileId: 'abcd',
         profileName: '캐서린',
       },
       {
         id: 12,
+        profileId: 'abcd',
         profileName: '웬디',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
         id: 13,
+        profileId: 'abcd',
         profileName: '콩콩이',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },
       {
         id: 14,
+        profileId: 'abcd',
         profileName: '크왕',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
       },

@@ -9,9 +9,10 @@ export const StTeamMemberPopup = styled.div`
   transform: translateX(-50%);
   z-index: 4;
   width: 168px;
+  max-height: 249px;
   background: ${COLOR.WHITE};
-  border-radius: 8.07692px;
-  border: 0.8px solid ${COLOR.GRAY_3};
+  border-radius: 8.08px;
+  border: 0.8px solid ${COLOR.GRAY_2};
   box-shadow: 0px 10px 30px rgba(152, 151, 166, 0.15);
   padding: 20px 15px;
 
@@ -30,18 +31,16 @@ export const StTeamMemberPopup = styled.div`
   }
 
   div {
-    max-height: 166.96px;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  div > div {
     display: flex;
     align-items: center;
+
+    img {
+      width: 32px;
+      height: 32px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 77.0833px;
+    }
 
     span {
       ${FONT_STYLES.M_13_BODY};
@@ -52,14 +51,21 @@ export const StTeamMemberPopup = styled.div`
   }
 
   div + div {
-    margin-top: 13px;
+    margin-top: 14px;
   }
+`;
 
-  img {
-    width: 32px;
-    height: 32px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 77.0833px;
+export const StWholeButton = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 29px;
+  color: ${COLOR.GRAY_5};
+  ${FONT_STYLES.M_13_TITLE};
+
+  & > img {
+    width: 10px;
+    height: 13px;
   }
 `;

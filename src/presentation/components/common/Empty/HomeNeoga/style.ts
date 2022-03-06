@@ -7,23 +7,19 @@ export const StHomeNeogaEmptyView = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  img {
-    margin-top: 60px;
-    margin-bottom: 24px;
-  }
+  margin-top: 85px;
 
   div:nth-of-type(1) {
     ${FONT_STYLES.SB_18_TITLE};
-    color: ${COLOR.GRAY_6};
+    color: ${COLOR.GRAY_5};
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   div:nth-of-type(2) {
-    ${FONT_STYLES.R_15_TITLE};
-    color: ${COLOR.GRAY_5};
-    margin-bottom: 34px;
+    ${FONT_STYLES.M_14_TITLE};
+    color: ${COLOR.GRAY_4};
+    margin-bottom: 40px;
   }
 
   button {
@@ -32,7 +28,7 @@ export const StHomeNeogaEmptyView = styled.div`
     margin-bottom: 62px;
     border-radius: 14px;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 21.6px;
     letter-spacing: -0.015em;
   }

@@ -149,6 +149,7 @@ export function teamDataRemote(): TeamService {
         teamMemberCount: response.data.memberCount,
         teamMemberList: response.data.member.map((memberDetail: any) => ({
           id: memberDetail.id,
+          profileId: memberDetail.profileId,
           profileName: memberDetail.name,
           profileImage: memberDetail.image,
         })),

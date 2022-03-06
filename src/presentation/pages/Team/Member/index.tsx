@@ -25,12 +25,12 @@ function TeamMember() {
       </header>
       <StMemberInfo>
         {teamInfoData &&
-          teamInfoData.teamMemberList.map((member) => (
-            <div key={member.id}>
-              <img src={member.profileImage || imgEmptyProfile} />
+          teamInfoData.teamMemberList.map(({id, profileImage, profileName, profileId}) => (
+            <div key={id}>
+              <img src={profileImage || imgEmptyProfile} />
               <div>
-                <span>{member.profileName}</span>
-                <span>@{member.id}</span>
+                <span>{profileName}</span>
+                <span>@{profileId}</span>
               </div>
             </div>
           ))}

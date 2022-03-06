@@ -21,7 +21,6 @@ function TeamMember() {
       <header>
         <IcBack onClick={() => navigate(-1)} />
         <div>팀원 목록</div>
-        <button onClick={() => navigate(-1)}>완료</button>
       </header>
       <StMemberInfo>
         {teamInfoData &&

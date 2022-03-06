@@ -7,19 +7,17 @@ export const StTeamMember = styled.div`
   header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    height: 44px;
     padding-left: 14px;
-    padding-right: 24px;
+    padding-right: 46px;
     ${FONT_STYLES.SB_17_TITLE};
 
     svg {
       cursor: pointer;
     }
 
-    button {
-      background-color: transparent;
-      color: ${COLOR.CORAL_MAIN};
-      ${FONT_STYLES.M_15_TITLE};
+    div {
+      margin: 0 auto;
     }
   }
 `;

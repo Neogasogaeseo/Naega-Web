@@ -80,10 +80,10 @@ function JoinForm() {
           isJoinConditionPassed={isJoinConditionPassed.id}
           errorMsg="*영문, 숫자, 특수문자(._) 4~15자 이내"
           placeholder="neososeo_team"
-          onChange={(value: string) => {
+          onChange={(value) => {
             setInputId(value);
           }}
-          maxLength={20}
+          maxLength={15}
           img={icEmail}
         />
         <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
@@ -91,7 +91,7 @@ function JoinForm() {
           width="100%"
           isJoinConditionPassed={isJoinConditionPassed.name}
           placeholder="이름을 입력해주세요"
-          onChange={(value: string) => {
+          onChange={(value) => {
             setInputName(value);
           }}
         />
@@ -99,7 +99,7 @@ function JoinForm() {
       <StButton
         type="submit"
         onClick={onClickSubmitUserInfo}
-        disabled={inputId === '' || inputName === '' || !isJoinConditionPassed.id}
+        disabled={inputId.length < 4 || inputName === '' || !isJoinConditionPassed.id}
       >
         완료
       </StButton>

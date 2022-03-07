@@ -27,7 +27,7 @@ function JoinForm() {
   const { fireToast } = useToast();
 
   useEffect(() => {
-    const idCheck = /^[a-z|0-9|.|_]+$/;
+    const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
     const idStartCheck = /^[^.|^_]/;
     setIsJoinConditionPassed({
       ...isJoinConditionPassed,
@@ -99,7 +99,7 @@ function JoinForm() {
       <StButton
         type="submit"
         onClick={onClickSubmitUserInfo}
-        disabled={inputId.length < 4 || inputName === '' || !isJoinConditionPassed.id}
+        disabled={inputName === '' || !isJoinConditionPassed.id}
       >
         완료
       </StButton>

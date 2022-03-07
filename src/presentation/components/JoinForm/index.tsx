@@ -10,13 +10,7 @@ import CommonLabel from '@components/common/CommonLabel';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
 import { icProfile, icEmail } from '@assets/icons';
-import {
-  StJoinForm,
-  StNoticeWrapper,
-  StInputWrapper,
-  StButton,
-  StProfileImg,
-} from './style';
+import { StJoinForm, StInputWrapper, StButton, StProfileImg } from './style';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
@@ -73,14 +67,14 @@ function JoinForm() {
 
   return (
     <StJoinForm>
-      <StNoticeWrapper>회원가입</StNoticeWrapper>
+      <h1>회원가입</h1>
       <StProfileImg>
         <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="80px">
           <img src={icProfile} />
         </FileUpload>
       </StProfileImg>
       <StInputWrapper>
-      <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
+        <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
           isJoinConditionPassed={isJoinConditionPassed.id}

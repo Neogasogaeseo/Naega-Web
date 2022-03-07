@@ -69,7 +69,7 @@ function JoinForm() {
     <StJoinForm>
       <h1>회원가입</h1>
       <StProfileImg>
-        <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="80px">
+        <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="50%">
           <img src={icProfile} />
         </FileUpload>
       </StProfileImg>

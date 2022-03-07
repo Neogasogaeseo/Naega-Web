@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
 export const StJoinForm = styled.div`
-  align-self: center;
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
 `;
 
 export const StNoticeWrapper = styled.div`
@@ -34,11 +35,6 @@ export const StButton = styled.button`
 `;
 
 export const StProfileImg = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const StPhotoUploadImage = styled.img`
   display: flex;
   justify-content: center;
 `;

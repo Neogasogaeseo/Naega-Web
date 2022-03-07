@@ -16,7 +16,6 @@ import {
   StInputWrapper,
   StButton,
   StProfileImg,
-  StPhotoUploadImage,
 } from './style';
 
 function JoinForm() {
@@ -77,7 +76,7 @@ function JoinForm() {
       <StNoticeWrapper>회원가입</StNoticeWrapper>
       <StProfileImg>
         <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="80px">
-          <StPhotoUploadImage src={icProfile} />
+          <img src={icProfile} />
         </FileUpload>
       </StProfileImg>
       <StInputWrapper>

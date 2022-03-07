@@ -1,4 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
+import { postJoin } from '@api/login-user';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { useToast } from '@hooks/useToast';
+import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
+import CommonInput from '@components/common/CommonInput';
+import FileUpload from '@components/common/FileUpload';
+import { icProfile, icEmail } from '@assets/icons';
 import {
   StJoinForm,
   StNoticeWrapper,
@@ -7,20 +17,11 @@ import {
   StProfileImg,
   StPhotoUploadImage,
 } from './style';
-import CommonInput from '@components/common/CommonInput';
-import FileUpload from '@components/common/FileUpload';
-import { icProfile, icEmail } from '@assets/icons';
-import { useRecoilValue } from 'recoil';
-import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
-import { postJoin } from '@api/login-user';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@hooks/useToast';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
   const refreshToken = useRecoilValue(kakaoRefreshTokenState);
-  const [isConditionMet, setIsConditionMet] = useState({
+  const [isJoinConditionPassed, setIsJoinConditionPassed] = useState({
     id: false,
     name: false,
   });
@@ -34,19 +35,11 @@ function JoinForm() {
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]+$/;
     const idStartCheck = /^[^.|^_]/;
-    if (idCheck.test(inputId) && idStartCheck.test(inputId)) {
-      setIsConditionMet({ ...isConditionMet, id: true });
-    } else {
-      setIsConditionMet({ ...isConditionMet, id: false });
-    }
+    setIsJoinConditionPassed({
+      ...isJoinConditionPassed,
+      id: idCheck.test(inputId) && idStartCheck.test(inputId),
+    });
   }, [inputId]);
-
-  const onChangeId = (value: string) => {
-    setInputId(value);
-  };
-  const onChangeName = (value: string) => {
-    setInputName(value);
-  };
 
   const onClickSubmitUserInfo = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -70,7 +63,7 @@ function JoinForm() {
         });
         navigate('/join/complete');
       } else {
-        fireToast({ content: '중복된 아이디입니다. ' });
+        fireToast({ content: '중복된 아이디입니다.' });
       }
     } catch (error) {
       console.error(error);
@@ -90,10 +83,12 @@ function JoinForm() {
         <p>아이디</p>
         <CommonInput
           width="100%"
-          isConditionMet={isConditionMet.id}
+          isJoinConditionPassed={isJoinConditionPassed.id}
           errorMsg="*영문, 숫자, 특수문자(._) 4~15자 이내"
           placeholder="neososeo_team"
-          onChange={onChangeId}
+          onChange={(value: string) => {
+            setInputId(value);
+          }}
           maxLength={20}
           img={icEmail}
         />
@@ -102,15 +97,17 @@ function JoinForm() {
         <p>이름</p>
         <CommonInput
           width="100%"
-          isConditionMet={isConditionMet.name}
+          isJoinConditionPassed={isJoinConditionPassed.name}
           placeholder="너소서"
-          onChange={onChangeName}
+          onChange={(value: string) => {
+            setInputName(value);
+          }}
         />
       </StInputWrapper>
       <StButton
         type="submit"
         onClick={onClickSubmitUserInfo}
-        disabled={inputId === '' || inputName === '' || !isConditionMet.id}
+        disabled={inputId === '' || inputName === '' || !isJoinConditionPassed.id}
       >
         완료
       </StButton>

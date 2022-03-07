@@ -14,15 +14,8 @@ export const StNoticeWrapper = styled.div`
 `;
 
 export const StInputWrapper = styled.div`
-  font-size: 16px;
-  line-height: 162%;
-  margin-top: 20px;
-  & > p {
-    margin: 44px 0px 10px 10px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 162%;
-    color: ${COLOR.GRAY_7};
+  & > div:nth-of-type(2n + 1) {
+    margin-left: 4px;
   }
 `;
 

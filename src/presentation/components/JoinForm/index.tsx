@@ -6,6 +6,7 @@ import { postJoin } from '@api/login-user';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
+import CommonLabel from '@components/common/CommonLabel';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
 import { icProfile, icEmail } from '@assets/icons';
@@ -80,7 +81,7 @@ function JoinForm() {
         </FileUpload>
       </StProfileImg>
       <StInputWrapper>
-        <p>아이디</p>
+      <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
           isJoinConditionPassed={isJoinConditionPassed.id}
@@ -92,13 +93,11 @@ function JoinForm() {
           maxLength={20}
           img={icEmail}
         />
-      </StInputWrapper>
-      <StInputWrapper>
-        <p>이름</p>
+        <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
           isJoinConditionPassed={isJoinConditionPassed.name}
-          placeholder="너소서"
+          placeholder="이름을 입력해주세요"
           onChange={(value: string) => {
             setInputName(value);
           }}

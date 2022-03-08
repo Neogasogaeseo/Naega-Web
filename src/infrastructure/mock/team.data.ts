@@ -231,14 +231,6 @@ export const TEAM_DATA: {
         id: 26,
         name: '너가소개서',
       },
-      {
-        id: 27,
-        name: '너가소개서',
-      },
-      {
-        id: 28,
-        name: '너가소개서',
-      },
     ],
   },
 };

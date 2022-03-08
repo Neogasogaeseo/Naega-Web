@@ -10,7 +10,7 @@ import HomeTeamEmptyView from '@components/common/Empty/HomeTeam';
 import { StTeamMain, StDivisionLine } from './style';
 
 function HomeTeam() {
-  const [inviteList, setInviteList] = useState<TeamInvite[] | null>(null);
+  const [inviteList, setInviteList] = useState<TeamInvite[]>([]);
   const [profileList, setProfileList] = useState<TeamMemberNoneId[] | null>(null);
   const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function HomeTeam() {
       setIssueList(issueList);
     })();
     return () => {
-      setInviteList(null);
+      setInviteList([]);
       setProfileList(null);
       setIssueList(null);
     };
@@ -34,9 +34,7 @@ function HomeTeam() {
   return (
     <>
       <StTeamMain>
-        {inviteList?.map((invitation) => (
-          <TeamInvitation key={invitation.id} {...invitation} />
-        ))}
+        {inviteList.length !== 0 && <TeamInvitation {...inviteList[0]} />}
         <h1>나와 함께하는 팀</h1>
         {profileList && (
           <ProfileList

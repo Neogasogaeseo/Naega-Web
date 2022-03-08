@@ -19,6 +19,7 @@ function JoinForm() {
     id: false,
     name: false,
   });
+  const [errorMsg, setErrorMsg] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
@@ -28,12 +29,21 @@ function JoinForm() {
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
-    const idStartCheck = /^[^.|^_]/;
+    const idStartCheck = /^[a-z]/;
+
     setIsJoinConditionPassed({
-      ...isJoinConditionPassed,
       id: idCheck.test(inputId) && idStartCheck.test(inputId),
+      name: inputName !== '',
     });
-  }, [inputId]);
+
+    if (!idCheck.test(inputId)) {
+      setErrorMsg('*영문, 숫자, 특수문자(._) 4~15자 이내');
+    }
+
+    if (!idStartCheck.test(inputId)) {
+      setErrorMsg('*아이디의 첫 글자는 영문');
+    }
+  }, [inputId, inputName]);
 
   const onClickSubmitUserInfo = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -78,7 +88,7 @@ function JoinForm() {
         <CommonInput
           width="100%"
           isJoinConditionPassed={isJoinConditionPassed.id}
-          errorMsg="*영문, 숫자, 특수문자(._) 4~15자 이내"
+          errorMsg={errorMsg}
           placeholder="neososeo_team"
           onChange={(value) => {
             setInputId(value);
@@ -99,7 +109,7 @@ function JoinForm() {
       <StButton
         type="submit"
         onClick={onClickSubmitUserInfo}
-        disabled={inputName === '' || !isJoinConditionPassed.id}
+        disabled={!Object.values(isJoinConditionPassed).every((condition) => condition === true)}
       >
         완료
       </StButton>

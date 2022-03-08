@@ -109,6 +109,10 @@ export const StCheckWrapper = styled.div`
   }
 `;
 
+export const StMemberName = styled.span<{ isHost: boolean }>`
+  font-weight: ${(props) => (props.isHost ? 800 : 400)};
+`;
+
 export const StOtherMember = styled.span`
   margin-left: 4px;
 `;

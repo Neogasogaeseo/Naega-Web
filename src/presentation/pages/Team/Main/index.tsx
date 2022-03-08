@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { StTeamMain, StTeamInfo, StCheckWrapper, StOtherMember } from './style';
+import { StTeamMain, StTeamInfo, StCheckWrapper, StMemberName, StOtherMember } from './style';
 import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
 import IssueCardList from '@components/common/IssueCardList';
 import { api } from '@api/index';
@@ -52,11 +52,11 @@ function TeamMain() {
               </button>
               <div>
                 {slicedMemberList &&
-                  slicedMemberList.map(({id, profileName}, index) => (
-                    <span key={id}>
+                  slicedMemberList.map(({id, profileName, isHost}, index) => (
+                    <StMemberName key={id} isHost={isHost}>
                       {profileName}
                       {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
-                    </span>
+                    </StMemberName>
                   ))}
                 {teamInfoData.teamMemberCount > MAX_TEAM_MEMBER && (
                   <StOtherMember>등</StOtherMember>

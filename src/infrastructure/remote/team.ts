@@ -152,6 +152,7 @@ export function teamDataRemote(): TeamService {
           profileId: memberDetail.profileId,
           profileName: memberDetail.name,
           profileImage: memberDetail.image,
+          isHost: memberDetail.isHost,
         })),
       };
     else throw 'NOT FOUND';

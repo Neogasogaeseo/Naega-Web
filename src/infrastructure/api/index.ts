@@ -6,8 +6,8 @@ import { NeososeoFormService } from './neososeo-form';
 import { TeamService } from './team';
 import { UserService } from './user';
 import { loginUserRemote } from '@infrastructure/remote/login-user';
-import { NeososeoFormRemote } from '@infrastructure/remote/neososeo-form';
 import { userDataRemote } from '@infrastructure/remote/user';
+import { NeososeoFormRemote } from '@infrastructure/remote/neososeo-form';
 
 export const api: APIService = getAPIMethod();
 

@@ -52,6 +52,23 @@ export function neogaDataMock(): NeogaService {
     return { id: 0, title: '', subtitle: '', image: '' };
   };
 
+  const getNeososeoInfo = async () => {
+    return {
+      id: 1,
+      title: 'aa',
+      subtitle: 'aaa',
+      darkIconImage:
+        'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/smiling-face-with-hearts_1f970.png',
+      createdAt: '2222-22-22',
+      q: 'aafagara',
+      keywordList: [],
+    };
+  };
+
+  const getNeososeoFeedback = async () => {
+    return { answerCount: 0, answerList: [] };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -63,6 +80,8 @@ export function neogaDataMock(): NeogaService {
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,
+    getNeososeoInfo,
+    getNeososeoFeedback,
   };
 }
 

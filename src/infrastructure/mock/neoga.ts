@@ -27,16 +27,6 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
 
-  const getResultKeywords = async () => {
-    await wait(2000);
-    return NEOGA_DATA.KEYWORD_LISTS;
-  };
-
-  const getAllResultListTemplates = async () => {
-    await wait(2000);
-    return NEOGA_DATA.NEOGA_RESULT;
-  };
-
   const postAnswerBookmark = async () => {
     await wait(1000);
     return { isSuccess: true };
@@ -75,8 +65,6 @@ export function neogaDataMock(): NeogaService {
     getAllTemplates,
     getMainResultCard,
     getFormResultCard,
-    getResultKeywords,
-    getAllResultListTemplates,
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,

@@ -1,7 +1,6 @@
 import { NeogaService } from '@api/neoga';
 import { NotFoundError } from '@api/types/errors';
 import { AxiosError } from 'axios';
-import { NEOGA_DATA } from '../mock/neoga.data';
 import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
@@ -129,16 +128,6 @@ export function NeogaDataRemote(): NeogaService {
     else throw '서버 통신 실패';
   };
 
-  const getResultKeywords = async () => {
-    await wait(2000);
-    return NEOGA_DATA.KEYWORD_LISTS;
-  };
-
-  const getAllResultListTemplates = async () => {
-    await wait(2000);
-    return NEOGA_DATA.NEOGA_RESULT;
-  };
-
   const postAnswerBookmark = async (answerID: number) => {
     const response = await privateAPI.put({ url: `/form/detail/answer/${answerID}/pin` });
     return { isSuccess: response.success };
@@ -219,8 +208,6 @@ export function NeogaDataRemote(): NeogaService {
     getAllTemplates,
     getMainResultCard,
     getFormResultCard,
-    getResultKeywords,
-    getAllResultListTemplates,
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,
@@ -228,5 +215,3 @@ export function NeogaDataRemote(): NeogaService {
     getNeososeoFeedback,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

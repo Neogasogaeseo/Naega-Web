@@ -3,12 +3,10 @@ import {
   NeogaMainCardItem,
   NeogaCardItem,
   NeogaResultCardItem,
-  ResultFormList,
   CreateFormInfo,
   ResultDetail,
   ResultFeedback,
 } from './types/neoga';
-import { Keyword } from './types/user';
 
 export interface NeogaService {
   getBannerTemplate(): Promise<NeogaBannerItem | null>;
@@ -16,8 +14,6 @@ export interface NeogaService {
   getAllTemplates(viewMode: 'recent' | 'popular'): Promise<NeogaCardItem[]>;
   getMainResultCard(): Promise<NeogaResultCardItem>;
   getFormResultCard(): Promise<NeogaResultCardItem>;
-  getResultKeywords(formID: number): Promise<Keyword[]>;
-  getAllResultListTemplates(formID: number): Promise<ResultFormList[]>;
   postAnswerBookmark(answerID: number): Promise<{ isSuccess: boolean }>;
   postCreateForm(formID: number): Promise<{ isCreated: boolean; q: string }>;
   getCreateFormInfo(formID: number): Promise<CreateFormInfo>;

@@ -13,6 +13,7 @@ export const COLOR = {
   PURPLE_SUB: '#8E58FF',
   GRAY_SUB: '#444444',
   GRAY_1: '#F8F8F8',
+  GRAY_15: '#F5F5F5',
   GRAY_2: '#EFEFEF',
   GRAY_3: '#E9E9E9',
   GRAY_35: '#DEDEDE',

@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { StTeamMain, StTeamInfo, StCheckWrapper, StOtherMember } from './style';
-import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
-import IssueCardList from '@components/common/IssueCardList';
 import { api } from '@api/index';
 import { MAX_TEAM_MEMBER } from '@utils/constant';
-import { imgEmptyProfile } from '@assets/images';
+import IssueCardList from '@components/common/IssueCardList';
 import TeamMemberPopup from './MemberPopup';
+import { StTeamMain, StTeamInfo, StCheckWrapper, StOtherMember } from './style';
+import { icPerson, icCoralCheck, icGrayCheck } from '@assets/icons';
+import { imgEmptyProfile } from '@assets/images';
 
 function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);

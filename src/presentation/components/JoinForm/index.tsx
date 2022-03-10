@@ -37,11 +37,11 @@ function JoinForm() {
     });
 
     if (!idCheck.test(inputId)) {
-      setErrorMsg('*영문, 숫자, 특수문자(._) 4~15자 이내');
+      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
     }
 
     if (!idStartCheck.test(inputId)) {
-      setErrorMsg('*아이디의 첫 글자는 영문');
+      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
     }
   }, [inputId, inputName]);
 

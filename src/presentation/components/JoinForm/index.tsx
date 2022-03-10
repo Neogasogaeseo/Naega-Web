@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import {
-  StJoinForm,
-  StNoticeWrapper,
-  StInputWrapper,
-  StButton,
-  StProfileImg,
-  StPhotoUploadImage,
-} from './style';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
+import { postJoin } from '@api/login-user';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { useToast } from '@hooks/useToast';
+import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
+import CommonLabel from '@components/common/CommonLabel';
 import CommonInput from '@components/common/CommonInput';
 import FileUpload from '@components/common/FileUpload';
 import { icProfile, icEmail } from '@assets/icons';
-import { useRecoilValue } from 'recoil';
-import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
-import { postJoin } from '@api/login-user';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@hooks/useToast';
+import { StJoinForm, StInputWrapper, StButton, StProfileImg } from './style';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
   const refreshToken = useRecoilValue(kakaoRefreshTokenState);
-  const [isConditionMet, setIsConditionMet] = useState({
+  const [isJoinConditionPassed, setIsJoinConditionPassed] = useState({
     id: false,
     name: false,
   });
+  const [errorMsg, setErrorMsg] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
@@ -32,21 +28,22 @@ function JoinForm() {
   const { fireToast } = useToast();
 
   useEffect(() => {
-    const idCheck = /^[a-z|0-9|.|_]+$/;
-    const idStartCheck = /^[^.|^_]/;
-    if (idCheck.test(inputId) && idStartCheck.test(inputId)) {
-      setIsConditionMet({ ...isConditionMet, id: true });
-    } else {
-      setIsConditionMet({ ...isConditionMet, id: false });
-    }
-  }, [inputId]);
+    const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
+    const idStartCheck = /^[a-z]/;
 
-  const onChangeId = (value: string) => {
-    setInputId(value);
-  };
-  const onChangeName = (value: string) => {
-    setInputName(value);
-  };
+    setIsJoinConditionPassed({
+      id: idCheck.test(inputId) && idStartCheck.test(inputId),
+      name: inputName !== '',
+    });
+
+    if (!idCheck.test(inputId)) {
+      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+    }
+
+    if (!idStartCheck.test(inputId)) {
+      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+    }
+  }, [inputId, inputName]);
 
   const onClickSubmitUserInfo = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -70,7 +67,7 @@ function JoinForm() {
         });
         navigate('/join/complete');
       } else {
-        fireToast({ content: '중복된 아이디입니다. ' });
+        fireToast({ content: '중복된 아이디입니다.' });
       }
     } catch (error) {
       console.error(error);
@@ -80,37 +77,39 @@ function JoinForm() {
 
   return (
     <StJoinForm>
-      <StNoticeWrapper>회원가입</StNoticeWrapper>
+      <h1>회원가입</h1>
       <StProfileImg>
-        <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="80px">
-          <StPhotoUploadImage src={icProfile} />
+        <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="50%">
+          <img src={icProfile} />
         </FileUpload>
       </StProfileImg>
       <StInputWrapper>
-        <p>아이디</p>
+        <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isConditionMet={isConditionMet.id}
-          errorMsg="*영문, 숫자, 특수문자(._) 4~15자 이내"
+          isJoinConditionPassed={isJoinConditionPassed.id}
+          errorMsg={errorMsg}
           placeholder="neososeo_team"
-          onChange={onChangeId}
-          maxLength={20}
+          onChange={(value) => {
+            setInputId(value);
+          }}
+          maxLength={15}
           img={icEmail}
         />
-      </StInputWrapper>
-      <StInputWrapper>
-        <p>이름</p>
+        <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isConditionMet={isConditionMet.name}
-          placeholder="너소서"
-          onChange={onChangeName}
+          isJoinConditionPassed={isJoinConditionPassed.name}
+          placeholder="이름을 입력해주세요"
+          onChange={(value) => {
+            setInputName(value);
+          }}
         />
       </StInputWrapper>
       <StButton
         type="submit"
         onClick={onClickSubmitUserInfo}
-        disabled={inputId === '' || inputName === '' || !isConditionMet.id}
+        disabled={!Object.values(isJoinConditionPassed).every((condition) => condition === true)}
       >
         완료
       </StButton>

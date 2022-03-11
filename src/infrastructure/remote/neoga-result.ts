@@ -7,7 +7,7 @@ export const getNeogaResult = async (formID: number): Promise<ResultDetail | und
     return {
       id: response.data.id,
       title: response.data.title,
-      subtitle: response.data.subtitle,
+      subtitle: response.data.subtitle.replace('\\n', '\n'),
       darkIconImage: response.data.darkIconImage,
       createdAt: response.data.createdAt,
       q: response.data.q,

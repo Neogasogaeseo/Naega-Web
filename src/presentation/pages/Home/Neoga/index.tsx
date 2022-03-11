@@ -7,7 +7,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 import HomeNeogaEmptyView from '@components/common/Empty/HomeNeoga';
-import { StBanner, StForm, StHomeNeoga, StResult, StMoreButtonArea, StWholeButton } from './styles';
+import { StBanner, StForm, StHomeNeoga, StResult, StMoreButtonArea, StWholeButton } from './style';
 import { icNewTag, icWhole } from '@assets/icons';
 
 function HomeNeoga() {

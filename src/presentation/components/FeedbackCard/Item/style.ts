@@ -44,4 +44,5 @@ export const StBody = styled.div`
   ${FONT_STYLES.R_14_BODY}
   line-height: 140%;
   color: ${COLOR.GRAY_7};
+  white-space: pre-line;
 `;

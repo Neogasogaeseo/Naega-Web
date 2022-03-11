@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Run Deploy on Development Server
+name: Release
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the dev branch
   push:
-    branches: [dev]
+    branches: [release]
     paths-ignore: ['**.md']
 
   # Allows you to run this workflow manually from the Actions tab

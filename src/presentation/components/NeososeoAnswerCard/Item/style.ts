@@ -37,5 +37,6 @@ export const StNeososeoAnswerCard = styled.div`
     color: ${COLOR.GRAY_7};
     word-break: keep-all;
     line-height: 20px;
+    white-space: pre-line;
   }
 `;

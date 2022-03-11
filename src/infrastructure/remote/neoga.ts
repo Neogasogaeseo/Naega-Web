@@ -11,7 +11,7 @@ export function NeogaDataRemote(): NeogaService {
         ? {
             id: response.data.id,
             title: response.data.title,
-            content: response.data.subtitle,
+            content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
             src: response.data.lightIconImage,
@@ -41,7 +41,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
-        content: data.subtitle,
+        content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
         src: data.lightIconImage,
         backgroundColor: data.colorCode,
@@ -95,7 +95,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', '\n'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer
@@ -117,7 +117,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', '\n'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -154,7 +154,7 @@ export function NeogaDataRemote(): NeogaService {
       return {
         id: id,
         title: title,
-        subtitle: subtitle,
+        subtitle: subtitle.replace('\\n', '\n'),
         image: darkIconImage,
       };
     } else throw '서버 통신 실패';
@@ -166,7 +166,7 @@ export function NeogaDataRemote(): NeogaService {
     return {
       id: response.data.id,
       title: response.data.title,
-      subtitle: response.data.subtitle,
+      subtitle: response.data.subtitle.replace('\\n', '\n'),
       darkIconImage: response.data.darkIconImage,
       createdAt: response.data.createdAt,
       q: response.data.q,

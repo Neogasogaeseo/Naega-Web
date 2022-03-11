@@ -17,6 +17,7 @@ export const StNeososeoFormHeader = styled.div`
 
   & div:first-child {
     flex: 1.4;
+    white-space: pre-line;
   }
 
   & div:last-child {

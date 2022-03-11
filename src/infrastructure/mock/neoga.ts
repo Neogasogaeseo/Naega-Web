@@ -27,16 +27,6 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
 
-  const getResultKeywords = async () => {
-    await wait(2000);
-    return NEOGA_DATA.KEYWORD_LISTS;
-  };
-
-  const getAllResultListTemplates = async () => {
-    await wait(2000);
-    return NEOGA_DATA.NEOGA_RESULT;
-  };
-
   const postAnswerBookmark = async () => {
     await wait(1000);
     return { isSuccess: true };
@@ -52,17 +42,34 @@ export function neogaDataMock(): NeogaService {
     return { id: 0, title: '', subtitle: '', image: '' };
   };
 
+  const getNeososeoInfo = async () => {
+    return {
+      id: 1,
+      title: 'aa',
+      subtitle: 'aaa',
+      darkIconImage:
+        'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/285/smiling-face-with-hearts_1f970.png',
+      createdAt: '2222-22-22',
+      q: 'aafagara',
+      keywordList: [],
+    };
+  };
+
+  const getNeososeoFeedback = async () => {
+    return { answerCount: 0, answerList: [] };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
     getAllTemplates,
     getMainResultCard,
     getFormResultCard,
-    getResultKeywords,
-    getAllResultListTemplates,
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,
+    getNeososeoInfo,
+    getNeososeoFeedback,
   };
 }
 

@@ -44,6 +44,7 @@ export const StCardContent = styled.div`
   margin-bottom: 28px;
   line-height: 160%;
   ${FONT_STYLES.SB_16_TITLE};
+  white-space: pre-line;
 `;
 
 export const StCardFooter = styled.div`

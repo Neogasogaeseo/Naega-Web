@@ -1,15 +1,13 @@
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
-import Question from '@components/common/Question';
-import { StNeogaLink, StLinkCreateButton } from './style';
-import { useNavigate } from 'react-router';
+import { StLinkCreateButton, StNeogaLink } from './style';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useState } from 'react';
 import { CreateFormInfo } from '@api/types/neoga';
+import QuestionCard from '@components/common/QuestionCard';
+import { IcLinkCoral } from '@assets/icons';
 
 export default function NeogaLink() {
-  const navigate = useNavigate();
   const { formID } = useParams();
   const [formData, setFormData] = useState<Omit<CreateFormInfo, 'id'>>({
     title: '',
@@ -27,9 +25,16 @@ export default function NeogaLink() {
 
   return (
     <StNeogaLink>
-      <NeososeoFormHeader title={formData.title} image={formData.image} />
-      <Question content={formData.subtitle} />
-      <StLinkCreateButton onClick={() => navigate(`./new`)}>링크 생성하기</StLinkCreateButton>
+      <QuestionCard
+        content={formData.subtitle}
+        title={formData.title}
+        image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
+      >
+        <StLinkCreateButton>
+          <IcLinkCoral />
+          <div>링크 생성하기</div>
+        </StLinkCreateButton>
+      </QuestionCard>
     </StNeogaLink>
   );
 }

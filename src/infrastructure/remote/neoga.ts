@@ -1,6 +1,6 @@
 import { NeogaService } from '@api/neoga';
+import { NotFoundError } from '@api/types/errors';
 import { AxiosError } from 'axios';
-import { NEOGA_DATA } from '../mock/neoga.data';
 import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
@@ -11,7 +11,7 @@ export function NeogaDataRemote(): NeogaService {
         ? {
             id: response.data.id,
             title: response.data.title,
-            content: response.data.subtitle,
+            content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
             src: response.data.lightIconImage,
@@ -41,7 +41,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
-        content: data.subtitle,
+        content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
         src: data.lightIconImage,
         backgroundColor: data.colorCode,
@@ -95,7 +95,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', '\n'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer
@@ -117,7 +117,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', '\n'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -126,16 +126,6 @@ export function NeogaDataRemote(): NeogaService {
         count: response.data.count ?? response.data,
       };
     else throw '서버 통신 실패';
-  };
-
-  const getResultKeywords = async () => {
-    await wait(2000);
-    return NEOGA_DATA.KEYWORD_LISTS;
-  };
-
-  const getAllResultListTemplates = async () => {
-    await wait(2000);
-    return NEOGA_DATA.NEOGA_RESULT;
   };
 
   const postAnswerBookmark = async (answerID: number) => {
@@ -164,10 +154,52 @@ export function NeogaDataRemote(): NeogaService {
       return {
         id: id,
         title: title,
-        subtitle: subtitle,
+        subtitle: subtitle.replace('\\n', '\n'),
         image: darkIconImage,
       };
     } else throw '서버 통신 실패';
+  };
+
+  const getNeososeoInfo = async (formID: number) => {
+    const response = await privateAPI.get({ url: `/form/detail/${formID}` });
+    if (!response.data) throw new NotFoundError('해당 유저와 폼 아이디로 생성된 폼이 없습니다.');
+    return {
+      id: response.data.id,
+      title: response.data.title,
+      subtitle: response.data.subtitle.replace('\\n', '\n'),
+      darkIconImage: response.data.darkIconImage,
+      createdAt: response.data.createdAt,
+      q: response.data.q,
+      keywordList: response.data.keyword.map((keyword: any) => ({
+        id: keyword.id,
+        content: keyword.name,
+        color: keyword.colorcode,
+      })),
+    };
+  };
+
+  const getNeososeoFeedback = async (formID: number) => {
+    const response = await privateAPI.get({ url: `/form/detail/${formID}/answer` });
+    return {
+      answerCount: response.data.answerCount,
+      answerList: response.data.answer
+        ? response.data.answer.map((feedback: any) => ({
+            formID: feedback.formID,
+            id: feedback.id,
+            name: feedback.name,
+            relationship: feedback.relationship,
+            content: feedback.content,
+            isPinned: feedback.isPinned,
+            createdAt: feedback.createdAt,
+            keywordList: feedback.keywords.map((keyword: any) => ({
+              id: keyword.id,
+              content: keyword.name,
+              color: keyword.colorcode,
+              answerId: keyword.answerId,
+            })),
+          }))
+        : [],
+    };
   };
 
   return {
@@ -176,12 +208,10 @@ export function NeogaDataRemote(): NeogaService {
     getAllTemplates,
     getMainResultCard,
     getFormResultCard,
-    getResultKeywords,
-    getAllResultListTemplates,
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,
+    getNeososeoInfo,
+    getNeososeoFeedback,
   };
 }
-
-const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

@@ -7,7 +7,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
     const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
     return {
       title: response.data.form.title,
-      content: response.data.form.subtitle,
+      content: response.data.form.subtitle.replace('\\n', '\n'),
       imageSub: response.data.form.lightIconImage,
       relation: response.data.relationship.map((relation: any) => ({
         id: relation.id,

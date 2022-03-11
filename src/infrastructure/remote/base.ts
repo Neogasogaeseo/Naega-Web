@@ -1,9 +1,6 @@
-import { isProduction } from '@utils/constant';
 import axios from 'axios';
 
-const BASEURL = isProduction
-  ? 'https://asia-northeast3-neogasogaeseo-9aaf5.cloudfunctions.net/api'
-  : 'http://127.0.0.1:5000/neogasogaeseo-9aaf5/asia-northeast3/api';
+const BASEURL = 'https://asia-northeast3-neogasogaeseo-9aaf5.cloudfunctions.net/api';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
 const getBasePrivateHeaders = () => ({

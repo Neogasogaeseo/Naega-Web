@@ -9,7 +9,7 @@ import {
   StFeedHeader,
   StFeedName,
   StNeogaDetailFormCard,
-} from '../style';
+} from './style';
 
 type NeogaDetailFormCardProps = FeedAnswer;
 

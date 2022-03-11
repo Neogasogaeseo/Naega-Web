@@ -1,5 +1,7 @@
+import { NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE } from '@utils/constant';
+import { AxiosError } from 'axios';
 import { publicAPI } from './base';
 
 export function userDataRemote(): UserService {
@@ -24,7 +26,9 @@ export function userDataRemote(): UserService {
   };
 
   const getMyPageInfo = async (userID: string) => {
-    const response = await publicAPI.get({ url: `/user/${userID}` });
+    const response = await publicAPI.get({ url: `/user/${userID}` }).catch((error: AxiosError) => {
+      if (error.response?.status === 404) throw new NotFoundError('사용자를 찾을 수 없습니다.');
+    });
     return {
       username: response.data.user.name,
       userID: response.data.user.profileId,
@@ -58,7 +62,7 @@ export function userDataRemote(): UserService {
             content: bookmark.content,
             isBookmarked: bookmark.isPinned,
             keywordList: bookmark.keywords.map((keyword: any) => ({
-              id: keyword.answerId,
+              id: keyword.name,
               content: keyword.name,
               color: keyword.colorCode,
             })),
@@ -86,7 +90,7 @@ export function userDataRemote(): UserService {
             body: feedback.content,
             createdAt: feedback.createdAt,
             keywordList: feedback.keywords.map((keyword: any) => ({
-              id: keyword.answerId,
+              id: keyword.name,
               content: keyword.name,
               color: keyword.colorCode,
             })),

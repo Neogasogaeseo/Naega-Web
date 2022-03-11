@@ -1,6 +1,5 @@
 import { StQuestion, StContent, StFlexWrapper } from './style';
 import { ImgQuestionFrame } from '@assets/images';
-import { splitIntoTwoLines } from '@utils/string';
 
 export default function Question({ content }: { content: string }) {
   return (
@@ -9,7 +8,7 @@ export default function Question({ content }: { content: string }) {
         <ImgQuestionFrame />
         <StContent>
           <div>Q.</div>
-          <div>{splitIntoTwoLines(content)}</div>
+          <div>{content}</div>
         </StContent>
       </StFlexWrapper>
     </StQuestion>

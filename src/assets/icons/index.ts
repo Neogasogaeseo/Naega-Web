@@ -33,3 +33,4 @@ export { ReactComponent as IcMypageEdit } from './ic_mypage_edit.svg';
 export { default as icNewTag } from './ic_new_tag.svg';
 export { ReactComponent as IcEmptyFeedback } from './ic_empty_feedback.svg';
 export { ReactComponent as IcEmptyKeyword } from './ic_empty_keyword.svg';
+export { ReactComponent as IcLinkCoral } from './ic_link_coral.svg';

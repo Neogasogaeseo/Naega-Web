@@ -1,4 +1,3 @@
-import { splitIntoTwoLines } from '@utils/string';
 import { StCircle, StQuestionCard } from './style';
 
 interface QuestionCardProps {
@@ -13,7 +12,7 @@ export default function QuestionCard(props: QuestionCardProps) {
   return (
     <StQuestionCard>
       <img src={image} />
-      <div>{splitIntoTwoLines(content)}</div>
+      <div>{content}</div>
       <div>{title}</div>
       <div>
         <StCircle />

@@ -62,4 +62,5 @@ export const StFeedContent = styled.div`
   margin-bottom: 14px;
   font-size: 14px;
   line-height: 140%;
+  white-space: pre-wrap;
 `;

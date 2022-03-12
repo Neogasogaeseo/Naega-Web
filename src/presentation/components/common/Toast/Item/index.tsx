@@ -11,7 +11,9 @@ function ToastItem(props: Toast) {
       setIsClosing(true);
       clearTimeout(setExistTimeout);
     }, duration ?? 1000);
-  });
+
+    return () => clearTimeout(setExistTimeout);
+  }, []);
 
   return (
     <StToastItem bottom={bottom} isClosing={isClosing}>

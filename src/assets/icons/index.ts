@@ -34,3 +34,5 @@ export { default as icNewTag } from './ic_new_tag.svg';
 export { ReactComponent as IcEmptyFeedback } from './ic_empty_feedback.svg';
 export { ReactComponent as IcEmptyKeyword } from './ic_empty_keyword.svg';
 export { ReactComponent as IcLinkCoral } from './ic_link_coral.svg';
+export { ReactComponent as IcSetting } from './ic_setting.svg';
+export { ReactComponent as IcBell } from './ic_bell.svg';

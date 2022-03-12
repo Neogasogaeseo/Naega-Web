@@ -202,6 +202,10 @@ export function NeogaDataRemote(): NeogaService {
     };
   };
 
+  const deleteAnswer = async () => {
+    return { isSuccess: true };
+  };
+
   return {
     getBannerTemplate,
     getMainTemplate,
@@ -213,5 +217,6 @@ export function NeogaDataRemote(): NeogaService {
     getCreateFormInfo,
     getNeososeoInfo,
     getNeososeoFeedback,
+    deleteAnswer,
   };
 }

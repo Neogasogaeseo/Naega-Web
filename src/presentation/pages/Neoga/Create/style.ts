@@ -28,12 +28,13 @@ export const StWhiteWrapper = styled(StWrapper)`
     font-size: 15px;
     color: ${COLOR.GRAY_5};
     line-height: 144%;
-    margin-bottom: 48px;
+    margin-top: 12px;
+    margin-bottom: 32px;
   }
   & > div:nth-child(4) {
     display: flex;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -43,5 +44,5 @@ export const StViewModeSelector = styled.div<{ selected: boolean }>`
   padding: 8px 20px;
   color: ${({ selected }) => (selected ? COLOR.WHITE : COLOR.GRAY_5)};
   background-color: ${({ selected }) => (selected ? COLOR.GRAY_7 : COLOR.GRAY_1)};
-  ${FONT_STYLES.R_13_TITLE}
+  ${FONT_STYLES.M_13_TITLE}
 `;

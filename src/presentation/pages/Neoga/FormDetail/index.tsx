@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 import { useToast } from '@hooks/useToast';
 import { copyClipboard } from '@utils/copyClipboard';
@@ -7,7 +8,6 @@ import { DOMAIN } from '@utils/constant';
 import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import NeogaDetailFormEmptyView from '@components/common/Empty/NeogaDetailForm';
-import NeogaDetailFormCard from '@components/NeogaDetailFormCard';
 import {
   StNeogaDetailForm,
   StDate,
@@ -20,12 +20,18 @@ import {
   StDivisionLine,
 } from './style';
 import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
-import { useQuery } from 'react-query';
 import { api } from '@api/index';
+import NeogaDetailFormCard from '@components/NeogaDetailFormCard';
+import NeososeoPickerBottomSheet from '@components/common/BottomSheet/NeososeoPicker';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
   const [lookMoreButton, setLookMoreButton] = useState(false);
+  const [bottomSheetOpened, setBottomSheetOpened] = useState(false);
+  const [bottomSheetState, setBottomSheetState] = useState<{ id: number; isPinned: boolean }>({
+    id: 0,
+    isPinned: false,
+  });
 
   const { fireToast } = useToast();
   const navigate = useNavigate();
@@ -39,11 +45,21 @@ function NeogaDetailForm() {
   );
   const link = `${DOMAIN}/neososeoform/${resultDetail?.q ?? ''}`;
 
-  const { data: resultFeedback } = useQuery(
+  const { data: resultFeedback, refetch: refetchFeedbacks } = useQuery(
     ['nssFeedbacksDetail', formID],
     () => api.neogaService.getNeososeoFeedback(+(formID ?? 0)),
     { useErrorBoundary: true, retry: 1 },
   );
+
+  const openBottomSheet = (isPinned: boolean, id: number) => {
+    setBottomSheetState({ id, isPinned });
+    setBottomSheetOpened(true);
+  };
+
+  const closeBottomSheet = () => {
+    setBottomSheetOpened(false);
+    refetchFeedbacks();
+  };
 
   if (!resultDetail) return <>로딩중</>;
   return (
@@ -116,12 +132,21 @@ function NeogaDetailForm() {
             의 답변을 받았어요
           </StFeedTitle>
           {resultFeedback.answerList.map((feedback) => (
-            <NeogaDetailFormCard key={feedback.id} {...feedback} />
+            <NeogaDetailFormCard
+              key={feedback.id}
+              {...feedback}
+              openBottomSheet={openBottomSheet}
+            />
           ))}
         </>
       ) : (
         <NeogaDetailFormEmptyView link={link} />
       )}
+      <NeososeoPickerBottomSheet
+        opened={bottomSheetOpened}
+        close={closeBottomSheet}
+        {...bottomSheetState}
+      />
     </StNeogaDetailForm>
   );
 }

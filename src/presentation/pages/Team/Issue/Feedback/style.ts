@@ -5,26 +5,28 @@ import { COMMON_INPUT } from '@styles/common/input';
 import styled from 'styled-components';
 
 export const StAbsoluteWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
+  top: 0;
+  z-index: 20;
 `;
 
 export const StBlackBlur = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.44);
-  z-index: 50;
+  z-index: 55;
 
   animation: ${ANIMATION.FADE_IN} 1s;
 `;
 
 export const StWrapper = styled.div`
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: min(100vw, 400px);
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   background-color: ${COLOR.WHITE};
@@ -53,7 +55,7 @@ export const StButton = styled.button`
   ${FULL_WIDTH_BUTTON};
   background-color: ${COLOR.GRAY_3};
   color: ${COLOR.WHITE};
-  
+
   :not(:disabled) {
     ${CORAL_MAIN_BUTTON};
   }

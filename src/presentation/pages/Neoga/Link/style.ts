@@ -3,16 +3,15 @@ import { COLOR } from '@styles/common/color';
 
 export const StNeogaLink = styled.div`
   width: 100%;
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: ${COLOR.GRAY_1};
   height: 100vh;
-  & > *:first-child {
-    margin-top: 50px;
-    margin-bottom: 69px;
+  & > *:last-child {
+    margin-top: 136px;
+    margin-bottom: 256px;
   }
 `;
 

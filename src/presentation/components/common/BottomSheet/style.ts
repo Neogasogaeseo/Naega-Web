@@ -14,7 +14,7 @@ export const StBlackBlur = styled.div<{ isClosing: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.44);
   z-index: 50;
@@ -24,7 +24,7 @@ export const StBlackBlur = styled.div<{ isClosing: boolean }>`
 
 export const StWrapper = styled.div<{ isClosing: boolean }>`
   position: fixed;
-  width: 100%;
+  width: min(100vw, 400px);
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   background-color: ${COLOR.WHITE};

@@ -6,7 +6,6 @@ export const StNeogaLink = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   background-color: ${COLOR.GRAY_1};
   height: 100vh;
   & > *:last-child {

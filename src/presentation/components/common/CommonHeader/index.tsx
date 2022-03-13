@@ -4,10 +4,15 @@ import { IcBell, IcSetting } from '@assets/icons';
 import { ImgLogoHeader } from '@assets/images';
 import { StCommonHeader, StLoginButton, StNotification, StWrapper } from './style';
 import { useLoginUser } from '@hooks/useLoginUser';
+import { api } from '@api/index';
+import { useQuery } from 'react-query';
 
 export default function CommonHeader() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useLoginUser();
+  const { isAuthenticated, userID } = useLoginUser();
+  const { data: isNotice } = useQuery('isNotice', () =>
+    api.headerService.getIsNotice(Number(userID)),
+  );
   return (
     <StCommonHeader>
       <div>
@@ -22,7 +27,7 @@ export default function CommonHeader() {
               <IcSetting />
               <IcBell />
             </StWrapper>
-            <StNotification />
+            {isNotice && <StNotification />}
           </>
         ) : (
           <StLoginButton

@@ -24,7 +24,7 @@ export const StTitle = styled.div`
   font-weight: 600;
   font-size: 24px;
   color: ${COLOR.GRAY_8};
-  margin-top: 42px;
+  margin-top: 68px;
   margin-bottom: 30px;
 `;
 

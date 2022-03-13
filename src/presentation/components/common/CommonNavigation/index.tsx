@@ -18,9 +18,7 @@ export default function CommonNavigation(props: CommonNavigationProps) {
       {isBack && <StBack src={icBack} onClick={onClickBack ? onClickBack : () => navigate(-1)} />}
       {title && <StTitle>{title}</StTitle>}
       {submitButton && (
-        <StSubmitButton onClick={submitButton && submitButton.onClick}>
-          {submitButton && submitButton.content}
-        </StSubmitButton>
+        <StSubmitButton onClick={submitButton.onClick}>{submitButton.content}</StSubmitButton>
       )}
     </StCommonNavigation>
   );

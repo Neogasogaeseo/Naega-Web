@@ -16,7 +16,7 @@ export const StNeogaLink = styled.div`
   }
 `;
 
-export const StLinkCreateButton = styled.div`
+export const StLinkButton = styled.div<{ isCreated: boolean }>`
   display: flex;
   align-items: center;
   position: absolute;
@@ -24,12 +24,13 @@ export const StLinkCreateButton = styled.div`
   left: 82px;
   cursor: pointer;
   & > div {
+    margin-left: 2px;
     font-family: Pretendard;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: ${COLOR.CORAL_MAIN};
+    color: ${(props) => (props.isCreated ? COLOR.WHITE : COLOR.CORAL_MAIN)};
   }
 `;

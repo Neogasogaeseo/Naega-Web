@@ -9,6 +9,14 @@ export const ANIMATION = {
           transform: translateY(0);
         }
     `,
+  SWIPE_DOWN: keyframes`
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(100vh);
+      }
+    `,
   SWIPE_FROM_RIGHT: keyframes`
     from {
         transform: translateX(100vw);

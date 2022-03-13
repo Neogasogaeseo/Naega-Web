@@ -15,6 +15,7 @@ export interface NeogaService {
   getMainResultCard(): Promise<NeogaResultCardItem>;
   getFormResultCard(): Promise<NeogaResultCardItem>;
   postAnswerBookmark(answerID: number): Promise<{ isSuccess: boolean }>;
+  deleteAnswer(answerID: number): Promise<{ isSuccess: boolean }>;
   postCreateForm(formID: number): Promise<{ isCreated: boolean; q: string }>;
   getCreateFormInfo(formID: number): Promise<CreateFormInfo>;
   getNeososeoInfo(formID: number): Promise<ResultDetail>;

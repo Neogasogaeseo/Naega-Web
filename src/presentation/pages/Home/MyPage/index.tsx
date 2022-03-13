@@ -1,5 +1,4 @@
 import { api } from '@api/index';
-import { MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from '@api/types/user';
 import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
@@ -26,13 +25,11 @@ import {
 import MyEmptyView from '@components/common/Empty/MyPage';
 import { DOMAIN } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
+import { useQuery } from 'react-query';
 
 function HomeMyPage() {
   const { userID } = useParams();
   const { userID: loginID } = useLoginUser();
-  const [mypageInfo, setMypageInfo] = useState<MyPageInfo | null>(null);
-  const [neososeoBookmark, setNeososeoBookmark] = useState<NeososeoAnswerBookmark | null>(null);
-  const [feedbackBookmark, setFeedbackBookmark] = useState<TeamFeedbackBookmark | null>(null);
   const [isMyPage, setIsMyPage] = useState(false);
   const { pathname } = useLocation();
   const { fireToast } = useToast();
@@ -42,132 +39,142 @@ function HomeMyPage() {
     setIsMyPage(userID === loginID);
   }, [userID, loginID]);
 
-  useEffect(() => {
-    if (!userID) return;
-    (async () => {
-      const data = await api.userService.getMyPageInfo(userID);
-      setMypageInfo(data);
-    })();
-  }, [userID]);
+  const { data: mypageInfo, isLoading: isMyPageInfoLoading } = useQuery(
+    ['userInfo', userID],
+    () => api.userService.getMyPageInfo(userID ?? ''),
+    { useErrorBoundary: true, retry: 1 },
+  );
 
-  useEffect(() => {
-    if (!userID) return;
-    (async () => {
-      const data = await api.userService.getNeososeoBookmark(userID);
-      setNeososeoBookmark(data);
-    })();
-  }, [userID]);
+  const { data: neososeoBookmark, isLoading: isNSSBookmarkLoading } = useQuery(
+    ['nssBookmark', userID],
+    () => api.userService.getNeososeoBookmark(userID ?? ''),
+    { useErrorBoundary: true, retry: 1 },
+  );
 
-  useEffect(() => {
-    if (!userID) return;
-    (async () => {
-      const data = await api.userService.getFeedbackBookmark(userID);
-      setFeedbackBookmark(data);
-    })();
-  }, [userID]);
+  const { data: feedbackBookmark, isLoading: isTSSBookmarkLoading } = useQuery(
+    ['tssBookmark', userID],
+    () => api.userService.getFeedbackBookmark(userID ?? ''),
+    { useErrorBoundary: true, retry: 1 },
+  );
 
   return (
     <StHomeMyPage>
-      {mypageInfo && (
-        <>
-          <StHomeMyPageHeader>
-            <StMyPageProfile>
-              <img src={mypageInfo.profileImage || imgEmptyProfile} />
-              {isMyPage && <IcMypageEdit />}
-            </StMyPageProfile>
-            <div>
-              <div>{mypageInfo.username}</div>
-              <div>@{mypageInfo.userID}</div>
-            </div>
-            {isMyPage && (
-              <StShare
-                onClick={() =>
-                  copyClipboard(`${DOMAIN}${pathname}`, () =>
-                    fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
-                  )
-                }
-              >
-                <IcCopyMypage />
-                <span>My 공유하기</span>
-              </StShare>
-            )}
-          </StHomeMyPageHeader>
-          <div style={{ marginBottom: 32 }}>
-            {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
-              <>
-                <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
-                <ImmutableKeywordList keywordList={mypageInfo.neososeo} onItemClick={() => null} />
-              </>
-            )}
-            {mypageInfo.team && mypageInfo.team.length !== 0 && (
-              <>
-                <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
-                <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
-              </>
-            )}
-          </div>
-        </>
-      )}
-      <StGreyBorder />
-      {neososeoBookmark && (
-        <div>
-          <StTitle>
-            <div>
-              <span>내가 사랑한 내 소개</span>
-              <span>{neososeoBookmark.count}</span>
-            </div>
-            {isMyPage && (
-              <StDetailLink to="/neoga/result">
-                <span>전체보기</span>
-                <IcArrowViewAll />
-              </StDetailLink>
-            )}
-          </StTitle>
-          {neososeoBookmark.count > 0 ? (
-            <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
-          ) : (
-            <MyEmptyView
-              isMyPage={isMyPage}
-              origin="너가소개서"
-              onPickButtonClicked={() => navigate('/neoga/result')}
-            />
-          )}
-        </div>
-      )}
-      <StGreyBorder />
-      {feedbackBookmark && (
-        <StNegativeMarginWrapper>
-          <StFeedbackTeamWrapper>
-            <StTitle>
+      {isMyPageInfoLoading ? (
+        <div>마이페이지 정보 로딩중</div>
+      ) : (
+        mypageInfo && (
+          <>
+            <StHomeMyPageHeader>
+              <StMyPageProfile>
+                <img src={mypageInfo.profileImage || imgEmptyProfile} />
+                {isMyPage && <IcMypageEdit />}
+              </StMyPageProfile>
               <div>
-                <span>팀에서 받은 내 소개</span>
-                <span>{feedbackBookmark.count}</span>
+                <div>{mypageInfo.username}</div>
+                <div>@{mypageInfo.userID}</div>
               </div>
               {isMyPage && (
-                <StDetailLink to="/home/team">
+                <StShare
+                  onClick={() =>
+                    copyClipboard(`${DOMAIN}${pathname}`, () =>
+                      fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
+                    )
+                  }
+                >
+                  <IcCopyMypage />
+                  <span>My 공유하기</span>
+                </StShare>
+              )}
+            </StHomeMyPageHeader>
+            <div style={{ marginBottom: 32 }}>
+              {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
+                <>
+                  <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
+                  <ImmutableKeywordList
+                    keywordList={mypageInfo.neososeo}
+                    onItemClick={() => null}
+                  />
+                </>
+              )}
+              {mypageInfo.team && mypageInfo.team.length !== 0 && (
+                <>
+                  <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
+                  <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+                </>
+              )}
+            </div>
+          </>
+        )
+      )}
+
+      <StGreyBorder />
+      {isNSSBookmarkLoading ? (
+        <div>너소서 북마크 정보 로딩중</div>
+      ) : (
+        neososeoBookmark && (
+          <div>
+            <StTitle>
+              <div>
+                <span>내가 사랑한 내 소개</span>
+                <span>{neososeoBookmark.count}</span>
+              </div>
+              {isMyPage && (
+                <StDetailLink to="/neoga/result">
                   <span>전체보기</span>
                   <IcArrowViewAll />
                 </StDetailLink>
               )}
             </StTitle>
-            <ProfileList
-              isSquare={true}
-              profileList={feedbackBookmark.teamList}
-              onProfileClick={() => null}
-              onAddClick={() => null}
-              isAddNeeded={false}
-            />
-          </StFeedbackTeamWrapper>
-          {feedbackBookmark.feedbackList.length > 0 ? (
-            <FeedbackCardExpandableList feedbacks={feedbackBookmark.feedbackList} />
-          ) : (
-            <MyEmptyView
-              isMyPage={isMyPage}
-              origin="팀원소개서"
-              onPickButtonClicked={() => navigate('/home/team')}
-            />
-          )}
-        </StNegativeMarginWrapper>
+            {neososeoBookmark.count > 0 ? (
+              <NeososeoAnswerCardExpandableList answers={neososeoBookmark.answerList} />
+            ) : (
+              <MyEmptyView
+                isMyPage={isMyPage}
+                origin="너가소개서"
+                onPickButtonClicked={() => navigate('/neoga/result')}
+              />
+            )}
+          </div>
+        )
+      )}
+      <StGreyBorder />
+      {isTSSBookmarkLoading ? (
+        <div>팀소서 북마크 정보 로딩중</div>
+      ) : (
+        feedbackBookmark && (
+          <StNegativeMarginWrapper>
+            <StFeedbackTeamWrapper>
+              <StTitle>
+                <div>
+                  <span>팀에서 받은 내 소개</span>
+                  <span>{feedbackBookmark.count}</span>
+                </div>
+                {isMyPage && (
+                  <StDetailLink to="/home/team">
+                    <span>전체보기</span>
+                    <IcArrowViewAll />
+                  </StDetailLink>
+                )}
+              </StTitle>
+              <ProfileList
+                isSquare={true}
+                profileList={feedbackBookmark.teamList}
+                onProfileClick={() => null}
+                onAddClick={() => null}
+                isAddNeeded={false}
+              />
+            </StFeedbackTeamWrapper>
+            {feedbackBookmark.feedbackList.length > 0 ? (
+              <FeedbackCardExpandableList feedbacks={feedbackBookmark.feedbackList} />
+            ) : (
+              <MyEmptyView
+                isMyPage={isMyPage}
+                origin="팀원소개서"
+                onPickButtonClicked={() => navigate('/home/team')}
+              />
+            )}
+          </StNegativeMarginWrapper>
+        )
       )}
       <StGreyBorderTall />
     </StHomeMyPage>

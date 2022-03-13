@@ -6,6 +6,7 @@ export { default as icBookmarkSelected } from './ic_bookmark_selected.svg';
 export { default as icBookmarkUnselected } from './ic_bookmark_unselected.svg';
 export { default as icSearch } from './ic_search.svg';
 export { ReactComponent as IcBack } from './ic_back.svg';
+export { default as icBack } from './ic_back.svg';
 export { ReactComponent as IcDelete } from './ic_delete.svg';
 export { default as icMemberAdd } from './ic_member_add.svg';
 export { default as icMemberAdded } from './ic_member_added.svg';

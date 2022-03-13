@@ -25,15 +25,8 @@ export default function NeogaLink() {
   }, []);
 
   return (
-    <StNeogaLink>
-      {isCreated ? (
-        <QuestionCard isBack={true}>
-          <StLinkButton isCreated={isCreated}>
-            <IcLinkWhite />
-            <div>링크 복사하기</div>
-          </StLinkButton>
-        </QuestionCard>
-      ) : (
+    <StNeogaLink isCreated={isCreated}>
+      <div>
         <QuestionCard
           content={formData.subtitle}
           title={formData.title}
@@ -44,7 +37,13 @@ export default function NeogaLink() {
             <div>링크 생성하기</div>
           </StLinkButton>
         </QuestionCard>
-      )}
+        <QuestionCard isBack={true}>
+          <StLinkButton onClick={() => setIsCreated(false)} isCreated={isCreated}>
+            <IcLinkWhite />
+            <div>링크 복사하기</div>
+          </StLinkButton>
+        </QuestionCard>
+      </div>
     </StNeogaLink>
   );
 }

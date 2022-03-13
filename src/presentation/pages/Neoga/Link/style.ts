@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StNeogaLink = styled.div`
+export const StNeogaLink = styled.div<{ isCreated: boolean }>`
   width: 100%;
   padding: 0 20px;
   display: flex;
@@ -10,9 +10,25 @@ export const StNeogaLink = styled.div`
   justify-content: center;
   background-color: ${COLOR.GRAY_1};
   height: 100vh;
-  & > *:first-child {
+  & > div {
     margin-top: 50px;
     margin-bottom: 69px;
+    position: relative;
+    width: 284px;
+    height: 364px;
+    & > * {
+      transition: 1s;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+    & > *:first-child {
+      transform: ${(props) => (props.isCreated ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+    }
+    & > *:last-child {
+      transform: ${(props) => (props.isCreated ? 'rotateY(0deg)' : 'rotateY(-180deg)')};
+    }
   }
 `;
 

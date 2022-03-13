@@ -1,8 +1,6 @@
-import { api } from '@api/index';
 import { FeedAnswer } from '@api/types/neoga';
-import { icBookmarkSelected, icBookmarkUnselected } from '@assets/icons';
+import { IcMeatball } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { useState } from 'react';
 import {
   StFeedContent,
   StFeedDate,
@@ -11,16 +9,13 @@ import {
   StNeogaDetailFormCard,
 } from './style';
 
-type NeogaDetailFormCardProps = FeedAnswer;
+type NeogaDetailFormCardProps = FeedAnswer & {
+  openBottomSheet: (isPinned: boolean, id: number) => void;
+};
 
 function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
-  const { id, name, relationship, content, createdAt, keywordList } = props;
-  const [isBookmarked, setIsBookmarked] = useState(props.isPinned);
-
-  const bookmarkAnswer = async () => {
-    const response = await api.neogaService.postAnswerBookmark(id);
-    if (response.isSuccess) setIsBookmarked((prev) => !prev);
-  };
+  const { id, name, relationship, content, createdAt, keywordList, openBottomSheet, isPinned } =
+    props;
 
   return (
     <StNeogaDetailFormCard>
@@ -33,11 +28,7 @@ function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
         <div>
           <StFeedDate>
             <div>{createdAt}</div>
-            <img
-              src={isBookmarked ? icBookmarkSelected : icBookmarkUnselected}
-              alt="bookmark"
-              onClick={bookmarkAnswer}
-            />
+            <IcMeatball onClick={() => openBottomSheet(isPinned, id)} />
           </StFeedDate>
         </div>
       </StFeedHeader>

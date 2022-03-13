@@ -2,15 +2,15 @@ import { imgLinkCreated } from '@assets/images';
 import { StSuggest, StCircle, StQuestionCard, StFormTitle } from './style';
 
 interface QuestionCardProps {
-  image: string;
-  title: string;
-  content: string;
+  image?: string;
+  title?: string;
+  content?: string;
   children: React.ReactNode;
   isBack?: boolean;
 }
 
 export default function QuestionCard(props: QuestionCardProps) {
-  const { image, title, content, children, isBack = false } = props;
+  const { image = '', title = '', content = '', children, isBack = false } = props;
   return (
     <StQuestionCard isBack={isBack}>
       <img src={isBack ? imgLinkCreated : image} />

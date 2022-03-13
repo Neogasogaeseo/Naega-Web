@@ -37,8 +37,5 @@ export { ReactComponent as IcLinkCoral } from './ic_link_coral.svg';
 export { default as icPick } from './ic_pick.svg';
 export { default as icTrash } from './ic_trash.svg';
 export { ReactComponent as IcMeatball } from './ic_meatball.svg';
-<<<<<<< HEAD
 export { ReactComponent as IcSetting } from './ic_setting.svg';
 export { ReactComponent as IcBell } from './ic_bell.svg';
-=======
->>>>>>> dev

@@ -15,13 +15,13 @@ type BottomSheetButton = {
 };
 
 type BottomSheetProps = {
-  opened: boolean;
-  buttons: BottomSheetButton[];
-  close: () => void;
+  isOpened: boolean;
+  buttonList: BottomSheetButton[];
+  closeBottomSheet: () => void;
 };
 
 function BottomSheet(props: BottomSheetProps) {
-  const { buttons, opened, close } = props;
+  const { buttonList: buttons, isOpened: opened, closeBottomSheet: close } = props;
   const [isClosing, setIsClosing] = useState(false);
   const closeModal = () => {
     setIsClosing(true);

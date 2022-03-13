@@ -34,12 +34,12 @@ function NeososeoPickerBottomSheet(props: NeososeoPickerBottomSheetProps) {
 
   return (
     <BottomSheet
-      buttons={[
+      buttonList={[
         { icon: icPick, label: isPinned ? '픽 취소하기' : '픽 하기', onClick: bookmarkAnswer },
         { icon: icTrash, label: '삭제하기', onClick: removeAnswer },
       ]}
-      close={close}
-      opened={opened}
+      closeBottomSheet={close}
+      isOpened={opened}
     />
   );
 }

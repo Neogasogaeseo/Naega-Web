@@ -20,13 +20,14 @@ function NeogaCreateCardList(props: NeogaCreateCardListProps) {
   const { cards, onItemClick } = props;
   return (
     <StNeogaCreateCardList>
-      {cards.map((card) => (
+      {cards.map((card, idx) => (
         <NeogaCreateCardItem
           key={card.id}
           {...card}
           onClick={() => {
             onItemClick(card.id, card.isCreated);
           }}
+          idx={idx}
         />
       ))}
     </StNeogaCreateCardList>

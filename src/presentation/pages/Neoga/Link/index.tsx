@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { CreateFormInfo } from '@api/types/neoga';
 import QuestionCard from '@components/common/QuestionCard';
 import { IcLinkCoral } from '@assets/icons';
+import CommonHeader from '@components/common/CommonHeader';
 
 export default function NeogaLink() {
   const { formID } = useParams();
@@ -25,6 +26,7 @@ export default function NeogaLink() {
 
   return (
     <StNeogaLink>
+      <CommonHeader />
       <QuestionCard
         content={formData.subtitle}
         title={formData.title}

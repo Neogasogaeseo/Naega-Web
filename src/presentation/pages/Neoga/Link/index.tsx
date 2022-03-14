@@ -59,8 +59,8 @@ export default function NeogaLink() {
             onClick={() =>
               copyClipboard(
                 link,
-                () => fireToast({ content: '링크가 클립보드에 저장되었습니다.', bottom: 190 }),
-                () => fireToast({ content: '다시 시도해주세요.', bottom: 190 }),
+                () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
+                () => fireToast({ content: '다시 시도해주세요.' }),
               )
             }
             isCreated={isCreated}

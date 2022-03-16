@@ -12,15 +12,18 @@ import { copyClipboard } from '@utils/copyClipboard';
 import { useQuery } from 'react-query';
 
 export default function NeogaLink() {
+  const CREATED = 'created';
+  const NEW = 'new';
+
   const navigate = useNavigate();
   const { formID, viewMode } = useParams();
-  const [isCreated, setIsCreated] = useState(viewMode === 'created' ? true : false);
+  const [isCreated, setIsCreated] = useState(viewMode === CREATED ? true : false);
   const { fireToast } = useToast();
   const [link, setLink] = useState<string>('');
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
-    { enabled: viewMode === 'new', useErrorBoundary: true, retry: 1 },
+    { enabled: viewMode === NEW, useErrorBoundary: true, retry: 1 },
   );
 
   const createLink = async () => {
@@ -31,8 +34,8 @@ export default function NeogaLink() {
   };
 
   useEffect(() => {
-    if (!(viewMode === 'new' || viewMode === 'created')) navigate('/');
-    if (viewMode === 'created') createLink();
+    if (!(viewMode === NEW || viewMode === CREATED)) navigate('/');
+    if (viewMode === CREATED) createLink();
   }, []);
 
   return (

@@ -2,7 +2,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StQuestionCard = styled.div<{ isFront: boolean }>`
+export const StFormCard = styled.div<{ isFront: boolean }>`
   width: 284px;
   height: 364px;
   background-color: ${(props) => (props.isFront ? COLOR.WHITE : COLOR.CORAL_MAIN)};

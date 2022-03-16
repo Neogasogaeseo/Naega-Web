@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
-import QuestionCard from '@components/common/QuestionCard';
+import FormCard from '@components/common/FormCard';
 import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
@@ -41,7 +41,7 @@ export default function NeogaLink() {
   return (
     <StNeogaLink isCreated={isCreated}>
       <div>
-        <QuestionCard
+        <FormCard
           content={formData && formData.subtitle}
           title={formData && formData.title}
           image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
@@ -50,8 +50,8 @@ export default function NeogaLink() {
             <IcLinkCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
-        </QuestionCard>
-        <QuestionCard isFront={false}>
+        </FormCard>
+        <FormCard isFront={false}>
           <StLinkButton
             onClick={() =>
               copyClipboard(
@@ -65,7 +65,7 @@ export default function NeogaLink() {
             <IcLinkWhite />
             <div>링크 복사하기</div>
           </StLinkButton>
-        </QuestionCard>
+        </FormCard>
       </div>
     </StNeogaLink>
   );

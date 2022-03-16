@@ -1,7 +1,7 @@
 import { imgLinkCreated } from '@assets/images';
-import { StSuggest, StCircle, StQuestionCard, StFormTitle } from './style';
+import { StSuggest, StCircle, StFormCard, StFormTitle } from './style';
 
-interface QuestionCardProps {
+interface FormCardProps {
   image?: string;
   title?: string;
   content?: string;
@@ -9,10 +9,10 @@ interface QuestionCardProps {
   isFront?: boolean;
 }
 
-export default function QuestionCard(props: QuestionCardProps) {
+export default function FormCard(props: FormCardProps) {
   const { image = '', title = '', content = '', children, isFront = true } = props;
   return isFront ? (
-    <StQuestionCard isFront={isFront}>
+    <StFormCard isFront={isFront}>
       <img src={image} />
       <div>{content}</div>
       <StFormTitle>{title}</StFormTitle>
@@ -22,9 +22,9 @@ export default function QuestionCard(props: QuestionCardProps) {
         <StCircle />
       </div>
       {children}
-    </StQuestionCard>
+    </StFormCard>
   ) : (
-    <StQuestionCard isFront={isFront}>
+    <StFormCard isFront={isFront}>
       <img src={imgLinkCreated} />
       <div>너가소개서 생성 완료!</div>
       <StSuggest>
@@ -37,6 +37,6 @@ export default function QuestionCard(props: QuestionCardProps) {
         <StCircle />
       </div>
       {children}
-    </StQuestionCard>
+    </StFormCard>
   );
 }

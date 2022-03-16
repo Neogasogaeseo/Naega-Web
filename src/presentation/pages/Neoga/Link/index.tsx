@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
@@ -9,7 +10,6 @@ import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
-import { useQuery } from 'react-query';
 
 export default function NeogaLink() {
   const CREATED = 'created';

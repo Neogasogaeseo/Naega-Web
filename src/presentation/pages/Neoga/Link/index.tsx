@@ -17,7 +17,7 @@ export default function NeogaLink() {
 
   const navigate = useNavigate();
   const { formID, viewMode } = useParams();
-  const [isCreated, setIsCreated] = useState(viewMode === CREATED ? true : false);
+  const [isCreated, setIsCreated] = useState(viewMode === CREATED);
   const { fireToast } = useToast();
   const [link, setLink] = useState<string>('');
   const { data: formData } = useQuery(

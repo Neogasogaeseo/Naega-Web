@@ -4,24 +4,24 @@ import { useState } from 'react';
 
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
-import { CreateFormInfo } from '@api/types/neoga';
 import QuestionCard from '@components/common/QuestionCard';
 import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
+import { useQuery } from 'react-query';
 
 export default function NeogaLink() {
+  const navigate = useNavigate();
   const { formID, viewMode } = useParams();
-  const [formData, setFormData] = useState<Omit<CreateFormInfo, 'id'>>({
-    title: '',
-    subtitle: '',
-    image: '',
-  });
   const [isCreated, setIsCreated] = useState(viewMode === 'created' ? true : false);
   const { fireToast } = useToast();
   const [link, setLink] = useState<string>('');
-  const navigate = useNavigate();
+  const { data: formData } = useQuery(
+    ['formData', formID],
+    () => api.neogaService.getCreateFormInfo(Number(formID)),
+    { enabled: viewMode === 'new', useErrorBoundary: true, retry: 1 },
+  );
 
   const createLink = async () => {
     if (!formID || isNaN(+formID)) return;
@@ -32,22 +32,15 @@ export default function NeogaLink() {
 
   useEffect(() => {
     if (!(viewMode === 'new' || viewMode === 'created')) navigate('/');
-    if (formID && !isNaN(+formID)) {
-      if (viewMode === 'new')
-        (async () => {
-          const formData = await api.neogaService.getCreateFormInfo(Number(formID));
-          setFormData(formData);
-        })();
-      else createLink();
-    }
+    if (viewMode === 'created') createLink();
   }, []);
 
   return (
     <StNeogaLink isCreated={isCreated}>
       <div>
         <QuestionCard
-          content={formData.subtitle}
-          title={formData.title}
+          content={formData && formData.subtitle}
+          title={formData && formData.title}
           image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
         >
           <StLinkButton onClick={createLink} isCreated={isCreated}>

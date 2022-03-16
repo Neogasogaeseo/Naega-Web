@@ -2,10 +2,10 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StQuestionCard = styled.div<{ isBack: boolean }>`
+export const StQuestionCard = styled.div<{ isFront: boolean }>`
   width: 284px;
   height: 364px;
-  background-color: ${(props) => (props.isBack ? COLOR.CORAL_MAIN : COLOR.WHITE)};
+  background-color: ${(props) => (props.isFront ? COLOR.WHITE : COLOR.CORAL_MAIN)};
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ export const StQuestionCard = styled.div<{ isBack: boolean }>`
     line-height: 143.99%;
     text-align: center;
     letter-spacing: -0.01em;
-    color: ${(props) => (props.isBack ? COLOR.WHITE : COLOR.GRAY_7)};
+    color: ${(props) => (props.isFront ? COLOR.GRAY_7 : COLOR.WHITE)};
     width: 100%;
     margin-top: 28px;
     white-space: pre-line;

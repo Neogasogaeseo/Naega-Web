@@ -51,7 +51,7 @@ export default function NeogaLink() {
             <div>링크 생성하기</div>
           </StLinkButton>
         </QuestionCard>
-        <QuestionCard isBack={true}>
+        <QuestionCard isFront={false}>
           <StLinkButton
             onClick={() =>
               copyClipboard(

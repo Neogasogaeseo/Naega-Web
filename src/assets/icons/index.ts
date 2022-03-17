@@ -41,3 +41,4 @@ export { ReactComponent as IcMeatball } from './ic_meatball.svg';
 export { ReactComponent as IcSetting } from './ic_setting.svg';
 export { ReactComponent as IcBell } from './ic_bell.svg';
 export { default as icEdit } from './ic_edit.svg';
+export { default as icEditProfile } from './ic_edit_profile.svg';

@@ -3,15 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import BottomSheet from '..';
 import { icEdit } from '@assets/icons';
 
-type ProfileEditBottomSheetProps = {
+type MyPageEditBottomSheetProps = {
   isOpened: boolean;
   closeBottomSheet: () => void;
-  userID: string;
+  type: string;
+  userID?: string;
 };
 
-function ProfileEditBottomSheet(props: ProfileEditBottomSheetProps) {
-  const { isOpened, closeBottomSheet, userID } = props;
+function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
+  const { isOpened, closeBottomSheet, type, userID } = props;
   const navigate = useNavigate();
+
+  const navigateToEditPage = () => {
+    type === 'profile'
+      ? navigate(`/edit/${type}/${userID}`)
+      : navigate(`/edit/delete/${type}/${userID}`);
+  };
 
   return (
     <BottomSheet
@@ -19,9 +26,7 @@ function ProfileEditBottomSheet(props: ProfileEditBottomSheetProps) {
         {
           icon: icEdit,
           label: '수정하기',
-          onClick: () => {
-            navigate(`/edit/profile/${userID}`);
-          },
+          onClick: navigateToEditPage,
         },
       ]}
       closeBottomSheet={closeBottomSheet}
@@ -30,4 +35,4 @@ function ProfileEditBottomSheet(props: ProfileEditBottomSheetProps) {
   );
 }
 
-export default ProfileEditBottomSheet;
+export default MyPageEditBottomSheet;

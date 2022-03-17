@@ -26,7 +26,7 @@ import MyEmptyView from '@components/common/Empty/MyPage';
 import { DOMAIN } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
 import { useQuery } from 'react-query';
-import ProfileEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
+import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -189,7 +189,12 @@ function HomeMyPage() {
         )
       )}
       <StGreyBorderTall />
-      <ProfileEditBottomSheet isOpened={isBottomSheetOpened} closeBottomSheet={closeBottomSheet} userID={userID} />
+      <MyPageEditBottomSheet
+        isOpened={isBottomSheetOpened}
+        closeBottomSheet={closeBottomSheet}
+        type="profile"
+        userID={userID}
+      />
     </StHomeMyPage>
   );
 }

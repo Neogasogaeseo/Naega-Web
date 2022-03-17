@@ -107,5 +107,6 @@ export const StMyPageProfile = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
+    cursor: pointer;
   }
 `;

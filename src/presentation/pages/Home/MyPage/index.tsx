@@ -67,7 +67,7 @@ function HomeMyPage() {
             <StHomeMyPageHeader>
               <StMyPageProfile>
                 <img src={mypageInfo.profileImage || imgEmptyProfile} />
-                {isMyPage && <IcMypageEdit />}
+                {isMyPage && <IcMypageEdit onClick={() => navigate(`/edit/profile/${userID}`)} />}
               </StMyPageProfile>
               <div>
                 <div>{mypageInfo.username}</div>

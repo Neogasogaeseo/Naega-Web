@@ -7,6 +7,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import NeogaRouter from './NeogaRouter';
 import TeamRouter from './TeamRouter';
 import UserRouter from './UserRouter';
+import MyPageEditRouter from './MyPageEditRouter';
 import ReactGA from 'react-ga';
 
 const Router = () => {
@@ -26,6 +27,7 @@ const Router = () => {
           <Route path="/neoga/*" element={<NeogaRouter />} />
           <Route path="/neososeoform/:q/*" element={<NeososeoFormPage />} />
           <Route path="/neososeoform/:q/finish" element={<NeososeoFormFinish />} />
+          <Route path="/edit/*" element={<MyPageEditRouter />} />
         </Routes>
       </Suspense>
     </>

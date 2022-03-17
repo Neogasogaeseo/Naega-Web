@@ -26,14 +26,18 @@ import MyEmptyView from '@components/common/Empty/MyPage';
 import { DOMAIN } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
 import { useQuery } from 'react-query';
+import ProfileEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
 
 function HomeMyPage() {
   const { userID } = useParams();
   const { userID: loginID } = useLoginUser();
   const [isMyPage, setIsMyPage] = useState(false);
+  const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const { pathname } = useLocation();
   const { fireToast } = useToast();
   const navigate = useNavigate();
+
+  if (!userID) return <></>;
 
   useEffect(() => {
     setIsMyPage(userID === loginID);
@@ -57,6 +61,14 @@ function HomeMyPage() {
     { useErrorBoundary: true, retry: 1 },
   );
 
+  const openBottomSheet = () => {
+    setIsBottomSheetOpened(true);
+  };
+
+  const closeBottomSheet = () => {
+    setIsBottomSheetOpened(false);
+  };
+
   return (
     <StHomeMyPage>
       {isMyPageInfoLoading ? (
@@ -67,7 +79,7 @@ function HomeMyPage() {
             <StHomeMyPageHeader>
               <StMyPageProfile>
                 <img src={mypageInfo.profileImage || imgEmptyProfile} />
-                {isMyPage && <IcMypageEdit onClick={() => navigate(`/edit/profile/${userID}`)} />}
+                {isMyPage && <IcMypageEdit onClick={() => openBottomSheet()} />}
               </StMyPageProfile>
               <div>
                 <div>{mypageInfo.username}</div>
@@ -177,6 +189,7 @@ function HomeMyPage() {
         )
       )}
       <StGreyBorderTall />
+      <ProfileEditBottomSheet isOpened={isBottomSheetOpened} closeBottomSheet={closeBottomSheet} userID={userID} />
     </StHomeMyPage>
   );
 }

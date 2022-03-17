@@ -8,6 +8,10 @@ export const StHomeMyPage = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 0 20px;
+
+  & > div:last-of-type {
+    margin-left: -20px;
+  }
 `;
 
 export const StHomeMyPageHeader = styled.div`

@@ -146,9 +146,14 @@ export function NeogaDataRemote(): NeogaService {
   };
 
   const getCreateFormInfo = async (formID: number) => {
-    const response = await privateAPI.get({
-      url: `/form/create/${formID}`,
-    });
+    const response = await privateAPI
+      .get({
+        url: `/form/create/${formID}`,
+      })
+      .catch((error: AxiosError) => {
+        console.log(error);
+        if (error.response?.status === 400) throw new NotFoundError('찾을 수 없는 페이지입니다.');
+      });
     const { id, title, subtitle, darkIconImage } = response.data;
     if (response.status === 200) {
       return {

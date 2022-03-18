@@ -1,42 +1,72 @@
-import { StLinkCreateButton, StNeogaLink } from './style';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { api } from '@api/index';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { CreateFormInfo } from '@api/types/neoga';
-import QuestionCard from '@components/common/QuestionCard';
-import { IcLinkCoral } from '@assets/icons';
-import CommonHeader from '@components/common/CommonHeader';
+import { useQuery } from 'react-query';
+
+import { StLinkButton, StNeogaLink } from './style';
+import { api } from '@api/index';
+import FormCard from '@components/common/FormCard';
+import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
+import { useToast } from '@hooks/useToast';
+import { DOMAIN } from '@utils/constant';
+import { copyClipboard } from '@utils/copyClipboard';
 
 export default function NeogaLink() {
-  const { formID } = useParams();
-  const [formData, setFormData] = useState<Omit<CreateFormInfo, 'id'>>({
-    title: '',
-    subtitle: '',
-    image: '',
-  });
+  const CREATED = 'created';
+  const NEW = 'new';
+
+  const navigate = useNavigate();
+  const { formID, viewMode } = useParams();
+  const [isCreated, setIsCreated] = useState(viewMode === CREATED);
+  const { fireToast } = useToast();
+  const [link, setLink] = useState<string>('');
+  const { data: formData } = useQuery(
+    ['formData', formID],
+    () => api.neogaService.getCreateFormInfo(Number(formID)),
+    { enabled: viewMode === NEW, useErrorBoundary: true, retry: 1 },
+  );
+
+  const createLink = async () => {
+    if (!formID || isNaN(+formID)) return;
+    const { q, isCreated } = await api.neogaService.postCreateForm(+formID);
+    setLink(`${DOMAIN}/neososeoform/${q}`);
+    setIsCreated(isCreated);
+  };
 
   useEffect(() => {
-    if (formID && !isNaN(+formID))
-      (async () => {
-        const formData = await api.neogaService.getCreateFormInfo(Number(formID));
-        setFormData(formData);
-      })();
+    if (!(viewMode === NEW || viewMode === CREATED)) navigate('/');
+    if (viewMode === CREATED) createLink();
   }, []);
 
   return (
-    <StNeogaLink>
-      <CommonHeader />
-      <QuestionCard
-        content={formData.subtitle}
-        title={formData.title}
-        image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
-      >
-        <StLinkCreateButton>
-          <IcLinkCoral />
-          <div>링크 생성하기</div>
-        </StLinkCreateButton>
-      </QuestionCard>
+    <StNeogaLink isCreated={isCreated}>
+      <div>
+        <FormCard
+          content={formData && formData.subtitle}
+          title={formData && formData.title}
+          image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
+        >
+          <StLinkButton onClick={createLink} isCreated={isCreated}>
+            <IcLinkCoral />
+            <div>링크 생성하기</div>
+          </StLinkButton>
+        </FormCard>
+        <FormCard isFront={false}>
+          <StLinkButton
+            onClick={() =>
+              copyClipboard(
+                link,
+                () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
+                () => fireToast({ content: '다시 시도해주세요.' }),
+              )
+            }
+            isCreated={isCreated}
+          >
+            <IcLinkWhite />
+            <div>링크 복사하기</div>
+          </StLinkButton>
+        </FormCard>
+      </div>
     </StNeogaLink>
   );
 }

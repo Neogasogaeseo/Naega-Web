@@ -3,11 +3,9 @@ import { COLOR } from '@styles/common/color';
 
 export const StNeogaLink = styled.div<{ isCreated: boolean }>`
   width: 100%;
-  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background-color: ${COLOR.GRAY_1};
   height: 100vh;
   & > div {

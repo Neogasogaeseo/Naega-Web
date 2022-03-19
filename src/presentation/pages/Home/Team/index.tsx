@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 import { api } from '@api/index';
-import { TeamInvite, TeamIssueCard, TeamMemberNoneId } from '@api/types/team';
 import TeamInvitation from './Invitation';
 import ProfileList from '@components/common/ProfileList';
 import IssueCardList from '@components/common/IssueCardList';
@@ -10,26 +9,13 @@ import HomeTeamEmptyView from '@components/common/Empty/HomeTeam';
 import { StTeamMain, StDivisionLine } from './style';
 
 function HomeTeam() {
-  const [invitation, setInvitation] = useState<TeamInvite | undefined>(undefined);
-  const [profileList, setProfileList] = useState<TeamMemberNoneId[] | null>(null);
-  const [issueList, setIssueList] = useState<TeamIssueCard[] | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    (async () => {
-      const { inviteList } = await api.teamService.getInviteInfo();
-      setInvitation(inviteList[0]);
-      const { profileList } = await api.teamService.getTeamProfile();
-      setProfileList(profileList);
-      const { issueList } = await api.teamService.getMyTeamIssue();
-      setIssueList(issueList);
-    })();
-    return () => {
-      setInvitation(undefined);
-      setProfileList(null);
-      setIssueList(null);
-    };
-  }, []);
+  const { data: teamInviteData } = useQuery('teamInviteData', api.teamService.getInviteInfo);
+  const invitation = teamInviteData?.inviteList[0];
+  const { data: teamProfileData } = useQuery('teamProfileData', api.teamService.getTeamProfile);
+  const profileList = teamProfileData?.profileList;
+  const { data: teamIssueData } = useQuery('teamIssueData', api.teamService.getMyTeamIssue);
+  const issueList = teamIssueData?.issueList;
 
   return (
     <>

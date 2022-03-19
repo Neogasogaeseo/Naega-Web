@@ -263,6 +263,16 @@ export function teamDataRemote(): TeamService {
     }
   };
 
+  const acceptInvitation = async (id: number) => {
+    const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });
+    return { isSuccess: response.success };
+  };
+
+  const rejectInvitation = async (id: number) => {
+    const response = await privateAPI.put({ url: `/team/invite/reject`, data: { teamId: id } });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -278,5 +288,7 @@ export function teamDataRemote(): TeamService {
     postTeamInfo,
     getTeamIssueCategory,
     postTeamIssue,
+    acceptInvitation,
+    rejectInvitation,
   };
 }

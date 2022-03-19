@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { privateAPI } from '@infrastructure/remote/base';
+import { api } from '@api/index';
 import { StInvitation } from './style';
 import { icMessage } from '@assets/icons';
 
@@ -17,8 +17,8 @@ function TeamInvitation(props: TeamInvitationProps) {
   const [isRejected, setIsRejected] = useState(false);
 
   const onAcceptClick = async () => {
-    const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });
-    if (response.status === 200) {
+    const response = await api.teamService.acceptInvitation(id);
+    if (response.isSuccess) {
       setIsAccepted(true);
       setTimeout(() => {
         navigate(0);
@@ -27,8 +27,8 @@ function TeamInvitation(props: TeamInvitationProps) {
   };
 
   const onRejectClick = async () => {
-    const response = await privateAPI.put({ url: `/team/invite/reject`, data: { teamId: id } });
-    if (response.status === 200) {
+    const response = await api.teamService.rejectInvitation(id);
+    if (response.isSuccess) {
       setIsRejected(true);
       setTimeout(() => {
         navigate(0);

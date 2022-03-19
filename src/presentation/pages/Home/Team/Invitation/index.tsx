@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 
 import { api } from '@api/index';
 import { StInvitation } from './style';
@@ -12,7 +12,7 @@ interface TeamInvitationProps {
 
 function TeamInvitation(props: TeamInvitationProps) {
   const { id, name } = props;
-  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isAccepted, setIsAccepted] = useState(false);
   const [isRejected, setIsRejected] = useState(false);
 
@@ -20,9 +20,7 @@ function TeamInvitation(props: TeamInvitationProps) {
     const response = await api.teamService.acceptInvitation(id);
     if (response.isSuccess) {
       setIsAccepted(true);
-      setTimeout(() => {
-        navigate(0);
-      }, 1000);
+      queryClient.invalidateQueries('teamProfileData');
     }
   };
 
@@ -30,9 +28,7 @@ function TeamInvitation(props: TeamInvitationProps) {
     const response = await api.teamService.rejectInvitation(id);
     if (response.isSuccess) {
       setIsRejected(true);
-      setTimeout(() => {
-        navigate(0);
-      }, 1000);
+      queryClient.invalidateQueries('teamProfileData');
     }
   };
 

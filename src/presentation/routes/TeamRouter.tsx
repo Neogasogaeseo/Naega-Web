@@ -4,6 +4,7 @@ import PrivateRoute from './common/PrivateRoute';
 import TeamIssueFeedback from '@pages/Team/Issue/Feedback';
 import TeamIssueKeyword from '@pages/Team/Issue/Keyword';
 const TeamRegister = lazy(() => import('@pages/Team/Register'));
+const TeamEdit = lazy(() => import('@pages/Team/Edit'));
 const TeamMain = lazy(() => import('@pages/Team/Main'));
 const TeamMember = lazy(() => import('@pages/Team/Member'));
 const TeamNewIssue = lazy(() => import('@pages/Team/Issue/NewIssue'));
@@ -13,6 +14,7 @@ const TeamRouter = () => (
   <Routes>
     <Route path="/" element={<PrivateRoute />}>
       <Route path="/register" element={<TeamRegister />} />
+      <Route path="/edit" element={<TeamEdit />} />
       <Route path="/:teamID" element={<TeamMain />} />
       <Route path="/:teamID/member" element={<TeamMember />} />
       <Route path="/:teamID/create" element={<TeamNewIssue />} />

@@ -12,7 +12,7 @@ function NeososeoFormPage() {
 
   return (
     <StNeososeoFormPage>
-      <Outlet context={{ neososeoFormData: isLoading ? undefined : neososeoFormData }} />
+      {!isLoading && neososeoFormData !== undefined && <Outlet context={{ neososeoFormData }} />}
     </StNeososeoFormPage>
   );
 }

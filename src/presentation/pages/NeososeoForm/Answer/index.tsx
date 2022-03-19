@@ -12,7 +12,7 @@ import { StButton, StNeososeoFormLayout, StNeososeoTitle, StSubTitle } from '../
 import { StTextarea, StKeywordListWrapper } from './style';
 
 interface OutletContextProps {
-  neososeoFormData: NeososeoFormData | undefined;
+  neososeoFormData: NeososeoFormData;
 }
 
 function NeososeoFormAnswer() {
@@ -31,8 +31,6 @@ function NeososeoFormAnswer() {
   useEffect(() => {
     setNeososeoAnswer((prev) => ({ ...prev, keyword: keywordList.map((k) => k.id) }));
   }, [keywordList]);
-
-  if (!neososeoFormData) return <></>;
 
   return (
     <>

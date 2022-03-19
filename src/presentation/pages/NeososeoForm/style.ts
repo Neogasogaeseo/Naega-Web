@@ -6,14 +6,6 @@ import styled from 'styled-components';
 export const StNeososeoFormPage = styled.div`
   min-height: 100vh;
   width: 100%;
-  padding: 50px 0;
-  display: grid;
-  grid-template-rows: 70px auto;
-  position: relative;
-
-  & > *:first-child {
-    padding: 0 20px;
-  }
 `;
 
 export const StNeososeoTitle = styled.div`

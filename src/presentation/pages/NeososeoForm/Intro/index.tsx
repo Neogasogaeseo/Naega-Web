@@ -15,7 +15,7 @@ import {
 } from '../style';
 
 interface OutletContextProps {
-  neososeoFormData: NeososeoFormData | undefined;
+  neososeoFormData: NeososeoFormData;
 }
 
 function NeososeoFormIntro() {
@@ -23,7 +23,6 @@ function NeososeoFormIntro() {
   const [relation, setRelation] = useState<Relation | null>(null);
   const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
-  console.log('intro');
 
   const setUserName = (userName: string) =>
     setNeososeoAnswer((prev) => ({ ...prev, name: userName }));
@@ -41,7 +40,6 @@ function NeososeoFormIntro() {
     setRelation(neososeoFormData.relation[0]);
   }, [neososeoFormData]);
 
-  if (!neososeoFormData) return <></>;
   return (
     <StNeososeoFormLayout>
       <StNeososeoTitle>

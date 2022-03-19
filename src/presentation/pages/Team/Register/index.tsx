@@ -59,7 +59,7 @@ function TeamRegister() {
         <StTeamRegisterWrapper>
           <StTitle>팀 등록하기</StTitle>
           <StAbsoluteWrapper>
-            <PhotoUpload width="104px" height="104px" borderRadius="36px" setFile={setImage}>
+            <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
               <ImgTeamAdd />
             </PhotoUpload>
             {!image && <StIcPencil />}

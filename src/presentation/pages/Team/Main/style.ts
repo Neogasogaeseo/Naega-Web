@@ -11,8 +11,8 @@ export const StTeamMain = styled.div`
   padding: 0 20px;
 
   & > button {
-    ${CORAL_MAIN_BUTTON}
-    ${FULL_WIDTH_BUTTON}
+    ${CORAL_MAIN_BUTTON};
+    ${FULL_WIDTH_BUTTON};
     ${FONT_STYLES.M_16_TITLE};
     margin-top: 36px;
     margin-bottom: 35px;
@@ -20,17 +20,25 @@ export const StTeamMain = styled.div`
 `;
 
 export const StTeamInfo = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: calc(100% - 40px);
+  width: 100%;
   margin: 0 auto;
 
+  & > svg {
+    position: absolute;
+    top: 11px;
+    right: 8px;
+    cursor: pointer;
+  }
+
   & > img:nth-of-type(1) {
-    width: 82px;
-    height: 82px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    margin-top: 50px;
+    margin-top: 6px;
     margin-bottom: 18px;
     border-radius: 30px;
   }

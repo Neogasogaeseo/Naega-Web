@@ -1,20 +1,20 @@
-import Question from '@components/common/Question';
-import { neososeoFormState } from '@stores/neososeo-form';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { NeososeoFormData } from '@api/types/neososeo-form';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';
 import { StNeososeoFormHome } from './style';
 
+interface OutletContextProps {
+  neososeoFormData: NeososeoFormData | undefined;
+}
+
 function NeososeoFormHome() {
-  const neososeoFormData = useRecoilValue(neososeoFormState);
+  const { neososeoFormData } = useOutletContext<OutletContextProps>();
   const navigate = useNavigate();
 
   if (!neososeoFormData) return <></>;
   return (
     <StNeososeoFormHome>
-      <div>
-        <Question content={neososeoFormData.content} />
-      </div>
+      <div></div>
       <div>
         <StButton onClick={() => navigate('intro')}>답변 작성하기</StButton>
       </div>

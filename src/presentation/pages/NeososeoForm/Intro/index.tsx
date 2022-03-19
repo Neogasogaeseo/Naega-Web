@@ -1,10 +1,10 @@
-import { Relation } from '@api/types/neososeo-form';
+import { NeososeoFormData, Relation } from '@api/types/neososeo-form';
 import CommonInput from '@components/common/CommonInput';
-import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import {
   StButton,
   StNeososeoFormLayout,
@@ -14,11 +14,16 @@ import {
   StSubTitle,
 } from '../style';
 
+interface OutletContextProps {
+  neososeoFormData: NeososeoFormData | undefined;
+}
+
 function NeososeoFormIntro() {
-  const neososeoFormData = useRecoilValue(neososeoFormState);
+  const { neososeoFormData } = useOutletContext<OutletContextProps>();
   const [relation, setRelation] = useState<Relation | null>(null);
   const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
+  console.log('intro');
 
   const setUserName = (userName: string) =>
     setNeososeoAnswer((prev) => ({ ...prev, name: userName }));

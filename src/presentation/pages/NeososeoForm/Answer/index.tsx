@@ -1,17 +1,22 @@
 import { api } from '@api/index';
+import { NeososeoFormData } from '@api/types/neososeo-form';
 import { Keyword } from '@api/types/user';
 import CommonInput from '@components/common/CommonInput';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
+import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { Link, Outlet, useNavigate, useOutletContext } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { StButton, StNeososeoFormLayout, StNeososeoTitle, StSubTitle } from '../style';
 import { StTextarea, StKeywordListWrapper } from './style';
 
+interface OutletContextProps {
+  neososeoFormData: NeososeoFormData | undefined;
+}
+
 function NeososeoFormAnswer() {
-  const neososeoFormData = useRecoilValue(neososeoFormState);
+  const { neososeoFormData } = useOutletContext<OutletContextProps>();
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
   const [neososeoAnswer, setNeososeoAnswer] = useRecoilState(neososeoAnswerState);
   const navigate = useNavigate();
@@ -38,7 +43,10 @@ function NeososeoFormAnswer() {
             <span>{neososeoFormData.content}</span>
           </StNeososeoTitle>
           <StSubTitle>답변을 입력해주세요</StSubTitle>
-          <StTextarea placeholder="질문에 대한 답변을 입력해주세요" onChange={(e) => setAnswer(e.target.value)} />
+          <StTextarea
+            placeholder="질문에 대한 답변을 입력해주세요"
+            onChange={(e) => setAnswer(e.target.value)}
+          />
           <StSubTitle>답변에 대한 내 키워드를 남겨주세요</StSubTitle>
           <Link to="keyword">
             <CommonInput

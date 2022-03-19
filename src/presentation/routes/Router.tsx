@@ -1,13 +1,12 @@
 import ScrollToTop from '@components/common/ScrollToTop';
 import { useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
-import NeososeoFormPage from '@pages/NeososeoForm';
-import NeososeoFormFinish from '@pages/NeososeoForm/Finish';
 import { Suspense, useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import NeogaRouter from './NeogaRouter';
 import TeamRouter from './TeamRouter';
 import UserRouter from './UserRouter';
 import ReactGA from 'react-ga';
+import FormRouter from './FormRouter';
 
 const Router = () => {
   const location = useLocation();
@@ -24,8 +23,7 @@ const Router = () => {
           <Route path="/*" element={<UserRouter />} />
           <Route path="/team/*" element={<TeamRouter />} />
           <Route path="/neoga/*" element={<NeogaRouter />} />
-          <Route path="/neososeoform/:q/*" element={<NeososeoFormPage />} />
-          <Route path="/neososeoform/:q/finish" element={<NeososeoFormFinish />} />
+          <Route path="/neososeoform/:q/*" element={<FormRouter />} />
         </Routes>
       </Suspense>
     </>

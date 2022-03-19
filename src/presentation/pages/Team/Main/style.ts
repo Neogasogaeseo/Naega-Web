@@ -46,6 +46,7 @@ export const StTeamInfo = styled.div`
   div:first-of-type {
     flex: 1;
     text-align: center;
+    cursor: auto;
 
     h1 {
       margin-bottom: 8px;

@@ -1,5 +1,5 @@
 import { TeamService } from '@api/team';
-import { PostFeedbackRequestBody } from '@api/types/team';
+import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
@@ -263,6 +263,9 @@ export function teamDataRemote(): TeamService {
     }
   };
 
+  const getTeamEditInfo = async (teamID: number) =>
+    new Promise<TeamEditInfo>((resolve) => setTimeout(resolve, teamID));
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -278,5 +281,6 @@ export function teamDataRemote(): TeamService {
     postTeamInfo,
     getTeamIssueCategory,
     postTeamIssue,
+    getTeamEditInfo,
   };
 }

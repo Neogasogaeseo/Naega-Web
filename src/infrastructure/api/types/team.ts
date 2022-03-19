@@ -115,3 +115,9 @@ export type PostIssueResponse = {
   id: number;
   image?: string;
 };
+
+export type TeamEditInfo = {
+  image?: string;
+  name: string;
+  description: string;
+};

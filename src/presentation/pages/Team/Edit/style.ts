@@ -38,3 +38,9 @@ export const StTeamEdit = styled.div`
     color: ${COLOR.GRAY_4};
   }
 `;
+
+export const StTeamImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+`;

@@ -86,6 +86,16 @@ export function teamDataMock(): TeamService {
     };
   };
 
+  const getTeamEditInfo = async (teamID: number) => {
+    await wait(teamID);
+    return {
+      image:
+        'https://user-images.githubusercontent.com/73823388/159130486-5d4eb6f7-9f72-4c27-9807-6c762d352a9a.jpg',
+      name: '당뻔',
+      description: '당당하고 뻔뻔하게 번개를 열어부러',
+    };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -101,6 +111,7 @@ export function teamDataMock(): TeamService {
     postTeamInfo,
     getTeamIssueCategory,
     postTeamIssue,
+    getTeamEditInfo,
   };
 }
 

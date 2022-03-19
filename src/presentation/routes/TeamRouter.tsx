@@ -14,7 +14,7 @@ const TeamRouter = () => (
   <Routes>
     <Route path="/" element={<PrivateRoute />}>
       <Route path="/register" element={<TeamRegister />} />
-      <Route path="/edit" element={<TeamEdit />} />
+      <Route path="/:teamID/edit" element={<TeamEdit />} />
       <Route path="/:teamID" element={<TeamMain />} />
       <Route path="/:teamID/member" element={<TeamMember />} />
       <Route path="/:teamID/create" element={<TeamNewIssue />} />

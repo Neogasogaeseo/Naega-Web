@@ -1,5 +1,8 @@
 import { NeososeoFormData, Relation } from '@api/types/neososeo-form';
+import { ImgPage1 } from '@assets/images';
 import CommonInput from '@components/common/CommonInput';
+import CommonNavigation from '@components/common/CommonNavigation';
+import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
 import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';
@@ -36,40 +39,55 @@ function NeososeoFormIntro() {
   }, [relation]);
 
   useEffect(() => {
-    if (!neososeoFormData) return;
-    setRelation(neososeoFormData.relation[0]);
+    setRelation(
+      neososeoFormData.relation.find((relation) => relation.id === neososeoAnswer.relationID) ??
+        neososeoFormData.relation[0],
+    );
   }, [neososeoFormData]);
 
   return (
-    <StNeososeoFormLayout>
-      <StNeososeoTitle>
-        <span>Q.</span>
-        <span>{neososeoFormData.content}</span>
-      </StNeososeoTitle>
-      <div>
-        <StSubTitle>이름을 입력해주세요</StSubTitle>
-        <CommonInput
-          width="100%"
-          placeholder="당신의 이름이나 별명을 입력해주세요"
-          onChange={(name) => setUserName(name)}
-        />
-        <StSubTitle>{neososeoFormData.userName}님은 당신에게 어떤 사람인가요?</StSubTitle>
-        <StRelationWrapper>
-          {neososeoFormData.relation.map((relation) => (
-            <StRelation
-              key={relation.id}
-              selected={neososeoAnswer.relationID === relation.id}
-              onClick={() => setRelation(relation)}
-            >
-              {relation.content}
-            </StRelation>
-          ))}
-        </StRelationWrapper>
-      </div>
-      <StButton onClick={() => navigate('../answer')} disabled={!isAllFilled(neososeoAnswer.name)}>
-        다음
-      </StButton>
-    </StNeososeoFormLayout>
+    <>
+      <CommonNavigation />
+      <StNeososeoFormLayout>
+        <div>
+          <NeososeoFormHeader title={neososeoFormData.title} image={neososeoFormData.imageSub} />
+          <StNeososeoTitle>
+            <span>Q.</span>
+            <span>{neososeoFormData.content}</span>
+          </StNeososeoTitle>
+          <div>
+            <StSubTitle>이름을 입력해주세요</StSubTitle>
+            <CommonInput
+              width="100%"
+              placeholder="당신의 이름이나 별명을 입력해주세요"
+              onChange={(name) => setUserName(name)}
+              defaultValue={neososeoAnswer.name}
+            />
+            <StSubTitle>{neososeoFormData.userName}님은 당신에게 어떤 사람인가요?</StSubTitle>
+            <StRelationWrapper>
+              {neososeoFormData.relation.map((relation) => (
+                <StRelation
+                  key={relation.id}
+                  selected={neososeoAnswer.relationID === relation.id}
+                  onClick={() => setRelation(relation)}
+                >
+                  {relation.content}
+                </StRelation>
+              ))}
+            </StRelationWrapper>
+          </div>
+        </div>
+        <div>
+          <ImgPage1 />
+          <StButton
+            onClick={() => navigate('../answer')}
+            disabled={!isAllFilled(neososeoAnswer.name)}
+          >
+            다음
+          </StButton>
+        </div>
+      </StNeososeoFormLayout>
+    </>
   );
 }
 

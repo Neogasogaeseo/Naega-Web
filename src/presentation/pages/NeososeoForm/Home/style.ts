@@ -9,7 +9,7 @@ export const StNeososeoFormHome = styled.div`
   display: grid;
   grid-template-rows: 44px 96px auto 110px;
 
-  & > div {
+  & > div:not(:nth-child(1)) {
     padding: 0 20px;
   }
 
@@ -37,4 +37,19 @@ export const StNeososeoFormHome = styled.div`
       }
     }
   }
+  & > div:nth-child(3) {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const StAnswerCount = styled.div`
+  color: ${COLOR.CORAL_MAIN};
+  position: absolute;
+  bottom: 32px;
+  font-family: Pretendard;
+  font-weight: 500;
+  font-size: 16px;
 `;

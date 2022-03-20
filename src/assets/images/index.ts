@@ -22,3 +22,5 @@ export { default as ImgLanding } from './img_landing.png';
 export { default as imgEmptyFeedback } from './img_empty_feedback.svg';
 export { default as imgLinkCreated } from './img_link_created.svg';
 export { ReactComponent as ImgLogoHeader } from './img_logo_header.svg';
+export { ReactComponent as ImgPage1 } from './img_page_1.svg';
+export { ReactComponent as ImgPage2 } from './img_page_2.svg';

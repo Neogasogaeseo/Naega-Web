@@ -3,7 +3,7 @@ import CommonHeader from '@components/common/CommonHeader';
 import FormCard from '@components/common/FormCard';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';
-import { StNeososeoFormHome } from './style';
+import { StNeososeoFormHome, StAnswerCount } from './style';
 
 interface OutletContextProps {
   neososeoFormData: NeososeoFormData;
@@ -26,10 +26,10 @@ function NeososeoFormHome() {
       <div>
         <FormCard
           image={neososeoFormData.imageSub}
-          title={neososeoFormData.content}
-          content={neososeoFormData.title}
+          title={neososeoFormData.title}
+          content={neososeoFormData.content}
         >
-          <div>{3}명이 답변했어요</div>
+          <StAnswerCount>{3}명이 답변했어요</StAnswerCount>
         </FormCard>
       </div>
       <div>

@@ -3,7 +3,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StNeososeoFormHeader = styled.div`
-  width: calc(100% - 40px);
+  width: 100%;
   margin: 0 auto;
   word-break: keep-all;
   display: flex;
@@ -12,6 +12,7 @@ export const StNeososeoFormHeader = styled.div`
 
   & div {
     line-height: 143.99%;
+    color: ${COLOR.GRAY_8};
     ${FONT_STYLES.SB_22_BODY}
   }
 

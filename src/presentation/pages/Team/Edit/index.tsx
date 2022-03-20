@@ -9,6 +9,7 @@ import CommonLabel from '@components/common/CommonLabel';
 import CommonInput from '@components/common/CommonInput';
 import { StTeamEdit, StTeamImage } from './style';
 import { api } from '@api/index';
+import { ImgTeamAdd } from '@assets/images';
 
 // TODO 팀 정보 get 에러바운더리 - api 명세서 나와야 할 수 있음
 export default function TeamEdit() {
@@ -39,7 +40,11 @@ export default function TeamEdit() {
         <div>팀 수정하기</div>
         <StAbsoluteWrapper>
           <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
-            <StTeamImage src={teamInfo?.image} alt="팀 이미지" />
+            {teamInfo && teamInfo.image ? (
+              <StTeamImage src={teamInfo?.image} alt="팀 이미지" />
+            ) : (
+              <ImgTeamAdd />
+            )}
           </PhotoUpload>
           <StIcPencil />
         </StAbsoluteWrapper>

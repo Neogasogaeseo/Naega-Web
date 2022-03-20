@@ -10,6 +10,7 @@ import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
+import CommonHeader from '@components/common/CommonHeader';
 
 export default function NeogaLink() {
   const CREATED = 'created';
@@ -40,6 +41,7 @@ export default function NeogaLink() {
 
   return (
     <StNeogaLink isCreated={isCreated}>
+      <CommonHeader />
       <div>
         <FormCard
           content={formData && formData.subtitle}

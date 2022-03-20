@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
 import FormCard from '@components/common/FormCard';
-import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
+import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
@@ -49,7 +49,7 @@ export default function NeogaLink() {
           image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
         >
           <StLinkButton onClick={createLink} isCreated={isCreated}>
-            <IcLinkCoral />
+            <IcPulsCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
         </FormCard>

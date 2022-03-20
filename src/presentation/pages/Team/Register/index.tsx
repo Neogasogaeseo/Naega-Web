@@ -62,7 +62,7 @@ function TeamRegister() {
             <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
               <ImgTeamAdd />
             </PhotoUpload>
-            {!image && <StIcPencil />}
+            <StIcPencil />
           </StAbsoluteWrapper>
           <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
           <CommonInput

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext, Navigate } from 'react-router-dom';
 import { useInfiniteQuery } from 'react-query';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
@@ -20,11 +20,12 @@ interface OutletContextProps {
 }
 
 function TeamIssueKeyword() {
+  const navigate = useNavigate();
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
-  const navigate = useNavigate();
-  if (!targetUser) navigate(-1);
+  if (targetUser === null) return <Navigate to="../" />;
 
+  const [isKeywordCreating, setIsKeywordCreating] = useState(false);
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [newKeywordContent, setNewKeywordContent] = useState('');
   const fetchKeywordsByPage = useCallback(async ({ pageParam = 0 }) => {
@@ -35,6 +36,7 @@ function TeamIssueKeyword() {
       isLast: response.length < KEYWORD_PAGE,
     };
   }, []);
+
   const {
     data: userKeywordList,
     fetchNextPage,
@@ -45,9 +47,11 @@ function TeamIssueKeyword() {
 
   const createKeyword = async () => {
     if (newKeywordContent === '') return;
+    setIsKeywordCreating(true);
     const newKeyword = await api.userService.postKeyword(targetUser.id, newKeywordContent);
     addKeyword(newKeyword);
     setNewKeywordContent('');
+    setIsKeywordCreating(false);
   };
 
   useEffect(() => {
@@ -68,6 +72,7 @@ function TeamIssueKeyword() {
           onChange={(value: string) => setNewKeywordContent(value)}
           onSubmit={createKeyword}
           submitButtonValue="생성"
+          submitButtonDisabled={isKeywordCreating || newKeywordContent === ''}
         />
         <MutableKeywordList keywordList={keywordList} deleteKeyword={removeKeyword} />
       </StWhiteWrapper>

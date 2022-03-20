@@ -22,9 +22,9 @@ export default function TeamEdit() {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    if (isSuccess) {
-      teamInfo && setName(teamInfo.name);
-      teamInfo && setDescription(teamInfo.description);
+    if (isSuccess && teamInfo) {
+      setName(teamInfo.name);
+      setDescription(teamInfo.description);
     }
   }, [isSuccess]);
 

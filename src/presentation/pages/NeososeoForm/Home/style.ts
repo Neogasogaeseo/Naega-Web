@@ -49,7 +49,6 @@ export const StAnswerCount = styled.div`
   color: ${COLOR.CORAL_MAIN};
   position: absolute;
   bottom: 32px;
-  font-family: Pretendard;
   font-weight: 500;
   font-size: 16px;
 `;

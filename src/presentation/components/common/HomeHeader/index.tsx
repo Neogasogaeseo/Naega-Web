@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { StHomeHeader, StNavLink, StNavBottomLine } from './style';
-import { imgLogo } from '@assets/images';
+import { useLocation } from 'react-router-dom';
+
 import { useLoginUser } from '@hooks/useLoginUser';
+import CommonHeader from '../CommonHeader';
+import { StHomeHeader, StNavLink, StNavBottomLine } from './style';
 
 function HomeHeader() {
   const location = useLocation();
@@ -36,9 +37,7 @@ function HomeHeader() {
 
   return (
     <StHomeHeader>
-      <Link to="/home/neoga">
-        <img src={imgLogo} alt="로고" />
-      </Link>
+      <CommonHeader />
       {isHeaderVisible && (
         <>
           <div>

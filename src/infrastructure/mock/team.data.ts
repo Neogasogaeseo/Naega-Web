@@ -200,24 +200,28 @@ export const TEAM_DATA: {
         id: 1,
         profileId: 'abcd',
         profileName: '캐서린',
+        isHost: true,
       },
       {
         id: 12,
         profileId: 'abcd',
         profileName: '웬디',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        isHost: false,
       },
       {
         id: 13,
         profileId: 'abcd',
         profileName: '콩콩이',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        isHost: false,
       },
       {
         id: 14,
         profileId: 'abcd',
         profileName: '크왕',
         profileImage: 'https://cdn.pixabay.com/photo/2014/11/30/14/11/cat-551554_1280.jpg',
+        isHost: false,
       },
     ],
   },
@@ -225,14 +229,6 @@ export const TEAM_DATA: {
     inviteList: [
       {
         id: 26,
-        name: '너가소개서',
-      },
-      {
-        id: 27,
-        name: '너가소개서',
-      },
-      {
-        id: 28,
         name: '너가소개서',
       },
     ],

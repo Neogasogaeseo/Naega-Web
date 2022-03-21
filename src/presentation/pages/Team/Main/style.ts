@@ -59,6 +59,7 @@ export const StTeamInfo = styled.div`
     h2 {
       ${FONT_STYLES.R_15_TITLE};
       color: ${COLOR.GRAY_7};
+      word-break: keep-all;
     }
 
     h3 {

@@ -3,7 +3,7 @@ export { default as imgEmptyProfile } from './img_empty_profile.svg';
 export { default as imgEmptyJoinProfile } from './img_empty_join.svg';
 export { default as imgParty } from './img_party.svg';
 export { default as imgEmptyForm } from './img_empty_form.svg';
-export { ReactComponent as ImgTeamAdd } from './img_team_add.svg';
+export { ReactComponent as ImgTeamDefault } from './img_team_default.svg';
 export { default as imgComputer } from './img_computer.svg';
 export { ReactComponent as ImgBackgroundEllipse } from './img_background_ellipse.svg';
 export { ReactComponent as ImgQuestionFrame } from './img_question_frame.svg';

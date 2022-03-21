@@ -59,6 +59,7 @@ export const StTeamInfo = styled.div`
     h2 {
       ${FONT_STYLES.R_15_TITLE};
       color: ${COLOR.GRAY_7};
+      word-break: keep-all;
     }
 
     h3 {
@@ -67,7 +68,9 @@ export const StTeamInfo = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto;
       margin-bottom: 14.83px;
+      width: fit-content;
 
       & > button > img {
         margin-right: 2px;

@@ -33,4 +33,6 @@ export interface TeamService {
     categoryID: number,
     image?: File,
   ): Promise<PostIssueResponse>;
+  acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
+  rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
 }

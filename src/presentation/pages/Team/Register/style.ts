@@ -46,8 +46,8 @@ export const StSubmitButton = styled.button<{ isActive: boolean }>`
 
 export const StAbsoluteWrapper = styled.div`
   position: relative;
-  width: 104px;
-  height: 104px;
+  width: 88px;
+  height: 88px;
 `;
 
 export const StIcPencil = styled(IcPencil)`

@@ -71,11 +71,12 @@ export function teamDataMock(): TeamService {
   };
 
   const getTeamIssueCategory = async () => [
-    { id: 1, name: '팀문화' },
-    { id: 2, name: '어쩌구' },
-    { id: 3, name: '저쩌구' },
+    { id: 1, name: '협업' },
+    { id: 2, name: '팀문화' },
+    { id: 3, name: '업무 능력' },
     { id: 4, name: '기타' },
   ];
+
   const postTeamIssue = async () => {
     return {
       categoryID: 1,
@@ -96,6 +97,16 @@ export function teamDataMock(): TeamService {
     };
   };
 
+  const acceptInvitation = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
+  const rejectInvitation = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -112,6 +123,8 @@ export function teamDataMock(): TeamService {
     getTeamIssueCategory,
     postTeamIssue,
     getTeamEditInfo,
+    acceptInvitation,
+    rejectInvitation,
   };
 }
 

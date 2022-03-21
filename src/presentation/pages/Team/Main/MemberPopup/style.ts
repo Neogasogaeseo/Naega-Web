@@ -9,7 +9,6 @@ export const StTeamMemberPopup = styled.div`
   transform: translateX(-50%);
   z-index: 4;
   width: 168px;
-  max-height: 249px;
   background: ${COLOR.WHITE};
   border-radius: 8.08px;
   border: 0.8px solid ${COLOR.GRAY_2};
@@ -60,9 +59,12 @@ export const StWholeButton = styled.nav`
   align-items: center;
   justify-content: center;
   gap: 3px;
-  margin-top: 29px;
   color: ${COLOR.GRAY_5};
   ${FONT_STYLES.M_13_TITLE};
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 29px;
 
   & > img {
     width: 10px;

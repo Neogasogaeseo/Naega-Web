@@ -11,8 +11,8 @@ export const StTeamMain = styled.div`
   padding: 0 20px;
 
   & > button {
-    ${CORAL_MAIN_BUTTON}
-    ${FULL_WIDTH_BUTTON}
+    ${CORAL_MAIN_BUTTON};
+    ${FULL_WIDTH_BUTTON};
     ${FONT_STYLES.M_16_TITLE};
     margin-top: 36px;
     margin-bottom: 35px;
@@ -20,17 +20,25 @@ export const StTeamMain = styled.div`
 `;
 
 export const StTeamInfo = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: calc(100% - 40px);
+  width: 100%;
   margin: 0 auto;
 
+  & > svg {
+    position: absolute;
+    top: 11px;
+    right: 8px;
+    cursor: pointer;
+  }
+
   & > img:nth-of-type(1) {
-    width: 82px;
-    height: 82px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    margin-top: 50px;
+    margin-top: 6px;
     margin-bottom: 18px;
     border-radius: 30px;
   }
@@ -38,6 +46,7 @@ export const StTeamInfo = styled.div`
   div:first-of-type {
     flex: 1;
     text-align: center;
+    cursor: auto;
 
     h1 {
       margin-bottom: 8px;
@@ -50,6 +59,7 @@ export const StTeamInfo = styled.div`
     h2 {
       ${FONT_STYLES.R_15_TITLE};
       color: ${COLOR.GRAY_7};
+      word-break: keep-all;
     }
 
     h3 {
@@ -58,7 +68,9 @@ export const StTeamInfo = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+      margin: 0 auto;
       margin-bottom: 14.83px;
+      width: fit-content;
 
       & > button > img {
         margin-right: 2px;
@@ -107,6 +119,10 @@ export const StCheckWrapper = styled.div`
     height: 24px;
     margin-right: 8px;
   }
+`;
+
+export const StMemberName = styled.span<{ isHost: boolean }>`
+  font-weight: ${(props) => (props.isHost ? 800 : 400)};
 `;
 
 export const StOtherMember = styled.span`

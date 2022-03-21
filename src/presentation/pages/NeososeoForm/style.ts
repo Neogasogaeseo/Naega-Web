@@ -6,14 +6,8 @@ import styled from 'styled-components';
 export const StNeososeoFormPage = styled.div`
   min-height: 100vh;
   width: 100%;
-  padding: 50px 0;
-  display: grid;
-  grid-template-rows: 70px auto;
-  position: relative;
-
-  & > *:first-child {
-    padding: 0 20px;
-  }
+  display: flex;
+  flex-direction: column;
 `;
 
 export const StNeososeoTitle = styled.div`
@@ -38,8 +32,8 @@ export const StNeososeoTitle = styled.div`
 `;
 
 export const StSubTitle = styled.div`
-  margin-top: 44px;
-  margin-bottom: 18px;
+  margin-top: 48px;
+  margin-bottom: 20px;
   ${FONT_STYLES.SB_16_TITLE}
   color: ${COLOR.GRAY_8};
 `;
@@ -57,7 +51,8 @@ export const StRelation = styled.div<{ selected: boolean }>`
   text-align: center;
   cursor: pointer;
   color: ${({ selected }) => (selected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
-  background-color: ${({ selected }) => (selected ? '#FFEFEF' : COLOR.GRAY_1)};
+  background-color: ${({ selected }) => (selected ? '#FFFFFF' : COLOR.GRAY_1)};
+  border: 1px solid ${({ selected }) => (selected ? COLOR.CORAL_MAIN : '#FFFFFF')};
 `;
 
 export const StButton = styled.button`
@@ -72,7 +67,20 @@ export const StButton = styled.button`
 `;
 
 export const StNeososeoFormLayout = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 106px;
   padding: 0 20px;
+  height: 100%;
+  flex: 1;
+  margin-bottom: 48px;
+  & > div:nth-child(1) {
+    padding-top: 22px;
+    padding-bottom: 134px;
+  }
+  & > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
 `;

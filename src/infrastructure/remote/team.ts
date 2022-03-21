@@ -152,6 +152,7 @@ export function teamDataRemote(): TeamService {
           profileId: memberDetail.profileId,
           profileName: memberDetail.name,
           profileImage: memberDetail.image,
+          isHost: memberDetail.isHost,
         })),
       };
     else throw 'NOT FOUND';
@@ -266,6 +267,16 @@ export function teamDataRemote(): TeamService {
   const getTeamEditInfo = async (teamID: number) =>
     new Promise<TeamEditInfo>((resolve) => setTimeout(resolve, teamID));
 
+  const acceptInvitation = async (id: number) => {
+    const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });
+    return { isSuccess: response.success };
+  };
+
+  const rejectInvitation = async (id: number) => {
+    const response = await privateAPI.put({ url: `/team/invite/reject`, data: { teamId: id } });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -282,5 +293,7 @@ export function teamDataRemote(): TeamService {
     getTeamIssueCategory,
     postTeamIssue,
     getTeamEditInfo,
+    acceptInvitation,
+    rejectInvitation,
   };
 }

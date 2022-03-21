@@ -7,6 +7,7 @@ interface CommonInputProps {
   placeholder?: string;
   maxLength?: number;
   value?: string;
+  defaultValue?: string;
   isJoinConditionPassed?: boolean;
   img?: string;
   onChange?: (value: string) => void;
@@ -23,6 +24,7 @@ function CommonInput(props: CommonInputProps) {
     placeholder,
     maxLength,
     value,
+    defaultValue,
     isJoinConditionPassed,
     onChange,
     onSubmit,
@@ -52,6 +54,7 @@ function CommonInput(props: CommonInputProps) {
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}
+          defaultValue={defaultValue}
           img={img}
           disabled={disabled}
           hasButton={submitButtonValue !== undefined}

@@ -10,6 +10,7 @@ import { userDataRemote } from '@infrastructure/remote/user';
 import { NeososeoFormRemote } from '@infrastructure/remote/neososeo-form';
 import { headerMock } from '@infrastructure/mock/header';
 import { HeaderService } from './header';
+import { teamDataMock } from '@infrastructure/mock/team';
 
 export const api: APIService = getAPIMethod();
 
@@ -19,6 +20,7 @@ function getAPIMethod(): APIService {
 
 function provideMockAPIService(): APIService {
   const teamService = teamDataRemote();
+  const teamServiceMock = teamDataMock();
   const userService = userDataRemote();
   const loginUserService = loginUserRemote();
   const neogaService = NeogaDataRemote();
@@ -32,6 +34,7 @@ function provideMockAPIService(): APIService {
     neososeoFormService,
     loginUserService,
     headerService,
+    teamServiceMock,
   };
 }
 
@@ -42,4 +45,5 @@ export interface APIService {
   neogaService: NeogaService;
   neososeoFormService: NeososeoFormService;
   headerService: HeaderService;
+  teamServiceMock: TeamService;
 }

@@ -1,5 +1,5 @@
 import { TeamService } from '@api/team';
-import { PostFeedbackRequestBody } from '@api/types/team';
+import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
@@ -264,6 +264,9 @@ export function teamDataRemote(): TeamService {
     }
   };
 
+  const getTeamEditInfo = async (teamID: number) =>
+    new Promise<TeamEditInfo>((resolve) => setTimeout(resolve, teamID));
+
   const acceptInvitation = async (id: number) => {
     const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });
     return { isSuccess: response.success };
@@ -289,6 +292,7 @@ export function teamDataRemote(): TeamService {
     postTeamInfo,
     getTeamIssueCategory,
     postTeamIssue,
+    getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
   };

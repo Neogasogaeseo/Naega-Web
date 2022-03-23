@@ -45,7 +45,7 @@ export const StBanner = styled.div<{ color: string | undefined }>`
   justify-content: space-between;
   align-items: center;
   padding-left: 26px;
-  padding-right: 18px;
+  padding-right: 50px;
   cursor: pointer;
 
   & > div {
@@ -68,9 +68,8 @@ export const StBanner = styled.div<{ color: string | undefined }>`
   }
 
   img:nth-of-type(1) {
-    width: 96px;
-    height: 96px;
-    object-fit: cover;
+    width: 60px;
+    height: 60px;
   }
 
   img:nth-of-type(2) {

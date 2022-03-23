@@ -26,7 +26,7 @@ export const StNeogaCreateCardItem = styled.div`
   }
 
   & img {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
   }
 `;

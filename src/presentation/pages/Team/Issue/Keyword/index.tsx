@@ -3,7 +3,7 @@ import { useNavigate, useOutletContext, Navigate } from 'react-router-dom';
 import { useInfiniteQuery } from 'react-query';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
-import CommonInput from '@components/common/CommonInput';
+import CommonInput from '@components/common/Input';
 import CommonLoader from '@components/common/Loader';
 import KeywordEmptyView from '@components/common/Empty/Keyword';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';

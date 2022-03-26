@@ -11,7 +11,7 @@ import {
 } from './style';
 import { useRecoilState } from 'recoil';
 import { teamFeedbackState } from '@stores/team';
-import CommonInput from '@components/common/CommonInput';
+import CommonInput from '@components/common/Input';
 import IssueMemberList from '@components/common/IssueMemberList';
 import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';

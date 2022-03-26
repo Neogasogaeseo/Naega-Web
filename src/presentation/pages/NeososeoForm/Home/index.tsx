@@ -1,5 +1,5 @@
 import { NeososeoFormData } from '@api/types/neososeo-form';
-import CommonHeader from '@components/common/CommonHeader';
+import CommonHeader from '@components/common/Header';
 import FormCard from '@components/common/FormCard';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';

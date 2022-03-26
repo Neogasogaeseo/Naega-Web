@@ -7,7 +7,7 @@ import { Keyword } from '@api/types/user';
 import { TeamMemberNoneId } from '@api/types/team';
 import { useLoginUser } from '@hooks/useLoginUser';
 import ProfileListSelectable from '@components/ProfileListSelectable';
-import CommonInput from '@components/common/CommonInput';
+import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import {
   StAbsoluteWrapper,

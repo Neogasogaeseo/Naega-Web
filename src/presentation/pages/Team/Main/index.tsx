@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 import { api } from '@api/index';
 import { MAX_TEAM_MEMBER } from '@utils/constant';
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonNavigation from '@components/common/Navigation';
 import IssueCardList from '@components/common/IssueCardList';
 import TeamMemberPopup from './MemberPopup';
 import { StTeamMain, StTeamInfo, StCheckWrapper, StMemberName, StOtherMember } from './style';

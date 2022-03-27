@@ -3,7 +3,7 @@ import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { useRecoilState } from 'recoil';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
 import { COLOR } from '@styles/common/color';
-import CommonInput from '@components/common/CommonInput';
+import CommonInput from '@components/common/Input';
 import { icSearch } from '@assets/icons';
 
 export default function TeamMembersSearchBar({

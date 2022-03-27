@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useLoginUser } from '@hooks/useLoginUser';
-import CommonHeader from '../CommonHeader';
+import CommonHeader from '../Header';
 import { StHomeHeader, StNavLink, StNavBottomLine } from './style';
 
 function HomeHeader() {

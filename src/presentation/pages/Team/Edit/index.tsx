@@ -2,11 +2,11 @@ import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonNavigation from '@components/common/Navigation';
 import { StAbsoluteWrapper, StIcPencil, StTextarea } from '../Register/style';
 import PhotoUpload from '@components/common/FileUpload';
-import CommonLabel from '@components/common/CommonLabel';
-import CommonInput from '@components/common/CommonInput';
+import CommonLabel from '@components/common/Label';
+import CommonInput from '@components/common/Input';
 import { StTeamEdit, StTeamImage } from './style';
 import { api } from '@api/index';
 import { ImgTeamDefault } from '@assets/images';

@@ -14,6 +14,8 @@ export const StFormCard = styled.div<{ isFront: boolean }>`
   border-radius: 18px;
   & > *:nth-child(1) {
     margin-top: 42px;
+    width: 86px;
+    height: 86px;
   }
   & > *:nth-child(2) {
     font-family: Pretendard;

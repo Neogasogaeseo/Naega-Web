@@ -46,7 +46,7 @@ export default function NeogaLink() {
         <FormCard
           content={formData && formData.subtitle}
           title={formData && formData.title}
-          image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
+          image={formData && formData.image}
         >
           <StLinkButton onClick={createLink} isCreated={isCreated}>
             <IcPulsCoral />

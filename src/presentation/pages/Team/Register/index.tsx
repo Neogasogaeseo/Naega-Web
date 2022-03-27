@@ -8,8 +8,8 @@ import {
   StIcPencil,
 } from './style';
 import { imgEmptyProfile, ImgTeamDefault } from '@assets/images';
-import CommonInput from '@components/common/CommonInput';
-import CommonLabel from '@components/common/CommonLabel';
+import CommonInput from '@components/common/Input';
+import CommonLabel from '@components/common/Label';
 import ProfileList from '@components/common/ProfileList';
 import PhotoUpload from '@components/common/FileUpload';
 import TeamMembers from '@components/TeamMembers';
@@ -20,7 +20,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonNavigation from '@components/common/Navigation';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);

@@ -1,6 +1,7 @@
+import styled from 'styled-components';
+
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
-import styled from 'styled-components';
 
 export const StUserSearchEmptyView = styled.div`
   width: 100%;

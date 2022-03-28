@@ -209,6 +209,9 @@ export function teamDataRemote(): TeamService {
         profileName: member.name,
         profileImage: member.image,
       }));
+    else if (response.status === 240) {
+      return [];
+    }
   };
 
   const postTeamInfo = async (teamInfo: FormData) => {

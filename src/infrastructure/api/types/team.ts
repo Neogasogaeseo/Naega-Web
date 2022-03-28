@@ -125,3 +125,10 @@ export type TeamEditInfo = {
   name: string;
   description: string;
 };
+
+export type TeamNoticeItem = {
+  teamID: number;
+  teamName: string;
+  teamProfileImage: string | undefined;
+  status: 'PENDING' | 'ACCEPT' | 'DECLINE';
+};

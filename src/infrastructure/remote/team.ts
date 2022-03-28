@@ -277,6 +277,20 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const getNotice = async () => {
+    const response = await privateAPI.get({ url: '/user/notice?offset=0&limit=40' });
+    return response.data.notice.map((notice: any) => ({
+      teamID: notice.team.id,
+      teamName: notice.team.name,
+      teamProfileImage: notice.team.image,
+      status: notice.invitation.isConfirmed
+        ? 'ACCEPT'
+        : notice.invitation.isDeleted
+        ? 'DECLINE'
+        : 'PENDING',
+    }));
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -295,5 +309,6 @@ export function teamDataRemote(): TeamService {
     getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
+    getNotice,
   };
 }

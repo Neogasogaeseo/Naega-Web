@@ -10,6 +10,7 @@ import { TeamMember } from '@api/types/team';
 import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
+import UserSearchEmptyView from '@components/common/Empty/UserSearch';
 
 export default function TeamMembers({
   onClickSubmitButton: onClickSubmitButton,
@@ -19,18 +20,17 @@ export default function TeamMembers({
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[]>([]);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const userSearchWord = useRecoilValue(userSearchWordState);
-  const [searchedUserListResponse, setSearchedUserListResponse] = useState<TeamMember[]>([]);
+  const [searchedUserListResponse, setSearchedUserListResponse] = useState<TeamMember[] | null>(
+    null,
+  );
   const resetUserSearchWord = useResetRecoilState(userSearchWordState);
 
   const mapSearchedUserList = () => {
     const idList = selectedUserList.map(({ id }) => id);
-    if (searchedUserListResponse) {
+    searchedUserListResponse &&
       setSearchedUserList(
         searchedUserListResponse.map((user) => ({ ...user, isAdded: idList.includes(user.id) })),
       );
-    } else {
-      setSearchedUserList([]);
-    }
   };
 
   const searchUser = async () => {
@@ -62,7 +62,7 @@ export default function TeamMembers({
   };
 
   useEffect(() => {
-    mapSearchedUserList();
+    searchedUserListResponse !== null && searchedUserListResponse.length && mapSearchedUserList();
   }, [searchedUserListResponse, selectedUserList]);
 
   return (
@@ -86,16 +86,22 @@ export default function TeamMembers({
       </StHeader>
       <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
-      {searchedUserList.map((user) => {
-        const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;
-        return (
-          <TeamMembersSearchedUser
-            key={id}
-            onClickButton={() => toggleMember(id, profileId, profileName, profileImage, isAdded)}
-            user={user}
-          />
-        );
-      })}
+      {searchedUserListResponse === null ? (
+        <></>
+      ) : searchedUserList.length ? (
+        searchedUserList.map((user) => {
+          const { id, profileId, profileName, profileImage = imgEmptyProfile, isAdded } = user;
+          return (
+            <TeamMembersSearchedUser
+              key={id}
+              onClickButton={() => toggleMember(id, profileId, profileName, profileImage, isAdded)}
+              user={user}
+            />
+          );
+        })
+      ) : (
+        <UserSearchEmptyView />
+      )}
     </StTeamRegisterMembers>
   );
 }

@@ -46,19 +46,16 @@ export default function TeamMembers({
     profileImage: string,
     isAdded: boolean,
   ): void => {
-    setSearchedUserList((currentData) =>
-      currentData.map((member) =>
+    setSearchedUserList((current) =>
+      current.map((member) =>
         member.profileId === profileId ? { ...member, isAdded: !member.isAdded } : { ...member },
       ),
     );
-    if (isAdded) {
-      setSelectedUserList((currentData) => currentData.filter((member) => member.id !== id));
-    } else {
-      setSelectedUserList((currentData) => [
-        ...currentData,
-        { id, profileId, profileName, profileImage },
-      ]);
-    }
+    setSelectedUserList((current) =>
+      isAdded
+        ? current.filter((member) => member.id !== id)
+        : [...current, { id, profileId, profileName, profileImage }],
+    );
   };
 
   useEffect(() => {

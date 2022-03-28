@@ -209,7 +209,7 @@ export function teamDataRemote(): TeamService {
         profileName: member.name,
         profileImage: member.image,
       }));
-    else if (response.status === 240) {
+    else if (response.axiosStatus === 240) {
       return [];
     }
   };

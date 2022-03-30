@@ -28,7 +28,4 @@ export const COMMON_MODAL = css`
   background-color: #ffffff;
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
-  & > *:last-child {
-    ${COMMON_MODAL_BUTTON}
-  }
 `;

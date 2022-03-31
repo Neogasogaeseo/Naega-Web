@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
 import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
@@ -12,6 +13,7 @@ import { imgEmptyProfile } from '@assets/images';
 
 function MyProfileEdit() {
   const navigate = useNavigate();
+  const { fireToast } = useToast();
   const { username, userID, profileImage } = useLoginUser();
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
@@ -47,6 +49,8 @@ function MyProfileEdit() {
       form.append('profileId', inputId);
       form.append('name', inputName);
       image && form.append('image', image);
+      // 나중에 여기 put 추가할 예정
+      fireToast({ content: '수정 완료' });
     } catch (error) {
       console.error(error);
       navigate('/');

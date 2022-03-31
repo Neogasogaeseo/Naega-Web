@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CORAL_MAIN_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
+import { icEmail, icInputPencil } from '@assets/icons';
 
 export const StMyProfileEdit = styled.div`
   padding: 0 20px;
@@ -50,8 +51,23 @@ export const StProfileImg = styled.div`
   }
 `;
 
+const iconEmail = icEmail;
+const iconInputPencil = icInputPencil;
+
 export const StInputWrapper = styled.div`
   & > div:nth-of-type(2n + 1) {
     margin-left: 4px;
+  }
+
+  & div:nth-child(2) > form > input {
+    background-image: url(${iconEmail}), url(${iconInputPencil});
+    background-position: 12px, calc(100% - 20px);
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  & div:last-child > form > input {
+    background-image: url(${iconInputPencil});
+    background-position: calc(100% - 20px);
+    background-repeat: no-repeat;
   }
 `;

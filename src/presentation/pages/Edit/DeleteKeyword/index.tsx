@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonNavigation from '@components/common/Navigation';
 import { StMyKeywordDelete, StMyKeywordHeader } from './style';
 
 function MyKeywordDelete() {

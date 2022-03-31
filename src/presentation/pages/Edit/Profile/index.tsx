@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { useLoginUser } from '@hooks/useLoginUser';
-import CommonInput from '@components/common/CommonInput';
-import CommonLabel from '@components/common/CommonLabel';
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonInput from '@components/common/Input';
+import CommonLabel from '@components/common/Label';
+import CommonNavigation from '@components/common/Navigation';
 import FileUpload from '@components/common/FileUpload';
 import { StInputWrapper, StMyProfileEdit, StProfileImg } from './style';
 import { icEmail, IcMypageEdit } from '@assets/icons';

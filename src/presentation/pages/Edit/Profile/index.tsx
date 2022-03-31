@@ -6,7 +6,7 @@ import CommonLabel from '@components/common/Label';
 import CommonNavigation from '@components/common/Navigation';
 import FileUpload from '@components/common/FileUpload';
 import { StInputWrapper, StMyProfileEdit, StProfileImg } from './style';
-import { icEmail, IcMypageEdit } from '@assets/icons';
+import { IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 
 function MyProfileEdit() {
@@ -31,7 +31,7 @@ function MyProfileEdit() {
         </StProfileImg>
         <StInputWrapper>
           <CommonLabel content="아이디" marginTop="52px" marginBottom="20px" />
-          <CommonInput width="100%" placeholder={userID} maxLength={15} img={icEmail} />
+          <CommonInput width="100%" placeholder={userID} maxLength={15} />
           <CommonLabel content="이름" marginTop="46px" marginBottom="20px" />
           <CommonInput width="100%" placeholder={username} />
         </StInputWrapper>

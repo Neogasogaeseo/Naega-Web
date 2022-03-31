@@ -63,6 +63,7 @@ export const StInputWrapper = styled.div`
     background-image: url(${iconEmail}), url(${iconInputPencil});
     background-position: 12px, calc(100% - 20px);
     background-repeat: no-repeat, no-repeat;
+    padding-left: 36px;
   }
 
   & div:last-child > form > input {

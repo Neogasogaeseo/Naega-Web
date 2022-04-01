@@ -12,25 +12,17 @@ function MyKeyword() {
 
   if (!userID) return <></>;
 
-  const openBottomSheet = () => {
-    setIsBottomSheetOpened(true);
-  };
-
-  const closeBottomSheet = () => {
-    setIsBottomSheetOpened(false);
-  };
-
   return (
     <>
       <CommonNavigation title="My 키워드" />
       <StMyKeyword>
         <StMyKeywordHeader>
           <span>My 키워드</span>
-          <IcMeatball onClick={() => openBottomSheet()} />
+          <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
         </StMyKeywordHeader>
         <MyPageEditBottomSheet
           isOpened={isBottomSheetOpened}
-          closeBottomSheet={closeBottomSheet}
+          closeBottomSheet={() => setIsBottomSheetOpened(false)}
           type="keyword"
           userID={userID}
         />

@@ -63,14 +63,6 @@ function HomeMyPage() {
     { useErrorBoundary: true, retry: 1 },
   );
 
-  const openBottomSheet = () => {
-    setIsBottomSheetOpened(true);
-  };
-
-  const closeBottomSheet = () => {
-    setIsBottomSheetOpened(false);
-  };
-
   return (
     <StHomeMyPage>
       {isMyPageInfoLoading ? (
@@ -81,7 +73,7 @@ function HomeMyPage() {
             <StHomeMyPageHeader>
               <StMyPageProfile>
                 <img src={mypageInfo.profileImage || imgEmptyProfile} />
-                {isMyPage && <IcMypageEdit onClick={() => openBottomSheet()} />}
+                {isMyPage && <IcMypageEdit onClick={() => setIsBottomSheetOpened(true)} />}
               </StMyPageProfile>
               <div>
                 <div>{mypageInfo.username}</div>
@@ -203,7 +195,7 @@ function HomeMyPage() {
       <StGreyBorderTall />
       <MyPageEditBottomSheet
         isOpened={isBottomSheetOpened}
-        closeBottomSheet={closeBottomSheet}
+        closeBottomSheet={() => setIsBottomSheetOpened(false)}
         type="profile"
         userID={userID}
       />

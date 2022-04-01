@@ -32,4 +32,5 @@ export const StDescription = styled.div`
   ${FONT_STYLES.R_15_BODY}
   line-height: 143.99%;
   letter-spacing: -0.01em;
+  text-align: center;
 `;

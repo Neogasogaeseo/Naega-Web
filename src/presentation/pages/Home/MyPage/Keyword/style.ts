@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { COLOR } from '@styles/common/color';
 
-export const StMyKeywordEdit = styled.div``;
+export const StMyKeyword = styled.div``;
 
 export const StMyKeywordHeader = styled.div`
   height: 76px;

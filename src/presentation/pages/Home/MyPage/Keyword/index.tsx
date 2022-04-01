@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import CommonNavigation from '@components/common/Navigation';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
-import { StMyKeywordEdit, StMyKeywordHeader } from './style';
+import { StMyKeyword, StMyKeywordHeader } from './style';
 import { IcMeatball } from '@assets/icons';
 
-function MyKeywordEdit() {
+function MyKeyword() {
   const { userID } = useParams();
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
 
@@ -23,7 +23,7 @@ function MyKeywordEdit() {
   return (
     <>
       <CommonNavigation title="My 키워드" />
-      <StMyKeywordEdit>
+      <StMyKeyword>
         <StMyKeywordHeader>
           <span>My 키워드</span>
           <IcMeatball onClick={() => openBottomSheet()} />
@@ -34,9 +34,9 @@ function MyKeywordEdit() {
           type="keyword"
           userID={userID}
         />
-      </StMyKeywordEdit>
+      </StMyKeyword>
     </>
   );
 }
 
-export default MyKeywordEdit;
+export default MyKeyword;

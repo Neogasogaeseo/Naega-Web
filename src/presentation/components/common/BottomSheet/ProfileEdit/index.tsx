@@ -15,9 +15,7 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
   const navigate = useNavigate();
 
   const navigateToEditPage = () => {
-    type === 'profile'
-      ? navigate(`/edit/${type}/${userID}`)
-      : navigate(`/edit/delete/${type}/${userID}`);
+    navigate(`/edit/${type}/${userID}`);
   };
 
   return (

@@ -8,7 +8,7 @@ const MyPageEditRouter = () => (
   <Routes>
     <Route path="/" element={<PrivateRoute />}>
       <Route path="profile/:userID" element={<MyProfileEdit />} />
-      <Route path="delete/keyword/:userID" element={<MyKeywordDelete />} />
+      <Route path="keyword/:userID" element={<MyKeywordDelete />} />
     </Route>
   </Routes>
 );

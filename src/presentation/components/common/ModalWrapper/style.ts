@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StModalWrapper = styled.div<{ isOpen: boolean }>`
+export const StModalWrapper = styled.div<{ isOpen: boolean; isAnimation: boolean }>`
   width: 100%;
   min-height: 100vh;
   position: absolute;
@@ -11,6 +11,7 @@ export const StModalWrapper = styled.div<{ isOpen: boolean }>`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: ${(props) => (props.isOpen ? 'translate(-50%, -50%)' : 'translate(-50%, 0)')};
+    transition: ${(props) => (props.isAnimation ? 'all 0.3s' : 'initial')};
   }
 `;

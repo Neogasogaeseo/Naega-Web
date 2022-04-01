@@ -41,3 +41,5 @@ export { default as icTrash } from './ic_trash.svg';
 export { ReactComponent as IcMeatball } from './ic_meatball.svg';
 export { ReactComponent as IcSetting } from './ic_setting.svg';
 export { ReactComponent as IcBell } from './ic_bell.svg';
+export { default as icManageTeam } from './ic_manage_team.svg';
+export { default as icLeaveTeam } from './ic_leave_team.svg';

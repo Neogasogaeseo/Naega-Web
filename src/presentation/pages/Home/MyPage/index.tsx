@@ -1,14 +1,18 @@
-import { api } from '@api/index';
-import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
-import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
-import ProfileList from '@components/common/ProfileList';
-import { copyClipboard } from '@utils/copyClipboard';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { useToast } from '@hooks/useToast';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+
+import { api } from '@api/index';
+import { DOMAIN } from '@utils/constant';
+import { copyClipboard } from '@utils/copyClipboard';
+import { useToast } from '@hooks/useToast';
+import { useLoginUser } from '@hooks/useLoginUser';
+import ProfileList from '@components/common/ProfileList';
+import MyEmptyView from '@components/common/Empty/MyPage';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
+import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
+import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
 import {
   StDetailLink,
   StFeedbackTeamWrapper,
@@ -22,11 +26,8 @@ import {
   StTitle,
   StMyPageProfile,
 } from './style';
-import MyEmptyView from '@components/common/Empty/MyPage';
-import { DOMAIN } from '@utils/constant';
+import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
-import { useQuery } from 'react-query';
-import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
 
 function HomeMyPage() {
   const { userID } = useParams();

@@ -10,7 +10,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import ProfileList from '@components/common/ProfileList';
 import MyEmptyView from '@components/common/Empty/MyPage';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
+import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
 import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
 import {

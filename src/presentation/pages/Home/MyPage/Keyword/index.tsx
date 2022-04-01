@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import CommonNavigation from '@components/common/Navigation';
-import MyPageEditBottomSheet from '@components/common/BottomSheet/ProfileEdit';
+import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import { StMyKeyword, StMyKeywordHeader } from './style';
 import { IcMeatball } from '@assets/icons';
 

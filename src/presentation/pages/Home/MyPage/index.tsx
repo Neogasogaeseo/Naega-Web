@@ -20,13 +20,14 @@ import {
   StGreyBorderTall,
   StHomeMyPage,
   StHomeMyPageHeader,
+  StKeywordSection,
   StKeywordTitle,
   StNegativeMarginWrapper,
   StShare,
   StTitle,
   StMyPageProfile,
 } from './style';
-import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
+import { IcArrowViewAll, IcCopyMypage, icCrown, IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 
 function HomeMyPage() {
@@ -99,7 +100,17 @@ function HomeMyPage() {
                 </StShare>
               )}
             </StHomeMyPageHeader>
-            <div style={{ marginBottom: 32 }}>
+            <StKeywordSection>
+              <div>
+                <div>
+                  <img src={icCrown} />
+                  <span>My 키워드</span>
+                </div>
+                <span onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                  키워드 전체보기
+                  <IcArrowViewAll />
+                </span>
+              </div>
               {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
                 <>
                   <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
@@ -115,7 +126,7 @@ function HomeMyPage() {
                   <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
                 </>
               )}
-            </div>
+            </StKeywordSection>
           </>
         )
       )}

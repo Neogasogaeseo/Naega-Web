@@ -44,3 +44,4 @@ export { ReactComponent as IcBell } from './ic_bell.svg';
 export { default as icEdit } from './ic_edit.svg';
 export { default as icEditProfile } from './ic_edit_profile.svg';
 export { default as icInputPencil } from './ic_input_pencil.svg';
+export { default as icCrown } from './ic_crown.svg';

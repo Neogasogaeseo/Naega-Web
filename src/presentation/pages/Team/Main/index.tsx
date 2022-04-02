@@ -104,15 +104,15 @@ function TeamMain() {
             navigate(`/team/${teamID}/${issueNumber}`);
           }}
         />
-        {teamID && (
-          <TeamMainBottomSheet
-            isOpened={isBottomSheetOpened}
-            closeBottomSheet={closeBottomSheet}
-            isUserHost={isUserHost}
-            teamID={teamID}
-          />
-        )}
       </StTeamMain>
+      {teamID && (
+        <TeamMainBottomSheet
+          isOpened={isBottomSheetOpened}
+          closeBottomSheet={closeBottomSheet}
+          isUserHost={isUserHost}
+          teamID={teamID}
+        />
+      )}
     </>
   );
 }

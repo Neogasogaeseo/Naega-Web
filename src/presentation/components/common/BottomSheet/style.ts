@@ -8,6 +8,7 @@ export const StAbsoluteWrapper = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
+  z-index: 4;
 `;
 
 export const StBlackBlur = styled.div<{ isClosing: boolean }>`
@@ -46,9 +47,7 @@ export const StButton = styled.div`
 `;
 
 export const StButtonWrapper = styled.div`
-  padding-top: 30px;
-  padding-bottom: 35px;
-  padding-left: 18px;
+  padding: 30px 18px 35px 18px;
   display: flex;
   flex-direction: column;
   gap: 25px;

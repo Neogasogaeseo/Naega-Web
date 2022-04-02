@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import BottomSheet from '..';
-import { icLeaveTeam, icManageTeam } from '@assets/icons';
+import { icEdit, icLeaveTeam, icManageTeam } from '@assets/icons';
 
 type TeamMainBottomSheetProps = {
   isOpened: boolean;
@@ -39,7 +39,7 @@ function TeamMainBottomSheet(props: TeamMainBottomSheetProps) {
                 onClick: manageTeamMember,
               },
               {
-                icon: '',
+                icon: icEdit,
                 label: '팀 수정하기',
                 onClick: navigateToEditPage,
               },

@@ -25,22 +25,27 @@ function MyProfileEdit() {
   });
 
   useEffect(() => {
-    const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
-    const idStartCheck = /^[a-z]/;
-
+    const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
     setIsEditConditionPassed({
-      id: idCheck.test(inputId) && idStartCheck.test(inputId),
-      name: inputName !== '',
+      ...isEditConditionPassed,
+      id: idCheck.test(inputId),
     });
 
     if (!idCheck.test(inputId)) {
       setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
     }
 
-    if (!idStartCheck.test(inputId)) {
+    if (!/^[a-z]/.test(inputId)) {
       setErrorMsg('*아이디의 첫 글자는 영문 소문자');
     }
-  }, [inputId, inputName]);
+  }, [inputId]);
+
+  useEffect(() => {
+    setIsEditConditionPassed({
+      ...isEditConditionPassed,
+      name: inputName !== '',
+    });
+  }, [inputName]);
 
   const editProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

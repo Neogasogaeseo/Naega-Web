@@ -1,14 +1,18 @@
-import { api } from '@api/index';
-import { IcArrowViewAll, IcCopyMypage, IcMypageEdit } from '@assets/icons';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
-import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
-import ProfileList from '@components/common/ProfileList';
-import { copyClipboard } from '@utils/copyClipboard';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { useToast } from '@hooks/useToast';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+
+import { api } from '@api/index';
+import { DOMAIN } from '@utils/constant';
+import { copyClipboard } from '@utils/copyClipboard';
+import { useToast } from '@hooks/useToast';
+import { useLoginUser } from '@hooks/useLoginUser';
+import ProfileList from '@components/common/ProfileList';
+import MyEmptyView from '@components/common/Empty/MyPage';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
+import FeedbackCardExpandableList from '@components/FeedbackCard/ExpandableList';
+import NeososeoAnswerCardExpandableList from '@components/NeososeoAnswerCard/ExpandableList';
 import {
   StDetailLink,
   StFeedbackTeamWrapper,
@@ -16,24 +20,26 @@ import {
   StGreyBorderTall,
   StHomeMyPage,
   StHomeMyPageHeader,
+  StKeywordSection,
   StKeywordTitle,
   StNegativeMarginWrapper,
   StShare,
   StTitle,
   StMyPageProfile,
 } from './style';
-import MyEmptyView from '@components/common/Empty/MyPage';
-import { DOMAIN } from '@utils/constant';
+import { IcArrowViewAll, IcCopyMypage, icCrown, IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
-import { useQuery } from 'react-query';
 
 function HomeMyPage() {
   const { userID } = useParams();
   const { userID: loginID } = useLoginUser();
   const [isMyPage, setIsMyPage] = useState(false);
+  const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const { pathname } = useLocation();
   const { fireToast } = useToast();
   const navigate = useNavigate();
+
+  if (!userID) return <></>;
 
   useEffect(() => {
     setIsMyPage(userID === loginID);
@@ -67,7 +73,7 @@ function HomeMyPage() {
             <StHomeMyPageHeader>
               <StMyPageProfile>
                 <img src={mypageInfo.profileImage || imgEmptyProfile} />
-                {isMyPage && <IcMypageEdit />}
+                {isMyPage && <IcMypageEdit onClick={() => setIsBottomSheetOpened(true)} />}
               </StMyPageProfile>
               <div>
                 <div>{mypageInfo.username}</div>
@@ -86,7 +92,17 @@ function HomeMyPage() {
                 </StShare>
               )}
             </StHomeMyPageHeader>
-            <div style={{ marginBottom: 32 }}>
+            <StKeywordSection>
+              <div>
+                <div>
+                  <img src={icCrown} />
+                  <span>My 키워드</span>
+                </div>
+                <span onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                  키워드 전체보기
+                  <IcArrowViewAll />
+                </span>
+              </div>
               {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
                 <>
                   <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
@@ -102,7 +118,7 @@ function HomeMyPage() {
                   <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
                 </>
               )}
-            </div>
+            </StKeywordSection>
           </>
         )
       )}
@@ -177,6 +193,12 @@ function HomeMyPage() {
         )
       )}
       <StGreyBorderTall />
+      <MyPageEditBottomSheet
+        isOpened={isBottomSheetOpened}
+        closeBottomSheet={() => setIsBottomSheetOpened(false)}
+        type="profile"
+        userID={userID}
+      />
     </StHomeMyPage>
   );
 }

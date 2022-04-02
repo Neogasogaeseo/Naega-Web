@@ -87,7 +87,7 @@ function JoinForm() {
         <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isJoinConditionPassed={isJoinConditionPassed.id}
+          isConditionPassed={isJoinConditionPassed.id}
           errorMsg={errorMsg}
           placeholder="neososeo_team"
           onChange={(value) => {
@@ -99,7 +99,7 @@ function JoinForm() {
         <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isJoinConditionPassed={isJoinConditionPassed.name}
+          isConditionPassed={isJoinConditionPassed.name}
           placeholder="이름을 입력해주세요"
           onChange={(value) => {
             setInputName(value);

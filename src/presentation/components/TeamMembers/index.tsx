@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 
-import { StTeamRegisterMembers, StHeader, StTeamMembersSearchResultTitle } from './style';
-import { IcBack } from '@assets/icons';
+import { StTeamRegisterMembers, StTeamMembersSearchResultTitle } from './style';
 import TeamMembersSearchBar from '@components/TeamMembersSearchBar';
 import TeamMembersSearchedUser from '@components/TeamMembersSearchedUser';
 import { selectedUserListState, userSearchWordState } from '@stores/team';
@@ -11,6 +10,7 @@ import { SearchedUser } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 import UserSearchEmptyView from '@components/common/Empty/UserSearch';
+import CommonNavigation from '@components/common/Navigation';
 
 export default function TeamMembers({
   onClickSubmitButton: onClickSubmitButton,
@@ -64,23 +64,20 @@ export default function TeamMembers({
 
   return (
     <StTeamRegisterMembers>
-      <StHeader>
-        <IcBack
-          onClick={() => {
+      <CommonNavigation
+        onClickBack={() => {
+          onClickSubmitButton();
+          resetUserSearchWord();
+        }}
+        title="팀원 추가"
+        submitButton={{
+          content: '완료',
+          onClick: () => {
             onClickSubmitButton();
             resetUserSearchWord();
-          }}
-        />
-        <div>팀원 추가</div>
-        <button
-          onClick={() => {
-            onClickSubmitButton();
-            resetUserSearchWord();
-          }}
-        >
-          완료
-        </button>
-      </StHeader>
+          },
+        }}
+      />
       <TeamMembersSearchBar onSubmitSearch={searchUser} />
       <StTeamMembersSearchResultTitle>검색결과</StTeamMembersSearchResultTitle>
       {searchedUserListResponse === null ? (

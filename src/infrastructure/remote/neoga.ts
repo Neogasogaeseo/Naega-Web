@@ -1,12 +1,13 @@
 import { NeogaService } from '@api/neoga';
 import { NotFoundError } from '@api/types/errors';
+import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function NeogaDataRemote(): NeogaService {
   const getBannerTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/banner` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return response.data
         ? {
             id: response.data.id,
@@ -24,7 +25,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getMainTemplate = async () => {
     const response = await privateAPI.get({ url: `/form/template/popular` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
@@ -37,7 +38,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getAllTemplates = async (viewMode: 'recent' | 'popular') => {
     const response = await privateAPI.get({ url: `/form/template/${viewMode}` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
@@ -52,7 +53,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getMainResultCard = async () => {
     const response = await privateAPI.get({ url: `/form` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
@@ -90,7 +91,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getFormResultCard = async () => {
     const response = await privateAPI.get({ url: `/form/new` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
@@ -152,10 +153,11 @@ export function NeogaDataRemote(): NeogaService {
       })
       .catch((error: AxiosError) => {
         console.log(error);
-        if (error.response?.status === 400) throw new NotFoundError('찾을 수 없는 페이지입니다.');
+        if (error.response?.status === STATUS_CODE.BAD_REQUEST)
+          throw new NotFoundError('찾을 수 없는 페이지입니다.');
       });
     const { id, title, subtitle, darkIconImage } = response.data;
-    if (response.status === 200) {
+    if (response.status === STATUS_CODE.OK) {
       return {
         id: id,
         title: title,

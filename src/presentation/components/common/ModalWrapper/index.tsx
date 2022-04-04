@@ -4,20 +4,20 @@ import { StModalWrapper } from './style';
 
 interface ModalWrapperProps {
   children: React.ReactNode;
-  isOpen: boolean;
+  isOpened: boolean;
 }
 
 export default function ModalWrapper(props: ModalWrapperProps) {
-  const { children, isOpen } = props;
+  const { children, isOpened } = props;
   const [isAnimation, setIsAnimation] = useState(true);
 
   useEffect(() => {
-    if (isOpen) setTimeout(() => setIsAnimation(false), 300);
+    if (isOpened) setTimeout(() => setIsAnimation(false), 300);
     else setIsAnimation(true);
-  }, [isOpen]);
+  }, [isOpened]);
 
   return (
-    <StModalWrapper isOpen={isOpen} isAnimation={isAnimation}>
+    <StModalWrapper isOpened={isOpened} isAnimation={isAnimation}>
       {children}
     </StModalWrapper>
   );

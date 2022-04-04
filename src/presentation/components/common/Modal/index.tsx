@@ -7,13 +7,13 @@ interface CommonModalProps {
   onClickCancel: () => void;
   title: string;
   description?: string;
-  isOpen: boolean;
+  isOpened: boolean;
 }
 
 export default function CommonModal(props: CommonModalProps) {
-  const { onClickConfirm, onClickCancel, title, description, isOpen } = props;
+  const { onClickConfirm, onClickCancel, title, description, isOpened } = props;
   return (
-    <ModalWrapper isOpen={isOpen}>
+    <ModalWrapper isOpened={isOpened}>
       <StCommonModal>
         <IcWarning />
         <div>{title}</div>

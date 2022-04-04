@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
@@ -11,15 +12,17 @@ export const StInvitation = styled.div`
   width: 100%;
   height: 57px;
   ${FONT_STYLES.R_14_TITLE};
-  padding-left: 14px;
-  padding-right: 19px;
 
   & div {
     display: flex;
     align-items: center;
   }
 
-  span {
+  & > span {
+    color: ${COLOR.GRAY_5};
+  }
+
+  & > div > span {
     color: ${COLOR.CORAL_MAIN};
     font-weight: 600;
   }

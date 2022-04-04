@@ -9,13 +9,8 @@ export const StNeososeoAnswerCard = styled.div`
   padding-bottom: 24px;
 
   & img {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-  }
-  & img:first-child {
-    padding: 6px;
-    background-color: ${COLOR.GRAY_1};
+    width: 28px;
+    height: 28px;
   }
   & img:nth-child(3) {
     width: 24px;
@@ -26,7 +21,7 @@ export const StNeososeoAnswerCard = styled.div`
     display: grid;
     grid-template-columns: 32px auto 24px;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     color: ${COLOR.GRAY_5};
     ${FONT_STYLES.M_14_TITLE}
   }

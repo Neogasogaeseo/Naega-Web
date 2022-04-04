@@ -9,7 +9,7 @@ export const StNeogaMainCardItem = styled.div`
   border-radius: 18.1233px;
   color: ${COLOR.WHITE};
   width: 136px;
-  padding: 14px 16px 20px 8px;
+  padding: 27px 13px 21px 13px;
   word-break: keep-all;
 
   & + & {
@@ -17,14 +17,14 @@ export const StNeogaMainCardItem = styled.div`
   }
 
   & img {
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     object-fit: cover;
-    margin-bottom: 21px;
+    margin-bottom: 20px;
   }
 
   & div {
-    padding-left: 8px;
+    padding-left: 2px;
     line-height: 144%;
   }
 `;

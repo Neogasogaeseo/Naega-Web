@@ -6,6 +6,9 @@ export const StCommonHeader = styled.div`
   width: 100%;
   height: 44px;
   position: relative;
+  svg {
+    cursor: pointer;
+  }
   & > *:first-child {
     display: flex;
     align-items: center;

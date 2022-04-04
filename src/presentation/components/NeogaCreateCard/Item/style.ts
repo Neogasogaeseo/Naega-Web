@@ -31,7 +31,6 @@ export const StNeogaCreateCardItem = styled.div<{ idx: number }>`
   & img {
     width: 52px;
     height: 52px;
-    border-radius: 26px;
   }
 
   & svg {

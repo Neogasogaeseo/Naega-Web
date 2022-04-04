@@ -8,6 +8,10 @@ export const StHomeMyPage = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 0 20px;
+
+  & > div:last-of-type {
+    margin-left: -20px;
+  }
 `;
 
 export const StHomeMyPageHeader = styled.div`
@@ -42,6 +46,38 @@ export const StShare = styled.div`
   flex-direction: row !important;
   gap: 4px;
   cursor: pointer;
+`;
+
+export const StKeywordSection = styled.div`
+  margin-bottom: 34px;
+  & > div:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    & > div {
+      display: flex;
+      align-items: center;
+      & > span {
+        margin: 0 8px;
+        ${FONT_STYLES.SB_18_TITLE};
+        color: ${COLOR.GRAY_8};
+      }
+    }
+    & > span {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      ${FONT_STYLES.M_14_TITLE}
+      color: ${COLOR.GRAY_4};
+      & > svg {
+        margin-left: 4px;
+      }
+      & > svg > path {
+        stroke: ${COLOR.GRAY_4};
+      }
+    }
+  }
 `;
 
 export const StKeywordTitle = styled.div`
@@ -107,5 +143,6 @@ export const StMyPageProfile = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
+    cursor: pointer;
   }
 `;

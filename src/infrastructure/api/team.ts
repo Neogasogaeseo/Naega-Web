@@ -11,6 +11,7 @@ import {
   PostFeedbackResponse,
   IssueCategory,
   PostIssueResponse,
+  TeamEditInfo,
 } from './types/team';
 
 export interface TeamService {
@@ -33,4 +34,7 @@ export interface TeamService {
     categoryID: number,
     image?: File,
   ): Promise<PostIssueResponse>;
+  getTeamEditInfo(teamID: number): Promise<TeamEditInfo>;
+  acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
+  rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
 }

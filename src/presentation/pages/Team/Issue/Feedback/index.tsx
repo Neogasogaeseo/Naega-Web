@@ -7,7 +7,7 @@ import { Keyword } from '@api/types/user';
 import { TeamMemberNoneId } from '@api/types/team';
 import { useLoginUser } from '@hooks/useLoginUser';
 import ProfileListSelectable from '@components/ProfileListSelectable';
-import CommonInput from '@components/common/CommonInput';
+import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import {
   StAbsoluteWrapper,
@@ -18,11 +18,11 @@ import {
   StButton,
   StTextarea,
 } from './style';
+import { useQuery } from 'react-query';
 
 function TeamIssueFeedback() {
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
-  const [teamMembers, setTeamMembers] = useState<TeamMemberNoneId[] | null>(null);
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
   const [isConfirming, setIsConfirming] = useState(false);
   const setFeedbacks = useSetRecoilState(teamFeedbackState);
@@ -30,14 +30,13 @@ function TeamIssueFeedback() {
   const { teamID, issueID } = useParams();
   const { username } = useLoginUser();
 
+  const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
+    api.teamService.getTeamMembers(teamID ?? ''),
+  );
   useEffect(() => {
-    if (!teamID) return;
-    (async () => {
-      const data = await api.teamService.getTeamMembers(teamID);
-      setTeamMembers(data);
-      setSelectedUser(data[0]);
-    })();
-  }, [teamID]);
+    if (!teamMembers) return;
+    setSelectedUser(teamMembers[0]);
+  }, [teamMembers]);
 
   const onPostFeedback = async () => {
     if (!issueID) return;

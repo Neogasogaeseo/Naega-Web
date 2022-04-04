@@ -7,12 +7,14 @@ interface CommonInputProps {
   placeholder?: string;
   maxLength?: number;
   value?: string;
-  isJoinConditionPassed?: boolean;
+  defaultValue?: string;
+  isConditionPassed?: boolean;
   img?: string;
   onChange?: (value: string) => void;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
   submitButtonValue?: string;
+  submitButtonDisabled?: boolean;
 }
 
 function CommonInput(props: CommonInputProps) {
@@ -22,12 +24,14 @@ function CommonInput(props: CommonInputProps) {
     placeholder,
     maxLength,
     value,
-    isJoinConditionPassed,
+    defaultValue,
+    isConditionPassed,
     onChange,
     onSubmit,
     img,
     disabled = false,
     submitButtonValue,
+    submitButtonDisabled = false,
   } = props;
   const [isInput, setIsInput] = useState('');
 
@@ -50,13 +54,16 @@ function CommonInput(props: CommonInputProps) {
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}
+          defaultValue={defaultValue}
           img={img}
           disabled={disabled}
           hasButton={submitButtonValue !== undefined}
         />
-        {submitButtonValue && <StSubmitButton>{submitButtonValue}</StSubmitButton>}
+        {submitButtonValue && (
+          <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
+        )}
       </StInputWrapper>
-      {!isJoinConditionPassed && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
+      {!isConditionPassed && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>
   );
 }

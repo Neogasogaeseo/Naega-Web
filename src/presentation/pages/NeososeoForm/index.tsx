@@ -1,32 +1,18 @@
 import { api } from '@api/index';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
-import FormRouter from '@routes/FormRouter';
-import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useQuery } from 'react-query';
+import { useParams, Outlet } from 'react-router-dom';
 import { StNeososeoFormPage } from './style';
 
 function NeososeoFormPage() {
   const { q } = useParams();
-  const [neososeoForm, setNeososeoForm] = useRecoilState(neososeoFormState);
-  const setNeoseosoAnswer = useSetRecoilState(neososeoAnswerState);
 
-  useEffect(() => {
-    if (!q) return;
-    (async () => {
-      const data = await api.neososeoFormService.getFormInfo(q);
-      setNeososeoForm(data);
-      setNeoseosoAnswer((prev) => ({ ...prev, userID: data.userID, formID: data.formID }));
-    })();
-  }, [q]);
+  const { data: neososeoFormData, isLoading } = useQuery(['neososeoForm', q], () =>
+    api.neososeoFormService.getFormInfo(q ?? ''),
+  );
 
   return (
     <StNeososeoFormPage>
-      {neososeoForm && (
-        <NeososeoFormHeader title={neososeoForm.title} image={neososeoForm.imageSub} />
-      )}
-      <FormRouter />
+      {!isLoading && neososeoFormData !== undefined && <Outlet context={{ neososeoFormData }} />}
     </StNeososeoFormPage>
   );
 }

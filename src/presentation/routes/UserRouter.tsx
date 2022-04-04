@@ -5,6 +5,7 @@ const Join = lazy(() => import('@pages/Join'));
 const OAuthRedirectHandler = lazy(() => import('@pages/OAuthRedirectHandler'));
 const Home = lazy(() => import('@pages/Home'));
 const JoinComplete = lazy(() => import('@pages/JoinComplete'));
+const MyKeyword = lazy(() => import('@pages/Home/MyPage/Keyword'));
 const Landing = lazy(() => import('@pages/Landing'));
 import PublicRoute from './common/PublicRoute';
 
@@ -15,6 +16,7 @@ const UserRouter = () => (
       <Route path="/login" element={<Login />} />
       <Route path="/join" element={<Join />} />
       <Route path="/join/complete" element={<JoinComplete />} />
+      <Route path="/mypage/keyword/:userID" element={<MyKeyword />} />
       <Route path="/home/*" element={<Home />} />
       <Route path="/auth/kakao/callback" element={<OAuthRedirectHandler />} />
     </Route>

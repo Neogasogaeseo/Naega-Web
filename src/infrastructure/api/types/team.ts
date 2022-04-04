@@ -26,6 +26,10 @@ export interface TeamMember {
 
 export type TeamMemberNoneId = Omit<TeamMember, 'profileId'>;
 
+export interface TeamMemberWithHostInfo extends TeamMember {
+  isHost: boolean;
+}
+
 export interface SearchedUser extends TeamMember {
   isAdded: boolean;
 }
@@ -77,7 +81,7 @@ export type TeamDetail = {
 export type TeamInfoData = {
   teamDetail: TeamDetail;
   teamMemberCount: number;
-  teamMemberList: TeamMember[];
+  teamMemberList: TeamMemberWithHostInfo[];
 };
 
 export type TeamInvite = {
@@ -114,4 +118,10 @@ export type PostIssueResponse = {
   createdAt: string;
   id: number;
   image?: string;
+};
+
+export type TeamEditInfo = {
+  image?: string;
+  name: string;
+  description: string;
 };

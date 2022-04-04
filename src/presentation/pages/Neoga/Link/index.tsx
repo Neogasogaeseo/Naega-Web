@@ -10,7 +10,8 @@ import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
-import CommonHeader from '@components/common/CommonHeader';
+import CommonHeader from '@components/common/Header';
+import { imgCreatedLink } from '@assets/images';
 
 export default function NeogaLink() {
   const CREATED = 'created';
@@ -44,16 +45,21 @@ export default function NeogaLink() {
       <CommonHeader />
       <div>
         <FormCard
-          content={formData && formData.subtitle}
-          title={formData && formData.title}
-          image={formData && formData.image}
+          content={(formData && formData.subtitle) ?? ''}
+          title={(formData && formData.title) ?? ''}
+          image={(formData && formData.image) ?? ''}
         >
           <StLinkButton onClick={createLink} isCreated={isCreated}>
             <IcPulsCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
         </FormCard>
-        <FormCard isFront={false}>
+        <FormCard
+          content="너가소개서 생성 완료!"
+          title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
+          image={imgCreatedLink}
+          theme="CORAL"
+        >
           <StLinkButton
             onClick={() =>
               copyClipboard(

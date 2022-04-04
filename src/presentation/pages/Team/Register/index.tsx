@@ -7,9 +7,9 @@ import {
   StAbsoluteWrapper,
   StIcPencil,
 } from './style';
-import { imgEmptyProfile, ImgTeamAdd } from '@assets/images';
-import CommonInput from '@components/common/CommonInput';
-import CommonLabel from '@components/common/CommonLabel';
+import { imgEmptyProfile, ImgTeamDefault } from '@assets/images';
+import CommonInput from '@components/common/Input';
+import CommonLabel from '@components/common/Label';
 import ProfileList from '@components/common/ProfileList';
 import PhotoUpload from '@components/common/FileUpload';
 import TeamMembers from '@components/TeamMembers';
@@ -20,7 +20,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import CommonNavigation from '@components/common/CommonNavigation';
+import CommonNavigation from '@components/common/Navigation';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
@@ -59,10 +59,10 @@ function TeamRegister() {
         <StTeamRegisterWrapper>
           <StTitle>팀 등록하기</StTitle>
           <StAbsoluteWrapper>
-            <PhotoUpload width="104px" height="104px" borderRadius="36px" setFile={setImage}>
-              <ImgTeamAdd />
+            <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
+              <ImgTeamDefault />
             </PhotoUpload>
-            {!image && <StIcPencil />}
+            <StIcPencil />
           </StAbsoluteWrapper>
           <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
           <CommonInput

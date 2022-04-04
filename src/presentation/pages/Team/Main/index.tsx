@@ -43,21 +43,13 @@ function TeamMain() {
     { enabled: isChecked },
   );
 
-  const openBottomSheet = () => {
-    setIsBottomSheetOpened(true);
-  };
-
-  const closeBottomSheet = () => {
-    setIsBottomSheetOpened(false);
-  };
-
   return (
     <>
       <CommonNavigation />
       <StTeamMain>
         {teamInfoData && (
           <StTeamInfo>
-            <IcMeatball onClick={() => openBottomSheet()} />
+            <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
             <img src={teamInfoData.teamDetail.teamImage || imgEmptyProfile} />
             <div>
               <h1>{teamInfoData.teamDetail.teamName}</h1>
@@ -108,7 +100,7 @@ function TeamMain() {
       {teamID && (
         <TeamMainBottomSheet
           isOpened={isBottomSheetOpened}
-          closeBottomSheet={closeBottomSheet}
+          closeBottomSheet={() => setIsBottomSheetOpened(false)}
           isUserHost={isUserHost}
           teamID={teamID}
         />

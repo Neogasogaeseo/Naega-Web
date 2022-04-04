@@ -15,8 +15,8 @@ export const StFormCard = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
 
   & > *:nth-child(1) {
     margin-top: 42px;
-    width: 85px;
-    height: 85px;
+    width: 86px;
+    height: 86px;
   }
   & > *:nth-child(2) {
     font-family: Pretendard;

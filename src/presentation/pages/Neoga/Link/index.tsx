@@ -6,10 +6,11 @@ import { useQuery } from 'react-query';
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
 import FormCard from '@components/common/FormCard';
-import { IcLinkCoral, IcLinkWhite } from '@assets/icons';
+import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
+import CommonHeader from '@components/common/Header';
 import { imgCreatedLink } from '@assets/images';
 
 export default function NeogaLink() {
@@ -41,14 +42,15 @@ export default function NeogaLink() {
 
   return (
     <StNeogaLink isCreated={isCreated}>
+      <CommonHeader />
       <div>
         <FormCard
           content={(formData && formData.subtitle) ?? ''}
           title={(formData && formData.title) ?? ''}
-          image="https://user-images.githubusercontent.com/73823388/157658161-1dab67ec-d994-4668-bec0-e1dda28cf2f9.png"
+          image={(formData && formData.image) ?? ''}
         >
           <StLinkButton onClick={createLink} isCreated={isCreated}>
-            <IcLinkCoral />
+            <IcPulsCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
         </FormCard>

@@ -1,12 +1,14 @@
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
+import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
   const postFeedbackBookmark = async (feedbackID: string) => {
     const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
-    if (response.status === 200) return { isSuccess: true, isBookmarked: response.data?.isPinned };
+    if (response.status === STATUS_CODE.OK)
+      return { isSuccess: true, isBookmarked: response.data?.isPinned };
     else return { isSuccess: false };
   };
 
@@ -22,7 +24,7 @@ export function teamDataRemote(): TeamService {
   const postFeedback = async (body: PostFeedbackRequestBody) => {
     const response = await privateAPI.post({ url: `/team/feedback`, data: body });
     return {
-      isSuccess: response.status === 200,
+      isSuccess: response.status === STATUS_CODE.OK,
       createdFeedbackID: response.data.feecbackId,
       createdAt: response.data.createdAt,
       targetUserProfileID: response.data.taggedUserProfileId,
@@ -67,7 +69,7 @@ export function teamDataRemote(): TeamService {
 
   const getTeamIssue = async (teamID: string) => {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         issueList: response.data
           ? response.data.map((issue: any) => ({
@@ -95,7 +97,7 @@ export function teamDataRemote(): TeamService {
 
   const getMyIssue = async (teamID: string) => {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}/issue/my` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         issueList: response.data
           ? response.data.map((issue: any) => ({
@@ -123,7 +125,7 @@ export function teamDataRemote(): TeamService {
 
   const getTeamProfile = async () => {
     const response = await privateAPI.get({ url: `/team` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         profileList: response.data
           ? response.data.map((team: any) => ({
@@ -138,7 +140,7 @@ export function teamDataRemote(): TeamService {
 
   const getTeamInfo = async (teamID: number) => {
     const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         teamDetail: {
           teamID: response.data.team.id,
@@ -160,7 +162,7 @@ export function teamDataRemote(): TeamService {
 
   const getMyTeamIssue = async () => {
     const response = await privateAPI.get({ url: `/team/issue` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         issueList: response.data
           ? response.data.map((issue: any) => ({
@@ -186,7 +188,7 @@ export function teamDataRemote(): TeamService {
 
   const getInviteInfo = async () => {
     const response = await privateAPI.get({ url: `/team/invite` });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return {
         inviteList: response.data
           ? response.data.map((team: any) => ({
@@ -202,14 +204,14 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({
       url: `/user/search?profileId=${profileId}`,
     });
-    if (response.status === 200)
+    if (response.status === STATUS_CODE.OK)
       return response.data.map((member: any) => ({
         id: member.id,
         profileId: member.profileId,
         profileName: member.name,
         profileImage: member.image,
       }));
-    else if (response.axiosStatus === 240) {
+    else if (response.axiosStatus === STATUS_CODE.NO_CONTENT) {
       return [];
     }
   };
@@ -225,7 +227,7 @@ export function teamDataRemote(): TeamService {
         .catch((error: AxiosError) => {
           console.error(error.response);
         });
-      if (response.status === 200) {
+      if (response.status === STATUS_CODE.OK) {
         return { isSuccess: true };
       } else {
         return { isSuccess: false };

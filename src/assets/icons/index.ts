@@ -46,3 +46,5 @@ export { default as icEdit } from './ic_edit.svg';
 export { default as icEditProfile } from './ic_edit_profile.svg';
 export { default as icInputPencil } from './ic_input_pencil.svg';
 export { default as icCrown } from './ic_crown.svg';
+export { default as icManageTeam } from './ic_manage_team.svg';
+export { default as icLeaveTeam } from './ic_leave_team.svg';

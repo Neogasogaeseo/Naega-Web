@@ -16,7 +16,7 @@ import { imgEmptyProfile } from '@assets/images';
 function TeamMain() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const { username } = useLoginUser();
+  const { userID } = useLoginUser();
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
@@ -28,8 +28,8 @@ function TeamMain() {
     api.teamService.getTeamInfo(Number(teamID)),
   );
   const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, MAX_TEAM_MEMBER);
-  const hostName = slicedMemberList && slicedMemberList[0].profileName;
-  const isUserHost = username === hostName;
+  const hostID = slicedMemberList && slicedMemberList[0].profileId;
+  const isUserHost = userID === hostID;
 
   const { data: teamIssueList } = useQuery(
     ['teamIssueList', teamID],

@@ -24,7 +24,7 @@ export const StBlackBlur = styled.div<{ isClosing: boolean }>`
 
 export const StWrapper = styled.div<{ isClosing: boolean }>`
   position: fixed;
-  width: min(100vw, 400px);
+  width: min(100vw, 390px);
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   background-color: ${COLOR.WHITE};
@@ -39,6 +39,8 @@ export const StButton = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  width: fit-content;
   color: ${COLOR.GRAY_7};
   ${FONT_STYLES.R_16_BODY}
 `;
@@ -53,6 +55,7 @@ export const StButtonWrapper = styled.div`
 `;
 
 export const StCancelButton = styled.div`
+  cursor: pointer;
   text-align: center;
   border-top: 1px solid ${COLOR.GRAY_3};
   padding-top: 16px;

@@ -1,5 +1,6 @@
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
+import { STATUS_CODE } from '@utils/constant';
 import { publicAPI } from './base';
 
 export function NeososeoFormRemote(): NeososeoFormService {
@@ -30,7 +31,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
         keywordList: body.keyword,
       },
     });
-    return { isSuccess: response.status === 200 };
+    return { isSuccess: response.status === STATUS_CODE.OK };
   };
 
   return { getFormInfo, postFormAnswer };

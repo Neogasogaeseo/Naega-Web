@@ -44,7 +44,7 @@ export const StSubmitButton = styled.button<{ isActive: boolean }>`
   margin-bottom: 48px;
 `;
 
-export const StAbsoluteWrapper = styled.div`
+export const StPhotoUploadWrapper = styled.div`
   position: relative;
   width: 88px;
   height: 88px;

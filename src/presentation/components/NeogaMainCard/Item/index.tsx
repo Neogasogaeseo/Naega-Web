@@ -19,8 +19,8 @@ function NeogaMainCardItem(props: NeogaMainCardItemProps) {
   return (
     <StNeogaMainCardItem color={backgroundColor} onClick={() => onItemClick(id)}>
       <img src={src} />
-      <StTitle isSpecial={isFirstLineSpecial}>{firstLine.replaceAll('*', '')}</StTitle>
-      <StTitle isSpecial={isSecondLineSpecial}>{secondLine.replaceAll('*', '')}</StTitle>
+      <StTitle isBold={isFirstLineSpecial}>{firstLine.replaceAll('*', '')}</StTitle>
+      <StTitle isBold={isSecondLineSpecial}>{secondLine.replaceAll('*', '')}</StTitle>
     </StNeogaMainCardItem>
   );
 }

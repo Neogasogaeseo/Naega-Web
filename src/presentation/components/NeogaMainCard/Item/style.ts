@@ -28,11 +28,11 @@ export const StNeogaMainCardItem = styled.div`
   }
 `;
 
-export const StTitle = styled.div<{ isSpecial: boolean }>`
-  font-weight: ${(props) => (props.isSpecial ? 600 : 400)};
-  font-size: ${(props) => (props.isSpecial ? '16px' : '14px')};
-  letter-spacing: ${(props) => (props.isSpecial ? '-0.015em' : '-0.01em')};
-  color: ${(props) => (props.isSpecial ? COLOR.GRAY_1 : COLOR.WHITE)};
+export const StTitle = styled.div<{ isBold: boolean }>`
+  font-weight: ${(props) => (props.isBold ? 600 : 400)};
+  font-size: ${(props) => (props.isBold ? '16px' : '14px')};
+  letter-spacing: ${(props) => (props.isBold ? '-0.015em' : '-0.01em')};
+  color: ${(props) => (props.isBold ? COLOR.GRAY_1 : COLOR.WHITE)};
   line-height: 140%;
   padding-left: 2px;
 `;

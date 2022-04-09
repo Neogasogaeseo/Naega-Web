@@ -19,7 +19,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 2,
-      title: '*가장 기억에 남는*\n최고의 순간',
+      title: '*가장 기억에 남는*\n순간의 내 모습',
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#FF5D84',
       isCreated: false,
@@ -122,7 +122,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 2,
-      title: '*가장 기억에 남는*\n최고의 순간',
+      title: '*가장 기억에 남는*\n순간의 내 모습',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',

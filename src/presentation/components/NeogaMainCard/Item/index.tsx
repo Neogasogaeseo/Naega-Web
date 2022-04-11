@@ -13,14 +13,14 @@ function NeogaMainCardItem(props: NeogaMainCardItemProps) {
   const twoLineTitle = title.split('\n');
   const firstLine = twoLineTitle[0];
   const secondLine = twoLineTitle[1];
-  const isFirstLineSpecial = firstLine.includes('*');
-  const isSecondLineSpecial = secondLine.includes('*');
+  const isFirstLineBold = firstLine.includes('*');
+  const isSecondLineBold = secondLine.includes('*');
 
   return (
     <StNeogaMainCardItem color={backgroundColor} onClick={() => onItemClick(id)}>
       <img src={src} />
-      <StTitle isBold={isFirstLineSpecial}>{firstLine.replaceAll('*', '')}</StTitle>
-      <StTitle isBold={isSecondLineSpecial}>{secondLine.replaceAll('*', '')}</StTitle>
+      <StTitle isBold={isFirstLineBold}>{firstLine.replaceAll('*', '')}</StTitle>
+      <StTitle isBold={isSecondLineBold}>{secondLine.replaceAll('*', '')}</StTitle>
     </StNeogaMainCardItem>
   );
 }

@@ -90,6 +90,7 @@ export function teamDataMock(): TeamService {
   const getTeamEditInfo = async (teamID: number) => {
     await wait(teamID);
     return {
+      id: -1,
       image:
         'https://user-images.githubusercontent.com/73823388/159130486-5d4eb6f7-9f72-4c27-9807-6c762d352a9a.jpg',
       name: '당뻔',

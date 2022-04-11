@@ -1,5 +1,5 @@
 import { TeamService } from '@api/team';
-import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
+import { PostFeedbackRequestBody } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
@@ -269,8 +269,18 @@ export function teamDataRemote(): TeamService {
     }
   };
 
-  const getTeamEditInfo = async (teamID: number) =>
-    new Promise<TeamEditInfo>((resolve) => setTimeout(resolve, teamID));
+  const getTeamEditInfo = async (teamID: number) => {
+    const response = await privateAPI.get({ url: `/team/edit/${teamID}` });
+    const { data, status } = response;
+    if (status === STATUS_CODE.OK) {
+      const { team } = data;
+      return {
+        ...team,
+        image: team.image ?? '',
+        description: team.description ?? '',
+      };
+    } else throw 'UNAUTHORIZED';
+  };
 
   const acceptInvitation = async (id: number) => {
     const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });

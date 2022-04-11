@@ -17,7 +17,7 @@ export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
   const { data: teamInfo, isSuccess } = useQuery(['teamEditInfo', teamID], () =>
-    api.teamServiceMock.getTeamEditInfo(Number(teamID)),
+    api.teamService.getTeamEditInfo(Number(teamID)),
   );
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
@@ -34,6 +34,8 @@ export default function TeamEdit() {
   useEffect(() => {
     if (!teamID || (teamID && isNaN(+teamID))) navigate('/home');
   }, []);
+
+  useEffect(() => console.log(teamInfo), [teamInfo]);
 
   return (
     <StRelativeWrapper>

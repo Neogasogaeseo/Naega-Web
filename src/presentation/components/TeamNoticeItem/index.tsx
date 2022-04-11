@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { api } from '@api/index';
 import { TeamNoticeItem as TeamNoticeItemData } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { COLOR } from '@styles/common/color';
-import { useState } from 'react';
 import {
   StTeamNoticeItemWrapper,
   StTeamProfile,

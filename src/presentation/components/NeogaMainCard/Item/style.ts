@@ -23,8 +23,16 @@ export const StNeogaMainCardItem = styled.div`
     margin-bottom: 20px;
   }
 
-  & div {
-    padding-left: 2px;
-    line-height: 144%;
+  & div + div {
+    margin-top: 2px;
   }
+`;
+
+export const StTitle = styled.div<{ isBold: boolean }>`
+  font-weight: ${(props) => (props.isBold ? 600 : 400)};
+  font-size: ${(props) => (props.isBold ? '16px' : '14px')};
+  letter-spacing: ${(props) => (props.isBold ? '-0.015em' : '-0.01em')};
+  color: ${(props) => (props.isBold ? COLOR.GRAY_1 : COLOR.WHITE)};
+  line-height: 140%;
+  padding-left: 2px;
 `;

@@ -6,6 +6,7 @@ export const StTeamProfile = styled.img<{ isDeclined: boolean }>`
   border-radius: 15px;
   width: 48px;
   height: 48px;
+  ${({ isDeclined }) => isDeclined && `filter: grayscale(80%) brightness(0.8);`}
 `;
 
 export const StTeamProfileWrapper = styled.div`

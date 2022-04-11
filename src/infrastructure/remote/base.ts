@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASEURL = 'https://asia-northeast3-neogasogaeseo-9aaf5.cloudfunctions.net/api';
+const BASEURL = 'http://127.0.0.1:5050/neogasogaeseo-9aaf5/asia-northeast3/api';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
 const getBasePrivateHeaders = () => ({

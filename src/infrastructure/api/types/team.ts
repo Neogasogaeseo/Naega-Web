@@ -131,4 +131,5 @@ export type TeamNoticeItem = {
   teamName: string;
   teamProfileImage: string | undefined;
   status: 'PENDING' | 'ACCEPT' | 'DECLINE';
+  timeDifference: string;
 };

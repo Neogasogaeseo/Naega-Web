@@ -1,5 +1,6 @@
 import { api } from '@api/index';
 import { TeamNoticeItem as TeamNoticeItemData } from '@api/types/team';
+import { imgEmptyProfile } from '@assets/images';
 import { COLOR } from '@styles/common/color';
 import { useState } from 'react';
 import {
@@ -15,7 +16,7 @@ import {
 type TeamNoticeItemProps = TeamNoticeItemData;
 
 function TeamNoticeItem(props: TeamNoticeItemProps) {
-  const { teamID, teamName, teamProfileImage, status } = props;
+  const { teamID, teamName, teamProfileImage, status, timeDifference } = props;
   const [teamStatus, setTeamStatus] = useState<TeamNoticeItemProps['status']>(status);
 
   const onAcceptClick = async () => {
@@ -35,7 +36,7 @@ function TeamNoticeItem(props: TeamNoticeItemProps) {
     <StTeamNoticeItemWrapper>
       <StTeamProfileWrapper>
         <StTeamProfile
-          src={teamProfileImage}
+          src={teamProfileImage || imgEmptyProfile}
           alt={teamName}
           isDeclined={teamStatus === 'DECLINE'}
         />
@@ -67,7 +68,7 @@ function TeamNoticeItem(props: TeamNoticeItemProps) {
               <span>{teamName}</span> 팀의 초대를 {teamStatus === 'ACCEPT' ? '수락' : '거절'}
               했습니다
             </StTeamName>
-            <StInvitationTime>1분전</StInvitationTime>
+            <StInvitationTime>{timeDifference} 전</StInvitationTime>
           </div>
         </div>
       )}

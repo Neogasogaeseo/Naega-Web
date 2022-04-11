@@ -1,4 +1,5 @@
 import { TeamService } from '@api/team';
+import { UnauthorizedError } from '@api/types/errors';
 import { PostFeedbackRequestBody } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
@@ -270,7 +271,12 @@ export function teamDataRemote(): TeamService {
   };
 
   const getTeamEditInfo = async (teamID: number) => {
-    const response = await privateAPI.get({ url: `/team/edit/${teamID}` });
+    const response = await privateAPI
+      .get({ url: `/team/edit/${teamID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.UNAUTHORIZED)
+          throw new UnauthorizedError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+      });
     const { data, status } = response;
     if (status === STATUS_CODE.OK) {
       const { team } = data;

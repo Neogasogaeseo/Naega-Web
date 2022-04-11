@@ -16,8 +16,10 @@ import CommonModal from '@components/common/Modal';
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const { data: teamInfo, isSuccess } = useQuery(['teamEditInfo', teamID], () =>
-    api.teamService.getTeamEditInfo(Number(teamID)),
+  const { data: teamInfo, isSuccess } = useQuery(
+    ['teamEditInfo', teamID],
+    () => api.teamService.getTeamEditInfo(Number(teamID)),
+    { useErrorBoundary: true, retry: 1 },
   );
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
@@ -34,8 +36,6 @@ export default function TeamEdit() {
   useEffect(() => {
     if (!teamID || (teamID && isNaN(+teamID))) navigate('/home');
   }, []);
-
-  useEffect(() => console.log(teamInfo), [teamInfo]);
 
   return (
     <StRelativeWrapper>

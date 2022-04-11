@@ -15,7 +15,7 @@ function NeogaCreateCardItem(props: NeogaCreateCardItemProps) {
     <StNeogaCreateCardItem color={backgroundColor} onClick={onClick}>
       <img src={src} alt={content} />
       <div>
-        <div>{title.replaceAll('\n', ' ').replaceAll('*', '')}</div>
+        <div>{title}</div>
         <div>{content}</div>
       </div>
       <IcArrowRight />

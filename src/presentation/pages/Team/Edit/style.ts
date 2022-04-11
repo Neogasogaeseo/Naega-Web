@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const StTeamEdit = styled.div`
   padding: 0 20px;
   width: 100%;
+  position: relative;
   & > *:nth-child(1) {
     margin-top: 23px;
     font-weight: 600;
@@ -43,4 +44,8 @@ export const StTeamImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 30px;
+`;
+
+export const StRelativeWrapper = styled.div`
+  position: relative;
 `;

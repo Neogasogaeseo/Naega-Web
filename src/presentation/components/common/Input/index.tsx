@@ -8,7 +8,7 @@ interface CommonInputProps {
   maxLength?: number;
   value?: string;
   defaultValue?: string;
-  isJoinConditionPassed?: boolean;
+  isConditionPassed?: boolean;
   img?: string;
   onChange?: (value: string) => void;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -25,7 +25,7 @@ function CommonInput(props: CommonInputProps) {
     maxLength,
     value,
     defaultValue,
-    isJoinConditionPassed,
+    isConditionPassed,
     onChange,
     onSubmit,
     img,
@@ -63,7 +63,7 @@ function CommonInput(props: CommonInputProps) {
           <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
         )}
       </StInputWrapper>
-      {!isJoinConditionPassed && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
+      {!isConditionPassed && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>
   );
 }

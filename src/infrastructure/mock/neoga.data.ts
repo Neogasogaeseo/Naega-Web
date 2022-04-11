@@ -12,30 +12,44 @@ export const NEOGA_DATA = {
   MAIN_TEMPLATE: [
     {
       id: 1,
-      title: '너가 닮고 싶은 나의 일잘러 모습?',
+      title: '너가 기억하는\n*나의 첫인상*',
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#434343',
       isCreated: false,
     },
     {
       id: 2,
-      title: '너가 기억하는 나의 첫인상',
+      title: '*가장 기억에 남는*\n순간의 내 모습',
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#FF5D84',
       isCreated: false,
     },
     {
       id: 3,
-      title: '나에게 어울리는 제2의 직업',
+      title: '내가 가진\n*장점 소개해주기*',
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#5451FF',
       isCreated: false,
     },
     {
       id: 4,
-      title: '나와 함께한 최고의 순간',
+      title: '너가 닮고 싶은\n*나의 일잘러 모습*',
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
       backgroundColor: '#3ACE90',
+      isCreated: false,
+    },
+    {
+      id: 5,
+      title: '나에게 어울리는\n*제 2의 직업*',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#434343',
+      isCreated: false,
+    },
+    {
+      id: 6,
+      title: '너가 나에게\n*고마웠던 일*',
+      src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
+      backgroundColor: '#FF5D84',
       isCreated: false,
     },
   ],
@@ -99,7 +113,7 @@ export const NEOGA_DATA = {
   ALL_TEMPLATES: [
     {
       id: 1,
-      title: '임인년, 나에게 기대하는 모습은?',
+      title: '너가 기억하는\n*나의 첫인상*',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: true,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
@@ -108,7 +122,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 2,
-      title: '임인년, 나에게 기대하는 모습은?',
+      title: '*가장 기억에 남는*\n순간의 내 모습',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
@@ -117,7 +131,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 3,
-      title: '롤링페이퍼! 나에게 할 말 없어?',
+      title: '내가 가진\n*장점 소개해주기*',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
@@ -126,7 +140,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 4,
-      title: '요즘 힘드러 기운나는 한마디!',
+      title: '너가 닮고 싶은\n*나의 일잘러 모습*',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
@@ -135,7 +149,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 5,
-      title: '롤링페이퍼! 나에게 할 말 없어?',
+      title: '나에게 어울리는\n*제 2의 직업*',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',
@@ -144,7 +158,7 @@ export const NEOGA_DATA = {
     },
     {
       id: 6,
-      title: '요즘 힘드러 기운나는 한마디!',
+      title: '너가 나에게\n*고마웠던 일*',
       content: '당신이 닮고 싶었던 능력이 있나요?',
       isNew: false,
       src: 'https://ww.namu.la/s/34abe06e2ac92dc187a850f51930231b0b933b71ef9372e4ad0c4c2084b231c772ff46ccdbed58e1967cfc9415be646acb7cd18fb95d96bf16052c1634e221ea01c72f96f97a4588c0ed1a9c2f53c741723b5794cecea4f8107ad062cc84e0d4',

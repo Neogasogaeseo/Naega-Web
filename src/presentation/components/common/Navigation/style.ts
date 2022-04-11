@@ -13,6 +13,7 @@ export const StCommonNavigation = styled.div`
 
 export const StBack = styled.img`
   margin-left: 14px;
+  cursor: pointer;
 `;
 
 export const StTitle = styled.div`

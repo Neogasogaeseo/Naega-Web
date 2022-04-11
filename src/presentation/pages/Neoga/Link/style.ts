@@ -8,8 +8,8 @@ export const StNeogaLink = styled.div<{ isCreated: boolean }>`
   align-items: center;
   background-color: ${COLOR.GRAY_1};
   height: 100vh;
-  & > div {
-    margin-top: 50px;
+  & > *:last-child {
+    margin-top: 136px;
     margin-bottom: 69px;
     position: relative;
     width: 284px;

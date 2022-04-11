@@ -24,7 +24,7 @@ export const StTeamMember = styled.div`
 
 export const StMemberInfo = styled.div`
   margin-top: 15px;
-  padding: 20px;
+  padding: 6px 20px 20px 20px;
 
   & > div {
     display: flex;
@@ -32,9 +32,10 @@ export const StMemberInfo = styled.div`
     border-bottom: 1px solid ${COLOR.GRAY_2};
     padding: 14px 0;
 
-    div {
+    div:first-of-type {
       display: flex;
       flex-direction: column;
+      flex: 1;
       margin-left: 12px;
       gap: 7px;
 
@@ -56,4 +57,12 @@ export const StMemberInfo = styled.div`
       border-radius: 50%;
     }
   }
+`;
+
+export const StHostBox = styled.div<{ isHost: boolean }>`
+  padding: 11.5px 24px;
+  ${FONT_STYLES.M_13_TITLE};
+  border: 1px solid ${({ isHost }) => (isHost ? COLOR.GRAY_6 : COLOR.GRAY_4)};
+  border-radius: 10px;
+  color: ${({ isHost }) => (isHost ? COLOR.GRAY_6 : COLOR.GRAY_4)};
 `;

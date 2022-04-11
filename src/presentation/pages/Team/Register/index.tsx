@@ -4,7 +4,7 @@ import {
   StTeamRegisterWrapper,
   StTextarea,
   StSubmitButton,
-  StAbsoluteWrapper,
+  StPhotoUploadWrapper,
   StIcPencil,
 } from './style';
 import { imgEmptyProfile, ImgTeamDefault } from '@assets/images';
@@ -58,12 +58,12 @@ function TeamRegister() {
         <CommonNavigation />
         <StTeamRegisterWrapper>
           <StTitle>팀 등록하기</StTitle>
-          <StAbsoluteWrapper>
+          <StPhotoUploadWrapper>
             <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
               <ImgTeamDefault />
             </PhotoUpload>
             <StIcPencil />
-          </StAbsoluteWrapper>
+          </StPhotoUploadWrapper>
           <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
           <CommonInput
             value={name}

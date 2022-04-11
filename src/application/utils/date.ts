@@ -1,43 +1,40 @@
+const getUTCTimeValues = (date: Date) => {
+  const time = Math.floor(date.getTime() / 1000);
+  return {
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth(),
+    date: date.getUTCDate(),
+    hour: Math.floor(time / 3600),
+    minute: Math.floor(time / 60),
+    second: Math.floor(time % 60),
+  };
+};
+
 export const getTimeDifference = (date1: Date, date2: Date) => {
-  let preDate: Date;
-  let nextDate: Date;
+  const [prevDate, nextDate] = [date1, date2].sort((a, b) => a.getTime() - b.getTime());
 
-  if (date1.getTime() < date2.getTime()) {
-    preDate = date1;
-    nextDate = date2;
-  } else {
-    preDate = date2;
-    nextDate = date1;
-  }
-  const [preYear, preMonth, preDay] = [
-    preDate.getUTCFullYear(),
-    preDate.getUTCMonth(),
-    preDate.getUTCDate(),
-  ];
-  const [nextYear, nextMonth, nextDay] = [
-    nextDate.getUTCFullYear(),
-    nextDate.getUTCMonth(),
-    nextDate.getUTCDate(),
-  ];
+  const {
+    year: prevYear,
+    month: prevMonth,
+    date: prevDay,
+    hour: prevHour,
+    minute: prevMinute,
+    second: prevSecond,
+  } = getUTCTimeValues(prevDate);
+  const {
+    year: nextYear,
+    month: nextMonth,
+    date: nextDay,
+    hour: nextHour,
+    minute: nextMinute,
+    second: nextSecond,
+  } = getUTCTimeValues(nextDate);
 
-  if (nextYear - preYear > 0) return `${nextYear - preYear}년`;
-  if (nextMonth - preMonth > 0) return `${nextMonth - preMonth}달`;
-  if (nextDay - preDay > 0) return `${nextDay - preDay}일`;
-
-  const preTime = Math.floor(preDate.getTime() / 1000);
-  const nextTime = Math.floor(nextDate.getTime() / 1000);
-  const [preHour, preMinute, preSecond] = [
-    Math.floor(preTime / 3600),
-    Math.floor(preTime / 60),
-    preTime % 60,
-  ];
-  const [nextHour, nextMinute, nextSecond] = [
-    Math.floor(nextTime / 3600),
-    Math.floor(nextTime / 60),
-    nextTime % 60,
-  ];
-  if (nextHour - preHour > 0) return `${nextHour - preHour}시간`;
-  if (nextMinute - preMinute > 0) return `${nextMinute - preMinute}분`;
-  if (nextSecond - preSecond > 0) return `${nextSecond - preSecond}초`;
+  if (nextYear - prevYear > 0) return `${nextYear - prevYear}년`;
+  if (nextMonth - prevMonth > 0) return `${nextMonth - prevMonth}달`;
+  if (nextDay - prevDay > 0) return `${nextDay - prevDay}일`;
+  if (nextHour - prevHour > 0) return `${nextHour - prevHour}시간`;
+  if (nextMinute - prevMinute > 0) return `${nextMinute - prevMinute}분`;
+  if (nextSecond - prevSecond > 0) return `${nextSecond - prevSecond}초`;
   else return '방금';
 };

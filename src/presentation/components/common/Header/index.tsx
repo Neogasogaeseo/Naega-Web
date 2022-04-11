@@ -25,7 +25,7 @@ export default function CommonHeader() {
           <>
             <StWrapper>
               <IcSetting />
-              <IcBell />
+              <IcBell onClick={() => navigate('/team/alert')} />
             </StWrapper>
             {isNotice && <StNotification />}
           </>

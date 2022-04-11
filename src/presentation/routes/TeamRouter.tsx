@@ -3,6 +3,7 @@ import { lazy } from 'react';
 import PrivateRoute from './common/PrivateRoute';
 import TeamIssueFeedback from '@pages/Team/Issue/Feedback';
 import TeamIssueKeyword from '@pages/Team/Issue/Keyword';
+import TeamAlert from '@pages/Team/Alert';
 const TeamRegister = lazy(() => import('@pages/Team/Register'));
 const TeamEdit = lazy(() => import('@pages/Team/Edit'));
 const TeamMain = lazy(() => import('@pages/Team/Main'));
@@ -23,6 +24,7 @@ const TeamRouter = () => (
           <Route path="keyword" element={<TeamIssueKeyword />} />
         </Route>
       </Route>
+      <Route path="/alert" element={<TeamAlert />} />
     </Route>
   </Routes>
 );

@@ -1,7 +1,8 @@
+import { AxiosError } from 'axios';
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
-import { AxiosError } from 'axios';
+import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
@@ -282,6 +283,26 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const getNotice = async () => {
+    const response = await privateAPI.get({ url: '/user/notice?offset=0&limit=40' });
+    return response.data.notice.map((notice: any) => {
+      const invitationUpdatedTime = new Date(notice.invitation.updatedAt);
+      const now = new Date(Date.now());
+      const timeDifference = getTimeDifference(invitationUpdatedTime, now);
+      return {
+        teamID: notice.team.id,
+        teamName: notice.team.name,
+        teamProfileImage: notice.team.image,
+        status: notice.invitation.isConfirmed
+          ? 'ACCEPT'
+          : notice.invitation.isDeleted
+          ? 'DECLINE'
+          : 'PENDING',
+        timeDifference,
+      };
+    });
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -300,5 +321,6 @@ export function teamDataRemote(): TeamService {
     getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
+    getNotice,
   };
 }

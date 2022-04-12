@@ -298,6 +298,14 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editTeamInfo = async (teamInfo: FormData) => {
+    const response = await privateAPI.put({
+      url: '/team/edit',
+      data: teamInfo,
+    });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -316,5 +324,6 @@ export function teamDataRemote(): TeamService {
     getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
+    editTeamInfo,
   };
 }

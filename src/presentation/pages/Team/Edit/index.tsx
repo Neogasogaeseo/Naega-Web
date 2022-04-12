@@ -26,6 +26,15 @@ export default function TeamEdit() {
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const editTeamInfo = async () => {
+    const form = new FormData();
+    form.append('teamName', name);
+    image ? form.append('image', image) : form.append('image', '');
+    description && form.append('description', description);
+    teamID && form.append('teamId', teamID);
+    await api.teamService.postTeamInfo(form);
+  };
+
   useEffect(() => {
     if (isSuccess && teamInfo) {
       setName(teamInfo.name);
@@ -46,7 +55,15 @@ export default function TeamEdit() {
         onClickConfirm={() => setIsOpenModal(false)}
         onClickCancel={() => setIsOpenModal(false)}
       />
-      <CommonNavigation submitButton={{ content: '완료', onClick: () => console.log(image) }} />
+      <CommonNavigation
+        submitButton={{
+          content: '완료',
+          onClick: () => {
+            editTeamInfo();
+            navigate(-1);
+          },
+        }}
+      />
       <StTeamEdit>
         <div>팀 수정하기</div>
         <StPhotoUploadWrapper>

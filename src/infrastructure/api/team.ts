@@ -37,4 +37,5 @@ export interface TeamService {
   getTeamEditInfo(teamID: number): Promise<TeamEditInfo>;
   acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
   rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
+  editTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;
 }

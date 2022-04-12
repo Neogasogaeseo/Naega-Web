@@ -108,6 +108,11 @@ export function teamDataMock(): TeamService {
     return { isSuccess: true };
   };
 
+  const editTeamInfo = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -126,6 +131,7 @@ export function teamDataMock(): TeamService {
     getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
+    editTeamInfo,
   };
 }
 

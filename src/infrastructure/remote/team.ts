@@ -1,6 +1,6 @@
 import { TeamService } from '@api/team';
 import { UnauthorizedError } from '@api/types/errors';
-import { PostFeedbackRequestBody } from '@api/types/team';
+import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
@@ -298,10 +298,17 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
-  const editTeamInfo = async (teamInfo: FormData) => {
+  const editTeamInfo = async (teamInfo: TeamEditInfo<ImageFile>) => {
+    const { id, name, description, image } = teamInfo;
+    const formData = new FormData();
+    formData.append('teamId', id.toString());
+    formData.append('teamName', name);
+    formData.append('image', image ? image : '');
+    formData.append('description', description);
     const response = await privateAPI.put({
       url: '/team/edit',
-      data: teamInfo,
+      data: formData,
+      type: 'multipart',
     });
     return { isSuccess: response.success };
   };

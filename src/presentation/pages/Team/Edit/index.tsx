@@ -12,7 +12,6 @@ import { api } from '@api/index';
 import { ImgTeamDefault } from '@assets/images';
 import CommonModal from '@components/common/Modal';
 
-// TODO 팀 정보 get 에러바운더리 - api 명세서 나와야 할 수 있음
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
@@ -27,12 +26,13 @@ export default function TeamEdit() {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const editTeamInfo = async () => {
-    const form = new FormData();
-    form.append('teamName', name);
-    image ? form.append('image', image) : form.append('image', '');
-    description && form.append('description', description);
-    teamID && form.append('teamId', teamID);
-    await api.teamService.postTeamInfo(form);
+    teamID &&
+      (await api.teamService.editTeamInfo({
+        id: Number(teamID),
+        name: name,
+        description: description,
+        image: image,
+      }));
   };
 
   useEffect(() => {

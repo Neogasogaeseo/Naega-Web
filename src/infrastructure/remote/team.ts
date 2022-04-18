@@ -1,8 +1,9 @@
+import { AxiosError } from 'axios';
+
 import { TeamService } from '@api/team';
 import { ForbiddenError } from '@api/types/errors';
 import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
-import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {

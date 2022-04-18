@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { TeamService } from '@api/team';
 import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
-import { STATUS_CODE } from '@utils/constant';
+import { SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
 import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
 
@@ -201,16 +201,17 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getSearchedUserList = async (profileId: string) => {
+  const getSearchedUserList = async (searchID: string, page: number) => {
     const response = await privateAPI.get({
-      url: `/user/search?profileId=${profileId}`,
+      url: `/user/search?searchId=${searchID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
     });
+    console.log(response);
     if (response.status === STATUS_CODE.OK)
-      return response.data.map((member: any) => ({
+      return response.data.user.map((member: any) => ({
         id: member.id,
-        profileId: member.profileId,
-        profileName: member.name,
-        profileImage: member.image,
+        profileID: member.profileId,
+        name: member.name,
+        image: member.image,
       }));
     else if (response.axiosStatus === STATUS_CODE.NO_CONTENT) {
       return [];

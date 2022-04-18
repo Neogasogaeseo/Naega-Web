@@ -12,6 +12,7 @@ export const StUserSearchForTeamRegister = styled.div<{ isSelected: boolean }>`
     margin-bottom: 20px;
   }
   & > *:nth-child(2) {
+    width: 100%;
     margin-top: 18px;
   }
   ${(props) =>

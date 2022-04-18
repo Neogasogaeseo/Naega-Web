@@ -1,5 +1,5 @@
 import { TeamService } from '@api/team';
-import { UnauthorizedError } from '@api/types/errors';
+import { ForbiddenError } from '@api/types/errors';
 import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
@@ -274,8 +274,8 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI
       .get({ url: `/team/edit/${teamID}` })
       .catch((error: AxiosError) => {
-        if (error.response?.status === STATUS_CODE.UNAUTHORIZED)
-          throw new UnauthorizedError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
       });
     const { data, status } = response;
     if (status === STATUS_CODE.OK) {
@@ -285,7 +285,7 @@ export function teamDataRemote(): TeamService {
         image: team.image ?? '',
         description: team.description ?? '',
       };
-    } else throw 'UNAUTHORIZED';
+    } else throw 'FORBIDDEN';
   };
 
   const acceptInvitation = async (id: number) => {

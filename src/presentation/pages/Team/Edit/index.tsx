@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -15,25 +15,36 @@ import CommonModal from '@components/common/Modal';
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const { data: teamInfo, isSuccess } = useQuery(
-    ['teamEditInfo', teamID],
-    () => api.teamService.getTeamEditInfo(Number(teamID)),
-    { useErrorBoundary: true, retry: 1 },
-  );
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const queryClient = useQueryClient();
+
+  const { data: teamInfo, isSuccess } = useQuery(
+    'teamEditInfo',
+    async () => await api.teamService.getTeamEditInfo(Number(teamID)),
+    {
+      useErrorBoundary: true,
+      retry: 1,
+    },
+  );
 
   const editTeamInfo = async () => {
-    teamID &&
-      (await api.teamService.editTeamInfo({
-        id: Number(teamID),
-        name: name,
-        description: description,
-        image: image,
-      }));
+    if (!teamID) return;
+    await api.teamService.editTeamInfo({
+      id: Number(teamID),
+      name: name,
+      description: description,
+      image: image,
+    });
   };
+  const { mutate } = useMutation(editTeamInfo, {
+    onSuccess: () => {
+      navigate(-1);
+      return queryClient.invalidateQueries('teamEditInfo');
+    },
+  });
 
   useEffect(() => {
     if (isSuccess && teamInfo) {
@@ -58,10 +69,7 @@ export default function TeamEdit() {
       <CommonNavigation
         submitButton={{
           content: '완료',
-          onClick: () => {
-            editTeamInfo();
-            navigate(-1);
-          },
+          onClick: mutate,
         }}
       />
       <StTeamEdit>

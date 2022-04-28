@@ -1,8 +1,19 @@
 import styled from 'styled-components';
 
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
-export const StMyKeywordDelete = styled.div``;
+export const StRelativeWrapper = styled.div`
+  position: relative;
+`;
+
+export const StMyKeywordDelete = styled.div`
+  button {
+    color: ${COLOR.GRAY_5};
+    ${FONT_STYLES.R_14_TITLE};
+    background-color: transparent;
+  }
+`;
 
 export const StMyKeywordHeader = styled.div`
   height: 76px;

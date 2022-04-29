@@ -13,13 +13,13 @@ export const StNeososeoAnswerCard = styled.div`
     height: 28px;
   }
   & img:nth-child(3) {
-    width: 24px;
+    width: 52px;
     height: 24px;
     cursor: pointer;
   }
   & > div:nth-child(1) {
     display: grid;
-    grid-template-columns: 32px auto 24px;
+    grid-template-columns: 32px auto 52px;
     align-items: center;
     gap: 6px;
     color: ${COLOR.GRAY_8};

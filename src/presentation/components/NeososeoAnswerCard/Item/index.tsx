@@ -1,6 +1,6 @@
 import { api } from '@api/index';
 import { AnswerDetail } from '@api/types/user';
-import { icBookmarkSelected, icBookmarkUnselected } from '@assets/icons';
+import { icPicked, icUnpicked } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useState } from 'react';
@@ -24,11 +24,7 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
         <img src={icon} alt={id.toString()} />
         <div>{question}</div>
         {targetUserID === userPK && (
-          <img
-            src={isBookmarked ? icBookmarkSelected : icBookmarkUnselected}
-            alt="bookmark"
-            onClick={bookmarkAnswer}
-          />
+          <img src={isBookmarked ? icPicked : icUnpicked} alt="pick" onClick={bookmarkAnswer} />
         )}
       </div>
       <div>{content}</div>

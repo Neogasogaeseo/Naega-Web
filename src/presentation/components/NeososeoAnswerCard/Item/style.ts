@@ -22,8 +22,8 @@ export const StNeososeoAnswerCard = styled.div`
     grid-template-columns: 32px auto 24px;
     align-items: center;
     gap: 6px;
-    color: ${COLOR.GRAY_5};
-    ${FONT_STYLES.M_14_TITLE}
+    color: ${COLOR.GRAY_8};
+    ${FONT_STYLES.M_15_TITLE};
   }
   & > div:nth-child(2) {
     margin-top: 8px;

@@ -17,3 +17,7 @@ export const StMyTeamPick = styled.div`
     }
   }
 `;
+
+export const StMyTeamPickList = styled.div`
+  padding: 0 24px;
+`;

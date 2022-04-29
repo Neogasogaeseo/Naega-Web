@@ -1,10 +1,12 @@
+import { useState } from 'react';
+
 import { api } from '@api/index';
 import { AnswerDetail } from '@api/types/user';
-import { icPicked, icUnpicked } from '@assets/icons';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
-import { useState } from 'react';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { StNeososeoAnswerCard } from './style';
+import { icPicked, icUnpicked } from '@assets/icons';
 
 type NeososeoAnswerCardItemProps = AnswerDetail;
 
@@ -12,10 +14,14 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
   const { id, icon, question, content, keywordList, targetUserID } = props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
   const { id: userPK } = useLoginUser();
+  const { fireToast } = useToast();
 
   const bookmarkAnswer = async () => {
     const response = await api.neogaService.postAnswerBookmark(id);
-    if (response.isSuccess) setIsBookmarked((prev) => !prev);
+    if (response.isSuccess) {
+      if (!isBookmarked) fireToast({ content: '픽 완료' });
+      setIsBookmarked((prev) => !prev);
+    }
   };
 
   return (

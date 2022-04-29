@@ -17,3 +17,7 @@ export const StMyNeogaPick = styled.div`
     }
   }
 `;
+
+export const StMyNeogaPickList = styled.div`
+  padding: 0 21px;
+`;

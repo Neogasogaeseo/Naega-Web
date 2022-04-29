@@ -48,3 +48,4 @@ export { default as icInputPencil } from './ic_input_pencil.svg';
 export { default as icCrown } from './ic_crown.svg';
 export { default as icManageTeam } from './ic_manage_team.svg';
 export { default as icLeaveTeam } from './ic_leave_team.svg';
+export { ReactComponent as IcLock } from './ic_lock.svg';

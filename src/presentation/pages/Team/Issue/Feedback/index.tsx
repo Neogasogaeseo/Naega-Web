@@ -17,8 +17,10 @@ import {
   StSectionTitle,
   StButton,
   StTextarea,
+  StEmptyWrapper,
 } from './style';
 import { useQuery } from 'react-query';
+import { IcLock } from '@assets/icons';
 
 function TeamIssueFeedback() {
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
@@ -71,41 +73,52 @@ function TeamIssueFeedback() {
     <>
       <StAbsoluteWrapper>
         <StBlackBlur onClick={() => navigate(-1)} />
-        <StWrapper>
-          <StSection>
-            <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
-            {teamMembers && (
-              <ProfileListSelectable
-                isSquare={false}
-                profiles={teamMembers}
-                selectedProfile={selectedUser}
-                setSelectedProfile={setSelectedUser}
+        {teamMembers?.length === 0 ? (
+          <StEmptyWrapper>
+            <IcLock />
+            <div>
+              <div>팀원이 없어서 피드백을 작성할 수 없어요</div>
+              <div>팀원을 초대해보세요</div>
+            </div>
+            <button onClick={() => navigate(`/team/${teamID}/edit`)}>팀원 추가하기</button>
+          </StEmptyWrapper>
+        ) : (
+          <StWrapper>
+            <StSection>
+              <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
+              {teamMembers && (
+                <ProfileListSelectable
+                  isSquare={false}
+                  profiles={teamMembers}
+                  selectedProfile={selectedUser}
+                  setSelectedProfile={setSelectedUser}
+                />
+              )}
+              <StTextarea
+                placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
               />
-            )}
-            <StTextarea
-              placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </StSection>
-          <StSection>
-            <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
-            <Link to="keyword">
-              <CommonInput
-                width="100%"
-                placeholder="팀원을 표현하는 키워드를 입력해주세요"
-                disabled={true}
-              />
-            </Link>
-            <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
-            <StButton
-              onClick={onPostFeedback}
-              disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
-            >
-              완료
-            </StButton>
-          </StSection>
-        </StWrapper>
+            </StSection>
+            <StSection>
+              <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
+              <Link to="keyword">
+                <CommonInput
+                  width="100%"
+                  placeholder="팀원을 표현하는 키워드를 입력해주세요"
+                  disabled={true}
+                />
+              </Link>
+              <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
+              <StButton
+                onClick={onPostFeedback}
+                disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
+              >
+                완료
+              </StButton>
+            </StSection>
+          </StWrapper>
+        )}
       </StAbsoluteWrapper>
       <Outlet
         context={{

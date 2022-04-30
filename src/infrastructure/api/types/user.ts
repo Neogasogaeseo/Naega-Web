@@ -4,6 +4,7 @@ export interface Keyword {
   id: string;
   content: string;
   color: string;
+  fontColor: string;
 }
 
 export interface LoginUser {

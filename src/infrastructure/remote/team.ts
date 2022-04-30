@@ -61,6 +61,7 @@ export function teamDataRemote(): TeamService {
           id: keyword.id.toString(),
           content: keyword.name,
           color: keyword.colorcode,
+          fontColor: keyword.fontcolor,
         })),
         targetProfileID: feedback.taggedUserId,
         isBookmarked: feedback.isPinned,

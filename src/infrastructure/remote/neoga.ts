@@ -70,7 +70,8 @@ export function NeogaDataRemote(): NeogaService {
                   ? comment.keyword.map((word: any) => ({
                       id: word.id,
                       content: word.name,
-                      color: word.colorCode,
+                      color: word.colorcode,
+                      fontColor: word.fontcolor,
                     }))
                   : [],
               })),
@@ -109,7 +110,8 @@ export function NeogaDataRemote(): NeogaService {
                       ? comment.keyword.map((word: any) => ({
                           id: word.id,
                           content: word.name,
-                          color: word.colorCode,
+                          color: word.colorcode,
+                          fontColor: word.fontcolor,
                         }))
                       : [],
                   }))
@@ -181,6 +183,7 @@ export function NeogaDataRemote(): NeogaService {
         id: keyword.id,
         content: keyword.name,
         color: keyword.colorcode,
+        fontColor: keyword.fontcolor,
       })),
     };
   };
@@ -202,6 +205,7 @@ export function NeogaDataRemote(): NeogaService {
               id: keyword.id,
               content: keyword.name,
               color: keyword.colorcode,
+              fontColor: keyword.fontcolor,
               answerId: keyword.answerId,
             })),
           }))

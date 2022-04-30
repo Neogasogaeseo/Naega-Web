@@ -1,10 +1,11 @@
+import { useSetRecoilState } from 'recoil';
+import React from 'react';
+
 import { SearchedUser } from '@api/types/team';
 import UserSearchEmptyView from '@components/common/Empty/UserSearch';
 import CommonLoader from '@components/common/Loader';
 import SearchedUserForTeamRegister from '@components/SearchedUser/ForTeamRegister';
 import { searchedUserListState } from '@stores/team';
-import React from 'react';
-import { useSetRecoilState } from 'recoil';
 import { StUserSearchResultForTeamRegister } from './style';
 
 interface UserSearchResultForTeamRegisterProps {

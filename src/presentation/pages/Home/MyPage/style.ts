@@ -1,6 +1,5 @@
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StHomeMyPage = styled.div`
@@ -64,19 +63,6 @@ export const StKeywordSection = styled.div`
         color: ${COLOR.GRAY_8};
       }
     }
-    & > span {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      ${FONT_STYLES.M_14_TITLE}
-      color: ${COLOR.GRAY_4};
-      & > svg {
-        margin-left: 4px;
-      }
-      & > svg > path {
-        stroke: ${COLOR.GRAY_4};
-      }
-    }
   }
 `;
 
@@ -124,12 +110,16 @@ export const StFeedbackTeamWrapper = styled.div`
   }
 `;
 
-export const StDetailLink = styled(Link)`
+export const StDetailLink = styled.span`
   display: flex;
   gap: 4px;
   align-items: center;
-  ${FONT_STYLES.SB_14_TITLE}
-  color: ${COLOR.GRAY_5};
+  cursor: pointer;
+  ${FONT_STYLES.M_14_TITLE}
+  color: ${COLOR.GRAY_4};
+  & > svg > path {
+    stroke: ${COLOR.GRAY_4};
+  }
 `;
 
 export const StMyPageProfile = styled.div`

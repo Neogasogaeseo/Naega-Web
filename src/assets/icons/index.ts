@@ -49,3 +49,5 @@ export { default as icCrown } from './ic_crown.svg';
 export { default as icManageTeam } from './ic_manage_team.svg';
 export { default as icLeaveTeam } from './ic_leave_team.svg';
 export { ReactComponent as IcLock } from './ic_lock.svg';
+export { default as icPicked } from './ic_picked.svg';
+export { default as icUnpicked } from './ic_unpicked.svg';

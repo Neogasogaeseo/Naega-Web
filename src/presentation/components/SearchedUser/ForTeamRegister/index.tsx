@@ -8,21 +8,21 @@ interface TeamMembersSearchedUserProps {
   onClickButton: (id: number, profileName: string, isAdded: boolean) => void;
 }
 
-export default function TeamMembersSearchedUser(props: TeamMembersSearchedUserProps) {
+export default function SearchedUserForTeamRegister(props: TeamMembersSearchedUserProps) {
   const { user, onClickButton } = props;
-  const { id, profileId, profileName, profileImage, isAdded } = user;
+  const { id, profileID, name, image, isSelected } = user;
   return (
     <StTeamMembersSearchedUser>
       <div>
-        <img src={profileImage || imgEmptyProfile} />
+        <img src={image || imgEmptyProfile} />
         <div>
-          <StProfileName>{profileName}</StProfileName>
-          <StId>@{profileId}</StId>
+          <StProfileName>{name}</StProfileName>
+          <StId>@{profileID}</StId>
         </div>
       </div>
       <StAddToggleButton
-        src={isAdded ? icMemberAdded : icMemberAdd}
-        onClick={() => onClickButton(id, profileName, isAdded)}
+        src={isSelected ? icMemberAdded : icMemberAdd}
+        onClick={() => onClickButton(id, name, isSelected)}
       />
     </StTeamMembersSearchedUser>
   );

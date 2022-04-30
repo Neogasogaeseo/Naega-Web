@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import { api } from '@api/index';
 import { FeedbackDetail } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -16,13 +18,17 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
+  const { userID } = useParams();
 
   const bookmarkFeedback = async () => {
     const response = await api.teamService.postFeedbackBookmark(id);
     if (response.isSuccess) {
       setIsBookmarked((prev) => response.isBookmarked ?? !prev);
-      if (response.isBookmarked)
-        fireToast({ content: 'MY에서 저장된 피드백을 확인할 수 있어요', bottom: 120 });
+      if (response.isBookmarked) {
+        userID
+          ? fireToast({ content: '픽 완료', bottom: 120 })
+          : fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요', bottom: 120 });
+      }
     }
   };
 

@@ -1,17 +1,7 @@
-import { SearchedUser, TeamMember } from '@api/types/team';
+import { SearchedUser } from '@api/types/team';
 import { atom } from 'recoil';
 
-export const searchedUserListState = atom<SearchedUser[]>({
-  key: 'searchedUserListState',
-  default: [],
-});
-
-export const selectedUserListState = atom<Required<TeamMember>[]>({
+export const selectedUserListState = atom<SearchedUser[]>({
   key: 'selectedUserListState',
   default: [],
-});
-
-export const userSearchWordState = atom<string>({
-  key: 'userSearchWordState',
-  default: '',
 });

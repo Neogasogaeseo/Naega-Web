@@ -1,3 +1,8 @@
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+
 import {
   StTeamRegister,
   StTitle,
@@ -12,25 +17,19 @@ import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
 import ProfileList from '@components/common/ProfileList';
 import PhotoUpload from '@components/common/FileUpload';
-import TeamMembers from '@components/TeamMembers';
-import { selectedUserListState } from '@stores/team';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import CommonNavigation from '@components/common/Navigation';
+import { selectedUserListState } from '@stores/team';
+import UserSearchForTeamRegister from '@components/UserSearch/ForTeamRegister';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
-
+  const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const navigate = useNavigate();
-  const selectedUserList = useRecoilValue(selectedUserListState);
   const { id, username, profileImage } = useLoginUser();
 
   const closeMembers = () => {
@@ -47,13 +46,11 @@ function TeamRegister() {
     await api.teamService.postTeamInfo(form);
   };
 
-  useEffect(() => {
-    return resetSelectedUserList();
-  }, []);
+  useEffect(() => setSelectedUserList([]), []);
 
   return (
     <StTeamRegister>
-      {isMemberSelectMode && <TeamMembers onClickSubmitButton={closeMembers} />}
+      {isMemberSelectMode && <UserSearchForTeamRegister onClickSubmitButton={closeMembers} />}
       <>
         <CommonNavigation />
         <StTeamRegisterWrapper>
@@ -82,7 +79,11 @@ function TeamRegister() {
             isSquare={false}
             profileList={[
               { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
-              ...selectedUserList,
+              ...selectedUserList.map((user) => ({
+                id: user.id,
+                profileName: user.name,
+                profileImage: user.image ?? imgEmptyProfile,
+              })),
             ]}
             onAddClick={() => setIsMemberSelectMode(true)}
           />

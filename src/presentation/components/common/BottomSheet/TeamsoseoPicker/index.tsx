@@ -1,4 +1,7 @@
 import React from 'react';
+import { useParams } from 'react-router';
+import { useQueryClient } from 'react-query';
+
 import { api } from '@api/index';
 import { icEdit, icPick, icTrash } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
@@ -14,8 +17,10 @@ type TeamsoseoPickerBottomSheetProps = {
 };
 
 function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
-  const { opened, close, isPinned, isMine, isForMe, feedbackID } = props;
+  const { opened, close, isMine, isForMe, feedbackID, isPinned } = props;
+  const { teamID, issueID } = useParams();
   const { fireToast } = useToast();
+  const queryClient = useQueryClient();
   if (!isMine && !isForMe) return <></>;
 
   const bookmarkAnswer = async () => {
@@ -23,6 +28,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
     if (response.isSuccess) {
       if (isPinned) fireToast({ content: '픽한 답변 삭제 완료' });
       else fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요' });
+      queryClient.invalidateQueries(['issueDetailData', `${teamID}-${issueID}`]);
       close();
     }
   };

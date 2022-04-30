@@ -17,6 +17,8 @@ import FeedbackEmptyView from '@components/common/Empty/Feedback';
 import { useQuery } from 'react-query';
 import TeamsoseoPickerBottomSheet from '@components/common/BottomSheet/TeamsoseoPicker';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { FeedbackDetail } from '@api/types/team';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -29,6 +31,11 @@ function TeamIssue() {
   const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
     api.teamService.getIssueInfo(issueID ?? ''),
   );
+  const [feedbacks, setFeedbacks] = useState<FeedbackDetail[]>([]);
+
+  useEffect(() => {
+    if (issue) setFeedbacks(issue.feedbackList);
+  }, [issue]);
 
   const onFeedbackClicked = (
     feedbackID: number,
@@ -73,10 +80,11 @@ function TeamIssue() {
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
           <StDivisionLine />
-          {issue.feedbackList.length !== 0 ? (
+          {feedbacks.length !== 0 ? (
             <FeedbackCardList
-              feedbacks={issue.feedbackList}
-              onFeedbackClicked={onFeedbackClicked}
+              feedbacks={feedbacks}
+              openBottomSheet={onFeedbackClicked}
+              parentPage="teamsoseo"
             />
           ) : (
             <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />

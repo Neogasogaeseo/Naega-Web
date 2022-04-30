@@ -304,7 +304,7 @@ export function teamDataRemote(): TeamService {
     const formData = new FormData();
     formData.append('teamId', id.toString());
     formData.append('teamName', name);
-    formData.append('image', image ? image : '');
+    formData.append('image', image ?? '');
     formData.append('description', description);
     const response = await privateAPI.put({
       url: '/team/edit',

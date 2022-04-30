@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -12,17 +12,39 @@ import { api } from '@api/index';
 import { ImgTeamDefault } from '@assets/images';
 import CommonModal from '@components/common/Modal';
 
-// TODO 팀 정보 get 에러바운더리 - api 명세서 나와야 할 수 있음
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const { data: teamInfo, isSuccess } = useQuery(['teamEditInfo', teamID], () =>
-    api.teamServiceMock.getTeamEditInfo(Number(teamID)),
-  );
   const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const queryClient = useQueryClient();
+
+  const { data: teamInfo, isSuccess } = useQuery(
+    'teamEditInfo',
+    async () => await api.teamService.getTeamEditInfo(Number(teamID)),
+    {
+      useErrorBoundary: true,
+      retry: 1,
+    },
+  );
+
+  const editTeamInfo = async () => {
+    if (!teamID) return;
+    await api.teamService.editTeamInfo({
+      id: Number(teamID),
+      name: name,
+      description: description,
+      image: image,
+    });
+  };
+  const { mutate } = useMutation(editTeamInfo, {
+    onSuccess: () => {
+      navigate(-1);
+      return queryClient.invalidateQueries('teamEditInfo');
+    },
+  });
 
   useEffect(() => {
     if (isSuccess && teamInfo) {
@@ -41,10 +63,19 @@ export default function TeamEdit() {
         isOpened={isOpenModal}
         title="팀을 삭제하시겠습니까?"
         description={'팀을 삭제하면 관련된 정보가 모두' + '\n' + '사라지며 복구할 수 없습니다.'}
-        onClickConfirm={() => setIsOpenModal(false)}
+        onClickConfirm={async () => {
+          setIsOpenModal(false);
+          navigate('/home/team');
+          teamID && (await api.teamService.deleteTeam(+teamID));
+        }}
         onClickCancel={() => setIsOpenModal(false)}
       />
-      <CommonNavigation submitButton={{ content: '완료', onClick: () => console.log(image) }} />
+      <CommonNavigation
+        submitButton={{
+          content: '완료',
+          onClick: mutate,
+        }}
+      />
       <StTeamEdit>
         <div>팀 수정하기</div>
         <StPhotoUploadWrapper>

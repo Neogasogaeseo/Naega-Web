@@ -12,8 +12,10 @@ export const StUserSearchForTeamRegister = styled.div`
     margin-bottom: 20px;
   }
   & > *:nth-child(2) {
-    width: 100%;
-    margin-top: 18px;
+    & > *:first-child {
+      margin-top: 18px;
+      margin-bottom: 15px;
+    }
   }
   & > *:last-child {
     margin-top: 18px;

@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import {
   StLink,
@@ -10,7 +10,6 @@ import {
 } from './style';
 import CommonInput from '@components/common/Input';
 import IssueMemberList from '@components/common/IssueMemberList';
-import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
 import FeedbackEmptyView from '@components/common/Empty/Feedback';
@@ -19,10 +18,10 @@ import TeamsoseoPickerBottomSheet from '@components/common/BottomSheet/Teamsoseo
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { FeedbackDetail } from '@api/types/team';
+import CommonNavigation from '@components/common/Navigation';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
-  const navigate = useNavigate();
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [bottomSheetState, setBottomSheetState] = useState<
     { feedbackID: number; isMine: boolean; isForMe: boolean; isPinned: boolean } | undefined
@@ -53,60 +52,62 @@ function TeamIssue() {
   };
 
   return (
-    <StTeamIssue>
-      {issue !== undefined && teamID && issueID && (
-        <StWrapper>
-          <StHeader>
-            <img src={imgLogo} onClick={() => navigate('/home')} />
-            <div>
-              <div>{issue.category}</div>
-              <div>{issue.createdAt}</div>
-            </div>
-            <div>{issue.title}</div>
-            <div>
-              <IssueMemberList
-                teamID={teamID}
-                issueNumber={+issueID}
-                issueMembers={issue.team.teammates}
+    <>
+      <StTeamIssue>
+        <CommonNavigation />
+        {issue !== undefined && teamID && issueID && (
+          <StWrapper>
+            <StHeader>
+              <div>
+                <div>{issue.category}</div>
+                <div>{issue.createdAt}</div>
+              </div>
+              <div>{issue.title}</div>
+              <div>
+                <IssueMemberList
+                  teamID={teamID}
+                  issueNumber={+issueID}
+                  issueMembers={issue.team.teammates}
+                />
+                <IssueTeamInfo
+                  teamImage={issue.team.teamProfileImage}
+                  teamName={issue.team.title}
+                  memberName={issue.writer}
+                />
+              </div>
+            </StHeader>
+            {issue.team.thumbnail && (
+              <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
+            )}
+            <StDivisionLine />
+            {feedbacks.length !== 0 ? (
+              <FeedbackCardList
+                feedbacks={feedbacks}
+                openBottomSheet={onFeedbackClicked}
+                parentPage="teamsoseo"
               />
-              <IssueTeamInfo
-                teamImage={issue.team.teamProfileImage}
-                teamName={issue.team.title}
-                memberName={issue.writer}
-              />
-            </div>
-          </StHeader>
-          {issue.team.thumbnail && (
-            <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
-          )}
-          <StDivisionLine />
-          {feedbacks.length !== 0 ? (
-            <FeedbackCardList
-              feedbacks={feedbacks}
-              openBottomSheet={onFeedbackClicked}
-              parentPage="teamsoseo"
-            />
-          ) : (
-            <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
-          )}
-        </StWrapper>
-      )}
-      <StLink to="./create">
-        <CommonInput
-          width="100%"
-          placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
-          disabled={true}
-        />
-      </StLink>
-      {bottomSheetState !== undefined && (
-        <TeamsoseoPickerBottomSheet
-          opened={isBottomSheetOpened}
-          close={() => setIsBottomSheetOpened(false)}
-          {...bottomSheetState}
-        />
-      )}
-      <Outlet />
-    </StTeamIssue>
+            ) : (
+              <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
+            )}
+          </StWrapper>
+        )}
+        <StLink to="./create">
+          <CommonInput
+            width="100%"
+            placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
+            disabled={true}
+          />
+        </StLink>
+        {bottomSheetState !== undefined && (
+          <TeamsoseoPickerBottomSheet
+            opened={isBottomSheetOpened}
+            close={() => setIsBottomSheetOpened(false)}
+            {...bottomSheetState}
+          />
+        )}
+        <Outlet />
+      </StTeamIssue>
+    </>
   );
 }
 

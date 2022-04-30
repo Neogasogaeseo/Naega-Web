@@ -45,7 +45,6 @@ export default function UserSearchForTeamRegister({
   } = useInfiniteQuery(['userSearch', searchWord], searchUserByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
     enabled: !(searchWord === ''),
-    refetchOnWindowFocus: false,
     retry: 1,
   });
 

@@ -92,6 +92,7 @@ export function NeogaDataRemote(): NeogaService {
 
   const getFormResultCard = async () => {
     const response = await privateAPI.get({ url: `/form/new` });
+    console.log(response);
     if (response.status === STATUS_CODE.OK)
       return {
         resultList: response.data.resultList
@@ -173,11 +174,11 @@ export function NeogaDataRemote(): NeogaService {
     const response = await privateAPI.get({ url: `/form/detail/${formID}` });
     if (!response.data) throw new NotFoundError('해당 유저와 폼 아이디로 생성된 폼이 없습니다.');
     return {
-      id: response.data.id,
-      title: response.data.title,
-      subtitle: response.data.subtitle.replace('\\n', '\n'),
-      darkIconImage: response.data.darkIconImage,
-      createdAt: response.data.createdAt,
+      id: response.data.form.id,
+      title: response.data.form.title,
+      subtitle: response.data.form.subtitle.replace('\\n', '\n'),
+      darkIconImage: response.data.form.darkIconImage,
+      createdAt: response.data.form.createdAt,
       q: response.data.q,
       keywordList: response.data.keyword.map((keyword: any) => ({
         id: keyword.id,

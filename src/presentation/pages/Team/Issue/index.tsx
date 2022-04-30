@@ -15,14 +15,35 @@ import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
 import FeedbackEmptyView from '@components/common/Empty/Feedback';
 import { useQuery } from 'react-query';
+import TeamsoseoPickerBottomSheet from '@components/common/BottomSheet/TeamsoseoPicker';
+import { useState } from 'react';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
   const navigate = useNavigate();
+  const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+  const [bottomSheetState, setBottomSheetState] = useState<
+    { feedbackID: number; isMine: boolean; isForMe: boolean; isPinned: boolean } | undefined
+  >(undefined);
 
   const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
     api.teamService.getIssueInfo(issueID ?? ''),
   );
+
+  const onFeedbackClicked = (
+    feedbackID: number,
+    isMine: boolean,
+    isForMe: boolean,
+    isPinned: boolean,
+  ) => {
+    setIsBottomSheetOpened(true);
+    setBottomSheetState({
+      feedbackID,
+      isMine,
+      isForMe,
+      isPinned,
+    });
+  };
 
   return (
     <StTeamIssue>
@@ -53,7 +74,10 @@ function TeamIssue() {
           )}
           <StDivisionLine />
           {issue.feedbackList.length !== 0 ? (
-            <FeedbackCardList feedbacks={issue.feedbackList} />
+            <FeedbackCardList
+              feedbacks={issue.feedbackList}
+              onFeedbackClicked={onFeedbackClicked}
+            />
           ) : (
             <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
           )}
@@ -66,6 +90,13 @@ function TeamIssue() {
           disabled={true}
         />
       </StLink>
+      {bottomSheetState !== undefined && (
+        <TeamsoseoPickerBottomSheet
+          opened={isBottomSheetOpened}
+          close={() => setIsBottomSheetOpened(false)}
+          {...bottomSheetState}
+        />
+      )}
       <Outlet />
     </StTeamIssue>
   );

@@ -54,6 +54,7 @@ export function teamDataRemote(): TeamService {
       feedbackList: issueFeedbacksData.data.map((feedback: any) => ({
         id: feedback.id.toString(),
         writer: feedback.name,
+        writerID: feedback.userId,
         target: feedback.taggedusername,
         body: feedback.content,
         createdAt: feedback.createdAt,

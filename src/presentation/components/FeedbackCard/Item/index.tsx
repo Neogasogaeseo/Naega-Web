@@ -6,10 +6,13 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark } from './style';
 
-type FeedbackCardProps = FeedbackDetail;
+type FeedbackCardProps = FeedbackDetail & {
+  onClick?(feedbackID: number, isMine: boolean, isForMe: boolean, isPinned: boolean): void;
+};
 
 function FeedbackCardItem(props: FeedbackCardProps) {
-  const { id, writer, target, body, createdAt, keywordList, targetProfileID } = props;
+  const { id, writer, writerID, target, body, createdAt, keywordList, targetProfileID, onClick } =
+    props;
   const [isBookmarked, setIsBookmarked] = useState(props.isBookmarked);
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
@@ -24,7 +27,16 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   };
 
   return (
-    <StFeedbackCard>
+    <StFeedbackCard
+      onClick={() =>
+        onClick?.(
+          +id,
+          writerID !== undefined && +writerID === loginUserID,
+          +targetProfileID === loginUserID || targetProfileID === loginUsername,
+          isBookmarked,
+        )
+      }
+    >
       <StHeader>
         <div>@{target}</div>
         <div>

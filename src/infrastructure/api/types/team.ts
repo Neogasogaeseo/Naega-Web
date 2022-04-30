@@ -37,6 +37,7 @@ export interface SearchedUser extends TeamMember {
 export type FeedbackDetail = {
   id: string;
   writer: string;
+  writerID?: string;
   target: string;
   targetProfileID: string;
   body: string;

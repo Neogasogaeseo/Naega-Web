@@ -15,7 +15,9 @@ function ProfileItem(props: ProfileItemProps) {
 
   return (
     <StProfileItem isSquare={isSquare} isSelected={isSelected} onClick={() => onProfileClick(id)}>
-      <div><img src={profileImage || imgEmptyProfile} /></div>
+      <div>
+        <img src={profileImage || imgEmptyProfile} />
+      </div>
       <div>{profileName}</div>
     </StProfileItem>
   );

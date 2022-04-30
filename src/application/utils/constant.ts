@@ -15,3 +15,4 @@ export const STATUS_CODE = {
   SERVICE_UNAVAILABLE: 503,
   DB_ERROR: 600,
 };
+export const SEARCHED_USER_PAGE = 16;

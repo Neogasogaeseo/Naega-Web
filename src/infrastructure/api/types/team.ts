@@ -30,8 +30,15 @@ export interface TeamMemberWithHostInfo extends TeamMember {
   isHost: boolean;
 }
 
-export interface SearchedUser extends TeamMember {
-  isAdded: boolean;
+export interface SearchedUserResponse {
+  id: number;
+  profileID: string;
+  name: string;
+  image: string;
+}
+
+export interface SearchedUser extends SearchedUserResponse {
+  isSelected: boolean;
 }
 
 export type FeedbackDetail = {

@@ -314,6 +314,11 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const deleteTeam = async (teamID: number) => {
+    const response = await privateAPI.delete({ url: '/team', data: { teamId: teamID } });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -333,5 +338,6 @@ export function teamDataRemote(): TeamService {
     acceptInvitation,
     rejectInvitation,
     editTeamInfo,
+    deleteTeam,
   };
 }

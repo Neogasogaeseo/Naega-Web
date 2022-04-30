@@ -113,6 +113,11 @@ export function teamDataMock(): TeamService {
     return { isSuccess: true };
   };
 
+  const deleteTeam = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -132,6 +137,7 @@ export function teamDataMock(): TeamService {
     acceptInvitation,
     rejectInvitation,
     editTeamInfo,
+    deleteTeam,
   };
 }
 

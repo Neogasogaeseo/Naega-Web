@@ -63,7 +63,11 @@ export default function TeamEdit() {
         isOpened={isOpenModal}
         title="팀을 삭제하시겠습니까?"
         description={'팀을 삭제하면 관련된 정보가 모두' + '\n' + '사라지며 복구할 수 없습니다.'}
-        onClickConfirm={() => setIsOpenModal(false)}
+        onClickConfirm={async () => {
+          setIsOpenModal(false);
+          navigate('/home/team');
+          teamID && (await api.teamService.deleteTeam(+teamID));
+        }}
         onClickCancel={() => setIsOpenModal(false)}
       />
       <CommonNavigation

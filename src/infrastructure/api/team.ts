@@ -39,4 +39,5 @@ export interface TeamService {
   acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
   rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
   editTeamInfo(teamInfo: TeamEditInfo<ImageFile>): Promise<{ isSuccess: boolean }>;
+  deleteTeam(teamID: number): Promise<{ isSuccess: boolean }>;
 }

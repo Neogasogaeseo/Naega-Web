@@ -1,6 +1,8 @@
 import { AxiosError } from 'axios';
+
+import { ForbiddenError } from '@api/types/errors';
+import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { TeamService } from '@api/team';
-import { PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
 import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
@@ -272,8 +274,23 @@ export function teamDataRemote(): TeamService {
     }
   };
 
-  const getTeamEditInfo = async (teamID: number) =>
-    new Promise<TeamEditInfo>((resolve) => setTimeout(resolve, teamID));
+  const getTeamEditInfo = async (teamID: number) => {
+    const response = await privateAPI
+      .get({ url: `/team/edit/${teamID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+      });
+    const { data, status } = response;
+    if (status === STATUS_CODE.OK) {
+      const { team } = data;
+      return {
+        ...team,
+        image: team.image ?? '',
+        description: team.description ?? '',
+      };
+    } else new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+  };
 
   const acceptInvitation = async (id: number) => {
     const response = await privateAPI.put({ url: `/team/invite/accept`, data: { teamId: id } });
@@ -282,6 +299,26 @@ export function teamDataRemote(): TeamService {
 
   const rejectInvitation = async (id: number) => {
     const response = await privateAPI.put({ url: `/team/invite/reject`, data: { teamId: id } });
+    return { isSuccess: response.success };
+  };
+
+  const editTeamInfo = async (teamInfo: TeamEditInfo<ImageFile>) => {
+    const { id, name, description, image } = teamInfo;
+    const formData = new FormData();
+    formData.append('teamId', id.toString());
+    formData.append('teamName', name);
+    formData.append('image', image ?? '');
+    formData.append('description', description);
+    const response = await privateAPI.put({
+      url: '/team/edit',
+      data: formData,
+      type: 'multipart',
+    });
+    return { isSuccess: response.success };
+  };
+
+  const deleteTeam = async (teamID: number) => {
+    const response = await privateAPI.delete({ url: '/team', data: { teamId: teamID } });
     return { isSuccess: response.success };
   };
 
@@ -323,6 +360,8 @@ export function teamDataRemote(): TeamService {
     getTeamEditInfo,
     acceptInvitation,
     rejectInvitation,
+    editTeamInfo,
+    deleteTeam,
     getNotice,
   };
 }

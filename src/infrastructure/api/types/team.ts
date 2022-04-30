@@ -128,11 +128,13 @@ export type PostIssueResponse = {
   image?: string;
 };
 
-export type TeamEditInfo = {
-  image?: string;
+export type ImageFile = File | null;
+export interface TeamEditInfo<T extends ImageFile | string> {
+  id: number;
+  image: T;
   name: string;
   description: string;
-};
+}
 
 export type TeamNoticeItem = {
   teamID: number;

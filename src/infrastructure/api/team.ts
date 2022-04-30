@@ -11,6 +11,7 @@ import {
   IssueCategory,
   PostIssueResponse,
   TeamEditInfo,
+  ImageFile,
   TeamNoticeItem,
   SearchedUserResponse,
 } from './types/team';
@@ -35,8 +36,10 @@ export interface TeamService {
     categoryID: number,
     image?: File,
   ): Promise<PostIssueResponse>;
-  getTeamEditInfo(teamID: number): Promise<TeamEditInfo>;
+  getTeamEditInfo(teamID: number): Promise<TeamEditInfo<string>>;
   acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
   rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
+  editTeamInfo(teamInfo: TeamEditInfo<ImageFile>): Promise<{ isSuccess: boolean }>;
+  deleteTeam(teamID: number): Promise<{ isSuccess: boolean }>;
   getNotice(): Promise<TeamNoticeItem[]>;
 }

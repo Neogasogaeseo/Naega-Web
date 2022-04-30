@@ -25,3 +25,15 @@ export class UnauthorizedError implements CustomError {
     this.message = message;
   }
 }
+
+export class ForbiddenError implements CustomError {
+  code: 403;
+  name: 'Forbidden Error';
+  message: string;
+
+  constructor(message: string) {
+    this.code = 403;
+    this.name = 'Forbidden Error';
+    this.message = message;
+  }
+}

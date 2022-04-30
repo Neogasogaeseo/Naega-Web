@@ -32,6 +32,7 @@ export default function TeamMembersSearchBar({
             id: profileId,
             content: profileName,
             color: COLOR.GRAY_2,
+            fontColor: COLOR.GRAY_6,
           }))}
           deleteKeyword={(targetMember) =>
             setSelectedUserList(

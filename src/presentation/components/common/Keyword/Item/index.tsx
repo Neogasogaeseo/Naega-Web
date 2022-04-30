@@ -11,9 +11,9 @@ interface Props extends Keyword {
 }
 
 function KeywordItem(props: Props) {
-  const { isMutable, content, color, onDeleteClick, onItemClick, viewMode } = props;
+  const { isMutable, content, color, fontColor, onDeleteClick, onItemClick, viewMode } = props;
   return (
-    <StKeywordItem color={color} onClick={onItemClick}>
+    <StKeywordItem color={color} fontColor={fontColor} onClick={onItemClick}>
       <div>
         <div>{content}</div>
         {isMutable && (

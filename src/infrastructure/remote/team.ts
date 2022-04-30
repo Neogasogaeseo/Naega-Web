@@ -286,7 +286,7 @@ export function teamDataRemote(): TeamService {
         image: team.image ?? '',
         description: team.description ?? '',
       };
-    } else throw 'FORBIDDEN';
+    } else new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
   };
 
   const acceptInvitation = async (id: number) => {

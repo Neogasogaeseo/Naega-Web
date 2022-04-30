@@ -52,7 +52,9 @@ export const TEAM_DATA: {
         target: '서진서진',
         body: '서진아고맙다',
         createdAt: '12/20',
-        keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
+        keywordList: [
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        ],
         targetProfileID: 'seojin',
         isBookmarked: false,
       },
@@ -62,7 +64,9 @@ export const TEAM_DATA: {
         target: '서진서진',
         body: '서진아\n고맙다',
         createdAt: '12/20',
-        keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
+        keywordList: [
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
+        ],
         targetProfileID: 'seojin',
         isBookmarked: false,
       },
@@ -73,8 +77,8 @@ export const TEAM_DATA: {
         body: '서진아\n\n고맙다',
         createdAt: '12/20',
         keywordList: [
-          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-          { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+          { id: '1', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
         ],
         targetProfileID: 'seojin',
         isBookmarked: true,
@@ -86,8 +90,8 @@ export const TEAM_DATA: {
         body: '주영언니\n\n고맙다',
         createdAt: '12/20',
         keywordList: [
-          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-          { id: '0', content: '멋있는 캐서린', color: '#FF4B77' },
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
         ],
         targetProfileID: 'seojin123',
         isBookmarked: false,

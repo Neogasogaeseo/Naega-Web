@@ -7,20 +7,20 @@ export const USER_DATA: {
   NEOSOSEO_BOOKMARK: NeososeoAnswerBookmark;
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
 } = {
-  KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
-  KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF' }),
+  KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
+  KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
   MY_PAGE_INFO: (userID: string) => ({
     username: '강쥐',
     userID,
     profileImage:
       'https://ww.namu.la/s/0144d366d34ef61c639d8e9305eb60c3528a0e2cfde2543ca1bce47228901c569c07111bdd0ad6b5aebb252b2d61ef02cf6ff8cf00eee0cb7652eaf5c901e14763c567024f4d2b94f490c794ceebb862',
     neososeo: [
-      { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-      { id: '1', content: '홍대할리스', color: '#FFB72B' },
-      { id: '2', content: '강쥐바보', color: '#444444' },
-      { id: '3', content: '배려왕왕와오앙왕왕', color: '#4C48FF' },
+      { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+      { id: '1', content: '홍대할리스', color: '#FFB72B', fontColor: '#FFFFFF' },
+      { id: '2', content: '강쥐바보', color: '#444444', fontColor: '#FFFFFF' },
+      { id: '3', content: '배려왕왕와오앙왕왕', color: '#4C48FF', fontColor: '#FFFFFF' },
     ],
-    team: [{ id: '1', content: '유사 사랑의 열매', color: '#4C48FF' }],
+    team: [{ id: '1', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   }),
   NEOSOSEO_BOOKMARK: {
     count: 3,
@@ -33,8 +33,8 @@ export const USER_DATA: {
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
         keywordList: [
-          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-          { id: '1', content: '홍대할리스', color: '#FFB72B' },
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+          { id: '1', content: '홍대할리스', color: '#FFB72B', fontColor: '#FFFFFF' },
         ],
         targetUserID: 2,
       },
@@ -46,8 +46,8 @@ export const USER_DATA: {
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
         keywordList: [
-          { id: '2', content: '강쥐바보', color: '#444444' },
-          { id: '3', content: '배려왕', color: '#4C48FF' },
+          { id: '2', content: '강쥐바보', color: '#444444', fontColor: '#FFFFFF' },
+          { id: '3', content: '배려왕', color: '#4C48FF', fontColor: '#FFFFFF' },
         ],
         targetUserID: 2,
       },
@@ -59,8 +59,8 @@ export const USER_DATA: {
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
         keywordList: [
-          { id: '2', content: '강쥐바보', color: '#444444' },
-          { id: '3', content: '배려왕', color: '#4C48FF' },
+          { id: '2', content: '강쥐바보', color: '#444444', fontColor: '#FFFFFF' },
+          { id: '3', content: '배려왕', color: '#4C48FF', fontColor: '#FFFFFF' },
         ],
         targetUserID: 2,
       },
@@ -90,7 +90,9 @@ export const USER_DATA: {
         target: '서진서진',
         body: '서진아고맙다',
         createdAt: '12/20',
-        keywordList: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF' }],
+        keywordList: [
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        ],
         targetProfileID: 'seojin',
         isBookmarked: true,
       },
@@ -100,7 +102,9 @@ export const USER_DATA: {
         target: '서진서진',
         body: '서진아\n고맙다',
         createdAt: '12/20',
-        keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
+        keywordList: [
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
+        ],
         targetProfileID: 'seojin',
         isBookmarked: true,
       },
@@ -110,7 +114,9 @@ export const USER_DATA: {
         target: '서진서진',
         body: '서진아\n고맙다',
         createdAt: '12/21',
-        keywordList: [{ id: '0', content: '멋있는 캐서린', color: '#FF4B77' }],
+        keywordList: [
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
+        ],
         targetProfileID: 'seojin',
         isBookmarked: true,
       },

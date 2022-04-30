@@ -5,7 +5,7 @@ import { SearchedUser } from '@api/types/team';
 import UserSearchEmptyView from '@components/common/Empty/UserSearch';
 import CommonLoader from '@components/common/Loader';
 import SearchedUserForTeamRegister from '@components/SearchedUser/ForTeamRegister';
-import { searchedUserListState } from '@stores/team';
+import { selectedUserListState } from '@stores/team';
 import { StUserSearchResultForTeamRegister } from './style';
 
 interface UserSearchResultForTeamRegisterProps {
@@ -17,7 +17,7 @@ export default function UserSearchResultForTeamRegister(
   props: UserSearchResultForTeamRegisterProps,
 ) {
   const { isFetchingNextPage, searchedUserList } = props;
-  const setSelectedUserList = useSetRecoilState(searchedUserListState);
+  const setSelectedUserList = useSetRecoilState(selectedUserListState);
   return (
     <StUserSearchResultForTeamRegister>
       <div>검색 결과</div>
@@ -28,7 +28,7 @@ export default function UserSearchResultForTeamRegister(
           return (
             <React.Fragment key={user.id}>
               <SearchedUserForTeamRegister
-                onClickButton={() =>
+                onClickButton={() => 
                   setSelectedUserList((current) =>
                     user.isSelected
                       ? current.filter((targetUser) => targetUser.id !== user.id)

@@ -1,4 +1,3 @@
-
 import { imgEmptyFeedback } from '@assets/images';
 import { StFeedbackEmptyView } from './style';
 

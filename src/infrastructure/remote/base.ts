@@ -87,8 +87,14 @@ export const privateAPI = {
       isPrivate: true,
       type: type ?? 'json',
     }),
-  delete: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
-    sendRequest({ url, params, method: 'delete', headers, isPrivate: true }),
+  delete: ({ url, data, headers }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'delete',
+      headers,
+      isPrivate: true,
+    }),
 };
 
 export const publicAPI = {
@@ -112,6 +118,12 @@ export const publicAPI = {
       isPrivate: false,
       type: type ?? 'json',
     }),
-  delete: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
-    sendRequest({ url, params, method: 'delete', headers, isPrivate: false }),
+  delete: ({ url, data, headers }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
+    sendRequestForData({
+      url,
+      data,
+      method: 'delete',
+      headers,
+      isPrivate: false,
+    }),
 };

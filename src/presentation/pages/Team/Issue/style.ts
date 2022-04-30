@@ -36,6 +36,8 @@ export const StHeader = styled.div`
   }
   & > div {
     display: flex;
+    position: relative;
+    align-items: center;
     &:nth-child(1) {
       gap: 6px;
       margin-top: 20px;
@@ -47,6 +49,10 @@ export const StHeader = styled.div`
       & > div:nth-child(2) {
         color: ${COLOR.GRAY_5};
         ${FONT_STYLES.M_13_TITLE}
+      }
+      & > svg {
+        position: absolute;
+        right: 0;
       }
     }
     &:nth-child(2) {

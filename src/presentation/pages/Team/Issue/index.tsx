@@ -19,12 +19,20 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { FeedbackDetail } from '@api/types/team';
 import CommonNavigation from '@components/common/Navigation';
+import { IcMeatball } from '@assets/icons';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [bottomSheetState, setBottomSheetState] = useState<
-    { feedbackID: number; isMine: boolean; isForMe: boolean; isPinned: boolean } | undefined
+    | {
+        id: number;
+        isMine: boolean;
+        isForMe: boolean;
+        isPinned: boolean;
+        mode: 'issue' | 'feedback';
+      }
+    | undefined
   >(undefined);
 
   const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
@@ -36,19 +44,26 @@ function TeamIssue() {
     if (issue) setFeedbacks(issue.feedbackList);
   }, [issue]);
 
-  const onFeedbackClicked = (
-    feedbackID: number,
-    isMine: boolean,
-    isForMe: boolean,
-    isPinned: boolean,
-  ) => {
+  const onFeedbackClicked = (id: number, isMine: boolean, isForMe: boolean, isPinned: boolean) => {
     setIsBottomSheetOpened(true);
     setBottomSheetState({
-      feedbackID,
+      id,
       isMine,
       isForMe,
       isPinned,
+      mode: 'feedback',
     });
+  };
+
+  const onManageTeamClicked = () => {
+    setBottomSheetState({
+      id: +(issueID ?? 0),
+      isMine: true,
+      isForMe: true,
+      isPinned: true,
+      mode: 'issue',
+    });
+    setIsBottomSheetOpened(true);
   };
 
   return (
@@ -61,6 +76,7 @@ function TeamIssue() {
               <div>
                 <div>{issue.category}</div>
                 <div>{issue.createdAt}</div>
+                <IcMeatball onClick={onManageTeamClicked} />
               </div>
               <div>{issue.title}</div>
               <div>

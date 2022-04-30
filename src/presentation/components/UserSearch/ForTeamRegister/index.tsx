@@ -50,9 +50,9 @@ export default function UserSearchForTeamRegister({
 
   const getSearchedUserList = (): SearchedUser[] | null => {
     if (!searchedUserListResponseByPage) return null;
-    const searchedUserListResponse = searchedUserListResponseByPage.pages
-      .map((page) => page.result)
-      .flat();
+    const searchedUserListResponse = searchedUserListResponseByPage.pages.flatMap(
+      (page) => page.result,
+    );
     if (!searchedUserListResponse) return [];
     const idList = selectedUserList.map(({ id }) => id);
     return searchedUserListResponse.map((user) => ({

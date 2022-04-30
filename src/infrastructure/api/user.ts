@@ -6,4 +6,5 @@ export interface UserService {
   getMyPageInfo(userID: string): Promise<MyPageInfo>;
   getNeososeoBookmark(userID: string): Promise<NeososeoAnswerBookmark>;
   getFeedbackBookmark(userID: string): Promise<TeamFeedbackBookmark>;
+  getDuplicationCheck(userID: string): Promise<{ isSuccess: boolean }>;
 }

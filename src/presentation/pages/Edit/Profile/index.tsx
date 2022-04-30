@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
+import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
 import CommonInput from '@components/common/Input';
@@ -23,6 +25,16 @@ function MyProfileEdit() {
     id: false,
     name: false,
   });
+
+  const response = useQuery(['isDuplicated', userID], () =>
+    api.userService.getDuplicationCheck(userID),
+  );
+
+  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    console.log(userID);
+    console.log(e.target.value);
+    console.log(response.isSuccess);
+  };
 
   useEffect(() => {
     const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
@@ -82,6 +94,7 @@ function MyProfileEdit() {
             onChange={(value) => {
               setInputId(value);
             }}
+            onBlur={handleOnBlur}
             errorMsg={errorMsg}
             placeholder={userID}
             maxLength={15}

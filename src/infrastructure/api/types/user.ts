@@ -45,3 +45,9 @@ export interface AnswerDetail {
   keywordList: Keyword[];
   targetUserID: number;
 }
+
+export interface IdCheckInfo {
+  status: number;
+  success: boolean;
+  message?: string;
+}

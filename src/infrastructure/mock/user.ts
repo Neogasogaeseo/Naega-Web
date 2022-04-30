@@ -27,12 +27,18 @@ export function userDataMock(): UserService {
     return USER_DATA.TEAM_FEEDBACK_BOOKMARK;
   };
 
+  const getDuplicationCheck = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   return {
     getKeywords,
     postKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,
+    getDuplicationCheck,
   };
 }
 

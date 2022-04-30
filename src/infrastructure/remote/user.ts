@@ -103,11 +103,20 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const getDuplicationCheck = async (userID: string) => {
+    const response = await publicAPI.get({
+      url: `/user/edit/profileId/${userID}`,
+      headers: { accesstoken: token },
+    });
+    return { isSuccess: response.success };
+  };
+
   return {
     getKeywords,
     postKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,
+    getDuplicationCheck,
   };
 }

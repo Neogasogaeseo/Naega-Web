@@ -101,6 +101,7 @@ export default function UserSearchForTeamRegister({
               id: profileID,
               content: name,
               color: COLOR.GRAY_2,
+              fontColor: COLOR.GRAY_6,
             }))}
             deleteKeyword={(targetUser) =>
               setSelectedUserList(

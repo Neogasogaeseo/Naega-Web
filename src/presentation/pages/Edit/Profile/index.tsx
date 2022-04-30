@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
 
 import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
@@ -16,7 +15,7 @@ import { imgEmptyProfile } from '@assets/images';
 function MyProfileEdit() {
   const navigate = useNavigate();
   const { fireToast } = useToast();
-  const { username, userID, profileImage } = useLoginUser();
+  const { username, userID, profileImage, initLoginUser } = useLoginUser();
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
@@ -26,13 +25,8 @@ function MyProfileEdit() {
     name: false,
   });
 
-  const response = useQuery(['isDuplicated', userID], () =>
-    api.userService.getDuplicationCheck(userID),
-  );
-
-  const handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    console.log(userID);
-    console.log(e.target.value);
+  const handleOnBlur = async () => {
+    const response = await api.userService.getDuplicationCheck(userID);
     console.log(response.isSuccess);
   };
 
@@ -59,15 +53,19 @@ function MyProfileEdit() {
     });
   }, [inputName]);
 
-  const editProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const editProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const form = new FormData();
       form.append('profileId', inputId);
       form.append('name', inputName);
       image && form.append('image', image);
-      // 나중에 여기 put 추가할 예정
-      fireToast({ content: '수정 완료' });
+      const response = await api.userService.editUserProfile(form);
+      if (response.isSuccess) {
+        fireToast({ content: '수정 완료' });
+        initLoginUser();
+        navigate(`/home/mypage/${response.profileId}`);
+      }
     } catch (error) {
       console.error(error);
       navigate('/');

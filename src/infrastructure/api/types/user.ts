@@ -47,8 +47,7 @@ export interface AnswerDetail {
   targetUserID: number;
 }
 
-export interface IdCheckInfo {
-  status: number;
-  success: boolean;
-  message?: string;
+export interface EditProfileInfo {
+  isSuccess: boolean;
+  profileId: string;
 }

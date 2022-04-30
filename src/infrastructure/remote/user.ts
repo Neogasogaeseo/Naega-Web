@@ -120,6 +120,14 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
+  const editUserProfile = async (formData: FormData) => {
+    const response = await privateAPI.put({ url: `/user/edit`, data: formData });
+    return {
+      isSuccess: response.success,
+      profileId: response.data.user.profileId,
+    };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -127,5 +135,6 @@ export function userDataRemote(): UserService {
     getNeososeoBookmark,
     getFeedbackBookmark,
     getDuplicationCheck,
+    editUserProfile,
   };
 }

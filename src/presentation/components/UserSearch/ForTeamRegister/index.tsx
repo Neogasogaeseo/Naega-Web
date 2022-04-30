@@ -87,7 +87,7 @@ export default function UserSearchForTeamRegister({
       <StPaddingWrapper>
         <CommonInput
           value={inputValue}
-          onChange={(value)=>(setInputValue(value))}
+          onChange={(value) => setInputValue(value)}
           onSubmit={() => {
             setSearchWord(inputValue);
           }}
@@ -104,7 +104,9 @@ export default function UserSearchForTeamRegister({
               color: COLOR.GRAY_2,
             }))}
             deleteKeyword={(targetUser) =>
-              setSelectedUserList(selectedUserList.filter((user) => user.profileID !== targetUser.id))
+              setSelectedUserList(
+                selectedUserList.filter((user) => user.profileID !== targetUser.id),
+              )
             }
             viewMode="flex"
           />

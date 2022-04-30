@@ -3,7 +3,7 @@ import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
 export const StFeedbackEmptyView = styled.div<{ hasThumbnail: boolean }>`
-  ${({ hasThumbnail }) => hasThumbnail ? 'padding-top: 34px;' : 'padding-top: 146px;'}
+  ${({ hasThumbnail }) => (hasThumbnail ? 'padding-top: 34px;' : 'padding-top: 146px;')}
   display: flex;
   flex-direction: column;
   align-items: center;

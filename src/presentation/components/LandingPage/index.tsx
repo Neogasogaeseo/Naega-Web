@@ -66,7 +66,8 @@ function LandingPage() {
           </h2>
         </StMiddleTitle>
         <StMiddleContent>
-          주변에 궁금했던 설문을 골라<br />
+          주변에 궁금했던 설문을 골라
+          <br />
           친구들의 답변으로 새로운 나를 발견하세요
         </StMiddleContent>
         <StImgMainPhone>
@@ -76,7 +77,8 @@ function LandingPage() {
       </StMiddle>
       <StMiddleTitle>
         <h2>
-          <span>링크</span>를 통해 간편하게<br />
+          <span>링크</span>를 통해 간편하게
+          <br />
           답변을 받아보세요
         </h2>
         <img src={ImgLink} />
@@ -88,7 +90,8 @@ function LandingPage() {
             협업 경험을 기록해보세요.
           </h2>
           <StMiddleContent>
-            팀원들과 협업하며 일어난 이슈들을 기록하고<br />
+            팀원들과 협업하며 일어난 이슈들을 기록하고
+            <br />
             그에 대한 피드백을 주고 받으세요!
           </StMiddleContent>
           <TeamLottie />
@@ -102,7 +105,8 @@ function LandingPage() {
           </h2>
         </StMiddleTitle>
         <StMiddleContent>
-          나를 잘 표현하는 소개를 pick하고<br />
+          나를 잘 표현하는 소개를 pick하고
+          <br />
           링크로 공유해서 주변에 자랑해보세요
         </StMiddleContent>
         <img src={ImgMypage} />

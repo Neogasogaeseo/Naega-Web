@@ -28,7 +28,7 @@ export default function UserSearchResultForTeamRegister(
           return (
             <React.Fragment key={user.id}>
               <SearchedUserForTeamRegister
-                onClickButton={() => 
+                onClickButton={() =>
                   setSelectedUserList((current) =>
                     user.isSelected
                       ? current.filter((targetUser) => targetUser.id !== user.id)

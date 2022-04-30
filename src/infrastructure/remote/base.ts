@@ -66,6 +66,23 @@ const sendRequestForData = ({ url, data, method, headers, isPrivate, type }: Req
   });
 };
 
+const sendRequestForDelete = ({
+  url,
+  data,
+  headers,
+  isPrivate,
+}: Omit<RequestWithData, 'method'>) => {
+  const baseHeaders = isPrivate ? getBasePrivateHeaders() : basePublicHeaders;
+  return axios
+    .delete(BASEURL + url, {
+      headers: { ...baseHeaders, ...headers },
+      data: data,
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
 export const privateAPI = {
   get: ({ url, params, headers }: Omit<RequestWithParams, 'isPrivate' | 'method'>) =>
     sendRequest({ url, params, method: 'get', headers, isPrivate: true }),
@@ -88,10 +105,9 @@ export const privateAPI = {
       type: type ?? 'json',
     }),
   delete: ({ url, data, headers }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
-    sendRequestForData({
+    sendRequestForDelete({
       url,
       data,
-      method: 'delete',
       headers,
       isPrivate: true,
     }),
@@ -119,10 +135,9 @@ export const publicAPI = {
       type: type ?? 'json',
     }),
   delete: ({ url, data, headers }: Omit<RequestWithData, 'isPrivate' | 'method'>) =>
-    sendRequestForData({
+    sendRequestForDelete({
       url,
       data,
-      method: 'delete',
       headers,
       isPrivate: false,
     }),

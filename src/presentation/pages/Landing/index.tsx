@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function Landing() {
   const { isAuthenticated } = useLoginUser();
   const navigate = useNavigate();
-  useEffect(()=> {
+  useEffect(() => {
     if (isAuthenticated) navigate('/home');
   }, [isAuthenticated]);
   return <LandingPage />;

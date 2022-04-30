@@ -98,10 +98,10 @@ function HomeMyPage() {
                   <img src={icCrown} />
                   <span>My 키워드</span>
                 </div>
-                <span onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
                   키워드 전체보기
                   <IcArrowViewAll />
-                </span>
+                </StDetailLink>
               </div>
               {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
                 <>
@@ -135,8 +135,8 @@ function HomeMyPage() {
                 <span>{neososeoBookmark.count}</span>
               </div>
               {isMyPage && (
-                <StDetailLink to="/neoga/result">
-                  <span>전체보기</span>
+                <StDetailLink onClick={() => navigate(`/mypage/neoga/${userID}`)}>
+                  픽 하러 가기
                   <IcArrowViewAll />
                 </StDetailLink>
               )}
@@ -166,8 +166,8 @@ function HomeMyPage() {
                   <span>{feedbackBookmark.count}</span>
                 </div>
                 {isMyPage && (
-                  <StDetailLink to="/home/team">
-                    <span>전체보기</span>
+                  <StDetailLink onClick={() => navigate(`/mypage/team/${userID}`)}>
+                    픽 하러 가기
                     <IcArrowViewAll />
                   </StDetailLink>
                 )}

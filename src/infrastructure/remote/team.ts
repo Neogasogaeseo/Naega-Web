@@ -205,7 +205,6 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI.get({
       url: `/user/search?searchId=${searchID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
     });
-    console.log(response);
     if (response.status === STATUS_CODE.OK)
       return response.data.user.map((member: any) => ({
         id: member.id,

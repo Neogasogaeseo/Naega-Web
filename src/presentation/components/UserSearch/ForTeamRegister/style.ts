@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-export const StUserSearchForTeamRegister = styled.div<{ isSelected: boolean }>`
+export const StUserSearchForTeamRegister = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,14 +15,12 @@ export const StUserSearchForTeamRegister = styled.div<{ isSelected: boolean }>`
     width: 100%;
     margin-top: 18px;
   }
-  ${(props) =>
-    props.isSelected &&
-    css`
-      & > *:nth-child(3) {
-        padding: 0 20px;
-      }
-    `}
   & > *:last-child {
     margin-top: 18px;
   }
+`;
+
+export const StPaddingWrapper = styled.div`
+  width: 100%;
+  padding: 0 20px;
 `;

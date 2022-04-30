@@ -3,6 +3,7 @@ import UserSearchEmptyView from '@components/common/Empty/UserSearch';
 import CommonLoader from '@components/common/Loader';
 import SearchedUserForTeamRegister from '@components/SearchedUser/ForTeamRegister';
 import { searchedUserListState } from '@stores/team';
+import React from 'react';
 import { useSetRecoilState } from 'recoil';
 import { StUserSearchResultForTeamRegister } from './style';
 
@@ -24,9 +25,8 @@ export default function UserSearchResultForTeamRegister(
       ) : searchedUserList.length ? (
         searchedUserList.map((user) => {
           return (
-            <>
+            <React.Fragment key={user.id}>
               <SearchedUserForTeamRegister
-                key={user.profileID}
                 onClickButton={() =>
                   setSelectedUserList((current) =>
                     user.isSelected
@@ -37,7 +37,7 @@ export default function UserSearchResultForTeamRegister(
                 user={user}
               />
               {isFetchingNextPage && <CommonLoader />}
-            </>
+            </React.Fragment>
           );
         })
       ) : (

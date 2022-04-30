@@ -5,7 +5,7 @@ import { useInfiniteQuery } from 'react-query';
 import CommonNavigation from '@components/common/Navigation';
 import CommonInput from '@components/common/Input';
 import { icSearch } from '@assets/icons';
-import { StUserSearchForTeamRegister } from './style';
+import { StPaddingWrapper, StUserSearchForTeamRegister } from './style';
 import { selectedUserListState } from '@stores/team';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { COLOR } from '@styles/common/color';
@@ -20,29 +20,31 @@ export default function UserSearchForTeamRegister({
 }: {
   onClickSubmitButton: () => void;
 }) {
+  const [inputValue, setInputValue] = useState('');
   const [searchWord, setSearchWord] = useState('');
-  const [searchWordForRequest, setSearchWordForRequest] = useState('');
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const { isBottomReached, isInitialState: isInitialScroll } = useScrollHeight();
-  const [isInitialSearch, setIsInitialSearch] = useState(true);
   const [searchedUserList, setSearchedUserList] = useState<SearchedUser[] | null>(null);
 
-  const searchUserByPage = useCallback(async ({ pageParam = 0 }) => {
-    const response = await api.teamService.getSearchedUserList(searchWordForRequest, pageParam);
-    return {
-      result: response,
-      nextPage: pageParam + SEARCHED_USER_PAGE,
-      isLast: response.length < SEARCHED_USER_PAGE,
-    };
-  }, []);
+  const searchUserByPage = useCallback(
+    async ({ pageParam = 0 }) => {
+      const response = await api.teamService.getSearchedUserList(searchWord, pageParam);
+      return {
+        result: response,
+        nextPage: pageParam + SEARCHED_USER_PAGE,
+        isLast: response.length < SEARCHED_USER_PAGE,
+      };
+    },
+    [searchWord],
+  );
 
   const {
     data: searchedUserListResponseByPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(['userSearch', searchWordForRequest], searchUserByPage, {
+  } = useInfiniteQuery(['userSearch', searchWord], searchUserByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-    enabled: !isInitialSearch,
+    enabled: !(searchWord === ''),
     refetchOnWindowFocus: false,
     retry: 1,
   });
@@ -60,23 +62,6 @@ export default function UserSearchForTeamRegister({
     }));
   };
 
-  // const selectToggle = (user: SearchedUser): void => {
-  //   // setSearchedUserList((current) =>
-  //   //   current === null
-  //   //     ? current
-  //   //     : current.map((targetUser) =>
-  //   //         targetUser.profileID === user.profileID
-  //   //           ? { ...targetUser, isSelected: !targetUser.isSelected }
-  //   //           : { ...targetUser },
-  //   //       ),
-  //   // );
-  //   setSelectedUserList((current) =>
-  //     user.isSelected
-  //       ? current.filter((targetUser) => targetUser.id !== user.id)
-  //       : [...current, user],
-  //   );
-  // };
-
   useEffect(() => {
     if (!isInitialScroll) fetchNextPage();
   }, [isBottomReached, isInitialScroll]);
@@ -86,15 +71,8 @@ export default function UserSearchForTeamRegister({
     setSearchedUserList(searchedUserList);
   }, [searchedUserListResponseByPage, selectedUserList]);
 
-  useEffect(() => {
-    if (isInitialSearch && searchWordForRequest) setIsInitialSearch(false);
-    console.log('searchWordForRequest', searchWordForRequest);
-  }, [searchWordForRequest]);
-
-  useEffect(() => setIsInitialSearch(true), []);
-
   return (
-    <StUserSearchForTeamRegister isSelected={!!selectedUserList}>
+    <StUserSearchForTeamRegister>
       <CommonNavigation
         isBack={false}
         title="팀원 추가"
@@ -102,32 +80,36 @@ export default function UserSearchForTeamRegister({
           content: '완료',
           onClick: () => {
             onClickSubmitButton();
-            setSearchWord('');
+            setInputValue('');
           },
         }}
       />
-      <CommonInput
-        value={searchWord}
-        onChange={(searchWord) => setSearchWord(searchWord)}
-        onSubmit={() => setSearchWordForRequest(searchWord)}
-        placeholder="팀원 검색하기"
-        width="calc(100%-40px)"
-        submitButtonValue="검색"
-        img={icSearch}
-      />
-      {selectedUserList && (
-        <MutableKeywordList
-          keywordList={selectedUserList.map(({ profileID, name }) => ({
-            id: profileID,
-            content: name,
-            color: COLOR.GRAY_2,
-          }))}
-          deleteKeyword={(targetUser) =>
-            setSelectedUserList(selectedUserList.filter((user) => user.profileID !== targetUser.id))
-          }
-          viewMode="flex"
+      <StPaddingWrapper>
+        <CommonInput
+          value={inputValue}
+          onChange={(value)=>(setInputValue(value))}
+          onSubmit={() => {
+            setSearchWord(inputValue);
+          }}
+          placeholder="팀원 검색하기"
+          width="100%"
+          submitButtonValue="검색"
+          img={icSearch}
         />
-      )}
+        {selectedUserList && (
+          <MutableKeywordList
+            keywordList={selectedUserList.map(({ profileID, name }) => ({
+              id: profileID,
+              content: name,
+              color: COLOR.GRAY_2,
+            }))}
+            deleteKeyword={(targetUser) =>
+              setSelectedUserList(selectedUserList.filter((user) => user.profileID !== targetUser.id))
+            }
+            viewMode="flex"
+          />
+        )}
+      </StPaddingWrapper>
       <UserSearchResultForTeamRegister
         isFetchingNextPage={isFetchingNextPage}
         searchedUserList={searchedUserList}

@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { teamFeedbackState } from '@stores/team';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
 import { TeamMemberNoneId } from '@api/types/team';
-import { useLoginUser } from '@hooks/useLoginUser';
 import ProfileListSelectable from '@components/ProfileListSelectable';
 import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -18,17 +15,16 @@ import {
   StButton,
   StTextarea,
 } from './style';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 
 function TeamIssueFeedback() {
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
   const [isConfirming, setIsConfirming] = useState(false);
-  const setFeedbacks = useSetRecoilState(teamFeedbackState);
   const navigate = useNavigate();
   const { teamID, issueID } = useParams();
-  const { username } = useLoginUser();
+  const queryClient = useQueryClient();
 
   const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
     api.teamService.getTeamMembers(teamID ?? ''),
@@ -50,19 +46,7 @@ function TeamIssueFeedback() {
       keywordIds: keywordList.map((keyword) => +keyword.id),
     });
     if (response.isSuccess) {
-      setFeedbacks((prev) => [
-        ...prev,
-        {
-          id: response.createdFeedbackID.toString(),
-          writer: username.toString(),
-          target: selectedUser.profileName.toString(),
-          targetProfileID: '',
-          body: content.toString(),
-          createdAt: response.createdAt.toString(),
-          keywordList: [...keywordList],
-          isBookmarked: false,
-        },
-      ]);
+      queryClient.invalidateQueries(['issueDetailData', `${teamID}-${issueID}`]);
       navigate(-1);
     }
   };

@@ -36,13 +36,13 @@ export function teamDataRemote(): TeamService {
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
-      createdAt: issueDetailData.data.createdAt,
-      title: issueDetailData.data.content,
-      category: issueDetailData.data.categoryName,
+      createdAt: issueDetailData.data.issue.createdAt,
+      title: issueDetailData.data.issue.content,
+      category: issueDetailData.data.issue.categoryName,
       team: {
         teammates: issueDetailData.data.feedbackTagged.map((member: any) => ({
-          profileId: member.userId,
-          id: member.userId,
+          profileId: member.id,
+          id: member.id,
           profileName: member.name,
           profileImage: member.image,
         })),

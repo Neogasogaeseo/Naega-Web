@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import {
@@ -9,38 +8,25 @@ import {
   StIssueThumbnail,
   StDivisionLine,
 } from './style';
-import { useRecoilState } from 'recoil';
-import { teamFeedbackState } from '@stores/team';
 import CommonInput from '@components/common/Input';
 import IssueMemberList from '@components/common/IssueMemberList';
 import { imgLogo } from '@assets/images';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
-import { IssueData } from '@api/types/team';
 import FeedbackEmptyView from '@components/common/Empty/Feedback';
+import { useQuery } from 'react-query';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
-  const [issue, setIssue] = useState<IssueData | null>(null);
-  const [feedbacks, setFeedbacks] = useRecoilState(teamFeedbackState);
-  const [isValidating, setIsValidating] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!issueID) return;
-    (async () => {
-      setIsValidating(true);
-      const data = await api.teamService.getIssueInfo(issueID);
-      setIssue(data);
-      setFeedbacks(data.feedbackList);
-      setIsValidating(false);
-    })();
-  }, [teamID, issueID]);
+  const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
+    api.teamService.getIssueInfo(issueID ?? ''),
+  );
 
   return (
     <StTeamIssue>
-      {isValidating && <div></div>}
-      {issue !== null && teamID && issueID && (
+      {issue !== undefined && teamID && issueID && (
         <StWrapper>
           <StHeader>
             <img src={imgLogo} onClick={() => navigate('/home')} />
@@ -66,8 +52,8 @@ function TeamIssue() {
             <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
           )}
           <StDivisionLine />
-          {feedbacks.length !== 0 ? (
-            <FeedbackCardList feedbacks={feedbacks} />
+          {issue.feedbackList.length !== 0 ? (
+            <FeedbackCardList feedbacks={issue.feedbackList} />
           ) : (
             <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
           )}

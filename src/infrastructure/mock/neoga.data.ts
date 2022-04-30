@@ -72,11 +72,13 @@ export const NEOGA_DATA = {
                 id: '19',
                 content: '고막도둑',
                 color: '#FF4B77',
+                fontColor: '#FFFFFF',
               },
               {
                 id: '20',
                 content: '눈사람',
                 color: '#FF806F',
+                fontColor: '#FFFFFF',
               },
             ],
           },
@@ -90,11 +92,13 @@ export const NEOGA_DATA = {
                 id: '199',
                 content: 'INFP 인간화',
                 color: '#FF4B77',
+                fontColor: '#FFFFFF',
               },
               {
                 id: '200',
                 content: '천사',
                 color: '#FF806F',
+                fontColor: '#FFFFFF',
               },
             ],
           },
@@ -167,15 +171,15 @@ export const NEOGA_DATA = {
     },
   ],
   KEYWORD_LISTS: [
-    { id: '0', content: '제일멋있는파트는', color: '#4C48FF' },
-    { id: '1', content: '웹파트ㅋ', color: '#FF4B77' },
-    { id: '2', content: '서진최고', color: '#4C48FF' },
-    { id: '3', content: '주영최고', color: '#FF4B77' },
-    { id: '4', content: '지연최고', color: '#4C48FF' },
-    { id: '5', content: '효인최고', color: '#FF4B77' },
-    { id: '6', content: '너소서최고', color: '#4C48FF' },
-    { id: '7', content: '우리모두최고', color: '#FF4B77' },
-    { id: '8', content: '화이팅최고', color: '#4C48FF' },
+    { id: '0', content: '제일멋있는파트는', color: '#4C48FF', fontColor: '#FFFFFF' },
+    { id: '1', content: '웹파트ㅋ', color: '#FF4B77', fontColor: '#FFFFFF' },
+    { id: '2', content: '서진최고', color: '#4C48FF', fontColor: '#FFFFFF' },
+    { id: '3', content: '주영최고', color: '#FF4B77', fontColor: '#FFFFFF' },
+    { id: '4', content: '지연최고', color: '#4C48FF', fontColor: '#FFFFFF' },
+    { id: '5', content: '효인최고', color: '#FF4B77', fontColor: '#FFFFFF' },
+    { id: '6', content: '너소서최고', color: '#4C48FF', fontColor: '#FFFFFF' },
+    { id: '7', content: '우리모두최고', color: '#FF4B77', fontColor: '#FFFFFF' },
+    { id: '8', content: '화이팅최고', color: '#4C48FF', fontColor: '#FFFFFF' },
   ],
   NEOGA_RESULT: [
     {
@@ -185,8 +189,8 @@ export const NEOGA_DATA = {
       category: '동네친구',
       createdAt: '2021-01-17',
       keywordList: [
-        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
       ],
     },
     {
@@ -196,8 +200,8 @@ export const NEOGA_DATA = {
       category: '동네친구',
       createdAt: '2021-01-17',
       keywordList: [
-        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
       ],
     },
     {
@@ -207,8 +211,8 @@ export const NEOGA_DATA = {
       category: '동네친구',
       createdAt: '2021-01-17',
       keywordList: [
-        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
       ],
     },
     {
@@ -218,8 +222,8 @@ export const NEOGA_DATA = {
       category: '동네친구',
       createdAt: '2021-01-17',
       keywordList: [
-        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF' },
-        { id: '1', content: '멋있는 캐서린', color: '#FF4B77' },
+        { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        { id: '1', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
       ],
     },
   ],

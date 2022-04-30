@@ -13,6 +13,7 @@ export function userDataRemote(): UserService {
       id: keyword.id,
       content: keyword.name,
       color: keyword.colorcode,
+      fontColor: keyword.fontcolor,
     }));
   };
 
@@ -22,7 +23,12 @@ export function userDataRemote(): UserService {
       data: { name: content, userId: userID },
     });
 
-    return { id: response.data.id, content: response.data.name, color: response.data.colorcode };
+    return {
+      id: response.data.id,
+      content: response.data.name,
+      color: response.data.colorcode,
+      fontColor: response.data.fontcolor,
+    };
   };
 
   const getMyPageInfo = async (userID: string) => {
@@ -38,14 +44,16 @@ export function userDataRemote(): UserService {
         ? response.data.answerKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,
             content: keyword.keywordName,
-            color: keyword.colorCode,
+            color: keyword.colorcode,
+            fontColor: keyword.fontcolor,
           }))
         : [],
       team: response.data.teamKeywordList
         ? response.data.teamKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,
             content: keyword.keywordName,
-            color: keyword.colorCode,
+            color: keyword.colorcode,
+            fontColor: keyword.fontcolor,
           }))
         : [],
     };
@@ -65,7 +73,8 @@ export function userDataRemote(): UserService {
             keywordList: bookmark.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
-              color: keyword.colorCode,
+              color: keyword.colorcode,
+              fontColor: keyword.fontcolor,
             })),
             targetUserID: bookmark.userId,
           }))
@@ -94,7 +103,8 @@ export function userDataRemote(): UserService {
             keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
-              color: keyword.colorCode,
+              color: keyword.colorcode,
+              fontColor: keyword.fontcolor,
             })),
             targetProfileID: feedback.profileId,
             isBookmarked: feedback.isPinned,

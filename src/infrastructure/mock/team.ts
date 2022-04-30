@@ -118,6 +118,10 @@ export function teamDataMock(): TeamService {
     return { isSuccess: true };
   };
 
+  const getNotice = async () => {
+    return [];
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -138,6 +142,7 @@ export function teamDataMock(): TeamService {
     rejectInvitation,
     editTeamInfo,
     deleteTeam,
+    getNotice,
   };
 }
 

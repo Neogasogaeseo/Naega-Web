@@ -1,6 +1,8 @@
+import { imgNoTeammates } from '@assets/images';
 import { ANIMATION } from '@styles/common/animation';
 import { FULL_WIDTH_BUTTON, CORAL_MAIN_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 import { COMMON_INPUT } from '@styles/common/input';
 import styled from 'styled-components';
 
@@ -66,4 +68,26 @@ export const StTextarea = styled.textarea`
   width: 100%;
   resize: unset;
   height: 104px;
+`;
+
+export const StEmptyWrapper = styled(StWrapper)`
+  background-image: url(${imgNoTeammates});
+  background-size: cover;
+  min-height: 567px;
+  align-items: center;
+  justify-content: center;
+  & > div {
+    text-align: center;
+    ${FONT_STYLES.M_16_TITLE};
+    color: ${COLOR.GRAY_6};
+    line-height: 24px;
+  }
+  & > button {
+    ${CORAL_MAIN_BUTTON};
+    width: 214px;
+    border-radius: 14px;
+    ${FONT_STYLES.M_15_TITLE};
+    padding: 17.5px 0;
+    margin-top: 10px;
+  }
 `;

@@ -1,7 +1,8 @@
-import { icBookmarkSelected, icBookmarkUnselected } from '@assets/icons';
+import styled from 'styled-components';
+
+import { icPicked, icUnpicked } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
-import styled from 'styled-components';
 
 export const StFeedbackCard = styled.div`
   padding: 24px 4px 25px 4px;
@@ -12,8 +13,9 @@ export const StFeedbackCard = styled.div`
 `;
 
 export const StBookmark = styled.div<{ selected: boolean }>`
-  background-image: url(${(props) => (props.selected ? icBookmarkSelected : icBookmarkUnselected)});
-  width: 24px;
+  background-image: url(${(props) => (props.selected ? icPicked : icUnpicked)});
+  background-position: center;
+  width: 52px;
   height: 24px;
 `;
 
@@ -22,6 +24,7 @@ export const StHeader = styled.div`
   align-items: center;
   position: relative;
   gap: 14px;
+  height: 24px;
 
   & > div:nth-child(1) {
     color: ${COLOR.GRAY_8};

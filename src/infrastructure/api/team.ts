@@ -5,7 +5,6 @@ import {
   TeamIssueData,
   TeamInfoData,
   TeamInviteData,
-  TeamMember,
   TeamMemberNoneId,
   PostFeedbackRequestBody,
   PostFeedbackResponse,
@@ -13,6 +12,8 @@ import {
   PostIssueResponse,
   TeamEditInfo,
   ImageFile,
+  TeamNoticeItem,
+  SearchedUserResponse,
 } from './types/team';
 
 export interface TeamService {
@@ -24,7 +25,7 @@ export interface TeamService {
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
   getMyIssue(teamID: string): Promise<TeamIssueData>;
   getInviteInfo(): Promise<TeamInviteData>;
-  getSearchedUserList(profileId: string): Promise<TeamMember[]>;
+  getSearchedUserList(searchID: string, page: number): Promise<SearchedUserResponse[]>;
   getTeamMembers(teamID: string): Promise<TeamMemberNoneId[]>;
   postFeedback(body: PostFeedbackRequestBody): Promise<PostFeedbackResponse>;
   postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;
@@ -40,4 +41,5 @@ export interface TeamService {
   rejectInvitation(teamID: number): Promise<{ isSuccess: boolean }>;
   editTeamInfo(teamInfo: TeamEditInfo<ImageFile>): Promise<{ isSuccess: boolean }>;
   deleteTeam(teamID: number): Promise<{ isSuccess: boolean }>;
+  getNotice(): Promise<TeamNoticeItem[]>;
 }

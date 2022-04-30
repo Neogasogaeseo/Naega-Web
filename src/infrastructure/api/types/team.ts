@@ -30,8 +30,15 @@ export interface TeamMemberWithHostInfo extends TeamMember {
   isHost: boolean;
 }
 
-export interface SearchedUser extends TeamMember {
-  isAdded: boolean;
+export interface SearchedUserResponse {
+  id: number;
+  profileID: string;
+  name: string;
+  image: string;
+}
+
+export interface SearchedUser extends SearchedUserResponse {
+  isSelected: boolean;
 }
 
 export type FeedbackDetail = {
@@ -127,3 +134,11 @@ export interface TeamEditInfo<T extends ImageFile | string> {
   name: string;
   description: string;
 }
+
+export type TeamNoticeItem = {
+  teamID: number;
+  teamName: string;
+  teamProfileImage: string | undefined;
+  status: 'PENDING' | 'ACCEPT' | 'DECLINE';
+  timeDifference: string;
+};

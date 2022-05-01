@@ -25,25 +25,28 @@ function MyProfileEdit() {
     name: false,
   });
 
-  const handleOnBlur = async () => {
-    const response = await api.userService.getDuplicationCheck(userID);
-    console.log(response.isSuccess);
-  };
-
   useEffect(() => {
-    const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
-    setIsEditConditionPassed({
-      ...isEditConditionPassed,
-      id: idCheck.test(inputId),
-    });
+    (async () => {
+      if (!inputId) return;
+      const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
+      const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
+      const passedId = idCheck.test(inputId) && !isSuccess;
 
-    if (!idCheck.test(inputId)) {
-      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-    }
+      setIsEditConditionPassed({
+        ...isEditConditionPassed,
+        id: passedId,
+      });
 
-    if (!/^[a-z]/.test(inputId)) {
-      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
-    }
+      if (!idCheck.test(inputId)) {
+        setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+      } else if (isSuccess) {
+        setErrorMsg('*중복된 아이디입니다.');
+      }
+
+      if (!/^[a-z]/.test(inputId)) {
+        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+      }
+    })();
   }, [inputId]);
 
   useEffect(() => {
@@ -92,7 +95,6 @@ function MyProfileEdit() {
             onChange={(value) => {
               setInputId(value);
             }}
-            onBlur={handleOnBlur}
             errorMsg={errorMsg}
             placeholder={userID}
             maxLength={15}

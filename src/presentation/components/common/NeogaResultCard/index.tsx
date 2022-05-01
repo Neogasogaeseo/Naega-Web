@@ -1,4 +1,3 @@
-import { icNoReply } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 import { StNeogaResultCard, StNeogaCardHeader, StNeogaCardLine, StNeogaNoReply } from './style';
 import NeogaResultComment from '../NeogaResultComment';
@@ -32,8 +31,8 @@ function NeogaResultCard(props: NeogaResultCardProps) {
           answer.map((answer) => <NeogaResultComment key={answer.id} {...answer} />)
         ) : (
           <StNeogaNoReply>
-            <img src={icNoReply} />
-            앗, 아직 답변이 없어요
+            <div>아직 답변이 없어요</div>
+            <div>링크를 공유해 답변을 받아보세요</div>
           </StNeogaNoReply>
         )}
       </div>

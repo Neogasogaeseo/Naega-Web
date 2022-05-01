@@ -58,16 +58,10 @@ export const StNeogaNoReply = styled.div`
     ${FONT_STYLES.SB_18_TITLE};
     color: ${COLOR.GRAY_4};
   }
-  
+
   div:last-child {
     margin-top: 12px;
     ${FONT_STYLES.M_14_TITLE};
     color: ${COLOR.GRAY_35};
-  }
-}
-
-  img {
-    display: block;
-    margin-bottom: 16px;
   }
 `;

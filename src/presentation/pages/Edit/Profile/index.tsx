@@ -28,7 +28,7 @@ function MyProfileEdit() {
   useEffect(() => {
     (async () => {
       if (!inputId) return;
-      const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
+      const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
       const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
       const passedId = idCheck.test(inputId) && !isSuccess;
 
@@ -37,14 +37,12 @@ function MyProfileEdit() {
         id: passedId,
       });
 
-      if (!idCheck.test(inputId)) {
+      if (!/^[a-z]/.test(inputId)) {
+        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+      } else if (!idCheck.test(inputId)) {
         setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
       } else if (isSuccess) {
         setErrorMsg('*중복된 아이디입니다.');
-      }
-
-      if (!/^[a-z]/.test(inputId)) {
-        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
       }
     })();
   }, [inputId]);

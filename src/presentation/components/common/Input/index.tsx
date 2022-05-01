@@ -10,7 +10,6 @@ interface CommonInputProps {
   defaultValue?: string;
   isConditionPassed?: boolean;
   img?: string;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange?: (value: string) => void;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
@@ -27,7 +26,6 @@ function CommonInput(props: CommonInputProps) {
     value,
     defaultValue,
     isConditionPassed,
-    onBlur,
     onChange,
     onSubmit,
     img,
@@ -36,11 +34,11 @@ function CommonInput(props: CommonInputProps) {
     submitButtonDisabled = false,
   } = props;
   const [isInput, setIsInput] = useState('');
-
-  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
     setIsInput(e.target.value);
-  }
+  };
+
   return (
     <StCommonInput>
       <StInputWrapper
@@ -52,11 +50,7 @@ function CommonInput(props: CommonInputProps) {
       >
         <StInput
           width={width}
-          onBlur={(e) => {
-            e.preventDefault();
-            onBlur && onBlur(e);
-          }}
-          onChange={handleOnChange}
+          onChange={handleChange}
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}

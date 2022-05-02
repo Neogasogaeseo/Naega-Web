@@ -34,11 +34,11 @@ function CommonInput(props: CommonInputProps) {
     submitButtonDisabled = false,
   } = props;
   const [isInput, setIsInput] = useState('');
-
-  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
     setIsInput(e.target.value);
-  }
+  };
+
   return (
     <StCommonInput>
       <StInputWrapper
@@ -50,7 +50,7 @@ function CommonInput(props: CommonInputProps) {
       >
         <StInput
           width={width}
-          onChange={handleOnChange}
+          onChange={handleChange}
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}

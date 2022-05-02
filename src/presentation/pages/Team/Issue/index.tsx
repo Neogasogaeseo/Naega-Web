@@ -20,6 +20,8 @@ import { useEffect } from 'react';
 import { FeedbackDetail } from '@api/types/team';
 import CommonNavigation from '@components/common/Navigation';
 import { IcMeatball } from '@assets/icons';
+import DeleteFeedbackModal from '@components/common/Modal/DeleteFeedback';
+import DeleteIssueModal from '@components/common/Modal/DeleteIssue';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -33,6 +35,9 @@ function TeamIssue() {
         mode: 'issue' | 'feedback';
       }
     | undefined
+  >(undefined);
+  const [modalState, setModalState] = useState<
+    { mode: 'issue' | 'feedback'; id: number } | undefined
   >(undefined);
 
   const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
@@ -55,7 +60,7 @@ function TeamIssue() {
     });
   };
 
-  const onManageTeamClicked = () => {
+  const onManageIssueClicked = () => {
     setBottomSheetState({
       id: +(issueID ?? 0),
       isMine: true,
@@ -65,6 +70,20 @@ function TeamIssue() {
     });
     setIsBottomSheetOpened(true);
   };
+
+  const openFeedbackDeleteModal = () => {
+    if (!bottomSheetState) return;
+    setModalState({ mode: 'feedback', id: bottomSheetState.id });
+  };
+
+  const openIssueDeleteModal = () => {
+    if (!bottomSheetState) return;
+    setModalState({ mode: 'issue', id: bottomSheetState.id });
+  };
+
+  const closeModal = () => setModalState(undefined);
+
+  const closeBottomSheet = () => setBottomSheetState(undefined);
 
   return (
     <>
@@ -76,7 +95,7 @@ function TeamIssue() {
               <div>
                 <div>{issue.category}</div>
                 <div>{issue.createdAt}</div>
-                <IcMeatball onClick={onManageTeamClicked} />
+                {<IcMeatball onClick={onManageIssueClicked} />}
               </div>
               <div>{issue.title}</div>
               <div>
@@ -118,9 +137,27 @@ function TeamIssue() {
           <TeamsoseoPickerBottomSheet
             opened={isBottomSheetOpened}
             close={() => setIsBottomSheetOpened(false)}
+            openFeedbackDeleteModal={openFeedbackDeleteModal}
+            openIssueDeleteModal={openIssueDeleteModal}
             {...bottomSheetState}
           />
         )}
+        {modalState !== undefined &&
+          (modalState.mode === 'feedback' ? (
+            <DeleteFeedbackModal
+              isOpened
+              closeModal={closeModal}
+              closeBottomSheet={closeBottomSheet}
+              feedbackID={modalState.id}
+            />
+          ) : (
+            <DeleteIssueModal
+              isOpened
+              closeModal={closeModal}
+              closeBottomSheet={closeBottomSheet}
+              issueID={modalState.id}
+            />
+          ))}
         <Outlet />
       </StTeamIssue>
     </>

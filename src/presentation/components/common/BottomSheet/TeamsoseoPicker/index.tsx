@@ -10,6 +10,8 @@ import BottomSheet from '..';
 type TeamsoseoPickerBottomSheetProps = {
   opened: boolean;
   close: () => void;
+  openFeedbackDeleteModal: () => void;
+  openIssueDeleteModal: () => void;
   isMine: boolean;
   isForMe: boolean;
   isPinned: boolean;
@@ -18,7 +20,17 @@ type TeamsoseoPickerBottomSheetProps = {
 };
 
 function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
-  const { opened, close, isMine, isForMe, id, isPinned, mode } = props;
+  const {
+    opened,
+    close,
+    openFeedbackDeleteModal,
+    openIssueDeleteModal,
+    isMine,
+    isForMe,
+    id,
+    isPinned,
+    mode,
+  } = props;
   const { teamID, issueID } = useParams();
   const { fireToast } = useToast();
   const queryClient = useQueryClient();
@@ -34,8 +46,8 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
     }
   };
 
-  const removeFeedback = async () => {
-    console.log('피드백 삭제');
+  const removeFeedback = () => {
+    openFeedbackDeleteModal();
   };
 
   const editFeedback = async () => {
@@ -43,7 +55,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
   };
 
   const removeIssue = async () => {
-    console.log('이슈 삭제');
+    openIssueDeleteModal();
   };
 
   const editIssue = async () => {

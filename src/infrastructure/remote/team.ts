@@ -342,6 +342,16 @@ export function teamDataRemote(): TeamService {
     });
   };
 
+  const deleteFeedback = async (feedbackID: number) => {
+    const response = await privateAPI.delete({ url: `/team/feedback/${feedbackID}` });
+    return { isSuccess: response.success };
+  };
+
+  const deleteIssue = async (issueID: number) => {
+    const response = await privateAPI.delete({ url: `/team/issue/${issueID}` });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -363,5 +373,7 @@ export function teamDataRemote(): TeamService {
     editTeamInfo,
     deleteTeam,
     getNotice,
+    deleteFeedback,
+    deleteIssue,
   };
 }

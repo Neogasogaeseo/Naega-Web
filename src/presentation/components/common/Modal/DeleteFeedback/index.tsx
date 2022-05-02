@@ -1,18 +1,21 @@
 import { api } from '@api/index';
-import React from 'react';
 import CommonModal from '..';
 
 type DeleteFeedbackModalProps = {
   isOpened: boolean;
   closeModal(): void;
+  closeBottomSheet(): void;
   feedbackID: number;
 };
 
 function DeleteFeedbackModal(props: DeleteFeedbackModalProps) {
-  const { closeModal, feedbackID, isOpened } = props;
-  const deleteFeedback = () => {
-    api.teamService.deleteFeedback(feedbackID);
-    closeModal();
+  const { closeModal, closeBottomSheet, feedbackID, isOpened } = props;
+  const deleteFeedback = async () => {
+    const response = await api.teamService.deleteFeedback(feedbackID);
+    if (response.isSuccess) {
+      closeModal();
+      closeBottomSheet();
+    }
   };
   return (
     <CommonModal

@@ -22,7 +22,12 @@ export function neogaDataMock(): NeogaService {
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
 
-  const getFormResultCard = async () => {
+  const getNewFormCard = async () => {
+    await wait(2000);
+    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+  };
+
+  const getMostFormCard = async () => {
     await wait(2000);
     return NEOGA_DATA.RESULT_CARD_TEMPLATE;
   };
@@ -69,7 +74,8 @@ export function neogaDataMock(): NeogaService {
     getMainTemplate,
     getAllTemplates,
     getMainResultCard,
-    getFormResultCard,
+    getNewFormCard,
+    getMostFormCard,
     postAnswerBookmark,
     deleteAnswer,
     postCreateForm,

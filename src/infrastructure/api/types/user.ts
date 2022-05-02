@@ -46,3 +46,8 @@ export interface AnswerDetail {
   keywordList: Keyword[];
   targetUserID: number;
 }
+
+export interface EditProfileInfo {
+  isSuccess: boolean;
+  profileId: string;
+}

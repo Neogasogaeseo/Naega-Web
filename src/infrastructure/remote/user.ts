@@ -2,7 +2,7 @@ import { NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
-import { publicAPI } from './base';
+import { privateAPI, publicAPI } from './base';
 
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number, page: number) => {
@@ -113,11 +113,28 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const getDuplicationCheck = async (userID: string) => {
+    const response = await privateAPI.get({
+      url: `/user/edit/profileId/${userID}`,
+    });
+    return { isSuccess: response.success };
+  };
+
+  const editUserProfile = async (formData: FormData) => {
+    const response = await privateAPI.put({ url: `/user/edit`, data: formData });
+    return {
+      isSuccess: response.success,
+      profileId: response.data.user.profileId,
+    };
+  };
+
   return {
     getKeywords,
     postKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,
+    getDuplicationCheck,
+    editUserProfile,
   };
 }

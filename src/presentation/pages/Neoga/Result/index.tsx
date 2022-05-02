@@ -1,22 +1,32 @@
-import { imgLogo } from '@assets/images';
-import NeogaResultCard from '@components/common/NeogaResultCard';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { Link } from 'react-router-dom';
-import { StNeogaResult } from './style';
-import { api } from '@api/index';
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { api } from '@api/index';
 import { NeogaResultCardItem } from '@api/types/neoga';
+import { useLoginUser } from '@hooks/useLoginUser';
+import NeogaResultCard from '@components/common/NeogaResultCard';
+import NeogaCreateCardItem from '@components/NeogaCreateCard/Item';
+import { StNeogaResult } from './style';
+import { imgLogo } from '@assets/images';
 
 function NeogaResult() {
+  const navigate = useNavigate();
   const { username } = useLoginUser();
   const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
 
   useEffect(() => {
     (async () => {
-      const data = await api.neogaService.getFormResultCard();
+      const data = await api.neogaService.getMostFormCard();
       setCardItem(data);
     })();
   }, []);
+
+  const replyList = cardItem?.resultList.filter(
+    (result) => result.answer && result.answer.length > 0,
+  );
+  const noReplyList = cardItem?.resultList.filter(
+    (result) => result.answer && result.answer.length == 0,
+  );
 
   return (
     <StNeogaResult>
@@ -25,8 +35,18 @@ function NeogaResult() {
       </Link>
       <h1>{username}님이 만든 너가소개서</h1>
       <h2>내가 생성한 너가소개서의 답변을 확인하세요</h2>
-      {cardItem &&
-        cardItem.resultList.map((result) => <NeogaResultCard key={result.id} {...result} />)}
+      {replyList && replyList.map((card) => <NeogaResultCard key={card.id} {...card} />)}
+      {noReplyList &&
+        noReplyList.map(({ id, title, subtitle, darkIconImage }) => (
+          <NeogaCreateCardItem
+            key={id}
+            idx={id}
+            title={title}
+            content={subtitle}
+            src={darkIconImage}
+            onClick={() => navigate(`/neoga/${id}/detail/form`)}
+          />
+        ))}
     </StNeogaResult>
   );
 }

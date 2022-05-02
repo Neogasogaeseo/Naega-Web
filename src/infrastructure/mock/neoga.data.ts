@@ -58,6 +58,7 @@ export const NEOGA_DATA = {
       {
         id: 4,
         title: '가장 기억에 남는 순간의 내 모습',
+        subtitle: '나와 함께하면서 기억에 남는 순간은?',
         darkIconImage:
           'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/d_light_200x200.png?alt=media',
         createdAt: '2022-01-19',
@@ -107,6 +108,7 @@ export const NEOGA_DATA = {
       {
         id: 5,
         title: '너가 닮고 싶은 나의 일잘러 모습',
+        subtitle: '당신이 닮고 싶었던 능력이 있나요?',
         darkIconImage:
           'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/d_light_200x200.png?alt=media',
         createdAt: '2022-01-19',

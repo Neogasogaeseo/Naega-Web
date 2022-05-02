@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { api } from '@api/index';
-import { NeogaResultCardItem } from '@api/types/neoga';
 import { useLoginUser } from '@hooks/useLoginUser';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 import NeogaCreateCardItem from '@components/NeogaCreateCard/Item';
@@ -12,15 +11,7 @@ import { imgLogo } from '@assets/images';
 function NeogaResult() {
   const navigate = useNavigate();
   const { username } = useLoginUser();
-  const [cardItem, setCardItem] = useState<NeogaResultCardItem>();
-
-  useEffect(() => {
-    (async () => {
-      const data = await api.neogaService.getMostFormCard();
-      setCardItem(data);
-    })();
-  }, []);
-
+  const { data: cardItem } = useQuery('neogaResultCardItem', api.neogaService.getMostFormCard);
   const replyList = cardItem?.resultList.filter(
     (result) => result.answer && result.answer.length > 0,
   );

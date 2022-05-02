@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
 import CommonInput from '@components/common/Input';
@@ -14,7 +15,7 @@ import { imgEmptyProfile } from '@assets/images';
 function MyProfileEdit() {
   const navigate = useNavigate();
   const { fireToast } = useToast();
-  const { username, userID, profileImage } = useLoginUser();
+  const { username, userID, profileImage, initLoginUser } = useLoginUser();
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
@@ -25,19 +26,25 @@ function MyProfileEdit() {
   });
 
   useEffect(() => {
-    const idCheck = /^[a-z]+[a-z|0-9|.|_]{4,15}$/;
-    setIsEditConditionPassed({
-      ...isEditConditionPassed,
-      id: idCheck.test(inputId),
-    });
+    (async () => {
+      if (!inputId) return;
+      const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
+      const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
+      const passedId = idCheck.test(inputId) && !isSuccess;
 
-    if (!idCheck.test(inputId)) {
-      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-    }
+      setIsEditConditionPassed({
+        ...isEditConditionPassed,
+        id: passedId,
+      });
 
-    if (!/^[a-z]/.test(inputId)) {
-      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
-    }
+      if (!/^[a-z]/.test(inputId)) {
+        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+      } else if (!idCheck.test(inputId)) {
+        setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+      } else if (isSuccess) {
+        setErrorMsg('*중복된 아이디입니다.');
+      }
+    })();
   }, [inputId]);
 
   useEffect(() => {
@@ -47,15 +54,19 @@ function MyProfileEdit() {
     });
   }, [inputName]);
 
-  const editProfile = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const editProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       const form = new FormData();
       form.append('profileId', inputId);
       form.append('name', inputName);
       image && form.append('image', image);
-      // 나중에 여기 put 추가할 예정
-      fireToast({ content: '수정 완료' });
+      const response = await api.userService.editUserProfile(form);
+      if (response.isSuccess) {
+        fireToast({ content: '수정 완료' });
+        initLoginUser();
+        navigate(`/home/mypage/${response.profileId}`);
+      }
     } catch (error) {
       console.error(error);
       navigate('/');

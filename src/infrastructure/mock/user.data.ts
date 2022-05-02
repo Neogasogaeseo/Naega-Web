@@ -1,4 +1,10 @@
-import { Keyword, MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from '@api/types/user';
+import {
+  EditProfileInfo,
+  Keyword,
+  MyPageInfo,
+  NeososeoAnswerBookmark,
+  TeamFeedbackBookmark,
+} from '@api/types/user';
 
 export const USER_DATA: {
   KEYWORDS: Keyword[];
@@ -6,6 +12,7 @@ export const USER_DATA: {
   MY_PAGE_INFO: (userID: string) => MyPageInfo;
   NEOSOSEO_BOOKMARK: NeososeoAnswerBookmark;
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
+  EDIT_PROFILE_INFO: EditProfileInfo;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
@@ -121,5 +128,9 @@ export const USER_DATA: {
         isBookmarked: true,
       },
     ],
+  },
+  EDIT_PROFILE_INFO: {
+    isSuccess: true,
+    profileId: 'abcd',
   },
 };

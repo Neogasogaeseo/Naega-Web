@@ -12,12 +12,6 @@ function NeogaResult() {
   const navigate = useNavigate();
   const { username } = useLoginUser();
   const { data: cardItem } = useQuery('neogaResultCardItem', api.neogaService.getMostFormCard);
-  const replyList = cardItem?.resultList.filter(
-    (result) => result.answer && result.answer.length > 0,
-  );
-  const noReplyList = cardItem?.resultList.filter(
-    (result) => result.answer && result.answer.length == 0,
-  );
 
   return (
     <StNeogaResult>
@@ -26,9 +20,17 @@ function NeogaResult() {
       </Link>
       <h1>{username}님이 만든 너가소개서</h1>
       <h2>내가 생성한 너가소개서의 답변을 확인하세요</h2>
-      {replyList && replyList.map((card) => <NeogaResultCard key={card.id} {...card} />)}
-      {noReplyList &&
-        noReplyList.map(({ id, title, subtitle, darkIconImage }) => (
+      {cardItem?.resultList.map(({ id, title, subtitle, darkIconImage, createdAt, answer }) =>
+        answer && answer.length > 0 ? (
+          <NeogaResultCard
+            key={id}
+            id={id}
+            title={title}
+            darkIconImage={darkIconImage}
+            createdAt={createdAt}
+            answer={answer}
+          />
+        ) : (
           <NeogaCreateCardItem
             key={id}
             idx={id}
@@ -37,7 +39,8 @@ function NeogaResult() {
             src={darkIconImage}
             onClick={() => navigate(`/neoga/${id}/detail/form`)}
           />
-        ))}
+        ),
+      )}
     </StNeogaResult>
   );
 }

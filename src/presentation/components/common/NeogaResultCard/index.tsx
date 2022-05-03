@@ -27,7 +27,7 @@ function NeogaResultCard(props: NeogaResultCardProps) {
       </StNeogaCardHeader>
       <StNeogaCardLine />
       <div>
-        {answer && answer?.length !== 0 ? (
+        {answer && answer.length !== 0 ? (
           answer.map((answer) => <NeogaResultComment key={answer.id} {...answer} />)
         ) : (
           <StNeogaNoReply>

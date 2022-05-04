@@ -9,10 +9,8 @@ import { useQuery } from 'react-query';
 
 export default function CommonHeader() {
   const navigate = useNavigate();
-  const { isAuthenticated, userID } = useLoginUser();
-  const { data: isNotice } = useQuery('isNotice', () =>
-    api.headerService.getIsNotice(Number(userID)),
-  );
+  const { isAuthenticated } = useLoginUser();
+  const { data: isNotice } = useQuery('isNotice', () => api.headerService.getIsNotice());
   return (
     <StCommonHeader>
       <div>

@@ -15,7 +15,7 @@ export function NeogaDataRemote(): NeogaService {
             content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
-            src: response.data.lightIconImage,
+            src: response.data.darkIconImage,
             backgroundColor: response.data.colorCode,
             isCreated: response.data.isDeleted === undefined ? false : !response.data.isDeleted,
           }
@@ -29,7 +29,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
-        src: data.lightIconImage,
+        src: data.darkIconImage,
         backgroundColor: data.colorCode,
         isCreated: data.isDeleted === undefined ? false : !data.isDeleted,
       }));
@@ -44,7 +44,7 @@ export function NeogaDataRemote(): NeogaService {
         title: data.title,
         content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
-        src: data.lightIconImage,
+        src: data.darkIconImage,
         backgroundColor: data.colorCode,
         isCreated: data.isDeleted === undefined ? false : !data.isDeleted,
       }));

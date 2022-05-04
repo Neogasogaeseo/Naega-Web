@@ -132,5 +132,7 @@ export const USER_DATA: {
   EDIT_PROFILE_INFO: {
     isSuccess: true,
     profileId: 'abcd',
+    name: '너가소개서',
+    image: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
   },
 };

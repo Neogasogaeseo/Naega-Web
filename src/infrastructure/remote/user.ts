@@ -125,6 +125,8 @@ export function userDataRemote(): UserService {
     return {
       isSuccess: response.success,
       profileId: response.data.user.profileId,
+      name: response.data.user.name,
+      image: response.data.image,
     };
   };
 

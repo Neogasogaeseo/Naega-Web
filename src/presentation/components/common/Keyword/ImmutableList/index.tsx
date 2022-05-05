@@ -7,10 +7,11 @@ interface ImmutableKeywordListProps {
   keywordList: Keyword[];
   viewMode?: 'linear' | 'flex';
   onItemClick: (keyword: Keyword) => void;
+  isMine?: boolean;
 }
 
 function ImmutableKeywordList(props: ImmutableKeywordListProps) {
-  const { keywordList, viewMode = 'flex', onItemClick } = props;
+  const { keywordList, viewMode = 'flex', onItemClick, isMine } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
       {keywordList.map((keyword) => (
@@ -20,6 +21,7 @@ function ImmutableKeywordList(props: ImmutableKeywordListProps) {
           key={keyword.id}
           onItemClick={() => onItemClick(keyword)}
           viewMode={viewMode}
+          isMine={isMine}
         />
       ))}
     </StKeywordListLayout>

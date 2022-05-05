@@ -1,8 +1,12 @@
-import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
+
+import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StKeywordItem = styled.div<{ color: string; fontColor: string }>`
   position: relative;
+  display: flex;
+  align-items: center;
   & > div {
     background-color: ${({ color }) => color};
     & > div {
@@ -19,4 +23,9 @@ export const StKeywordItem = styled.div<{ color: string; fontColor: string }>`
   img {
     cursor: pointer;
   }
+`;
+
+export const StCount = styled.span`
+  color: ${COLOR.GRAY_4};
+  margin-left: 12px;
 `;

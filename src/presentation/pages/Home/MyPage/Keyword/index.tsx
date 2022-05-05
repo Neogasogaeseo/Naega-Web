@@ -8,7 +8,7 @@ import CommonNavigation from '@components/common/Navigation';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import { KEYWORD_PAGE } from '@utils/constant';
-import { StMyKeyword, StMyKeywordHeader } from './style';
+import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
 import { IcMeatball } from '@assets/icons';
 import CommonLoader from '@components/common/Loader';
 
@@ -57,11 +57,12 @@ function MyKeyword() {
             <ImmutableKeywordList
               keywordList={userKeywordList.pages.map((page) => page.result).flat()}
               viewMode={'linear'}
+              isMine={true}
               onItemClick={() => {
                 return;
               }}
             />
-            {isFetchingNextPage && <CommonLoader />}
+            <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
           </>
         ) : (
           <></>

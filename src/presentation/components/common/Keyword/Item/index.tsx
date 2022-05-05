@@ -1,17 +1,28 @@
 import { Keyword } from '@api/types/user';
 import { icCloseGrey, icCloseWhite } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
-import { StKeywordItem } from './style';
+import { StKeywordItem, StCount } from './style';
 
 interface Props extends Keyword {
   isMutable: boolean;
+  isMine?: boolean;
   onDeleteClick?: () => void;
   onItemClick?: () => void;
   viewMode: 'linear' | 'flex';
 }
 
 function KeywordItem(props: Props) {
-  const { isMutable, content, color, fontColor, onDeleteClick, onItemClick, viewMode } = props;
+  const {
+    isMutable,
+    isMine,
+    content,
+    color,
+    fontColor,
+    onDeleteClick,
+    onItemClick,
+    viewMode,
+    count,
+  } = props;
   return (
     <StKeywordItem color={color} fontColor={fontColor} onClick={onItemClick}>
       <div>
@@ -23,6 +34,7 @@ function KeywordItem(props: Props) {
           />
         )}
       </div>
+      {isMine && <StCount>{count}</StCount>}
     </StKeywordItem>
   );
 }

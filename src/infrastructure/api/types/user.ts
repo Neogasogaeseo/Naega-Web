@@ -8,6 +8,11 @@ export interface Keyword {
   count?: number;
 }
 
+export interface MyKeywordInfo {
+  totalCount: number;
+  keywordList: Keyword[];
+}
+
 export interface LoginUser {
   id: number;
   accessToken: string;

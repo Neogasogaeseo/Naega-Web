@@ -134,13 +134,16 @@ export function userDataRemote(): UserService {
     const response = await privateAPI.get({
       url: `/user/myKeyword?offset=${page}&limit=${KEYWORD_PAGE}`,
     });
-    return response.data.keyword.map((keyword: any) => ({
-      id: keyword.id,
-      content: keyword.name,
-      color: keyword.colorcode,
-      fontColor: keyword.fontcolor,
-      count: keyword.count,
-    }));
+    return {
+      totalCount: response.data.totalCount,
+      keywordList: response.data.keyword.map((keyword: any) => ({
+        id: keyword.id,
+        content: keyword.name,
+        color: keyword.colorcode,
+        fontColor: keyword.fontcolor,
+        count: keyword.count,
+      })),
+    };
   };
 
   return {

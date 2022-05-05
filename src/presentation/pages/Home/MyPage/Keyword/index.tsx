@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonNavigation from '@components/common/Navigation';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import { KEYWORD_PAGE } from '@utils/constant';
 import { StMyKeyword, StMyKeywordHeader } from './style';
 import { IcMeatball } from '@assets/icons';
 import CommonLoader from '@components/common/Loader';
-import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 
 function MyKeyword() {
   const { userID } = useParams();
@@ -22,9 +22,10 @@ function MyKeyword() {
   const fetchKeywordsByPage = useCallback(async ({ pageParam = 0 }) => {
     const response = await api.userService.getMyKeywordList(pageParam);
     return {
-      result: response,
+      totalCount: response.totalCount,
+      result: response.keywordList,
       nextPage: pageParam + KEYWORD_PAGE,
-      isLast: response.length < KEYWORD_PAGE,
+      isLast: response.keywordList.length < KEYWORD_PAGE,
     };
   }, []);
 
@@ -32,7 +33,7 @@ function MyKeyword() {
     data: userKeywordList,
     fetchNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery('keywords', fetchKeywordsByPage, {
+  } = useInfiniteQuery('myKeywordList', fetchKeywordsByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
   });
 
@@ -47,7 +48,7 @@ function MyKeyword() {
         <StMyKeywordHeader>
           <div>
             <span>My 키워드</span>
-            <span>24</span>
+            <span>{userKeywordList?.pages[0].totalCount}</span>
           </div>
           <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
         </StMyKeywordHeader>

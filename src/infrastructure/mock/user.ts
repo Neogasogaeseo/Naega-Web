@@ -39,7 +39,7 @@ export function userDataMock(): UserService {
 
   const getMyKeywordList = async () => {
     await wait(1000);
-    return USER_DATA.KEYWORDS;
+    return USER_DATA.MY_KEYWORD_INFO;
   };
 
   return {

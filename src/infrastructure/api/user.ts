@@ -1,6 +1,7 @@
 import {
   EditProfileInfo,
   Keyword,
+  MyKeywordInfo,
   MyPageInfo,
   NeososeoAnswerBookmark,
   TeamFeedbackBookmark,
@@ -14,5 +15,5 @@ export interface UserService {
   getFeedbackBookmark(userID: string): Promise<TeamFeedbackBookmark>;
   getDuplicationCheck(userID: string): Promise<{ isSuccess: boolean }>;
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
-  getMyKeywordList(page: number): Promise<Keyword[]>;
+  getMyKeywordList(page: number): Promise<MyKeywordInfo>;
 }

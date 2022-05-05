@@ -48,6 +48,7 @@ export type NeogaAnswerList = {
 export type NeogaResultList = {
   id: number;
   title: string;
+  subtitle: string;
   darkIconImage: string;
   createdAt: string;
   answer?: NeogaAnswerList[];

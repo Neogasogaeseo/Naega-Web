@@ -9,7 +9,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
     return {
       title: response.data.form.title,
       content: response.data.form.subtitle.replace('\\n', '\n'),
-      imageSub: response.data.form.lightIconImage,
+      imageSub: response.data.form.darkIconImage,
       relation: response.data.relationship.map((relation: any) => ({
         id: relation.id,
         content: relation.name,

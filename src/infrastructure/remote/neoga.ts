@@ -15,7 +15,7 @@ export function NeogaDataRemote(): NeogaService {
             content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
-            src: response.data.lightIconImage,
+            src: response.data.darkIconImage,
             backgroundColor: response.data.colorCode,
             isCreated: response.data.isDeleted === undefined ? false : !response.data.isDeleted,
           }
@@ -29,7 +29,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data.map((data: any) => ({
         id: data.id,
         title: data.title,
-        src: data.lightIconImage,
+        src: data.darkIconImage,
         backgroundColor: data.colorCode,
         isCreated: data.isDeleted === undefined ? false : !data.isDeleted,
       }));
@@ -44,7 +44,7 @@ export function NeogaDataRemote(): NeogaService {
         title: data.title,
         content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
-        src: data.lightIconImage,
+        src: data.darkIconImage,
         backgroundColor: data.colorCode,
         isCreated: data.isDeleted === undefined ? false : !data.isDeleted,
       }));
@@ -70,7 +70,7 @@ export function NeogaDataRemote(): NeogaService {
                   ? comment.keyword.map((word: any) => ({
                       id: word.id,
                       content: word.name,
-                      color: word.colorcode,
+                      color: word.colorCode,
                       fontColor: word.fontcolor,
                     }))
                   : [],
@@ -90,7 +90,7 @@ export function NeogaDataRemote(): NeogaService {
     else throw '서버 통신 실패';
   };
 
-  const getFormResultCard = async () => {
+  const getNewFormCard = async () => {
     const response = await privateAPI.get({ url: `/form/new` });
     if (response.status === STATUS_CODE.OK)
       return {
@@ -110,7 +110,7 @@ export function NeogaDataRemote(): NeogaService {
                       ? comment.keyword.map((word: any) => ({
                           id: word.id,
                           content: word.name,
-                          color: word.colorcode,
+                          color: word.colorCode,
                           fontColor: word.fontcolor,
                         }))
                       : [],
@@ -121,6 +121,49 @@ export function NeogaDataRemote(): NeogaService {
           ? response.data.map((result: any) => ({
               id: result.id,
               title: result.title.replace('\\n', '\n'),
+              darkIconImage: result.darkIconImage,
+              createdAt: result.createdAt,
+              answer: [],
+            }))
+          : [],
+        count: response.data.count ?? response.data,
+      };
+    else throw '서버 통신 실패';
+  };
+
+  const getMostFormCard = async () => {
+    const response = await privateAPI.get({ url: `/form/most` });
+    if (response.status === STATUS_CODE.OK)
+      return {
+        resultList: response.data.resultList
+          ? response.data.resultList.map((result: any) => ({
+              id: result.id,
+              title: result.title.replace('\\n', '\n'),
+              subtitle: result.subtitle,
+              darkIconImage: result.darkIconImage,
+              createdAt: result.createdAt,
+              answer: result.answer
+                ? result.answer.map((comment: any) => ({
+                    id: comment.id,
+                    name: comment.name,
+                    relationship: comment.relationship,
+                    content: comment.content,
+                    keyword: comment.keyword
+                      ? comment.keyword.map((word: any) => ({
+                          id: word.id,
+                          content: word.name,
+                          color: word.colorCode,
+                          fontColor: word.fontcolor,
+                        }))
+                      : [],
+                  }))
+                : [],
+            }))
+          : response.data
+          ? response.data.map((result: any) => ({
+              id: result.id,
+              title: result.title.replace('\\n', '\n'),
+              subtitle: result.subtitle,
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -222,7 +265,8 @@ export function NeogaDataRemote(): NeogaService {
     getMainTemplate,
     getAllTemplates,
     getMainResultCard,
-    getFormResultCard,
+    getNewFormCard,
+    getMostFormCard,
     postAnswerBookmark,
     postCreateForm,
     getCreateFormInfo,

@@ -1,7 +1,7 @@
 import { Keyword } from '@api/types/user';
 import { icCloseGrey, icCloseWhite } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
-import { StKeywordItem, StCount } from './style';
+import { StKeywordItem, StCount, StMyDeleteBtn } from './style';
 
 interface Props extends Keyword {
   isMutable: boolean;
@@ -27,7 +27,7 @@ function KeywordItem(props: Props) {
     <StKeywordItem color={color} fontColor={fontColor} onClick={onItemClick}>
       <div>
         <div>{content}</div>
-        {isMutable && (
+        {isMutable && !isMine && (
           <img
             onClick={onDeleteClick}
             src={viewMode === 'linear' || color === COLOR.GRAY_2 ? icCloseGrey : icCloseWhite}
@@ -35,6 +35,7 @@ function KeywordItem(props: Props) {
         )}
       </div>
       {isMine && <StCount>{count}</StCount>}
+      {isMine && isMutable && <StMyDeleteBtn onClick={onDeleteClick}>삭제</StMyDeleteBtn>}
     </StKeywordItem>
   );
 }

@@ -7,10 +7,11 @@ interface MutableKeywordListProps {
   keywordList: Keyword[];
   deleteKeyword: (keyword: Keyword) => void;
   viewMode?: 'linear' | 'flex';
+  isMine?: boolean;
 }
 
 function MutableKeywordList(props: MutableKeywordListProps) {
-  const { keywordList, deleteKeyword, viewMode = 'flex' } = props;
+  const { keywordList, deleteKeyword, viewMode = 'flex', isMine } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
       {keywordList.map((keyword) => (
@@ -20,6 +21,7 @@ function MutableKeywordList(props: MutableKeywordListProps) {
           key={keyword.id}
           onDeleteClick={() => deleteKeyword(keyword)}
           viewMode={viewMode}
+          isMine={isMine}
         />
       ))}
     </StKeywordListLayout>

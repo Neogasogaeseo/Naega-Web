@@ -33,3 +33,7 @@ export const StMyKeywordHeader = styled.div`
     color: ${COLOR.CORAL_MAIN};
   }
 `;
+
+export const StLoaderWrapper = styled.div`
+  margin-top: 50px;
+`;

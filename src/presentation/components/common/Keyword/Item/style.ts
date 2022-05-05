@@ -29,3 +29,9 @@ export const StCount = styled.span`
   color: ${COLOR.GRAY_4};
   margin-left: 12px;
 `;
+
+export const StMyDeleteBtn = styled.button`
+  margin-right: 20px;
+  position: absolute;
+  right: 0;
+`;

@@ -1,16 +1,45 @@
-import { useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
+import { useInfiniteQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 
+import { api } from '@api/index';
+import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonNavigation from '@components/common/Navigation';
 import CommonModal from '@components/common/Modal';
-import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader } from './style';
+import MutableKeywordList from '@components/common/Keyword/MutableList';
+import CommonLoader from '@components/common/Loader';
+import { KEYWORD_PAGE } from '@utils/constant';
+import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader, StLoaderWrapper } from './style';
 
 function MyKeywordDelete() {
   const navigate = useNavigate();
-  const { userID } = useParams();
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { userID } = useParams();
+  const { isBottomReached, isInitialState } = useScrollHeight();
 
   if (!userID) return <></>;
+
+  const fetchKeywordsByPage = useCallback(async ({ pageParam = 0 }) => {
+    const response = await api.userService.getMyKeywordList(pageParam);
+    return {
+      totalCount: response.totalCount,
+      result: response.keywordList,
+      nextPage: pageParam + KEYWORD_PAGE,
+      isLast: response.keywordList.length < KEYWORD_PAGE,
+    };
+  }, []);
+
+  const {
+    data: myKeywordList,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery('myKeywordList', fetchKeywordsByPage, {
+    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+  });
+
+  useEffect(() => {
+    if (!isInitialState) fetchNextPage();
+  }, [isBottomReached, isInitialState]);
 
   return (
     <StRelativeWrapper>
@@ -29,10 +58,22 @@ function MyKeywordDelete() {
         <StMyKeywordHeader>
           <div>
             <span>My 키워드</span>
-            <span>24</span>
+            <span>{myKeywordList?.pages[0].totalCount}</span>
           </div>
         </StMyKeywordHeader>
-        <button onClick={() => setIsOpenModal(true)}>삭제</button>
+        {myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
+          <>
+            <MutableKeywordList
+              keywordList={myKeywordList.pages.map((page) => page.result).flat()}
+              viewMode={'linear'}
+              deleteKeyword={() => setIsOpenModal(true)}
+              isMine={true}
+            />
+            <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
+          </>
+        ) : (
+          <></>
+        )}
       </StMyKeywordDelete>
     </StRelativeWrapper>
   );

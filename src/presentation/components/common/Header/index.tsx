@@ -7,7 +7,12 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import { useQuery } from 'react-query';
 
-export default function CommonHeader() {
+type CommonHeaderProps = {
+  isLogoOnly?: boolean;
+};
+
+export default function CommonHeader(props: CommonHeaderProps) {
+  const { isLogoOnly = false } = props;
   const navigate = useNavigate();
   const { isAuthenticated } = useLoginUser();
   const { data: isNotice } = useQuery('isNotice', () => api.headerService.getIsNotice());
@@ -19,23 +24,24 @@ export default function CommonHeader() {
             navigate('/home');
           }}
         />
-        {isAuthenticated ? (
-          <>
-            <StWrapper>
-              <IcSetting />
-              <IcBell onClick={() => navigate('/team/alert')} />
-            </StWrapper>
-            {isNotice && <StNotification />}
-          </>
-        ) : (
-          <StLoginButton
-            onClick={() => {
-              navigate(`/login`);
-            }}
-          >
-            로그인
-          </StLoginButton>
-        )}
+        {!isLogoOnly &&
+          (isAuthenticated ? (
+            <>
+              <StWrapper>
+                <IcSetting />
+                <IcBell onClick={() => navigate('/team/alert')} />
+              </StWrapper>
+              {isNotice && <StNotification />}
+            </>
+          ) : (
+            <StLoginButton
+              onClick={() => {
+                navigate(`/login`);
+              }}
+            >
+              로그인
+            </StLoginButton>
+          ))}
       </div>
     </StCommonHeader>
   );

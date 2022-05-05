@@ -356,7 +356,7 @@ export function teamDataRemote(): TeamService {
         const { id, name, profileId: profileID, image, isConfirmed } = member;
         return { id, name, profileID, image, isConfirmed };
       });
-    } else new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+    }
   };
 
   const deleteFeedback = async (feedbackID: number) => {

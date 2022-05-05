@@ -343,6 +343,22 @@ export function teamDataRemote(): TeamService {
     });
   };
 
+  const getTeamEditMember = async (teamID: number) => {
+    const response = await privateAPI
+      .get({ url: `/team/edit/member/${teamID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
+      });
+    if (response.status === STATUS_CODE.OK) {
+      const { member: memberList } = response.data;
+      return memberList.map((member: any) => {
+        const { id, name, profileId: profileID, image, isConfirmed } = member;
+        return { id, name, profileID, image, isConfirmed };
+      });
+    }
+  };
+
   const deleteFeedback = async (feedbackID: number) => {
     const response = await privateAPI.delete({ url: `/team/feedback/${feedbackID}` });
     return { isSuccess: response.success };
@@ -374,6 +390,7 @@ export function teamDataRemote(): TeamService {
     editTeamInfo,
     deleteTeam,
     getNotice,
+    getTeamEditMember,
     deleteFeedback,
     deleteIssue,
   };

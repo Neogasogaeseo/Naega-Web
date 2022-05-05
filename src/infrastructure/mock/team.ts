@@ -122,6 +122,10 @@ export function teamDataMock(): TeamService {
     return [];
   };
 
+  const getTeamEditMember = async () => {
+    return [];
+  };
+
   const deleteFeedback = async () => {
     return { isSuccess: true };
   };
@@ -151,6 +155,7 @@ export function teamDataMock(): TeamService {
     editTeamInfo,
     deleteTeam,
     getNotice,
+    getTeamEditMember,
     deleteFeedback,
     deleteIssue,
   };

@@ -22,4 +22,14 @@ export const StMyKeywordHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  div {
+    ${FONT_STYLES.SB_15_TITLE};
+    color: ${COLOR.GRAY_6};
+  }
+
+  span:last-child {
+    margin-left: 3px;
+    color: ${COLOR.CORAL_MAIN};
+  }
 `;

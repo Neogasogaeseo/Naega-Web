@@ -1,4 +1,10 @@
-import { EditProfileInfo, Keyword, MyPageInfo, NeososeoAnswerBookmark, TeamFeedbackBookmark } from './types/user';
+import {
+  EditProfileInfo,
+  Keyword,
+  MyPageInfo,
+  NeososeoAnswerBookmark,
+  TeamFeedbackBookmark,
+} from './types/user';
 
 export interface UserService {
   getKeywords(userID: number, page: number): Promise<Keyword[]>;
@@ -8,4 +14,5 @@ export interface UserService {
   getFeedbackBookmark(userID: string): Promise<TeamFeedbackBookmark>;
   getDuplicationCheck(userID: string): Promise<{ isSuccess: boolean }>;
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
+  getMyKeywordList(page: number): Promise<Keyword[]>;
 }

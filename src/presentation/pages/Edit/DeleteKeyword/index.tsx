@@ -27,7 +27,10 @@ function MyKeywordDelete() {
       />
       <StMyKeywordDelete>
         <StMyKeywordHeader>
-          <span>My 키워드</span>
+          <div>
+            <span>My 키워드</span>
+            <span>24</span>
+          </div>
         </StMyKeywordHeader>
         <button onClick={() => setIsOpenModal(true)}>삭제</button>
       </StMyKeywordDelete>

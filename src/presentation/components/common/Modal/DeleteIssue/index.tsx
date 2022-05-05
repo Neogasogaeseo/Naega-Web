@@ -5,18 +5,15 @@ import CommonModal from '..';
 type DeleteIssueModalProps = {
   isOpened: boolean;
   closeModal(): void;
-  closeBottomSheet(): void;
   issueID: number;
 };
 
 function DeleteIssueModal(props: DeleteIssueModalProps) {
-  const { closeModal, closeBottomSheet, issueID, isOpened } = props;
+  const { closeModal, issueID, isOpened } = props;
   const navigate = useNavigate();
   const deleteIssue = async () => {
     const response = await api.teamService.deleteIssue(issueID);
     if (response.isSuccess) {
-      closeModal();
-      closeBottomSheet();
       navigate(-1);
     }
   };

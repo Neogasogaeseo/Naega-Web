@@ -153,12 +153,7 @@ function TeamIssue() {
               feedbackID={modalState.id}
             />
           ) : (
-            <DeleteIssueModal
-              isOpened
-              closeModal={closeModal}
-              closeBottomSheet={closeBottomSheet}
-              issueID={modalState.id}
-            />
+            <DeleteIssueModal isOpened closeModal={closeModal} issueID={modalState.id} />
           ))}
         <Outlet />
       </StTeamIssue>

@@ -17,6 +17,8 @@ export function NeososeoFormRemote(): NeososeoFormService {
       userName: response.data.user.name,
       userID: response.data.user.id,
       formID: response.data.form.linkFormId,
+      userProfileImage: response.data.user.image,
+      answerCount: response.data.answerCount,
     };
   };
 

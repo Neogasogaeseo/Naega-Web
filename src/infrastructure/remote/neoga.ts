@@ -257,8 +257,9 @@ export function NeogaDataRemote(): NeogaService {
     };
   };
 
-  const deleteAnswer = async () => {
-    return { isSuccess: true };
+  const deleteAnswer = async (answerID: number) => {
+    const response = await privateAPI.delete({ url: `/form/answer/${answerID}` });
+    return { isSuccess: response.success };
   };
 
   return {

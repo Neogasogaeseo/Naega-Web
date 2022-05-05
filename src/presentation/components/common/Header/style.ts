@@ -47,3 +47,12 @@ export const StNotification = styled.div`
   border: 1px solid #ffffff;
   background-color: ${COLOR.CORAL_MAIN};
 `;
+
+export const StMypageButton = styled.div`
+  border-radius: 13.5px;
+  background-color: ${COLOR.CORAL_1};
+  color: ${COLOR.CORAL_MAIN};
+  padding: 7px 12px;
+  cursor: pointer;
+  ${FONT_STYLES.R_12_TITLE}
+`;

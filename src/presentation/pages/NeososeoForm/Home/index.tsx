@@ -4,6 +4,7 @@ import FormCard from '@components/common/FormCard';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';
 import { StNeososeoFormHome, StAnswerCount } from './style';
+import { imgEmptyProfile } from '@assets/images';
 
 interface OutletContextProps {
   neososeoFormData: NeososeoFormData;
@@ -15,9 +16,12 @@ function NeososeoFormHome() {
 
   return (
     <StNeososeoFormHome>
-      <CommonHeader />
+      <CommonHeader isLogoOnly />
       <div>
-        <img src="https://github.com/seojinseojin.png" alt={neososeoFormData.userName} />
+        <img
+          src={neososeoFormData.userProfileImage ?? imgEmptyProfile}
+          alt={neososeoFormData.userName}
+        />
         <div>
           <div>{neososeoFormData.userName}님의 너가소개서</div>
           <div>2022-03-02</div>
@@ -29,7 +33,7 @@ function NeososeoFormHome() {
           title={neososeoFormData.title}
           content={neososeoFormData.content}
         >
-          <StAnswerCount>{3}명이 답변했어요</StAnswerCount>
+          <StAnswerCount>{neososeoFormData.answerCount}명이 답변했어요</StAnswerCount>
         </FormCard>
       </div>
       <div>

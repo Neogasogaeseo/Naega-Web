@@ -4,27 +4,32 @@ import { FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
 import { IcPencil } from '@assets/icons';
 
-export const StTeamRegister = styled.div`
+export const StWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
   position: relative;
   & > * {
     position: absolute;
   }
 `;
 
-export const StTeamRegisterWrapper = styled.div`
+export const StTeamRegister = styled.div`
   width: 100%;
-  min-height: 100vh;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  height: 100%;
+  & > *:last-child {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 `;
 
 export const StTitle = styled.div`
   font-weight: 600;
   font-size: 24px;
   color: ${COLOR.GRAY_8};
-  margin-top: 68px;
+  margin-top: 24px;
   margin-bottom: 30px;
 `;
 

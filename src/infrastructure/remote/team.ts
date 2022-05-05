@@ -52,7 +52,8 @@ export function teamDataRemote(): TeamService {
         title: issueDetailData.data.team.name,
         teamProfileImage: issueDetailData.data.team.image,
       },
-      writer: issueDetailData.data.team.host,
+      writer: issueDetailData.data.user.name,
+      writerID: issueDetailData.data.user.id,
       feedbackList: issueFeedbacksData.data.map((feedback: any) => ({
         id: feedback.id.toString(),
         writer: feedback.name,

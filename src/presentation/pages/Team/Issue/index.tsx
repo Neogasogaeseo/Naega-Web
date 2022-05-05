@@ -22,9 +22,11 @@ import CommonNavigation from '@components/common/Navigation';
 import { IcMeatball } from '@assets/icons';
 import DeleteFeedbackModal from '@components/common/Modal/DeleteFeedback';
 import DeleteIssueModal from '@components/common/Modal/DeleteIssue';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
+  const { id } = useLoginUser();
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [bottomSheetState, setBottomSheetState] = useState<
     | {
@@ -95,7 +97,7 @@ function TeamIssue() {
               <div>
                 <div>{issue.category}</div>
                 <div>{issue.createdAt}</div>
-                {<IcMeatball onClick={onManageIssueClicked} />}
+                {issue.writerID === id && <IcMeatball onClick={onManageIssueClicked} />}
               </div>
               <div>{issue.title}</div>
               <div>

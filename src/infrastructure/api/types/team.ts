@@ -7,6 +7,7 @@ export type IssueData = {
   team: TeamData;
   feedbackList: FeedbackDetail[];
   writer: string;
+  writerID: number;
   thumbnail?: string;
 };
 

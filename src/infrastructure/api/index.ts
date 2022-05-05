@@ -8,8 +8,8 @@ import { UserService } from './user';
 import { loginUserRemote } from '@infrastructure/remote/login-user';
 import { userDataRemote } from '@infrastructure/remote/user';
 import { NeososeoFormRemote } from '@infrastructure/remote/neososeo-form';
-import { headerMock } from '@infrastructure/mock/header';
 import { HeaderService } from './header';
+import { headerRemote } from '@infrastructure/remote/header';
 
 export const api: APIService = getAPIMethod();
 
@@ -23,7 +23,7 @@ function provideMockAPIService(): APIService {
   const loginUserService = loginUserRemote();
   const neogaService = NeogaDataRemote();
   const neososeoFormService = NeososeoFormRemote();
-  const headerService = headerMock();
+  const headerService = headerRemote();
 
   return {
     teamService,

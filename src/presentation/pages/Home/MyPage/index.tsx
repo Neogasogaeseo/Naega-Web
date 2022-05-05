@@ -197,7 +197,6 @@ function HomeMyPage() {
         isOpened={isBottomSheetOpened}
         closeBottomSheet={() => setIsBottomSheetOpened(false)}
         type="profile"
-        userID={userID}
       />
     </StHomeMyPage>
   );

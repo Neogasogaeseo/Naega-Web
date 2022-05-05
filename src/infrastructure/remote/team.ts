@@ -38,24 +38,26 @@ export function teamDataRemote(): TeamService {
     const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
-      createdAt: issueDetailData.data.createdAt,
-      title: issueDetailData.data.content,
-      category: issueDetailData.data.categoryName,
+      createdAt: issueDetailData.data.issue.createdAt,
+      title: issueDetailData.data.issue.content,
+      category: issueDetailData.data.issue.categoryName,
       team: {
         teammates: issueDetailData.data.feedbackTagged.map((member: any) => ({
-          profileId: member.userId,
-          id: member.userId,
+          profileId: member.id,
+          id: member.id,
           profileName: member.name,
           profileImage: member.image,
         })),
-        thumbnail: issueDetailData.data.image,
+        thumbnail: issueDetailData.data.issue.image,
         title: issueDetailData.data.team.name,
         teamProfileImage: issueDetailData.data.team.image,
       },
-      writer: issueDetailData.data.team.host,
+      writer: issueDetailData.data.user.name,
+      writerID: issueDetailData.data.user.id,
       feedbackList: issueFeedbacksData.data.map((feedback: any) => ({
         id: feedback.id.toString(),
         writer: feedback.name,
+        writerID: feedback.userId,
         target: feedback.taggedusername,
         body: feedback.content,
         createdAt: feedback.createdAt,
@@ -357,6 +359,16 @@ export function teamDataRemote(): TeamService {
     } else new ForbiddenError('팀 호스트에게만 팀 수정 권한이 있습니다.');
   };
 
+  const deleteFeedback = async (feedbackID: number) => {
+    const response = await privateAPI.delete({ url: `/team/feedback/${feedbackID}` });
+    return { isSuccess: response.success };
+  };
+
+  const deleteIssue = async (issueID: number) => {
+    const response = await privateAPI.delete({ url: `/team/issue/${issueID}` });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -379,5 +391,7 @@ export function teamDataRemote(): TeamService {
     deleteTeam,
     getNotice,
     getTeamEditMember,
+    deleteFeedback,
+    deleteIssue,
   };
 }

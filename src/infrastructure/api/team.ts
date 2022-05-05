@@ -44,4 +44,6 @@ export interface TeamService {
   deleteTeam(teamID: number): Promise<{ isSuccess: boolean }>;
   getNotice(): Promise<TeamNoticeItem[]>;
   getTeamEditMember(teamID: number): Promise<TeamEditMember[]>;
+  deleteFeedback(feedbackID: number): Promise<{ isSuccess: boolean }>;
+  deleteIssue(issueID: number): Promise<{ isSuccess: boolean }>;
 }

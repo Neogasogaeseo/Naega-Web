@@ -6,7 +6,6 @@ interface NeogaCreateCardItemProps {
   title: string;
   content: string;
   src: string;
-  backgroundColor: string;
   onClick: () => void;
 }
 

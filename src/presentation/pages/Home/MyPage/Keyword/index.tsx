@@ -30,7 +30,7 @@ function MyKeyword() {
   }, []);
 
   const {
-    data: userKeywordList,
+    data: myKeywordList,
     fetchNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery('myKeywordList', fetchKeywordsByPage, {
@@ -48,14 +48,14 @@ function MyKeyword() {
         <StMyKeywordHeader>
           <div>
             <span>My 키워드</span>
-            <span>{userKeywordList?.pages[0].totalCount}</span>
+            <span>{myKeywordList?.pages[0].totalCount}</span>
           </div>
           <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
         </StMyKeywordHeader>
-        {userKeywordList?.pages && userKeywordList.pages.length > 0 ? (
+        {myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
           <>
             <ImmutableKeywordList
-              keywordList={userKeywordList.pages.map((page) => page.result).flat()}
+              keywordList={myKeywordList.pages.map((page) => page.result).flat()}
               viewMode={'linear'}
               isMine={true}
               onItemClick={() => {

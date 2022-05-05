@@ -44,16 +44,16 @@ export function userDataRemote(): UserService {
         ? response.data.answerKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,
             content: keyword.keywordName,
-            color: keyword.colorcode,
-            fontColor: keyword.fontcolor,
+            color: keyword.colorCode,
+            fontColor: keyword.fontColor,
           }))
         : [],
       team: response.data.teamKeywordList
         ? response.data.teamKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,
             content: keyword.keywordName,
-            color: keyword.colorcode,
-            fontColor: keyword.fontcolor,
+            color: keyword.colorCode,
+            fontColor: keyword.fontColor,
           }))
         : [],
     };
@@ -61,6 +61,7 @@ export function userDataRemote(): UserService {
 
   const getNeososeoBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/answer` });
+    console.log(response);
     return {
       count: response.data ? response.data.length : 0,
       answerList: response.data
@@ -73,8 +74,8 @@ export function userDataRemote(): UserService {
             keywordList: bookmark.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
-              color: keyword.colorcode,
-              fontColor: keyword.fontcolor,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
             })),
             targetUserID: bookmark.userId,
           }))
@@ -103,8 +104,8 @@ export function userDataRemote(): UserService {
             keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
-              color: keyword.colorcode,
-              fontColor: keyword.fontcolor,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
             })),
             targetProfileID: feedback.profileId,
             isBookmarked: feedback.isPinned,

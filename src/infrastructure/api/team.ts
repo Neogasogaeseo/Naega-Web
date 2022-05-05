@@ -14,6 +14,7 @@ import {
   ImageFile,
   TeamNoticeItem,
   SearchedUserResponse,
+  TeamEditMember,
 } from './types/team';
 
 export interface TeamService {
@@ -42,4 +43,5 @@ export interface TeamService {
   editTeamInfo(teamInfo: TeamEditInfo<ImageFile>): Promise<{ isSuccess: boolean }>;
   deleteTeam(teamID: number): Promise<{ isSuccess: boolean }>;
   getNotice(): Promise<TeamNoticeItem[]>;
+  getTeamEditMember(teamID: number): Promise<TeamEditMember[]>;
 }

@@ -122,6 +122,10 @@ export function teamDataMock(): TeamService {
     return [];
   };
 
+  const getTeamEditMember = async () => {
+    return [];
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -143,6 +147,7 @@ export function teamDataMock(): TeamService {
     editTeamInfo,
     deleteTeam,
     getNotice,
+    getTeamEditMember,
   };
 }
 

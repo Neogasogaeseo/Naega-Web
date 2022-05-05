@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { api } from '@api/index';
@@ -10,12 +10,16 @@ import MutableKeywordList from '@components/common/Keyword/MutableList';
 import CommonLoader from '@components/common/Loader';
 import { KEYWORD_PAGE } from '@utils/constant';
 import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader, StLoaderWrapper } from './style';
+import { useRecoilValue } from 'recoil';
+import { selectedKeywordState } from '@stores/login-user';
 
 function MyKeywordDelete() {
   const navigate = useNavigate();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { userID } = useParams();
   const { isBottomReached, isInitialState } = useScrollHeight();
+  const keywordID = useRecoilValue(selectedKeywordState);
+  const queryClient = useQueryClient();
 
   if (!userID) return <></>;
 
@@ -47,7 +51,11 @@ function MyKeywordDelete() {
         isOpened={isOpenModal}
         title="키워드를 삭제하시겠습니까?"
         description={'키워드를 삭제하면 전체 게시글에서' + '\n' + '해당 키워드가 모두 삭제됩니다.'}
-        onClickConfirm={() => setIsOpenModal(false)}
+        onClickConfirm={async () => {
+          keywordID && (await api.userService.deleteMyKeyword(keywordID));
+          queryClient.invalidateQueries('myKeywordList');
+          setIsOpenModal(false);
+        }}
         onClickCancel={() => setIsOpenModal(false)}
       />
       <CommonNavigation
@@ -66,7 +74,7 @@ function MyKeywordDelete() {
             <MutableKeywordList
               keywordList={myKeywordList.pages.map((page) => page.result).flat()}
               viewMode={'linear'}
-              deleteKeyword={() => setIsOpenModal(true)}
+              deleteMyKeyword={() => setIsOpenModal(true)}
               isMine={true}
             />
             <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>

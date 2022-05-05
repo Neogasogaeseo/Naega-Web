@@ -147,7 +147,7 @@ export function userDataRemote(): UserService {
   };
 
   const deleteMyKeyword = async (keywordID: number) => {
-    const response = await privateAPI.delete({ url: `/myKeyword?keywordId=${keywordID}` });
+    const response = await privateAPI.delete({ url: `/user/myKeyword?keywordId=${keywordID}` });
     return { isSuccess: response.success };
   };
 

@@ -1,6 +1,7 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
@@ -9,9 +10,8 @@ import CommonModal from '@components/common/Modal';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import CommonLoader from '@components/common/Loader';
 import { KEYWORD_PAGE } from '@utils/constant';
-import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader, StLoaderWrapper } from './style';
-import { useRecoilValue } from 'recoil';
 import { selectedKeywordState } from '@stores/login-user';
+import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader, StLoaderWrapper } from './style';
 
 function MyKeywordDelete() {
   const navigate = useNavigate();

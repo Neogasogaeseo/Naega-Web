@@ -15,8 +15,7 @@ function TeamMainBottomSheet(props: TeamMainBottomSheetProps) {
   const navigate = useNavigate();
 
   const manageTeamMember = () => {
-    // 주영 언니가 이어서 작업할 부분
-    console.log('팀원 관리하기');
+    navigate(`/team/${teamID}/member/management`);
   };
 
   const navigateToEditPage = () => {

@@ -4,13 +4,13 @@ import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StTeamRegister,
+  StWrapper,
   StTitle,
-  StTeamRegisterWrapper,
   StTextarea,
   StSubmitButton,
   StPhotoUploadWrapper,
   StIcPencil,
+  StTeamRegister,
 } from './style';
 import { imgEmptyProfile, ImgTeamDefault } from '@assets/images';
 import CommonInput from '@components/common/Input';
@@ -49,11 +49,11 @@ function TeamRegister() {
   useEffect(() => setSelectedUserList([]), []);
 
   return (
-    <StTeamRegister>
+    <StWrapper>
       {isMemberSelectMode && <UserSearchForTeamRegister onClickSubmitButton={closeMembers} />}
-      <>
+      <StTeamRegister>
         <CommonNavigation />
-        <StTeamRegisterWrapper>
+        <div>
           <StTitle>팀 등록하기</StTitle>
           <StPhotoUploadWrapper>
             <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
@@ -96,9 +96,9 @@ function TeamRegister() {
           >
             완료
           </StSubmitButton>
-        </StTeamRegisterWrapper>
-      </>
-    </StTeamRegister>
+        </div>
+      </StTeamRegister>
+    </StWrapper>
   );
 }
 

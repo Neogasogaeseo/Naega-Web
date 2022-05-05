@@ -144,3 +144,11 @@ export type TeamNoticeItem = {
   status: 'PENDING' | 'ACCEPT' | 'DECLINE';
   timeDifference: string;
 };
+
+export type TeamEditMember = {
+  id: number;
+  name: string;
+  profileID: string;
+  image: string | null;
+  isConfirmed: boolean;
+};

@@ -11,11 +11,11 @@ interface CommonNavigationProps {
 }
 
 export default function CommonNavigation(props: CommonNavigationProps) {
-  const { isBack = true, onClickBack, title, submitButton } = props;
+  const { isBack = true, onClickBack = () => navigate(-1), title, submitButton } = props;
   const navigate = useNavigate();
   return (
     <StCommonNavigation>
-      {isBack && <StBack src={icBack} onClick={onClickBack ? onClickBack : () => navigate(-1)} />}
+      {isBack && <StBack src={icBack} onClick={onClickBack} />}
       {title && <StTitle>{title}</StTitle>}
       {submitButton && (
         <StSubmitButton onClick={submitButton.onClick}>{submitButton.content}</StSubmitButton>

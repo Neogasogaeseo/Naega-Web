@@ -16,4 +16,5 @@ export interface UserService {
   getDuplicationCheck(userID: string): Promise<{ isSuccess: boolean }>;
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
   getMyKeywordList(page: number): Promise<MyKeywordInfo>;
+  deleteMyKeyword(keywordID: number): Promise<{ isSuccess: boolean }>;
 }

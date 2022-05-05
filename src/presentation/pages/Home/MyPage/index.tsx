@@ -150,6 +150,7 @@ function HomeMyPage() {
               <MyEmptyView
                 isMyPage={isMyPage}
                 origin="너가소개서"
+                pickTarget="답변"
                 onPickButtonClicked={() => navigate('/neoga/result')}
               />
             )}
@@ -189,6 +190,7 @@ function HomeMyPage() {
               <MyEmptyView
                 isMyPage={isMyPage}
                 origin="팀원소개서"
+                pickTarget="피드백"
                 onPickButtonClicked={() => navigate('/home/team')}
               />
             )}

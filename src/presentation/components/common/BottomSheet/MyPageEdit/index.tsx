@@ -1,7 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from 'react-query';
 
+import { api } from '@api/index';
+import { useToast } from '@hooks/useToast';
+import { useLoginUser } from '@hooks/useLoginUser';
 import BottomSheet from '..';
-import { icEdit } from '@assets/icons';
+import { icEdit, icTrash } from '@assets/icons';
 
 type MyPageEditBottomSheetProps = {
   isOpened: boolean;
@@ -11,11 +15,32 @@ type MyPageEditBottomSheetProps = {
 };
 
 function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
-  const { isOpened, closeBottomSheet, type, userID } = props;
+  const { isOpened, closeBottomSheet, type } = props;
   const navigate = useNavigate();
+  const { fireToast } = useToast();
+  const { userID: profileId, username: name } = useLoginUser();
+  const queryClient = useQueryClient();
 
   const navigateToEditPage = () => {
-    navigate(`/edit/${type}/${userID}`);
+    navigate(`/edit/${type}/${profileId}`);
+  };
+
+  const deleteProfileImage = async () => {
+    try {
+      const form = new FormData();
+      form.append('profileId', profileId);
+      form.append('name', name);
+      form.append('image', '');
+      const response = await api.userService.editUserProfile(form);
+      if (response.isSuccess) {
+        queryClient.invalidateQueries('userInfo');
+        closeBottomSheet();
+        fireToast({ content: '프로필 이미지 삭제 완료' });
+      }
+    } catch (error) {
+      console.error(error);
+      navigate('/');
+    }
   };
 
   return (
@@ -25,6 +50,11 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
           icon: icEdit,
           label: '수정하기',
           onClick: navigateToEditPage,
+        },
+        {
+          icon: icTrash,
+          label: '삭제하기',
+          onClick: deleteProfileImage,
         },
       ]}
       closeBottomSheet={closeBottomSheet}

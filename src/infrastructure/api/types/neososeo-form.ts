@@ -10,7 +10,9 @@ export type NeososeoFormData = {
   relation: Relation[];
   userName: string;
   userID: number;
+  userProfileImage?: string;
   formID: number;
+  answerCount: number;
 };
 
 export type NeososeoAnswerData = {

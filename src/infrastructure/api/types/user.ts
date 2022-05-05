@@ -51,4 +51,6 @@ export interface AnswerDetail {
 export interface EditProfileInfo {
   isSuccess: boolean;
   profileId: string;
+  name: string;
+  image: string;
 }

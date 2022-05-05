@@ -98,6 +98,7 @@ export const TEAM_DATA: {
       },
     ],
     writer: '주영주영',
+    writerID: 1,
   },
   TEAM_ISSUE_INFO: {
     issueList: [

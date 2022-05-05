@@ -7,7 +7,7 @@ export const StTeamIssue = styled.div`
   display: grid;
   height: 100vh;
   width: 100%;
-  grid-template-rows: calc(100vh - 100px) 100px;
+  grid-template-rows: 44px calc(100vh - 144px) 100px;
   overflow-x: hidden;
   position: relative;
 `;
@@ -36,27 +36,33 @@ export const StHeader = styled.div`
   }
   & > div {
     display: flex;
-    &:nth-child(2) {
+    position: relative;
+    align-items: center;
+    &:nth-child(1) {
       gap: 6px;
       margin-top: 20px;
       margin-bottom: 8px;
       & > div:nth-child(1) {
-        color: ${COLOR.PINK};
+        color: ${COLOR.CORAL_MAIN};
         ${FONT_STYLES.SB_13_TITLE}
       }
       & > div:nth-child(2) {
         color: ${COLOR.GRAY_5};
         ${FONT_STYLES.M_13_TITLE}
       }
+      & > svg {
+        position: absolute;
+        right: 0;
+      }
     }
-    &:nth-child(3) {
+    &:nth-child(2) {
       white-space: pre-wrap;
       margin-bottom: 32px;
       color: ${COLOR.GRAY_8};
       line-height: 150%;
       ${FONT_STYLES.SB_24_BODY}
     }
-    &:nth-child(4) {
+    &:nth-child(3) {
       justify-content: space-between;
     }
   }

@@ -1,3 +1,3 @@
 export interface HeaderService {
-  getIsNotice(userID: number): Promise<boolean>;
+  getIsNotice(): Promise<boolean>;
 }

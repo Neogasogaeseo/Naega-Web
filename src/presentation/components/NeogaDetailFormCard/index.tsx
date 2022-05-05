@@ -3,7 +3,7 @@ import { IcMeatball } from '@assets/icons';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import {
   StFeedContent,
-  StFeedDate,
+  StFeedMore,
   StFeedHeader,
   StFeedName,
   StNeogaDetailFormCard,
@@ -22,15 +22,13 @@ function NeogaDetailFormCard(props: NeogaDetailFormCardProps) {
       <StFeedHeader>
         <StFeedName>
           <span>{name}</span>
-          <span>·</span>
           <span>너를 {relationship}</span>
+          <span>·</span>
+          <div>{createdAt}</div>
         </StFeedName>
-        <div>
-          <StFeedDate>
-            <div>{createdAt}</div>
-            <IcMeatball onClick={() => openBottomSheet(isPinned, id)} />
-          </StFeedDate>
-        </div>
+        <StFeedMore>
+          <IcMeatball onClick={() => openBottomSheet(isPinned, id)} />
+        </StFeedMore>
       </StFeedHeader>
       <StFeedContent>{content}</StFeedContent>
       <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />

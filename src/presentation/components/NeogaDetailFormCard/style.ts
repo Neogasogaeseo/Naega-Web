@@ -13,6 +13,11 @@ export const StFeedName = styled.div`
   & > span:first-child {
     ${FONT_STYLES.SB_14_TITLE};
     color: ${COLOR.GRAY_6};
+    padding-right: 10px;
+  }
+  & div {
+    color: ${COLOR.GRAY_4};
+    ${FONT_STYLES.R_14_TITLE};
   }
 `;
 
@@ -24,14 +29,7 @@ export const StDate = styled.div`
   ${FONT_STYLES.R_13_TITLE};
 `;
 
-export const StFeedDate = styled.div`
-  color: ${COLOR.GRAY_4};
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  & div {
-    ${FONT_STYLES.R_14_TITLE};
-  }
+export const StFeedMore = styled.div`
   & img {
     width: 22px;
     cursor: pointer;

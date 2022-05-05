@@ -5,8 +5,8 @@ import { FONT_STYLES } from '@styles/common/font-style';
 export const StNeogaDetailForm = styled.div`
   & > div:first-child {
     & > *:first-child {
-      margin-top: 50px;
       padding: 0 20px;
+      margin-top: 22px;
     }
   }
 `;
@@ -69,12 +69,9 @@ export const StKeyword = styled.div`
   width: 100%;
   padding: 20px;
   & > p {
-    margin: 12px 0px 28px 0px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 162%;
-    letter-spacing: -0.01em;
+    margin: 18px 0px 22px 0px;
     color: ${COLOR.GRAY_8};
+    ${FONT_STYLES.SB_16_TITLE}
   }
 `;
 
@@ -158,6 +155,7 @@ export const StMoreButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 23px;
+  margin-bottom: 38px;
   padding-top: 18px;
   & > img {
     margin-left: 8px;

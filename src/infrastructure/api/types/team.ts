@@ -38,9 +38,25 @@ export interface SearchedUserResponse {
   image: string;
 }
 
-export interface SearchedUser extends SearchedUserResponse {
+export interface SearchedUserForRegister extends SearchedUserResponse {
   isSelected: boolean;
 }
+
+export interface SearchedUserForEdit extends SearchedUserResponse {
+  status: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE';
+}
+
+export const isForRegister = (
+  user: SearchedUserForRegister | SearchedUserForEdit,
+): user is SearchedUserForRegister => {
+  return 'isSelected' in user;
+};
+
+export const isForEdit = (
+  user: SearchedUserForRegister | SearchedUserForEdit,
+): user is SearchedUserForEdit => {
+  return 'status' in user;
+};
 
 export type FeedbackDetail = {
   id: string;

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
@@ -6,8 +8,6 @@ import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
-import { useQueryClient } from 'react-query';
-import { useMemo } from 'react';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(feedbackID: number, isMine: boolean, isForMe: boolean, isPinned: boolean): void;

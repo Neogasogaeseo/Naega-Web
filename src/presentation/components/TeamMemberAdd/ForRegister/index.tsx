@@ -5,17 +5,17 @@ import { useInfiniteQuery } from 'react-query';
 import CommonNavigation from '@components/common/Navigation';
 import CommonInput from '@components/common/Input';
 import { icSearch } from '@assets/icons';
-import { StPaddingWrapper, StUserSearchForTeamRegister } from './style';
+import { StPaddingWrapper, StTeamMemberAdd } from './style';
 import { selectedUserListState } from '@stores/team';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { COLOR } from '@styles/common/color';
-import UserSearchResultForTeamRegister from './Result';
+import UserSearchResultForRegister from '../../UserSearchResult';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import { api } from '@api/index';
 import { SEARCHED_USER_PAGE } from '@utils/constant';
-import { SearchedUser } from '@api/types/team';
+import { SearchedUserForRegister } from '@api/types/team';
 
-export default function UserSearchForTeamRegister({
+export default function TeamMemberAddForRegister({
   onClickSubmitButton: onClickSubmitButton,
 }: {
   onClickSubmitButton: () => void;
@@ -24,7 +24,7 @@ export default function UserSearchForTeamRegister({
   const [searchWord, setSearchWord] = useState('');
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const { isBottomReached, isInitialState: isInitialScroll } = useScrollHeight();
-  const [searchedUserList, setSearchedUserList] = useState<SearchedUser[] | null>(null);
+  const [searchedUserList, setSearchedUserList] = useState<SearchedUserForRegister[] | null>(null);
 
   const searchUserByPage = useCallback(
     async ({ pageParam = 0 }) => {
@@ -48,7 +48,7 @@ export default function UserSearchForTeamRegister({
     retry: 1,
   });
 
-  const getSearchedUserList = (): SearchedUser[] | null => {
+  const getSearchedUserList = (): SearchedUserForRegister[] | null => {
     if (!searchedUserListResponseByPage) return null;
     const searchedUserListResponse = searchedUserListResponseByPage.pages.flatMap(
       (page) => page.result,
@@ -71,7 +71,7 @@ export default function UserSearchForTeamRegister({
   }, [searchedUserListResponseByPage, selectedUserList]);
 
   return (
-    <StUserSearchForTeamRegister>
+    <StTeamMemberAdd>
       <CommonNavigation
         isBack={false}
         title="팀원 추가"
@@ -112,10 +112,10 @@ export default function UserSearchForTeamRegister({
           />
         )}
       </StPaddingWrapper>
-      <UserSearchResultForTeamRegister
+      <UserSearchResultForRegister
         isFetchingNextPage={isFetchingNextPage}
         searchedUserList={searchedUserList}
       />
-    </StUserSearchForTeamRegister>
+    </StTeamMemberAdd>
   );
 }

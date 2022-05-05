@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { icPicked, icUnpicked } from '@assets/icons';
+import { IcMeatball, icPicked, icUnpicked } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
@@ -17,6 +17,11 @@ export const StBookmark = styled.div<{ selected: boolean }>`
   background-position: center;
   width: 52px;
   height: 24px;
+`;
+
+export const StMeatBall = styled(IcMeatball)`
+  position: absolute;
+  right: 0;
 `;
 
 export const StHeader = styled.div`

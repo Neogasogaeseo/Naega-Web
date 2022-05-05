@@ -7,6 +7,7 @@ export type IssueData = {
   team: TeamData;
   feedbackList: FeedbackDetail[];
   writer: string;
+  writerID: number;
   thumbnail?: string;
 };
 
@@ -44,6 +45,7 @@ export interface SearchedUser extends SearchedUserResponse {
 export type FeedbackDetail = {
   id: string;
   writer: string;
+  writerID?: string;
   target: string;
   targetProfileID: string;
   body: string;

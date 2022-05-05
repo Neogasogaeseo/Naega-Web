@@ -45,18 +45,28 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
 
   return (
     <BottomSheet
-      buttonList={[
-        {
-          icon: icEdit,
-          label: '수정하기',
-          onClick: navigateToEditPage,
-        },
-        {
-          icon: icTrash,
-          label: '삭제하기',
-          onClick: deleteProfileImage,
-        },
-      ]}
+      buttonList={
+        type === 'profile'
+          ? [
+              {
+                icon: icEdit,
+                label: '수정하기',
+                onClick: navigateToEditPage,
+              },
+              {
+                icon: icTrash,
+                label: '삭제하기',
+                onClick: deleteProfileImage,
+              },
+            ]
+          : [
+              {
+                icon: icEdit,
+                label: '수정하기',
+                onClick: navigateToEditPage,
+              },
+            ]
+      }
       closeBottomSheet={closeBottomSheet}
       isOpened={isOpened}
     />

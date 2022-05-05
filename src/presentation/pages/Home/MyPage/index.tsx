@@ -98,10 +98,12 @@ function HomeMyPage() {
                   <img src={icCrown} />
                   <span>My 키워드</span>
                 </div>
+                {isMyPage && (
                 <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
                   키워드 전체보기
                   <IcArrowViewAll />
                 </StDetailLink>
+                )}
               </div>
               {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
                 <>

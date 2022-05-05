@@ -23,6 +23,7 @@ import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
 import { api } from '@api/index';
 import NeogaDetailFormCard from '@components/NeogaDetailFormCard';
 import NeososeoPickerBottomSheet from '@components/common/BottomSheet/NeososeoPicker';
+import CommonNavigation from '@components/common/Navigation';
 
 function NeogaDetailForm() {
   const { formID } = useParams();
@@ -63,91 +64,96 @@ function NeogaDetailForm() {
 
   if (!resultDetail) return <>로딩중</>;
   return (
-    <StNeogaDetailForm>
-      <div>
-        <NeososeoFormHeader title={resultDetail.title} image={resultDetail.darkIconImage} />
-        <StLink>
-          <img src={icLink} />
-          <p
-            onClick={() =>
-              copyClipboard(link, () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }))
-            }
-          >
-            링크 복사하기
-          </p>
-        </StLink>
-        <StDate>{resultDetail.createdAt} 에 생성</StDate>
-        <StQuestion>
-          <span>Q.</span>
-          {resultDetail.subtitle}
-        </StQuestion>
-      </div>
-      {resultFeedback && resultFeedback.answerList.length > 0 ? (
-        <>
-          <StKeyword>
-            {resultDetail.keywordList.length !== 0 && <p>내가 받은 키워드</p>}
-            {!lookMoreButton && (
-              <ImmutableKeywordList
-                keywordList={resultDetail ? resultDetail.keywordList.slice(0, 7) : []}
-                onItemClick={() => null}
-              />
-            )}
-            <StMoreWrapper>
-              {lookMoreButton && resultDetail?.keywordList.length > 7 ? (
-                <>
-                  <ImmutableKeywordList
-                    keywordList={resultDetail?.keywordList ?? []}
-                    onItemClick={() => null}
-                  />
-                  <StMoreButton
-                    onClick={() => {
-                      setLookMoreButton(false);
-                    }}
-                  >
-                    접기
-                    <img src={IcArrowUp} />
-                  </StMoreButton>
-                </>
-              ) : (
-                resultDetail.keywordList.length > 7 && (
+    <>
+      <CommonNavigation />
+      <StNeogaDetailForm>
+        <div>
+          <NeososeoFormHeader title={resultDetail.title} image={resultDetail.darkIconImage} />
+          <StLink>
+            <img src={icLink} />
+            <p
+              onClick={() =>
+                copyClipboard(link, () =>
+                  fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
+                )
+              }
+            >
+              링크 복사하기
+            </p>
+          </StLink>
+          <StDate>{resultDetail.createdAt} 에 생성</StDate>
+          <StQuestion>
+            <span>Q.</span>
+            {resultDetail.subtitle}
+          </StQuestion>
+        </div>
+        {resultFeedback && resultFeedback.answerList.length > 0 ? (
+          <>
+            <StKeyword>
+              {resultDetail.keywordList.length !== 0 && <p>내가 받은 키워드</p>}
+              {!lookMoreButton && (
+                <ImmutableKeywordList
+                  keywordList={resultDetail ? resultDetail.keywordList.slice(0, 7) : []}
+                  onItemClick={() => null}
+                />
+              )}
+              <StMoreWrapper>
+                {lookMoreButton && resultDetail?.keywordList.length > 7 ? (
                   <>
+                    <ImmutableKeywordList
+                      keywordList={resultDetail?.keywordList ?? []}
+                      onItemClick={() => null}
+                    />
                     <StMoreButton
                       onClick={() => {
-                        setLookMoreButton(true);
+                        setLookMoreButton(false);
                       }}
                     >
-                      더보기
-                      <img src={IcArrowDown} />
+                      접기
+                      <img src={IcArrowUp} />
                     </StMoreButton>
                   </>
-                )
-              )}
-            </StMoreWrapper>
-          </StKeyword>
-          <StDivisionLine />
-          <StFeedTitle>
-            <span>
-              {resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개
-            </span>
-            의 답변을 받았어요
-          </StFeedTitle>
-          {resultFeedback.answerList.map((feedback) => (
-            <NeogaDetailFormCard
-              key={feedback.id}
-              {...feedback}
-              openBottomSheet={openBottomSheet}
-            />
-          ))}
-        </>
-      ) : (
-        <NeogaDetailFormEmptyView link={link} />
-      )}
-      <NeososeoPickerBottomSheet
-        opened={bottomSheetOpened}
-        close={closeBottomSheet}
-        {...bottomSheetState}
-      />
-    </StNeogaDetailForm>
+                ) : (
+                  resultDetail.keywordList.length > 7 && (
+                    <>
+                      <StMoreButton
+                        onClick={() => {
+                          setLookMoreButton(true);
+                        }}
+                      >
+                        더보기
+                        <img src={IcArrowDown} />
+                      </StMoreButton>
+                    </>
+                  )
+                )}
+              </StMoreWrapper>
+            </StKeyword>
+            <StDivisionLine />
+            <StFeedTitle>
+              <span>
+                {resultFeedback?.answerCount !== undefined ? resultFeedback.answerCount : 0}개
+              </span>
+              의 답변을 받았어요
+            </StFeedTitle>
+            {resultFeedback.answerList.map((feedback) => (
+              <NeogaDetailFormCard
+                key={feedback.id}
+                {...feedback}
+                openBottomSheet={openBottomSheet}
+              />
+            ))}
+          </>
+        ) : (
+          <NeogaDetailFormEmptyView link={link} />
+        )}
+        <NeososeoPickerBottomSheet
+          opened={bottomSheetOpened}
+          close={closeBottomSheet}
+          {...bottomSheetState}
+        />
+      </StNeogaDetailForm>
+    </>
   );
 }
 

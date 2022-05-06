@@ -1,7 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
@@ -10,7 +9,6 @@ import CommonModal from '@components/common/Modal';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import CommonLoader from '@components/common/Loader';
 import { KEYWORD_PAGE } from '@utils/constant';
-import { selectedKeywordState } from '@stores/login-user';
 import { StRelativeWrapper, StMyKeywordDelete, StMyKeywordHeader, StLoaderWrapper } from './style';
 
 function MyKeywordDelete() {
@@ -18,7 +16,7 @@ function MyKeywordDelete() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { userID } = useParams();
   const { isBottomReached, isInitialState } = useScrollHeight();
-  const keywordID = useRecoilValue(selectedKeywordState);
+  const [keywordID, setKeywordID] = useState(-1);
   const queryClient = useQueryClient();
 
   if (!userID) return <></>;
@@ -76,6 +74,7 @@ function MyKeywordDelete() {
               viewMode={'linear'}
               deleteMyKeyword={() => setIsOpenModal(true)}
               isMine={true}
+              setKeywordID={setKeywordID}
             />
             <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
           </>

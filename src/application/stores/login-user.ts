@@ -16,8 +16,3 @@ export const authState = atom<boolean>({
   key: 'authState',
   default: false,
 });
-
-export const selectedKeywordState = atom<number>({
-  key: 'selectedKeywordState',
-  default: -1,
-});

@@ -1,6 +1,3 @@
-import { useSetRecoilState } from 'recoil';
-import { selectedKeywordState } from '@stores/login-user';
-
 import { Keyword } from '@api/types/user';
 import KeywordItem from '../Item';
 import { StKeywordListLayout } from '../style';
@@ -12,11 +9,18 @@ interface MutableKeywordListProps {
   deleteMyKeyword?: () => void;
   viewMode?: 'linear' | 'flex';
   isMine?: boolean;
+  setKeywordID?: (keywordID: number) => void;
 }
 
 function MutableKeywordList(props: MutableKeywordListProps) {
-  const { keywordList, deleteKeyword, deleteMyKeyword, viewMode = 'flex', isMine } = props;
-  const selectedKeywordHandler = useSetRecoilState(selectedKeywordState);
+  const {
+    keywordList,
+    deleteKeyword,
+    deleteMyKeyword,
+    viewMode = 'flex',
+    isMine,
+    setKeywordID,
+  } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
       {keywordList.map((keyword) => (
@@ -28,7 +32,7 @@ function MutableKeywordList(props: MutableKeywordListProps) {
             isMine
               ? () => {
                   deleteMyKeyword && deleteMyKeyword();
-                  selectedKeywordHandler(+keyword.id);
+                  setKeywordID && setKeywordID(+keyword.id);
                 }
               : () => deleteKeyword && deleteKeyword(keyword)
           }

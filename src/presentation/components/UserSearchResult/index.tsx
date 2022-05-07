@@ -1,21 +1,19 @@
 import { useSetRecoilState } from 'recoil';
 import React from 'react';
 
-import { SearchedUser } from '@api/types/team';
+import { SearchedUserForRegister } from '@api/types/team';
 import UserSearchEmptyView from '@components/common/Empty/UserSearch';
 import CommonLoader from '@components/common/Loader';
-import SearchedUserForTeamRegister from '@components/SearchedUser/ForTeamRegister';
+import SearchedUserItem from '@components/SearchedUserItem';
 import { selectedUserListState } from '@stores/team';
 import { StUserSearchResultForTeamRegister } from './style';
 
-interface UserSearchResultForTeamRegisterProps {
+interface UserSearchResultForRegisterProps {
   isFetchingNextPage: boolean;
-  searchedUserList: SearchedUser[] | null;
+  searchedUserList: SearchedUserForRegister[] | null;
 }
 
-export default function UserSearchResultForTeamRegister(
-  props: UserSearchResultForTeamRegisterProps,
-) {
+export default function UserSearchResultForRegister(props: UserSearchResultForRegisterProps) {
   const { isFetchingNextPage, searchedUserList } = props;
   const setSelectedUserList = useSetRecoilState(selectedUserListState);
   return (
@@ -27,7 +25,7 @@ export default function UserSearchResultForTeamRegister(
         searchedUserList.map((user) => {
           return (
             <React.Fragment key={user.id}>
-              <SearchedUserForTeamRegister
+              <SearchedUserItem
                 onClickButton={() =>
                   setSelectedUserList((current) =>
                     user.isSelected

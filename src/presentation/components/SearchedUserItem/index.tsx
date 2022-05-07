@@ -1,4 +1,13 @@
-import { StSearchedUserItem, StProfileName, StId, StAddToggleButton } from './style';
+import {
+  StSearchedUserItem,
+  StProfileName,
+  StId,
+  StAddToggleButton,
+  StNoneButton,
+  StMemberButton,
+  StInvitedButton,
+  StWillInviteButton,
+} from './style';
 import {
   isForEdit,
   isForRegister,
@@ -15,6 +24,20 @@ interface SearchedUserItemProps {
 
 export default function SearchedUserItem(props: SearchedUserItemProps) {
   const { user, onClickButton } = props;
+
+  const getStatusButton = (status: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE') => {
+    switch (status) {
+      case 'NONE':
+        return <StNoneButton>초대</StNoneButton>;
+      case 'MEMBER':
+        return <StMemberButton>팀원</StMemberButton>;
+      case 'INVITED':
+        return <StInvitedButton>초대 중</StInvitedButton>;
+      case 'WILL_INVITE':
+        return <StWillInviteButton>초대 취소</StWillInviteButton>;
+    }
+  };
+
   return (
     <StSearchedUserItem>
       <div>
@@ -30,7 +53,7 @@ export default function SearchedUserItem(props: SearchedUserItemProps) {
           onClick={() => onClickButton(user.id, user.name, user.isSelected)}
         />
       ) : (
-        isForEdit(user) && <button>임시버튼이야</button>
+        isForEdit(user) && getStatusButton(user.status)
       )}
     </StSearchedUserItem>
   );

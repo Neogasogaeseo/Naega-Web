@@ -38,3 +38,19 @@ export const StAddToggleButton = styled.img`
   height: 24px;
   cursor: pointer;
 `;
+
+export const StNoneButton = styled.button`
+  background-color: red;
+`;
+
+export const StMemberButton = styled.button`
+  background-color: orange;
+`;
+
+export const StInvitedButton = styled.button`
+  background-color: yellow;
+`;
+
+export const StWillInviteButton = styled.button`
+  background-color: green;
+`;

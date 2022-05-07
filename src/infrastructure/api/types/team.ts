@@ -38,6 +38,10 @@ export interface SearchedUserResponse {
   image: string;
 }
 
+export interface SearchedUserResponseForEdit extends SearchedUserResponse {
+  isConfirmed: boolean | null;
+}
+
 export interface SearchedUserForRegister extends SearchedUserResponse {
   isSelected: boolean;
 }

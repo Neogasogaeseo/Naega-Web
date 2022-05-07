@@ -15,6 +15,7 @@ import {
   TeamNoticeItem,
   SearchedUserResponse,
   TeamEditMember,
+  SearchedUserResponseForEdit,
 } from './types/team';
 
 export interface TeamService {
@@ -26,7 +27,12 @@ export interface TeamService {
   getTeamIssue(teamID: string): Promise<TeamIssueData>;
   getMyIssue(teamID: string): Promise<TeamIssueData>;
   getInviteInfo(): Promise<TeamInviteData>;
-  getSearchedUserList(searchID: string, page: number): Promise<SearchedUserResponse[]>;
+  getSearchedUserListForRegister(searchID: string, page: number): Promise<SearchedUserResponse[]>;
+  getSearchedUserListForEdit(
+    teamID: number,
+    searchID: string,
+    page: number,
+  ): Promise<SearchedUserResponseForEdit[]>;
   getTeamMembers(teamID: string): Promise<TeamMemberNoneId[]>;
   postFeedback(body: PostFeedbackRequestBody): Promise<PostFeedbackResponse>;
   postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;

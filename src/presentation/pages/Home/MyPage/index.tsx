@@ -7,6 +7,9 @@ import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
 import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
+import MyPageInfoSkeleton from '@components/common/Skeleton/MyPageInfo';
+import NSSPickSkeleton from '@components/common/Skeleton/NSSPick';
+import TSSPickSkeleton from '@components/common/Skeleton/TSSPick';
 import ProfileList from '@components/common/ProfileList';
 import MyEmptyView from '@components/common/Empty/MyPage';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -66,7 +69,7 @@ function HomeMyPage() {
   return (
     <StHomeMyPage>
       {isMyPageInfoLoading ? (
-        <div>마이페이지 정보 로딩중</div>
+        <MyPageInfoSkeleton />
       ) : (
         mypageInfo && (
           <>
@@ -128,7 +131,7 @@ function HomeMyPage() {
 
       <StGreyBorder />
       {isNSSBookmarkLoading ? (
-        <div>너소서 북마크 정보 로딩중</div>
+        <NSSPickSkeleton />
       ) : (
         neososeoBookmark && (
           <div>
@@ -159,7 +162,7 @@ function HomeMyPage() {
       )}
       <StGreyBorder />
       {isTSSBookmarkLoading ? (
-        <div>팀소서 북마크 정보 로딩중</div>
+        <TSSPickSkeleton />
       ) : (
         feedbackBookmark && (
           <StNegativeMarginWrapper>

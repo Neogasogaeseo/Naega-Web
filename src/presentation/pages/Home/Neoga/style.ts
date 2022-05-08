@@ -8,6 +8,12 @@ export const StHomeNeoga = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   h1 {
     margin-top: 38px;

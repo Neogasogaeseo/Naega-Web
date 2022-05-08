@@ -13,22 +13,29 @@ import UserSearchResult from '../../UserSearchResult';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import { api } from '@api/index';
 import { SEARCHED_USER_PAGE } from '@utils/constant';
-import { SearchedUserForRegister } from '@api/types/team';
+import { SearchedUserForEdit, UserState } from '@api/types/team';
 
-export default function TeamMemberAddForRegister({
-  onClickSubmitButton: onClickSubmitButton,
-}: {
+interface TeamMemberAddForEditProps {
+  teamID: number;
   onClickSubmitButton: () => void;
-}) {
+  onClickBackButton: () => void;
+}
+
+export default function TeamMemberAddForEdit(props: TeamMemberAddForEditProps) {
+  const { teamID, onClickSubmitButton: submit, onClickBackButton } = props;
   const [inputValue, setInputValue] = useState('');
   const [searchWord, setSearchWord] = useState('');
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const { isBottomReached, isInitialState: isInitialScroll } = useScrollHeight();
-  const [searchedUserList, setSearchedUserList] = useState<SearchedUserForRegister[] | null>(null);
+  const [searchedUserList, setSearchedUserList] = useState<SearchedUserForEdit[] | null>(null);
 
   const searchUserByPage = useCallback(
     async ({ pageParam = 0 }) => {
-      const response = await api.teamService.getSearchedUserListForRegister(searchWord, pageParam);
+      const response = await api.teamService.getSearchedUserListForEdit(
+        teamID,
+        searchWord,
+        pageParam,
+      );
       return {
         result: response,
         nextPage: pageParam + SEARCHED_USER_PAGE,
@@ -48,17 +55,27 @@ export default function TeamMemberAddForRegister({
     retry: 1,
   });
 
-  const getSearchedUserList = (): SearchedUserForRegister[] | null => {
+  const getState = (isConfirmed: boolean | null, id: number): UserState => {
+    switch (isConfirmed) {
+      case true:
+        return 'MEMBER';
+      case false:
+        return 'INVITED';
+      case null:
+        return selectedUserList.map(({ id }) => id).includes(id) ? 'WILL_INVITE' : 'NONE';
+    }
+  };
+
+  const getSearchedUserList = (): SearchedUserForEdit[] | null => {
     if (!searchedUserListResponseByPage) return null;
     const searchedUserListResponse = searchedUserListResponseByPage.pages.flatMap(
       (page) => page.result,
     );
     if (!searchedUserListResponse) return [];
-    const selectedIdList = selectedUserList.map(({ id }) => id);
-    return searchedUserListResponse.map((user) => ({
-      ...user,
-      isSelected: selectedIdList.includes(user.id),
-    }));
+    return searchedUserListResponse.map((user) => {
+      const { id, name, profileID, image } = user;
+      return { id, name, profileID, image, state: getState(user.isConfirmed, user.id) };
+    });
   };
 
   useEffect(() => {
@@ -73,12 +90,12 @@ export default function TeamMemberAddForRegister({
   return (
     <StTeamMemberAdd>
       <CommonNavigation
-        isBack={false}
         title="팀원 추가"
+        onClickBack={onClickBackButton}
         submitButton={{
           content: '완료',
           onClick: () => {
-            onClickSubmitButton();
+            submit();
             setInputValue('');
           },
         }}

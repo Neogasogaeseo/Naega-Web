@@ -1,3 +1,5 @@
+import { useSetRecoilState } from 'recoil';
+
 import {
   StSearchedUserItem,
   StProfileName,
@@ -16,27 +18,41 @@ import {
 } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { icMemberAdd, icMemberAdded } from '@assets/icons';
+import { selectedUserListState } from '@stores/team';
 
-interface SearchedUserItemProps {
+export default function SearchedUserItem({
+  user,
+}: {
   user: SearchedUserForRegister | SearchedUserForEdit;
-  onClickButton: (id: number, profileName: string, isAdded: boolean) => void;
-}
-
-export default function SearchedUserItem(props: SearchedUserItemProps) {
-  const { user, onClickButton } = props;
-
-  const getStatusButton = (status: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE') => {
-    switch (status) {
+}) {
+  const setSelectedUserList = useSetRecoilState(selectedUserListState);
+  const getStateButton = (state: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE') => {
+    switch (state) {
       case 'NONE':
-        return <StNoneButton>초대</StNoneButton>;
+        return <StNoneButton onClick={() => clickToggleButton(user)}>초대</StNoneButton>;
       case 'MEMBER':
         return <StMemberButton>팀원</StMemberButton>;
       case 'INVITED':
         return <StInvitedButton>초대 중</StInvitedButton>;
       case 'WILL_INVITE':
-        return <StWillInviteButton>초대 취소</StWillInviteButton>;
+        return (
+          <StWillInviteButton onClick={() => clickToggleButton(user)}>초대 취소</StWillInviteButton>
+        );
     }
   };
+
+  const clickToggleButton = (user: SearchedUserForRegister | SearchedUserForEdit) =>
+    isForRegister(user)
+      ? setSelectedUserList((current) =>
+          user.isSelected
+            ? current.filter((targetUser) => targetUser.id !== user.id)
+            : [...current, user],
+        )
+      : setSelectedUserList((current) =>
+          user.state === 'WILL_INVITE'
+            ? current.filter((targetUser) => targetUser.id !== user.id)
+            : [...current, user],
+        );
 
   return (
     <StSearchedUserItem>
@@ -50,10 +66,10 @@ export default function SearchedUserItem(props: SearchedUserItemProps) {
       {isForRegister(user) ? (
         <StAddToggleButton
           src={user.isSelected ? icMemberAdded : icMemberAdd}
-          onClick={() => onClickButton(user.id, user.name, user.isSelected)}
+          onClick={() => clickToggleButton(user)}
         />
       ) : (
-        isForEdit(user) && getStatusButton(user.status)
+        isForEdit(user) && getStateButton(user.state)
       )}
     </StSearchedUserItem>
   );

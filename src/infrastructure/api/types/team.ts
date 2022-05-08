@@ -46,8 +46,9 @@ export interface SearchedUserForRegister extends SearchedUserResponse {
   isSelected: boolean;
 }
 
+export type UserState = 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE';
 export interface SearchedUserForEdit extends SearchedUserResponse {
-  status: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE';
+  state: UserState;
 }
 
 export const isForRegister = (
@@ -59,7 +60,7 @@ export const isForRegister = (
 export const isForEdit = (
   user: SearchedUserForRegister | SearchedUserForEdit,
 ): user is SearchedUserForEdit => {
-  return 'status' in user;
+  return 'state' in user;
 };
 
 export type FeedbackDetail = {

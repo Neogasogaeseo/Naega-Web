@@ -1,11 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import CommonNavigation from '@components/common/Navigation';
 import { StTeamMember, StTeamMemberManagement } from './style';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
+import TeamMemberAddForEdit from '@components/TeamMemberAdd/ForEdit';
 
 export default function TeamMemberManagement() {
   const { teamID } = useParams();
@@ -17,16 +18,28 @@ export default function TeamMemberManagement() {
     },
     { useErrorBoundary: true },
   );
+  const [isAddMode, setIsAddMode] = useState(false);
 
   useEffect(() => {
     if (!teamID) navigate('/home');
   }, []);
 
-  return (
+  return isAddMode && teamID ? (
+    <TeamMemberAddForEdit
+      teamID={+teamID}
+      onClickSubmitButton={() => {
+        setIsAddMode(false);
+      }}
+      onClickBackButton={() => {
+        setIsAddMode(false);
+        // 모달
+      }}
+    />
+  ) : (
     <>
       <CommonNavigation
         title="팀원 관리"
-        submitButton={{ content: '추가', onClick: () => console.log() }}
+        submitButton={{ content: '추가', onClick: () => setIsAddMode(true) }}
       />
       <StTeamMemberManagement>
         {memberList &&

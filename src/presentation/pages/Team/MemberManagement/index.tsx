@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 import CommonNavigation from '@components/common/Navigation';
 import { StTeamMember, StTeamMemberManagement } from './style';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 import TeamMemberAddForEdit from '@components/TeamMemberAdd/ForEdit';
-import { useResetRecoilState } from 'recoil';
 import { selectedUserListState } from '@stores/team';
+import CommonModal from '@components/common/Modal';
 
 export default function TeamMemberManagement() {
   const { teamID } = useParams();
@@ -21,25 +22,46 @@ export default function TeamMemberManagement() {
     { useErrorBoundary: true },
   );
   const [isAddMode, setIsAddMode] = useState(false);
-  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
+  const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeAddMode = () => {
+    setIsAddMode(false);
+    setSelectedUserList([]);
+  };
 
   useEffect(() => {
     if (!teamID) navigate('/home');
   }, []);
 
   return isAddMode && teamID ? (
-    <TeamMemberAddForEdit
-      teamID={+teamID}
-      onClickSubmitButton={() => {
-        setIsAddMode(false);
-        resetSelectedUserList();
-      }}
-      onClickBackButton={() => {
-        setIsAddMode(false);
-        // 모달
-        resetSelectedUserList();
-      }}
-    />
+    <>
+      <CommonModal
+        title="저장이 안됩니다"
+        description={'뒤로가기를 누르면 추가하신' + '\n' + '팀원 정보가 저장이 안돼요'}
+        isOpened={isModalOpen}
+        onClickConfirm={() => {
+          closeAddMode();
+          setIsModalOpen(false);
+        }}
+        onClickCancel={() => {
+          setIsModalOpen(false);
+        }}
+      />
+      <TeamMemberAddForEdit
+        teamID={+teamID}
+        onClickSubmitButton={closeAddMode}
+        onClickBackButton={() => {
+          console.log(selectedUserList);
+          if (selectedUserList.length) {
+            console.log('ㅜㅜ', selectedUserList);
+            setIsModalOpen(true);
+          } else {
+            closeAddMode();
+          }
+        }}
+      />
+    </>
   ) : (
     <>
       <CommonNavigation

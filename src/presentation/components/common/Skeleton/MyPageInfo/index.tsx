@@ -1,32 +1,39 @@
-import StSkeletonItem from '../style';
-import { StMyPageInfoSkeleton } from './style';
+import {
+  StImage,
+  StKeywordContainer,
+  StKeyword,
+  StLongText,
+  StProfile,
+  StShortText,
+  StSubtitle,
+  StMyKeyword,
+  StTitle,
+} from './style';
 
 function MyPageInfoSkeleton() {
   return (
-    <StMyPageInfoSkeleton>
-      <div className="profile">
+    <>
+      <StProfile>
+        <StImage />
         <div>
-          <StSkeletonItem className="avatar" />
+          <StShortText />
+          <StLongText />
         </div>
-        <div>
-          <StSkeletonItem className="text short" />
-          <StSkeletonItem className="text long" />
-        </div>
-      </div>
-      <div className="my-keyword">
-        <StSkeletonItem className="title" />
+      </StProfile>
+      <StMyKeyword>
+        <StTitle />
         {new Array(2).fill('').map((_, i) => (
           <div key={i}>
-            <StSkeletonItem className="subtitle" />
-            <div className="keyword-container">
-              <StSkeletonItem className="keyword" />
-              <StSkeletonItem className="keyword" />
-              <StSkeletonItem className="keyword" />
-            </div>
+            <StSubtitle />
+            <StKeywordContainer>
+              <StKeyword />
+              <StKeyword />
+              <StKeyword />
+            </StKeywordContainer>
           </div>
         ))}
-      </div>
-    </StMyPageInfoSkeleton>
+      </StMyKeyword>
+    </>
   );
 }
 

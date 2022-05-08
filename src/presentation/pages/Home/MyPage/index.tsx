@@ -68,9 +68,6 @@ function HomeMyPage() {
 
   return (
     <StHomeMyPage>
-      <MyPageInfoSkeleton />
-      <NSSPickSkeleton />
-      <TSSPickSkeleton />
       {isMyPageInfoLoading ? (
         <MyPageInfoSkeleton />
       ) : (

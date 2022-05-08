@@ -7,62 +7,40 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import { useQuery } from 'react-query';
 import { useMemo } from 'react';
-import { getGeneralLocationParams } from '@utils/etc';
 
 type CommonHeaderProps = {
   isLogoOnly?: boolean;
+  mypageState?: undefined | 'MINE' | 'OTHER';
 };
 
 export default function CommonHeader(props: CommonHeaderProps) {
-  const { isLogoOnly = false } = props;
+  const { isLogoOnly = false, mypageState } = props;
   const navigate = useNavigate();
   const { isAuthenticated, userID: loginUserNickname } = useLoginUser();
-  const { data: isNotice } = useQuery('isNotice', () => api.headerService.getIsNotice());
-  const pathes = getGeneralLocationParams();
-  const userID = pathes[2] === 'mypage' ? pathes[3] : undefined;
+  const { data: isNotice } = useQuery('isNotice', () => api.headerService.getIsNotice(), {
+    enabled: isAuthenticated,
+  });
 
-  const mypageState = useMemo(
-    () =>
-      userID === undefined
-        ? undefined
-        : userID === loginUserNickname
-        ? 'MINE'
-        : isAuthenticated
-        ? 'OTHER'
-        : 'NOT_AUTHENTICATED',
-    [userID, isAuthenticated, loginUserNickname],
-  );
-
-  const getMypageLink = () => {
-    switch (mypageState) {
-      case 'OTHER':
-        return `/home/mypage/${loginUserNickname}`;
-      default:
-        return '/login';
-    }
-  };
+  const getMypageLink = () => (isAuthenticated ? `/home/mypage/${loginUserNickname}` : '/login');
+  const getHomeLink = () => (isAuthenticated ? '/home' : '/login');
 
   const shouldShowUserButtons = useMemo(
-    () => !isLogoOnly && (mypageState === undefined || mypageState === 'MINE') && isAuthenticated,
+    () => !isLogoOnly && [undefined, 'MINE'].includes(mypageState) && isAuthenticated,
     [mypageState, isAuthenticated, isLogoOnly],
   );
   const shouldShowLoginButton = useMemo(
-    () => !isLogoOnly && (mypageState === undefined || mypageState === 'MINE') && !isAuthenticated,
+    () => !isLogoOnly && [undefined, 'MINE'].includes(mypageState) && !isAuthenticated,
     [mypageState, isAuthenticated, isLogoOnly],
   );
   const shouldShowMypageButton = useMemo(
-    () => !isLogoOnly && mypageState !== undefined && mypageState !== 'MINE',
+    () => !isLogoOnly && ![undefined, 'MINE'].includes(mypageState),
     [mypageState, isLogoOnly],
   );
 
   return (
     <StCommonHeader>
       <div>
-        <ImgLogoHeader
-          onClick={() => {
-            navigate('/home');
-          }}
-        />
+        <ImgLogoHeader onClick={() => navigate(getHomeLink())} />
         {shouldShowUserButtons && (
           <>
             <StWrapper>

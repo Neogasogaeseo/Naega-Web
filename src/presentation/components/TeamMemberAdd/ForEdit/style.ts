@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StUserSearchForTeamRegister = styled.div`
+export const StTeamMemberAdd = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

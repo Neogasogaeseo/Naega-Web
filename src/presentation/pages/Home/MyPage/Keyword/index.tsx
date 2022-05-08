@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonNavigation from '@components/common/Navigation';
+import CommonModal from '@components/common/Modal';
+import CommonLoader from '@components/common/Loader';
+import MutableKeywordList from '@components/common/Keyword/MutableList';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import { KEYWORD_PAGE } from '@utils/constant';
 import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
 import { IcMeatball } from '@assets/icons';
-import CommonLoader from '@components/common/Loader';
-import CommonModal from '@components/common/Modal';
-import MutableKeywordList from '@components/common/Keyword/MutableList';
 
 function MyKeyword() {
   const { userID } = useParams();

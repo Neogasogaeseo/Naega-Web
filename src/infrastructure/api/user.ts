@@ -5,6 +5,7 @@ import {
   MyPageInfo,
   NeososeoAnswerBookmark,
   TeamFeedbackBookmark,
+  MyAnswerInfo,
 } from './types/user';
 
 export interface UserService {
@@ -17,4 +18,5 @@ export interface UserService {
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
   getMyKeywordList(page: number): Promise<MyKeywordInfo>;
   deleteMyKeyword(keywordID: number): Promise<{ isSuccess: boolean }>;
+  getMyAnswerInfo(formID: number, page: number): Promise<MyAnswerInfo>;
 }

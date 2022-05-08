@@ -1,6 +1,6 @@
 import { NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
-import { KEYWORD_PAGE, STATUS_CODE } from '@utils/constant';
+import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI, publicAPI } from './base';
 
@@ -151,6 +151,37 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
+  const getMyAnswerInfo = async (formID: number, page: number) => {
+    const response = await privateAPI.get({
+      url: `/form/answer/pick?formId=${formID}&offset=${page}&limit=${PICK_PAGE}`,
+    });
+    return {
+      formList: response.data.form
+        ? response.data.form.map((form: any) => ({
+            formId: form.formId,
+            title: form.title,
+            darkIconImage: form.darkIconImage,
+          }))
+        : [],
+      answerList: response.data.answer
+        ? response.data.answer.map((answer: any) => ({
+            id: answer.answerId,
+            formId: answer.formId,
+            icon: answer.darkIconImage,
+            question: answer.title,
+            content: answer.content,
+            isBookmarked: answer.isPinned,
+            keywordList: answer.keywords.map((keyword: any) => ({
+              id: keyword.name,
+              content: keyword.name,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
+            })),
+          }))
+        : [],
+    };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -161,5 +192,6 @@ export function userDataRemote(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyAnswerInfo,
   };
 }

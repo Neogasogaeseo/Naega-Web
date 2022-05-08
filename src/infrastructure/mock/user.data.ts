@@ -1,6 +1,7 @@
 import {
   EditProfileInfo,
   Keyword,
+  MyAnswerInfo,
   MyKeywordInfo,
   MyPageInfo,
   NeososeoAnswerBookmark,
@@ -15,6 +16,7 @@ export const USER_DATA: {
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
   EDIT_PROFILE_INFO: EditProfileInfo;
   MY_KEYWORD_INFO: MyKeywordInfo;
+  MY_ANSWER_INFO: MyAnswerInfo;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
@@ -152,6 +154,52 @@ export const USER_DATA: {
       { id: '9', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
       { id: '10', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
       { id: '11', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+    ],
+  },
+  MY_ANSWER_INFO: {
+    formList: [
+      {
+        formId: 1,
+        title: '너가 닮고 싶은 나의 일잘러 모습',
+        darkIconImage:
+          'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/icon%2Ftxt_BL.png?alt=media&token=d322c4bf-d31b-4146-99dd-861b678c5094',
+      },
+      {
+        formId: 6,
+        title: '내가 가진 장점 소개해주기',
+        darkIconImage:
+          'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/icon%2Fstar_BL.png?alt=media&token=fcc3d106-1ec0-40bf-8a2a-90862209751f',
+      },
+    ],
+    answerList: [
+      {
+        id: 0,
+        formId: 1,
+        icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
+        question: '너가 닮고 싶은 나의 일잘러 모습',
+        content:
+          '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
+        isBookmarked: true,
+        keywordList: [
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+          { id: '1', content: '홍대할리스', color: '#FFB72B', fontColor: '#FFFFFF' },
+        ],
+        targetUserID: 2,
+      },
+      {
+        id: 1,
+        formId: 1,
+        icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
+        question: '너가 닮고 싶은 나의 일잘러 모습',
+        content:
+          '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
+        isBookmarked: true,
+        keywordList: [
+          { id: '2', content: '강쥐바보', color: '#444444', fontColor: '#FFFFFF' },
+          { id: '3', content: '배려왕', color: '#4C48FF', fontColor: '#FFFFFF' },
+        ],
+        targetUserID: 2,
+      },
     ],
   },
 };

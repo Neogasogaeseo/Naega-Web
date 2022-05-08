@@ -45,6 +45,7 @@ export interface MyPageInfo extends User {
 
 export interface AnswerDetail {
   id: number;
+  formId?: number;
   icon: string;
   question: string;
   content: string;
@@ -58,4 +59,15 @@ export interface EditProfileInfo {
   profileId: string;
   name: string;
   image: string;
+}
+
+export interface FormDetail {
+  formId: number;
+  title: string;
+  darkIconImage: string;
+}
+
+export interface MyAnswerInfo {
+  formList: FormDetail[];
+  answerList: AnswerDetail[];
 }

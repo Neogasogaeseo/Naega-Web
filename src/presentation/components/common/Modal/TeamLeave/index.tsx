@@ -4,7 +4,7 @@ import { TeamMemberNoneId, TeamMemberWithHostInfo } from '@api/types/team';
 import { StCommonModal, StDescription } from '../style';
 import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
-import { StWarningMessage } from './style';
+import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
 
 interface TeamLeaveModalProps {
@@ -73,8 +73,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   );
 
   const DelegationCheckModal = (
-    <StCommonModal>
-      <IcWarning />
+    <StDelegationCheckModal>
       <StWarningMessage>
         <div>
           <div>{newHost.profileName}</div>
@@ -86,7 +85,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         <button onClick={resetModal}>취소</button>
         <button onClick={resetModal}>확인</button>
       </div>
-    </StCommonModal>
+    </StDelegationCheckModal>
   );
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;

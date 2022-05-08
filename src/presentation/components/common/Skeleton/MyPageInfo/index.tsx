@@ -15,22 +15,16 @@ function MyPageInfoSkeleton() {
       </div>
       <div className="my-keyword">
         <StSkeletonItem className="title" />
-        <div>
-          <StSkeletonItem className="subtitle" />
-          <div className="keyword-container">
-            <StSkeletonItem className="keyword" />
-            <StSkeletonItem className="keyword" />
-            <StSkeletonItem className="keyword" />
+        {new Array(2).fill('').map((_, i) => (
+          <div key={i}>
+            <StSkeletonItem className="subtitle" />
+            <div className="keyword-container">
+              <StSkeletonItem className="keyword" />
+              <StSkeletonItem className="keyword" />
+              <StSkeletonItem className="keyword" />
+            </div>
           </div>
-        </div>
-        <div>
-          <StSkeletonItem className="subtitle" />
-          <div className="keyword-container">
-            <StSkeletonItem className="keyword" />
-            <StSkeletonItem className="keyword" />
-            <StSkeletonItem className="keyword" />
-          </div>
-        </div>
+        ))}
       </div>
     </StMyPageInfoSkeleton>
   );

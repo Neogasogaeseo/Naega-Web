@@ -44,7 +44,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { mutate: mutateDelegate } = useMutation(delegate, {
     onSuccess: () => {
       queryClient.setQueryData('teamProfileData', (old: TeamProfileData | undefined) => {
-        return { profileList: old ? old.profileList.filter((o) => o.id === Number(teamID)) : [] };
+        return { profileList: old ? old.profileList.filter((o) => o.id !== Number(teamID)) : [] };
       });
     },
   });

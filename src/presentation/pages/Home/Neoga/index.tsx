@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { api } from '@api/index';
 import { useLoginUser } from '@hooks/useLoginUser';
 import TemplateListSkeleton from '@components/common/Skeleton/TemplateList';
+import CardItemSkeleton from '@components/common/Skeleton/CardItem';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 import HomeNeogaEmptyView from '@components/common/Empty/HomeNeoga';
@@ -68,7 +69,7 @@ function HomeNeoga() {
         )
       )}
       {isCardItemLoading ? (
-        <div>만든 너가소개서 로딩 중</div>
+        <CardItemSkeleton />
       ) : (
         cardItem && (
           <StResult>

@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 
 import { api } from '@api/index';
 import { useLoginUser } from '@hooks/useLoginUser';
+import TemplateListSkeleton from '@components/common/Skeleton/TemplateList';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
 import NeogaResultCard from '@components/common/NeogaResultCard';
 import HomeNeogaEmptyView from '@components/common/Empty/HomeNeoga';
@@ -13,17 +14,11 @@ function HomeNeoga() {
   const navigate = useNavigate();
   const { username } = useLoginUser();
   const MAX_CARD_ITEM = 2;
-
-  const { data: banner, isLoading: isBannerLoading } = useQuery(
-    'neogaBanner',
-    api.neogaService.getBannerTemplate,
-  );
-
+  const { data: banner } = useQuery('neogaBanner', api.neogaService.getBannerTemplate);
   const { data: templateList, isLoading: isTemplateListLoading } = useQuery(
     'templateList',
     api.neogaService.getMainTemplate,
   );
-
   const { data: cardItem, isLoading: isCardItemLoading } = useQuery(
     'mainResultCard',
     api.neogaService.getMainResultCard,
@@ -31,32 +26,27 @@ function HomeNeoga() {
 
   return (
     <StHomeNeoga>
-      {isBannerLoading ? (
-        <div>배너 로딩 중</div>
-      ) : (
-        banner && (
-          <StBanner
-            color={banner.backgroundColor}
-            onClick={() => {
-              navigate(
-                banner.isCreated
-                  ? `/neoga/create/${banner.id}/created`
-                  : `/neoga/create/${banner.id}`,
-              );
-            }}
-          >
-            <div>
-              <div>{banner.title}</div>
-              <div>{banner.content}</div>
-            </div>
-            <img src={banner.src} />
-            {banner.isNew && <img src={icNewTag} />}
-          </StBanner>
-        )
+      {banner && (
+        <StBanner
+          color={banner.backgroundColor}
+          onClick={() => {
+            navigate(
+              banner.isCreated
+                ? `/neoga/create/${banner.id}/created`
+                : `/neoga/create/${banner.id}`,
+            );
+          }}
+        >
+          <div>
+            <div>{banner.title}</div>
+            <div>{banner.content}</div>
+          </div>
+          <img src={banner.src} />
+          {banner.isNew && <img src={icNewTag} />}
+        </StBanner>
       )}
-
       {isTemplateListLoading ? (
-        <div>너가소개서 설문 로딩 중</div>
+        <TemplateListSkeleton />
       ) : (
         templateList && (
           <StForm>
@@ -77,7 +67,6 @@ function HomeNeoga() {
           </StForm>
         )
       )}
-
       {isCardItemLoading ? (
         <div>만든 너가소개서 로딩 중</div>
       ) : (

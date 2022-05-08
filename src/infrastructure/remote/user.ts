@@ -190,27 +190,28 @@ export function userDataRemote(): UserService {
         ? `/team/feedback/pick?teamId=${teamID}&offset=${page}&limit=${PICK_PAGE}`
         : `/team/feedback/pick?offset=${page}&limit=${PICK_PAGE}`,
     });
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { teamList: [], feedbackList: [] };
     return {
-      teamList: response.data.teamList.map((team: any) => ({
+      teamList: response.data.team.map((team: any) => ({
         id: team.id,
         profileImage: team.image,
         profileName: team.name,
       })),
-      feedbackList: response.data.pinnedFeedbackList
-        ? response.data.pinnedFeedbackList.map((feedback: any) => ({
+      feedbackList: response.data.feedback
+        ? response.data.feedback.map((feedback: any) => ({
             id: feedback.feedbackId,
-            writer: feedback.writerName,
-            target: feedback.name,
-            body: feedback.content,
+            writer: feedback.writerUserName,
+            targetProfileID: feedback.userId,
+            target: feedback.userName,
             createdAt: feedback.createdAt,
+            body: feedback.content,
+            isBookmarked: feedback.isPinned,
             keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
               color: keyword.colorCode,
-              fontColor: keyword.fontColor,
+              fontColor: keyword.fontcolor,
             })),
-            targetProfileID: feedback.profileId,
-            isBookmarked: feedback.isPinned,
           }))
         : [],
     };

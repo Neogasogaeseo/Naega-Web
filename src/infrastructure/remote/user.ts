@@ -151,9 +151,11 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
-  const getMyAnswerInfo = async (formID: number, page: number) => {
+  const getMyAnswerInfo = async (page: number, formID?: number) => {
     const response = await privateAPI.get({
-      url: `/form/answer/pick?formId=${formID}&offset=${page}&limit=${PICK_PAGE}`,
+      url: formID
+        ? `/form/answer/pick?formId=${formID}&offset=${page}&limit=${PICK_PAGE}`
+        : `/form/answer/pick?offset=${page}&limit=${PICK_PAGE}`,
     });
     return {
       formList: response.data.form

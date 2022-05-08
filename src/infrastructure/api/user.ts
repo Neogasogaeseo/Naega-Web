@@ -18,5 +18,5 @@ export interface UserService {
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
   getMyKeywordList(page: number): Promise<MyKeywordInfo>;
   deleteMyKeyword(keywordID: number): Promise<{ isSuccess: boolean }>;
-  getMyAnswerInfo(formID: number, page: number): Promise<MyAnswerInfo>;
+  getMyAnswerInfo(page: number, formID?: number): Promise<MyAnswerInfo>;
 }

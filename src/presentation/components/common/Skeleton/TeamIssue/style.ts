@@ -52,7 +52,6 @@ export const StTeamImage = styled(StSkeletonItem)`
   height: 26px;
   border-radius: 50%;
   background-color: ${COLOR.GRAY_2};
-  border-raidus: 50px;
 `;
 
 export const StTeamIssueWriter = styled(StSkeletonItem)`

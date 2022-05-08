@@ -1,74 +1,65 @@
 import styled from 'styled-components';
+
+import StSkeletonItem from '../style';
 import { COLOR } from '@styles/common/color';
 
-export const StNSSPickSkeleton = styled.div`
-  .title,
-  .header,
-  .body {
-    animation: skeleton-gradient 2s infinite ease-in-out;
+export const StTitle = styled(StSkeletonItem)`
+  margin-top: 40px;
+  background-color: ${COLOR.GRAY_3};
+  width: 164px;
+  height: 16px;
+`;
+
+export const StHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 46px;
+  margin-bottom: 14px;
+  position: relative;
+
+  & > div {
+    background-color: ${COLOR.GRAY_2};
   }
+`;
 
-  .title {
-    margin-top: 40px;
-    background-color: ${COLOR.GRAY_3};
-    width: 164px;
-    height: 16px;
-  }
+export const StImage = styled(StSkeletonItem)`
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+`;
 
-  .header {
-    display: flex;
-    align-items: center;
-    margin-top: 46px;
-    margin-bottom: 14px;
-    position: relative;
+export const StNssTitle = styled(StSkeletonItem)`
+  margin-left: 14px;
+  width: 177px;
+  height: 14px;
+`;
 
-    & > div {
-      background-color: ${COLOR.GRAY_2};
-    }
+export const StButton = styled(StSkeletonItem)`
+  width: 51px;
+  height: 14px;
+  float: right;
+  position: absolute;
+  right: 2px;
+`;
 
-    .avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-    }
+export const StBody = styled.div`
+  margin-bottom: 48px;
+`;
 
-    .NSS-title {
-      margin-left: 14px;
-      width: 177px;
-      height: 14px;
-    }
+export const StContent = styled(StSkeletonItem)`
+  width: 348px;
+  height: 12px;
+  margin-bottom: 8px;
+  background-color: ${COLOR.GRAY_15};
+`;
 
-    .button {
-      width: 51px;
-      height: 14px;
-      float: right;
-      position: absolute;
-      right: 2px;
-    }
-  }
+export const StContentContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
 
-  .body {
-    margin-bottom: 48px;
-
-    & > div:not(.keyword-container) {
-      background-color: ${COLOR.GRAY_15};
-    }
-
-    .content {
-      width: 348px;
-      height: 12px;
-      margin-bottom: 8px;
-    }
-
-    .keyword-container {
-      display: flex;
-      gap: 8px;
-    }
-
-    .keyword {
-      background-color: ${COLOR.GRAY_15};
-      width: 103px;
-      height: 18px;
-    }
-  }
+export const StKeyword = styled(StSkeletonItem)`
+  background-color: ${COLOR.GRAY_15};
+  width: 103px;
+  height: 18px;
 `;

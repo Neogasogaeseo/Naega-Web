@@ -1,5 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
@@ -11,11 +11,17 @@ import { KEYWORD_PAGE } from '@utils/constant';
 import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
 import { IcMeatball } from '@assets/icons';
 import CommonLoader from '@components/common/Loader';
+import CommonModal from '@components/common/Modal';
+import MutableKeywordList from '@components/common/Keyword/MutableList';
 
 function MyKeyword() {
   const { userID } = useParams();
   const { isBottomReached, isInitialState } = useScrollHeight();
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+  const [isDeletePage, setIsDeletePage] = useState(false);
+  const [keywordID, setKeywordID] = useState(-1);
+  const queryClient = useQueryClient();
 
   if (!userID) return <></>;
 
@@ -42,39 +48,72 @@ function MyKeyword() {
   }, [isBottomReached, isInitialState]);
 
   return (
-    <>
-      <CommonNavigation title="My 키워드" />
-      <StMyKeyword>
-        <StMyKeywordHeader>
-          <div>
-            <span>My 키워드</span>
-            <span>{myKeywordList?.pages[0].totalCount}</span>
-          </div>
-          <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
-        </StMyKeywordHeader>
-        {myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
-          <>
-            <ImmutableKeywordList
-              keywordList={myKeywordList.pages.map((page) => page.result).flat()}
-              viewMode={'linear'}
-              isMine={true}
-              onItemClick={() => {
+    <StMyKeyword>
+      <CommonModal
+        isOpened={isOpenModal}
+        title="키워드를 삭제하시겠습니까?"
+        description={'키워드를 삭제하면 전체 게시글에서' + '\n' + '해당 키워드가 모두 삭제됩니다.'}
+        onClickConfirm={async () => {
+          keywordID && (await api.userService.deleteMyKeyword(keywordID));
+          queryClient.invalidateQueries('myKeywordList');
+          setIsOpenModal(false);
+        }}
+        onClickCancel={() => setIsOpenModal(false)}
+      />
+      <CommonNavigation
+        title="My 키워드"
+        submitButton={{
+          content: isDeletePage ? '완료' : '',
+          onClick: isDeletePage
+            ? () => setIsDeletePage(false)
+            : () => {
                 return;
-              }}
-            />
-            <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
-          </>
-        ) : (
-          <></>
-        )}
-        <MyPageEditBottomSheet
-          isOpened={isBottomSheetOpened}
-          closeBottomSheet={() => setIsBottomSheetOpened(false)}
-          type="keyword"
-          userID={userID}
-        />
-      </StMyKeyword>
-    </>
+              },
+        }}
+      />
+      <StMyKeywordHeader>
+        <div>
+          <span>My 키워드</span>
+          <span>{myKeywordList?.pages[0].totalCount}</span>
+        </div>
+        <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
+      </StMyKeywordHeader>
+      {!isDeletePage && myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
+        <>
+          <ImmutableKeywordList
+            keywordList={myKeywordList.pages.map((page) => page.result).flat()}
+            viewMode={'linear'}
+            isMine={true}
+            onItemClick={() => {
+              return;
+            }}
+          />
+          <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
+        </>
+      ) : (
+        <></>
+      )}
+      {isDeletePage && myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
+        <>
+          <MutableKeywordList
+            keywordList={myKeywordList.pages.map((page) => page.result).flat()}
+            viewMode={'linear'}
+            deleteMyKeyword={() => setIsOpenModal(true)}
+            isMine={true}
+            setKeywordID={setKeywordID}
+          />
+          <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
+        </>
+      ) : (
+        <></>
+      )}
+      <MyPageEditBottomSheet
+        isOpened={isBottomSheetOpened}
+        closeBottomSheet={() => setIsBottomSheetOpened(false)}
+        type="keyword"
+        setIsDeletePage={setIsDeletePage}
+      />
+    </StMyKeyword>
   );
 }
 

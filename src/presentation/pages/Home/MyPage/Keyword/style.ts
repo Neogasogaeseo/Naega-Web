@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
-export const StMyKeyword = styled.div``;
+export const StMyKeyword = styled.div`
+  position: relative;
+`;
 
 export const StMyKeywordHeader = styled.div`
   height: 76px;

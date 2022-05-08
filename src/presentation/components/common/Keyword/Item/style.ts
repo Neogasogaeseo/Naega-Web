@@ -34,4 +34,7 @@ export const StMyDeleteBtn = styled.button`
   margin-right: 20px;
   position: absolute;
   right: 0;
+  color: ${COLOR.GRAY_5};
+  ${FONT_STYLES.R_14_TITLE};
+  background-color: transparent;
 `;

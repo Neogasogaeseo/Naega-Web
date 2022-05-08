@@ -88,7 +88,7 @@ export default function TeamMemberAddForRegister({
           value={inputValue}
           onChange={(value) => setInputValue(value)}
           onSubmit={() => {
-            setSearchWord(inputValue);
+            if (inputValue) setSearchWord(inputValue);
           }}
           placeholder="팀원 검색하기"
           width="100%"

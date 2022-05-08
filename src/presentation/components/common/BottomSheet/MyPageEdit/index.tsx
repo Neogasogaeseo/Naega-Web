@@ -10,19 +10,24 @@ import { icEdit, icTrash } from '@assets/icons';
 type MyPageEditBottomSheetProps = {
   isOpened: boolean;
   closeBottomSheet: () => void;
-  type: string;
-  userID?: string;
+  type: 'profile' | 'keyword';
+  setIsDeletePage?: (value: boolean) => void;
 };
 
 function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
-  const { isOpened, closeBottomSheet, type } = props;
+  const { isOpened, closeBottomSheet, type, setIsDeletePage } = props;
   const navigate = useNavigate();
   const { fireToast } = useToast();
   const { userID: profileId, username: name } = useLoginUser();
   const queryClient = useQueryClient();
 
+  const editMyKeyword = () => {
+    closeBottomSheet();
+    setIsDeletePage && setIsDeletePage(true);
+  };
+
   const navigateToEditPage = () => {
-    navigate(`/edit/${type}/${profileId}`);
+    navigate(`/edit/profile/${profileId}`);
   };
 
   const deleteProfileImage = async () => {
@@ -45,18 +50,28 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
 
   return (
     <BottomSheet
-      buttonList={[
-        {
-          icon: icEdit,
-          label: '수정하기',
-          onClick: navigateToEditPage,
-        },
-        {
-          icon: icTrash,
-          label: '삭제하기',
-          onClick: deleteProfileImage,
-        },
-      ]}
+      buttonList={
+        type === 'profile'
+          ? [
+              {
+                icon: icEdit,
+                label: '수정하기',
+                onClick: navigateToEditPage,
+              },
+              {
+                icon: icTrash,
+                label: '삭제하기',
+                onClick: deleteProfileImage,
+              },
+            ]
+          : [
+              {
+                icon: icEdit,
+                label: '수정하기',
+                onClick: editMyKeyword,
+              },
+            ]
+      }
       closeBottomSheet={closeBottomSheet}
       isOpened={isOpened}
     />

@@ -37,6 +37,16 @@ export function userDataMock(): UserService {
     return USER_DATA.EDIT_PROFILE_INFO;
   };
 
+  const getMyKeywordList = async () => {
+    await wait(1000);
+    return USER_DATA.MY_KEYWORD_INFO;
+  };
+
+  const deleteMyKeyword = async () => {
+    await wait(1000);
+    return { isSuccess: true };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -45,6 +55,8 @@ export function userDataMock(): UserService {
     getFeedbackBookmark,
     getDuplicationCheck,
     editUserProfile,
+    getMyKeywordList,
+    deleteMyKeyword,
   };
 }
 

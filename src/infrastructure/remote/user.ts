@@ -130,6 +130,27 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const getMyKeywordList = async (page: number) => {
+    const response = await privateAPI.get({
+      url: `/user/myKeyword?offset=${page}&limit=${KEYWORD_PAGE}`,
+    });
+    return {
+      totalCount: response.data.totalCount,
+      keywordList: response.data.keyword.map((keyword: any) => ({
+        id: keyword.id,
+        content: keyword.name,
+        color: keyword.colorcode,
+        fontColor: keyword.fontcolor,
+        count: keyword.count,
+      })),
+    };
+  };
+
+  const deleteMyKeyword = async (keywordID: number) => {
+    const response = await privateAPI.delete({ url: `/user/myKeyword?keywordId=${keywordID}` });
+    return { isSuccess: response.success };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -138,5 +159,7 @@ export function userDataRemote(): UserService {
     getFeedbackBookmark,
     getDuplicationCheck,
     editUserProfile,
+    getMyKeywordList,
+    deleteMyKeyword,
   };
 }

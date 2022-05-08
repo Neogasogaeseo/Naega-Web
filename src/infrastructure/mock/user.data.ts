@@ -1,6 +1,7 @@
 import {
   EditProfileInfo,
   Keyword,
+  MyKeywordInfo,
   MyPageInfo,
   NeososeoAnswerBookmark,
   TeamFeedbackBookmark,
@@ -13,6 +14,7 @@ export const USER_DATA: {
   NEOSOSEO_BOOKMARK: NeososeoAnswerBookmark;
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
   EDIT_PROFILE_INFO: EditProfileInfo;
+  MY_KEYWORD_INFO: MyKeywordInfo;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
@@ -134,5 +136,22 @@ export const USER_DATA: {
     profileId: 'abcd',
     name: '너가소개서',
     image: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+  },
+  MY_KEYWORD_INFO: {
+    totalCount: 12,
+    keywordList: [
+      { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 3 },
+      { id: '1', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 2 },
+      { id: '2', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 1 },
+      { id: '3', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '4', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '5', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '6', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '7', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '8', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '9', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '10', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+      { id: '11', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
+    ],
   },
 };

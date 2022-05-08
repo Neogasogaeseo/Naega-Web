@@ -1,16 +1,26 @@
+import { Keyword } from '@api/types/user';
 import KeywordItem from '../Item';
 import { StKeywordListLayout } from '../style';
 import { COLOR } from '@styles/common/color';
-import { Keyword } from '@api/types/user';
 
 interface MutableKeywordListProps {
   keywordList: Keyword[];
-  deleteKeyword: (keyword: Keyword) => void;
+  deleteKeyword?: (keyword: Keyword) => void;
+  setIsOpenModal?: (value: boolean) => void;
+  setKeywordID?: (keywordID: number) => void;
   viewMode?: 'linear' | 'flex';
+  isMine?: boolean;
 }
 
 function MutableKeywordList(props: MutableKeywordListProps) {
-  const { keywordList, deleteKeyword, viewMode = 'flex' } = props;
+  const {
+    keywordList,
+    deleteKeyword,
+    setIsOpenModal,
+    setKeywordID,
+    viewMode = 'flex',
+    isMine,
+  } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
       {keywordList.map((keyword) => (
@@ -18,8 +28,16 @@ function MutableKeywordList(props: MutableKeywordListProps) {
           {...{ ...keyword, color: keyword.color ?? COLOR.GRAY_3 }}
           isMutable={true}
           key={keyword.id}
-          onDeleteClick={() => deleteKeyword(keyword)}
+          onDeleteClick={
+            isMine
+              ? () => {
+                  setIsOpenModal && setIsOpenModal(true);
+                  setKeywordID && setKeywordID(+keyword.id);
+                }
+              : () => deleteKeyword && deleteKeyword(keyword)
+          }
           viewMode={viewMode}
+          isMine={isMine}
         />
       ))}
     </StKeywordListLayout>

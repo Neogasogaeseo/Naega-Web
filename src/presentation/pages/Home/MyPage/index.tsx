@@ -8,6 +8,8 @@ import { copyClipboard } from '@utils/copyClipboard';
 import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
 import MyPageInfoSkeleton from '@components/common/Skeleton/MyPageInfo';
+import NSSPickSkeleton from '@components/common/Skeleton/NSSPick';
+import TSSPickSkeleton from '@components/common/Skeleton/TSSPick';
 import ProfileList from '@components/common/ProfileList';
 import MyEmptyView from '@components/common/Empty/MyPage';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -30,7 +32,6 @@ import {
 } from './style';
 import { IcArrowViewAll, IcCopyMypage, icCrown, IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
-import NSSPickSkeleton from '@components/common/Skeleton/NSSPick';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -157,7 +158,7 @@ function HomeMyPage() {
       )}
       <StGreyBorder />
       {isTSSBookmarkLoading ? (
-        <div>팀소서 북마크 정보 로딩중</div>
+        <TSSPickSkeleton />
       ) : (
         feedbackBookmark && (
           <StNegativeMarginWrapper>

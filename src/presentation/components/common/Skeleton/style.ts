@@ -9,6 +9,7 @@ export const StSkeletonItem = styled.div`
       opacity: 1;
     }
   }
+  animation: skeleton-gradient 2s infinite ease-in-out;
 `;
 
 export default StSkeletonItem;

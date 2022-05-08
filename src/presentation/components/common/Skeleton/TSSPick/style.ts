@@ -1,89 +1,77 @@
 import styled from 'styled-components';
+
+import StSkeletonItem from '../style';
 import { COLOR } from '@styles/common/color';
 
-export const StTSSPickSkeleton = styled.div`
-  .title,
-  .team-container,
-  .header,
-  .body {
-    animation: skeleton-gradient 2s infinite ease-in-out;
+export const StTitle = styled(StSkeletonItem)`
+  margin-top: 40px;
+  background-color: ${COLOR.GRAY_3};
+  width: 164px;
+  height: 16px;
+`;
+
+export const StTeamContainer = styled.div`
+  display: flex;
+  gap: 18px;
+  margin-top: 40px;
+
+  & > div > div {
+    background-color: ${COLOR.GRAY_2};
   }
+`;
 
-  .title {
-    margin-top: 40px;
-    background-color: ${COLOR.GRAY_3};
-    width: 164px;
-    height: 16px;
+export const StImage = styled(StSkeletonItem)`
+  width: 60px;
+  height: 60px;
+`;
+
+export const StName = styled(StSkeletonItem)`
+  width: 60px;
+  height: 12px;
+  margin-top: 6px;
+`;
+
+export const StHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 14px;
+
+  & > div {
+    background-color: ${COLOR.GRAY_2};
   }
+`;
 
-  .team-container {
-    display: flex;
-    gap: 18px;
-    margin-top: 40px;
+export const StTssTitle = styled(StSkeletonItem)`
+  width: 177px;
+  height: 14px;
+`;
 
-    .team {
-      & > div {
-        background-color: ${COLOR.GRAY_2};
-      }
+export const StButton = styled(StSkeletonItem)`
+  width: 51px;
+  height: 14px;
+  margin-right: 2px;
+`;
 
-      .avatar {
-        width: 60px;
-        height: 60px;
-      }
+export const StBody = styled.div`
+  margin-bottom: 48px;
+`;
 
-      .name {
-        width: 60px;
-        height: 12px;
-        margin-top: 6px;
-      }
-    }
-  }
+export const StContent = styled(StSkeletonItem)`
+  background-color: ${COLOR.GRAY_15};
+  width: 348px;
+  height: 12px;
+  margin-bottom: 8px;
+`;
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 14px;
+export const StKeywordContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
 
-    & > div {
-      background-color: ${COLOR.GRAY_2};
-    }
-
-    .TSS-title {
-      width: 177px;
-      height: 14px;
-    }
-
-    .button {
-      width: 51px;
-      height: 14px;
-      margin-right: 2px;
-    }
-  }
-
-  .body {
-    margin-bottom: 70px;
-
-    & > div:not(.keyword-container) {
-      background-color: ${COLOR.GRAY_15};
-    }
-
-    .content {
-      width: 348px;
-      height: 12px;
-      margin-bottom: 8px;
-    }
-
-    .keyword-container {
-      display: flex;
-      gap: 8px;
-    }
-
-    .keyword {
-      background-color: ${COLOR.GRAY_15};
-      width: 103px;
-      height: 18px;
-    }
-  }
+export const StKeyword = styled(StSkeletonItem)`
+  background-color: ${COLOR.GRAY_15};
+  width: 103px;
+  height: 18px;
 `;

@@ -1,35 +1,46 @@
-import StSkeletonItem from '../style';
-import { StTSSPickSkeleton } from './style';
+import {
+  StImage,
+  StName,
+  StTeamContainer,
+  StTitle,
+  StHeader,
+  StTssTitle,
+  StButton,
+  StBody,
+  StKeywordContainer,
+  StKeyword,
+  StContent,
+} from './style';
 
 function TSSPickSkeleton() {
   return (
-    <StTSSPickSkeleton>
-      <StSkeletonItem className="title" />
-      <div className="team-container">
+    <>
+      <StTitle />
+      <StTeamContainer>
         {new Array(2).fill('').map((_, i) => (
-          <div className="team" key={i}>
-            <StSkeletonItem className="avatar" />
-            <StSkeletonItem className="name" />
+          <div key={i}>
+            <StImage />
+            <StName />
           </div>
         ))}
-      </div>
+      </StTeamContainer>
       {new Array(2).fill('').map((_, i) => (
         <div key={i}>
-          <div className="header">
-            <StSkeletonItem className="TSS-title" />
-            <StSkeletonItem className="button" />
-          </div>
-          <div className="body">
-            <StSkeletonItem className="content" />
-            <StSkeletonItem className="content" />
-            <div className="keyword-container">
-              <StSkeletonItem className="keyword" />
-              <StSkeletonItem className="keyword" />
-            </div>
-          </div>
+          <StHeader>
+            <StTssTitle />
+            <StButton className="button" />
+          </StHeader>
+          <StBody>
+            <StContent />
+            <StContent />
+            <StKeywordContainer>
+              <StKeyword />
+              <StKeyword />
+            </StKeywordContainer>
+          </StBody>
         </div>
       ))}
-    </StTSSPickSkeleton>
+    </>
   );
 }
 

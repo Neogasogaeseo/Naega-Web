@@ -184,6 +184,38 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const getMyFeedbackInfo = async (page: number, teamID?: number) => {
+    const response = await privateAPI.get({
+      url: teamID
+        ? `/team/feedback/pick?teamId=${teamID}&offset=${page}&limit=${PICK_PAGE}`
+        : `/team/feedback/pick?offset=${page}&limit=${PICK_PAGE}`,
+    });
+    return {
+      teamList: response.data.teamList.map((team: any) => ({
+        id: team.id,
+        profileImage: team.image,
+        profileName: team.name,
+      })),
+      feedbackList: response.data.pinnedFeedbackList
+        ? response.data.pinnedFeedbackList.map((feedback: any) => ({
+            id: feedback.feedbackId,
+            writer: feedback.writerName,
+            target: feedback.name,
+            body: feedback.content,
+            createdAt: feedback.createdAt,
+            keywordList: feedback.keywords.map((keyword: any) => ({
+              id: keyword.name,
+              content: keyword.name,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
+            })),
+            targetProfileID: feedback.profileId,
+            isBookmarked: feedback.isPinned,
+          }))
+        : [],
+    };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -195,5 +227,6 @@ export function userDataRemote(): UserService {
     getMyKeywordList,
     deleteMyKeyword,
     getMyAnswerInfo,
+    getMyFeedbackInfo,
   };
 }

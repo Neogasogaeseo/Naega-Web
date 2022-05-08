@@ -71,3 +71,8 @@ export interface MyAnswerInfo {
   formList: FormDetail[];
   answerList: AnswerDetail[];
 }
+
+export interface MyFeedbackInfo {
+  teamList: TeamMemberNoneId[];
+  feedbackList: FeedbackDetail[];
+}

@@ -2,6 +2,7 @@ import {
   EditProfileInfo,
   Keyword,
   MyAnswerInfo,
+  MyFeedbackInfo,
   MyKeywordInfo,
   MyPageInfo,
   NeososeoAnswerBookmark,
@@ -17,6 +18,7 @@ export const USER_DATA: {
   EDIT_PROFILE_INFO: EditProfileInfo;
   MY_KEYWORD_INFO: MyKeywordInfo;
   MY_ANSWER_INFO: MyAnswerInfo;
+  MY_FEEDBACK_INFO: MyFeedbackInfo;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
@@ -199,6 +201,61 @@ export const USER_DATA: {
           { id: '3', content: '배려왕', color: '#4C48FF', fontColor: '#FFFFFF' },
         ],
         targetUserID: 2,
+      },
+    ],
+  },
+  MY_FEEDBACK_INFO: {
+    teamList: [
+      {
+        id: 6,
+        profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
+        profileName: '너가소개서',
+      },
+      {
+        id: 1,
+        profileName: 'SOPT',
+      },
+      {
+        id: 2,
+        profileName: '기업적디자인',
+      },
+    ],
+    feedbackList: [
+      {
+        id: '11',
+        writer: '주영주영',
+        target: '서진서진',
+        body: '서진아고맙다',
+        createdAt: '12/20',
+        keywordList: [
+          { id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' },
+        ],
+        targetProfileID: 'seojin',
+        isBookmarked: true,
+      },
+      {
+        id: '12',
+        writer: '효인효인',
+        target: '서진서진',
+        body: '서진아\n고맙다',
+        createdAt: '12/20',
+        keywordList: [
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
+        ],
+        targetProfileID: 'seojin',
+        isBookmarked: true,
+      },
+      {
+        id: '13',
+        writer: '효인효인',
+        target: '서진서진',
+        body: '서진아\n고맙다',
+        createdAt: '12/21',
+        keywordList: [
+          { id: '0', content: '멋있는 캐서린', color: '#FF4B77', fontColor: '#FFFFFF' },
+        ],
+        targetProfileID: 'seojin',
+        isBookmarked: true,
       },
     ],
   },

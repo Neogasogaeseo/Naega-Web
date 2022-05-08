@@ -21,7 +21,6 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK'>('QUESTION');
-  const firstMember = teamMemberListWithoutHost[0];
   const [newHost, setNewHost] = useState<TeamMemberNoneId | null>(null);
   const navigate = useNavigate();
   const { teamID } = useParams();
@@ -33,7 +32,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { mutate: mutateLeave } = useMutation(leave, {
     onSuccess: () => {
       queryClient.setQueryData('teamProfileData', (old: TeamProfileData | undefined) => {
-        return { profileList: old ? old.profileList.filter((o) => o.id === Number(teamID)) : [] };
+        return { profileList: old ? old.profileList.filter((o) => o.id !== Number(teamID)) : [] };
       });
     },
   });
@@ -127,10 +126,16 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   );
 
   useEffect(() => {
-    setNewHost({
-      id: firstMember.id,
-      profileImage: firstMember.profileImage,
-      profileName: firstMember.profileName,
+    setNewHost(() => {
+      const firstMember =
+        teamMemberList.length === 1 && isUserHost
+          ? teamMemberList[0]
+          : teamMemberListWithoutHost[0];
+      return {
+        id: firstMember.id,
+        profileImage: firstMember.profileImage,
+        profileName: firstMember.profileName,
+      };
     });
   }, []);
 

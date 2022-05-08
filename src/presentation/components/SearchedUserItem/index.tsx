@@ -15,6 +15,7 @@ import {
   isForRegister,
   SearchedUserForEdit,
   SearchedUserForRegister,
+  UserState,
 } from '@api/types/team';
 import { imgEmptyProfile } from '@assets/images';
 import { icMemberAdd, icMemberAdded } from '@assets/icons';
@@ -26,7 +27,7 @@ export default function SearchedUserItem({
   user: SearchedUserForRegister | SearchedUserForEdit;
 }) {
   const setSelectedUserList = useSetRecoilState(selectedUserListState);
-  const getStateButton = (state: 'NONE' | 'MEMBER' | 'INVITED' | 'WILL_INVITE') => {
+  const getStateButton = (state: UserState) => {
     switch (state) {
       case 'NONE':
         return <StNoneButton onClick={() => clickToggleButton(user)}>초대</StNoneButton>;

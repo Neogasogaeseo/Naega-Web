@@ -84,9 +84,9 @@ function MyKeyword() {
             <MutableKeywordList
               keywordList={myKeywordList.pages.map((page) => page.result).flat()}
               viewMode={'linear'}
-              deleteMyKeyword={() => setIsOpenModal(true)}
-              isMine={true}
+              setIsOpenModal={setIsOpenModal}
               setKeywordID={setKeywordID}
+              isMine={true}
             />
           ) : (
             <ImmutableKeywordList

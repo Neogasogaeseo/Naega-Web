@@ -6,20 +6,20 @@ import { COLOR } from '@styles/common/color';
 interface MutableKeywordListProps {
   keywordList: Keyword[];
   deleteKeyword?: (keyword: Keyword) => void;
-  deleteMyKeyword?: () => void;
+  setIsOpenModal?: (value: boolean) => void;
+  setKeywordID?: (keywordID: number) => void;
   viewMode?: 'linear' | 'flex';
   isMine?: boolean;
-  setKeywordID?: (keywordID: number) => void;
 }
 
 function MutableKeywordList(props: MutableKeywordListProps) {
   const {
     keywordList,
     deleteKeyword,
-    deleteMyKeyword,
+    setIsOpenModal,
+    setKeywordID,
     viewMode = 'flex',
     isMine,
-    setKeywordID,
   } = props;
   return (
     <StKeywordListLayout viewMode={viewMode}>
@@ -31,7 +31,7 @@ function MutableKeywordList(props: MutableKeywordListProps) {
           onDeleteClick={
             isMine
               ? () => {
-                  deleteMyKeyword && deleteMyKeyword();
+                  setIsOpenModal && setIsOpenModal(true);
                   setKeywordID && setKeywordID(+keyword.id);
                 }
               : () => deleteKeyword && deleteKeyword(keyword)

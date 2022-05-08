@@ -386,6 +386,19 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editTeamMember = async (teamID: number, newUserIdList: string) => {
+    const response = await privateAPI
+      .post({
+        url: '/team/edit/member',
+        data: { teamId: teamID, userIdList: newUserIdList },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 팀원 수정 권한이 있습니다.');
+      });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -411,5 +424,6 @@ export function teamDataRemote(): TeamService {
     getTeamEditMember,
     deleteFeedback,
     deleteIssue,
+    editTeamMember,
   };
 }

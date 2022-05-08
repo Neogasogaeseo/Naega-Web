@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
@@ -24,11 +24,26 @@ export default function TeamMemberManagement() {
   const [isAddMode, setIsAddMode] = useState(false);
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const queryClient = useQueryClient();
+
+  const editTeamMember = async () => {
+    if (teamID) {
+      const newUserIdList = selectedUserList.map((user) => user.id);
+      await api.teamService.editTeamMember(+teamID, `[${newUserIdList.join(', ')}]`);
+    }
+  };
 
   const closeAddMode = () => {
     setIsAddMode(false);
     setSelectedUserList([]);
   };
+
+  const { mutate } = useMutation(editTeamMember, {
+    onSettled: closeAddMode,
+    onSuccess: () => {
+      return queryClient.invalidateQueries('teamEditMember');
+    },
+  });
 
   useEffect(() => {
     if (!teamID) navigate('/home');
@@ -50,7 +65,7 @@ export default function TeamMemberManagement() {
       />
       <TeamMemberAddForEdit
         teamID={+teamID}
-        onClickSubmitButton={closeAddMode}
+        onClickSubmitButton={mutate}
         onClickBackButton={() => {
           if (selectedUserList.length) {
             setIsModalOpen(true);

@@ -80,7 +80,8 @@ function TeamIssueKeyword() {
         <span>{targetUser.profileName}</span>
         <span>님이 받은 키워드</span>
       </StTitleWrapper>
-      {userKeywordList?.pages && userKeywordList.pages.length > 0 ? (
+      {userKeywordList?.pages &&
+      userKeywordList.pages.map((page) => page.result).flat().length > 0 ? (
         <>
           <ImmutableKeywordList
             keywordList={userKeywordList.pages.map((page) => page.result).flat()}

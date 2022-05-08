@@ -29,6 +29,7 @@ import {
 } from './style';
 import { IcArrowViewAll, IcCopyMypage, icCrown, IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import MyPageInfoSkeleton from '@components/common/Skeleton/MyPageInfo';
 
 function HomeMyPage() {
   const { userID } = useParams();
@@ -66,7 +67,7 @@ function HomeMyPage() {
   return (
     <StHomeMyPage>
       {isMyPageInfoLoading ? (
-        <div>마이페이지 정보 로딩중</div>
+        <MyPageInfoSkeleton />
       ) : (
         mypageInfo && (
           <>

@@ -14,6 +14,7 @@ export function userDataRemote(): UserService {
       content: keyword.name,
       color: keyword.colorcode,
       fontColor: keyword.fontcolor,
+      count: keyword.count,
     }));
   };
 

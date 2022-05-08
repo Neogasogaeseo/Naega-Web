@@ -88,76 +88,74 @@ function TeamIssue() {
   const closeBottomSheet = () => setBottomSheetState(undefined);
 
   return (
-    <>
-      <StTeamIssue>
-        <CommonNavigation />
-        {issue !== undefined && teamID && issueID && (
-          <StWrapper>
-            <StHeader>
-              <div>
-                <div>{issue.category}</div>
-                <div>{issue.createdAt}</div>
-                {issue.writerID === id && <IcMeatball onClick={onManageIssueClicked} />}
-              </div>
-              <div>{issue.title}</div>
-              <div>
-                <IssueMemberList
-                  teamID={teamID}
-                  issueNumber={+issueID}
-                  issueMembers={issue.team.teammates}
-                />
-                <IssueTeamInfo
-                  teamImage={issue.team.teamProfileImage}
-                  teamName={issue.team.title}
-                  memberName={issue.writer}
-                />
-              </div>
-            </StHeader>
-            {issue.team.thumbnail && (
-              <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
-            )}
-            <StDivisionLine />
-            {feedbacks.length !== 0 ? (
-              <FeedbackCardList
-                feedbacks={feedbacks}
-                openBottomSheet={onFeedbackClicked}
-                parentPage="teamsoseo"
+    <StTeamIssue>
+      <CommonNavigation />
+      {issue !== undefined && teamID && issueID && (
+        <StWrapper>
+          <StHeader>
+            <div>
+              <div>{issue.category}</div>
+              <div>{issue.createdAt}</div>
+              {issue.writerID === id && <IcMeatball onClick={onManageIssueClicked} />}
+            </div>
+            <div>{issue.title}</div>
+            <div>
+              <IssueMemberList
+                teamID={teamID}
+                issueNumber={+issueID}
+                issueMembers={issue.team.teammates}
               />
-            ) : (
-              <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
-            )}
-          </StWrapper>
-        )}
-        <StLink to="./create">
-          <CommonInput
-            width="100%"
-            placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
-            disabled={true}
-          />
-        </StLink>
-        {bottomSheetState !== undefined && (
-          <TeamsoseoPickerBottomSheet
-            opened={isBottomSheetOpened}
-            close={() => setIsBottomSheetOpened(false)}
-            openFeedbackDeleteModal={openFeedbackDeleteModal}
-            openIssueDeleteModal={openIssueDeleteModal}
-            {...bottomSheetState}
-          />
-        )}
-        {modalState !== undefined &&
-          (modalState.mode === 'feedback' ? (
-            <DeleteFeedbackModal
-              isOpened
-              closeModal={closeModal}
-              closeBottomSheet={closeBottomSheet}
-              feedbackID={modalState.id}
+              <IssueTeamInfo
+                teamImage={issue.team.teamProfileImage}
+                teamName={issue.team.title}
+                memberName={issue.writer}
+              />
+            </div>
+          </StHeader>
+          {issue.team.thumbnail && (
+            <StIssueThumbnail src={issue.team.thumbnail} alt={issue.title} />
+          )}
+          <StDivisionLine />
+          {feedbacks.length !== 0 ? (
+            <FeedbackCardList
+              feedbacks={feedbacks}
+              openBottomSheet={onFeedbackClicked}
+              parentPage="teamsoseo"
             />
           ) : (
-            <DeleteIssueModal isOpened closeModal={closeModal} issueID={modalState.id} />
-          ))}
-        <Outlet />
-      </StTeamIssue>
-    </>
+            <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
+          )}
+        </StWrapper>
+      )}
+      <StLink to="./create">
+        <CommonInput
+          width="100%"
+          placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
+          disabled={true}
+        />
+      </StLink>
+      {bottomSheetState !== undefined && (
+        <TeamsoseoPickerBottomSheet
+          opened={isBottomSheetOpened}
+          close={() => setIsBottomSheetOpened(false)}
+          openFeedbackDeleteModal={openFeedbackDeleteModal}
+          openIssueDeleteModal={openIssueDeleteModal}
+          {...bottomSheetState}
+        />
+      )}
+      {modalState !== undefined &&
+        (modalState.mode === 'feedback' ? (
+          <DeleteFeedbackModal
+            isOpened
+            closeModal={closeModal}
+            closeBottomSheet={closeBottomSheet}
+            feedbackID={modalState.id}
+          />
+        ) : (
+          <DeleteIssueModal isOpened closeModal={closeModal} issueID={modalState.id} />
+        ))}
+      <Outlet />
+    </StTeamIssue>
   );
 }
 

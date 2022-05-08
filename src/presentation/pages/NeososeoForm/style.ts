@@ -8,6 +8,7 @@ export const StNeososeoFormPage = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const StNeososeoTitle = styled.div`

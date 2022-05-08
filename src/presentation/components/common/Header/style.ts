@@ -48,7 +48,7 @@ export const StNotification = styled.div`
   background-color: ${COLOR.CORAL_MAIN};
 `;
 
-export const StMypageButton = styled.div`
+export const StMypageButton = styled.button`
   border-radius: 13.5px;
   background-color: ${COLOR.CORAL_1};
   color: ${COLOR.CORAL_MAIN};

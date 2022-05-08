@@ -61,7 +61,6 @@ export function userDataRemote(): UserService {
 
   const getNeososeoBookmark = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}/answer` });
-    console.log(response);
     return {
       count: response.data ? response.data.length : 0,
       answerList: response.data

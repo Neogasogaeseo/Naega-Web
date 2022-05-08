@@ -46,11 +46,11 @@ export default function CommonHeader(props: CommonHeaderProps) {
     () => !isLogoOnly && (mypageState === undefined || mypageState === 'MINE') && isAuthenticated,
     [mypageState, isAuthenticated, isLogoOnly],
   );
-  const shouldShowLoginButtons = useMemo(
+  const shouldShowLoginButton = useMemo(
     () => !isLogoOnly && (mypageState === undefined || mypageState === 'MINE') && !isAuthenticated,
     [mypageState, isAuthenticated, isLogoOnly],
   );
-  const shouldShowMypageButtons = useMemo(
+  const shouldShowMypageButton = useMemo(
     () => !isLogoOnly && mypageState !== undefined && mypageState !== 'MINE',
     [mypageState, isLogoOnly],
   );
@@ -72,7 +72,7 @@ export default function CommonHeader(props: CommonHeaderProps) {
             {isNotice && <StNotification />}
           </>
         )}
-        {shouldShowLoginButtons && (
+        {shouldShowLoginButton && (
           <StLoginButton
             onClick={() => {
               navigate(`/login`);
@@ -81,7 +81,7 @@ export default function CommonHeader(props: CommonHeaderProps) {
             로그인
           </StLoginButton>
         )}
-        {shouldShowMypageButtons && (
+        {shouldShowMypageButton && (
           <StMypageButton onClick={() => navigate(getMypageLink())}>내 My 공유하기</StMypageButton>
         )}
       </div>

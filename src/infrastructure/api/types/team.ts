@@ -141,9 +141,15 @@ export type TeamNoticeItem = {
   teamID: number;
   teamName: string;
   teamProfileImage: string | undefined;
-  status: 'PENDING' | 'ACCEPT' | 'DECLINE';
+  status: TeamNoticeStatus;
   timeDifference: string;
 };
+
+export enum TeamNoticeStatus {
+  PENDING = 'PENDING',
+  ACCEPT = 'ACCEPT',
+  DECLINE = 'DECLINE',
+}
 
 export type TeamEditMember = {
   id: number;
@@ -151,4 +157,14 @@ export type TeamEditMember = {
   profileID: string;
   image: string | null;
   isConfirmed: boolean;
+};
+
+export type TeamNoticePaginateItems = {
+  pages:
+    | {
+        result: TeamNoticeItem[];
+        nextPage?: number | undefined;
+        isLast: boolean;
+      }[]
+    | undefined;
 };

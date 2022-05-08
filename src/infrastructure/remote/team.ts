@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { ForbiddenError } from '@api/types/errors';
 import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { TeamService } from '@api/team';
-import { SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
+import { NOTICE_PAGE, SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
 import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
 
@@ -323,8 +323,10 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
-  const getNotice = async () => {
-    const response = await privateAPI.get({ url: '/user/notice?offset=0&limit=40' });
+  const getNotice = async (page: number) => {
+    const response = await privateAPI.get({
+      url: `/user/notice?offset=${page}&limit=${NOTICE_PAGE}`,
+    });
     return response.data.notice.map((notice: any) => {
       const invitationUpdatedTime = new Date(notice.invitation.updatedAt);
       const now = new Date(Date.now());

@@ -78,30 +78,26 @@ function MyKeyword() {
         </div>
         <IcMeatball onClick={() => setIsBottomSheetOpened(true)} />
       </StMyKeywordHeader>
-      {!isDeletePage && myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
+      {myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
         <>
-          <ImmutableKeywordList
-            keywordList={myKeywordList.pages.map((page) => page.result).flat()}
-            viewMode={'linear'}
-            isMine={true}
-            onItemClick={() => {
-              return;
-            }}
-          />
-          <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
-        </>
-      ) : (
-        <></>
-      )}
-      {isDeletePage && myKeywordList?.pages && myKeywordList.pages.length > 0 ? (
-        <>
-          <MutableKeywordList
-            keywordList={myKeywordList.pages.map((page) => page.result).flat()}
-            viewMode={'linear'}
-            deleteMyKeyword={() => setIsOpenModal(true)}
-            isMine={true}
-            setKeywordID={setKeywordID}
-          />
+          {isDeletePage ? (
+            <MutableKeywordList
+              keywordList={myKeywordList.pages.map((page) => page.result).flat()}
+              viewMode={'linear'}
+              deleteMyKeyword={() => setIsOpenModal(true)}
+              isMine={true}
+              setKeywordID={setKeywordID}
+            />
+          ) : (
+            <ImmutableKeywordList
+              keywordList={myKeywordList.pages.map((page) => page.result).flat()}
+              viewMode={'linear'}
+              isMine={true}
+              onItemClick={() => {
+                return;
+              }}
+            />
+          )}
           <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
         </>
       ) : (

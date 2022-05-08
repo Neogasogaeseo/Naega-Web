@@ -9,7 +9,6 @@ export function userDataRemote(): UserService {
     const response = await publicAPI.get({
       url: `/user/keyword?userId=${userID}&offset=${page}&limit=${KEYWORD_PAGE}`,
     });
-    console.log(response);
     return response.data.keyword.map((keyword: any) => ({
       id: keyword.id,
       content: keyword.name,

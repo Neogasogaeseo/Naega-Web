@@ -52,9 +52,7 @@ export default function TeamMemberManagement() {
         teamID={+teamID}
         onClickSubmitButton={closeAddMode}
         onClickBackButton={() => {
-          console.log(selectedUserList);
           if (selectedUserList.length) {
-            console.log('ㅜㅜ', selectedUserList);
             setIsModalOpen(true);
           } else {
             closeAddMode();

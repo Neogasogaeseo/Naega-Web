@@ -25,6 +25,11 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     profileName: firstMember.profileName,
   });
 
+  const resetModal = () => {
+    closeModal();
+    setMode('QUESTION');
+  };
+
   const getModal = () => {
     switch (mode) {
       case 'QUESTION':
@@ -35,7 +40,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
             teamMemberList={teamMemberList}
             newHost={newHost}
             setNewHost={(newHost: TeamMemberNoneId) => setNewHost(newHost)}
-            closeModal={closeModal}
+            closeModal={resetModal}
             onClickDelegateConfirm={() => setMode('DELEGATION_CHECK')}
           />
         );
@@ -49,7 +54,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       setMode('DELEGATION');
     } else {
       // 팀 나가기 요청
-      closeModal();
+      resetModal();
     }
   };
 
@@ -78,8 +83,8 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         <div>팀을 나가시겠습니까?</div>
       </StWarningMessage>
       <div>
-        <button onClick={closeModal}>취소</button>
-        <button onClick={closeModal}>확인</button>
+        <button onClick={resetModal}>취소</button>
+        <button onClick={resetModal}>확인</button>
       </div>
     </StCommonModal>
   );

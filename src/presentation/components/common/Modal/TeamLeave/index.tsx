@@ -15,11 +15,10 @@ interface TeamLeaveModalProps {
   teamMemberList: TeamMemberWithHostInfo[];
   closeModal: () => void;
   isUserHost: boolean;
-  closeBottomSheet: () => void;
 }
 
 export default function TeamLeaveModal(props: TeamLeaveModalProps) {
-  const { isOpened, teamMemberList, closeModal, isUserHost, closeBottomSheet } = props;
+  const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK'>('QUESTION');
   const [newHost, setNewHost] = useState<TeamMemberNoneId | null>(null);
@@ -56,7 +55,6 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
 
   const goTeamHome = () => {
     resetModal();
-    closeBottomSheet();
     navigate('/home/team');
   };
 

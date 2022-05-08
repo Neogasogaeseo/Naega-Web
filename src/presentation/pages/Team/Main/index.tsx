@@ -51,9 +51,11 @@ function TeamMain() {
         <TeamLeaveModal
           isOpened={isOpenLeaveModal}
           teamMemberList={teamInfoData ? teamInfoData.teamMemberList : []}
-          closeModal={() => setIsOpenLeaveModal(false)}
+          closeModal={() => {
+            setIsOpenLeaveModal(false);
+            setIsBottomSheetOpened(false);
+          }}
           isUserHost={isUserHost}
-          closeBottomSheet={() => setIsBottomSheetOpened(false)}
         />
       )}
       <CommonNavigation />

@@ -53,7 +53,7 @@ export const StContent = styled(StSkeletonItem)`
   background-color: ${COLOR.GRAY_15};
 `;
 
-export const StContentContainer = styled.div`
+export const StKeywordContainer = styled.div`
   display: flex;
   gap: 8px;
 `;

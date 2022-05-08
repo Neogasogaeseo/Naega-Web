@@ -1,4 +1,3 @@
-import { StKeywordContainer } from '../TSSPick/style';
 import {
   StTitle,
   StHeader,
@@ -8,6 +7,7 @@ import {
   StBody,
   StContent,
   StKeyword,
+  StKeywordContainer,
 } from './style';
 
 function NSSPickSkeleton() {

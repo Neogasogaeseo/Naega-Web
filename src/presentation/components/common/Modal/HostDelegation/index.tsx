@@ -20,11 +20,13 @@ export default function HostDelegationModal(props: HostDelegationModalProps) {
       </div>
       <ProfileListSelectable
         isSquare={false}
-        profiles={teamMemberList.slice(1).map((member) => ({
-          id: member.id,
-          profileImage: member.profileImage ?? '',
-          profileName: member.profileName,
-        }))}
+        profiles={teamMemberList
+          .filter((member) => !member.isHost)
+          .map((member) => ({
+            id: member.id,
+            profileImage: member.profileImage ?? '',
+            profileName: member.profileName,
+          }))}
         selectedProfile={newHost}
         setSelectedProfile={setNewHost}
       />

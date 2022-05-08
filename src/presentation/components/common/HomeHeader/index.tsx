@@ -1,44 +1,42 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { useLoginUser } from '@hooks/useLoginUser';
 import CommonHeader from '../Header';
 import { StHomeHeader, StNavLink, StNavBottomLine } from './style';
+import { useMemo } from 'react';
+import { getGeneralLocationParams } from '@utils/etc';
 
 function HomeHeader() {
-  const location = useLocation();
-  const { userID } = useLoginUser();
-  const [currentTab, setCurrentTab] = useState(location.pathname.split('/')[1]);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  const paths = getGeneralLocationParams();
+  const { isAuthenticated, userID: loginUserNickname } = useLoginUser();
+  const [currentTab, setCurrentTab] = useState(paths[2]);
+  const userID = currentTab === 'mypage' ? paths[3] : undefined;
 
   const tabList = [
     { name: '너가소개서', href: 'neoga' },
     { name: '팀원소개서', href: 'team' },
-    { name: 'MY', href: `mypage/${userID}` },
+    { name: 'MY', href: `mypage/${loginUserNickname}` },
   ];
 
+  const mypageState = useMemo(
+    () => (userID === undefined ? undefined : userID === loginUserNickname ? 'MINE' : 'OTHER'),
+    [userID, isAuthenticated, loginUserNickname],
+  );
+
+  const shouldShowTab = useMemo(
+    () => !(currentTab === 'mypage' && mypageState !== 'MINE'),
+    [currentTab, mypageState],
+  );
+
   useEffect(() => {
-    if (!location) return;
-    const selectedTab = location.pathname.split('/')[2];
+    const selectedTab = paths[2];
     setCurrentTab(selectedTab ?? 'neoga');
-  }, [location]);
-
-  /*
-    1. mypage에 들어있고 userID가 나랑 같으면 -> 보임
-    2. mypage 외에 들어있고 userID가 존재하면 -> 보임
-    3. 그 외의 경우 -> 안 보임
-  */
-
-  useEffect(() => {
-    if (currentTab === 'mypage') {
-      setIsHeaderVisible(location.pathname.split('/')[3] === userID);
-    } else setIsHeaderVisible(userID !== '');
-  }, [currentTab, userID]);
+  }, [paths]);
 
   return (
     <StHomeHeader>
-      <CommonHeader />
-      {isHeaderVisible && (
+      <CommonHeader mypageState={mypageState} />
+      {shouldShowTab && (
         <>
           <div>
             {tabList.map((tab) => (

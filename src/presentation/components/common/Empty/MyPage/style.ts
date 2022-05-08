@@ -11,18 +11,13 @@ export const StMyEmptyView = styled.div`
   flex-direction: column;
 
   & > div:nth-child(1) {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-bottom: 10px;
-    & > svg {
-      width: 14px;
-      height: 18px;
-    }
-    & > div {
-      ${FONT_STYLES.SB_20_BODY}
-      color: ${COLOR.GRAY_6};
-    }
+    ${FONT_STYLES.SB_18_TITLE}
+    color: ${COLOR.GRAY_4};
+  }
+  & > div:nth-child(2) {
+    margin-top: 14px;
+    ${FONT_STYLES.R_14_BODY}
+    color: ${COLOR.GRAY_4};
   }
 `;
 

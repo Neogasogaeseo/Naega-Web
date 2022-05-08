@@ -61,6 +61,10 @@ export const StKeywordSection = styled.div`
         margin: 0 8px;
         ${FONT_STYLES.SB_18_TITLE};
         color: ${COLOR.GRAY_8};
+        &:nth-child(3) {
+          ${FONT_STYLES.SB_16_TITLE};
+          color: ${COLOR.CORAL_MAIN};
+        }
       }
     }
   }
@@ -69,8 +73,8 @@ export const StKeywordSection = styled.div`
 export const StKeywordTitle = styled.div`
   ${FONT_STYLES.SB_14_TITLE}
   color: ${COLOR.GRAY_7};
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 26px;
+  margin-bottom: 12px;
 `;
 
 export const StTitle = styled.div`

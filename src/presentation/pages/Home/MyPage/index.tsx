@@ -97,13 +97,16 @@ function HomeMyPage() {
                 <div>
                   <img src={icCrown} />
                   <span>My 키워드</span>
+                  <span>{mypageInfo.neososeo.length + mypageInfo.team.length}</span>
                 </div>
-                <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
-                  키워드 전체보기
-                  <IcArrowViewAll />
-                </StDetailLink>
+                {isMyPage && (
+                  <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                    키워드 전체보기
+                    <IcArrowViewAll />
+                  </StDetailLink>
+                )}
               </div>
-              {mypageInfo.neososeo && mypageInfo.neososeo.length !== 0 && (
+              {mypageInfo.neososeo.length !== 0 && (
                 <>
                   <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
                   <ImmutableKeywordList
@@ -112,7 +115,7 @@ function HomeMyPage() {
                   />
                 </>
               )}
-              {mypageInfo.team && mypageInfo.team.length !== 0 && (
+              {mypageInfo.team.length !== 0 && (
                 <>
                   <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
                   <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
@@ -147,6 +150,7 @@ function HomeMyPage() {
               <MyEmptyView
                 isMyPage={isMyPage}
                 origin="너가소개서"
+                pickTarget="답변"
                 onPickButtonClicked={() => navigate('/neoga/result')}
               />
             )}
@@ -186,6 +190,7 @@ function HomeMyPage() {
               <MyEmptyView
                 isMyPage={isMyPage}
                 origin="팀원소개서"
+                pickTarget="피드백"
                 onPickButtonClicked={() => navigate('/home/team')}
               />
             )}

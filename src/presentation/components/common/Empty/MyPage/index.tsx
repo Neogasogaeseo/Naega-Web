@@ -1,28 +1,24 @@
-import { icBookmarkSelected, IcEmptyFeedback } from '@assets/icons';
 import { StButton, StLabel, StMyEmptyView } from './style';
 
 type MyEmptyViewProps = {
   isMyPage: boolean;
   origin: string;
+  pickTarget: string;
   onPickButtonClicked: () => void;
 };
 
 function MyEmptyView(props: MyEmptyViewProps) {
-  const { isMyPage, origin, onPickButtonClicked } = props;
+  const { isMyPage, origin, pickTarget, onPickButtonClicked } = props;
   return (
     <StMyEmptyView>
-      <div>
-        <img src={icBookmarkSelected} alt="북마크" />
-        <div>Pick 한 소개가 없어요</div>
-      </div>
+      <div>픽한 {pickTarget}이 없어요</div>
       {isMyPage && (
         <StLabel>
-          {origin}에서 받은 소개 중<br />
-          마음에 드는 소개를 Pick 해주세요
+          {origin}에서 받은 {pickTarget}들 중<br />
+          마음에 드는 {pickTarget}을 픽해보세요
         </StLabel>
       )}
-      <IcEmptyFeedback />
-      {isMyPage && <StButton onClick={onPickButtonClicked}>{origin} Pick 하러가기</StButton>}
+      {isMyPage && <StButton onClick={onPickButtonClicked}>{origin} 픽 하러 가기</StButton>}
     </StMyEmptyView>
   );
 }

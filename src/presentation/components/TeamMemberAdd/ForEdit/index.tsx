@@ -94,10 +94,7 @@ export default function TeamMemberAddForEdit(props: TeamMemberAddForEditProps) {
         onClickBack={onClickBackButton}
         submitButton={{
           content: '완료',
-          onClick: () => {
-            submit();
-            setInputValue('');
-          },
+          onClick: submit,
         }}
       />
       <StPaddingWrapper>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COLOR } from '@styles/common/color';
 
@@ -39,18 +39,35 @@ export const StAddToggleButton = styled.img`
   cursor: pointer;
 `;
 
+const STATE_BUTTON = css`
+  width: 71px;
+  height: 36px;
+  border-radius: 10px;
+  ${FONT_STYLES.M_13_TITLE}
+`;
+
 export const StNoneButton = styled.button`
-  background-color: red;
+  ${STATE_BUTTON}
+  background-color: ${COLOR.CORAL_MAIN};
+  color: ${COLOR.GRAY_1};
 `;
 
 export const StMemberButton = styled.button`
-  background-color: orange;
+  ${STATE_BUTTON}
+  background-color: transparent;
+  border: 1px solid ${COLOR.GRAY_4};
+  color: ${COLOR.GRAY_4};
 `;
 
 export const StInvitedButton = styled.button`
-  background-color: yellow;
+  ${STATE_BUTTON}
+  background-color: ${COLOR.GRAY_1};
+  border: 1px solid ${COLOR.GRAY_3};
+  color: ${COLOR.GRAY_5};
 `;
 
 export const StWillInviteButton = styled.button`
-  background-color: green;
+  ${STATE_BUTTON}
+  background-color: ${COLOR.GRAY_4};
+  color: ${COLOR.GRAY_1};
 `;

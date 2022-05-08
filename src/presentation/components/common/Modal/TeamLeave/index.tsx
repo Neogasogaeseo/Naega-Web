@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo } from '@api/types/team';
 import { StCommonModal, StDescription } from '../style';
@@ -24,10 +25,16 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     profileImage: firstMember.profileImage,
     profileName: firstMember.profileName,
   });
+  const navigate = useNavigate();
 
   const resetModal = () => {
     closeModal();
     setMode('QUESTION');
+  };
+
+  const leave = () => {
+    resetModal();
+    navigate('/home/team');
   };
 
   const getModal = () => {
@@ -53,8 +60,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     if (teamMemberList.length > 1 && isUserHost) {
       setMode('DELEGATION');
     } else {
-      // 팀 나가기 요청
-      resetModal();
+      leave();
     }
   };
 
@@ -83,7 +89,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StWarningMessage>
       <div>
         <button onClick={resetModal}>취소</button>
-        <button onClick={resetModal}>확인</button>
+        <button onClick={leave}>확인</button>
       </div>
     </StDelegationCheckModal>
   );

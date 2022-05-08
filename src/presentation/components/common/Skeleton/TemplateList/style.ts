@@ -13,17 +13,16 @@ export const StTemplateListSkeleton = styled.div`
 
 export const StText = styled(StSkeletonItem)`
   height: 16px;
+  background-color: ${COLOR.GRAY_3};
 `;
 
 export const StShortText = styled(StText)`
   width: 164px;
-  background-color: ${COLOR.GRAY_3};
   margin-bottom: 8px;
 `;
 
 export const StLongText = styled(StText)`
   width: 219px;
-  background-color: ${COLOR.GRAY_3};
   margin-bottom: 25px;
 `;
 

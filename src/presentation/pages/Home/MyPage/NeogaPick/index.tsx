@@ -34,7 +34,7 @@ function MyNeogaPick() {
     data: answerInfo,
     fetchNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(['answerList', formID], fetchAnswersByPage, {
+  } = useInfiniteQuery(['answerInfo', formID], fetchAnswersByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
   });
 

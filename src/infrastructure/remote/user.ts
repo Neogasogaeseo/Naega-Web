@@ -1,8 +1,9 @@
+import { AxiosError } from 'axios';
+import { privateAPI, publicAPI } from './base';
 import { NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
-import { AxiosError } from 'axios';
-import { privateAPI, publicAPI } from './base';
+import { imgEmptyProfile } from '@assets/images';
 
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number, page: number) => {
@@ -194,7 +195,7 @@ export function userDataRemote(): UserService {
     return {
       teamList: response.data.team.map((team: any) => ({
         id: team.id,
-        profileImage: team.image,
+        profileImage: team.image || imgEmptyProfile,
         profileName: team.name,
       })),
       feedbackList: response.data.feedback
@@ -203,14 +204,14 @@ export function userDataRemote(): UserService {
             writer: feedback.writerUserName,
             targetProfileID: feedback.userId,
             target: feedback.userName,
-            createdAt: feedback.createdAt,
+            createdAt: feedback.createdAt.slice(0, 10),
             body: feedback.content,
             isBookmarked: feedback.isPinned,
             keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,
               color: keyword.colorCode,
-              fontColor: keyword.fontcolor,
+              fontColor: keyword.fontColor,
             })),
           }))
         : [],

@@ -17,6 +17,7 @@ export const StBookmark = styled.div<{ selected: boolean }>`
   background-position: center;
   width: 52px;
   height: 24px;
+  cursor: pointer;
 `;
 
 export const StMeatBall = styled(IcMeatball)`

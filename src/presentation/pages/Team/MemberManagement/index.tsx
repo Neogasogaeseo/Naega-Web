@@ -7,6 +7,8 @@ import { StTeamMember, StTeamMemberManagement } from './style';
 import { imgEmptyProfile } from '@assets/images';
 import { api } from '@api/index';
 import TeamMemberAddForEdit from '@components/TeamMemberAdd/ForEdit';
+import { useResetRecoilState } from 'recoil';
+import { selectedUserListState } from '@stores/team';
 
 export default function TeamMemberManagement() {
   const { teamID } = useParams();
@@ -19,6 +21,7 @@ export default function TeamMemberManagement() {
     { useErrorBoundary: true },
   );
   const [isAddMode, setIsAddMode] = useState(false);
+  const resetSelectedUserList = useResetRecoilState(selectedUserListState);
 
   useEffect(() => {
     if (!teamID) navigate('/home');
@@ -29,10 +32,12 @@ export default function TeamMemberManagement() {
       teamID={+teamID}
       onClickSubmitButton={() => {
         setIsAddMode(false);
+        resetSelectedUserList();
       }}
       onClickBackButton={() => {
         setIsAddMode(false);
         // 모달
+        resetSelectedUserList();
       }}
     />
   ) : (

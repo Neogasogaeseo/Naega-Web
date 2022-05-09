@@ -401,6 +401,26 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editIssue = async (
+    issueID: number,
+    categoryID: number,
+    content: string,
+    image?: File | string,
+  ) => {
+    const response = await privateAPI
+      .put({
+        url: `/team/issue/${issueID}`,
+        data: image
+          ? { categoryId: categoryID, content: content, image: image }
+          : { categoryId: categoryID, content: content },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('작성자에게만 수정 권한이 있습니다.');
+      });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -427,5 +447,6 @@ export function teamDataRemote(): TeamService {
     deleteFeedback,
     deleteIssue,
     editTeamMember,
+    editIssue,
   };
 }

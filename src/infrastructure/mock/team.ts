@@ -143,6 +143,10 @@ export function teamDataMock(): TeamService {
     return { isSuccess: true };
   };
 
+  const editIssue = async () => {
+    return { isSuccess: true };
+  };
+
   return {
     getIssueInfo,
     postFeedbackBookmark,
@@ -169,6 +173,7 @@ export function teamDataMock(): TeamService {
     deleteFeedback,
     deleteIssue,
     editTeamMember,
+    editIssue,
   };
 }
 

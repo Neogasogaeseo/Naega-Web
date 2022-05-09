@@ -140,7 +140,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     </StDelegationCheckModal>
   );
 
-  useEffect(() => initNewHost(), []);
+  useEffect(() => {
+    if (teamMemberList.length) initNewHost();
+  }, []);
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

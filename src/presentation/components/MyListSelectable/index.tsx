@@ -1,6 +1,7 @@
-import MyItem from '@components/common/MyItem';
-import { StProfileList, StItemWrapper, StAllButton } from '@components/common/ProfileList/style';
 import { useState } from 'react';
+
+import MyItem from '@components/MyItem';
+import { StProfileList, StItemWrapper, StAllButton } from '@components/common/ProfileList/style';
 
 interface MyListData {
   id: number;

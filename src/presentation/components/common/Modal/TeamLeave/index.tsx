@@ -94,13 +94,18 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     }
   };
 
-  const clickLeaveConfirm = () => {
+  const confirmLeave = () => {
     if (teamMemberList.length > 1 && isUserHost) {
       setMode('DELEGATION');
     } else {
       mutateLeave();
       goTeamHome();
     }
+  };
+
+  const confirmDelegationFinal = () => {
+    mutateDelegate();
+    goTeamHome();
   };
 
   const QuestionModal = (
@@ -112,7 +117,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>
-        <button onClick={clickLeaveConfirm}>확인</button>
+        <button onClick={confirmLeave}>확인</button>
       </div>
     </StCommonModal>
   );
@@ -128,14 +133,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StWarningMessage>
       <div>
         <button onClick={resetModal}>취소</button>
-        <button
-          onClick={() => {
-            mutateDelegate();
-            goTeamHome();
-          }}
-        >
-          확인
-        </button>
+        <button onClick={confirmDelegationFinal}>확인</button>
       </div>
     </StDelegationCheckModal>
   );

@@ -12,7 +12,13 @@ interface HostDelegationModalProps {
 }
 
 export default function HostDelegationModal(props: HostDelegationModalProps) {
-  const { teamMemberList, newHost, setNewHost, closeModal, onClickDelegateConfirm } = props;
+  const {
+    teamMemberList,
+    newHost,
+    setNewHost,
+    closeModal,
+    onClickDelegateConfirm: confirmDelegation,
+  } = props;
   const profileList = useMemo(
     () =>
       teamMemberList
@@ -38,7 +44,7 @@ export default function HostDelegationModal(props: HostDelegationModalProps) {
       />
       <div>
         <button onClick={closeModal}>취소</button>
-        <button onClick={onClickDelegateConfirm}>확인</button>
+        <button onClick={confirmDelegation}>확인</button>
       </div>
     </StHostDelegationModal>
   );

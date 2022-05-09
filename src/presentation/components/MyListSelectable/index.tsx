@@ -1,5 +1,6 @@
 import MyItem from '@components/common/MyItem';
-import { StItemWrapper, StProfileList } from '@components/common/ProfileList/style';
+import { StProfileList, StItemWrapper, StAllButton } from '@components/common/ProfileList/style';
+import { useState } from 'react';
 
 interface MyListData {
   id: number;
@@ -10,15 +11,26 @@ interface MyListProps {
   isSquare: boolean;
   items: MyListData[];
   selectedItem: MyListData | null;
-  setSelectedItem: (myListData: MyListData) => void;
+  setSelectedItem: (myListData: MyListData | null) => void;
 }
 
 function MyListSelectable(props: MyListProps) {
   const { isSquare, items, selectedItem, setSelectedItem } = props;
+  const [allButton, setAllButton] = useState(true);
 
   return (
     <StProfileList>
       <StItemWrapper isSquare={isSquare}>
+        <StAllButton
+          isSquare={isSquare}
+          isSelected={allButton}
+          onClick={() => {
+            setAllButton(true);
+            setSelectedItem(null);
+          }}
+        >
+          ALL
+        </StAllButton>
         {items.map(({ id, profileImage }) => (
           <MyItem
             key={id}
@@ -26,7 +38,10 @@ function MyListSelectable(props: MyListProps) {
             profileImage={profileImage}
             isSquare={isSquare}
             isSelected={selectedItem?.id === id}
-            onProfileClick={() => setSelectedItem({ id, profileImage })}
+            onProfileClick={() => {
+              setAllButton(false);
+              setSelectedItem({ id, profileImage });
+            }}
           />
         ))}
       </StItemWrapper>

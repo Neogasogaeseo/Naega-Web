@@ -15,5 +15,4 @@ export const StMyItem = styled.button<{
   background: no-repeat center/cover url(${(props) => props.img});
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
   margin-right: 14px;
-  cursor: pointer;
 `;

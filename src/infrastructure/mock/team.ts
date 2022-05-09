@@ -144,7 +144,7 @@ export function teamDataMock(): TeamService {
   };
 
   const editIssue = async () => {
-    return { isSuccess: true };
+    return { isSuccess: true, image: null };
   };
 
   return {

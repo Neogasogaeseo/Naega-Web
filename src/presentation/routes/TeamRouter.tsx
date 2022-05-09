@@ -5,6 +5,7 @@ import TeamIssueFeedback from '@pages/Team/Issue/Feedback';
 import TeamIssueKeyword from '@pages/Team/Issue/Keyword';
 import TeamAlert from '@pages/Team/Alert';
 import TeamMemberManagement from '@pages/Team/MemberManagement';
+import TeamIssueEdit from '@pages/Team/Issue/Edit';
 const TeamRegister = lazy(() => import('@pages/Team/Register'));
 const TeamEdit = lazy(() => import('@pages/Team/Edit'));
 const TeamMain = lazy(() => import('@pages/Team/Main'));

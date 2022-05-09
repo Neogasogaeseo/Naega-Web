@@ -407,12 +407,15 @@ export function teamDataRemote(): TeamService {
     content: string,
     image?: File | string,
   ) => {
+    const formData = new FormData();
+    formData.append('categoryId', categoryID.toString());
+    formData.append('content', content);
+    image && formData.append('image', image);
     const response = await privateAPI
       .put({
         url: `/team/issue/${issueID}`,
-        data: image
-          ? { categoryId: categoryID, content: content, image: image }
-          : { categoryId: categoryID, content: content },
+        data: formData,
+        type: 'multipart',
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === STATUS_CODE.FORBIDDEN)

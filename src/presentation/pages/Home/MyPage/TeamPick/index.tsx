@@ -63,7 +63,7 @@ function MyTeamPick() {
         )}
         {feedbackInfo?.pages && (
           <StMyTeamPickList>
-            {feedbackInfo.pages.length > 0 ? (
+            {feedbackInfo.pages.map((page) => page.feedbackList).flat().length > 0 ? (
               <FeedbackCardList
                 feedbacks={feedbackInfo.pages.map((page) => page.feedbackList).flat()}
               />

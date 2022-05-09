@@ -7,10 +7,9 @@ import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import FeedbackCardList from '@components/FeedbackCard/List';
-import PickerList from '@components/common/PickerList';
+import SelectionList from '@components/common/SelectionList';
 import { PICK_PAGE } from '@utils/constant';
 import { StMyTeamPick, StMyTeamPickList } from './style';
-
 
 function MyTeamPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
@@ -52,7 +51,7 @@ function MyTeamPick() {
           <span>My 프로필에 걸어두고 싶은 피드백</span>을 <span>픽</span>해주세요!
         </header>
         {feedbackInfo?.pages && (
-          <PickerList
+          <SelectionList
             teamList={feedbackInfo.pages.map((page) => page.teamList).flat()}
             isSquare={true}
             setID={setTeamID}

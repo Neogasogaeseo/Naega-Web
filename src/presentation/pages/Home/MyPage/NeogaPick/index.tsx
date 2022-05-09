@@ -5,11 +5,11 @@ import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
+import SelectionList from '@components/common/SelectionList';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
 import { PICK_PAGE } from '@utils/constant';
 import { StMyNeogaPick, StMyNeogaPickList } from './style';
-import PickerList from '@components/common/PickerList';
 
 function MyNeogaPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
@@ -42,6 +42,10 @@ function MyNeogaPick() {
     if (!isInitialState) fetchNextPage();
   }, [isBottomReached, isInitialState]);
 
+  useEffect(() => {
+    setFormID(formID);
+  }, [formID]);
+
   return (
     <>
       <CommonNavigation title="너가소개서 픽 하기" />
@@ -51,11 +55,11 @@ function MyNeogaPick() {
           <span>My 프로필에 걸어두고 싶은 답변</span>을 <span>픽</span>해주세요!
         </header>
         {answerInfo?.pages && (
-          <PickerList
+          <SelectionList
             formList={answerInfo.pages.map((page) => page.formList).flat()}
             isSquare={false}
             setID={setFormID}
-          ></PickerList>
+          />
         )}
         {answerInfo?.pages && (
           <StMyNeogaPickList>

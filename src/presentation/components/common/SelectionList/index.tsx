@@ -2,33 +2,41 @@ import { useState } from 'react';
 
 import { FormDetail } from '@api/types/user';
 import { TeamMemberNoneId } from '@api/types/team';
-import { StPickerList, StButton } from './style';
-interface PickerListProps {
+import { StSelectionList, StDefaultButton, StButton } from './style';
+interface SelectionListProps {
   formList?: FormDetail[];
   teamList?: TeamMemberNoneId[];
   isSquare: boolean;
   setID: (ID: number) => void;
 }
 
-function PickerList(props: PickerListProps) {
+function SelectionList(props: SelectionListProps) {
   const { formList, teamList, isSquare, setID } = props;
+  const [isDefault, setIsDefault] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
 
   return (
-    <StPickerList>
-      <StButton isSquare={isSquare} isClicked={isClicked}>
+    <StSelectionList>
+      <StDefaultButton
+        isSquare={isSquare}
+        isDefault={isDefault}
+        isClicked={isClicked}
+        onClick={() => setIsDefault(true)}
+      >
         ALL
-      </StButton>
+      </StDefaultButton>
       {formList &&
         formList.map((form) => (
           <StButton
             key={form.formId}
             img={form.darkIconImage}
             isSquare={isSquare}
+            isDefault={isDefault}
             isClicked={isClicked}
             onClick={() => {
               setID(form.formId);
               setIsClicked(true);
+              setIsDefault(false);
             }}
           />
         ))}
@@ -38,6 +46,7 @@ function PickerList(props: PickerListProps) {
             key={team.id}
             img={team.profileImage}
             isSquare={isSquare}
+            isDefault={isDefault}
             isClicked={isClicked}
             onClick={() => {
               setID(team.id);
@@ -45,8 +54,8 @@ function PickerList(props: PickerListProps) {
             }}
           />
         ))}
-    </StPickerList>
+    </StSelectionList>
   );
 }
 
-export default PickerList;
+export default SelectionList;

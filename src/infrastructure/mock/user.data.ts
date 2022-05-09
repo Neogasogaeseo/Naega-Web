@@ -161,15 +161,13 @@ export const USER_DATA: {
   MY_ANSWER_INFO: {
     formList: [
       {
-        formId: 1,
-        title: '너가 닮고 싶은 나의 일잘러 모습',
-        darkIconImage:
+        id: 1,
+        profileImage:
           'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/icon%2Ftxt_BL.png?alt=media&token=d322c4bf-d31b-4146-99dd-861b678c5094',
       },
       {
-        formId: 6,
-        title: '내가 가진 장점 소개해주기',
-        darkIconImage:
+        id: 6,
+        profileImage:
           'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/icon%2Fstar_BL.png?alt=media&token=fcc3d106-1ec0-40bf-8a2a-90862209751f',
       },
     ],
@@ -207,15 +205,12 @@ export const USER_DATA: {
       {
         id: 6,
         profileImage: 'https://cdn.pixabay.com/photo/2021/07/13/11/34/cat-6463284_1280.jpg',
-        profileName: '너가소개서',
       },
       {
         id: 1,
-        profileName: 'SOPT',
       },
       {
         id: 2,
-        profileName: '기업적디자인',
       },
     ],
     feedbackList: [

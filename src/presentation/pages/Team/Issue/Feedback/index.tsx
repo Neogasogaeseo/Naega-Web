@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
-import { Keyword } from '@api/types/user';
-import { TeamMemberNoneId } from '@api/types/team';
+import { Keyword, MyDetail } from '@api/types/user';
 import ProfileListSelectable from '@components/ProfileListSelectable';
 import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -20,7 +19,7 @@ import { useQuery, useQueryClient } from 'react-query';
 import { IcLock } from '@assets/icons';
 
 function TeamIssueFeedback() {
-  const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
+  const [selectedUser, setSelectedUser] = useState<MyDetail | null>(null);
   const [content, setContent] = useState<string>('');
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
   const [isConfirming, setIsConfirming] = useState(false);

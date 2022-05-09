@@ -2,10 +2,11 @@ import { useInfiniteQuery } from 'react-query';
 import { useCallback, useEffect, useState } from 'react';
 
 import { api } from '@api/index';
+import { MyDetail } from '@api/types/user';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
-import SelectionList from '@components/common/SelectionList';
+import ProfileListSelectable from '@components/ProfileListSelectable';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
 import { PICK_PAGE } from '@utils/constant';
@@ -13,6 +14,7 @@ import { StMyNeogaPick, StMyNeogaPickList } from './style';
 
 function MyNeogaPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
+  const [selectedForm, setSelectedForm] = useState<MyDetail | null>(null);
   const [formID, setFormID] = useState<null | number>(null);
 
   const fetchAnswersByPage = useCallback(
@@ -55,10 +57,11 @@ function MyNeogaPick() {
           <span>My 프로필에 걸어두고 싶은 답변</span>을 <span>픽</span>해주세요!
         </header>
         {answerInfo?.pages && (
-          <SelectionList
-            formList={answerInfo.pages.map((page) => page.formList).flat()}
+          <ProfileListSelectable
+            profiles={answerInfo.pages.map((page) => page.formList).flat()}
             isSquare={false}
-            setID={setFormID}
+            selectedProfile={selectedForm}
+            setSelectedProfile={setSelectedForm}
           />
         )}
         {answerInfo?.pages && (

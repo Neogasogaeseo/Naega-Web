@@ -6,14 +6,16 @@ import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
+import ProfileListSelectable from '@components/ProfileListSelectable';
 import FeedbackCardList from '@components/FeedbackCard/List';
-import SelectionList from '@components/common/SelectionList';
 import { PICK_PAGE } from '@utils/constant';
 import { StMyTeamPick, StMyTeamPickList } from './style';
+import { MyDetail } from '@api/types/user';
 
 function MyTeamPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [teamID, setTeamID] = useState<null | number>(null);
+  const [selectedTeam, setSelectedTeam] = useState<MyDetail | null>(null);
 
   const fetchFeedbacksByPage = useCallback(
     async ({ pageParam = 0 }) => {
@@ -51,10 +53,11 @@ function MyTeamPick() {
           <span>My 프로필에 걸어두고 싶은 피드백</span>을 <span>픽</span>해주세요!
         </header>
         {feedbackInfo?.pages && (
-          <SelectionList
-            teamList={feedbackInfo.pages.map((page) => page.teamList).flat()}
+          <ProfileListSelectable
+            profiles={feedbackInfo.pages.map((page) => page.teamList).flat()}
             isSquare={true}
-            setID={setTeamID}
+            selectedProfile={selectedTeam}
+            setSelectedProfile={setSelectedTeam}
           />
         )}
         {feedbackInfo?.pages && (

@@ -61,18 +61,17 @@ export interface EditProfileInfo {
   image: string;
 }
 
-export interface FormDetail {
-  formId: number;
-  title: string;
-  darkIconImage: string;
+export interface MyDetail {
+  id: number;
+  profileImage?: string;
 }
 
 export interface MyAnswerInfo {
-  formList: FormDetail[];
+  formList: MyDetail[];
   answerList: AnswerDetail[];
 }
 
 export interface MyFeedbackInfo {
-  teamList: TeamMemberNoneId[];
+  teamList: MyDetail[];
   feedbackList: FeedbackDetail[];
 }

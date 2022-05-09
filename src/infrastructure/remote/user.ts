@@ -161,9 +161,8 @@ export function userDataRemote(): UserService {
     return {
       formList: response.data.form
         ? response.data.form.map((form: any) => ({
-            formId: form.formId,
-            title: form.title,
-            darkIconImage: form.darkIconImage,
+            id: form.formId,
+            profileImage: form.darkIconImage,
           }))
         : [],
       answerList: response.data.answer
@@ -196,7 +195,6 @@ export function userDataRemote(): UserService {
       teamList: response.data.team.map((team: any) => ({
         id: team.id,
         profileImage: team.image || imgEmptyProfile,
-        profileName: team.name,
       })),
       feedbackList: response.data.feedback
         ? response.data.feedback.map((feedback: any) => ({

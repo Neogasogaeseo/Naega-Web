@@ -154,10 +154,9 @@ export function userDataRemote(): UserService {
   };
 
   const getMyAnswerInfo = async (page: number, formID?: number) => {
+    const queryParamFormID = formID ? `formId=${formID}&` : '';
     const response = await privateAPI.get({
-      url: formID
-        ? `/form/answer/pick?formId=${formID}&offset=${page}&limit=${PICK_PAGE}`
-        : `/form/answer/pick?offset=${page}&limit=${PICK_PAGE}`,
+      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
     });
     return {
       formList: response.data.form
@@ -186,10 +185,9 @@ export function userDataRemote(): UserService {
   };
 
   const getMyFeedbackInfo = async (page: number, teamID?: number) => {
+    const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
     const response = await privateAPI.get({
-      url: teamID
-        ? `/team/feedback/pick?teamId=${teamID}&offset=${page}&limit=${PICK_PAGE}`
-        : `/team/feedback/pick?offset=${page}&limit=${PICK_PAGE}`,
+      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
     });
     if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { teamList: [], feedbackList: [] };
     return {

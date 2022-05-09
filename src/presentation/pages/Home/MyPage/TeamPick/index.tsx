@@ -54,7 +54,7 @@ function MyTeamPick() {
         {feedbackInfo?.pages && (
           <StMyTeamList>
             <ProfileListSelectable
-              profiles={feedbackInfo.pages.map((page) => page.teamList).flat()}
+              profiles={feedbackInfo.pages[0]?.teamList ?? []}
               isSquare={true}
               selectedProfile={selectedTeam}
               setSelectedProfile={setSelectedTeam}

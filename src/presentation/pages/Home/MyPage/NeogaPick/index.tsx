@@ -54,7 +54,7 @@ function MyNeogaPick() {
         {answerInfo?.pages && (
           <StMyNeogaFormList>
             <ProfileListSelectable
-              profiles={answerInfo.pages.map((page) => page.formList).flat()}
+              profiles={answerInfo.pages[0]?.formList ?? []}
               isSquare={false}
               selectedProfile={selectedForm}
               setSelectedProfile={setSelectedForm}

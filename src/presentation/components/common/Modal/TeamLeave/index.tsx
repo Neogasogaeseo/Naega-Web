@@ -51,6 +51,21 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const resetModal = () => {
     closeModal();
     setMode('QUESTION');
+    initNewHost();
+  };
+
+  const initNewHost = () => {
+    setNewHost(() => {
+      const firstMember =
+        teamMemberList.length === 1 && isUserHost
+          ? teamMemberList[0]
+          : teamMemberListWithoutHost[0];
+      return {
+        id: firstMember.id,
+        profileImage: firstMember.profileImage,
+        profileName: firstMember.profileName,
+      };
+    });
   };
 
   const goTeamHome = () => {
@@ -125,19 +140,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     </StDelegationCheckModal>
   );
 
-  useEffect(() => {
-    setNewHost(() => {
-      const firstMember =
-        teamMemberList.length === 1 && isUserHost
-          ? teamMemberList[0]
-          : teamMemberListWithoutHost[0];
-      return {
-        id: firstMember.id,
-        profileImage: firstMember.profileImage,
-        profileName: firstMember.profileName,
-      };
-    });
-  }, []);
+  useEffect(() => initNewHost(), []);
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

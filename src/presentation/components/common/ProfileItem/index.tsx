@@ -4,7 +4,7 @@ import { imgEmptyProfile } from '@assets/images/index';
 interface ProfileItemProps {
   id: number;
   profileImage?: string;
-  profileName?: string;
+  profileName: string;
   isSquare: boolean;
   isSelected?: boolean | undefined;
   onProfileClick: (id: number) => void;
@@ -18,7 +18,7 @@ function ProfileItem(props: ProfileItemProps) {
       <div>
         <img src={profileImage || imgEmptyProfile} />
       </div>
-      {profileName && <div>{profileName}</div>}
+      <div>{profileName}</div>
     </StProfileItem>
   );
 }

@@ -4,7 +4,7 @@ import { StItemWrapper, StProfileList } from '@components/common/ProfileList/sty
 interface ProfileListData {
   id: number;
   profileImage?: string;
-  profileName?: string;
+  profileName: string;
 }
 
 interface ProfileListProps {
@@ -25,14 +25,10 @@ function ProfileListSelectable(props: ProfileListProps) {
             key={id}
             id={id}
             profileImage={profileImage}
-            profileName={profileName && profileName}
+            profileName={profileName}
             isSquare={isSquare}
             isSelected={selectedProfile?.id === id}
-            onProfileClick={() =>
-              setSelectedProfile(
-                profileName ? { id, profileImage, profileName } : { id, profileImage },
-              )
-            }
+            onProfileClick={() => setSelectedProfile({ id, profileImage, profileName })}
           />
         ))}
       </StItemWrapper>

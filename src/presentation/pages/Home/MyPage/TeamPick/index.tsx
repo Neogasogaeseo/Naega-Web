@@ -6,7 +6,7 @@ import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
-import ProfileListSelectable from '@components/ProfileListSelectable';
+import MyListSelectable from '@components/MyListSelectable';
 import FeedbackCardList from '@components/FeedbackCard/List';
 import { PICK_PAGE } from '@utils/constant';
 import { StMyTeamPick, StMyTeamList, StMyTeamPickList } from './style';
@@ -53,11 +53,11 @@ function MyTeamPick() {
         </header>
         {feedbackInfo?.pages && (
           <StMyTeamList>
-            <ProfileListSelectable
-              profiles={feedbackInfo.pages[0]?.teamList ?? []}
+            <MyListSelectable
+              items={feedbackInfo.pages[0]?.teamList ?? []}
               isSquare={true}
-              selectedProfile={selectedTeam}
-              setSelectedProfile={setSelectedTeam}
+              selectedItem={selectedTeam}
+              setSelectedItem={setSelectedTeam}
             />
           </StMyTeamList>
         )}

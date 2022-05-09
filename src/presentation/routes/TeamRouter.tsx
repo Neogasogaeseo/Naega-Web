@@ -26,6 +26,7 @@ const TeamRouter = () => (
           <Route path="keyword" element={<TeamIssueKeyword />} />
         </Route>
       </Route>
+      <Route path="/:teamID/:issueID/edit" element={<TeamIssueEdit />} />
       <Route path="/alert" element={<TeamAlert />} />
     </Route>
   </Routes>

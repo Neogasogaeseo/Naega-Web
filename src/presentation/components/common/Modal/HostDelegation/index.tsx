@@ -1,5 +1,6 @@
 import { TeamMemberNoneId, TeamMemberWithHostInfo } from '@api/types/team';
 import ProfileListSelectable from '@components/ProfileListSelectable';
+import { useMemo } from 'react';
 import { StHostDelegationModal } from './style';
 
 interface HostDelegationModalProps {
@@ -12,6 +13,17 @@ interface HostDelegationModalProps {
 
 export default function HostDelegationModal(props: HostDelegationModalProps) {
   const { teamMemberList, newHost, setNewHost, closeModal, onClickDelegateConfirm } = props;
+  const profileList = useMemo(
+    () =>
+      teamMemberList
+        .filter((member) => !member.isHost)
+        .map((member) => ({
+          id: member.id,
+          profileImage: member.profileImage ?? '',
+          profileName: member.profileName,
+        })),
+    [teamMemberList],
+  );
   return (
     <StHostDelegationModal>
       <div>관리자 권한 위임</div>
@@ -20,13 +32,7 @@ export default function HostDelegationModal(props: HostDelegationModalProps) {
       </div>
       <ProfileListSelectable
         isSquare={false}
-        profiles={teamMemberList
-          .filter((member) => !member.isHost)
-          .map((member) => ({
-            id: member.id,
-            profileImage: member.profileImage ?? '',
-            profileName: member.profileName,
-          }))}
+        profiles={profileList}
         selectedProfile={newHost}
         setSelectedProfile={setNewHost}
       />

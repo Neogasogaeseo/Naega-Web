@@ -19,7 +19,7 @@ function MyNeogaPick() {
   const fetchAnswersByPage = useCallback(
     async ({ pageParam = 0 }) => {
       const response = selectedForm
-        ? await api.userService.getMyAnswerInfo(selectedForm.id, pageParam)
+        ? await api.userService.getMyAnswerInfo(pageParam, selectedForm.id)
         : await api.userService.getMyAnswerInfo(pageParam);
       return {
         formList: response.formList,

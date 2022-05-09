@@ -19,7 +19,7 @@ function MyTeamPick() {
   const fetchFeedbacksByPage = useCallback(
     async ({ pageParam = 0 }) => {
       const response = selectedTeam
-        ? await api.userService.getMyFeedbackInfo(selectedTeam.id, pageParam)
+        ? await api.userService.getMyFeedbackInfo(pageParam, selectedTeam.id)
         : await api.userService.getMyFeedbackInfo(pageParam);
       return {
         teamList: response.teamList,

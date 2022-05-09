@@ -52,6 +52,11 @@ function TeamIssueFeedback() {
     }
   };
 
+  useEffect(() => {
+    setKeywordList([]);
+    setContent('');
+  }, [selectedUser]);
+
   return (
     <>
       <StAbsoluteWrapper>

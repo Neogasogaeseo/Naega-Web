@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const StAbsoluteWrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   top: 0;
   left: 0;
   background-color: ${COLOR.WHITE};

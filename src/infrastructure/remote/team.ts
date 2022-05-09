@@ -206,16 +206,33 @@ export function teamDataRemote(): TeamService {
     else throw '서버 통신 실패';
   };
 
-  const getSearchedUserList = async (searchID: string, page: number) => {
+  const getSearchedUserListForRegister = async (searchID: string, page: number) => {
     const response = await privateAPI.get({
       url: `/user/search?searchId=${searchID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
     });
     if (response.status === STATUS_CODE.OK)
-      return response.data.user.map((member: any) => ({
-        id: member.id,
-        profileID: member.profileId,
-        name: member.name,
-        image: member.image,
+      return response.data.user.map((user: any) => ({
+        id: user.id,
+        profileID: user.profileId,
+        name: user.name,
+        image: user.image,
+      }));
+    else if (response.axiosStatus === STATUS_CODE.NO_CONTENT) {
+      return [];
+    }
+  };
+
+  const getSearchedUserListForEdit = async (teamID: number, searchID: string, page: number) => {
+    const response = await privateAPI.get({
+      url: `/user/search?searchId=${searchID}&teamId=${teamID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
+    });
+    if (response.status === STATUS_CODE.OK)
+      return response.data.user.map((user: any) => ({
+        id: user.id,
+        profileID: user.profileId,
+        name: user.name,
+        image: user.image,
+        isConfirmed: user.isConfirmed,
       }));
     else if (response.axiosStatus === STATUS_CODE.NO_CONTENT) {
       return [];
@@ -371,6 +388,19 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editTeamMember = async (teamID: number, newUserIdList: string) => {
+    const response = await privateAPI
+      .post({
+        url: '/team/edit/member',
+        data: { teamId: teamID, userIdList: newUserIdList },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 팀원 수정 권한이 있습니다.');
+      });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -380,7 +410,8 @@ export function teamDataRemote(): TeamService {
     getMyIssue,
     getInviteInfo,
     getIssueInfo,
-    getSearchedUserList,
+    getSearchedUserListForRegister,
+    getSearchedUserListForEdit,
     getTeamMembers,
     postFeedback,
     postTeamInfo,
@@ -395,5 +426,6 @@ export function teamDataRemote(): TeamService {
     getTeamEditMember,
     deleteFeedback,
     deleteIssue,
+    editTeamMember,
   };
 }

@@ -34,7 +34,7 @@ function KeywordItem(props: Props) {
           />
         )}
       </div>
-      {isMine && <StCount>{count}</StCount>}
+      {viewMode === 'linear' && <StCount>{count}</StCount>}
       {isMine && isMutable && <StMyDeleteBtn onClick={onDeleteClick}>삭제</StMyDeleteBtn>}
     </StKeywordItem>
   );

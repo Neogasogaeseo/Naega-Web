@@ -21,7 +21,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import CommonNavigation from '@components/common/Navigation';
 import { selectedUserListState } from '@stores/team';
-import UserSearchForTeamRegister from '@components/UserSearch/ForTeamRegister';
+import TeamMemberAddForRegister from '@components/TeamMemberAdd/ForRegister';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
@@ -50,7 +50,7 @@ function TeamRegister() {
 
   return (
     <StWrapper>
-      {isMemberSelectMode && <UserSearchForTeamRegister onClickSubmitButton={closeMembers} />}
+      {isMemberSelectMode && <TeamMemberAddForRegister onClickSubmitButton={closeMembers} />}
       <StTeamRegister>
         <CommonNavigation />
         <div>

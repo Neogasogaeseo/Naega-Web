@@ -63,7 +63,7 @@ function MyNeogaPick() {
         )}
         {answerInfo?.pages && (
           <StMyNeogaPickList>
-            {answerInfo.pages.length > 0 ? (
+            {answerInfo.pages.map((page) => page.answerList).flat().length > 0 ? (
               <NeososeoAnswerCardList
                 answers={answerInfo.pages.map((page) => page.answerList).flat()}
               />

@@ -51,7 +51,7 @@ export interface AnswerDetail {
   content: string;
   isBookmarked: boolean;
   keywordList: Keyword[];
-  targetUserID: number;
+  targetUserID?: number;
 }
 
 export interface EditProfileInfo {

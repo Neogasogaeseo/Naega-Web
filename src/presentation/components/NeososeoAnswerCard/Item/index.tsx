@@ -29,7 +29,7 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
       <div>
         <img src={icon} alt={id.toString()} />
         <div>{question}</div>
-        {targetUserID === userPK && (
+        {(targetUserID === userPK || targetUserID === undefined) && (
           <img src={isBookmarked ? icPicked : icUnpicked} alt="pick" onClick={bookmarkAnswer} />
         )}
       </div>

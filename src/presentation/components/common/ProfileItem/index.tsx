@@ -18,7 +18,7 @@ function ProfileItem(props: ProfileItemProps) {
       <div>
         <img src={profileImage || imgEmptyProfile} />
       </div>
-      <div>{profileName && profileName}</div>
+      {profileName && <div>{profileName}</div>}
     </StProfileItem>
   );
 }

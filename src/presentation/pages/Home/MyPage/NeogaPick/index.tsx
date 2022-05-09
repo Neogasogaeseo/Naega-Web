@@ -10,17 +10,16 @@ import ProfileListSelectable from '@components/ProfileListSelectable';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
 import { PICK_PAGE } from '@utils/constant';
-import { StMyNeogaPick, StMyNeogaPickList } from './style';
+import { StMyNeogaPick, StMyNeogaFormList, StMyNeogaPickList } from './style';
 
 function MyNeogaPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [selectedForm, setSelectedForm] = useState<MyDetail | null>(null);
-  const [formID, setFormID] = useState<null | number>(null);
 
   const fetchAnswersByPage = useCallback(
     async ({ pageParam = 0 }) => {
-      const response = formID
-        ? await api.userService.getMyAnswerInfo(formID, pageParam)
+      const response = selectedForm
+        ? await api.userService.getMyAnswerInfo(selectedForm.id, pageParam)
         : await api.userService.getMyAnswerInfo(pageParam);
       return {
         formList: response.formList,
@@ -29,24 +28,20 @@ function MyNeogaPick() {
         isLast: response.answerList.length < PICK_PAGE,
       };
     },
-    [formID],
+    [selectedForm && selectedForm.id],
   );
 
   const {
     data: answerInfo,
     fetchNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery(['answerInfo', formID], fetchAnswersByPage, {
+  } = useInfiniteQuery(['answerInfo', selectedForm?.id], fetchAnswersByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
   });
 
   useEffect(() => {
     if (!isInitialState) fetchNextPage();
   }, [isBottomReached, isInitialState]);
-
-  useEffect(() => {
-    setFormID(formID);
-  }, [formID]);
 
   return (
     <>
@@ -57,12 +52,14 @@ function MyNeogaPick() {
           <span>My 프로필에 걸어두고 싶은 답변</span>을 <span>픽</span>해주세요!
         </header>
         {answerInfo?.pages && (
-          <ProfileListSelectable
-            profiles={answerInfo.pages.map((page) => page.formList).flat()}
-            isSquare={false}
-            selectedProfile={selectedForm}
-            setSelectedProfile={setSelectedForm}
-          />
+          <StMyNeogaFormList>
+            <ProfileListSelectable
+              profiles={answerInfo.pages.map((page) => page.formList).flat()}
+              isSquare={false}
+              selectedProfile={selectedForm}
+              setSelectedProfile={setSelectedForm}
+            />
+          </StMyNeogaFormList>
         )}
         {answerInfo?.pages && (
           <StMyNeogaPickList>

@@ -13,11 +13,12 @@ function MyItem(props: MyItemProps) {
   const { id, profileImage, isSquare, onProfileClick, isSelected } = props;
 
   return (
-    <StMyItem isSquare={isSquare} isSelected={isSelected} onClick={() => onProfileClick(id)}>
-      <div>
-        <img src={profileImage || imgEmptyProfile} />
-      </div>
-    </StMyItem>
+    <StMyItem
+      isSquare={isSquare}
+      isSelected={isSelected}
+      onClick={() => onProfileClick(id)}
+      img={profileImage || imgEmptyProfile}
+    />
   );
 }
 

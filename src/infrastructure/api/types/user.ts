@@ -45,12 +45,13 @@ export interface MyPageInfo extends User {
 
 export interface AnswerDetail {
   id: number;
+  formId?: number;
   icon: string;
   question: string;
   content: string;
   isBookmarked: boolean;
   keywordList: Keyword[];
-  targetUserID: number;
+  targetUserID?: number;
 }
 
 export interface EditProfileInfo {
@@ -58,4 +59,19 @@ export interface EditProfileInfo {
   profileId: string;
   name: string;
   image: string;
+}
+
+export interface MyDetail {
+  id: number;
+  profileImage?: string;
+}
+
+export interface MyAnswerInfo {
+  formList: MyDetail[];
+  answerList: AnswerDetail[];
+}
+
+export interface MyFeedbackInfo {
+  teamList: MyDetail[];
+  feedbackList: FeedbackDetail[];
 }

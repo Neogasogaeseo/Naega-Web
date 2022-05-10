@@ -95,12 +95,6 @@ export default function TeamIssueEdit() {
   );
 
   const getCategoryInfoFromName = (categoryName: string) => {
-    console.log('dd', categoryName);
-    if (categoryList)
-      console.log(
-        'ddd',
-        categoryList.find((category) => category.name === categoryName),
-      );
     if (!categoryList) return;
     return categoryList.find((category) => category.name === categoryName);
   };

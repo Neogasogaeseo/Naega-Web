@@ -57,6 +57,6 @@ export interface TeamService {
     issueID: number,
     categoryID: number,
     content: string,
-    image?: File | string,
+    image?: File | '',
   ): Promise<{ isSuccess: boolean }>;
 }

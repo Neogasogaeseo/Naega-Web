@@ -405,7 +405,7 @@ export function teamDataRemote(): TeamService {
     issueID: number,
     categoryID: number,
     content: string,
-    image?: File | string,
+    image?: File | '',
   ) => {
     const formData = new FormData();
     formData.append('categoryId', categoryID.toString());

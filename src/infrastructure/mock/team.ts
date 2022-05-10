@@ -143,9 +143,14 @@ export function teamDataMock(): TeamService {
     return { isSuccess: true };
   };
 
+  const editIssue = async () => {
+    return { isSuccess: true, image: null };
+  };
+
   const leaveTeam = async () => {
     return { isSuccess: true };
   };
+
   const delegateHost = async () => {
     return { isSuccess: true };
   };
@@ -176,6 +181,7 @@ export function teamDataMock(): TeamService {
     deleteFeedback,
     deleteIssue,
     editTeamMember,
+    editIssue,
     leaveTeam,
     delegateHost,
   };

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { ForbiddenError } from '@api/types/errors';
+import { ForbiddenError, NotFoundError } from '@api/types/errors';
 import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { TeamService } from '@api/team';
 import { NOTICE_PAGE, SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
@@ -35,7 +35,12 @@ export function teamDataRemote(): TeamService {
   };
 
   const getIssueInfo = async (issueID: string) => {
-    const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
+    const issueDetailData = await privateAPI
+      .get({ url: `/team/issue/${issueID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.NOT_FOUND)
+          throw new NotFoundError('찾을 수 없는 페이지입니다.');
+      });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
       createdAt: issueDetailData.data.issue.createdAt,
@@ -401,6 +406,29 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editIssue = async (
+    issueID: number,
+    categoryID: number,
+    content: string,
+    image?: File | '',
+  ) => {
+    const formData = new FormData();
+    formData.append('categoryId', categoryID.toString());
+    formData.append('content', content);
+    image && formData.append('image', image);
+    const response = await privateAPI
+      .put({
+        url: `/team/issue/${issueID}`,
+        data: formData,
+        type: 'multipart',
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('작성자에게만 수정 권한이 있습니다.');
+      });
+    return { isSuccess: response.success, image: response.data.issue.image };
+  };
+
   const leaveTeam = async (teamID: number) => {
     const response = await privateAPI
       .delete({ url: `/team/member`, data: { teamId: teamID } })
@@ -447,6 +475,7 @@ export function teamDataRemote(): TeamService {
     deleteFeedback,
     deleteIssue,
     editTeamMember,
+    editIssue,
     leaveTeam,
     delegateHost,
   };

@@ -421,7 +421,7 @@ export function teamDataRemote(): TeamService {
         if (error.response?.status === STATUS_CODE.FORBIDDEN)
           throw new ForbiddenError('작성자에게만 수정 권한이 있습니다.');
       });
-    return { isSuccess: response.success };
+    return { isSuccess: response.success, image: response.data.issue.image };
   };
 
   return {

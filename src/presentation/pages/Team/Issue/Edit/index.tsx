@@ -14,7 +14,7 @@ import {
   StCategory,
   StImage,
 } from './style';
-import { IssueCategory } from '@api/types/team';
+import { IssueCategory, IssueData } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -56,22 +56,43 @@ export default function TeamIssueEdit() {
   const editIssue = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsConfirming(true);
-    if (!selectedCategory || !teamID) return;
-    const response = await api.teamService.editIssue(
-      Number(issueID),
-      selectedCategory.id,
-      issueTextarea,
-      image,
-    );
-    return response;
+    mutate();
   };
 
-  const { mutate } = useMutation(editIssue, {
-    onSuccess: () => {
-      navigate(-1);
-      return queryClient.invalidateQueries('issueDetailData');
+  const { mutate, data } = useMutation<{ isSuccess: boolean; image: string | null } | undefined>(
+    async () => {
+      if (selectedCategory && teamID)
+        return await api.teamService.editIssue(
+          Number(issueID),
+          selectedCategory.id,
+          issueTextarea,
+          image,
+        );
     },
-  });
+    {
+      onSuccess: () => {
+        navigate(-1);
+        const oldIssueData = queryClient.getQueryData<IssueData>('issueDetailData');
+        oldIssueData &&
+          queryClient.setQueryData<IssueData | undefined>('issueDetailData', (old) => {
+            if (data && old) {
+              return data.image
+                ? {
+                    ...old,
+                    title: issueTextarea,
+                    category: selectedCategory ? selectedCategory.name : '',
+                    thumbnail: data.image,
+                  }
+                : {
+                    ...old,
+                    title: issueTextarea,
+                    category: selectedCategory ? selectedCategory.name : '',
+                  };
+            }
+          });
+      },
+    },
+  );
 
   const getCategoryInfoFromName = (categoryName: string) => {
     console.log('dd', categoryName);
@@ -133,7 +154,7 @@ export default function TeamIssueEdit() {
       </FileUpload>
       <StButton
         type="submit"
-        onClick={mutate}
+        onClick={editIssue}
         disabled={issueTextarea === '' || !selectedCategory || isConfirming}
       >
         완료

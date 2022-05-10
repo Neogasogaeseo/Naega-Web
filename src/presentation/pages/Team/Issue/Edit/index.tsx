@@ -96,7 +96,7 @@ export default function TeamIssueEdit() {
 
   const getCategoryInfoFromName = (categoryName: string) => {
     if (!categoryList) return;
-    return categoryList.find((category) => category.name === categoryName);
+    return categoryList.find((category) => category.name === categoryName) ?? categoryList[0];
   };
 
   useEffect(() => {

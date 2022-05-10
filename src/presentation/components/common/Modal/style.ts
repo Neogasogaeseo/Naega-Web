@@ -27,7 +27,6 @@ export const StCommonModal = styled.div`
 
 export const StDescription = styled.div`
   margin-top: 10px;
-  white-space: pre-line;
   color: ${COLOR.GRAY_5};
   ${FONT_STYLES.R_15_BODY}
   line-height: 143.99%;

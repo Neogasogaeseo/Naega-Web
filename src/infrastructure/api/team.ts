@@ -59,4 +59,6 @@ export interface TeamService {
     content: string,
     image?: File | '',
   ): Promise<{ isSuccess: boolean; image: string | null }>;
+  leaveTeam(teamID: number): Promise<{ isSuccess: boolean }>;
+  delegateHost(teamID: number, newHostID: number): Promise<{ isSuccess: boolean }>;
 }

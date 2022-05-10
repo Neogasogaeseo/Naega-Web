@@ -18,6 +18,12 @@ export const StMyTeamPick = styled.div`
   }
 `;
 
+export const StMyTeamList = styled.div`
+  & > div {
+    padding: 30px 23px 29px 23px;
+  }
+`;
+
 export const StMyTeamPickList = styled.div`
   padding: 0 24px;
 `;

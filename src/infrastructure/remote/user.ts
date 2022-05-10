@@ -1,8 +1,9 @@
-import { NotFoundError } from '@api/types/errors';
-import { UserService } from '@api/user';
-import { KEYWORD_PAGE, STATUS_CODE } from '@utils/constant';
 import { AxiosError } from 'axios';
 import { privateAPI, publicAPI } from './base';
+import { NotFoundError } from '@api/types/errors';
+import { UserService } from '@api/user';
+import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
+import { imgEmptyProfile } from '@assets/images';
 
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number, page: number) => {
@@ -152,6 +153,68 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
+  const getMyAnswerInfo = async (page: number, formID?: number) => {
+    const queryParamFormID = formID ? `formId=${formID}&` : '';
+    const response = await privateAPI.get({
+      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
+    });
+    return {
+      formList: response.data.form
+        ? response.data.form.map((form: any) => ({
+            id: form.formId,
+            profileImage: form.darkIconImage,
+          }))
+        : [],
+      answerList: response.data.answer
+        ? response.data.answer.map((answer: any) => ({
+            id: answer.answerId,
+            formId: answer.formId,
+            icon: answer.darkIconImage,
+            question: answer.title,
+            content: answer.content,
+            isBookmarked: answer.isPinned,
+            keywordList: answer.keywords.map((keyword: any) => ({
+              id: keyword.name,
+              content: keyword.name,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
+            })),
+          }))
+        : [],
+    };
+  };
+
+  const getMyFeedbackInfo = async (page: number, teamID?: number) => {
+    const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
+    const response = await privateAPI.get({
+      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
+    });
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { teamList: [], feedbackList: [] };
+    return {
+      teamList: response.data.team.map((team: any) => ({
+        id: team.id,
+        profileImage: team.image || imgEmptyProfile,
+      })),
+      feedbackList: response.data.feedback
+        ? response.data.feedback.map((feedback: any) => ({
+            id: feedback.feedbackId,
+            writer: feedback.writerUserName,
+            targetProfileID: feedback.userId,
+            target: feedback.userName,
+            createdAt: feedback.createdAt.slice(0, 10),
+            body: feedback.content,
+            isBookmarked: feedback.isPinned,
+            keywordList: feedback.keywords.map((keyword: any) => ({
+              id: keyword.name,
+              content: keyword.name,
+              color: keyword.colorCode,
+              fontColor: keyword.fontColor,
+            })),
+          }))
+        : [],
+    };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -162,5 +225,7 @@ export function userDataRemote(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyAnswerInfo,
+    getMyFeedbackInfo,
   };
 }

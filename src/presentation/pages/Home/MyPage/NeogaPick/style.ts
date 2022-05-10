@@ -18,6 +18,12 @@ export const StMyNeogaPick = styled.div`
   }
 `;
 
+export const StMyNeogaFormList = styled.div`
+  & > div {
+    padding: 30px 24px 28px 24px;
+  }
+`;
+
 export const StMyNeogaPickList = styled.div`
   padding: 0 21px;
 `;

@@ -47,6 +47,16 @@ export function userDataMock(): UserService {
     return { isSuccess: true };
   };
 
+  const getMyAnswerInfo = async () => {
+    await wait(1000);
+    return USER_DATA.MY_ANSWER_INFO;
+  };
+
+  const getMyFeedbackInfo = async () => {
+    await wait(1000);
+    return USER_DATA.MY_FEEDBACK_INFO;
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -57,6 +67,8 @@ export function userDataMock(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyAnswerInfo,
+    getMyFeedbackInfo,
   };
 }
 

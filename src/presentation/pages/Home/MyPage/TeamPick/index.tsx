@@ -1,19 +1,47 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
+import { useCallback, useEffect, useState } from 'react';
 
 import { api } from '@api/index';
+import { useScrollHeight } from '@hooks/useScrollHeight';
+import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
+import MyListSelectable from '@components/MyListSelectable';
 import FeedbackCardList from '@components/FeedbackCard/List';
-import { StMyTeamPick, StMyTeamPickList } from './style';
+import { PICK_PAGE } from '@utils/constant';
+import { StMyTeamPick, StMyTeamList, StMyTeamPickList } from './style';
+import { MyDetail } from '@api/types/user';
 
 function MyTeamPick() {
-  const { userID } = useParams();
-  const { data: feedbackBookmark, isLoading: isTSSBookmarkLoading } = useQuery(
-    ['tssBookmark', userID],
-    () => api.userService.getFeedbackBookmark(userID ?? ''),
-    { useErrorBoundary: true, retry: 1 },
+  const { isBottomReached, isInitialState } = useScrollHeight();
+  const [selectedTeam, setSelectedTeam] = useState<MyDetail | null>(null);
+
+  const fetchFeedbacksByPage = useCallback(
+    async ({ pageParam = 0 }) => {
+      const response = selectedTeam
+        ? await api.userService.getMyFeedbackInfo(pageParam, selectedTeam.id)
+        : await api.userService.getMyFeedbackInfo(pageParam);
+      return {
+        teamList: response.teamList,
+        feedbackList: response.feedbackList,
+        nextPage: pageParam + PICK_PAGE,
+        isLast: response.feedbackList.length < PICK_PAGE,
+      };
+    },
+    [selectedTeam && selectedTeam.id],
   );
+
+  const {
+    data: feedbackInfo,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(['feedbackInfo', selectedTeam?.id], fetchFeedbacksByPage, {
+    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+  });
+
+  useEffect(() => {
+    if (!isInitialState) fetchNextPage();
+  }, [isBottomReached, isInitialState]);
 
   return (
     <>
@@ -23,19 +51,28 @@ function MyTeamPick() {
           팀원소개서에 팀원이 남겨준 피드백들 중<br />
           <span>My 프로필에 걸어두고 싶은 피드백</span>을 <span>픽</span>해주세요!
         </header>
-        {isTSSBookmarkLoading ? (
-          <div>팀소서 북마크 정보 로딩중</div>
-        ) : (
-          feedbackBookmark && (
-            <StMyTeamPickList>
-              {feedbackBookmark.feedbackList.length > 0 ? (
-                <FeedbackCardList feedbacks={feedbackBookmark.feedbackList} />
-              ) : (
-                <MyPickEmptyView pickType="team" />
-              )}
-            </StMyTeamPickList>
-          )
+        {feedbackInfo?.pages && (
+          <StMyTeamList>
+            <MyListSelectable
+              items={feedbackInfo.pages[0]?.teamList ?? []}
+              isSquare={true}
+              selectedItem={selectedTeam}
+              setSelectedItem={setSelectedTeam}
+            />
+          </StMyTeamList>
         )}
+        {feedbackInfo?.pages && (
+          <StMyTeamPickList>
+            {feedbackInfo.pages.map((page) => page.feedbackList).flat().length > 0 ? (
+              <FeedbackCardList
+                feedbacks={feedbackInfo.pages.map((page) => page.feedbackList).flat()}
+              />
+            ) : (
+              <MyPickEmptyView pickType="team" />
+            )}
+          </StMyTeamPickList>
+        )}
+        {isFetchingNextPage && <CommonLoader />}
       </StMyTeamPick>
     </>
   );

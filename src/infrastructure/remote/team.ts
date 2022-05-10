@@ -429,6 +429,26 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success, image: response.data.issue.image };
   };
 
+  const leaveTeam = async (teamID: number) => {
+    const response = await privateAPI
+      .delete({ url: `/team/member`, data: { teamId: teamID } })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('소속된 팀이 아니므로 요청을 수행할 수 없습니다.');
+      });
+    return { isSuccess: response.success };
+  };
+
+  const delegateHost = async (teamID: number, newHostID: number) => {
+    const response = await privateAPI
+      .put({ url: `/team/host`, data: { teamId: teamID, memberId: newHostID } })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 권한이 있습니다.');
+      });
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -456,5 +476,7 @@ export function teamDataRemote(): TeamService {
     deleteIssue,
     editTeamMember,
     editIssue,
+    leaveTeam,
+    delegateHost,
   };
 }

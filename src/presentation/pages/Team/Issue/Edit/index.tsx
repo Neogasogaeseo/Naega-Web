@@ -43,6 +43,7 @@ export default function TeamIssueEdit() {
       onSuccess: () => {
         id !== issueInfo?.writerID && navigate('/');
       },
+      useErrorBoundary: true,
     },
   );
 

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { ForbiddenError } from '@api/types/errors';
+import { ForbiddenError, NotFoundError } from '@api/types/errors';
 import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
 import { TeamService } from '@api/team';
 import { NOTICE_PAGE, SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
@@ -35,7 +35,12 @@ export function teamDataRemote(): TeamService {
   };
 
   const getIssueInfo = async (issueID: string) => {
-    const issueDetailData = await privateAPI.get({ url: `/team/issue/${issueID}` });
+    const issueDetailData = await privateAPI
+      .get({ url: `/team/issue/${issueID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.NOT_FOUND)
+          throw new NotFoundError('찾을 수 없는 페이지입니다.');
+      });
     const issueFeedbacksData = await privateAPI.get({ url: `/team/issue/${issueID}/feedback` });
     return {
       createdAt: issueDetailData.data.issue.createdAt,

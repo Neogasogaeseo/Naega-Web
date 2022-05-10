@@ -42,8 +42,10 @@ function TeamIssue() {
     { mode: 'issue' | 'feedback'; id: number } | undefined
   >(undefined);
 
-  const { data: issue } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
-    api.teamService.getIssueInfo(issueID ?? ''),
+  const { data: issue } = useQuery(
+    ['issueDetailData', `${teamID}-${issueID}`],
+    () => api.teamService.getIssueInfo(issueID ?? ''),
+    { useErrorBoundary: true },
   );
   const [feedbacks, setFeedbacks] = useState<FeedbackDetail[]>([]);
 

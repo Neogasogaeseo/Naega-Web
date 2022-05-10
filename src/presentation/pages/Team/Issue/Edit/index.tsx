@@ -18,12 +18,14 @@ import { IssueCategory, IssueData } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 export default function TeamIssueEdit() {
   const navigate = useNavigate();
   const { teamID, issueID } = useParams();
   if (teamID === undefined || issueID === undefined) navigate('/');
   const queryClient = useQueryClient();
+  const { id } = useLoginUser();
 
   const { data: categoryList } = useQuery(
     'teamIssueCategoryList',
@@ -34,8 +36,14 @@ export default function TeamIssueEdit() {
     () => api.teamService.getTeamInfo(Number(teamID)),
     { onError: () => navigate('/home') },
   );
-  const { data: issueInfo } = useQuery(['issueDetailData', `${teamID}-${issueID}`], () =>
-    api.teamService.getIssueInfo(issueID ?? ''),
+  const { data: issueInfo } = useQuery(
+    ['issueDetailData', `${teamID}-${issueID}`],
+    () => api.teamService.getIssueInfo(issueID ?? ''),
+    {
+      onSuccess: () => {
+        id !== issueInfo?.writerID && navigate('/');
+      },
+    },
   );
 
   const [image, setImage] = useState<File | undefined>();
@@ -59,7 +67,9 @@ export default function TeamIssueEdit() {
     mutate();
   };
 
-  const { mutate, data } = useMutation<{ isSuccess: boolean; image: string | null } | undefined>(
+  const { mutate, data: editResponse } = useMutation<
+    { isSuccess: boolean; image: string | null } | undefined
+  >(
     async () => {
       if (selectedCategory && teamID)
         return await api.teamService.editIssue(
@@ -75,13 +85,13 @@ export default function TeamIssueEdit() {
         const oldIssueData = queryClient.getQueryData<IssueData>('issueDetailData');
         oldIssueData &&
           queryClient.setQueryData<IssueData | undefined>('issueDetailData', (old) => {
-            if (data && old) {
-              return data.image
+            if (editResponse && old) {
+              return editResponse.image
                 ? {
                     ...old,
                     title: issueTextarea,
                     category: selectedCategory ? selectedCategory.name : '',
-                    thumbnail: data.image,
+                    thumbnail: editResponse.image,
                   }
                 : {
                     ...old,

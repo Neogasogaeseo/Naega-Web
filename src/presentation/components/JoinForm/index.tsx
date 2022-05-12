@@ -9,8 +9,9 @@ import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-aut
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import FileUpload from '@components/common/FileUpload';
-import { icProfile, icEmail } from '@assets/icons';
 import { StJoinForm, StInputWrapper, StButton, StProfileImg } from './style';
+import { StErrorMsg } from '@components/common/Input/style';
+import { icProfile, icEmail } from '@assets/icons';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
@@ -31,17 +32,24 @@ function JoinForm() {
     const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
     const idStartCheck = /^[a-z]/;
 
+    if (!inputId) {
+      setErrorMsg('');
+      return;
+    }
+
     setIsJoinConditionPassed({
       id: idCheck.test(inputId) && idStartCheck.test(inputId),
       name: inputName !== '',
     });
 
-    if (!idCheck.test(inputId)) {
-      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-    }
-
-    if (!idStartCheck.test(inputId)) {
-      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+    if (inputId) {
+      if (!idCheck.test(inputId)) {
+        setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+      } else if (!idStartCheck.test(inputId)) {
+        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+      } else {
+        setErrorMsg('');
+      }
     }
   }, [inputId, inputName]);
 
@@ -87,8 +95,6 @@ function JoinForm() {
         <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isConditionPassed={isJoinConditionPassed.id}
-          errorMsg={errorMsg}
           placeholder="neososeo_team"
           onChange={(value) => {
             setInputId(value);
@@ -96,10 +102,10 @@ function JoinForm() {
           maxLength={15}
           img={icEmail}
         />
+        <StErrorMsg>{errorMsg}</StErrorMsg>
         <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
         <CommonInput
           width="100%"
-          isConditionPassed={isJoinConditionPassed.name}
           placeholder="이름을 입력해주세요"
           onChange={(value) => {
             setInputName(value);

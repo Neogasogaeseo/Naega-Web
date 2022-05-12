@@ -9,6 +9,7 @@ import CommonLabel from '@components/common/Label';
 import CommonNavigation from '@components/common/Navigation';
 import FileUpload from '@components/common/FileUpload';
 import { StInputWrapper, StMyProfileEdit, StProfileImg } from './style';
+import { StErrorMsg } from '@components/common/Input/style';
 import { IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 
@@ -27,22 +28,27 @@ function MyProfileEdit() {
 
   useEffect(() => {
     (async () => {
-      if (!inputId) return;
+      if (!inputId) {
+        setErrorMsg('');
+        return;
+      }
+      
       const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
-      const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
-      const passedId = idCheck.test(inputId) && !isSuccess;
+      const passedId = idCheck.test(inputId);
 
       setIsEditConditionPassed({
         ...isEditConditionPassed,
         id: passedId,
       });
 
-      if (!/^[a-z]/.test(inputId)) {
-        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
-      } else if (!idCheck.test(inputId)) {
-        setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-      } else if (isSuccess) {
-        setErrorMsg('*중복된 아이디입니다.');
+      if (inputId) {
+        if (!/^[a-z]/.test(inputId)) {
+          setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+        } else if (!idCheck.test(inputId)) {
+          setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+        } else {
+          setErrorMsg('');
+        }
       }
     })();
   }, [inputId]);
@@ -93,10 +99,17 @@ function MyProfileEdit() {
             onChange={(value) => {
               setInputId(value);
             }}
-            errorMsg={errorMsg}
+            onBlur={async () => {
+              const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
+              if (isSuccess) {
+                setErrorMsg('*중복된 아이디입니다.');
+              }
+            }}
+            value={inputId}
             placeholder={userID}
             maxLength={15}
           />
+          <StErrorMsg>{errorMsg}</StErrorMsg>
           <CommonLabel content="이름" marginTop="46px" marginBottom="20px" />
           <CommonInput
             width="100%"
@@ -104,7 +117,6 @@ function MyProfileEdit() {
             onChange={(value) => {
               setInputName(value);
             }}
-            errorMsg={errorMsg}
             placeholder={username}
           />
         </StInputWrapper>

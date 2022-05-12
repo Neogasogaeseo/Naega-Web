@@ -12,6 +12,7 @@ import TeamMemberPopup from './MemberPopup';
 import { StTeamMain, StTeamInfo, StCheckWrapper, StMemberName, StOtherMember } from './style';
 import { icPerson, icCoralCheck, icGrayCheck, IcMeatball } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import TeamLeaveModal from '@components/common/Modal/TeamLeave';
 
 function TeamMain() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function TeamMain() {
   const [isMemberPopupOpened, setIsMemberPopupOpened] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
+  const [isOpenLeaveModal, setIsOpenLeaveModal] = useState(false);
   const checkMyIssue = () => setIsChecked((prev) => !prev);
 
   if (teamID === undefined) navigate('/');
@@ -45,6 +47,15 @@ function TeamMain() {
 
   return (
     <>
+      <TeamLeaveModal
+        isOpened={isOpenLeaveModal}
+        teamMemberList={teamInfoData ? teamInfoData.teamMemberList : []}
+        closeModal={() => {
+          setIsOpenLeaveModal(false);
+          setIsBottomSheetOpened(false);
+        }}
+        isUserHost={isUserHost}
+      />
       <CommonNavigation />
       <StTeamMain>
         {teamInfoData && (
@@ -103,6 +114,7 @@ function TeamMain() {
           closeBottomSheet={() => setIsBottomSheetOpened(false)}
           isUserHost={isUserHost}
           teamID={teamID}
+          openLeaveModal={() => setIsOpenLeaveModal(true)}
         />
       )}
     </>

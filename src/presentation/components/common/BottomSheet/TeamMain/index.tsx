@@ -8,10 +8,11 @@ type TeamMainBottomSheetProps = {
   closeBottomSheet: () => void;
   isUserHost: boolean;
   teamID: string;
+  openLeaveModal: () => void;
 };
 
 function TeamMainBottomSheet(props: TeamMainBottomSheetProps) {
-  const { isOpened, closeBottomSheet, isUserHost, teamID } = props;
+  const { isOpened, closeBottomSheet, isUserHost, teamID, openLeaveModal } = props;
   const navigate = useNavigate();
 
   const manageTeamMember = () => {
@@ -20,11 +21,6 @@ function TeamMainBottomSheet(props: TeamMainBottomSheetProps) {
 
   const navigateToEditPage = () => {
     navigate(`/team/${teamID}/edit`);
-  };
-
-  const leaveTeam = () => {
-    // 주영 언니가 이어서 작업할 부분
-    console.log('팀 나가기 팝업');
   };
 
   return (
@@ -45,14 +41,14 @@ function TeamMainBottomSheet(props: TeamMainBottomSheetProps) {
               {
                 icon: icLeaveTeam,
                 label: '팀 나가기',
-                onClick: leaveTeam,
+                onClick: openLeaveModal,
               },
             ]
           : [
               {
                 icon: icLeaveTeam,
                 label: '팀 나가기',
-                onClick: leaveTeam,
+                onClick: openLeaveModal,
               },
             ]
       }

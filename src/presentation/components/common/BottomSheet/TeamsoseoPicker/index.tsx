@@ -6,6 +6,7 @@ import { api } from '@api/index';
 import { icEdit, icPick, icTrash } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import BottomSheet from '..';
+import { useNavigate } from 'react-router-dom';
 
 type TeamsoseoPickerBottomSheetProps = {
   opened: boolean;
@@ -34,6 +35,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
   const { teamID, issueID } = useParams();
   const { fireToast } = useToast();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   if (!isMine && !isForMe) return <></>;
 
   const bookmarkFeedback = async () => {
@@ -59,7 +61,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
   };
 
   const editIssue = async () => {
-    console.log('이슈 수정');
+    navigate(`/team/${teamID}/${issueID}/edit`);
   };
 
   const buttonList =

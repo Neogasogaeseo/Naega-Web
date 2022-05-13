@@ -20,6 +20,7 @@ function MyProfileEdit() {
   const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [isEditConditionPassed, setIsEditConditionPassed] = useState({
     id: false,
@@ -32,9 +33,9 @@ function MyProfileEdit() {
         setErrorMsg('');
         return;
       }
-      
+
       const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
-      const passedId = idCheck.test(inputId);
+      const passedId = idCheck.test(inputId) && !isDuplicate;
 
       setIsEditConditionPassed({
         ...isEditConditionPassed,
@@ -46,12 +47,14 @@ function MyProfileEdit() {
           setErrorMsg('*아이디의 첫 글자는 영문 소문자');
         } else if (!idCheck.test(inputId)) {
           setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+        } else if (isDuplicate) {
+          setErrorMsg('*중복된 아이디입니다.');
         } else {
           setErrorMsg('');
         }
       }
     })();
-  }, [inputId]);
+  }, [inputId, isDuplicate]);
 
   useEffect(() => {
     setIsEditConditionPassed({
@@ -100,10 +103,10 @@ function MyProfileEdit() {
               setInputId(value);
             }}
             onBlur={async () => {
+              if (!inputId) return;
               const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
-              if (isSuccess) {
-                setErrorMsg('*중복된 아이디입니다.');
-              }
+              if (isSuccess) setIsDuplicate(true);
+              setIsDuplicate(false);
             }}
             value={inputId}
             placeholder={userID}

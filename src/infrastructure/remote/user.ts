@@ -123,7 +123,7 @@ export function userDataRemote(): UserService {
   };
 
   const editUserProfile = async (formData: FormData) => {
-    const response = await privateAPI.put({ url: `/user/edit`, data: formData });
+    const response = await privateAPI.put({ url: `/user/edit`, data: formData, type: 'multipart' });
     return {
       isSuccess: response.success,
       profileId: response.data.user.profileId,

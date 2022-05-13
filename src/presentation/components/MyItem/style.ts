@@ -14,5 +14,7 @@ export const StMyItem = styled.button<{
   border-radius: ${(props) => (props.isSquare ? '16px' : '50%')};
   background: no-repeat center/cover url(${(props) => props.img});
   opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  margin-right: 14px;
+  &:not(:last-child) {
+    margin-right: 14px;
+  }
 `;

@@ -47,9 +47,19 @@ export function userDataMock(): UserService {
     return { isSuccess: true };
   };
 
+  const getMyFormInfo = async () => {
+    await wait(1000);
+    return USER_DATA.MY_FORM_INFO;
+  };
+
   const getMyAnswerInfo = async () => {
     await wait(1000);
     return USER_DATA.MY_ANSWER_INFO;
+  };
+
+  const getMyTeamInfo = async () => {
+    await wait(1000);
+    return USER_DATA.MY_TEAM_INFO;
   };
 
   const getMyFeedbackInfo = async () => {
@@ -67,7 +77,9 @@ export function userDataMock(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyFormInfo,
     getMyAnswerInfo,
+    getMyTeamInfo,
     getMyFeedbackInfo,
   };
 }

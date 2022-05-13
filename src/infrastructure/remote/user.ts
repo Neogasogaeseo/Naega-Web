@@ -153,19 +153,23 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
+  const getMyFormInfo = async () => {
+    const response = await privateAPI.get({ url: `/form/answer/pick/form` });
+    return {
+      formList: response.data.form.map((form: any) => ({
+        id: form.formId,
+        profileImage: form.darkIconImage,
+      })),
+    };
+  };
+
   const getMyAnswerInfo = async (page: number, formID?: number) => {
     const queryParamFormID = formID ? `formId=${formID}&` : '';
     const response = await privateAPI.get({
       url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
     });
     return {
-      formList: response.data.form
-        ? response.data.form.map((form: any) => ({
-            id: form.formId,
-            profileImage: form.darkIconImage,
-          }))
-        : [],
-      answerList: response.data.answer
+      answerList: response.data.answer.length
         ? response.data.answer.map((answer: any) => ({
             id: answer.answerId,
             formId: answer.formId,
@@ -184,17 +188,23 @@ export function userDataRemote(): UserService {
     };
   };
 
-  const getMyFeedbackInfo = async (page: number, teamID?: number) => {
-    const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
-    const response = await privateAPI.get({
-      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
-    });
-    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { teamList: [], feedbackList: [] };
+  const getMyTeamInfo = async () => {
+    const response = await privateAPI.get({ url: `/team/feedback/pick/team` });
     return {
       teamList: response.data.team.map((team: any) => ({
         id: team.id,
         profileImage: team.image || imgEmptyProfile,
       })),
+    };
+  };
+
+  const getMyFeedbackInfo = async (page: number, teamID?: number) => {
+    const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
+    const response = await privateAPI.get({
+      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
+    });
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { feedbackList: [] };
+    return {
       feedbackList: response.data.feedback
         ? response.data.feedback.map((feedback: any) => ({
             id: feedback.feedbackId,
@@ -225,7 +235,9 @@ export function userDataRemote(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyFormInfo,
     getMyAnswerInfo,
+    getMyTeamInfo,
     getMyFeedbackInfo,
   };
 }

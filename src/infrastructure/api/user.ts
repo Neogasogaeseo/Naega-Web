@@ -7,6 +7,8 @@ import {
   TeamFeedbackBookmark,
   MyAnswerInfo,
   MyFeedbackInfo,
+  MyFormInfo,
+  MyTeamInfo,
 } from './types/user';
 
 export interface UserService {
@@ -19,6 +21,8 @@ export interface UserService {
   editUserProfile(formData: FormData): Promise<EditProfileInfo>;
   getMyKeywordList(page: number): Promise<MyKeywordInfo>;
   deleteMyKeyword(keywordID: number): Promise<{ isSuccess: boolean }>;
+  getMyFormInfo(): Promise<MyFormInfo>;
   getMyAnswerInfo(page: number, formID?: number): Promise<MyAnswerInfo>;
+  getMyTeamInfo(): Promise<MyTeamInfo>;
   getMyFeedbackInfo(page: number, teamID?: number): Promise<MyFeedbackInfo>;
 }

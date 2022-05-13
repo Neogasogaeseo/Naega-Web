@@ -66,12 +66,18 @@ export interface MyDetail {
   profileImage?: string;
 }
 
-export interface MyAnswerInfo {
+export interface MyFormInfo {
   formList: MyDetail[];
+}
+
+export interface MyAnswerInfo {
   answerList: AnswerDetail[];
 }
 
-export interface MyFeedbackInfo {
+export interface MyTeamInfo {
   teamList: MyDetail[];
+}
+
+export interface MyFeedbackInfo {
   feedbackList: FeedbackDetail[];
 }

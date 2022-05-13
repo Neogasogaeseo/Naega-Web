@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { useCallback, useEffect, useState } from 'react';
 
 import { api } from '@api/index';
@@ -16,13 +16,14 @@ function MyTeamPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [selectedTeam, setSelectedTeam] = useState<MyDetail | null>(null);
 
+  const { data: myTeamInfo } = useQuery('myTeamInfo', api.userService.getMyTeamInfo);
+
   const fetchFeedbacksByPage = useCallback(
     async ({ pageParam = 0 }) => {
       const response = selectedTeam
         ? await api.userService.getMyFeedbackInfo(pageParam, selectedTeam.id)
         : await api.userService.getMyFeedbackInfo(pageParam);
       return {
-        teamList: response.teamList,
         feedbackList: response.feedbackList,
         nextPage: pageParam + PICK_PAGE,
         isLast: response.feedbackList.length < PICK_PAGE,
@@ -51,10 +52,10 @@ function MyTeamPick() {
           팀원소개서에 팀원이 남겨준 피드백들 중<br />
           <span>My 프로필에 걸어두고 싶은 피드백</span>을 <span>픽</span>해주세요!
         </header>
-        {feedbackInfo?.pages && (
+        {myTeamInfo?.teamList && (
           <StMyTeamList>
             <MyListSelectable
-              items={feedbackInfo.pages[0]?.teamList ?? []}
+              items={myTeamInfo?.teamList}
               isSquare={true}
               selectedItem={selectedTeam}
               setSelectedItem={setSelectedTeam}

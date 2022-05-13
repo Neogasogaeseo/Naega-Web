@@ -62,7 +62,7 @@ function MyNeogaPick() {
             />
           </StMyNeogaFormList>
         )}
-        {answerInfo?.pages ? (
+        {answerInfo?.pages && answerInfo.pages.map((page) => page.answerList).flat().length ? (
           <StMyNeogaPickList>
             <NeososeoAnswerCardList
               answers={answerInfo.pages.map((page) => page.answerList).flat()}

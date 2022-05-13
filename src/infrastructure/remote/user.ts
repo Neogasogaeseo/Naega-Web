@@ -156,10 +156,12 @@ export function userDataRemote(): UserService {
   const getMyFormInfo = async () => {
     const response = await privateAPI.get({ url: `/form/answer/pick/form` });
     return {
-      formList: response.data.form.map((form: any) => ({
-        id: form.formId,
-        profileImage: form.darkIconImage,
-      })),
+      formList: response.data.form
+        ? response.data.form.map((form: any) => ({
+            id: form.formId,
+            profileImage: form.darkIconImage,
+          }))
+        : [],
     };
   };
 
@@ -169,7 +171,7 @@ export function userDataRemote(): UserService {
       url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
     });
     return {
-      answerList: response.data.answer.length
+      answerList: response.data.answer
         ? response.data.answer.map((answer: any) => ({
             id: answer.answerId,
             formId: answer.formId,
@@ -191,10 +193,12 @@ export function userDataRemote(): UserService {
   const getMyTeamInfo = async () => {
     const response = await privateAPI.get({ url: `/team/feedback/pick/team` });
     return {
-      teamList: response.data.team.map((team: any) => ({
-        id: team.id,
-        profileImage: team.image || imgEmptyProfile,
-      })),
+      teamList: response.data.team
+        ? response.data.team.map((team: any) => ({
+            id: team.id,
+            profileImage: team.image || imgEmptyProfile,
+          }))
+        : [],
     };
   };
 

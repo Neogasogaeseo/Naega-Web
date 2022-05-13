@@ -64,11 +64,9 @@ function MyNeogaPick() {
         )}
         {answerInfo?.pages ? (
           <StMyNeogaPickList>
-            {myFormInfo?.formList && (
-              <NeososeoAnswerCardList
-                answers={answerInfo.pages.map((page) => page.answerList).flat()}
-              />
-            )}
+            <NeososeoAnswerCardList
+              answers={answerInfo.pages.map((page) => page.answerList).flat()}
+            />
           </StMyNeogaPickList>
         ) : (
           <MyPickEmptyView pickType="neoga" />

@@ -62,16 +62,14 @@ function MyTeamPick() {
             />
           </StMyTeamList>
         )}
-        {feedbackInfo?.pages && (
+        {feedbackInfo?.pages ? (
           <StMyTeamPickList>
-            {feedbackInfo.pages.map((page) => page.feedbackList).flat().length > 0 ? (
-              <FeedbackCardList
-                feedbacks={feedbackInfo.pages.map((page) => page.feedbackList).flat()}
-              />
-            ) : (
-              <MyPickEmptyView pickType="team" />
-            )}
+            <FeedbackCardList
+              feedbacks={feedbackInfo.pages.map((page) => page.feedbackList).flat()}
+            />
           </StMyTeamPickList>
+        ) : (
+          <MyPickEmptyView pickType="team" />
         )}
         {isFetchingNextPage && <CommonLoader />}
       </StMyTeamPick>

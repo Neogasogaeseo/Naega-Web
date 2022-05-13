@@ -26,6 +26,7 @@ export const StAllButton = styled.button<{
   isSquare: boolean;
   isSelected: boolean;
 }>`
+  -webkit-tap-highlight-color: transparent;
   ${FONT_STYLES.R_14_BODY};
   background-color: ${COLOR.GRAY_15};
   color: ${(props) => (props.isSelected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};

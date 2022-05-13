@@ -6,6 +6,7 @@ export const StMyItem = styled.button<{
   isSelected: boolean | undefined;
   img: string;
 }>`
+  -webkit-tap-highlight-color: transparent;
   width: ${(props) => (props.isSquare ? '42px' : '43px')};
   height: ${(props) => (props.isSquare ? '42px' : '43px')};
   object-fit: cover;

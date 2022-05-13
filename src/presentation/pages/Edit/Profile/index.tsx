@@ -106,7 +106,7 @@ function MyProfileEdit() {
               if (!inputId) return;
               const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
               if (isSuccess) setIsDuplicate(true);
-              setIsDuplicate(false);
+              else setIsDuplicate(false);
             }}
             value={inputId}
             placeholder={userID}

@@ -103,10 +103,11 @@ function MyProfileEdit() {
               setInputId(value);
             }}
             onBlur={async () => {
-              if (!inputId) return;
-              const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
-              if (isSuccess) setIsDuplicate(true);
-              else setIsDuplicate(false);
+              if (inputId) {
+                const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
+                if (isSuccess) setIsDuplicate(true);
+                else setIsDuplicate(false);
+              }
             }}
             value={inputId}
             placeholder={userID}

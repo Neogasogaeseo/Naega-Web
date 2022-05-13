@@ -6,7 +6,7 @@ import { MyDetail } from '@api/types/user';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
-import MyListSelectable from '@components/MyListSelectable';
+import MySelectableList from '@components/MySelectableList';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
 import { PICK_PAGE } from '@utils/constant';
@@ -54,7 +54,7 @@ function MyNeogaPick() {
         </header>
         {myFormInfo?.formList && (
           <StMyNeogaFormList>
-            <MyListSelectable
+            <MySelectableList
               items={myFormInfo?.formList}
               isSquare={false}
               selectedItem={selectedForm}

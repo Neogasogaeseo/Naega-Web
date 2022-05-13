@@ -15,7 +15,7 @@ interface MyListProps {
   setSelectedItem: (myListData: MyListData | null) => void;
 }
 
-function MyListSelectable(props: MyListProps) {
+function MySelectableList(props: MyListProps) {
   const { isSquare, items, selectedItem, setSelectedItem } = props;
   const [allButton, setAllButton] = useState(true);
 
@@ -50,4 +50,4 @@ function MyListSelectable(props: MyListProps) {
   );
 }
 
-export default MyListSelectable;
+export default MySelectableList;

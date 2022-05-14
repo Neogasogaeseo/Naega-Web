@@ -25,6 +25,7 @@ import {
   ImgTeamsoseo,
 } from '@assets/images';
 import TeamLandingLottie from '@assets/lottie/TeamLottie';
+import { GaAction, GaCategory, useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
 
 function Landing() {
   const { isAuthenticated } = useLoginUser();
@@ -32,6 +33,9 @@ function Landing() {
   useEffect(() => {
     if (isAuthenticated) navigate('/home');
   }, [isAuthenticated]);
+
+  const { makeGaEvent } = useGoogleAnalytics();
+
   return (
     <StLandingWrapper>
       <CommonHeader />
@@ -116,6 +120,11 @@ function Landing() {
         <StServiceButton
           theme="black"
           onClick={() => {
+            makeGaEvent({
+              category: GaCategory.LANDING,
+              action: GaAction.CLICK,
+              label: 'login_bottom',
+            });
             navigate(`/login`);
           }}
         >
@@ -123,6 +132,7 @@ function Landing() {
         </StServiceButton>
       </StFooter>
     </StLandingWrapper>
+  );
 }
 
 export default Landing;

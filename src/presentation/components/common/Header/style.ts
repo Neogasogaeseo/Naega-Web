@@ -27,12 +27,12 @@ export const StWrapper = styled.div`
 `;
 
 export const StLoginButton = styled.button`
-  background-color: ${COLOR.GRAY_6};
+  background-color: ${COLOR.CORAL_1};
   border-radius: 13.5px;
   ${FONT_STYLES.R_12_TITLE}
   line-height: 100%;
   letter-spacing: -0.01em;
-  color: ${COLOR.WHITE};
+  color: ${COLOR.CORAL_MAIN};
   padding: 7px 12px;
 `;
 

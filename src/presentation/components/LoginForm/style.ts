@@ -3,9 +3,6 @@ import { COLOR } from '@styles/common/color';
 
 export const StLoginForm = styled.div`
   padding: 0 20px;
-  & > img {
-    margin-top: 50px;
-  }
 `;
 
 export const StLogin = styled.div`
@@ -33,6 +30,7 @@ export const StLoginButton = styled.button`
   background-color: #fee500;
   border-radius: 18px;
   font-size: 16px;
+  color: black;
 
   & > img {
     display: flex;

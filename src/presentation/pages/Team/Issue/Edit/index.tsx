@@ -180,11 +180,7 @@ export default function TeamIssueEdit() {
       <StQuestionWrapper>
         이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
       </StQuestionWrapper>
-      <div
-        onClick={() =>
-          !issueInfo?.team.thumbnail && !image ? clickFileInputRef() : openBottomSheet()
-        }
-      >
+      <div onClick={() => (!image ? clickFileInputRef() : openBottomSheet())}>
         <FileUpload
           ref={fileInputRef}
           isDeleted={isImageDeleted}

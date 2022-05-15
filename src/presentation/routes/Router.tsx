@@ -8,14 +8,19 @@ import UserRouter from './UserRouter';
 import MyPageEditRouter from './MyPageEditRouter';
 import ReactGA from 'react-ga';
 import FormRouter from './FormRouter';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 const Router = () => {
   const location = useLocation();
   const { isGoogleAnalyticsLoaded } = useGoogleAnalytics();
+  const { isAuthenticated, userID } = useLoginUser();
 
   useEffect(() => {
     if (isGoogleAnalyticsLoaded) ReactGA.pageview(location.pathname + location.search);
-  }, [isGoogleAnalyticsLoaded, location]);
+    if (isGoogleAnalyticsLoaded && isAuthenticated) {
+      ReactGA.set({ userID });
+    }
+  }, [isGoogleAnalyticsLoaded, location, isAuthenticated]);
   return (
     <>
       <ScrollToTop />

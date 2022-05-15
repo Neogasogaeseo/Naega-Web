@@ -27,7 +27,7 @@ export default function TeamEdit() {
   const [isImageDeleted, setIsImageDeleted] = useState(false);
 
   const { data: teamInfo, isSuccess } = useQuery(
-    'teamEditInfo',
+    ['teamEditInfo', teamID],
     async () => await api.teamService.getTeamEditInfo(Number(teamID)),
     {
       useErrorBoundary: true,
@@ -59,7 +59,6 @@ export default function TeamEdit() {
 
   const getImageThumbnail = () => {
     if (teamInfo && teamInfo.image) {
-      console.log('먀?');
       return isImageDeleted ? (
         <ImgTeamDefault />
       ) : (

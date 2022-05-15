@@ -3,8 +3,10 @@ import {
   Keyword,
   MyAnswerInfo,
   MyFeedbackInfo,
+  MyFormInfo,
   MyKeywordInfo,
   MyPageInfo,
+  MyTeamInfo,
   NeososeoAnswerBookmark,
   TeamFeedbackBookmark,
 } from '@api/types/user';
@@ -17,7 +19,9 @@ export const USER_DATA: {
   TEAM_FEEDBACK_BOOKMARK: TeamFeedbackBookmark;
   EDIT_PROFILE_INFO: EditProfileInfo;
   MY_KEYWORD_INFO: MyKeywordInfo;
+  MY_FORM_INFO: MyFormInfo;
   MY_ANSWER_INFO: MyAnswerInfo;
+  MY_TEAM_INFO: MyTeamInfo;
   MY_FEEDBACK_INFO: MyFeedbackInfo;
 } = {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
@@ -158,7 +162,7 @@ export const USER_DATA: {
       { id: '11', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF', count: 0 },
     ],
   },
-  MY_ANSWER_INFO: {
+  MY_FORM_INFO: {
     formList: [
       {
         id: 1,
@@ -171,6 +175,8 @@ export const USER_DATA: {
           'https://firebasestorage.googleapis.com/v0/b/neogasogaeseo-9aaf5.appspot.com/o/icon%2Fstar_BL.png?alt=media&token=fcc3d106-1ec0-40bf-8a2a-90862209751f',
       },
     ],
+  },
+  MY_ANSWER_INFO: {
     answerList: [
       {
         id: 0,
@@ -200,7 +206,7 @@ export const USER_DATA: {
       },
     ],
   },
-  MY_FEEDBACK_INFO: {
+  MY_TEAM_INFO: {
     teamList: [
       {
         id: 6,
@@ -213,6 +219,8 @@ export const USER_DATA: {
         id: 2,
       },
     ],
+  },
+  MY_FEEDBACK_INFO: {
     feedbackList: [
       {
         id: '11',

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { StCommonInput, StInputWrapper, StInput, StErrorMsg, StSubmitButton } from './style';
+import { StCommonInput, StInputWrapper, StInput, StSubmitButton } from './style';
 
 interface CommonInputProps {
   width: string;
-  errorMsg?: string;
   placeholder?: string;
   maxLength?: number;
   value?: string;
@@ -11,6 +9,7 @@ interface CommonInputProps {
   isConditionPassed?: boolean;
   img?: string;
   onChange?: (value: string) => void;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   disabled?: boolean;
   submitButtonValue?: string;
@@ -20,23 +19,20 @@ interface CommonInputProps {
 function CommonInput(props: CommonInputProps) {
   const {
     width,
-    errorMsg,
     placeholder,
     maxLength,
     value,
     defaultValue,
-    isConditionPassed,
     onChange,
+    onBlur,
     onSubmit,
     img,
     disabled = false,
     submitButtonValue,
     submitButtonDisabled = false,
   } = props;
-  const [isInput, setIsInput] = useState('');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
-    setIsInput(e.target.value);
   };
 
   return (
@@ -51,6 +47,7 @@ function CommonInput(props: CommonInputProps) {
         <StInput
           width={width}
           onChange={handleChange}
+          onBlur={onBlur}
           maxLength={maxLength}
           placeholder={placeholder || ''}
           value={value}
@@ -63,7 +60,6 @@ function CommonInput(props: CommonInputProps) {
           <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
         )}
       </StInputWrapper>
-      {!isConditionPassed && isInput !== '' && errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
     </StCommonInput>
   );
 }

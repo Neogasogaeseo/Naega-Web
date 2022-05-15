@@ -123,7 +123,7 @@ export function userDataRemote(): UserService {
   };
 
   const editUserProfile = async (formData: FormData) => {
-    const response = await privateAPI.put({ url: `/user/edit`, data: formData });
+    const response = await privateAPI.put({ url: `/user/edit`, data: formData, type: 'multipart' });
     return {
       isSuccess: response.success,
       profileId: response.data.user.profileId,
@@ -153,11 +153,8 @@ export function userDataRemote(): UserService {
     return { isSuccess: response.success };
   };
 
-  const getMyAnswerInfo = async (page: number, formID?: number) => {
-    const queryParamFormID = formID ? `formId=${formID}&` : '';
-    const response = await privateAPI.get({
-      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
-    });
+  const getMyFormInfo = async () => {
+    const response = await privateAPI.get({ url: `/form/answer/pick/form` });
     return {
       formList: response.data.form
         ? response.data.form.map((form: any) => ({
@@ -165,6 +162,15 @@ export function userDataRemote(): UserService {
             profileImage: form.darkIconImage,
           }))
         : [],
+    };
+  };
+
+  const getMyAnswerInfo = async (page: number, formID?: number) => {
+    const queryParamFormID = formID ? `formId=${formID}&` : '';
+    const response = await privateAPI.get({
+      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
+    });
+    return {
       answerList: response.data.answer
         ? response.data.answer.map((answer: any) => ({
             id: answer.answerId,
@@ -184,17 +190,25 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const getMyTeamInfo = async () => {
+    const response = await privateAPI.get({ url: `/team/feedback/pick/team` });
+    return {
+      teamList: response.data.team
+        ? response.data.team.map((team: any) => ({
+            id: team.id,
+            profileImage: team.image || imgEmptyProfile,
+          }))
+        : [],
+    };
+  };
+
   const getMyFeedbackInfo = async (page: number, teamID?: number) => {
     const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
     const response = await privateAPI.get({
       url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
     });
-    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { teamList: [], feedbackList: [] };
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { feedbackList: [] };
     return {
-      teamList: response.data.team.map((team: any) => ({
-        id: team.id,
-        profileImage: team.image || imgEmptyProfile,
-      })),
       feedbackList: response.data.feedback
         ? response.data.feedback.map((feedback: any) => ({
             id: feedback.feedbackId,
@@ -225,7 +239,9 @@ export function userDataRemote(): UserService {
     editUserProfile,
     getMyKeywordList,
     deleteMyKeyword,
+    getMyFormInfo,
     getMyAnswerInfo,
+    getMyTeamInfo,
     getMyFeedbackInfo,
   };
 }

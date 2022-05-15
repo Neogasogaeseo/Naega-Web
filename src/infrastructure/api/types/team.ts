@@ -193,6 +193,7 @@ export type TeamNoticePaginateItems = {
 export type FeedbackEditInfo = {
   target: string;
   targetID: string;
+  targetProfileImage?: string;
   content: string;
   keywordList: Keyword[];
 };

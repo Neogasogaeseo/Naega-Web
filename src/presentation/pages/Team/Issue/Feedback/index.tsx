@@ -15,9 +15,11 @@ import {
   StButton,
   StTextarea,
   StEmptyWrapper,
+  StTargetUser,
 } from './style';
 import { useQuery, useQueryClient } from 'react-query';
 import { IcLock } from '@assets/icons';
+import { imgEmptyProfile } from '@assets/images';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
@@ -36,26 +38,34 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   const { teamID, issueID } = useParams();
   const queryClient = useQueryClient();
 
-  const { data: teamMembers } = useQuery(
-    ['teamMemberWithoutSelf', teamID],
-    () => api.teamService.getTeamMembers(teamID ?? ''),
-    { enabled: !isEditMode },
+  const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
+    api.teamService.getTeamMembers(teamID ?? ''),
   );
 
   useEffect(() => {
-    if (isEditMode && feedbackEditInfo) {
-      setSelectedUser({ id: +feedbackEditInfo.targetID, profileName: feedbackEditInfo.target });
+    if (isEditMode && feedbackEditInfo && teamMembers) {
+      console.log('dd');
+      const selectedUserImage = teamMembers.find(
+        (member) => member.id === +feedbackEditInfo.targetID,
+      )?.profileImage;
+      setSelectedUser({
+        id: +feedbackEditInfo.targetID,
+        profileName: feedbackEditInfo.target,
+        profileImage: selectedUserImage ?? '',
+      });
+      console.log({
+        id: +feedbackEditInfo.targetID,
+        profileName: feedbackEditInfo.target,
+        profileImage: selectedUserImage ?? '',
+      });
       setContent(feedbackEditInfo.content);
       setKeywordList(feedbackEditInfo.keywordList);
-      console.log('오잉');
     }
   }, []);
 
-  useEffect(() => console.log(content), [content]);
-
   useEffect(() => {
     if (!teamMembers) return;
-    setSelectedUser(teamMembers[0]);
+    if (!isEditMode) setSelectedUser(teamMembers[0]);
   }, [teamMembers]);
 
   const onPostFeedback = async () => {
@@ -99,7 +109,10 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
           <StWrapper>
             <StSection>
               {isEditMode ? (
-                <div>editMode</div>
+                <StTargetUser>
+                  <img src={selectedUser?.profileImage || imgEmptyProfile} />
+                  <div>@ {selectedUser?.profileName}</div>
+                </StTargetUser>
               ) : (
                 <>
                   <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
@@ -113,7 +126,6 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
                   )}
                 </>
               )}
-
               <StTextarea
                 placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
                 value={content}

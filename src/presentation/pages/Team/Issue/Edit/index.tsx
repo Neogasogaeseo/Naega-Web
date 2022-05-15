@@ -21,6 +21,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useLoginUser } from '@hooks/useLoginUser';
 import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
+import CommonNavigation from '@components/common/Navigation';
 
 export default function TeamIssueEdit() {
   const navigate = useNavigate();
@@ -148,71 +149,74 @@ export default function TeamIssueEdit() {
   }, []);
 
   return (
-    <StNewIssue>
-      <StTitleWrapper>
-        {teamInfoData && teamInfoData.teamDetail.teamName}에 이슈 수정하기
-      </StTitleWrapper>
-      <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
-      <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>
-      <StCategoryWrapper>
-        {categoryList &&
-          categoryList.map((category) => {
-            return (
-              <StCategory
-                selected={selectedCategory?.id === category.id}
-                key={category.id}
-                onClick={() => {
-                  onClickSelectedHandler(category);
-                }}
-              >
-                {category.name}
-              </StCategory>
-            );
-          })}
-      </StCategoryWrapper>
-      <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
-      <StTextarea
-        placeholder="팀에서 겪은 상황을 작성해주세요"
-        name="issueTextarea"
-        value={issueTextarea}
-        onChange={onChangeIssue}
-      />
-      <StQuestionWrapper>
-        이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
-      </StQuestionWrapper>
-      <div onClick={() => (!image ? clickFileInputRef() : openBottomSheet())}>
-        <FileUpload
-          ref={fileInputRef}
-          isDeleted={isImageDeleted}
-          cancelDelete={cancelDelete}
-          width="100%"
-          height="149px"
-          setFile={setImage}
-          borderRadius="16px"
-        >
-          {getImageThumbnail()}
-        </FileUpload>
-      </div>
+    <>
+      <CommonNavigation />
+      <StNewIssue>
+        <StTitleWrapper>
+          {teamInfoData && teamInfoData.teamDetail.teamName}에 이슈 수정하기
+        </StTitleWrapper>
+        <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
+        <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>
+        <StCategoryWrapper>
+          {categoryList &&
+            categoryList.map((category) => {
+              return (
+                <StCategory
+                  selected={selectedCategory?.id === category.id}
+                  key={category.id}
+                  onClick={() => {
+                    onClickSelectedHandler(category);
+                  }}
+                >
+                  {category.name}
+                </StCategory>
+              );
+            })}
+        </StCategoryWrapper>
+        <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
+        <StTextarea
+          placeholder="팀에서 겪은 상황을 작성해주세요"
+          name="issueTextarea"
+          value={issueTextarea}
+          onChange={onChangeIssue}
+        />
+        <StQuestionWrapper>
+          이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
+        </StQuestionWrapper>
+        <div onClick={() => (!image ? clickFileInputRef() : openBottomSheet())}>
+          <FileUpload
+            ref={fileInputRef}
+            isDeleted={isImageDeleted}
+            cancelDelete={cancelDelete}
+            width="100%"
+            height="149px"
+            setFile={setImage}
+            borderRadius="16px"
+          >
+            {getImageThumbnail()}
+          </FileUpload>
+        </div>
 
-      <StButton
-        type="submit"
-        onClick={editIssue}
-        disabled={issueTextarea === '' || !selectedCategory || isConfirming}
-      >
-        완료
-      </StButton>
-      <BottomSheet
-        isOpened={bottomSheetOpened}
-        buttonList={[
-          {
-            icon: icEdit,
-            label: '이미지 수정하기',
-            onClick: clickFileInputRef,
-          },
-          { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
-        ]}
-        closeBottomSheet={closeBottomSheet}
-      />
-    </StNewIssue>
+        <StButton
+          type="submit"
+          onClick={editIssue}
+          disabled={issueTextarea === '' || !selectedCategory || isConfirming}
+        >
+          완료
+        </StButton>
+        <BottomSheet
+          isOpened={bottomSheetOpened}
+          buttonList={[
+            {
+              icon: icEdit,
+              label: '이미지 수정하기',
+              onClick: clickFileInputRef,
+            },
+            { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
+          ]}
+          closeBottomSheet={closeBottomSheet}
+        />
+      </StNewIssue>
+    </>
   );
 }

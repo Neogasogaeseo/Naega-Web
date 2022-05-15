@@ -44,16 +44,10 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
 
   useEffect(() => {
     if (isEditMode && feedbackEditInfo && teamMembers) {
-      console.log('dd');
       const selectedUserImage = teamMembers.find(
         (member) => member.id === +feedbackEditInfo.targetID,
       )?.profileImage;
       setSelectedUser({
-        id: +feedbackEditInfo.targetID,
-        profileName: feedbackEditInfo.target,
-        profileImage: selectedUserImage ?? '',
-      });
-      console.log({
         id: +feedbackEditInfo.targetID,
         profileName: feedbackEditInfo.target,
         profileImage: selectedUserImage ?? '',

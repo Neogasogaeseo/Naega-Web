@@ -205,7 +205,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK) {
       return {
         id: id,
-        title: title.replace('\\n', '\n').replaceAll('*', ''),
+        title: title.replace('\\n', ' ').replaceAll('*', ''),
         subtitle: subtitle.replace('\\n', '\n'),
         image: darkIconImage,
       };

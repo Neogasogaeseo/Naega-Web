@@ -1,10 +1,11 @@
-import { FeedbackDetail } from '@api/types/team';
+import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import FeedbackCardItem from '../Item';
 
 type FeedbackCardListProps = {
   feedbacks: FeedbackDetail[];
   openBottomSheet?: (
     feedbackID: number,
+    feedback: FeedbackEditInfo,
     isMine: boolean,
     isForMe: boolean,
     isPinned: boolean,

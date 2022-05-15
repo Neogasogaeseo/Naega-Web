@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
-import { TeamMemberNoneId } from '@api/types/team';
+import { FeedbackEditInfo, TeamMemberNoneId } from '@api/types/team';
 import ProfileListSelectable from '@components/ProfileListSelectable';
 import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -19,7 +19,15 @@ import {
 import { useQuery, useQueryClient } from 'react-query';
 import { IcLock } from '@assets/icons';
 
-function TeamIssueFeedback() {
+interface TeamIssueFeedbackProps {
+  isEditMode?: boolean;
+  feedbackEditInfo?: FeedbackEditInfo | undefined;
+}
+
+function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
+  const { isEditMode = false } = props;
+  const { feedbackEditInfo } = useOutletContext<TeamIssueFeedbackProps>();
+
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
@@ -28,9 +36,23 @@ function TeamIssueFeedback() {
   const { teamID, issueID } = useParams();
   const queryClient = useQueryClient();
 
-  const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
-    api.teamService.getTeamMembers(teamID ?? ''),
+  const { data: teamMembers } = useQuery(
+    ['teamMemberWithoutSelf', teamID],
+    () => api.teamService.getTeamMembers(teamID ?? ''),
+    { enabled: !isEditMode },
   );
+
+  useEffect(() => {
+    if (isEditMode && feedbackEditInfo) {
+      setSelectedUser({ id: +feedbackEditInfo.targetID, profileName: feedbackEditInfo.target });
+      setContent(feedbackEditInfo.content);
+      setKeywordList(feedbackEditInfo.keywordList);
+      console.log('오잉');
+    }
+  }, []);
+
+  useEffect(() => console.log(content), [content]);
+
   useEffect(() => {
     if (!teamMembers) return;
     setSelectedUser(teamMembers[0]);
@@ -54,8 +76,10 @@ function TeamIssueFeedback() {
   };
 
   useEffect(() => {
-    setKeywordList([]);
-    setContent('');
+    if (!isEditMode) {
+      setKeywordList([]);
+      setContent('');
+    }
   }, [selectedUser]);
 
   return (
@@ -74,15 +98,22 @@ function TeamIssueFeedback() {
         ) : (
           <StWrapper>
             <StSection>
-              <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
-              {teamMembers && (
-                <ProfileListSelectable
-                  isSquare={false}
-                  profiles={teamMembers}
-                  selectedProfile={selectedUser}
-                  setSelectedProfile={setSelectedUser}
-                />
+              {isEditMode ? (
+                <div>editMode</div>
+              ) : (
+                <>
+                  <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
+                  {teamMembers && (
+                    <ProfileListSelectable
+                      isSquare={false}
+                      profiles={teamMembers}
+                      selectedProfile={selectedUser}
+                      setSelectedProfile={setSelectedUser}
+                    />
+                  )}
+                </>
               )}
+
               <StTextarea
                 placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
                 value={content}

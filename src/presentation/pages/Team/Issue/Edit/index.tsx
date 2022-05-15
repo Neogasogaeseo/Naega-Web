@@ -1,4 +1,4 @@
-import { icCamera } from '@assets/icons';
+import { icCamera, icEdit, icTrash } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
 import FileUpload from '@components/common/FileUpload';
 import {
@@ -6,7 +6,7 @@ import {
   StTitleWrapper,
   StQuestionWrapper,
   StCategoryWrapper,
-  StTextera,
+  StTextarea,
   StUploadContainer,
   StButton,
   StPhotoUploadImage,
@@ -19,6 +19,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useLoginUser } from '@hooks/useLoginUser';
+import useImageUpload from '@hooks/useImageUpload';
+import BottomSheet from '@components/common/BottomSheet';
 
 export default function TeamIssueEdit() {
   const navigate = useNavigate();
@@ -47,10 +49,21 @@ export default function TeamIssueEdit() {
     },
   );
 
-  const [image, setImage] = useState<File | undefined>();
   const [selectedCategory, setSelectedCategory] = useState<IssueCategory | undefined>(undefined);
   const [issueTextarea, setIssueTextarea] = useState(issueInfo ? issueInfo.title : '');
   const [isConfirming, setIsConfirming] = useState(false);
+  const {
+    image,
+    setImage,
+    fileInputRef,
+    bottomSheetOpened,
+    isImageDeleted,
+    clickFileInputRef,
+    removeImage,
+    openBottomSheet,
+    closeBottomSheet,
+    cancelDelete,
+  } = useImageUpload();
 
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIssueTextarea(e.currentTarget.value);
@@ -78,6 +91,7 @@ export default function TeamIssueEdit() {
           selectedCategory.id,
           issueTextarea,
           image,
+          image ? 'NEW' : issueInfo?.team.thumbnail && isImageDeleted ? 'DELETE' : 'NONE',
         );
     },
     {
@@ -110,6 +124,25 @@ export default function TeamIssueEdit() {
     return categoryList.find((category) => category.name === categoryName) ?? categoryList[0];
   };
 
+  const getImageThumbnail = () => {
+    if (issueInfo && issueInfo.team.thumbnail) {
+      return isImageDeleted ? (
+        <StUploadContainer>
+          <StPhotoUploadImage src={icCamera} />
+          <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+        </StUploadContainer>
+      ) : (
+        <StImage src={issueInfo.team.thumbnail} />
+      );
+    }
+    return (
+      <StUploadContainer>
+        <StPhotoUploadImage src={icCamera} />
+        <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+      </StUploadContainer>
+    );
+  };
+
   useEffect(() => {
     setSelectedCategory(getCategoryInfoFromName(issueInfo ? issueInfo.category : ''));
   }, []);
@@ -138,7 +171,7 @@ export default function TeamIssueEdit() {
           })}
       </StCategoryWrapper>
       <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
-      <StTextera
+      <StTextarea
         placeholder="팀에서 겪은 상황을 작성해주세요"
         name="issueTextarea"
         value={issueTextarea}
@@ -147,16 +180,24 @@ export default function TeamIssueEdit() {
       <StQuestionWrapper>
         이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
       </StQuestionWrapper>
-      <FileUpload width="100%" height="149px" setFile={setImage} borderRadius="16px">
-        {issueInfo && issueInfo.thumbnail ? (
-          <StImage src={issueInfo.thumbnail} />
-        ) : (
-          <StUploadContainer>
-            <StPhotoUploadImage src={icCamera} />
-            <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
-          </StUploadContainer>
-        )}
-      </FileUpload>
+      <div
+        onClick={() =>
+          !issueInfo?.team.thumbnail && !image ? clickFileInputRef() : openBottomSheet()
+        }
+      >
+        <FileUpload
+          ref={fileInputRef}
+          isDeleted={isImageDeleted}
+          cancelDelete={cancelDelete}
+          width="100%"
+          height="149px"
+          setFile={setImage}
+          borderRadius="16px"
+        >
+          {getImageThumbnail()}
+        </FileUpload>
+      </div>
+
       <StButton
         type="submit"
         onClick={editIssue}
@@ -164,6 +205,18 @@ export default function TeamIssueEdit() {
       >
         완료
       </StButton>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={[
+          {
+            icon: icEdit,
+            label: '이미지 수정하기',
+            onClick: clickFileInputRef,
+          },
+          { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
+        ]}
+        closeBottomSheet={closeBottomSheet}
+      />
     </StNewIssue>
   );
 }

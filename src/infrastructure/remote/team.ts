@@ -419,12 +419,20 @@ export function teamDataRemote(): TeamService {
     issueID: number,
     categoryID: number,
     content: string,
-    image?: File | '',
+    image: File | null,
+    imageStatus: 'NEW' | 'DELETE' | 'NONE',
   ) => {
     const formData = new FormData();
     formData.append('categoryId', categoryID.toString());
     formData.append('content', content);
-    image && formData.append('image', image);
+    switch (imageStatus) {
+      case 'NEW':
+        image !== null && formData.append('image', image);
+        break;
+      case 'DELETE':
+        formData.append('image', '');
+        break;
+    }
     const response = await privateAPI
       .put({
         url: `/team/issue/${issueID}`,

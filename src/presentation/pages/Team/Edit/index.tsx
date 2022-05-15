@@ -37,12 +37,15 @@ export default function TeamEdit() {
 
   const editTeamInfo = async () => {
     if (!teamID) return;
-    await api.teamService.editTeamInfo({
-      id: Number(teamID),
-      name: name,
-      description: description,
-      image: image,
-    });
+    await api.teamService.editTeamInfo(
+      {
+        id: Number(teamID),
+        name: name,
+        description: description,
+        image: image,
+      },
+      image ? 'NEW' : teamInfo?.image && isImageDeleted ? 'DELETE' : 'NONE',
+    );
   };
   const { mutate } = useMutation(editTeamInfo, {
     onSuccess: () => {
@@ -102,9 +105,9 @@ export default function TeamEdit() {
         <div>팀 수정하기</div>
         <StPhotoUploadWrapper
           onClick={() =>
-            image
-              ? setBottomSheetOpened(true)
-              : fileInputRef.current && fileInputRef.current.click()
+            !teamInfo?.image && !image
+              ? fileInputRef.current && fileInputRef.current.click()
+              : setBottomSheetOpened(true)
           }
         >
           <PhotoUpload

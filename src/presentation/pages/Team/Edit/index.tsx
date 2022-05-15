@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import CommonNavigation from '@components/common/Navigation';
 import { StPhotoUploadWrapper, StIcPencil, StTextarea } from '../Register/style';
@@ -11,6 +11,8 @@ import { StTeamEdit, StTeamImage, StRelativeWrapper } from './style';
 import { api } from '@api/index';
 import { ImgTeamDefault } from '@assets/images';
 import CommonModal from '@components/common/Modal';
+import BottomSheet from '@components/common/BottomSheet';
+import { icEdit, icTrash } from '@assets/icons';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
@@ -20,6 +22,9 @@ export default function TeamEdit() {
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const queryClient = useQueryClient();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [bottomSheetOpened, setBottomSheetOpened] = useState(false);
+  const [isImageDeleted, setIsImageDeleted] = useState(false);
 
   const { data: teamInfo, isSuccess } = useQuery(
     'teamEditInfo',
@@ -45,6 +50,24 @@ export default function TeamEdit() {
       return queryClient.invalidateQueries('teamEditInfo');
     },
   });
+
+  const removeImage = () => {
+    setIsImageDeleted(true);
+    setImage(null);
+    setBottomSheetOpened(false);
+  };
+
+  const getImageThumbnail = () => {
+    if (teamInfo && teamInfo.image) {
+      console.log('먀?');
+      return isImageDeleted ? (
+        <ImgTeamDefault />
+      ) : (
+        <StTeamImage src={teamInfo.image} alt="팀 이미지" />
+      );
+    }
+    return <ImgTeamDefault />;
+  };
 
   useEffect(() => {
     if (isSuccess && teamInfo) {
@@ -78,13 +101,26 @@ export default function TeamEdit() {
       />
       <StTeamEdit>
         <div>팀 수정하기</div>
-        <StPhotoUploadWrapper>
-          <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
-            {teamInfo && teamInfo.image ? (
-              <StTeamImage src={teamInfo?.image} alt="팀 이미지" />
-            ) : (
-              <ImgTeamDefault />
-            )}
+        <StPhotoUploadWrapper
+          onClick={() =>
+            image
+              ? setBottomSheetOpened(true)
+              : fileInputRef.current && fileInputRef.current.click()
+          }
+        >
+          <PhotoUpload
+            ref={fileInputRef}
+            width="88px"
+            height="88px"
+            borderRadius="36px"
+            setFile={setImage}
+            isDeleted={isImageDeleted}
+            cancelDelete={() => {
+              setBottomSheetOpened(false);
+              setIsImageDeleted(false);
+            }}
+          >
+            {getImageThumbnail()}
           </PhotoUpload>
           <StIcPencil />
         </StPhotoUploadWrapper>
@@ -104,6 +140,18 @@ export default function TeamEdit() {
         <button onClick={() => setIsOpenModal(true)}>팀 삭제하기</button>
         <div>팀을 삭제하면 모든 정보가 사라지며 다시 복구할 수 없습니다</div>
       </StTeamEdit>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={[
+          {
+            icon: icEdit,
+            label: '이미지 수정하기',
+            onClick: () => fileInputRef.current && fileInputRef.current.click(),
+          },
+          { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
+        ]}
+        closeBottomSheet={() => setBottomSheetOpened(false)}
+      />
     </StRelativeWrapper>
   );
 }

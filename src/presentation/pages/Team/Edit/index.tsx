@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import CommonNavigation from '@components/common/Navigation';
 import { StPhotoUploadWrapper, StIcPencil, StTextarea } from '../Register/style';
@@ -13,18 +13,27 @@ import { ImgTeamDefault } from '@assets/images';
 import CommonModal from '@components/common/Modal';
 import BottomSheet from '@components/common/BottomSheet';
 import { icEdit, icTrash } from '@assets/icons';
+import useImageUpload from '@hooks/useImageUpload';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const queryClient = useQueryClient();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [bottomSheetOpened, setBottomSheetOpened] = useState(false);
-  const [isImageDeleted, setIsImageDeleted] = useState(false);
+  const {
+    image,
+    setImage,
+    fileInputRef,
+    bottomSheetOpened,
+    isImageDeleted,
+    clickFileInputRef,
+    removeImage,
+    openBottomSheet,
+    closeBottomSheet,
+    cancelDelete,
+  } = useImageUpload();
 
   const { data: teamInfo, isSuccess } = useQuery(
     ['teamEditInfo', teamID],
@@ -53,12 +62,6 @@ export default function TeamEdit() {
       return queryClient.invalidateQueries('teamEditInfo');
     },
   });
-
-  const removeImage = () => {
-    setIsImageDeleted(true);
-    setImage(null);
-    setBottomSheetOpened(false);
-  };
 
   const getImageThumbnail = () => {
     if (teamInfo && teamInfo.image) {
@@ -104,11 +107,7 @@ export default function TeamEdit() {
       <StTeamEdit>
         <div>팀 수정하기</div>
         <StPhotoUploadWrapper
-          onClick={() =>
-            !teamInfo?.image && !image
-              ? fileInputRef.current && fileInputRef.current.click()
-              : setBottomSheetOpened(true)
-          }
+          onClick={() => (!teamInfo?.image && !image ? clickFileInputRef() : openBottomSheet())}
         >
           <PhotoUpload
             ref={fileInputRef}
@@ -117,10 +116,7 @@ export default function TeamEdit() {
             borderRadius="36px"
             setFile={setImage}
             isDeleted={isImageDeleted}
-            cancelDelete={() => {
-              setBottomSheetOpened(false);
-              setIsImageDeleted(false);
-            }}
+            cancelDelete={cancelDelete}
           >
             {getImageThumbnail()}
           </PhotoUpload>
@@ -148,11 +144,11 @@ export default function TeamEdit() {
           {
             icon: icEdit,
             label: '이미지 수정하기',
-            onClick: () => fileInputRef.current && fileInputRef.current.click(),
+            onClick: clickFileInputRef,
           },
           { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
         ]}
-        closeBottomSheet={() => setBottomSheetOpened(false)}
+        closeBottomSheet={closeBottomSheet}
       />
     </StRelativeWrapper>
   );

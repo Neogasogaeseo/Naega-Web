@@ -44,7 +44,7 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
     api.teamService.getTeamMembers(teamID ?? ''),
   );
 
-  const { mutate } = useMutation(
+  const { mutate: editFeedback } = useMutation(
     async () => {
       if (feedbackEditInfo) {
         const response = await api.teamService.editFeedback({
@@ -103,7 +103,7 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   };
 
   const submit = () => {
-    if (isEditMode) mutate();
+    if (isEditMode) editFeedback();
     else onPostFeedback();
   };
   useEffect(() => {

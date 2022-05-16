@@ -150,20 +150,19 @@ export default function TeamIssueEdit() {
         <p>팀에서 겪은 우리의 이슈를 등록하세요</p>
         <StQuestionWrapper>이슈의 카테고리를 선택해주세요</StQuestionWrapper>
         <StCategoryWrapper>
-          {categoryList &&
-            categoryList.map((category) => {
-              return (
-                <StCategory
-                  selected={selectedCategory?.id === category.id}
-                  key={category.id}
-                  onClick={() => {
-                    onClickSelectedHandler(category);
-                  }}
-                >
-                  {category.name}
-                </StCategory>
-              );
-            })}
+          {categoryList?.map((category) => {
+            return (
+              <StCategory
+                selected={selectedCategory?.id === category.id}
+                key={category.id}
+                onClick={() => {
+                  onClickSelectedHandler(category);
+                }}
+              >
+                {category.name}
+              </StCategory>
+            );
+          })}
         </StCategoryWrapper>
         <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
         <StTextarea

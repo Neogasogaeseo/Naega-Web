@@ -106,7 +106,11 @@ export default function TeamEdit() {
       />
       <StTeamEdit>
         <div>팀 수정하기</div>
-        <StPhotoUploadWrapper onClick={() => (!image ? clickFileInputRef() : openBottomSheet())}>
+        <StPhotoUploadWrapper
+          onClick={() =>
+            image ? openBottomSheet() : isImageDeleted ? clickFileInputRef() : openBottomSheet()
+          }
+        >
           <PhotoUpload
             ref={fileInputRef}
             width="88px"

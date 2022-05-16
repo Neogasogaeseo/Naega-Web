@@ -10,7 +10,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data
         ? {
             id: response.data.id,
-            title: response.data.title,
+            title: response.data.title.replace('\\n', ' ').replaceAll('*', ''),
             content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
@@ -40,7 +40,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === 200)
       return response.data.map((data: any) => ({
         id: data.id,
-        title: data.title,
+        title: data.title.replace('\\n', ' ').replaceAll('*', ''),
         content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
         src: data.lightIconImage,
@@ -57,7 +57,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer.map((comment: any) => ({
@@ -77,7 +77,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -95,7 +95,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer
@@ -117,7 +117,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -163,7 +163,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === 200) {
       return {
         id: id,
-        title: title,
+        title: title.replace('\\n', ' ').replaceAll('*', ''),
         subtitle: subtitle.replace('\\n', '\n'),
         image: darkIconImage,
       };

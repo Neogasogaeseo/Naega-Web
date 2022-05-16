@@ -176,7 +176,7 @@ export function userDataRemote(): UserService {
             id: answer.answerId,
             formId: answer.formId,
             icon: answer.darkIconImage,
-            question: answer.title,
+            question: answer.title.replace('\\n', ' ').replaceAll('*', ''),
             content: answer.content,
             isBookmarked: answer.isPinned,
             keywordList: answer.keywords.map((keyword: any) => ({

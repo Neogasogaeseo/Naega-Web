@@ -11,7 +11,7 @@ export function NeogaDataRemote(): NeogaService {
       return response.data
         ? {
             id: response.data.id,
-            title: response.data.title,
+            title: response.data.title.replace('\\n', ' ').replaceAll('*', ''),
             content: response.data.subtitle.replace('\\n', '\n'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
@@ -41,7 +41,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK)
       return response.data.map((data: any) => ({
         id: data.id,
-        title: data.title,
+        title: data.title.replace('\\n', ' ').replaceAll('*', ''),
         content: data.subtitle.replace('\\n', ' '),
         isNew: data.isNew,
         src: data.darkIconImage,
@@ -58,7 +58,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer.map((comment: any) => ({
@@ -79,7 +79,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title,
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -97,7 +97,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer
@@ -120,7 +120,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -138,7 +138,7 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               subtitle: result.subtitle,
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
@@ -162,7 +162,7 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', '\n'),
+              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
               subtitle: result.subtitle,
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
@@ -205,7 +205,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK) {
       return {
         id: id,
-        title: title,
+        title: title.replace('\\n', ' ').replaceAll('*', ''),
         subtitle: subtitle.replace('\\n', '\n'),
         image: darkIconImage,
       };
@@ -217,7 +217,7 @@ export function NeogaDataRemote(): NeogaService {
     if (!response.data) throw new NotFoundError('해당 유저와 폼 아이디로 생성된 폼이 없습니다.');
     return {
       id: response.data.form.id,
-      title: response.data.form.title,
+      title: response.data.form.title.replace('\\n', '\n').replaceAll('*', ''),
       subtitle: response.data.form.subtitle.replace('\\n', '\n'),
       darkIconImage: response.data.form.darkIconImage,
       createdAt: response.data.form.createdAt,

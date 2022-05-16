@@ -325,15 +325,24 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
-  const editTeamInfo = async (teamInfo: TeamEditInfo<ImageFile>) => {
+  const editTeamInfo = async (
+    teamInfo: TeamEditInfo<ImageFile>,
+    imageStatus: 'NEW' | 'DELETE' | 'NONE',
+  ) => {
     const { id, name, description, image } = teamInfo;
     const formData = new FormData();
-    formData.append('teamId', id.toString());
     formData.append('teamName', name);
-    formData.append('image', image ?? '');
     formData.append('description', description);
+    switch (imageStatus) {
+      case 'NEW':
+        image !== null && formData.append('image', image);
+        break;
+      case 'DELETE':
+        formData.append('image', '');
+        break;
+    }
     const response = await privateAPI.put({
-      url: '/team/edit',
+      url: `/team/edit/${id}`,
       data: formData,
       type: 'multipart',
     });
@@ -410,12 +419,20 @@ export function teamDataRemote(): TeamService {
     issueID: number,
     categoryID: number,
     content: string,
-    image?: File | '',
+    image: File | null,
+    imageStatus: 'NEW' | 'DELETE' | 'NONE',
   ) => {
     const formData = new FormData();
     formData.append('categoryId', categoryID.toString());
     formData.append('content', content);
-    image && formData.append('image', image);
+    switch (imageStatus) {
+      case 'NEW':
+        image && formData.append('image', image);
+        break;
+      case 'DELETE':
+        formData.append('image', '');
+        break;
+    }
     const response = await privateAPI
       .put({
         url: `/team/issue/${issueID}`,

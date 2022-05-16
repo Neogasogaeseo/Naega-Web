@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
 import { useToast } from '@hooks/useToast';
 import { checkBrowser } from '@utils/browser';
@@ -11,10 +11,12 @@ interface FileUploadProps {
   height: string;
   borderRadius?: string;
   setFile: (e: File) => void;
+  ref?: React.ForwardedRef<HTMLInputElement>;
+  isDeleted?: boolean;
+  cancelDelete?: () => void;
 }
-
-function FileUpload(props: FileUploadProps): React.ReactElement {
-  const { children, width, height, borderRadius = '0px', setFile } = props;
+const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>((props, ref) => {
+  const { children, width, height, borderRadius = '0px', setFile, isDeleted, cancelDelete } = props;
   const imgFileForm = /(.*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/;
   const [newFile, setNewFile] = useState<File | null>(null);
   const [fileThumbnail, setFileThumbnail] = useState('');
@@ -44,6 +46,7 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
           setNewFile(resizedImageFile);
           setFileThumbnail(URL.createObjectURL(imageBlob));
         }
+        cancelDelete && cancelDelete();
       } else {
         fireToast({ content: '이미지 파일을 첨부해주세요' });
       }
@@ -54,7 +57,7 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
     <StFileUpload>
       <input
         hidden={true}
-        ref={inputRef}
+        ref={ref ?? inputRef}
         type="file"
         onChange={fileInputHandler}
         accept="image/jpeg, image/png, image/gif"
@@ -62,18 +65,20 @@ function FileUpload(props: FileUploadProps): React.ReactElement {
       <StUploadBtn onClick={buttonHandler} width={width} height={height}>
         {!newFile ? ( //파일이 없는 경우
           children
-        ) : (
-          //업로드된 파일이 사진일 경우
+        ) : //업로드된 파일이 사진일 경우
+        isDeleted === undefined || !isDeleted ? (
           <StImgPreview
             src={fileThumbnail}
             width={width}
             height={height}
             borderRadius={borderRadius}
           />
+        ) : (
+          children
         )}
       </StUploadBtn>
     </StFileUpload>
   );
-}
+});
 
 export default FileUpload;

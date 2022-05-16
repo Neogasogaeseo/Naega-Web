@@ -11,18 +11,32 @@ import { StTeamEdit, StTeamImage, StRelativeWrapper } from './style';
 import { api } from '@api/index';
 import { ImgTeamDefault } from '@assets/images';
 import CommonModal from '@components/common/Modal';
+import BottomSheet from '@components/common/BottomSheet';
+import { icEdit, icTrash } from '@assets/icons';
+import useImageUpload from '@hooks/useImageUpload';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
   const { teamID } = useParams();
-  const [image, setImage] = useState<File | null>(null);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const queryClient = useQueryClient();
+  const {
+    image,
+    setImage,
+    fileInputRef,
+    bottomSheetOpened,
+    isImageDeleted,
+    clickFileInputRef,
+    removeImage,
+    openBottomSheet,
+    closeBottomSheet,
+    cancelDelete,
+  } = useImageUpload();
 
   const { data: teamInfo, isSuccess } = useQuery(
-    'teamEditInfo',
+    ['teamEditInfo', teamID],
     async () => await api.teamService.getTeamEditInfo(Number(teamID)),
     {
       useErrorBoundary: true,
@@ -32,12 +46,15 @@ export default function TeamEdit() {
 
   const editTeamInfo = async () => {
     if (!teamID) return;
-    await api.teamService.editTeamInfo({
-      id: Number(teamID),
-      name: name,
-      description: description,
-      image: image,
-    });
+    await api.teamService.editTeamInfo(
+      {
+        id: Number(teamID),
+        name: name,
+        description: description,
+        image: image,
+      },
+      image ? 'NEW' : teamInfo?.image && isImageDeleted ? 'DELETE' : 'NONE',
+    );
   };
   const { mutate } = useMutation(editTeamInfo, {
     onSuccess: () => {
@@ -45,6 +62,12 @@ export default function TeamEdit() {
       return queryClient.invalidateQueries('teamEditInfo');
     },
   });
+
+  const getImageThumbnail = () => {
+    if (teamInfo && teamInfo.image && !isImageDeleted)
+      return <StTeamImage src={teamInfo.image} alt="팀 이미지" />;
+    return <ImgTeamDefault />;
+  };
 
   useEffect(() => {
     if (isSuccess && teamInfo) {
@@ -78,13 +101,21 @@ export default function TeamEdit() {
       />
       <StTeamEdit>
         <div>팀 수정하기</div>
-        <StPhotoUploadWrapper>
-          <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
-            {teamInfo && teamInfo.image ? (
-              <StTeamImage src={teamInfo?.image} alt="팀 이미지" />
-            ) : (
-              <ImgTeamDefault />
-            )}
+        <StPhotoUploadWrapper
+          onClick={() =>
+            image ? openBottomSheet() : isImageDeleted ? clickFileInputRef() : openBottomSheet()
+          }
+        >
+          <PhotoUpload
+            ref={fileInputRef}
+            width="88px"
+            height="88px"
+            borderRadius="36px"
+            setFile={setImage}
+            isDeleted={isImageDeleted}
+            cancelDelete={cancelDelete}
+          >
+            {getImageThumbnail()}
           </PhotoUpload>
           <StIcPencil />
         </StPhotoUploadWrapper>
@@ -104,6 +135,18 @@ export default function TeamEdit() {
         <button onClick={() => setIsOpenModal(true)}>팀 삭제하기</button>
         <div>팀을 삭제하면 모든 정보가 사라지며 다시 복구할 수 없습니다</div>
       </StTeamEdit>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={[
+          {
+            icon: icEdit,
+            label: '이미지 수정하기',
+            onClick: clickFileInputRef,
+          },
+          { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
+        ]}
+        closeBottomSheet={closeBottomSheet}
+      />
     </StRelativeWrapper>
   );
 }

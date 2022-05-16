@@ -50,7 +50,7 @@ export const StSelectWrapper = styled.div`
   align-self: center;
 `;
 
-export const StTextera = styled.textarea`
+export const StTextarea = styled.textarea`
   width: 100%;
   height: 104px;
   border: 1px solid ${COLOR.GRAY_3};

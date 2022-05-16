@@ -255,11 +255,12 @@ export function teamDataRemote(): TeamService {
         .catch((error: AxiosError) => {
           console.error(error.response);
         });
-      if (response.status === STATUS_CODE.OK) {
-        return { isSuccess: true };
-      } else {
-        return { isSuccess: false };
-      }
+      const { status, data } = response;
+      return {
+        isSuccess: status === STATUS_CODE.OK,
+        id: +data.team.id,
+        image: data.team.image ?? '',
+      };
     } catch (e) {
       throw '데이터 전송 실패';
     }

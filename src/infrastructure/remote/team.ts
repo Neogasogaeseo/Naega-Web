@@ -427,7 +427,7 @@ export function teamDataRemote(): TeamService {
     formData.append('content', content);
     switch (imageStatus) {
       case 'NEW':
-        image !== null && formData.append('image', image);
+        image && formData.append('image', image);
         break;
       case 'DELETE':
         formData.append('image', '');

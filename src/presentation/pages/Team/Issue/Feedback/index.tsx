@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
 import { FeedbackEditInfo, TeamMemberNoneId } from '@api/types/team';
@@ -17,18 +19,18 @@ import {
   StEmptyWrapper,
   StTargetUser,
 } from './style';
-import { useQuery, useQueryClient } from 'react-query';
 import { IcLock } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
   feedbackEditInfo?: FeedbackEditInfo | undefined;
+  closeBottomSheet?: () => void | undefined;
 }
 
 function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   const { isEditMode = false } = props;
-  const { feedbackEditInfo } = useOutletContext<TeamIssueFeedbackProps>();
+  const { feedbackEditInfo, closeBottomSheet } = useOutletContext<TeamIssueFeedbackProps>();
 
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
@@ -40,6 +42,27 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
 
   const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
     api.teamService.getTeamMembers(teamID ?? ''),
+  );
+
+  const { mutate } = useMutation(
+    async () => {
+      if (feedbackEditInfo) {
+        const response = await api.teamService.editFeedback({
+          id: feedbackEditInfo.id,
+          targetID: feedbackEditInfo.targetID,
+          content: content,
+          keywordList: keywordList,
+        });
+        return response;
+      }
+    },
+    {
+      onSuccess: () => {
+        closeBottomSheet && closeBottomSheet();
+        queryClient.invalidateQueries(['issueDetailData', `${teamID}-${issueID}`]);
+        navigate(-1);
+      },
+    },
   );
 
   useEffect(() => {
@@ -79,6 +102,10 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
     }
   };
 
+  const submit = () => {
+    if (isEditMode) mutate();
+    else onPostFeedback();
+  };
   useEffect(() => {
     if (!isEditMode) {
       setKeywordList([]);
@@ -137,7 +164,7 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
               </Link>
               <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
               <StButton
-                onClick={onPostFeedback}
+                onClick={submit}
                 disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
               >
                 완료

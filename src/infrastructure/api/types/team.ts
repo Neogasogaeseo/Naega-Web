@@ -191,6 +191,7 @@ export type TeamNoticePaginateItems = {
 };
 
 export type FeedbackEditInfo = {
+  id: string;
   target: string;
   targetID: string;
   targetProfileImage?: string;

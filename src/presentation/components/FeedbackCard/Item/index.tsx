@@ -80,6 +80,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
                 openBottomSheet?.(
                   +id,
                   {
+                    id: id,
                     target: target,
                     targetID: targetProfileID,
                     content: body,

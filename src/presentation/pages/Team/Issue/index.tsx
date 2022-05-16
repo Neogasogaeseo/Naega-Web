@@ -164,7 +164,7 @@ function TeamIssue() {
         ) : (
           <DeleteIssueModal isOpened closeModal={closeModal} issueID={modalState.id} />
         ))}
-      <Outlet context={{ feedbackEditInfo: feedbackEditInfo }} />
+      <Outlet context={{ feedbackEditInfo: feedbackEditInfo, closeBottomSheet }} />
     </StTeamIssue>
   );
 }

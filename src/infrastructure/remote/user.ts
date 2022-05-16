@@ -69,7 +69,7 @@ export function userDataRemote(): UserService {
         ? response.data.map((bookmark: any) => ({
             id: bookmark.answerId,
             icon: bookmark.darkIconImage,
-            question: bookmark.title,
+            question: bookmark.title.replace('\\n', ' ').replaceAll('*', ''),
             content: bookmark.content,
             isBookmarked: bookmark.isPinned,
             keywordList: bookmark.keywords.map((keyword: any) => ({

@@ -64,13 +64,8 @@ export default function TeamEdit() {
   });
 
   const getImageThumbnail = () => {
-    if (teamInfo && teamInfo.image) {
-      return isImageDeleted ? (
-        <ImgTeamDefault />
-      ) : (
-        <StTeamImage src={teamInfo.image} alt="팀 이미지" />
-      );
-    }
+    if (teamInfo && teamInfo.image && !isImageDeleted)
+      return <StTeamImage src={teamInfo.image} alt="팀 이미지" />;
     return <ImgTeamDefault />;
   };
 

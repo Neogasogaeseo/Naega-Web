@@ -126,16 +126,8 @@ export default function TeamIssueEdit() {
   };
 
   const getImageThumbnail = () => {
-    if (issueInfo && issueInfo.team.thumbnail) {
-      return isImageDeleted ? (
-        <StUploadContainer>
-          <StPhotoUploadImage src={icCamera} />
-          <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
-        </StUploadContainer>
-      ) : (
-        <StImage src={issueInfo.team.thumbnail} />
-      );
-    }
+    if (issueInfo && issueInfo.team.thumbnail && !isImageDeleted)
+      return <StImage src={issueInfo.team.thumbnail} />;
     return (
       <StUploadContainer>
         <StPhotoUploadImage src={icCamera} />

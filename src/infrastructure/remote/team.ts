@@ -150,7 +150,12 @@ export function teamDataRemote(): TeamService {
   };
 
   const getTeamInfo = async (teamID: number) => {
-    const response = await privateAPI.get({ url: `/team/detail/${teamID}` });
+    const response = await privateAPI
+      .get({ url: `/team/detail/${teamID}` })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.NOT_FOUND)
+          throw new NotFoundError('찾을 수 없는 페이지입니다.');
+      });
     if (response.status === STATUS_CODE.OK)
       return {
         teamDetail: {

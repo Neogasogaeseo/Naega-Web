@@ -24,8 +24,8 @@ import { imgEmptyProfile } from '@assets/images';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
-  feedbackEditInfo?: FeedbackEditInfo | undefined;
-  closeBottomSheet?: () => void | undefined;
+  feedbackEditInfo?: FeedbackEditInfo;
+  closeBottomSheet?: () => void;
 }
 
 function TeamIssueFeedback(props: TeamIssueFeedbackProps) {

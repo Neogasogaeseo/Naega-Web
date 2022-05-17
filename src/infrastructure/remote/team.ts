@@ -355,7 +355,12 @@ export function teamDataRemote(): TeamService {
   };
 
   const deleteTeam = async (teamID: number) => {
-    const response = await privateAPI.delete({ url: '/team', data: { teamId: teamID } });
+    const response = await privateAPI
+      .delete({ url: '/team', data: { teamId: teamID } })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('팀 호스트에게만 삭제 권한이 있습니다.');
+      });
     return { isSuccess: response.success };
   };
 

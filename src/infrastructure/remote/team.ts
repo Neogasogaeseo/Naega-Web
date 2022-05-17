@@ -457,14 +457,19 @@ export function teamDataRemote(): TeamService {
   const editFeedback = async (
     feedback: Omit<FeedbackEditInfo, 'target' | 'targetProfileImage'>,
   ) => {
-    const response = await privateAPI.put({
-      url: `/team/feedback/${feedback.id}`,
-      data: {
-        taggedUserId: +feedback.targetID,
-        content: feedback.content,
-        keywordIds: feedback.keywordList.map((keyword) => +keyword.id),
-      },
-    });
+    const response = await privateAPI
+      .put({
+        url: `/team/feedback/${feedback.id}`,
+        data: {
+          taggedUserId: +feedback.targetID,
+          content: feedback.content,
+          keywordIds: feedback.keywordList.map((keyword) => +keyword.id),
+        },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('수정 권한이 없습니다.');
+      });
 
     return { isSuccess: response.success };
   };

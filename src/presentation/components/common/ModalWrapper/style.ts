@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const StModalWrapper = styled.div<{ isOpened: boolean; isAnimation: boolean }>`
   width: 100%;
+  overflow-y: scroll;
   min-height: 100vh;
-  position: absolute;
+  position: fixed;
   visibility: ${(props) => (props.isOpened ? 'visible' : 'hidden')};
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.6);

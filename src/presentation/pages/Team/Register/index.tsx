@@ -22,6 +22,8 @@ import { api } from '@api/index';
 import CommonNavigation from '@components/common/Navigation';
 import { selectedUserListState } from '@stores/team';
 import TeamMemberAddForRegister from '@components/TeamMemberAdd/ForRegister';
+import { useMutation, useQueryClient } from 'react-query';
+import { TeamProfileData } from '@api/types/team';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
@@ -31,6 +33,7 @@ function TeamRegister() {
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
   const navigate = useNavigate();
   const { id, username, profileImage } = useLoginUser();
+  const queryClient = useQueryClient();
 
   const closeMembers = () => {
     setIsMemberSelectMode(false);
@@ -43,8 +46,23 @@ function TeamRegister() {
     description && form.append('description', description);
     selectedUserList.length &&
       form.append('userIdList', `[${selectedUserList.map((user) => user.id).join(', ')}]`);
-    await api.teamService.postTeamInfo(form);
+    return await api.teamService.postTeamInfo(form);
   };
+  const { mutate } = useMutation(submitTeamInfo, {
+    onSuccess: (data) => {
+      data &&
+        queryClient.setQueryData<TeamProfileData | undefined>(
+          'teamProfileData',
+          (old) =>
+            old && {
+              profileList: [
+                { id: data.id, profileImage: data.image, profileName: name },
+                ...old.profileList,
+              ],
+            },
+        );
+    },
+  });
 
   useEffect(() => setSelectedUserList([]), []);
 
@@ -89,7 +107,7 @@ function TeamRegister() {
           />
           <StSubmitButton
             onClick={() => {
-              submitTeamInfo();
+              mutate();
               navigate('/home/team');
             }}
             isActive={name.length > 0}

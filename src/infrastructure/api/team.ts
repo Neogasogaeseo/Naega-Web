@@ -35,7 +35,7 @@ export interface TeamService {
   ): Promise<SearchedUserResponseForEdit[]>;
   getTeamMembers(teamID: string): Promise<TeamMemberNoneId[]>;
   postFeedback(body: PostFeedbackRequestBody): Promise<PostFeedbackResponse>;
-  postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean }>;
+  postTeamInfo(teamInfo: FormData): Promise<{ isSuccess: boolean; id: number; image: string }>;
   getTeamIssueCategory(): Promise<IssueCategory[]>;
   postTeamIssue(
     teamID: string,

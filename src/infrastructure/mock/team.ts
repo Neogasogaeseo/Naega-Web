@@ -67,11 +67,12 @@ export function teamDataMock(): TeamService {
     };
   };
 
-  const postTeamInfo = async (teamInfo: FormData) => {
+  const postTeamInfo = async () => {
     await wait(2000);
-    console.log(teamInfo);
     return {
       isSuccess: true,
+      id: 1,
+      image: '',
     };
   };
 

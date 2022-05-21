@@ -16,13 +16,6 @@ export default function ModalWrapper(props: ModalWrapperProps) {
     else setIsAnimation(true);
   }, [isOpened]);
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'visible';
-    };
-  }, []);
-
   return (
     <StModalWrapper isOpened={isOpened} isAnimation={isAnimation}>
       {children}

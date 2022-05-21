@@ -1,7 +1,12 @@
 import { AxiosError } from 'axios';
 
 import { ForbiddenError, NotFoundError } from '@api/types/errors';
-import { ImageFile, PostFeedbackRequestBody, TeamEditInfo } from '@api/types/team';
+import {
+  FeedbackEditInfo,
+  ImageFile,
+  PostFeedbackRequestBody,
+  TeamEditInfo,
+} from '@api/types/team';
 import { TeamService } from '@api/team';
 import { NOTICE_PAGE, SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
 import { getTimeDifference } from '@utils/date';
@@ -467,6 +472,26 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
+  const editFeedback = async (
+    feedback: Omit<FeedbackEditInfo, 'target' | 'targetProfileImage'>,
+  ) => {
+    const response = await privateAPI
+      .put({
+        url: `/team/feedback/${feedback.id}`,
+        data: {
+          taggedUserId: +feedback.targetID,
+          content: feedback.content,
+          keywordIds: feedback.keywordList.map((keyword) => +keyword.id),
+        },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('수정 권한이 없습니다.');
+      });
+
+    return { isSuccess: response.success };
+  };
+
   return {
     postFeedbackBookmark,
     getTeamProfile,
@@ -496,5 +521,6 @@ export function teamDataRemote(): TeamService {
     editIssue,
     leaveTeam,
     delegateHost,
+    editFeedback,
   };
 }

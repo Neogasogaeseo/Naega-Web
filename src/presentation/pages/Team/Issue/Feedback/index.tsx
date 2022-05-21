@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Link, Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
-import { TeamMemberNoneId } from '@api/types/team';
+import { FeedbackEditInfo, TeamMemberNoneId } from '@api/types/team';
 import ProfileListSelectable from '@components/ProfileListSelectable';
 import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -15,11 +17,21 @@ import {
   StButton,
   StTextarea,
   StEmptyWrapper,
+  StTargetUser,
 } from './style';
-import { useQuery, useQueryClient } from 'react-query';
 import { IcLock } from '@assets/icons';
+import { imgEmptyProfile } from '@assets/images';
 
-function TeamIssueFeedback() {
+interface TeamIssueFeedbackProps {
+  isEditMode?: boolean;
+  feedbackEditInfo?: FeedbackEditInfo;
+  closeBottomSheet?: () => void;
+}
+
+function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
+  const { isEditMode = false } = props;
+  const { feedbackEditInfo, closeBottomSheet } = useOutletContext<TeamIssueFeedbackProps>();
+
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
   const [keywordList, setKeywordList] = useState<Keyword[]>([]);
@@ -31,9 +43,46 @@ function TeamIssueFeedback() {
   const { data: teamMembers } = useQuery(['teamMemberWithoutSelf', teamID], () =>
     api.teamService.getTeamMembers(teamID ?? ''),
   );
+
+  const { mutate: editFeedback } = useMutation(
+    async () => {
+      if (feedbackEditInfo) {
+        const response = await api.teamService.editFeedback({
+          id: feedbackEditInfo.id,
+          targetID: feedbackEditInfo.targetID,
+          content: content,
+          keywordList: keywordList,
+        });
+        return response;
+      }
+    },
+    {
+      onSuccess: () => {
+        closeBottomSheet && closeBottomSheet();
+        queryClient.invalidateQueries(['issueDetailData', `${teamID}-${issueID}`]);
+        navigate(-1);
+      },
+    },
+  );
+
+  useEffect(() => {
+    if (isEditMode && feedbackEditInfo && teamMembers) {
+      const selectedUserImage = teamMembers.find(
+        (member) => member.id === +feedbackEditInfo.targetID,
+      )?.profileImage;
+      setSelectedUser({
+        id: +feedbackEditInfo.targetID,
+        profileName: feedbackEditInfo.target,
+        profileImage: selectedUserImage ?? '',
+      });
+      setContent(feedbackEditInfo.content);
+      setKeywordList(feedbackEditInfo.keywordList);
+    }
+  }, []);
+
   useEffect(() => {
     if (!teamMembers) return;
-    setSelectedUser(teamMembers[0]);
+    if (!isEditMode) setSelectedUser(teamMembers[0]);
   }, [teamMembers]);
 
   const onPostFeedback = async () => {
@@ -53,9 +102,15 @@ function TeamIssueFeedback() {
     }
   };
 
+  const submit = () => {
+    if (isEditMode) editFeedback();
+    else onPostFeedback();
+  };
   useEffect(() => {
-    setKeywordList([]);
-    setContent('');
+    if (!isEditMode) {
+      setKeywordList([]);
+      setContent('');
+    }
   }, [selectedUser]);
 
   return (
@@ -74,14 +129,23 @@ function TeamIssueFeedback() {
         ) : (
           <StWrapper>
             <StSection>
-              <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
-              {teamMembers && (
-                <ProfileListSelectable
-                  isSquare={false}
-                  profiles={teamMembers}
-                  selectedProfile={selectedUser}
-                  setSelectedProfile={setSelectedUser}
-                />
+              {isEditMode ? (
+                <StTargetUser>
+                  <img src={selectedUser?.profileImage || imgEmptyProfile} />
+                  <div>@ {selectedUser?.profileName}</div>
+                </StTargetUser>
+              ) : (
+                <>
+                  <StSectionTitle>팀원을 선택하고 피드백을 남겨주세요</StSectionTitle>
+                  {teamMembers && (
+                    <ProfileListSelectable
+                      isSquare={false}
+                      profiles={teamMembers}
+                      selectedProfile={selectedUser}
+                      setSelectedProfile={setSelectedUser}
+                    />
+                  )}
+                </>
               )}
               <StTextarea
                 placeholder="칭찬이나 전달하고 싶은 피드백을 남겨주세요"
@@ -100,7 +164,7 @@ function TeamIssueFeedback() {
               </Link>
               <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />
               <StButton
-                onClick={onPostFeedback}
+                onClick={submit}
                 disabled={content.length == 0 || keywordList.length == 0 || isConfirming}
               >
                 완료

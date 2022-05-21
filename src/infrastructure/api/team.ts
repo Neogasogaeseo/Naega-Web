@@ -16,6 +16,7 @@ import {
   SearchedUserResponse,
   TeamEditMember,
   SearchedUserResponseForEdit,
+  FeedbackEditInfo,
 } from './types/team';
 
 export interface TeamService {
@@ -65,4 +66,7 @@ export interface TeamService {
   ): Promise<{ isSuccess: boolean; image: string | null }>;
   leaveTeam(teamID: number): Promise<{ isSuccess: boolean }>;
   delegateHost(teamID: number, newHostID: number): Promise<{ isSuccess: boolean }>;
+  editFeedback(
+    feedback: Omit<FeedbackEditInfo, 'target' | 'targetProfileImage'>,
+  ): Promise<{ isSuccess: boolean }>;
 }

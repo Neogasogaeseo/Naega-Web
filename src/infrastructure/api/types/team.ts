@@ -189,3 +189,12 @@ export type TeamNoticePaginateItems = {
       }[]
     | undefined;
 };
+
+export type FeedbackEditInfo = {
+  id: string;
+  target: string;
+  targetID: string;
+  targetProfileImage?: string;
+  content: string;
+  keywordList: Keyword[];
+};

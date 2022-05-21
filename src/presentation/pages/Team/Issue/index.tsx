@@ -17,7 +17,7 @@ import { useQuery } from 'react-query';
 import TeamsoseoPickerBottomSheet from '@components/common/BottomSheet/TeamsoseoPicker';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { FeedbackDetail } from '@api/types/team';
+import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import CommonNavigation from '@components/common/Navigation';
 import { IcMeatball } from '@assets/icons';
 import DeleteFeedbackModal from '@components/common/Modal/DeleteFeedback';
@@ -41,6 +41,7 @@ function TeamIssue() {
   const [modalState, setModalState] = useState<
     { mode: 'issue' | 'feedback'; id: number } | undefined
   >(undefined);
+  const [feedbackEditInfo, setFeedbackEditInfo] = useState<FeedbackEditInfo | undefined>();
 
   const { data: issue } = useQuery(
     ['issueDetailData', `${teamID}-${issueID}`],
@@ -53,7 +54,13 @@ function TeamIssue() {
     if (issue) setFeedbacks(issue.feedbackList);
   }, [issue]);
 
-  const onFeedbackClicked = (id: number, isMine: boolean, isForMe: boolean, isPinned: boolean) => {
+  const onFeedbackClicked = (
+    id: number,
+    feedback: FeedbackEditInfo,
+    isMine: boolean,
+    isForMe: boolean,
+    isPinned: boolean,
+  ) => {
     setIsBottomSheetOpened(true);
     setBottomSheetState({
       id,
@@ -62,6 +69,7 @@ function TeamIssue() {
       isPinned,
       mode: 'feedback',
     });
+    setFeedbackEditInfo(feedback);
   };
 
   const onManageIssueClicked = () => {
@@ -156,7 +164,7 @@ function TeamIssue() {
         ) : (
           <DeleteIssueModal isOpened closeModal={closeModal} issueID={modalState.id} />
         ))}
-      <Outlet />
+      <Outlet context={{ feedbackEditInfo: feedbackEditInfo, closeBottomSheet }} />
     </StTeamIssue>
   );
 }

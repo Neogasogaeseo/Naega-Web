@@ -26,6 +26,9 @@ const TeamRouter = () => (
         <Route path="create/*" element={<TeamIssueFeedback />}>
           <Route path="keyword" element={<TeamIssueKeyword />} />
         </Route>
+        <Route path="feedback/edit/*" element={<TeamIssueFeedback isEditMode={true} />}>
+          <Route path="keyword" element={<TeamIssueKeyword />} />
+        </Route>
       </Route>
       <Route path="/:teamID/:issueID/edit" element={<TeamIssueEdit />} />
       <Route path="/alert" element={<TeamAlert />} />

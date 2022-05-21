@@ -91,3 +91,24 @@ export const StEmptyWrapper = styled(StWrapper)`
     margin-top: 10px;
   }
 `;
+
+export const StTargetUser = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  & > img {
+    width: 60px;
+    height: 60px;
+    border-radius: 118px;
+    margin-bottom: 12px;
+  }
+  & > div {
+    ${COLOR.GRAY_8}
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+`;

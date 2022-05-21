@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router';
 import { useQueryClient } from 'react-query';
 
@@ -53,7 +52,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
   };
 
   const editFeedback = async () => {
-    console.log('피드백 수정');
+    navigate(`/team/${teamID}/${issueID}/feedback/edit`);
   };
 
   const removeIssue = async () => {

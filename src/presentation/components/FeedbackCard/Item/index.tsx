@@ -3,14 +3,20 @@ import { useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
-import { FeedbackDetail } from '@api/types/team';
+import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
 
 type FeedbackCardProps = FeedbackDetail & {
-  openBottomSheet?(feedbackID: number, isMine: boolean, isForMe: boolean, isPinned: boolean): void;
+  openBottomSheet?(
+    feedbackID: number,
+    feedback: FeedbackEditInfo,
+    isMine: boolean,
+    isForMe: boolean,
+    isPinned: boolean,
+  ): void;
   parentPage: 'teamsoseo' | 'mypage';
 };
 
@@ -73,6 +79,13 @@ function FeedbackCardItem(props: FeedbackCardProps) {
               onClick={() => {
                 openBottomSheet?.(
                   +id,
+                  {
+                    id: id,
+                    target: target,
+                    targetID: targetProfileID,
+                    content: body,
+                    keywordList: keywordList,
+                  },
                   writerID !== undefined && +writerID === loginUserID,
                   +targetProfileID === loginUserID || targetProfileID === loginUsername,
                   isBookmarked,

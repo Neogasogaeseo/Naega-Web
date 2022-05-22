@@ -19,7 +19,7 @@ import {
   StMoreButton,
   StDivisionLine,
 } from './style';
-import { icLink, IcArrowDown, IcArrowUp } from '@assets/icons/index';
+import { icLink, icArrowDown, icArrowUp } from '@assets/icons/index';
 import { api } from '@api/index';
 import NeogaDetailFormCard from '@components/NeogaDetailFormCard';
 import NeososeoPickerBottomSheet from '@components/common/BottomSheet/NeososeoPicker';
@@ -110,7 +110,7 @@ function NeogaDetailForm() {
                       }}
                     >
                       접기
-                      <img src={IcArrowUp} />
+                      <img src={icArrowUp} />
                     </StMoreButton>
                   </>
                 ) : (
@@ -122,7 +122,7 @@ function NeogaDetailForm() {
                         }}
                       >
                         더보기
-                        <img src={IcArrowDown} />
+                        <img src={icArrowDown} />
                       </StMoreButton>
                     </>
                   )

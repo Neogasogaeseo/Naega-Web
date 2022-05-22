@@ -103,10 +103,3 @@ export const StPhotoUploadImage = styled.img`
   width: 55px;
   height: 55px;
 `;
-
-export const StImage = styled.img`
-  width: 100%;
-  height: 149px;
-  border-radius: 16px;
-  object-fit: cover;
-`;

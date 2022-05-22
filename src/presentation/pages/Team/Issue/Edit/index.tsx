@@ -1,6 +1,5 @@
-import { icCamera, icEdit, icTrash } from '@assets/icons';
+import { icCamera } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
-import FileUpload from '@components/common/FileUpload';
 import {
   StNewIssue,
   StTitleWrapper,
@@ -12,7 +11,6 @@ import {
   StPhotoUploadImage,
   StPhotoUploadMiddleDesc,
   StCategory,
-  StImage,
 } from './style';
 import { IssueCategory, IssueData } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,6 +20,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
 import CommonNavigation from '@components/common/Navigation';
+import ImageUpload from '@components/common/ImageUpload';
 
 export default function TeamIssueEdit() {
   const navigate = useNavigate();
@@ -44,7 +43,8 @@ export default function TeamIssueEdit() {
     () => api.teamService.getIssueInfo(issueID ?? ''),
     {
       onSuccess: () => {
-        id !== issueInfo?.writerID && navigate('/');
+        if (issueInfo && id === issueInfo.writerID) setImage(issueInfo.team.thumbnail);
+        else navigate('/');
       },
       useErrorBoundary: true,
     },
@@ -58,12 +58,10 @@ export default function TeamIssueEdit() {
     setImage,
     fileInputRef,
     bottomSheetOpened,
-    isImageDeleted,
     clickFileInputRef,
-    removeImage,
     openBottomSheet,
     closeBottomSheet,
-    cancelDelete,
+    bottomSheetButtonList,
   } = useImageUpload();
 
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -92,7 +90,7 @@ export default function TeamIssueEdit() {
           selectedCategory.id,
           issueTextarea,
           image,
-          image ? 'NEW' : issueInfo?.team.thumbnail && isImageDeleted ? 'DELETE' : 'NONE',
+          typeof image === 'string' ? 'NONE' : image ? 'NEW' : 'DELETE',
         );
     },
     {
@@ -123,17 +121,6 @@ export default function TeamIssueEdit() {
   const getCategoryInfoFromName = (categoryName: string) => {
     if (!categoryList) return;
     return categoryList.find((category) => category.name === categoryName) ?? categoryList[0];
-  };
-
-  const getImageThumbnail = () => {
-    if (issueInfo && issueInfo.team.thumbnail && !isImageDeleted)
-      return <StImage src={issueInfo.team.thumbnail} />;
-    return (
-      <StUploadContainer>
-        <StPhotoUploadImage src={icCamera} />
-        <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
-      </StUploadContainer>
-    );
   };
 
   useEffect(() => {
@@ -174,24 +161,23 @@ export default function TeamIssueEdit() {
         <StQuestionWrapper>
           이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
         </StQuestionWrapper>
-        <div
-          onClick={() =>
-            image ? openBottomSheet() : isImageDeleted ? clickFileInputRef() : openBottomSheet()
-          }
+        <ImageUpload
+          ref={fileInputRef}
+          onClickInput={clickFileInputRef}
+          style={{
+            width: '100%',
+            height: '149px',
+            borderRadius: '16px',
+          }}
+          image={image}
+          setImage={setImage}
+          openBottomSheet={openBottomSheet}
         >
-          <FileUpload
-            ref={fileInputRef}
-            isDeleted={isImageDeleted}
-            cancelDelete={cancelDelete}
-            width="100%"
-            height="149px"
-            setFile={setImage}
-            borderRadius="16px"
-          >
-            {getImageThumbnail()}
-          </FileUpload>
-        </div>
-
+          <StUploadContainer>
+            <StPhotoUploadImage src={icCamera} />
+            <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+          </StUploadContainer>
+        </ImageUpload>
         <StButton
           type="submit"
           onClick={editIssue}
@@ -201,14 +187,7 @@ export default function TeamIssueEdit() {
         </StButton>
         <BottomSheet
           isOpened={bottomSheetOpened}
-          buttonList={[
-            {
-              icon: icEdit,
-              label: '이미지 수정하기',
-              onClick: clickFileInputRef,
-            },
-            { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
-          ]}
+          buttonList={bottomSheetButtonList}
           closeBottomSheet={closeBottomSheet}
         />
       </StNewIssue>

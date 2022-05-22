@@ -61,7 +61,7 @@ export interface TeamService {
     issueID: number,
     categoryID: number,
     content: string,
-    image: File | null,
+    image: File | string | null,
     imageStatus: 'NEW' | 'DELETE' | 'NONE',
   ): Promise<{ isSuccess: boolean; image: string | null }>;
   leaveTeam(teamID: number): Promise<{ isSuccess: boolean }>;

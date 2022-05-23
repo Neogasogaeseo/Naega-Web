@@ -20,7 +20,9 @@ interface TeamLeaveModalProps {
 export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
-  const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK'>('QUESTION');
+  const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
+    teamMemberListWithoutHost.length > 0 ? 'QUESTION' : 'DELETE',
+  );
   const [newHost, setNewHost] = useState<TeamMemberNoneId | null>(null);
   const navigate = useNavigate();
   const { teamID } = useParams();
@@ -91,6 +93,8 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         );
       case 'DELEGATION_CHECK':
         return DelegationCheckModal;
+      case 'DELETE':
+        return DeleteModal;
     }
   };
 
@@ -138,6 +142,28 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         <button onClick={confirmDelegationFinal}>확인</button>
       </div>
     </StDelegationCheckModal>
+  );
+
+  const DeleteModal = (
+    <StCommonModal>
+      <IcWarning />
+      <div>팀을 삭제하시겠습니까?</div>
+      <StDescription>
+        {'다른 팀원이 없기 때문에' + '\n' + '관리자가 나갈 시 팀이 삭제됩니다.'}
+      </StDescription>
+      <div>
+        <button onClick={closeModal}>취소</button>
+        <button
+          onClick={async () => {
+            closeModal();
+            navigate('/home/team');
+            teamID && (await api.teamService.deleteTeam(+teamID));
+          }}
+        >
+          확인
+        </button>
+      </div>
+    </StCommonModal>
   );
 
   useEffect(() => {

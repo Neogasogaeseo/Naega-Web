@@ -112,6 +112,12 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     goTeamHome();
   };
 
+  const deleteTeam = async () => {
+    closeModal();
+    navigate('/home/team');
+    teamID && (await api.teamService.deleteTeam(+teamID));
+  };
+
   const QuestionModal = (
     <StCommonModal>
       <IcWarning />
@@ -153,15 +159,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>
-        <button
-          onClick={async () => {
-            closeModal();
-            navigate('/home/team');
-            teamID && (await api.teamService.deleteTeam(+teamID));
-          }}
-        >
-          확인
-        </button>
+        <button onClick={deleteTeam}>확인</button>
       </div>
     </StCommonModal>
   );

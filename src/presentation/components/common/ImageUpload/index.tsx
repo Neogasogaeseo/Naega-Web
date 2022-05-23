@@ -1,6 +1,5 @@
 import { forwardRef, useState } from 'react';
 
-import { useToast } from '@hooks/useToast';
 import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
 import { StImageUpload, StThumbnail, StUploadButton } from './style';
@@ -21,9 +20,7 @@ interface ImageUploadProps {
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const { children: emptyImage, style, openBottomSheet, onClickInput, image, setImage } = props;
   const { width, height, borderRadius = '0px' } = style;
-  const imgFileForm = /(.*?)\.(jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF)$/;
   const [imageThumbnail, setImageThumbnail] = useState('');
-  const { fireToast } = useToast();
 
   const clickUploadButton = () => {
     if (!ref) return;
@@ -38,17 +35,13 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
     e.preventDefault();
     if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
-      if (file.name.match(imgFileForm)) {
-        if (checkBrowser('Internet Explorer')) {
-          setImage(file);
-          setImageThumbnail(URL.createObjectURL(file));
-        } else {
-          const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
-          setImage(resizedImageFile);
-          setImageThumbnail(URL.createObjectURL(imageBlob));
-        }
+      if (checkBrowser('Internet Explorer')) {
+        setImage(file);
+        setImageThumbnail(URL.createObjectURL(file));
       } else {
-        fireToast({ content: '이미지 파일을 첨부해주세요' });
+        const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
+        setImage(resizedImageFile);
+        setImageThumbnail(URL.createObjectURL(imageBlob));
       }
     }
   };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo, TeamProfileData } from '@api/types/team';
@@ -23,7 +23,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
     teamMemberListWithoutHost.length > 0 ? 'QUESTION' : 'DELETE',
   );
-  const [newHost, setNewHost] = useState<TeamMemberNoneId | null>(null);
+  const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
   const navigate = useNavigate();
   const { teamID } = useParams();
   const queryClient = useQueryClient();
@@ -53,21 +53,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const resetModal = () => {
     closeModal();
     setMode('QUESTION');
-    initNewHost();
-  };
-
-  const initNewHost = () => {
-    setNewHost(() => {
-      const firstMember =
-        teamMemberList.length === 1 && isUserHost
-          ? teamMemberList[0]
-          : teamMemberListWithoutHost[0];
-      return {
-        id: firstMember.id,
-        profileImage: firstMember.profileImage,
-        profileName: firstMember.profileName,
-      };
-    });
+    setNewHost(teamMemberListWithoutHost[0]);
   };
 
   const goTeamHome = () => {
@@ -99,7 +85,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   };
 
   const confirmLeave = () => {
-    if (teamMemberList.length > 1 && isUserHost) {
+    if (isUserHost) {
       setMode('DELEGATION');
     } else {
       mutateLeave();
@@ -113,9 +99,8 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   };
 
   const deleteTeam = async () => {
-    closeModal();
-    navigate('/home/team');
     teamID && (await api.teamService.deleteTeam(+teamID));
+    goTeamHome();
   };
 
   const QuestionModal = (
@@ -163,10 +148,6 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </div>
     </StCommonModal>
   );
-
-  useEffect(() => {
-    if (teamMemberList.length) initNewHost();
-  }, []);
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

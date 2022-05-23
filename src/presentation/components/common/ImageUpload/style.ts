@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-export const StThumbnail = styled.img<{
-  width: string;
-  height: string;
-  borderRadius: string;
-}>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: ${(props) => props.borderRadius};
+export const StThumbnail = styled.img`
   object-fit: cover;
 `;
 

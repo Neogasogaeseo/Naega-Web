@@ -58,9 +58,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
         {image ? (
           <StThumbnail
             src={typeof image === 'string' ? image : imageThumbnail}
-            width={width}
-            height={height}
-            borderRadius={borderRadius}
+            style={{ width: width, height: height, borderRadius: borderRadius }}
           />
         ) : (
           emptyImage

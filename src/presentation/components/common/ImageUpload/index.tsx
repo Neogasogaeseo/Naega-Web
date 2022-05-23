@@ -22,7 +22,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
   const { width, height, borderRadius = '0px' } = style;
   const [imageThumbnail, setImageThumbnail] = useState('');
 
-  const clickUploadButton = () => {
+  const clickImageUpload = () => {
     if (image) {
       openBottomSheet();
     } else {
@@ -46,7 +46,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
   };
 
   return (
-    <StImageUpload onClick={clickUploadButton}>
+    <StImageUpload onClick={clickImageUpload}>
       <input
         hidden={true}
         ref={ref}

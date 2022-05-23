@@ -23,7 +23,6 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
   const [imageThumbnail, setImageThumbnail] = useState('');
 
   const clickUploadButton = () => {
-    if (!ref) return;
     if (image) {
       openBottomSheet();
     } else {

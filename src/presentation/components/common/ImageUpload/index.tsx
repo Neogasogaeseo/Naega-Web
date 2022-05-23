@@ -2,7 +2,7 @@ import { forwardRef, useState } from 'react';
 
 import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
-import { StImageUpload, StThumbnail, StUploadButton } from './style';
+import { StImageUpload, StThumbnail } from './style';
 
 interface ImageUploadProps {
   image: File | string | null;
@@ -19,7 +19,6 @@ interface ImageUploadProps {
 }
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const { children: emptyImage, style, openBottomSheet, onClickInput, image, setImage } = props;
-  const { width, height, borderRadius = '0px' } = style;
   const [imageThumbnail, setImageThumbnail] = useState('');
 
   const clickImageUpload = () => {
@@ -54,16 +53,13 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
         onChange={handleFileInput}
         accept="image/jpeg, image/png, image/gif"
       />
-      <StUploadButton width={width} height={height}>
+      <div style={{ width: style.width, height: style.height }}>
         {image ? (
-          <StThumbnail
-            src={typeof image === 'string' ? image : imageThumbnail}
-            style={{ width: width, height: height, borderRadius: borderRadius }}
-          />
+          <StThumbnail src={typeof image === 'string' ? image : imageThumbnail} style={style} />
         ) : (
           emptyImage
         )}
-      </StUploadButton>
+      </div>
     </StImageUpload>
   );
 });

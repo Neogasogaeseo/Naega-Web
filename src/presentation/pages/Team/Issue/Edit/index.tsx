@@ -1,4 +1,4 @@
-import { icCamera } from '@assets/icons';
+import { IcCamera } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
 import {
   StNewIssue,
@@ -8,8 +8,6 @@ import {
   StTextarea,
   StUploadContainer,
   StButton,
-  StPhotoUploadImage,
-  StPhotoUploadMiddleDesc,
   StCategory,
 } from './style';
 import { IssueCategory, IssueData } from '@api/types/team';
@@ -174,8 +172,8 @@ export default function TeamIssueEdit() {
           openBottomSheet={openBottomSheet}
         >
           <StUploadContainer>
-            <StPhotoUploadImage src={icCamera} />
-            <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+            <IcCamera />
+            <div>파일을 선택해서 업로드해주세요</div>
           </StUploadContainer>
         </ImageUpload>
         <StButton

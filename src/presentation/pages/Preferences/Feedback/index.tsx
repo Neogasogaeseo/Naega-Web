@@ -3,7 +3,7 @@ import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
 import SelectBox from '@components/common/SelectBox';
 import { useToast } from '@hooks/useToast';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { StButton, StForm, StFormTitle, StSubTitle, StTextarea, StTitle } from '../style';
@@ -15,11 +15,18 @@ function FeedbackPage() {
     'feedback-category',
     api.reportService.getFeedbackCategories,
   );
-  const [selectedItemID, setSelectedItemID] = useState(categories ? categories[0].id : 5);
+  const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
+  useEffect(() => {
+    if (selectedItemID === undefined && categories !== undefined) {
+      setSelectedItemID(categories[0].id);
+    }
+  }, [categories]);
+
   const sendServiceCenterRequest = async () => {
+    if (!selectedItemID) return;
     const response = await api.reportService.postReport(selectedItemID, title, content);
     if (response.isSuccess) {
       fireToast({ content: '문의가 성공적으로 등록되었습니다.' });
@@ -35,7 +42,7 @@ function FeedbackPage() {
       <StForm>
         <div>
           <StFormTitle>문의사항의 카테고리를 선택해주세요</StFormTitle>
-          {categories && (
+          {categories && selectedItemID && (
             <SelectBox
               items={categories}
               selectedItemID={selectedItemID}

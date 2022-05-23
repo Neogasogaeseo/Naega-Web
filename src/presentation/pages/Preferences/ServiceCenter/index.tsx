@@ -10,7 +10,7 @@ import {
   StPhotoUploadMiddleDesc,
   StUploadContainer,
 } from '@pages/Team/Issue/Edit/style';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
@@ -22,12 +22,19 @@ function ServiceCenterPage() {
     'service-category',
     api.reportService.getServiceCenterCategories,
   );
-  const [selectedItemID, setSelectedItemID] = useState(categories ? categories[0].id : 1);
+  const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState<File | undefined>(undefined);
 
+  useEffect(() => {
+    if (selectedItemID === undefined && categories !== undefined) {
+      setSelectedItemID(categories[0].id);
+    }
+  }, [categories]);
+
   const sendServiceCenterRequest = async () => {
+    if (!selectedItemID) return;
     const response = await api.reportService.postReport(selectedItemID, title, content, image);
     if (response.isSuccess) {
       fireToast({ content: '문의가 성공적으로 등록되었습니다.' });
@@ -43,7 +50,7 @@ function ServiceCenterPage() {
       <StForm>
         <div>
           <StFormTitle>문의사항의 카테고리를 선택해주세요</StFormTitle>
-          {categories && (
+          {categories && selectedItemID && (
             <SelectBox
               items={categories}
               selectedItemID={selectedItemID}

@@ -34,7 +34,7 @@ export const StSelectBoxTail = styled.div`
   padding-top: 52px;
   border-radius: 16px;
   border: 2px solid ${COLOR.CORAL_MAIN};
-  z-index: 2000;
+  z-index: 2;
   & div:nth-child(4) {
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;

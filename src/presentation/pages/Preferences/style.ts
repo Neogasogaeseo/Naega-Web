@@ -81,7 +81,6 @@ export const StButton = styled.button<{ disabled: boolean }>`
   line-height: 1.44em;
   letter-spacing: -0.0015em;
   margin-top: 15px;
-  cursor: pointer;
   border: none;
   ${({ disabled }) => disabled && `background-color: ${COLOR.GRAY_3};`}
 `;

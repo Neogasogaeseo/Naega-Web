@@ -60,7 +60,7 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
               },
               {
                 icon: icTrash,
-                label: '삭제하기',
+                label: '기본 이미지로 변경',
                 onClick: deleteProfileImage,
               },
             ]

@@ -2,7 +2,7 @@ import { icEdit, icTrash } from '@assets/icons';
 import { useRef, useState } from 'react';
 
 export default function useImageUpload() {
-  const [image, setImage] = useState<File | string | null>(null);
+  const [image, setImage] = useState<File | null | undefined>();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [bottomSheetOpened, setBottomSheetOpened] = useState(false);
 

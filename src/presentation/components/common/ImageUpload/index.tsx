@@ -5,7 +5,9 @@ import { resizeImage } from '@utils/image';
 import { StImageUpload, StThumbnail } from './style';
 
 interface ImageUploadProps {
-  image: File | string | null;
+  file: File | null | undefined;
+  setFile: (image: File) => void;
+  defaultThumbnail?: string;
   style: {
     width: string;
     height: string;
@@ -13,16 +15,25 @@ interface ImageUploadProps {
   };
   children: React.ReactElement | string;
   onClickInput: () => void;
-  setImage: (image: File) => void;
   openBottomSheet: () => void;
+  closeBottomSheet: () => void;
   ref?: React.ForwardedRef<HTMLInputElement>;
 }
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
-  const { children: emptyImage, style, openBottomSheet, onClickInput, image, setImage } = props;
-  const [imageThumbnail, setImageThumbnail] = useState('');
+  const {
+    children: emptyImage,
+    style,
+    openBottomSheet,
+    closeBottomSheet,
+    onClickInput,
+    file,
+    setFile,
+    defaultThumbnail = '',
+  } = props;
+  const [thumbnail, setThumbnail] = useState(defaultThumbnail);
 
   const clickImageUpload = () => {
-    if (image) {
+    if (file instanceof File || (defaultThumbnail.length && file === undefined)) {
       openBottomSheet();
     } else {
       onClickInput();
@@ -34,13 +45,15 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
     if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (checkBrowser('Internet Explorer')) {
-        setImage(file);
-        setImageThumbnail(URL.createObjectURL(file));
+        setFile(file);
+        setThumbnail(URL.createObjectURL(file));
       } else {
         const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
-        setImage(resizedImageFile);
-        setImageThumbnail(URL.createObjectURL(imageBlob));
+        setFile(resizedImageFile);
+        setThumbnail(URL.createObjectURL(imageBlob));
       }
+      console.log('dd');
+      closeBottomSheet();
     }
   };
 
@@ -54,10 +67,10 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
         accept="image/jpeg, image/png, image/gif"
       />
       <div style={{ width: style.width, height: style.height }}>
-        {image ? (
-          <StThumbnail src={typeof image === 'string' ? image : imageThumbnail} style={style} />
-        ) : (
+        {file === null || (!(file instanceof File) && defaultThumbnail === '') ? (
           emptyImage
+        ) : (
+          <StThumbnail src={file === undefined ? defaultThumbnail : thumbnail} style={style} />
         )}
       </div>
     </StImageUpload>

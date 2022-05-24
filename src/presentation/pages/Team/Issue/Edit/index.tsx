@@ -41,8 +41,7 @@ export default function TeamIssueEdit() {
     () => api.teamService.getIssueInfo(issueID ?? ''),
     {
       onSuccess: () => {
-        if (issueInfo && id === issueInfo.writerID) setImage(issueInfo.team.thumbnail);
-        else navigate('/');
+        if (!issueInfo || id !== issueInfo.writerID) navigate('/');
       },
       useErrorBoundary: true,
     },
@@ -88,11 +87,11 @@ export default function TeamIssueEdit() {
           selectedCategory.id,
           issueTextarea,
           image,
-          typeof image === 'string' ? 'NONE' : image ? 'NEW' : 'DELETE',
         );
     },
     {
       onSuccess: () => {
+        closeBottomSheet();
         navigate(-1);
         const oldIssueData = queryClient.getQueryData<IssueData>('issueDetailData');
         oldIssueData &&
@@ -167,9 +166,11 @@ export default function TeamIssueEdit() {
             height: '149px',
             borderRadius: '16px',
           }}
-          image={image}
-          setImage={setImage}
+          file={image}
+          defaultThumbnail={issueInfo?.team.thumbnail === null ? '' : issueInfo?.team.thumbnail}
+          setFile={setImage}
           openBottomSheet={openBottomSheet}
+          closeBottomSheet={closeBottomSheet}
         >
           <StUploadContainer>
             <IcCamera />
@@ -183,12 +184,12 @@ export default function TeamIssueEdit() {
         >
           완료
         </StButton>
-        <BottomSheet
-          isOpened={bottomSheetOpened}
-          buttonList={bottomSheetButtonList}
-          closeBottomSheet={closeBottomSheet}
-        />
       </StNewIssue>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
     </>
   );
 }

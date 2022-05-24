@@ -1,6 +1,5 @@
 import { forwardRef, useState } from 'react';
 
-import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
 import { StImageUpload, StThumbnail } from './style';
 
@@ -44,15 +43,9 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
     e.preventDefault();
     if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
-      if (checkBrowser('Internet Explorer')) {
-        setFile(file);
-        setThumbnail(URL.createObjectURL(file));
-      } else {
-        const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
-        setFile(resizedImageFile);
-        setThumbnail(URL.createObjectURL(imageBlob));
-      }
-      console.log('dd');
+      const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
+      setFile(resizedImageFile);
+      setThumbnail(URL.createObjectURL(imageBlob));
       closeBottomSheet();
     }
   };

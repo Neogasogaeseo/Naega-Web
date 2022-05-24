@@ -11,7 +11,7 @@ import { imgLogo } from '@assets/images';
 function NeogaResult() {
   const navigate = useNavigate();
   const { username } = useLoginUser();
-  const { data: cardItem } = useQuery('neogaResultCardItem', api.neogaService.getMostFormCard);
+  const { data: cardItem } = useQuery('neogaResultCardItem', api.neogaService.getAllFormCard);
 
   return (
     <StNeogaResult>

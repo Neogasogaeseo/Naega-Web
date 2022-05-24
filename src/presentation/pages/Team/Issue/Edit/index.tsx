@@ -50,16 +50,8 @@ export default function TeamIssueEdit() {
   const [selectedCategory, setSelectedCategory] = useState<IssueCategory | undefined>(undefined);
   const [issueTextarea, setIssueTextarea] = useState(issueInfo ? issueInfo.title : '');
   const [isConfirming, setIsConfirming] = useState(false);
-  const {
-    image,
-    setImage,
-    fileInputRef,
-    bottomSheetOpened,
-    clickFileInputRef,
-    openBottomSheet,
-    closeBottomSheet,
-    bottomSheetButtonList,
-  } = useImageUpload();
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
 
   const onChangeIssue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setIssueTextarea(e.currentTarget.value);
@@ -159,18 +151,13 @@ export default function TeamIssueEdit() {
           이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
         </StQuestionWrapper>
         <ImageUpload
-          ref={fileInputRef}
-          onClickInput={clickFileInputRef}
           style={{
             width: '100%',
             height: '149px',
             borderRadius: '16px',
           }}
-          file={image}
           defaultThumbnail={issueInfo?.team.thumbnail === null ? '' : issueInfo?.team.thumbnail}
-          setFile={setImage}
-          openBottomSheet={openBottomSheet}
-          closeBottomSheet={closeBottomSheet}
+          {...imageUploadProps}
         >
           <StUploadContainer>
             <IcCamera />

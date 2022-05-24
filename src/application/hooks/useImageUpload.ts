@@ -24,13 +24,19 @@ export default function useImageUpload() {
     { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
   ];
 
+  const imageUploadProps = {
+    ref: fileInputRef,
+    openBottomSheet: openBottomSheet,
+    closeBottomSheet: closeBottomSheet,
+    onClickInput: clickFileInputRef,
+    file: image,
+    setFile: setImage,
+  };
+
   return {
     image,
-    setImage,
-    fileInputRef,
     bottomSheetOpened,
-    clickFileInputRef,
-    openBottomSheet,
+    imageUploadProps,
     closeBottomSheet,
     bottomSheetButtonList,
   };

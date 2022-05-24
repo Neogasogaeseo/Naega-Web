@@ -1,5 +1,5 @@
 export const isProduction = process.env.NODE_ENV === 'production';
-export const DOMAIN = isProduction ? 'https://neogasogaeseo.com' : 'http://localhost:3000';
+export const DOMAIN = isProduction ? 'https://naegasogaeseo-dev.kro.kr' : 'http://localhost:3000';
 export const KEYWORD_PAGE = 15;
 export const NOTICE_PAGE = 15;
 export const PICK_PAGE = 10;

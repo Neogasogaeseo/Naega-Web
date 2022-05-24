@@ -134,7 +134,7 @@ export function NeogaDataRemote(): NeogaService {
   };
 
   const getMostFormCard = async () => {
-    const response = await privateAPI.get({ url: `/form/most` });
+    const response = await privateAPI.get({ url: `/form/all` });
     if (response.status === STATUS_CODE.OK)
       return {
         resultList: response.data.resultList

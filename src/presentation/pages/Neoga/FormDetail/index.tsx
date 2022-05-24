@@ -62,7 +62,7 @@ function NeogaDetailForm() {
     refetchFeedbacks();
   };
 
-  if (!resultDetail) return <>로딩중</>;
+  if (!resultDetail) return <></>;
   return (
     <>
       <CommonNavigation />

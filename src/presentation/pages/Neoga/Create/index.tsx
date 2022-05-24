@@ -41,7 +41,7 @@ function NeogaCreate() {
           <NeogaCreateCardList
             cards={allTemplateList}
             onItemClick={(id, isCreated) => {
-              navigate(isCreated ? `/neoga/create/${id}/created` : `/neoga/create/${id}/new`);
+              navigate(isCreated ? `/neoga/${id}/detail/form` : `/neoga/create/${id}/new`);
             }}
           />
         )}

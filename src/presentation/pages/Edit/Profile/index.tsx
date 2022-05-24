@@ -28,32 +28,30 @@ function MyProfileEdit() {
   });
 
   useEffect(() => {
-    (async () => {
-      if (!inputId) {
+    if (!inputId) {
+      setErrorMsg('');
+      return;
+    }
+
+    const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
+    const passedId = idCheck.test(inputId) && !isDuplicate;
+
+    setIsEditConditionPassed({
+      ...isEditConditionPassed,
+      id: passedId,
+    });
+
+    if (inputId) {
+      if (!/^[a-z]/.test(inputId)) {
+        setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+      } else if (!idCheck.test(inputId)) {
+        setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+      } else if (isDuplicate) {
+        setErrorMsg('*중복된 아이디입니다.');
+      } else {
         setErrorMsg('');
-        return;
       }
-
-      const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
-      const passedId = idCheck.test(inputId) && !isDuplicate;
-
-      setIsEditConditionPassed({
-        ...isEditConditionPassed,
-        id: passedId,
-      });
-
-      if (inputId) {
-        if (!/^[a-z]/.test(inputId)) {
-          setErrorMsg('*아이디의 첫 글자는 영문 소문자');
-        } else if (!idCheck.test(inputId)) {
-          setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-        } else if (isDuplicate) {
-          setErrorMsg('*중복된 아이디입니다.');
-        } else {
-          setErrorMsg('');
-        }
-      }
-    })();
+    }
   }, [inputId, isDuplicate]);
 
   useEffect(() => {
@@ -109,9 +107,9 @@ function MyProfileEdit() {
                 else setIsDuplicate(false);
               }
             }}
-            value={inputId}
             placeholder={userID}
             maxLength={15}
+            defaultValue={userID}
           />
           <StErrorMsg>{errorMsg}</StErrorMsg>
           <CommonLabel content="이름" marginTop="46px" marginBottom="20px" />
@@ -123,6 +121,7 @@ function MyProfileEdit() {
             }}
             placeholder={username}
             maxLength={6}
+            defaultValue={username}
           />
         </StInputWrapper>
         <button

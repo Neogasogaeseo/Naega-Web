@@ -199,11 +199,9 @@ export function NeogaDataRemote(): NeogaService {
         url: `/form/create/${formID}`,
       })
       .catch((error: AxiosError) => {
-        console.log(error);
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
           throw new NotFoundError('찾을 수 없는 페이지입니다.');
       });
-    console.log(response);
     const { id, title, subtitle, darkIconImage } = response.data;
     if (response.status === STATUS_CODE.OK) {
       return {

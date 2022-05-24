@@ -120,7 +120,7 @@ export function userDataRemote(): UserService {
     const response = await privateAPI.get({
       url: `/user/edit/profileId/${userID}`,
     });
-    return { isSuccess: response.success };
+    return { isDuplicate: response.success };
   };
 
   const editUserProfile = async (formData: FormData) => {

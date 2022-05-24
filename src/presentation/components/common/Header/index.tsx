@@ -44,7 +44,7 @@ export default function CommonHeader(props: CommonHeaderProps) {
         {shouldShowUserButtons && (
           <>
             <StWrapper>
-              <IcSetting />
+              <IcSetting onClick={() => navigate('/preferences')} />
               <IcBell onClick={() => navigate('/team/alert')} />
             </StWrapper>
             {isNotice && <StNotification />}

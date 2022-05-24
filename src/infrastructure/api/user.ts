@@ -25,4 +25,5 @@ export interface UserService {
   getMyAnswerInfo(page: number, formID?: number): Promise<MyAnswerInfo>;
   getMyTeamInfo(): Promise<MyTeamInfo>;
   getMyFeedbackInfo(page: number, teamID?: number): Promise<MyFeedbackInfo>;
+  postWithdraw(): Promise<{ isSuccess: boolean }>;
 }

@@ -229,6 +229,11 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const postWithdraw = async () => {
+    const response = await privateAPI.delete({ url: '/user' });
+    return { isSuccess: response.success };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -243,5 +248,6 @@ export function userDataRemote(): UserService {
     getMyAnswerInfo,
     getMyTeamInfo,
     getMyFeedbackInfo,
+    postWithdraw,
   };
 }

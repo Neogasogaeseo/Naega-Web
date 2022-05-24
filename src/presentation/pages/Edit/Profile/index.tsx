@@ -122,6 +122,7 @@ function MyProfileEdit() {
               setInputName(value);
             }}
             placeholder={username}
+            maxLength={6}
           />
         </StInputWrapper>
         <button

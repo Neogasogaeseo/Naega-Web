@@ -19,6 +19,9 @@ export default function ModalWrapper(props: ModalWrapperProps) {
   useEffect(() => {
     if (isOpened) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'initial';
+    return () => {
+      document.body.style.overflow = 'initial';
+    };
   }, [isOpened]);
 
   return (

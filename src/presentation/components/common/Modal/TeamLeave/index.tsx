@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo, TeamProfileData } from '@api/types/team';
@@ -20,8 +20,10 @@ interface TeamLeaveModalProps {
 export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
-  const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK'>('QUESTION');
-  const [newHost, setNewHost] = useState<TeamMemberNoneId | null>(null);
+  const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
+    teamMemberListWithoutHost.length > 0 ? 'QUESTION' : 'DELETE',
+  );
+  const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
   const navigate = useNavigate();
   const { teamID } = useParams();
   const queryClient = useQueryClient();
@@ -51,21 +53,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const resetModal = () => {
     closeModal();
     setMode('QUESTION');
-    initNewHost();
-  };
-
-  const initNewHost = () => {
-    setNewHost(() => {
-      const firstMember =
-        teamMemberList.length === 1 && isUserHost
-          ? teamMemberList[0]
-          : teamMemberListWithoutHost[0];
-      return {
-        id: firstMember.id,
-        profileImage: firstMember.profileImage,
-        profileName: firstMember.profileName,
-      };
-    });
+    setNewHost(teamMemberListWithoutHost[0]);
   };
 
   const goTeamHome = () => {
@@ -91,11 +79,13 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         );
       case 'DELEGATION_CHECK':
         return DelegationCheckModal;
+      case 'DELETE':
+        return DeleteModal;
     }
   };
 
   const confirmLeave = () => {
-    if (teamMemberList.length > 1 && isUserHost) {
+    if (isUserHost) {
       setMode('DELEGATION');
     } else {
       mutateLeave();
@@ -105,6 +95,11 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
 
   const confirmDelegationFinal = () => {
     mutateDelegate();
+    goTeamHome();
+  };
+
+  const deleteTeam = async () => {
+    teamID && (await api.teamService.deleteTeam(+teamID));
     goTeamHome();
   };
 
@@ -140,9 +135,19 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     </StDelegationCheckModal>
   );
 
-  useEffect(() => {
-    if (teamMemberList.length) initNewHost();
-  }, []);
+  const DeleteModal = (
+    <StCommonModal>
+      <IcWarning />
+      <div>팀을 삭제하시겠습니까?</div>
+      <StDescription>
+        {'다른 팀원이 없기 때문에' + '\n' + '관리자가 나갈 시 팀이 삭제됩니다.'}
+      </StDescription>
+      <div>
+        <button onClick={closeModal}>취소</button>
+        <button onClick={deleteTeam}>확인</button>
+      </div>
+    </StCommonModal>
+  );
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

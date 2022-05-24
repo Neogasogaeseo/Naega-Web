@@ -108,9 +108,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       <IcWarning />
       <div>팀을 나가시겠습니까?</div>
       <StDescription>
-        팀에서 나가면
-        <br />
-        관리자의 초대 없이 복구할 수 없습니다.
+        {'팀에서 나가면' + '\n' + '관리자의 초대 없이 복구할 수 없습니다.'}
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>

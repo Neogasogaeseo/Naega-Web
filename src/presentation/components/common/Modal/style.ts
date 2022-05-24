@@ -32,4 +32,5 @@ export const StDescription = styled.div`
   line-height: 143.99%;
   letter-spacing: -0.01em;
   text-align: center;
+  white-space: pre-line;
 `;

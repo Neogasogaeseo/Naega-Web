@@ -18,10 +18,10 @@ export default function useImageUpload() {
   const bottomSheetButtonList = [
     {
       icon: icEdit,
-      label: '이미지 수정하기',
+      label: '수정하기',
       onClick: clickFileInputRef,
     },
-    { icon: icTrash, label: '이미지 삭제하기', onClick: removeImage },
+    { icon: icTrash, label: '기본 이미지로 변경', onClick: removeImage },
   ];
 
   const imageUploadProps = {

@@ -40,12 +40,6 @@ export const StTeamEdit = styled.div`
   }
 `;
 
-export const StTeamImage = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
-`;
-
 export const StRelativeWrapper = styled.div`
   position: relative;
 `;

@@ -336,22 +336,14 @@ export function teamDataRemote(): TeamService {
     return { isSuccess: response.success };
   };
 
-  const editTeamInfo = async (
-    teamInfo: TeamEditInfo<ImageFile>,
-    imageStatus: 'NEW' | 'DELETE' | 'NONE',
-  ) => {
+  const editTeamInfo = async (teamInfo: TeamEditInfo<ImageFile>) => {
     const { id, name, description, image } = teamInfo;
     const formData = new FormData();
     formData.append('teamName', name);
     formData.append('description', description);
-    switch (imageStatus) {
-      case 'NEW':
-        image !== null && formData.append('image', image);
-        break;
-      case 'DELETE':
-        formData.append('image', '');
-        break;
-    }
+    image === null
+      ? formData.append('image', '')
+      : image instanceof File && formData.append('image', image);
     const response = await privateAPI.put({
       url: `/team/edit/${id}`,
       data: formData,

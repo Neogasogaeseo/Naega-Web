@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import CommonNavigation from '@components/common/Navigation';
-import { StPhotoUploadWrapper, StIcPencil, StTextarea } from '../Register/style';
+import { StIcPencil, StTextarea } from '../Register/style';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import { StTeamEdit, StRelativeWrapper } from './style';
@@ -81,7 +81,7 @@ export default function TeamEdit() {
       />
       <StTeamEdit>
         <div>팀 수정하기</div>
-        <StPhotoUploadWrapper>
+        <div>
           <ImageUpload
             styles={{
               width: '88px',
@@ -94,7 +94,7 @@ export default function TeamEdit() {
             <ImgTeamDefault />
           </ImageUpload>
           <StIcPencil />
-        </StPhotoUploadWrapper>
+        </div>
         <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
         <CommonInput
           value={name}

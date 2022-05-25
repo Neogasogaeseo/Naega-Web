@@ -32,9 +32,7 @@ function HomeNeoga() {
           color={banner.backgroundColor}
           onClick={() => {
             navigate(
-              banner.isCreated
-                ? `/neoga/create/${banner.id}/created`
-                : `/neoga/create/${banner.id}`,
+              banner.isCreated ? `/neoga/${banner.id}/detail/form` : `/neoga/create/${banner.id}`,
             );
           }}
         >
@@ -62,7 +60,7 @@ function HomeNeoga() {
             <NeogaMainCardList
               cards={templateList}
               onItemClick={(id, isCreated) => {
-                navigate(isCreated ? `/neoga/create/${id}/created` : `/neoga/create/${id}/new`);
+                navigate(isCreated ? `/neoga/${id}/detail/form` : `/neoga/create/${id}/new`);
               }}
             />
           </StForm>

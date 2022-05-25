@@ -53,7 +53,9 @@ export function NeogaDataRemote(): NeogaService {
 
   const getMainResultCard = async () => {
     const response = await privateAPI.get({ url: `/form` });
-    if (response.status === STATUS_CODE.OK)
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT || response.data === undefined) {
+      return { resultList: [], count: 0 };
+    } else if (response.status === STATUS_CODE.OK)
       return {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
@@ -197,7 +199,6 @@ export function NeogaDataRemote(): NeogaService {
         url: `/form/create/${formID}`,
       })
       .catch((error: AxiosError) => {
-        console.log(error);
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
           throw new NotFoundError('찾을 수 없는 페이지입니다.');
       });

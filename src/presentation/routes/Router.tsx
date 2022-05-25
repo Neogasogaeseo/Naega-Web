@@ -9,6 +9,7 @@ import MyPageEditRouter from './MyPageEditRouter';
 import ReactGA from 'react-ga';
 import FormRouter from './FormRouter';
 import { useLoginUser } from '@hooks/useLoginUser';
+import PreferencesRouter from './PreferencesRouter';
 
 const Router = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const Router = () => {
           <Route path="/neoga/*" element={<NeogaRouter />} />
           <Route path="/edit/*" element={<MyPageEditRouter />} />
           <Route path="/neososeoform/:q/*" element={<FormRouter />} />
+          <Route path="/preferences/*" element={<PreferencesRouter />} />
         </Routes>
       </Suspense>
     </>

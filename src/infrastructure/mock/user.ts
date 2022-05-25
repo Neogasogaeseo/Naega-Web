@@ -67,6 +67,10 @@ export function userDataMock(): UserService {
     return USER_DATA.MY_FEEDBACK_INFO;
   };
 
+  const postWithdraw = async () => {
+    return { isSuccess: true };
+  };
+
   return {
     getKeywords,
     postKeyword,
@@ -81,6 +85,7 @@ export function userDataMock(): UserService {
     getMyAnswerInfo,
     getMyTeamInfo,
     getMyFeedbackInfo,
+    postWithdraw,
   };
 }
 

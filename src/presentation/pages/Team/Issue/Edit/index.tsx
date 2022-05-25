@@ -151,7 +151,7 @@ export default function TeamIssueEdit() {
           이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
         </StQuestionWrapper>
         <ImageUpload
-          style={{
+          styles={{
             width: '100%',
             height: '149px',
             borderRadius: '16px',

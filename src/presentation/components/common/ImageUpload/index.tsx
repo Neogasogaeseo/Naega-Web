@@ -1,13 +1,13 @@
 import { forwardRef, useState } from 'react';
 
 import { resizeImage } from '@utils/image';
-import { StImageUpload, StThumbnail } from './style';
+import { StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
 
 interface ImageUploadProps {
   file: File | null | undefined;
   setFile: (image: File) => void;
   defaultThumbnail?: string;
-  style: {
+  styles: {
     width: string;
     height: string;
     borderRadius?: string;
@@ -21,7 +21,7 @@ interface ImageUploadProps {
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const {
     children: emptyImage,
-    style,
+    styles,
     openBottomSheet,
     closeBottomSheet,
     onClickInput,
@@ -59,13 +59,22 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
         onChange={handleFileInput}
         accept="image/jpeg, image/png, image/gif"
       />
-      <div style={{ width: style.width, height: style.height }}>
+      <StThumbnailWrapper
+        width={styles.width}
+        height={styles.height}
+        borderRadius={styles.borderRadius ?? '0px'}
+      >
         {file === null || (!(file instanceof File) && defaultThumbnail === '') ? (
           emptyImage
         ) : (
-          <StThumbnail src={file === undefined ? defaultThumbnail : thumbnail} style={style} />
+          <StThumbnail
+            src={file === undefined ? defaultThumbnail : thumbnail}
+            width={styles.width}
+            height={styles.height}
+            borderRadius={styles.borderRadius ?? '0px'}
+          />
         )}
-      </div>
+      </StThumbnailWrapper>
     </StImageUpload>
   );
 });

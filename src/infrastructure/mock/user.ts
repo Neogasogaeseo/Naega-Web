@@ -29,7 +29,7 @@ export function userDataMock(): UserService {
 
   const getDuplicationCheck = async () => {
     await wait(1000);
-    return { isSuccess: true };
+    return { isDuplicate: true };
   };
 
   const editUserProfile = async () => {

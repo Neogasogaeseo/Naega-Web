@@ -7,6 +7,9 @@ export const StHomeHeader = styled.div`
     font-size: 16px;
     margin-top: 18px;
   }
+  & > div:nth-child(1) {
+    margin-top: 0;
+  }
 
   & > a {
     margin-left: 20px;

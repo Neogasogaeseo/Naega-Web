@@ -18,49 +18,42 @@ function MyProfileEdit() {
   const { fireToast } = useToast();
   const { username, userID, profileImage, initLoginUser } = useLoginUser();
   const [image, setImage] = useState<File | null>(null);
-  const [inputId, setInputId] = useState('');
-  const [inputName, setInputName] = useState('');
+  const [inputId, setInputId] = useState(userID);
+  const [inputName, setInputName] = useState(username);
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [isInitial, setIsInitial] = useState(true);
   const [isEditConditionPassed, setIsEditConditionPassed] = useState({
     id: false,
     name: false,
   });
 
   useEffect(() => {
-    (async () => {
-      if (!inputId) {
-        setErrorMsg('');
-        return;
-      }
+    const isImageInitial = image === null;
+    const isInputIdInitial = inputId === userID;
+    const isInputNameInitial = inputName === username;
+    setIsInitial(isImageInitial && isInputIdInitial && isInputNameInitial);
+  }, [inputId, inputName, image]);
 
-      const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
-      const passedId = idCheck.test(inputId) && !isDuplicate;
+  useEffect(() => {
+    const idCheck = /^[a-z]+[a-z|0-9|.|_]{3,15}$/;
+    const isIdPassed = idCheck.test(inputId) && !isDuplicate;
 
-      setIsEditConditionPassed({
-        ...isEditConditionPassed,
-        id: passedId,
-      });
+    setIsEditConditionPassed((prev) => ({ ...prev, id: isIdPassed }));
 
-      if (inputId) {
-        if (!/^[a-z]/.test(inputId)) {
-          setErrorMsg('*아이디의 첫 글자는 영문 소문자');
-        } else if (!idCheck.test(inputId)) {
-          setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
-        } else if (isDuplicate) {
-          setErrorMsg('*중복된 아이디입니다.');
-        } else {
-          setErrorMsg('');
-        }
-      }
-    })();
+    if (!/^[a-z]/.test(inputId)) {
+      setErrorMsg('*아이디의 첫 글자는 영문 소문자');
+    } else if (!idCheck.test(inputId)) {
+      setErrorMsg('*영문 소문자, 숫자, 특수문자(._) 4~15자 이내');
+    } else if (isDuplicate) {
+      setErrorMsg('*중복된 아이디입니다.');
+    } else {
+      setErrorMsg('');
+    }
   }, [inputId, isDuplicate]);
 
   useEffect(() => {
-    setIsEditConditionPassed({
-      ...isEditConditionPassed,
-      name: inputName !== '',
-    });
+    setIsEditConditionPassed((prev) => ({ ...prev, name: inputName !== '' }));
   }, [inputName]);
 
   const editProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -104,14 +97,14 @@ function MyProfileEdit() {
             }}
             onBlur={async () => {
               if (inputId) {
-                const { isSuccess } = await api.userService.getDuplicationCheck(inputId);
-                if (isSuccess) setIsDuplicate(true);
-                else setIsDuplicate(false);
+                const { isDuplicate: duplicationCheckResponse } =
+                  await api.userService.getDuplicationCheck(inputId);
+                setIsDuplicate(duplicationCheckResponse);
               }
             }}
-            value={inputId}
             placeholder={userID}
             maxLength={15}
+            defaultValue={userID}
           />
           <StErrorMsg>{errorMsg}</StErrorMsg>
           <CommonLabel content="이름" marginTop="46px" marginBottom="20px" />
@@ -122,11 +115,16 @@ function MyProfileEdit() {
               setInputName(value);
             }}
             placeholder={username}
+            maxLength={6}
+            defaultValue={username}
           />
         </StInputWrapper>
         <button
           onClick={editProfile}
-          disabled={!Object.values(isEditConditionPassed).every((condition) => condition === true)}
+          disabled={
+            !Object.values(isEditConditionPassed).every((condition) => condition === true) ||
+            isInitial
+          }
         >
           완료
         </button>

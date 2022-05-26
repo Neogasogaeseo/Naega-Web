@@ -87,7 +87,7 @@ function TeamNoticeItem(props: TeamNoticeItemProps) {
             <StTeamName>
               <span>{teamName}</span> 팀의 초대
             </StTeamName>
-            <StInvitationTime>1분전</StInvitationTime>
+            <StInvitationTime>{timeDifference} 전</StInvitationTime>
           </div>
           <div></div>
           <div>

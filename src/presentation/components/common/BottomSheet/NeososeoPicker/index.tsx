@@ -18,8 +18,8 @@ function NeososeoPickerBottomSheet(props: NeososeoPickerBottomSheetProps) {
   const bookmarkAnswer = async () => {
     const response = await api.neogaService.postAnswerBookmark(id);
     if (response.isSuccess) {
-      if (isPinned) fireToast({ content: '픽한 답변 삭제 완료' });
-      else fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요' });
+      if (isPinned) fireToast({ content: '답변의 픽이 취소되었습니다' });
+      else fireToast({ content: 'MY에서 픽한 답변을 확인할 수 있어요' });
       close();
     }
   };

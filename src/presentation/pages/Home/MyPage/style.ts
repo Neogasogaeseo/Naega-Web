@@ -132,6 +132,7 @@ export const StMyPageProfile = styled.div`
     width: 60px;
     height: 60px;
     border-radius: 20px;
+    object-fit: cover;
   }
   & svg {
     position: absolute;

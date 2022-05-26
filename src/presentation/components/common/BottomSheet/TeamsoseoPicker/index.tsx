@@ -40,7 +40,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
   const bookmarkFeedback = async () => {
     const response = await api.teamService.postFeedbackBookmark(id.toString());
     if (response.isSuccess) {
-      if (isPinned) fireToast({ content: '픽한 답변 삭제 완료' });
+      if (isPinned) fireToast({ content: '피드백의 픽이 취소되었습니다' });
       else fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요' });
       queryClient.invalidateQueries(['issueDetailData', `${teamID}-${issueID}`]);
       close();

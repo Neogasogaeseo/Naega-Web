@@ -110,6 +110,7 @@ function JoinForm() {
           onChange={(value) => {
             setInputName(value);
           }}
+          maxLength={6}
         />
       </StInputWrapper>
       <StButton

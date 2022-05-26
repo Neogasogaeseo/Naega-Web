@@ -13,8 +13,7 @@ export interface NeogaService {
   getMainTemplate(): Promise<NeogaMainCardItem[]>;
   getAllTemplates(viewMode: 'recent' | 'popular'): Promise<NeogaCardItem[]>;
   getMainResultCard(): Promise<NeogaResultCardItem>;
-  getNewFormCard(): Promise<NeogaResultCardItem>;
-  getMostFormCard(): Promise<NeogaResultCardItem>;
+  getAllFormCard(): Promise<NeogaResultCardItem>;
   postAnswerBookmark(answerID: number): Promise<{ isSuccess: boolean }>;
   deleteAnswer(answerID: number): Promise<{ isSuccess: boolean }>;
   postCreateForm(formID: number): Promise<{ isCreated: boolean; q: string }>;

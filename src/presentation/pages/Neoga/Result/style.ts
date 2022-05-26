@@ -11,8 +11,8 @@ export const StNeogaResult = styled.div`
     ${FONT_STYLES.SB_24_TITLE};
     color: ${COLOR.GRAY_8};
     font-weight: 600;
-    margin-top: 6px;
-    margin-bottom: 14px;
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
 
   h2 {

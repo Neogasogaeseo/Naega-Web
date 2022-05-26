@@ -4,6 +4,7 @@ import { NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
+import { MyDetail } from '@api/types/user';
 
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number, page: number) => {
@@ -119,7 +120,7 @@ export function userDataRemote(): UserService {
     const response = await privateAPI.get({
       url: `/user/edit/profileId/${userID}`,
     });
-    return { isSuccess: response.success };
+    return { isDuplicate: response.success };
   };
 
   const editUserProfile = async (formData: FormData) => {
@@ -157,10 +158,16 @@ export function userDataRemote(): UserService {
     const response = await privateAPI.get({ url: `/form/answer/pick/form` });
     return {
       formList: response.data.form
-        ? response.data.form.map((form: any) => ({
-            id: form.formId,
-            profileImage: form.darkIconImage,
-          }))
+        ? response.data.form
+            .map((form: any) => ({
+              id: form.formId,
+              profileImage: form.darkIconImage,
+            }))
+            .reduce((acc: MyDetail[], cur: MyDetail) => {
+              if (acc.map((item) => item.id).includes(cur.id)) return acc;
+              acc.push(cur);
+              return acc;
+            }, [])
         : [],
     };
   };

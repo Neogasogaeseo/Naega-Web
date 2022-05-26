@@ -14,6 +14,7 @@ export const StNeogaCreateCardItem = styled.div<{ idx: number }>`
   cursor: pointer;
   box-shadow: 0px 2px 20px rgba(88, 99, 109, 0.05);
   z-index: ${({ idx }) => idx};
+  margin-bottom: 12px;
 
   & div {
     & > div:nth-child(1) {

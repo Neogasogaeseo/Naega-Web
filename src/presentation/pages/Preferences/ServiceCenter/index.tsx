@@ -1,19 +1,18 @@
-import { api } from '@api/index';
-import { icCamera } from '@assets/icons';
-import FileUpload from '@components/common/FileUpload';
-import CommonInput from '@components/common/Input';
-import CommonNavigation from '@components/common/Navigation';
-import SelectBox from '@components/common/SelectBox';
-import { useToast } from '@hooks/useToast';
-import {
-  StPhotoUploadImage,
-  StPhotoUploadMiddleDesc,
-  StUploadContainer,
-} from '@pages/Team/Issue/Edit/style';
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router';
+
+import { api } from '@api/index';
+import { IcCamera } from '@assets/icons';
+import CommonInput from '@components/common/Input';
+import CommonNavigation from '@components/common/Navigation';
+import SelectBox from '@components/common/SelectBox';
+import useImageUpload from '@hooks/useImageUpload';
+import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
+import BottomSheet from '@components/common/BottomSheet';
+import ImageUpload from '@components/common/ImageUpload';
+import { StUploadContainer } from '@pages/Team/Issue/Edit/style';
 
 function ServiceCenterPage() {
   const navigate = useNavigate();
@@ -25,7 +24,8 @@ function ServiceCenterPage() {
   const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [image, setImage] = useState<File | undefined>(undefined);
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
 
   useEffect(() => {
     if (selectedItemID === undefined && categories !== undefined) {
@@ -35,7 +35,12 @@ function ServiceCenterPage() {
 
   const sendServiceCenterRequest = async () => {
     if (!selectedItemID) return;
-    const response = await api.reportService.postReport(selectedItemID, title, content, image);
+    const response = await api.reportService.postReport(
+      selectedItemID,
+      title,
+      content,
+      image === null ? undefined : image,
+    );
     if (response.isSuccess) {
       fireToast({ content: '문의가 성공적으로 등록되었습니다.' });
       navigate('/preferences');
@@ -74,12 +79,19 @@ function ServiceCenterPage() {
         </div>
         <div>
           <StFormTitle>이슈와 관련된 사진을 업로드해주세요 (선택)</StFormTitle>
-          <FileUpload width="100%" height="149px" setFile={setImage} borderRadius="16px">
+          <ImageUpload
+            styles={{
+              width: '100%',
+              height: '149px',
+              borderRadius: '16px',
+            }}
+            {...imageUploadProps}
+          >
             <StUploadContainer>
-              <StPhotoUploadImage src={icCamera} />
-              <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+              <IcCamera />
+              <div>파일을 선택해서 업로드해주세요</div>
             </StUploadContainer>
-          </FileUpload>
+          </ImageUpload>
         </div>
         <StButton
           disabled={title.trim() === '' || content.trim() === ''}
@@ -88,6 +100,11 @@ function ServiceCenterPage() {
           완료
         </StButton>
       </StForm>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
     </>
   );
 }

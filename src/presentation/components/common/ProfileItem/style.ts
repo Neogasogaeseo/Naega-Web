@@ -42,5 +42,6 @@ export const StProfileItem = styled.div<{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    line-height: 16px;
   }
 `;

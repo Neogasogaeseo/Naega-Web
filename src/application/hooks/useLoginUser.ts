@@ -29,9 +29,11 @@ export function useLoginUser() {
   const initLoginUser = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) throw '토큰이 없습니다';
-      const user = await api.loginUserService.getUserInfo(token);
-      saveLoginUser(user);
+      // if (!token) throw '토큰이 없습니다';
+      if (token) {
+        const user = await api.loginUserService.getUserInfo(token);
+        saveLoginUser(user);
+      }
     } catch (error) {
       setError(error);
     }

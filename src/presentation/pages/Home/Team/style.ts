@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
 export const StTeamMain = styled.div`
+  height: 100vh;
+  overflow-x: hidden;
+
   & h1 {
     font-weight: 600;
     font-size: 18px;

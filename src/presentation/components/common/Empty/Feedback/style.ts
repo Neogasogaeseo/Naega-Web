@@ -10,14 +10,14 @@ export const StFeedbackEmptyView = styled.div<{ hasThumbnail: boolean }>`
   justify-content: center;
 
   div:first-of-type {
-    ${FONT_STYLES.SB_20_TITLE}
+    ${FONT_STYLES.SB_18_TITLE}
     color: ${COLOR.GRAY_4};
-    margin-top: 25px;
-    margin-bottom: 8px;
+    margin-top: 44px;
+    margin-bottom: 12px;
   }
 
   div:last-of-type {
-    ${FONT_STYLES.R_15_TITLE}
-    color: ${COLOR.GRAY_4};
+    ${FONT_STYLES.M_14_TITLE}
+    color: ${COLOR.GRAY_35};
   }
 `;

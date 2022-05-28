@@ -32,7 +32,7 @@ function MyProfileEdit() {
   });
 
   useEffect(() => {
-    const isImageInitial = image === null;
+    const isImageInitial = image === undefined;
     const isInputIdInitial = inputId === userID;
     const isInputNameInitial = inputName === username;
     setIsInitial(isImageInitial && isInputIdInitial && isInputNameInitial);

@@ -10,13 +10,13 @@ export const StNeogaCreateCardItem = styled.div<{ idx: number }>`
   white-space: pre-line;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   cursor: pointer;
   box-shadow: 0px 2px 20px rgba(88, 99, 109, 0.05);
   z-index: ${({ idx }) => idx};
   margin-bottom: 12px;
 
   & div {
+    flex: 1;
     & > div:nth-child(1) {
       margin-bottom: 9px;
       color: ${COLOR.GRAY_8};
@@ -32,6 +32,7 @@ export const StNeogaCreateCardItem = styled.div<{ idx: number }>`
   & img {
     width: 52px;
     height: 52px;
+    margin-right: 18px;
   }
 
   & svg {

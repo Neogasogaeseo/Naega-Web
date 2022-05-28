@@ -3,7 +3,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNewIssue = styled.div`
-  padding: 50px 20px 48px 20px;
+  padding: 24px 20px 48px 20px;
   & > p {
     ${FONT_STYLES.R_16_TITLE};
     color: ${COLOR.GRAY_5};

@@ -40,6 +40,7 @@ export const StProfileImg = styled.div`
     width: 118px;
     height: 118px;
     border-radius: 50%;
+    object-fit: cover;
   }
 
   svg {

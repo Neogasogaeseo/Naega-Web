@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useQueryClient } from 'react-query';
 
-import { api } from '@api/index';
-import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
 import BottomSheet from '..';
-import { icEdit, icTrash } from '@assets/icons';
+import { icEdit } from '@assets/icons';
 
 type MyPageEditBottomSheetProps = {
   isOpened: boolean;
@@ -17,9 +14,7 @@ type MyPageEditBottomSheetProps = {
 function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
   const { isOpened, closeBottomSheet, type, setIsDeletePage } = props;
   const navigate = useNavigate();
-  const { fireToast } = useToast();
-  const { userID: profileId, username: name } = useLoginUser();
-  const queryClient = useQueryClient();
+  const { userID: profileId } = useLoginUser();
 
   const editMyKeyword = () => {
     closeBottomSheet();
@@ -30,24 +25,6 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
     navigate(`/edit/profile/${profileId}`);
   };
 
-  const deleteProfileImage = async () => {
-    try {
-      const form = new FormData();
-      form.append('profileId', profileId);
-      form.append('name', name);
-      form.append('image', '');
-      const response = await api.userService.editUserProfile(form);
-      if (response.isSuccess) {
-        queryClient.invalidateQueries('userInfo');
-        closeBottomSheet();
-        fireToast({ content: '프로필 이미지 삭제 완료' });
-      }
-    } catch (error) {
-      console.error(error);
-      navigate('/');
-    }
-  };
-
   return (
     <BottomSheet
       buttonList={
@@ -55,13 +32,8 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
           ? [
               {
                 icon: icEdit,
-                label: '수정하기',
+                label: '프로필 수정하기',
                 onClick: navigateToEditPage,
-              },
-              {
-                icon: icTrash,
-                label: '기본 이미지로 변경',
-                onClick: deleteProfileImage,
               },
             ]
           : [

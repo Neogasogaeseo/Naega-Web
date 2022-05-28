@@ -48,7 +48,6 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     },
     {
       onSuccess: (data) => {
-        console.log('data', data);
         if (data && data.isBookmarked) {
           userID
             ? fireToast({ content: '픽 완료', bottom: 120 })

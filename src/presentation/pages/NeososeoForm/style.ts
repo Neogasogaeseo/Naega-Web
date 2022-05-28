@@ -15,20 +15,21 @@ export const StNeososeoTitle = styled.div`
   border-radius: 18px;
   width: 100%;
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  align-items: center;
   padding: 16px 20px;
   background-color: ${COLOR.GRAY_1};
   margin-top: 24px;
 
   & > span:nth-child(1) {
     color: ${COLOR.CORAL_MAIN};
-    line-height: 20px;
+    ${FONT_STYLES.SB_16_TITLE}
   }
 
   & > span:nth-child(2) {
     ${FONT_STYLES.R_15_BODY}
     color: ${COLOR.GRAY_7};
-    line-height: 20px;
+    line-height: 143.99%;
   }
 `;
 

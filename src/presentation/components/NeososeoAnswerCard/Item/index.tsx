@@ -20,6 +20,7 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
     const response = await api.neogaService.postAnswerBookmark(id);
     if (response.isSuccess) {
       if (!isBookmarked) fireToast({ content: '픽 완료' });
+      else fireToast({ content: '픽 취소' });
       setIsBookmarked((prev) => !prev);
     }
   };

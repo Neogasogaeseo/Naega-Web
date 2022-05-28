@@ -9,7 +9,7 @@ export const COMMON_INPUT = css`
   ${FONT_STYLES.R_16_TITLE}
   color: ${COLOR.GRAY_7};
   &::placeholder {
-    color: ${COLOR.GRAY_5};
+    color: ${COLOR.GRAY_4};
   }
 `;
 

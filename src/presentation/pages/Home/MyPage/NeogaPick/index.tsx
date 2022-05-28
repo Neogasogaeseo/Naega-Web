@@ -16,7 +16,7 @@ function MyNeogaPick() {
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [selectedForm, setSelectedForm] = useState<MyDetail | null>(null);
 
-  const { data: myFormInfo } = useQuery('myTeamInfo', api.userService.getMyFormInfo);
+  const { data: myFormInfo } = useQuery('myFormInfo', api.userService.getMyFormInfo);
 
   const fetchAnswersByPage = useCallback(
     async ({ pageParam = 0 }) => {
@@ -52,10 +52,10 @@ function MyNeogaPick() {
           너가소개서에 지인이 남겨준 답변들 중<br />
           <span>My 프로필에 걸어두고 싶은 답변</span>을 <span>픽</span>해주세요!
         </header>
-        {myFormInfo?.formList && (
+        {myFormInfo && myFormInfo.formList.length > 0 && (
           <StMyNeogaFormList>
             <MySelectableList
-              items={myFormInfo?.formList}
+              items={myFormInfo.formList}
               isSquare={false}
               selectedItem={selectedForm}
               setSelectedItem={setSelectedForm}

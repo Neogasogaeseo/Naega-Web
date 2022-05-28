@@ -1,7 +1,6 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 import { useToast } from '@hooks/useToast';
-import { checkBrowser } from '@utils/browser';
 import { resizeImage } from '@utils/image';
 import { StImgPreview, StFileUpload, StUploadBtn } from './style';
 
@@ -38,14 +37,9 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>((props, ref) =>
     if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
       if (file.name.match(imgFileForm)) {
-        if (checkBrowser('Internet Explorer')) {
-          setNewFile(file);
-          setFileThumbnail(URL.createObjectURL(file));
-        } else {
-          const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
-          setNewFile(resizedImageFile);
-          setFileThumbnail(URL.createObjectURL(imageBlob));
-        }
+        const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
+        setNewFile(resizedImageFile);
+        setFileThumbnail(URL.createObjectURL(imageBlob));
         cancelDelete && cancelDelete();
       } else {
         fireToast({ content: '이미지 파일을 첨부해주세요' });

@@ -16,6 +16,9 @@ export const StTeamEdit = styled.div`
   }
   & > *:nth-child(2) {
     margin-top: 31px;
+    position: relative;
+    width: 88px;
+    height: 88px;
   }
   & > *:nth-child(7) {
     margin-top: 48px;
@@ -38,12 +41,6 @@ export const StTeamEdit = styled.div`
     letter-spacing: -0.01em;
     color: ${COLOR.GRAY_4};
   }
-`;
-
-export const StTeamImage = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 30px;
 `;
 
 export const StRelativeWrapper = styled.div`

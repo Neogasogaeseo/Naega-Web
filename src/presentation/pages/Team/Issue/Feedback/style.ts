@@ -48,7 +48,7 @@ export const StSection = styled.section`
 `;
 
 export const StSectionTitle = styled.div`
-  color: ${COLOR.GRAY_8};
+  color: ${COLOR.GRAY_7};
   font-size: 16px;
   font-weight: 600;
 `;

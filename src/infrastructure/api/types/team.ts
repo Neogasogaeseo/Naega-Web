@@ -150,7 +150,7 @@ export type PostIssueResponse = {
   image?: string;
 };
 
-export type ImageFile = File | null;
+export type ImageFile = File | null | undefined;
 export interface TeamEditInfo<T extends ImageFile | string> {
   id: number;
   image: T;

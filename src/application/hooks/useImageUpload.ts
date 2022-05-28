@@ -1,37 +1,43 @@
+import { icEdit, icTrash } from '@assets/icons';
 import { useRef, useState } from 'react';
 
 export default function useImageUpload() {
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null | undefined>();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [bottomSheetOpened, setBottomSheetOpened] = useState(false);
-  const [isImageDeleted, setIsImageDeleted] = useState(false);
 
   const clickFileInputRef = () => fileInputRef.current && fileInputRef.current.click();
 
   const removeImage = () => {
-    setIsImageDeleted(true);
     setImage(null);
     setBottomSheetOpened(false);
   };
 
   const openBottomSheet = () => setBottomSheetOpened(true);
   const closeBottomSheet = () => setBottomSheetOpened(false);
+  const bottomSheetButtonList = [
+    {
+      icon: icEdit,
+      label: '수정하기',
+      onClick: clickFileInputRef,
+    },
+    { icon: icTrash, label: '기본 이미지로 변경', onClick: removeImage },
+  ];
 
-  const cancelDelete = () => {
-    setBottomSheetOpened(false);
-    setIsImageDeleted(false);
+  const imageUploadProps = {
+    ref: fileInputRef,
+    openBottomSheet: openBottomSheet,
+    closeBottomSheet: closeBottomSheet,
+    onClickInput: clickFileInputRef,
+    file: image,
+    setFile: setImage,
   };
 
   return {
     image,
-    setImage,
-    fileInputRef,
     bottomSheetOpened,
-    isImageDeleted,
-    clickFileInputRef,
-    removeImage,
-    openBottomSheet,
+    imageUploadProps,
     closeBottomSheet,
-    cancelDelete,
+    bottomSheetButtonList,
   };
 }

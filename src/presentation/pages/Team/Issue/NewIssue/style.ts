@@ -6,7 +6,6 @@ export const StNewIssue = styled.div`
   padding: 50px 20px 48px 20px;
   & > p {
     ${FONT_STYLES.R_16_TITLE};
-    line-height: 143.99%;
     color: ${COLOR.GRAY_5};
     margin-top: 14px;
     margin-bottom: 4px;
@@ -15,7 +14,6 @@ export const StNewIssue = styled.div`
 
 export const StTitleWrapper = styled.div`
   ${FONT_STYLES.SB_24_TITLE};
-  line-height: 143.99%;
 `;
 
 export const StCategoryWrapper = styled.div`
@@ -31,6 +29,7 @@ export const StCategory = styled.button<{ selected: boolean }>`
   padding: 10px;
   background-color: ${({ selected }) => (selected ? '#FFF1F1' : COLOR.GRAY_1)};
   color: ${({ selected }) => (selected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
+  ${FONT_STYLES.R_14_TITLE}
 `;
 
 export const StQuestionWrapper = styled.div`

@@ -16,6 +16,7 @@ export function useLoginUser() {
 
   const removeAccessToken = () => {
     localStorage.removeItem('token');
+    setIsAuthenticated(false);
     setLoginUser({ id: -1, accessToken: '', username: '', userID: '', profileImage: '' });
   };
 

@@ -17,21 +17,17 @@ export const StWhiteWrapper = styled(StWrapper)`
     width: 44px;
     height: 44px;
   }
-  & > div:nth-child(2) {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 144%;
-    margin-top: 16px;
+  & > div:nth-child(1) {
+    ${FONT_STYLES.SB_24_TITLE};
+    margin-top: 12px;
   }
-  & > div:nth-child(3) {
-    padding-left: 4px;
-    font-size: 15px;
-    color: ${COLOR.GRAY_5};
-    line-height: 144%;
+  & > div:nth-child(2) {
+    ${FONT_STYLES.R_15_TITLE};
+    color: ${COLOR.GRAY_6};
     margin-top: 12px;
     margin-bottom: 32px;
   }
-  & > div:nth-child(4) {
+  & > div:nth-child(3) {
     display: flex;
     gap: 8px;
     margin-bottom: 20px;

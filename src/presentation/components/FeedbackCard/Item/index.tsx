@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
@@ -40,17 +40,27 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   const { userID } = useParams();
   const queryClient = useQueryClient();
 
-  const bookmarkFeedback = async () => {
-    const response = await api.teamService.postFeedbackBookmark(id);
-    if (response.isSuccess) {
-      if (response.isBookmarked) {
-        userID
-          ? fireToast({ content: '픽 완료', bottom: 120 })
-          : fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요', bottom: 120 });
-      }
-      queryClient.invalidateQueries(['tssBookmark', userID]);
-    }
-  };
+  const { mutate: bookmarkFeedback } = useMutation(
+    async () => {
+      const response = await api.teamService.postFeedbackBookmark(id);
+      console.log(response);
+      return response;
+    },
+    {
+      onSuccess: (data) => {
+        console.log('data', data);
+        if (data && data.isBookmarked) {
+          userID
+            ? fireToast({ content: '픽 완료', bottom: 120 })
+            : fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요', bottom: 120 });
+        } else {
+          fireToast({ content: '픽 취소', bottom: 120 });
+        }
+        queryClient.invalidateQueries('feedbackInfo');
+        queryClient.invalidateQueries('tssBookmark');
+      },
+    },
+  );
 
   const isForMe = useMemo(
     () => +targetProfileID === loginUserID || targetProfileID === loginUsername,
@@ -73,7 +83,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
         </div>
         {(isMine || isForMe) &&
           (parentPage === 'mypage' && isForMe ? (
-            <StBookmark selected={isBookmarked} onClick={bookmarkFeedback} />
+            <StBookmark selected={isBookmarked} onClick={() => bookmarkFeedback()} />
           ) : (
             <StMeatBall
               onClick={() => {

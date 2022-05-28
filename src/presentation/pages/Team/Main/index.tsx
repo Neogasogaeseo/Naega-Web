@@ -80,7 +80,7 @@ function TeamMain() {
                     slicedMemberList.map(({ id, profileName, isHost }, index) => (
                       <StMemberName key={id} isHost={isHost}>
                         {profileName}
-                        {index + 1 < slicedMemberList.length ? ',\u00a0' : ''}
+                        {index + 1 < slicedMemberList.length ? ', ' : ''}
                       </StMemberName>
                     ))}
                   {teamInfoData.teamMemberCount > MAX_TEAM_MEMBER && (

@@ -50,6 +50,8 @@ function MyProfileEdit() {
     } else {
       setErrorMsg('');
     }
+
+    if (!inputId.length) setErrorMsg('');
   }, [inputId, isDuplicate]);
 
   useEffect(() => {

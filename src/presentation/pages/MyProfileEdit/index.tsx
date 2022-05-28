@@ -67,7 +67,9 @@ function MyProfileEdit() {
       const form = new FormData();
       form.append('profileId', inputId);
       form.append('name', inputName);
-      image && form.append('image', image);
+      image === null
+        ? form.append('image', '')
+        : image instanceof File && form.append('image', image);
       const response = await api.userService.editUserProfile(form);
       if (response.isSuccess) {
         fireToast({ content: '수정 완료' });

@@ -177,6 +177,7 @@ export function userDataRemote(): UserService {
     const response = await privateAPI.get({
       url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
     });
+    if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { answerList: [] };
     return {
       answerList: response.data.answer
         ? response.data.answer.map((answer: any) => ({

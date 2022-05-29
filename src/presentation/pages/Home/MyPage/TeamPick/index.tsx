@@ -52,10 +52,10 @@ function MyTeamPick() {
           팀원소개서에 팀원이 남겨준 피드백들 중<br />
           <span>My 프로필에 걸어두고 싶은 피드백</span>을 <span>픽</span>해주세요!
         </header>
-        {myTeamInfo?.teamList && (
+        {myTeamInfo && myTeamInfo.teamList.length > 0 && (
           <StMyTeamList>
             <MySelectableList
-              items={myTeamInfo?.teamList}
+              items={myTeamInfo.teamList}
               isSquare={true}
               selectedItem={selectedTeam}
               setSelectedItem={setSelectedTeam}

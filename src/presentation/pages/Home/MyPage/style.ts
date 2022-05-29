@@ -8,6 +8,11 @@ export const StHomeMyPage = styled.div`
   width: 100%;
   padding: 0 20px;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   & > div:last-of-type {
     margin-left: -20px;

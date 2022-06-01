@@ -54,3 +54,4 @@ export { default as icLeaveTeam } from './ic_leave_team.svg';
 export { ReactComponent as IcLock } from './ic_lock.svg';
 export { default as icPicked } from './ic_picked.svg';
 export { default as icUnpicked } from './ic_unpicked.svg';
+export { ReactComponent as IcPaperAirplane } from './ic_paper_airplane.svg';

@@ -8,6 +8,13 @@ import { icEmail, icInputPencil } from '@assets/icons';
 export const StMyProfileEdit = styled.div`
   padding: 0 20px;
 
+  & > *:first-child {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 52px;
+  }
+
   & > div > button {
     display: block;
     margin: 0 auto;
@@ -72,4 +79,11 @@ export const StInputWrapper = styled.div`
     background-position: calc(100% - 20px);
     background-repeat: no-repeat;
   }
+`;
+
+export const StEmptyImage = styled.img`
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  object-fit: cover;
 `;

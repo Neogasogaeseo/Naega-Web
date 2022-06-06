@@ -34,6 +34,7 @@ export { ReactComponent as IcArrowViewMore } from './ic_arrow_view_more.svg';
 export { ReactComponent as IcArrowViewMoreClose } from './ic_arrow_view_more_close.svg';
 export { ReactComponent as IcCopyMypage } from './ic_copy_mypage.svg';
 export { ReactComponent as IcMypageEdit } from './ic_mypage_edit.svg';
+export { default as icMypageEdit } from './ic_mypage_edit.svg';
 export { default as icNewTag } from './ic_new_tag.svg';
 export { ReactComponent as IcEmptyFeedback } from './ic_empty_feedback.svg';
 export { ReactComponent as IcEmptyKeyword } from './ic_empty_keyword.svg';

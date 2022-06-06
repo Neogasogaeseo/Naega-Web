@@ -10,10 +10,10 @@ import BottomSheet from '@components/common/BottomSheet';
 import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
 import CommonNavigation from '@components/common/Navigation';
-import { StInputWrapper, StMyProfileEdit, StProfileImg } from './style';
+import { StEmptyImage, StInputWrapper, StMyProfileEdit } from './style';
 import { StErrorMsg } from '@components/common/Input/style';
-import { IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import { icMypageEdit } from '@assets/icons';
 
 function MyProfileEdit() {
   const navigate = useNavigate();
@@ -86,20 +86,21 @@ function MyProfileEdit() {
     <>
       <CommonNavigation title="프로필 수정" />
       <StMyProfileEdit>
-        <StProfileImg>
-          <ImageUpload
-            styles={{
-              width: '118px',
-              height: '118px',
-              borderRadius: '50%',
-            }}
-            defaultThumbnail={profileImage === null ? '' : profileImage}
-            {...imageUploadProps}
-          >
-            <img src={imgEmptyProfile} />
-          </ImageUpload>
-          <IcMypageEdit />
-        </StProfileImg>
+        <ImageUpload
+          styles={{
+            width: '118px',
+            height: '118px',
+            borderRadius: '50%',
+          }}
+          defaultThumbnail={profileImage === null ? '' : profileImage}
+          defaultChildren={{
+            src: icMypageEdit,
+            styles: { width: '32.29px' },
+          }}
+          {...imageUploadProps}
+        >
+          <StEmptyImage src={imgEmptyProfile} />
+        </ImageUpload>
         <StInputWrapper>
           <CommonLabel content="아이디" marginTop="52px" marginBottom="20px" />
           <CommonInput

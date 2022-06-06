@@ -13,6 +13,7 @@ export const StThumbnail = styled.img<{
 
 export const StImageUpload = styled.div`
   cursor: pointer;
+  position: relative;
 `;
 
 export const StThumbnailWrapper = styled.div<{
@@ -23,4 +24,17 @@ export const StThumbnailWrapper = styled.div<{
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.borderRadius};
+`;
+
+export const StDefaultChildren = styled.img<{
+  bottom?: string;
+  right?: string;
+  width: string;
+  height?: string;
+}>`
+  position: absolute;
+  bottom: ${(props) => props.bottom ?? 0};
+  right: ${(props) => props.right ?? 0};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height ?? props.width};
 `;

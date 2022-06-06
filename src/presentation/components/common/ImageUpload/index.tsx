@@ -1,7 +1,7 @@
 import { forwardRef, useState } from 'react';
 
 import { resizeImage } from '@utils/image';
-import { StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
+import { StDefaultChildren, StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
 
 interface ImageUploadProps {
   file: File | null | undefined;
@@ -13,14 +13,19 @@ interface ImageUploadProps {
     borderRadius?: string;
   };
   children: React.ReactElement | string;
+  defaultChildren?: {
+    src: string;
+    styles: { bottom?: string; right?: string; width: string; height?: string };
+  };
   onClickInput: () => void;
   openBottomSheet: () => void;
   closeBottomSheet: () => void;
-  ref?: React.ForwardedRef<HTMLInputElement>;
+  ref: React.ForwardedRef<HTMLInputElement>;
 }
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const {
     children: emptyImage,
+    defaultChildren,
     styles,
     openBottomSheet,
     closeBottomSheet,
@@ -75,6 +80,9 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
           />
         )}
       </StThumbnailWrapper>
+      {defaultChildren && (
+        <StDefaultChildren src={defaultChildren.src} {...defaultChildren.styles} />
+      )}
     </StImageUpload>
   );
 });

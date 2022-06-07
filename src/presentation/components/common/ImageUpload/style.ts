@@ -1,14 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
 
-export const StThumbnail = styled.img<{
-  width: string;
-  height: string;
-  borderRadius: string;
-}>`
+export const StThumbnail = styled.img<{ styles: React.CSSProperties }>`
   object-fit: cover;
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: ${(props) => props.borderRadius};
+  width: ${(props) => props.styles.width};
+  height: ${(props) => props.styles.height};
+  border-radius: ${(props) => props.styles.borderRadius ?? 0};
 `;
 
 export const StImageUpload = styled.div`
@@ -16,25 +13,16 @@ export const StImageUpload = styled.div`
   position: relative;
 `;
 
-export const StThumbnailWrapper = styled.div<{
-  width: string;
-  height: string;
-  borderRadius: string;
-}>`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: ${(props) => props.borderRadius};
+export const StThumbnailWrapper = styled.div<{ styles: React.CSSProperties }>`
+  width: ${(props) => props.styles.width};
+  height: ${(props) => props.styles.height};
+  border-radius: ${(props) => props.styles.borderRadius ?? 0};
 `;
 
-export const StDefaultChildren = styled.img<{
-  bottom?: string;
-  right?: string;
-  width: string;
-  height?: string;
-}>`
+export const StDefaultChildren = styled.img<{ styles: React.CSSProperties }>`
+  bottom: ${(props) => props.styles.bottom ?? 0};
+  right: ${(props) => props.styles.right ?? 0};
+  width: ${(props) => props.styles.width};
+  height: ${(props) => props.styles.height ?? props.styles.width};
   position: absolute;
-  bottom: ${(props) => props.bottom ?? 0};
-  right: ${(props) => props.right ?? 0};
-  width: ${(props) => props.width};
-  height: ${(props) => props.height ?? props.width};
 `;

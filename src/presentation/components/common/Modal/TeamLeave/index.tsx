@@ -21,7 +21,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
-    teamMemberListWithoutHost.length > 0 ? 'QUESTION' : 'DELETE',
+    teamMemberList.length > 1 ? 'QUESTION' : 'DELETE',
   );
   const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
   const navigate = useNavigate();

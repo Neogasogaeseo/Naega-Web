@@ -4,20 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
 import { useLoginUser } from '@hooks/useLoginUser';
+import useImageUpload from '@hooks/useImageUpload';
+import ImageUpload from '@components/common/ImageUpload';
+import BottomSheet from '@components/common/BottomSheet';
 import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
 import CommonNavigation from '@components/common/Navigation';
-import FileUpload from '@components/common/FileUpload';
-import { StInputWrapper, StMyProfileEdit, StProfileImg } from './style';
+import { StEmptyImage, StInputWrapper, StMyProfileEdit } from './style';
 import { StErrorMsg } from '@components/common/Input/style';
-import { IcMypageEdit } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import { icMypageEdit } from '@assets/icons';
 
 function MyProfileEdit() {
   const navigate = useNavigate();
   const { fireToast } = useToast();
   const { username, userID, profileImage, initLoginUser } = useLoginUser();
-  const [image, setImage] = useState<File | null>(null);
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
   const [inputId, setInputId] = useState(userID);
   const [inputName, setInputName] = useState(username);
   const [isDuplicate, setIsDuplicate] = useState(false);
@@ -29,7 +32,7 @@ function MyProfileEdit() {
   });
 
   useEffect(() => {
-    const isImageInitial = image === null;
+    const isImageInitial = image === undefined;
     const isInputIdInitial = inputId === userID;
     const isInputNameInitial = inputName === username;
     setIsInitial(isImageInitial && isInputIdInitial && isInputNameInitial);
@@ -64,7 +67,9 @@ function MyProfileEdit() {
       const form = new FormData();
       form.append('profileId', inputId);
       form.append('name', inputName);
-      image && form.append('image', image);
+      image === null
+        ? form.append('image', '')
+        : image instanceof File && form.append('image', image);
       const response = await api.userService.editUserProfile(form);
       if (response.isSuccess) {
         fireToast({ content: '수정 완료' });
@@ -81,14 +86,21 @@ function MyProfileEdit() {
     <>
       <CommonNavigation title="프로필 수정" />
       <StMyProfileEdit>
-        <StProfileImg>
-          <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="50%">
-            <>
-              <img src={profileImage || imgEmptyProfile} />
-              <IcMypageEdit />
-            </>
-          </FileUpload>
-        </StProfileImg>
+        <ImageUpload
+          styles={{
+            width: '118px',
+            height: '118px',
+            borderRadius: '50%',
+          }}
+          defaultThumbnail={profileImage === null ? '' : profileImage}
+          defaultChildren={{
+            src: icMypageEdit,
+            styles: { width: '32.29px' },
+          }}
+          {...imageUploadProps}
+        >
+          <StEmptyImage src={imgEmptyProfile} />
+        </ImageUpload>
         <StInputWrapper>
           <CommonLabel content="아이디" marginTop="52px" marginBottom="20px" />
           <CommonInput
@@ -131,6 +143,11 @@ function MyProfileEdit() {
           완료
         </button>
       </StMyProfileEdit>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
     </>
   );
 }

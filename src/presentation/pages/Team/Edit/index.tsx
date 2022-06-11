@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import CommonNavigation from '@components/common/Navigation';
-import { StIcPencil, StTextarea } from '../Register/style';
+import { StTextarea } from '../Register/style';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import { StTeamEdit, StRelativeWrapper } from './style';
@@ -13,6 +13,7 @@ import CommonModal from '@components/common/Modal';
 import BottomSheet from '@components/common/BottomSheet';
 import useImageUpload from '@hooks/useImageUpload';
 import ImageUpload from '@components/common/ImageUpload';
+import { icPencil } from '@assets/icons';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
@@ -81,20 +82,18 @@ export default function TeamEdit() {
       />
       <StTeamEdit>
         <div>팀 수정하기</div>
-        <div>
-          <ImageUpload
-            styles={{
-              width: '88px',
-              height: '88px',
-              borderRadius: '36px',
-            }}
-            defaultThumbnail={teamInfo?.image === null ? '' : teamInfo?.image}
-            {...imageUploadProps}
-          >
-            <ImgTeamDefault />
-          </ImageUpload>
-          <StIcPencil />
-        </div>
+        <ImageUpload
+          styles={{
+            width: '88px',
+            height: '88px',
+            borderRadius: '36px',
+          }}
+          defaultThumbnail={teamInfo?.image === null ? '' : teamInfo?.image}
+          defaultChildren={{ src: icPencil, styles: { width: '24px' } }}
+          {...imageUploadProps}
+        >
+          <ImgTeamDefault />
+        </ImageUpload>
         <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
         <CommonInput
           value={name}

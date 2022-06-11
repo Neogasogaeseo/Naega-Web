@@ -29,6 +29,7 @@ export const StNeogaResultComment = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     margin-bottom: 14px;
+    line-height: 16px;
   }
 
   & > div:last-child {

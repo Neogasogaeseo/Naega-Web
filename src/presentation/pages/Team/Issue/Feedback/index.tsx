@@ -126,7 +126,9 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
               <div>팀원이 없어서 피드백을 작성할 수 없어요</div>
               <div>팀원을 초대해보세요</div>
             </div>
-            <button onClick={() => navigate(`/team/${teamID}/edit`)}>팀원 추가하기</button>
+            <button onClick={() => navigate(`/team/${teamID}/member/management`)}>
+              팀원 추가하기
+            </button>
           </StEmptyWrapper>
         ) : (
           <StWrapper>

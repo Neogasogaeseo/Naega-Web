@@ -21,6 +21,7 @@ import {
 } from './style';
 import { IcLock } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import { useToast } from '@hooks/useToast';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
@@ -31,6 +32,7 @@ interface TeamIssueFeedbackProps {
 function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   const { isEditMode = false } = props;
   const { feedbackEditInfo, closeBottomSheet } = useOutletContext<TeamIssueFeedbackProps>();
+  const { fireToast } = useToast();
 
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
@@ -176,12 +178,17 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
       <Outlet
         context={{
           keywordList,
-          addKeyword: (keyword: Keyword) =>
-            setKeywordList((prev) =>
-              prev.map((prev) => prev.content).includes(keyword.content)
-                ? prev
-                : [...prev, keyword],
-            ),
+          addKeyword: (keyword: Keyword) => {
+            if (keywordList.length < 2) {
+              setKeywordList((prev) =>
+                prev.map((prev) => prev.content).includes(keyword.content)
+                  ? prev
+                  : [...prev, keyword],
+              );
+            } else {
+              fireToast({ content: '키워드는 최대 2개 입력할 수 있어요' });
+            }
+          },
           removeKeyword: (targetKeyword: Keyword) =>
             setKeywordList((prev) =>
               prev.filter((keyword) => keyword.content !== targetKeyword.content),

@@ -59,13 +59,9 @@ function NeososeoFormAnswer() {
             onChange={(e) => setAnswer(e.target.value)}
             defaultValue={neososeoAnswer.answer}
           />
-          <StSubTitle>답변에 대한 내 키워드를 남겨주세요</StSubTitle>
+          <StSubTitle>답변에 대한 {neososeoFormData.userName}의 키워드를 남겨주세요</StSubTitle>
           <Link to="keyword">
-            <CommonInput
-              width="100%"
-              placeholder="답변의 핵심 키워드로 나를 표현해주세요"
-              disabled
-            />
+            <CommonInput width="100%" placeholder="답변을 키워드로 요악해주세요" disabled />
           </Link>
           <StKeywordListWrapper>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />

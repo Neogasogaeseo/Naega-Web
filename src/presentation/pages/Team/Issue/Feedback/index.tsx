@@ -21,6 +21,7 @@ import {
 } from './style';
 import { IcLock } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
+import { useToast } from '@hooks/useToast';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
@@ -31,6 +32,7 @@ interface TeamIssueFeedbackProps {
 function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   const { isEditMode = false } = props;
   const { feedbackEditInfo, closeBottomSheet } = useOutletContext<TeamIssueFeedbackProps>();
+  const { fireToast } = useToast();
 
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
@@ -124,7 +126,9 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
               <div>팀원이 없어서 피드백을 작성할 수 없어요</div>
               <div>팀원을 초대해보세요</div>
             </div>
-            <button onClick={() => navigate(`/team/${teamID}/edit`)}>팀원 추가하기</button>
+            <button onClick={() => navigate(`/team/${teamID}/member/management`)}>
+              팀원 추가하기
+            </button>
           </StEmptyWrapper>
         ) : (
           <StWrapper>
@@ -176,12 +180,17 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
       <Outlet
         context={{
           keywordList,
-          addKeyword: (keyword: Keyword) =>
-            setKeywordList((prev) =>
-              prev.map((prev) => prev.content).includes(keyword.content)
-                ? prev
-                : [...prev, keyword],
-            ),
+          addKeyword: (keyword: Keyword) => {
+            if (keywordList.length < 2) {
+              setKeywordList((prev) =>
+                prev.map((prev) => prev.content).includes(keyword.content)
+                  ? prev
+                  : [...prev, keyword],
+              );
+            } else {
+              fireToast({ content: '키워드는 최대 2개 입력할 수 있어요' });
+            }
+          },
           removeKeyword: (targetKeyword: Keyword) =>
             setKeywordList((prev) =>
               prev.filter((keyword) => keyword.content !== targetKeyword.content),

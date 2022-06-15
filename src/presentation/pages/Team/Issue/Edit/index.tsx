@@ -114,7 +114,7 @@ export default function TeamIssueEdit() {
 
   useEffect(() => {
     setSelectedCategory(getCategoryInfoFromName(issueInfo ? issueInfo.category : ''));
-  }, []);
+  }, [issueInfo, categoryList]);
 
   return (
     <>

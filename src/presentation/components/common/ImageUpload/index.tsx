@@ -1,26 +1,27 @@
 import { forwardRef, useState } from 'react';
 
 import { resizeImage } from '@utils/image';
-import { StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
+import { StDefaultChildren, StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
 
 interface ImageUploadProps {
   file: File | null | undefined;
   setFile: (image: File) => void;
   defaultThumbnail?: string;
-  styles: {
-    width: string;
-    height: string;
-    borderRadius?: string;
-  };
+  styles: React.CSSProperties;
   children: React.ReactElement | string;
+  defaultChildren?: {
+    src: string;
+    styles: React.CSSProperties;
+  };
   onClickInput: () => void;
   openBottomSheet: () => void;
   closeBottomSheet: () => void;
-  ref?: React.ForwardedRef<HTMLInputElement>;
+  ref: React.ForwardedRef<HTMLInputElement>;
 }
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const {
     children: emptyImage,
+    defaultChildren,
     styles,
     openBottomSheet,
     closeBottomSheet,
@@ -59,22 +60,16 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
         onChange={handleFileInput}
         accept="image/jpeg, image/png, image/gif"
       />
-      <StThumbnailWrapper
-        width={styles.width}
-        height={styles.height}
-        borderRadius={styles.borderRadius ?? '0px'}
-      >
+      <StThumbnailWrapper styles={styles}>
         {file === null || (!(file instanceof File) && defaultThumbnail === '') ? (
           emptyImage
         ) : (
-          <StThumbnail
-            src={file === undefined ? defaultThumbnail : thumbnail}
-            width={styles.width}
-            height={styles.height}
-            borderRadius={styles.borderRadius ?? '0px'}
-          />
+          <StThumbnail src={file === undefined ? defaultThumbnail : thumbnail} styles={styles} />
         )}
       </StThumbnailWrapper>
+      {defaultChildren && (
+        <StDefaultChildren src={defaultChildren.src} styles={defaultChildren.styles} />
+      )}
     </StImageUpload>
   );
 });

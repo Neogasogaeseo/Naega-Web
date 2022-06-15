@@ -95,36 +95,38 @@ function HomeMyPage() {
                 </StShare>
               )}
             </StHomeMyPageHeader>
-            <StKeywordSection>
-              <div>
+            {mypageInfo.neososeo.length + mypageInfo.team.length !== 0 && (
+              <StKeywordSection>
                 <div>
-                  <img src={icCrown} />
-                  <span>My 키워드</span>
-                  <span>{mypageInfo.neososeo.length + mypageInfo.team.length}</span>
+                  <div>
+                    <img src={icCrown} />
+                    <span>My 키워드</span>
+                    <span>{mypageInfo.neososeo.length + mypageInfo.team.length}</span>
+                  </div>
+                  {isMyPage && (
+                    <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                      키워드 전체보기
+                      <IcArrowViewAll />
+                    </StDetailLink>
+                  )}
                 </div>
-                {isMyPage && (
-                  <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
-                    키워드 전체보기
-                    <IcArrowViewAll />
-                  </StDetailLink>
+                {mypageInfo.neososeo.length !== 0 && (
+                  <>
+                    <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
+                    <ImmutableKeywordList
+                      keywordList={mypageInfo.neososeo}
+                      onItemClick={() => null}
+                    />
+                  </>
                 )}
-              </div>
-              {mypageInfo.neososeo.length !== 0 && (
-                <>
-                  <StKeywordTitle>친구가 말하는 {mypageInfo.username}</StKeywordTitle>
-                  <ImmutableKeywordList
-                    keywordList={mypageInfo.neososeo}
-                    onItemClick={() => null}
-                  />
-                </>
-              )}
-              {mypageInfo.team.length !== 0 && (
-                <>
-                  <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
-                  <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
-                </>
-              )}
-            </StKeywordSection>
+                {mypageInfo.team.length !== 0 && (
+                  <>
+                    <StKeywordTitle>함께한 팀원이 말하는 {mypageInfo.username}</StKeywordTitle>
+                    <ImmutableKeywordList keywordList={mypageInfo.team} onItemClick={() => null} />
+                  </>
+                )}
+              </StKeywordSection>
+            )}
           </>
         )
       )}

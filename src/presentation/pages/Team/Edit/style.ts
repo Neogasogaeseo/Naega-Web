@@ -16,9 +16,7 @@ export const StTeamEdit = styled.div`
   }
   & > *:nth-child(2) {
     margin-top: 31px;
-    position: relative;
     width: 88px;
-    height: 88px;
   }
   & > *:nth-child(7) {
     margin-top: 48px;

@@ -12,7 +12,7 @@ import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
 import BottomSheet from '@components/common/BottomSheet';
 import ImageUpload from '@components/common/ImageUpload';
-import { StUploadContainer } from '@pages/Team/Issue/Edit/style';
+import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
 function ServiceCenterPage() {
   const navigate = useNavigate();

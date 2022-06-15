@@ -1,15 +1,6 @@
 import { IcCamera } from '@assets/icons';
 import React, { useEffect, useState } from 'react';
-import {
-  StNewIssue,
-  StTitleWrapper,
-  StQuestionWrapper,
-  StCategoryWrapper,
-  StTextarea,
-  StUploadContainer,
-  StButton,
-  StCategory,
-} from './style';
+
 import { IssueCategory, IssueData } from '@api/types/team';
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '@api/index';
@@ -19,6 +10,16 @@ import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
 import CommonNavigation from '@components/common/Navigation';
 import ImageUpload from '@components/common/ImageUpload';
+import {
+  StButton,
+  StCategory,
+  StCategoryWrapper,
+  StNewIssue,
+  StQuestionWrapper,
+  StTextarea,
+  StTitleWrapper,
+  StUploadContainer,
+} from '../NewIssue/style';
 
 export default function TeamIssueEdit() {
   const navigate = useNavigate();

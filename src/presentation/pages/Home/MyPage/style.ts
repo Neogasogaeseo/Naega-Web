@@ -117,6 +117,9 @@ export const StNegativeMarginWrapper = styled.div`
 export const StFeedbackTeamWrapper = styled.div`
   & > div:last-of-type {
     margin-top: 20px;
+    & > div > div {
+      cursor: default;
+    }
   }
 `;
 

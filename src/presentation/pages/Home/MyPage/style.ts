@@ -27,7 +27,6 @@ export const StHomeMyPageHeader = styled.div`
   background-color: ${COLOR.GRAY_1};
   width: calc(100% + 40px);
   margin-left: -20px;
-  margin-bottom: 28px;
   padding: 26px 20px;
 
   & > div {
@@ -60,6 +59,7 @@ export const StShare = styled.div`
 `;
 
 export const StKeywordSection = styled.div`
+  margin-top: 28px;
   margin-bottom: 34px;
   & > div:first-of-type {
     display: flex;

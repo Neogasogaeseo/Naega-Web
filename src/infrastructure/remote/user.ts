@@ -73,12 +73,14 @@ export function userDataRemote(): UserService {
             question: bookmark.title.replace('\\n', ' ').replaceAll('*', ''),
             content: bookmark.content,
             isBookmarked: bookmark.isPinned,
-            keywordList: bookmark.keywords.map((keyword: any) => ({
-              id: keyword.name,
-              content: keyword.name,
-              color: keyword.colorCode,
-              fontColor: keyword.fontColor,
-            })),
+            keywordList: bookmark.keywords
+              ? bookmark.keywords.map((keyword: any) => ({
+                  id: keyword.name,
+                  content: keyword.name,
+                  color: keyword.colorCode,
+                  fontColor: keyword.fontColor,
+                }))
+              : [],
             targetUserID: bookmark.userId,
           }))
         : [],

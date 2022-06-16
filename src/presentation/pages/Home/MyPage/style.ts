@@ -23,13 +23,19 @@ export const StHomeMyPageHeader = styled.div`
   display: grid;
   grid-template-columns: 60px auto;
   gap: 24px;
-  padding: 26px 0;
   position: relative;
+  background-color: ${COLOR.GRAY_1};
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-bottom: 28px;
+  padding: 26px 20px;
+
   & > div {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 8px;
+    padding-right: 26px;
     & > div:nth-child(1) {
       ${FONT_STYLES.SB_20_TITLE}
       color: ${COLOR.GRAY_8};

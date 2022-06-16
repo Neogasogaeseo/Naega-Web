@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StSelectBoxWrapper = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 export const StSelectBoxHeader = styled.div`

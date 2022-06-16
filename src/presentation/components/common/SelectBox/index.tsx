@@ -1,7 +1,6 @@
-import { IcArrowDown, IcArrowUp } from '@assets/icons';
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { StSelectBoxHeader, StSelectBoxWrapper, StSelectBoxItem, StSelectBoxTail } from './style';
+import { IcArrowDown, IcArrowUp } from '@assets/icons';
 
 type SelectItem = {
   id: number;
@@ -18,29 +17,16 @@ function SelectBox(props: SelectBoxProps) {
   const { items, selectedItemID, onItemClick } = props;
   const [isBoxOpened, setIsBoxOpened] = useState(false);
 
-  const closeSelectBox = () => {
-    setIsBoxOpened(false);
-  };
-
-  const openSelectBox = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsBoxOpened(true);
-  };
-
-  useEffect(() => {
-    window.addEventListener('click', closeSelectBox);
-    return () => window.removeEventListener('click', closeSelectBox);
-  }, []);
-
   return (
-    <StSelectBoxWrapper>
+    <StSelectBoxWrapper
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsBoxOpened((prev) => !prev);
+      }}
+    >
       <StSelectBoxHeader>
         <div>{items.find((item) => item.id === selectedItemID)?.content}</div>
-        {isBoxOpened ? (
-          <IcArrowUp onClick={closeSelectBox} />
-        ) : (
-          <IcArrowDown onClick={openSelectBox} />
-        )}
+        {isBoxOpened ? <IcArrowUp /> : <IcArrowDown />}
       </StSelectBoxHeader>
       {isBoxOpened && (
         <StSelectBoxTail>
@@ -48,7 +34,11 @@ function SelectBox(props: SelectBoxProps) {
             <StSelectBoxItem
               key={item.id}
               selected={item.id === selectedItemID}
-              onClick={() => onItemClick(item.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onItemClick(item.id);
+                setIsBoxOpened(false);
+              }}
             >
               {item.content}
             </StSelectBoxItem>

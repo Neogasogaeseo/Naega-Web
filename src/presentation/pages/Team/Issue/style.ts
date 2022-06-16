@@ -70,7 +70,6 @@ export const StHeader = styled.div`
 
 export const StIssueThumbnail = styled.img`
   display: block;
-  height: 227px;
   width: calc(100% + 40px);
   margin-left: -20px;
   object-fit: cover;

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { privateAPI, publicAPI } from './base';
-import { NotFoundError } from '@api/types/errors';
+import { InternalServerError, NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
@@ -126,7 +126,12 @@ export function userDataRemote(): UserService {
   };
 
   const editUserProfile = async (formData: FormData) => {
-    const response = await privateAPI.put({ url: `/user/edit`, data: formData, type: 'multipart' });
+    const response = await privateAPI
+      .put({ url: `/user/edit`, data: formData, type: 'multipart' })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.INTERNAL_SERVER_ERROR)
+          throw new InternalServerError('일시적인 문제가 발생했어요');
+      });
     return {
       isSuccess: response.success,
       profileId: response.data.user.profileId,

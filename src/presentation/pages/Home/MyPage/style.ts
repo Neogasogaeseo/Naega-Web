@@ -108,6 +108,7 @@ export const StTitle = styled.div`
 export const StGreyBorder = styled.div`
   background-color: ${COLOR.GRAY_1};
   height: 8px;
+  padding-bottom: 8px;
   width: calc(100% + 40px);
   margin-left: -20px;
 `;

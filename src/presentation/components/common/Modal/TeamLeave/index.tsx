@@ -9,6 +9,7 @@ import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
 import { useMutation, useQueryClient } from 'react-query';
 import { api } from '@api/index';
+import { useDeleteTeam } from 'src/application/querys/team';
 
 interface TeamLeaveModalProps {
   isOpened: boolean;
@@ -98,8 +99,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     goTeamHome();
   };
 
-  const deleteTeam = async () => {
-    teamID && (await api.teamService.deleteTeam(+teamID));
+  const { mutate: mutateDeleteTeam } = useDeleteTeam(Number(teamID));
+  const deleteTeam = () => {
+    teamID && mutateDeleteTeam(Number(teamID));
     goTeamHome();
   };
 

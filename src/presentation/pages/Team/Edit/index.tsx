@@ -14,7 +14,7 @@ import BottomSheet from '@components/common/BottomSheet';
 import useImageUpload from '@hooks/useImageUpload';
 import ImageUpload from '@components/common/ImageUpload';
 import { icPencil } from '@assets/icons';
-import { useDeleteTeam } from 'src/application/querys/team';
+import { useDeleteTeam } from '@querys/team';
 
 export default function TeamEdit() {
   const navigate = useNavigate();

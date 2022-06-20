@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
 
 import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
@@ -77,6 +78,8 @@ function MyProfileEdit() {
     }
   };
 
+  const { mutate: editMyProfile } = useMutation(editProfile, { useErrorBoundary: true });
+
   return (
     <>
       <CommonNavigation title="프로필 수정" />
@@ -129,7 +132,7 @@ function MyProfileEdit() {
           />
         </StInputWrapper>
         <button
-          onClick={editProfile}
+          onClick={editMyProfile}
           disabled={
             !Object.values(isEditConditionPassed).every((condition) => condition === true) ||
             isInitial

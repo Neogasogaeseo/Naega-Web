@@ -34,6 +34,11 @@ export function userDataRemote(): UserService {
     };
   };
 
+  const undoPostKeyword = async (keywordID: string) => {
+    const response = await publicAPI.delete({ url: `/user/keyword?keywordId=${keywordID}` });
+    return { isSuccess: response.success };
+  };
+
   const getMyPageInfo = async (userID: string) => {
     const response = await publicAPI.get({ url: `/user/${userID}` }).catch((error: AxiosError) => {
       if (error.response?.status === STATUS_CODE.NOT_FOUND)
@@ -252,6 +257,7 @@ export function userDataRemote(): UserService {
   return {
     getKeywords,
     postKeyword,
+    undoPostKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,

@@ -99,11 +99,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     goTeamHome();
   };
 
-  const { mutate: mutateDeleteTeam } = useDeleteTeam(Number(teamID));
-  const deleteTeam = () => {
-    teamID && mutateDeleteTeam(Number(teamID));
-    goTeamHome();
-  };
+  const { mutate: deleteTeam } = useDeleteTeam(Number(teamID));
 
   const QuestionModal = (
     <StCommonModal>
@@ -144,7 +140,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>
-        <button onClick={deleteTeam}>확인</button>
+        <button onClick={() => deleteTeam(Number(teamID), { onSuccess: () => goTeamHome() })}>
+          확인
+        </button>
       </div>
     </StCommonModal>
   );

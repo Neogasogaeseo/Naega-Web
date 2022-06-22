@@ -11,7 +11,7 @@ import {
   StTitleWrapper,
   StQuestionWrapper,
   StCategoryWrapper,
-  StTextera,
+  StTextarea,
   StUploadContainer,
   StButton,
   StPhotoUploadImage,
@@ -95,7 +95,7 @@ function TeamNewIssue() {
             })}
         </StCategoryWrapper>
         <StQuestionWrapper>팀에서 어떤 일이 있었나요?</StQuestionWrapper>
-        <StTextera
+        <StTextarea
           placeholder="팀에서 겪은 상황을 작성해주세요"
           name="issueTextarea"
           value={issueTextarea}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
 
 import { api } from '@api/index';
 import { useToast } from '@hooks/useToast';
@@ -63,24 +64,21 @@ function MyProfileEdit() {
 
   const editProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try {
-      const form = new FormData();
-      form.append('profileId', inputId);
-      form.append('name', inputName);
-      image === null
-        ? form.append('image', '')
-        : image instanceof File && form.append('image', image);
-      const response = await api.userService.editUserProfile(form);
-      if (response.isSuccess) {
-        fireToast({ content: '수정 완료' });
-        initLoginUser();
-        navigate(`/home/mypage/${response.profileId}`);
-      }
-    } catch (error) {
-      console.error(error);
-      navigate('/');
+    const form = new FormData();
+    form.append('profileId', inputId);
+    form.append('name', inputName);
+    image === null
+      ? form.append('image', '')
+      : image instanceof File && form.append('image', image);
+    const response = await api.userService.editUserProfile(form);
+    if (response.isSuccess) {
+      fireToast({ content: '수정 완료' });
+      initLoginUser();
+      navigate(`/home/mypage/${response.profileId}`);
     }
   };
+
+  const { mutate: editMyProfile } = useMutation(editProfile, { useErrorBoundary: true });
 
   return (
     <>
@@ -134,7 +132,7 @@ function MyProfileEdit() {
           />
         </StInputWrapper>
         <button
-          onClick={editProfile}
+          onClick={editMyProfile}
           disabled={
             !Object.values(isEditConditionPassed).every((condition) => condition === true) ||
             isInitial

@@ -111,4 +111,6 @@ const StDescription = styled.div`
   ${FONT_STYLES.R_15_BODY}
   line-height: 143.99%;
   color: ${COLOR.GRAY_5};
+  text-align: center;
+  white-space: pre-line;
 `;

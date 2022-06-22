@@ -20,7 +20,7 @@ export const StBlackBlur = styled.div<{ isClosing: boolean }>`
   background-color: rgb(0, 0, 0, 0.44);
   z-index: 50;
 
-  animation: ${({ isClosing }) => (isClosing ? ANIMATION.FADE_OUT : ANIMATION.FADE_IN)} 1s;
+  animation: ${({ isClosing }) => (isClosing ? ANIMATION.FADE_OUT : ANIMATION.FADE_IN)} 0.5s;
 `;
 
 export const StWrapper = styled.div<{ isClosing: boolean }>`
@@ -33,7 +33,7 @@ export const StWrapper = styled.div<{ isClosing: boolean }>`
   z-index: 60;
   animation: ${({ isClosing }) =>
       isClosing ? ANIMATION.SWIPE_DOWN : ANIMATION.SWIPE_UP({ from: 0 })}
-    1s;
+    0.5s;
 `;
 
 export const StButton = styled.div`

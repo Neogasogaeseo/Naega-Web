@@ -12,6 +12,10 @@ export function userDataMock(): UserService {
     return USER_DATA.KEYWORD(content);
   };
 
+  const undoPostKeyword = async () => {
+    return { isSuccess: true };
+  };
+
   const getMyPageInfo = async (userID: string) => {
     await wait(1000);
     return USER_DATA.MY_PAGE_INFO(userID);
@@ -74,6 +78,7 @@ export function userDataMock(): UserService {
   return {
     getKeywords,
     postKeyword,
+    undoPostKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,

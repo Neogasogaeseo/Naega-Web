@@ -133,7 +133,7 @@ function TeamIssue() {
               parentPage="teamsoseo"
             />
           ) : (
-            <FeedbackEmptyView hasThumbnail={issue.team.thumbnail !== null} />
+            <FeedbackEmptyView />
           )}
         </StWrapper>
       )}

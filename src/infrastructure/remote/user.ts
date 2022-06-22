@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { privateAPI, publicAPI } from './base';
-import { NotFoundError } from '@api/types/errors';
+import { InternalServerError, NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
 import { imgEmptyProfile } from '@assets/images';
@@ -32,6 +32,11 @@ export function userDataRemote(): UserService {
       color: response.data.colorcode,
       fontColor: response.data.fontcolor,
     };
+  };
+
+  const undoPostKeyword = async (keywordID: string) => {
+    const response = await publicAPI.delete({ url: `/user/keyword?keywordId=${keywordID}` });
+    return { isSuccess: response.success };
   };
 
   const getMyPageInfo = async (userID: string) => {
@@ -73,12 +78,14 @@ export function userDataRemote(): UserService {
             question: bookmark.title.replace('\\n', ' ').replaceAll('*', ''),
             content: bookmark.content,
             isBookmarked: bookmark.isPinned,
-            keywordList: bookmark.keywords.map((keyword: any) => ({
-              id: keyword.name,
-              content: keyword.name,
-              color: keyword.colorCode,
-              fontColor: keyword.fontColor,
-            })),
+            keywordList: bookmark.keywords
+              ? bookmark.keywords.map((keyword: any) => ({
+                  id: keyword.name,
+                  content: keyword.name,
+                  color: keyword.colorCode,
+                  fontColor: keyword.fontColor,
+                }))
+              : [],
             targetUserID: bookmark.userId,
           }))
         : [],
@@ -124,7 +131,12 @@ export function userDataRemote(): UserService {
   };
 
   const editUserProfile = async (formData: FormData) => {
-    const response = await privateAPI.put({ url: `/user/edit`, data: formData, type: 'multipart' });
+    const response = await privateAPI
+      .put({ url: `/user/edit`, data: formData, type: 'multipart' })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.INTERNAL_SERVER_ERROR)
+          throw new InternalServerError('일시적인 문제가 발생했어요');
+      });
     return {
       isSuccess: response.success,
       profileId: response.data.user.profileId,
@@ -245,6 +257,7 @@ export function userDataRemote(): UserService {
   return {
     getKeywords,
     postKeyword,
+    undoPostKeyword,
     getMyPageInfo,
     getNeososeoBookmark,
     getFeedbackBookmark,

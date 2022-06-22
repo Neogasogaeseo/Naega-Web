@@ -28,7 +28,7 @@ function BottomSheet(props: BottomSheetProps) {
     setTimeout(() => {
       close();
       setIsClosing(false);
-    }, 1000);
+    }, 500);
   };
 
   return opened ? (

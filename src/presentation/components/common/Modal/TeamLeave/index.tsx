@@ -9,6 +9,7 @@ import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
 import { useMutation, useQueryClient } from 'react-query';
 import { api } from '@api/index';
+import { useEffect } from 'react';
 
 interface TeamLeaveModalProps {
   isOpened: boolean;
@@ -21,7 +22,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
-    teamMemberList.length > 1 ? 'QUESTION' : 'DELETE',
+    'QUESTION',
   );
   const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
   const navigate = useNavigate();
@@ -145,6 +146,11 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         <button onClick={deleteTeam}>확인</button>
       </div>
     </StCommonModal>
+  );
+
+  useEffect(
+    () => setMode(teamMemberList && teamMemberList.length > 1 ? 'QUESTION' : 'DELETE'),
+    [teamMemberList],
   );
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;

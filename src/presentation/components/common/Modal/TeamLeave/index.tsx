@@ -9,7 +9,7 @@ import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
 import { useMutation, useQueryClient } from 'react-query';
 import { api } from '@api/index';
-import { useDeleteTeam } from '@querys/team';
+import { useDeleteTeam } from '@queries/team';
 
 interface TeamLeaveModalProps {
   isOpened: boolean;

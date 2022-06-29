@@ -12,7 +12,7 @@ import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
 import BottomSheet from '@components/common/BottomSheet';
 import ImageUpload from '@components/common/ImageUpload';
-import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
+import { StPhotoUploadMiddleDesc, StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
 function ServiceCenterPage() {
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ function ServiceCenterPage() {
           >
             <StUploadContainer>
               <IcCamera />
-              <div>파일을 선택해서 업로드해주세요</div>
+              <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
             </StUploadContainer>
           </ImageUpload>
         </div>

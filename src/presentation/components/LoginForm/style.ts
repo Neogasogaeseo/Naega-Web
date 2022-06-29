@@ -1,54 +1,55 @@
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
+import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StLoginForm = styled.div`
   padding: 0 20px;
+  position: relative;
+
+  & > img:first-child {
+    margin-top: 50px;
+    width: 59px;
+    height: 59px;
+  }
 `;
 
 export const StLogin = styled.div`
   font-weight: 600;
-  font-size: 24px;
-  line-height: 100%;
+  ${FONT_STYLES.SB_24_TITLE};
+  color: ${COLOR.GRAY_8};
   margin-top: 12px;
 `;
+
 export const StNoticeWrapper = styled.div`
   display: flex;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 143.99%;
-  letter-spacing: -0.01em;
-  margin-top: 32px;
-  margin-bottom: 67px;
+  ${FONT_STYLES.R_18_BODY};
+  line-height: 144%;
+  margin-top: 24px;
   color: ${COLOR.GRAY_5};
 `;
+
 export const StLoginButton = styled.button`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  padding: 18px 28px;
+  width: min(350px, calc(100% - 40px));
   height: 58px;
   background-color: #fee500;
   border-radius: 18px;
-  font-size: 16px;
-  color: black;
+  position: fixed;
+  bottom: 88px;
 
-  & > img {
-    display: flex;
-    padding-right: 280px;
-  }
-
-  & > p {
-    position: absolute;
-    font-size: 16px;
-    line-height: 100%;
+  & > span {
+    ${FONT_STYLES.M_16_TITLE};
+    color: ${COLOR.GRAY_8};
+    flex: 1;
   }
 `;
 
-export const StImgLogin = styled.div`
-  display: flex;
-  place-content: center;
-
-  & > img {
-    margin-bottom: 71.6px;
-  }
+export const StLoginImg = styled.img`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 20px 0;
 `;

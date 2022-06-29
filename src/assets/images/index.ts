@@ -16,7 +16,7 @@ export { default as ImgGlass } from './img_glass.webp';
 export { default as ImgLink } from './img_link.webp';
 export { default as ImgMypage } from './img_mypage.webp';
 export { default as ImgTeamsoseo } from './img_teamsoseo.webp';
-export { default as ImgLoginCharacter } from './img_login_character.svg';
+export { default as imgLoginCharacter } from './img_login_character.svg';
 export { default as ImgLanding } from './img_landing.webp';
 export { default as imgLinkCreated } from './img_link_created.svg';
 export { ReactComponent as ImgLogoHeader } from './img_logo_header.svg';

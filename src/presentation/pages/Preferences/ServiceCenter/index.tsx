@@ -22,6 +22,7 @@ function ServiceCenterPage() {
     api.reportService.getServiceCenterCategories,
   );
   const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
+  const [email, setEmail] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
@@ -53,6 +54,15 @@ function ServiceCenterPage() {
       <StTitle>고객센터</StTitle>
       <StSubTitle>고객센터에 문의할 사항 보내기</StSubTitle>
       <StForm>
+        <div>
+          <StFormTitle>답변 받을 이메일</StFormTitle>
+          <CommonInput
+            width="100%"
+            placeholder="이메일을 입력해주세요"
+            value={email}
+            onChange={(value: string) => setEmail(value)}
+          />
+        </div>
         <div>
           <StFormTitle>문의사항의 카테고리를 선택해주세요</StFormTitle>
           {categories && selectedItemID && (
@@ -94,7 +104,7 @@ function ServiceCenterPage() {
           </ImageUpload>
         </div>
         <StButton
-          disabled={title.trim() === '' || content.trim() === ''}
+          disabled={email.trim() === '' || title.trim() === '' || content.trim() === ''}
           onClick={sendServiceCenterRequest}
         >
           완료

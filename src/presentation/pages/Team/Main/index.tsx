@@ -30,7 +30,12 @@ function TeamMain() {
     api.teamService.getTeamInfo(Number(teamID)),
   );
   const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, MAX_TEAM_MEMBER);
-  const hostID = slicedMemberList && slicedMemberList[0].profileId;
+
+  const getHostID = () => {
+    if (slicedMemberList && slicedMemberList[0].isHost) return slicedMemberList[0].profileId;
+    return teamInfoData && teamInfoData.teamMemberList.find((member) => member.isHost)?.profileId;
+  };
+  const hostID = getHostID();
   const isUserHost = userID === hostID;
 
   const { data: teamIssueList } = useQuery(

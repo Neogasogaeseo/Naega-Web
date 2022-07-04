@@ -1,6 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useInfiniteQuery, useQueryClient } from 'react-query';
-import { useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
@@ -15,15 +14,12 @@ import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
 import { IcMeatball } from '@assets/icons';
 
 function MyKeyword() {
-  const { userID } = useParams();
   const { isBottomReached, isInitialState } = useScrollHeight();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isBottomSheetOpened, setIsBottomSheetOpened] = useState(false);
   const [isDeletePage, setIsDeletePage] = useState(false);
   const [keywordID, setKeywordID] = useState(-1);
   const queryClient = useQueryClient();
-
-  if (!userID) return <></>;
 
   const fetchKeywordsByPage = useCallback(async ({ pageParam = 0 }) => {
     const response = await api.userService.getMyKeywordList(pageParam);

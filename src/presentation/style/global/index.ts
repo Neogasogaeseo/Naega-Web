@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color : transparent;
   }
 
   button {

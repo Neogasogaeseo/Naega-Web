@@ -158,8 +158,10 @@ export function teamDataRemote(): TeamService {
     const response = await privateAPI
       .get({ url: `/team/detail/${teamID}` })
       .catch((error: AxiosError) => {
-        if (error.response?.status === STATUS_CODE.NOT_FOUND)
-          throw new NotFoundError('찾을 수 없는 페이지입니다.');
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('권한이 없는 페이지예요');
+        else if (error.response?.status === STATUS_CODE.NOT_FOUND)
+          throw new NotFoundError('찾을 수 없는 페이지예요');
       });
     if (response.status === STATUS_CODE.OK)
       return {

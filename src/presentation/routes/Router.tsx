@@ -5,7 +5,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import NeogaRouter from './NeogaRouter';
 import TeamRouter from './TeamRouter';
 import UserRouter from './UserRouter';
-import MyPageEditRouter from './MyPageEditRouter';
 import ReactGA from 'react-ga';
 import FormRouter from './FormRouter';
 import { useLoginUser } from '@hooks/useLoginUser';
@@ -30,7 +29,6 @@ const Router = () => {
           <Route path="/*" element={<UserRouter />} />
           <Route path="/team/*" element={<TeamRouter />} />
           <Route path="/neoga/*" element={<NeogaRouter />} />
-          <Route path="/edit/*" element={<MyPageEditRouter />} />
           <Route path="/neososeoform/:q/*" element={<FormRouter />} />
           <Route path="/preferences/*" element={<PreferencesRouter />} />
         </Routes>

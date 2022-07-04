@@ -86,4 +86,5 @@ export const FONT_STYLES = {
   R_14_BODY: FONT({ size: 14, weight: 'R', position: 'Body' }),
   SB_20_BODY: FONT({ size: 20, weight: 'SB', position: 'Body' }),
   SB_15_TITLE: FONT({ size: 15, weight: 'SB', position: 'Title' }),
+  R_18_BODY: FONT({ size: 18, weight: 'R', position: 'Body' }),
 };

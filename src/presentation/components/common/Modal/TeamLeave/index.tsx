@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo, TeamProfileData } from '@api/types/team';
 import { StCommonModal, StDescription } from '../style';
@@ -7,9 +8,8 @@ import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
 import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
-import { useMutation, useQueryClient } from 'react-query';
+import { useDeleteTeam } from '@queries/team';
 import { api } from '@api/index';
-import { useEffect } from 'react';
 
 interface TeamLeaveModalProps {
   isOpened: boolean;
@@ -99,10 +99,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     goTeamHome();
   };
 
-  const deleteTeam = async () => {
-    teamID && (await api.teamService.deleteTeam(+teamID));
-    goTeamHome();
-  };
+  const { mutate: deleteTeam } = useDeleteTeam(Number(teamID));
 
   const QuestionModal = (
     <StCommonModal>
@@ -143,7 +140,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>
-        <button onClick={deleteTeam}>확인</button>
+        <button onClick={() => deleteTeam(Number(teamID), { onSuccess: () => goTeamHome() })}>
+          확인
+        </button>
       </div>
     </StCommonModal>
   );

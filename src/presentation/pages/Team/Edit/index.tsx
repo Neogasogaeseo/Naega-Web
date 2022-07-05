@@ -14,6 +14,7 @@ import BottomSheet from '@components/common/BottomSheet';
 import useImageUpload from '@hooks/useImageUpload';
 import ImageUpload from '@components/common/ImageUpload';
 import { icPencil } from '@assets/icons';
+import { useDeleteTeam } from '@queries/team';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
@@ -34,21 +35,25 @@ export default function TeamEdit() {
     },
   );
 
-  const editTeamInfo = async () => {
-    if (!teamID) return;
-    await api.teamService.editTeamInfo({
-      id: Number(teamID),
-      name: name,
-      description: description,
-      image: image,
-    });
-  };
-  const { mutate } = useMutation(editTeamInfo, {
-    onSuccess: () => {
-      navigate(-1);
-      return queryClient.invalidateQueries('teamEditInfo');
+  const { mutate: deleteTeam } = useDeleteTeam(Number(teamID));
+
+  const { mutate: editTeamInfo } = useMutation(
+    async () => {
+      if (!teamID) return;
+      await api.teamService.editTeamInfo({
+        id: Number(teamID),
+        name: name,
+        description: description,
+        image: image,
+      });
     },
-  });
+    {
+      onSuccess: () => {
+        navigate(-1);
+        return queryClient.invalidateQueries('teamEditInfo');
+      },
+    },
+  );
 
   useEffect(() => {
     if (isSuccess && teamInfo) {
@@ -67,17 +72,20 @@ export default function TeamEdit() {
         isOpened={isOpenModal}
         title="팀을 삭제하시겠습니까?"
         description={'팀을 삭제하면 관련된 정보가 모두' + '\n' + '사라지며 복구할 수 없습니다.'}
-        onClickConfirm={async () => {
-          setIsOpenModal(false);
-          navigate('/home/team');
-          teamID && (await api.teamService.deleteTeam(+teamID));
-        }}
+        onClickConfirm={() =>
+          deleteTeam(Number(teamID), {
+            onSuccess: () => {
+              setIsOpenModal(false);
+              navigate('/home/team');
+            },
+          })
+        }
         onClickCancel={() => setIsOpenModal(false)}
       />
       <CommonNavigation
         submitButton={{
           content: '완료',
-          onClick: mutate,
+          onClick: editTeamInfo,
         }}
       />
       <StTeamEdit>

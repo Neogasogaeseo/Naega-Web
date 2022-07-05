@@ -49,7 +49,7 @@ export const StSelectWrapper = styled.div`
   align-self: center;
 `;
 
-export const StTextera = styled.textarea`
+export const StTextarea = styled.textarea`
   width: 100%;
   height: 104px;
   border: 1px solid ${COLOR.GRAY_3};
@@ -70,13 +70,13 @@ export const StUploadContainer = styled.div`
   width: 100%;
   height: 149px;
   border: 1.4px dashed ${COLOR.GRAY_3};
-  box-sizing: border-box;
   border-radius: 16px;
   color: ${COLOR.GRAY_5};
   font-size: 16px;
   line-height: 100%;
   background-color: white;
   padding-top: 25px;
+  text-align: center;
 `;
 
 export const StButton = styled.button`

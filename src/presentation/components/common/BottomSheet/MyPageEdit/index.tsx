@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useLoginUser } from '@hooks/useLoginUser';
 import BottomSheet from '..';
 import { icEdit } from '@assets/icons';
 
@@ -14,7 +13,6 @@ type MyPageEditBottomSheetProps = {
 function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
   const { isOpened, closeBottomSheet, type, setIsDeletePage } = props;
   const navigate = useNavigate();
-  const { userID: profileId } = useLoginUser();
 
   const editMyKeyword = () => {
     closeBottomSheet();
@@ -22,7 +20,7 @@ function MyPageEditBottomSheet(props: MyPageEditBottomSheetProps) {
   };
 
   const navigateToEditPage = () => {
-    navigate(`/edit/profile/${profileId}`);
+    navigate(`/mypage/edit`);
   };
 
   return (

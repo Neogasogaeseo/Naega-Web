@@ -23,13 +23,18 @@ export const StHomeMyPageHeader = styled.div`
   display: grid;
   grid-template-columns: 60px auto;
   gap: 24px;
-  padding: 26px 0;
   position: relative;
+  background-color: ${COLOR.GRAY_1};
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  padding: 26px 20px;
+
   & > div {
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 8px;
+    padding-right: 26px;
     & > div:nth-child(1) {
       ${FONT_STYLES.SB_20_TITLE}
       color: ${COLOR.GRAY_8};
@@ -54,6 +59,7 @@ export const StShare = styled.div`
 `;
 
 export const StKeywordSection = styled.div`
+  margin-top: 28px;
   margin-bottom: 34px;
   & > div:first-of-type {
     display: flex;
@@ -102,6 +108,7 @@ export const StTitle = styled.div`
 export const StGreyBorder = styled.div`
   background-color: ${COLOR.GRAY_1};
   height: 8px;
+  padding-bottom: 8px;
   width: calc(100% + 40px);
   margin-left: -20px;
 `;
@@ -117,6 +124,9 @@ export const StNegativeMarginWrapper = styled.div`
 export const StFeedbackTeamWrapper = styled.div`
   & > div:last-of-type {
     margin-top: 20px;
+    & > div > div {
+      cursor: default;
+    }
   }
 `;
 

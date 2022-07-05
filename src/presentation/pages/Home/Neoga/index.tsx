@@ -32,7 +32,9 @@ function HomeNeoga() {
           color={banner.backgroundColor}
           onClick={() => {
             navigate(
-              banner.isCreated ? `/neoga/${banner.id}/detail/form` : `/neoga/create/${banner.id}`,
+              banner.isCreated
+                ? `/neoga/${banner.id}/detail/form`
+                : `/neoga/create/${banner.id}/new`,
             );
           }}
         >

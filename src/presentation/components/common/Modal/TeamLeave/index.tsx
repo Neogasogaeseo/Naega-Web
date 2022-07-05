@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo, TeamProfileData } from '@api/types/team';
 import { StCommonModal, StDescription } from '../style';
@@ -7,8 +8,6 @@ import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
 import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
-import { useMutation, useQueryClient } from 'react-query';
-import { api } from '@api/index';
 import { useDeleteTeam } from '@queries/team';
 
 interface TeamLeaveModalProps {
@@ -22,7 +21,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
   const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
-    teamMemberList.length > 1 ? 'QUESTION' : 'DELETE',
+    'QUESTION',
   );
   const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
   const navigate = useNavigate();
@@ -145,6 +144,11 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
         </button>
       </div>
     </StCommonModal>
+  );
+
+  useEffect(
+    () => setMode(teamMemberList && teamMemberList.length > 1 ? 'QUESTION' : 'DELETE'),
+    [teamMemberList],
   );
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;

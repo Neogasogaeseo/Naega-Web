@@ -49,10 +49,10 @@ function FeedbackCardItem(props: FeedbackCardProps) {
       onSuccess: (data) => {
         if (data && data.isBookmarked) {
           userID
-            ? fireToast({ content: '픽 완료', bottom: 120 })
+            ? fireToast({ content: '픽 완료', bottom: 28 })
             : fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요', bottom: 120 });
         } else {
-          fireToast({ content: '픽 취소', bottom: 120 });
+          fireToast({ content: '픽 취소', bottom: 28 });
         }
         queryClient.invalidateQueries('feedbackInfo');
         queryClient.invalidateQueries('tssBookmark');

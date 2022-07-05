@@ -43,3 +43,18 @@ export class ForbiddenError implements CustomError {
     this.description = '관리자에게 팀 초대를 부탁해보세요';
   }
 }
+
+export class InternalServerError implements CustomError {
+  code: 500;
+  name: 'Internal Server Error';
+  message: string;
+  description: string;
+
+  constructor(message: string) {
+    this.code = 500;
+    this.name = 'Internal Server Error';
+    this.message = message;
+    this.description =
+      '현재 내부 서버에 오류가 있거나' + '\n' + '찾고 있는 리소스에 문제가 있어 표시할 수 없어요';
+  }
+}

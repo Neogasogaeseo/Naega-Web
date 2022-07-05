@@ -21,6 +21,7 @@ interface OutletContextProps {
 
 function TeamIssueKeyword() {
   const navigate = useNavigate();
+  const [createdKeywordIDs, setCreatedKeywordIDs] = useState<string[]>([]);
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
   if (targetUser === null) return <Navigate to="../" />;
@@ -50,8 +51,17 @@ function TeamIssueKeyword() {
     setIsKeywordCreating(true);
     const newKeyword = await api.userService.postKeyword(targetUser.id, newKeywordContent);
     addKeyword(newKeyword);
+    setCreatedKeywordIDs((prev) => [...prev, newKeyword.id]);
     setNewKeywordContent('');
     setIsKeywordCreating(false);
+  };
+
+  const deleteKeyword = (keyword: Keyword) => {
+    if (createdKeywordIDs.includes(keyword.id)) {
+      api.userService.undoPostKeyword(keyword.id);
+      setCreatedKeywordIDs((prev) => prev.filter((id) => id !== keyword.id));
+    }
+    removeKeyword(keyword);
   };
 
   useEffect(() => {
@@ -74,7 +84,7 @@ function TeamIssueKeyword() {
           submitButtonValue="생성"
           submitButtonDisabled={isKeywordCreating || newKeywordContent === ''}
         />
-        <MutableKeywordList keywordList={keywordList} deleteKeyword={removeKeyword} />
+        <MutableKeywordList keywordList={keywordList} deleteKeyword={deleteKeyword} />
       </StWhiteWrapper>
       <StTitleWrapper>
         <span>{targetUser.profileName}</span>

@@ -5,7 +5,6 @@ import { useQuery } from 'react-query';
 import { api } from '@api/index';
 import { IssueCategory } from '@api/types/team';
 import CommonNavigation from '@components/common/Navigation';
-import FileUpload from '@components/common/FileUpload';
 import {
   StNewIssue,
   StTitleWrapper,
@@ -19,6 +18,9 @@ import {
   StCategory,
 } from './style';
 import { icCamera } from '@assets/icons';
+import ImageUpload from '@components/common/ImageUpload';
+import useImageUpload from '@hooks/useImageUpload';
+import BottomSheet from '@components/common/BottomSheet';
 
 function TeamNewIssue() {
   const navigate = useNavigate();
@@ -35,7 +37,8 @@ function TeamNewIssue() {
     { onError: () => navigate('/home') },
   );
 
-  const [image, setImage] = useState<File | undefined>();
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
   const [selectedCategory, setSelectedCategory] = useState<IssueCategory | null>();
   const [issueTextarea, setIssueTextarea] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
@@ -104,12 +107,19 @@ function TeamNewIssue() {
         <StQuestionWrapper>
           이슈와 관련된 사진을 업로드해주세요<span>(선택)</span>
         </StQuestionWrapper>
-        <FileUpload width="100%" height="149px" setFile={setImage} borderRadius="16px">
+        <ImageUpload
+          styles={{
+            width: '100%',
+            height: '149px',
+            borderRadius: '16px',
+          }}
+          {...imageUploadProps}
+        >
           <StUploadContainer>
             <StPhotoUploadImage src={icCamera} />
             <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
           </StUploadContainer>
-        </FileUpload>
+        </ImageUpload>
         <StButton
           type="submit"
           onClick={onClickSubmitIssue}
@@ -118,6 +128,11 @@ function TeamNewIssue() {
           완료
         </StButton>
       </StNewIssue>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
     </>
   );
 }

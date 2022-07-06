@@ -287,7 +287,7 @@ export function teamDataRemote(): TeamService {
     teamID: string,
     content: string,
     categoryID: number,
-    image?: File,
+    image: File | null | undefined,
   ) => {
     try {
       const formData = new FormData();

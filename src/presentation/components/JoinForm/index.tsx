@@ -8,10 +8,12 @@ import { useToast } from '@hooks/useToast';
 import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
-import FileUpload from '@components/common/FileUpload';
-import { StJoinForm, StInputWrapper, StButton, StProfileImg } from './style';
+import { StJoinForm, StInputWrapper, StButton } from './style';
 import { StErrorMsg } from '@components/common/Input/style';
-import { icProfile, icEmail } from '@assets/icons';
+import { icProfile, icEmail, icPencil } from '@assets/icons';
+import ImageUpload from '@components/common/ImageUpload';
+import useImageUpload from '@hooks/useImageUpload';
+import BottomSheet from '@components/common/BottomSheet';
 
 function JoinForm() {
   const accessToken = useRecoilValue(kakaoAccessTokenState);
@@ -21,12 +23,13 @@ function JoinForm() {
     name: false,
   });
   const [errorMsg, setErrorMsg] = useState('');
-  const [image, setImage] = useState<File | null>(null);
   const [inputId, setInputId] = useState('');
   const [inputName, setInputName] = useState('');
   const { saveLoginUser } = useLoginUser();
   const navigate = useNavigate();
   const { fireToast } = useToast();
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
 
   useEffect(() => {
     const idCheck = /^[a-z|0-9|.|_]{4,15}$/;
@@ -84,43 +87,59 @@ function JoinForm() {
   };
 
   return (
-    <StJoinForm>
-      <h1>회원가입</h1>
-      <StProfileImg>
-        <FileUpload width="118px" height="118px" setFile={setImage} borderRadius="50%">
+    <>
+      <StJoinForm>
+        <h1>회원가입</h1>
+        <ImageUpload
+          styles={{
+            width: '118px',
+            height: '118px',
+            borderRadius: '50%',
+          }}
+          defaultChildren={{
+            src: icPencil,
+            styles: { width: '32.29px', right: '117px' },
+          }}
+          {...imageUploadProps}
+        >
           <img src={icProfile} />
-        </FileUpload>
-      </StProfileImg>
-      <StInputWrapper>
-        <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
-        <CommonInput
-          width="100%"
-          placeholder="neososeo_team"
-          onChange={(value) => {
-            setInputId(value);
-          }}
-          maxLength={15}
-          img={icEmail}
-        />
-        <StErrorMsg>{errorMsg}</StErrorMsg>
-        <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
-        <CommonInput
-          width="100%"
-          placeholder="이름을 입력해주세요"
-          onChange={(value) => {
-            setInputName(value);
-          }}
-          maxLength={6}
-        />
-      </StInputWrapper>
-      <StButton
-        type="submit"
-        onClick={onClickSubmitUserInfo}
-        disabled={!Object.values(isJoinConditionPassed).every((condition) => condition === true)}
-      >
-        완료
-      </StButton>
-    </StJoinForm>
+        </ImageUpload>
+        <StInputWrapper>
+          <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
+          <CommonInput
+            width="100%"
+            placeholder="neososeo_team"
+            onChange={(value) => {
+              setInputId(value);
+            }}
+            maxLength={15}
+            img={icEmail}
+          />
+          <StErrorMsg>{errorMsg}</StErrorMsg>
+          <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
+          <CommonInput
+            width="100%"
+            placeholder="이름을 입력해주세요"
+            onChange={(value) => {
+              setInputName(value);
+            }}
+            maxLength={6}
+          />
+        </StInputWrapper>
+        <StButton
+          type="submit"
+          onClick={onClickSubmitUserInfo}
+          disabled={!Object.values(isJoinConditionPassed).every((condition) => condition === true)}
+        >
+          완료
+        </StButton>
+      </StJoinForm>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
+    </>
   );
 }
 

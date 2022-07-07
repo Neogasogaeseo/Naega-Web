@@ -17,12 +17,12 @@ import {
   StShadow,
 } from './style';
 import {
-  ImgGlass,
-  ImgLanding,
-  ImgLink,
-  ImgMainPage,
-  ImgMypage,
-  ImgTeamsoseo,
+  imgGlass,
+  imgLanding,
+  imgLink,
+  imgMainPage,
+  imgMypage,
+  imgTeamsoseo,
 } from '@assets/images';
 import TeamLandingLottie from '@assets/lottie/TeamLottie';
 import { GaAction, GaCategory, useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
@@ -47,7 +47,7 @@ function Landing() {
           <br />
           누군가 나를 대신 설명해줬음 할 때,
         </div>
-        <img src={ImgMainPage} />
+        <img src={imgMainPage} />
         <StShadow top={161} />
         <StServiceButton theme="coral" onClick={() => navigate(`/login`)}>
           너가소개서 받으러 가기
@@ -66,7 +66,7 @@ function Landing() {
           <br />
           친구들의 답변으로 새로운 나를 발견하세요
         </StMiddleContent>
-        <img src={ImgLanding} />
+        <img src={imgLanding} />
       </StMiddleNeososeo>
       <StMiddleNeososeoAnswer>
         <StMiddleTitle>
@@ -76,7 +76,7 @@ function Landing() {
             답변을 받아보세요
           </h2>
         </StMiddleTitle>
-        <img src={ImgLink} />
+        <img src={imgLink} />
       </StMiddleNeososeoAnswer>
       <StMiddleTeamsoseo>
         <StMiddleBlack>
@@ -90,7 +90,7 @@ function Landing() {
             그에 대한 피드백을 주고 받으세요!
           </StMiddleContent>
           <TeamLandingLottie />
-          <img src={ImgTeamsoseo} />
+          <img src={imgTeamsoseo} />
         </StMiddleBlack>
       </StMiddleTeamsoseo>
       <StMiddleMypage>
@@ -106,7 +106,7 @@ function Landing() {
           <br />
           링크로 공유해서 주변에 자랑해보세요
         </StMiddleContent>
-        <img src={ImgMypage} />
+        <img src={imgMypage} />
         <StShadow top={172} />
         <StShadow top={640} />
       </StMiddleMypage>
@@ -116,7 +116,7 @@ function Landing() {
           <br />
           궁금하다면?
         </h2>
-        <img src={ImgGlass} />
+        <img src={imgGlass} />
         <StServiceButton
           theme="black"
           onClick={() => {

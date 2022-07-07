@@ -104,7 +104,7 @@ function HomeMyPage() {
                     <span>{mypageInfo.neososeo.length + mypageInfo.team.length}</span>
                   </div>
                   {isMyPage && (
-                    <StDetailLink onClick={() => navigate(`/mypage/keyword/${userID}`)}>
+                    <StDetailLink onClick={() => navigate(`/mypage/keyword`)}>
                       키워드 전체보기
                       <IcArrowViewAll />
                     </StDetailLink>
@@ -143,7 +143,7 @@ function HomeMyPage() {
                 <span>{neososeoBookmark.count}</span>
               </div>
               {isMyPage && (
-                <StDetailLink onClick={() => navigate(`/mypage/neoga/${userID}`)}>
+                <StDetailLink onClick={() => navigate(`/mypage/neoga`)}>
                   픽 하러 가기
                   <IcArrowViewAll />
                 </StDetailLink>
@@ -156,7 +156,7 @@ function HomeMyPage() {
                 isMyPage={isMyPage}
                 origin="너가소개서"
                 pickTarget="답변"
-                onPickButtonClicked={() => navigate(`/mypage/neoga/${userID}`)}
+                onPickButtonClicked={() => navigate(`/mypage/neoga`)}
               />
             )}
           </div>
@@ -175,7 +175,7 @@ function HomeMyPage() {
                   <span>{feedbackBookmark.count}</span>
                 </div>
                 {isMyPage && (
-                  <StDetailLink onClick={() => navigate(`/mypage/team/${userID}`)}>
+                  <StDetailLink onClick={() => navigate(`/mypage/team`)}>
                     픽 하러 가기
                     <IcArrowViewAll />
                   </StDetailLink>
@@ -196,7 +196,7 @@ function HomeMyPage() {
                 isMyPage={isMyPage}
                 origin="팀원소개서"
                 pickTarget="피드백"
-                onPickButtonClicked={() => navigate(`/mypage/team/${userID}`)}
+                onPickButtonClicked={() => navigate(`/mypage/team`)}
               />
             )}
           </StNegativeMarginWrapper>

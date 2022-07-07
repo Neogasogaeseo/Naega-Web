@@ -8,6 +8,7 @@ import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
 import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
+import { useDeleteTeam } from '@queries/team';
 import { api } from '@api/index';
 
 interface TeamLeaveModalProps {
@@ -98,10 +99,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     goTeamHome();
   };
 
-  const deleteTeam = async () => {
-    teamID && (await api.teamService.deleteTeam(+teamID));
-    goTeamHome();
-  };
+  const { mutate: deleteTeam } = useDeleteTeam(Number(teamID));
 
   const QuestionModal = (
     <StCommonModal>
@@ -142,7 +140,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
       </StDescription>
       <div>
         <button onClick={closeModal}>취소</button>
-        <button onClick={deleteTeam}>확인</button>
+        <button onClick={() => deleteTeam(Number(teamID), { onSuccess: () => goTeamHome() })}>
+          확인
+        </button>
       </div>
     </StCommonModal>
   );

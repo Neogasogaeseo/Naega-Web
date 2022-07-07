@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { TeamMemberNoneId, TeamMemberWithHostInfo, TeamProfileData } from '@api/types/team';
 import { StCommonModal, StDescription } from '../style';
@@ -7,9 +8,7 @@ import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
 import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
-import { useMutation, useQueryClient } from 'react-query';
 import { api } from '@api/index';
-import { useEffect } from 'react';
 
 interface TeamLeaveModalProps {
   isOpened: boolean;

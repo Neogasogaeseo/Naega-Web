@@ -2,8 +2,8 @@ import { api } from '@api/index';
 
 import { useMutation, UseMutationOptions } from 'react-query';
 
-export const usePickNeososeoAnswer = (id: number, options?: UseMutationOptions) =>
+export const usePickNeososeoAnswer = (answerID: number, options?: UseMutationOptions) =>
   useMutation(async () => {
-    const response = await api.neogaService.postAnswerBookmark(id);
+    const response = await api.neogaService.postAnswerBookmark(answerID);
     return response;
   }, options);

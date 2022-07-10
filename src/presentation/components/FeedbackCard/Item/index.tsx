@@ -42,7 +42,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
 
   const { mutate: bookmarkFeedback } = useMutation(
     async () => {
-      const response = await api.teamService.postFeedbackBookmark(id);
+      const response = await api.teamService.postFeedbackBookmark(+id);
       return response;
     },
     {

@@ -13,6 +13,7 @@ import { StTeamMain, StTeamInfo, StCheckWrapper, StMemberName, StOtherMember } f
 import { icPerson, icCoralCheck, icGrayCheck, IcMeatball } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 import TeamLeaveModal from '@components/common/Modal/TeamLeave';
+import { useMemo } from 'react';
 
 function TeamMain() {
   const navigate = useNavigate();
@@ -33,11 +34,10 @@ function TeamMain() {
   );
   const slicedMemberList = teamInfoData && teamInfoData.teamMemberList.slice(0, MAX_TEAM_MEMBER);
 
-  const getHostID = () => {
+  const hostID = useMemo(() => {
     if (slicedMemberList && slicedMemberList[0].isHost) return slicedMemberList[0].profileId;
     return teamInfoData && teamInfoData.teamMemberList.find((member) => member.isHost)?.profileId;
-  };
-  const hostID = getHostID();
+  }, [teamInfoData]);
   const isUserHost = userID === hostID;
 
   const { data: teamIssueList } = useQuery(

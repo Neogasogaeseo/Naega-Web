@@ -147,10 +147,9 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
     </StCommonModal>
   );
 
-  useEffect(
-    () => setMode(teamMemberList && teamMemberList.length > 1 ? 'QUESTION' : 'DELETE'),
-    [teamMemberList],
-  );
+  useEffect(() => {
+    if (teamMemberList && teamMemberList.length === 1 && isUserHost) setMode('DELETE');
+  }, [teamMemberList]);
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

@@ -92,7 +92,7 @@ export default function TeamMemberManagement() {
                   <div>{`@${member.profileID}`}</div>
                 </div>
               </div>
-              <button>{member.isConfirmed ? '팀원' : '초대 중'}</button>
+              <button>{member.isConfirmed ? (member.isHost ? '팀장' : '팀원') : '초대 중'}</button>
             </StTeamMember>
           ))}
       </StTeamMemberManagement>

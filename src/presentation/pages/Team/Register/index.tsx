@@ -3,20 +3,11 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  StWrapper,
-  StTitle,
-  StTextarea,
-  StSubmitButton,
-  StPhotoUploadWrapper,
-  StIcPencil,
-  StTeamRegister,
-} from './style';
+import { StWrapper, StTitle, StTextarea, StSubmitButton, StTeamRegister } from './style';
 import { imgEmptyProfile, ImgTeamDefault } from '@assets/images';
 import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
 import ProfileList from '@components/common/ProfileList';
-import PhotoUpload from '@components/common/FileUpload';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
 import CommonNavigation from '@components/common/Navigation';
@@ -24,10 +15,15 @@ import { selectedUserListState } from '@stores/team';
 import TeamMemberAddForRegister from '@components/TeamMemberAdd/ForRegister';
 import { useMutation, useQueryClient } from 'react-query';
 import { TeamProfileData } from '@api/types/team';
+import ImageUpload from '@components/common/ImageUpload';
+import useImageUpload from '@hooks/useImageUpload';
+import BottomSheet from '@components/common/BottomSheet';
+import { icPencil } from '@assets/icons';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
-  const [image, setImage] = useState<File | null>(null);
+  const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
+    useImageUpload();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [selectedUserList, setSelectedUserList] = useRecoilState(selectedUserListState);
@@ -73,12 +69,20 @@ function TeamRegister() {
         <CommonNavigation />
         <div>
           <StTitle>팀 등록하기</StTitle>
-          <StPhotoUploadWrapper>
-            <PhotoUpload width="88px" height="88px" borderRadius="36px" setFile={setImage}>
-              <ImgTeamDefault />
-            </PhotoUpload>
-            <StIcPencil />
-          </StPhotoUploadWrapper>
+          <ImageUpload
+            styles={{
+              width: '88px',
+              height: '88px',
+              borderRadius: '30px',
+            }}
+            defaultChildren={{
+              src: icPencil,
+              styles: { width: '24px', right: '262px' },
+            }}
+            {...imageUploadProps}
+          >
+            <ImgTeamDefault />
+          </ImageUpload>
           <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
           <CommonInput
             value={name}
@@ -116,6 +120,11 @@ function TeamRegister() {
           </StSubmitButton>
         </div>
       </StTeamRegister>
+      <BottomSheet
+        isOpened={bottomSheetOpened}
+        buttonList={bottomSheetButtonList}
+        closeBottomSheet={closeBottomSheet}
+      />
     </StWrapper>
   );
 }

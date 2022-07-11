@@ -42,7 +42,7 @@ export interface TeamService {
     teamID: string,
     content: string,
     categoryID: number,
-    image?: File,
+    image: File | null | undefined,
   ): Promise<PostIssueResponse>;
   getTeamEditInfo(teamID: number): Promise<TeamEditInfo<string>>;
   acceptInvitation(teamID: number): Promise<{ isSuccess: boolean }>;

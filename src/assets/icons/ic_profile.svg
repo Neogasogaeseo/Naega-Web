@@ -1,13 +1,10 @@
 <svg width="118" height="118" viewBox="0 0 118 118" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="59" cy="59" r="59" fill="#F8F8F8"/>
-<circle cx="101.484" cy="101.484" r="16.1444" fill="#FF6262"/>
-<path d="M98.1297 97.4868L98.7814 96.4342C98.9423 96.1745 99.1602 95.9616 99.4158 95.8143C99.6714 95.6671 99.9568 95.5901 100.247 95.5901H103.058C103.347 95.5901 103.633 95.6671 103.889 95.8143C104.144 95.9616 104.362 96.1745 104.523 96.4342L105.175 97.4868H109.578V107.919H93.7267V97.4868H98.1297Z" stroke="white" stroke-width="1.58036" stroke-linecap="square" stroke-linejoin="round"/>
-<path d="M101.946 104.984C103.567 104.984 104.881 103.67 104.881 102.048C104.881 100.427 103.567 99.1131 101.946 99.1131C100.324 99.1131 99.0103 100.427 99.0103 102.048C99.0103 103.67 100.324 104.984 101.946 104.984Z" stroke="white" stroke-width="1.58036" stroke-linecap="square" stroke-linejoin="round"/>
-<mask id="mask0_1639_18496" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="15" y="0" width="88" height="87">
+<mask id="mask0_1024_4737" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="15" y="0" width="88" height="87">
 <rect x="15.8036" width="86.3929" height="86.3929" fill="#E9E9E9"/>
 </mask>
-<g mask="url(#mask0_1639_18496)">
-<circle cx="59.0003" cy="45.43" r="13.4058" fill="#E9E9E9"/>
-<circle cx="59.0001" cy="90.1164" r="25.322" fill="#E9E9E9"/>
+<g mask="url(#mask0_1024_4737)">
+<circle cx="59.0003" cy="45.4299" r="13.4058" fill="#E9E9E9"/>
+<circle cx="59.0001" cy="90.1163" r="25.322" fill="#E9E9E9"/>
 </g>
 </svg>

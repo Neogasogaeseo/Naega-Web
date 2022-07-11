@@ -14,6 +14,11 @@ export const StJoinForm = styled.div`
     color: ${COLOR.GRAY_8};
     margin: 54px 0px 72px 0px;
   }
+
+  & > *:nth-child(2) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const StInputWrapper = styled.div`
@@ -32,9 +37,4 @@ export const StButton = styled.button`
   :disabled {
     background-color: ${COLOR.GRAY_3};
   }
-`;
-
-export const StProfileImg = styled.div`
-  display: flex;
-  justify-content: center;
 `;

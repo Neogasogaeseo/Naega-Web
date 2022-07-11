@@ -178,6 +178,7 @@ export type TeamEditMember = {
   profileID: string;
   image: string | null;
   isConfirmed: boolean;
+  isHost: boolean;
 };
 
 export type TeamNoticePaginateItems = {

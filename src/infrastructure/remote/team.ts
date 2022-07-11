@@ -287,7 +287,7 @@ export function teamDataRemote(): TeamService {
     teamID: string,
     content: string,
     categoryID: number,
-    image?: File,
+    image: File | null | undefined,
   ) => {
     try {
       const formData = new FormData();
@@ -396,8 +396,8 @@ export function teamDataRemote(): TeamService {
     if (response.status === STATUS_CODE.OK) {
       const { member: memberList } = response.data;
       return memberList.map((member: any) => {
-        const { id, name, profileId: profileID, image, isConfirmed } = member;
-        return { id, name, profileID, image, isConfirmed };
+        const { id, name, profileId: profileID, image, isConfirmed, isHost } = member;
+        return { id, name, profileID, image, isConfirmed, isHost };
       });
     }
   };

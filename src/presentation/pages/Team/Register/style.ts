@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { COMMON_INPUT } from '@styles/common/input';
 import { FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { COLOR } from '@styles/common/color';
-import { IcPencil } from '@assets/icons';
 
 export const StWrapper = styled.div`
   width: 100%;
@@ -47,16 +46,4 @@ export const StSubmitButton = styled.button<{ isActive: boolean }>`
   ${FULL_WIDTH_BUTTON}
   margin-top: 44px;
   margin-bottom: 48px;
-`;
-
-export const StPhotoUploadWrapper = styled.div`
-  position: relative;
-  width: 88px;
-  height: 88px;
-`;
-
-export const StIcPencil = styled(IcPencil)`
-  position: absolute;
-  bottom: 0;
-  right: 0;
 `;

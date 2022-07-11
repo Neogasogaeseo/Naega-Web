@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASEURL = 'https://6dd3-183-96-121-156.jp.ngrok.io/neogasogaeseo-9aaf5/asia-northeast3/api';
+const BASEURL = 'https://c12a-183-96-121-156.jp.ngrok.io/neogasogaeseo-9aaf5/asia-northeast3/api';
 const getAccessToken = () => localStorage.getItem('token') ?? '';
 
 const getBasePrivateHeaders = () => ({

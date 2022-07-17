@@ -21,7 +21,7 @@ import {
 
 export interface TeamService {
   getIssueInfo(issueID: string): Promise<IssueData>;
-  postFeedbackBookmark(feedbackID: string): Promise<PostFeedbackBookmarkResponse>;
+  postFeedbackBookmark(feedbackID: number): Promise<PostFeedbackBookmarkResponse>;
   getTeamProfile(): Promise<TeamProfileData>;
   getMyTeamIssue(): Promise<TeamIssueData>;
   getTeamInfo(teamID: number): Promise<TeamInfoData | undefined>;

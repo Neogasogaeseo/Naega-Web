@@ -1,4 +1,5 @@
 import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
+import { MyDetail } from '@api/types/user';
 import FeedbackCardItem from '../Item';
 
 type FeedbackCardListProps = {
@@ -11,10 +12,11 @@ type FeedbackCardListProps = {
     isPinned: boolean,
   ) => void;
   parentPage?: 'teamsoseo' | 'mypage';
+  selectedTeam?: MyDetail | null;
 };
 
 function FeedbackCardList(props: FeedbackCardListProps) {
-  const { feedbacks, openBottomSheet, parentPage = 'mypage' } = props;
+  const { feedbacks, openBottomSheet, parentPage = 'mypage', selectedTeam } = props;
 
   return (
     <>
@@ -24,6 +26,7 @@ function FeedbackCardList(props: FeedbackCardListProps) {
           {...feedback}
           openBottomSheet={openBottomSheet}
           parentPage={parentPage}
+          selectedTeam={selectedTeam}
         />
       ))}
     </>

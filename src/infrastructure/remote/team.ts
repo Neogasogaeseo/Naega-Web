@@ -13,7 +13,7 @@ import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
 
 export function teamDataRemote(): TeamService {
-  const postFeedbackBookmark = async (feedbackID: string) => {
+  const postFeedbackBookmark = async (feedbackID: number) => {
     const response = await privateAPI.put({ url: `/team/feedback/${feedbackID}/pin` });
     if (response.status === STATUS_CODE.OK)
       return { isSuccess: true, isBookmarked: response.data?.isPinned };

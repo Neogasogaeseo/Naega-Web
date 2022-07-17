@@ -8,7 +8,7 @@ import { IcWarning } from '@assets/icons';
 import ModalWrapper from '@components/common/ModalWrapper';
 import { StDelegationCheckModal, StWarningMessage } from './style';
 import HostDelegationModal from '../HostDelegation';
-import { useDeleteTeam } from '@queries/team';
+import { useDeleteTeam } from '@hooks/queries/team';
 import { api } from '@api/index';
 
 interface TeamLeaveModalProps {

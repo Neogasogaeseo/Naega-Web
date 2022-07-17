@@ -6,7 +6,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { StNeososeoAnswerCard } from './style';
 import { icPicked, icUnpicked } from '@assets/icons';
-import { usePickNeososeoAnswer } from '@queries/user';
+import { usePickNeososeoAnswer } from '@hooks/queries/user';
 interface NeososeoAnswerCardItemProps extends AnswerDetail {
   selectedForm?: MyDetail | null;
 }

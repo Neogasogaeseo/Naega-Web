@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query';
 import { api } from '@api/index';
 import { icPick, icTrash } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
-import { usePickNeososeoAnswer } from '@queries/user';
+import { usePickNeososeoAnswer } from '@hooks/queries/user';
 import BottomSheet from '..';
 
 type NeososeoPickerBottomSheetProps = {

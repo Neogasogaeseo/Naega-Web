@@ -5,7 +5,7 @@ import { icEdit, icPick, icTrash } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import BottomSheet from '..';
 import { useNavigate } from 'react-router-dom';
-import { usePickTeamFeedback } from '@queries/team';
+import { usePickTeamFeedback } from '@hooks/queries/team';
 
 type TeamsoseoPickerBottomSheetProps = {
   opened: boolean;

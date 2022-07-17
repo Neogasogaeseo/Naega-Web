@@ -7,7 +7,7 @@ import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
-import { usePickTeamFeedback } from '@queries/team';
+import { usePickTeamFeedback } from '@hooks/queries/team';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(

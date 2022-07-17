@@ -146,7 +146,6 @@ function NeogaDetailForm() {
         ) : (
           <NeogaDetailFormEmptyView link={link} />
         )}
-        {}
         <NeososeoPickerBottomSheet
           opened={bottomSheetOpened}
           close={closeBottomSheet}

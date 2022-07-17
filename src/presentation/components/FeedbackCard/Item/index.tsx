@@ -40,7 +40,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   const { userID } = useParams();
   const queryClient = useQueryClient();
 
-  const { mutate: pickFeedback } = usePickTeamFeedback(+id, {
+  const { mutate: pickFeedback, isLoading } = usePickTeamFeedback(+id, {
     onSuccess: () => {
       fireToast({ content: isBookmarked ? '픽 취소' : '픽 완료', bottom: 9 });
       queryClient.invalidateQueries(userID ? 'tssBookmark' : 'feedbackInfo');
@@ -68,7 +68,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
         </div>
         {(isMine || isForMe) &&
           (parentPage === 'mypage' && isForMe ? (
-            <StBookmark selected={isBookmarked} onClick={() => pickFeedback()} />
+            <StBookmark selected={isBookmarked} onClick={() => isLoading || pickFeedback()} />
           ) : (
             <StMeatBall
               onClick={() => {

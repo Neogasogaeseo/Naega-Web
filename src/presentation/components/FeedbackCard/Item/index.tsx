@@ -8,6 +8,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
 import { usePickTeamFeedback } from '@hooks/queries/team';
+import { MyDetail } from '@api/types/user';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(
@@ -18,6 +19,7 @@ type FeedbackCardProps = FeedbackDetail & {
     isPinned: boolean,
   ): void;
   parentPage: 'teamsoseo' | 'mypage';
+  selectedTeam?: MyDetail | null;
 };
 
 function FeedbackCardItem(props: FeedbackCardProps) {
@@ -33,6 +35,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     openBottomSheet,
     parentPage,
     isBookmarked,
+    selectedTeam,
   } = props;
 
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
@@ -43,7 +46,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   const { mutate: pickFeedback, isLoading } = usePickTeamFeedback(+id, {
     onSuccess: () => {
       fireToast({ content: isBookmarked ? '픽 취소' : '픽 완료', bottom: 9 });
-      queryClient.invalidateQueries(userID ? 'tssBookmark' : 'feedbackInfo');
+      queryClient.invalidateQueries(userID ? 'tssBookmark' : ['feedbackInfo', selectedTeam?.id]);
     },
   });
 

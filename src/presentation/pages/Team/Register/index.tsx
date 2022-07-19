@@ -60,7 +60,7 @@ function TeamRegister() {
     },
   });
 
-  useEffect(() => setSelectedUserList([]), []);
+  useEffect(() => () => setSelectedUserList([]), []);
 
   return (
     <StWrapper>

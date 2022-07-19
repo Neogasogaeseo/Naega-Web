@@ -10,7 +10,7 @@ import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import { StJoinForm, StInputWrapper, StButton } from './style';
 import { StErrorMsg } from '@components/common/Input/style';
-import { icProfile, icEmail, icPencil } from '@assets/icons';
+import { icProfile, icEmail, icCameraMainCoral } from '@assets/icons';
 import ImageUpload from '@components/common/ImageUpload';
 import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
@@ -97,7 +97,7 @@ function JoinForm() {
             borderRadius: '50%',
           }}
           defaultChildren={{
-            src: icPencil,
+            src: icCameraMainCoral,
             styles: { width: '32.29px', right: '117px' },
           }}
           {...imageUploadProps}

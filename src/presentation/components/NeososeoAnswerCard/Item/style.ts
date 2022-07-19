@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const StNeososeoAnswerCard = styled.div`
   border-bottom: 1px solid ${COLOR.GRAY_3};
-  padding: 25px 21px;
+  padding: 25px 0;
 
   & img {
     width: 28px;

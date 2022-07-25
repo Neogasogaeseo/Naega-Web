@@ -20,11 +20,13 @@ interface TeamLeaveModalProps {
 
 export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { isOpened, teamMemberList, closeModal, isUserHost } = props;
-  const teamMemberListWithoutHost = teamMemberList.filter((member) => !member.isHost);
   const [mode, setMode] = useState<'QUESTION' | 'DELEGATION' | 'DELEGATION_CHECK' | 'DELETE'>(
     'QUESTION',
   );
-  const [newHost, setNewHost] = useState<TeamMemberNoneId>(teamMemberListWithoutHost[0]);
+  const [teamMemberListWithoutHost, setTeamMemberListWithoutHost] = useState<
+    TeamMemberWithHostInfo[]
+  >([]);
+  const [newHost, setNewHost] = useState<TeamMemberNoneId | undefined>();
   const navigate = useNavigate();
   const { teamID } = useParams();
   const queryClient = useQueryClient();
@@ -149,7 +151,10 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
 
   useEffect(() => {
     if (teamMemberList && teamMemberList.length === 1 && isUserHost) setMode('DELETE');
+    setTeamMemberListWithoutHost(teamMemberList.filter((member) => !member.isHost));
   }, [teamMemberList]);
+
+  useEffect(() => setNewHost(teamMemberListWithoutHost[0]), [teamMemberListWithoutHost]);
 
   return <ModalWrapper isOpened={isOpened}> {getModal()} </ModalWrapper>;
 }

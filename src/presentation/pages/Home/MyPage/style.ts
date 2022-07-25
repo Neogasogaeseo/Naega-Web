@@ -114,7 +114,8 @@ export const StGreyBorder = styled.div`
 `;
 
 export const StGreyBorderTall = styled(StGreyBorder)`
-  height: 32px;
+  height: 91px;
+  padding-bottom: 91px;
 `;
 
 export const StNegativeMarginWrapper = styled.div`

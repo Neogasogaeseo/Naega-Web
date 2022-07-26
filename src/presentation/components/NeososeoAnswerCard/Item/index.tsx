@@ -17,7 +17,7 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
   const { id: userPK } = useLoginUser();
   const { fireToast } = useToast();
   const queryClient = useQueryClient();
-  const { mutate: PickAnswer, isLoading } = usePickNeososeoAnswer(id, {
+  const { mutate: pickAnswer, isLoading } = usePickNeososeoAnswer(id, {
     onSuccess: () => {
       fireToast({ content: isBookmarked ? '픽 취소' : '픽 완료' });
       queryClient.invalidateQueries(['answerInfo', selectedForm?.id]);
@@ -34,7 +34,7 @@ function NeososeoAnswerCardItem(props: NeososeoAnswerCardItemProps) {
           <img
             src={isBookmarked ? icPicked : icUnpicked}
             alt="pick"
-            onClick={() => isLoading || PickAnswer()}
+            onClick={() => isLoading || pickAnswer()}
           />
         )}
       </div>

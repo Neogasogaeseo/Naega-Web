@@ -53,6 +53,7 @@ export const StHeader = styled.div`
       & > svg {
         position: absolute;
         right: 0;
+        cursor: pointer;
       }
     }
     &:nth-child(2) {

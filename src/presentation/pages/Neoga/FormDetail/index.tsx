@@ -104,11 +104,7 @@ function NeogaDetailForm() {
                       keywordList={resultDetail?.keywordList ?? []}
                       onItemClick={() => null}
                     />
-                    <StMoreButton
-                      onClick={() => {
-                        setLookMoreButton(false);
-                      }}
-                    >
+                    <StMoreButton onClick={() => setLookMoreButton(false)}>
                       접기
                       <img src={icArrowUp} />
                     </StMoreButton>
@@ -116,11 +112,7 @@ function NeogaDetailForm() {
                 ) : (
                   resultDetail.keywordList.length > 7 && (
                     <>
-                      <StMoreButton
-                        onClick={() => {
-                          setLookMoreButton(true);
-                        }}
-                      >
+                      <StMoreButton onClick={() => setLookMoreButton(true)}>
                         더보기
                         <img src={icArrowDown} />
                       </StMoreButton>

@@ -51,13 +51,7 @@ export default function CommonHeader(props: CommonHeaderProps) {
           </>
         )}
         {shouldShowLoginButton && (
-          <StLoginButton
-            onClick={() => {
-              navigate(`/login`);
-            }}
-          >
-            로그인
-          </StLoginButton>
+          <StLoginButton onClick={() => navigate(`/login`)}>로그인</StLoginButton>
         )}
         {shouldShowMypageButton && (
           <StMypageButton onClick={() => navigate(getMypageLink())}>내 My 공유하기</StMypageButton>

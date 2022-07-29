@@ -59,9 +59,7 @@ export default function TeamMemberManagement() {
           closeAddMode();
           setIsModalOpen(false);
         }}
-        onClickCancel={() => {
-          setIsModalOpen(false);
-        }}
+        onClickCancel={() => setIsModalOpen(false)}
       />
       <TeamMemberAddForEdit
         teamID={+teamID}

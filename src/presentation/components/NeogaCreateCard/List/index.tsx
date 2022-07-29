@@ -24,9 +24,7 @@ function NeogaCreateCardList(props: NeogaCreateCardListProps) {
         <NeogaCreateCardItem
           key={card.id}
           {...card}
-          onClick={() => {
-            onItemClick(card.id, card.isCreated);
-          }}
+          onClick={() => onItemClick(card.id, card.isCreated)}
           idx={idx}
         />
       ))}

@@ -102,7 +102,7 @@ function TeamMain() {
             <button onClick={() => navigate(`/team/${teamID}/create`)}>이슈 추가</button>
             {teamIssueList?.issueList.length !== 0 && (
               <StCheckWrapper>
-                <button onClick={() => checkMyIssue()}>
+                <button onClick={checkMyIssue}>
                   <img src={isChecked ? icCoralCheck : icGrayCheck} />
                 </button>
                 내가 언급된 이슈만 보기
@@ -110,9 +110,7 @@ function TeamMain() {
             )}
             <IssueCardList
               issueList={isChecked ? myIssueList?.issueList ?? [] : teamIssueList?.issueList ?? []}
-              onIssueClick={(teamID, issueNumber) => {
-                navigate(`/team/${teamID}/${issueNumber}`);
-              }}
+              onIssueClick={(teamID, issueNumber) => navigate(`/team/${teamID}/${issueNumber}`)}
             />
           </StTeamMain>
         </>

@@ -76,7 +76,7 @@ function TeamsoseoPickerBottomSheet(props: TeamsoseoPickerBottomSheetProps) {
           {
             icon: icPick,
             label: isPinned ? '픽 취소하기' : '픽 하기',
-            onClick: () => pickFeedback(),
+            onClick: pickFeedback,
           },
         ]
       : [

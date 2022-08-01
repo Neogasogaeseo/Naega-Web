@@ -77,7 +77,7 @@ function TeamRegister() {
             }}
             defaultChildren={{
               src: icPencil,
-              styles: { width: '24px', right: '262px' },
+              styles: { width: '24px' },
             }}
             {...imageUploadProps}
           >

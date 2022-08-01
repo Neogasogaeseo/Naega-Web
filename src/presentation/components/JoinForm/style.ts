@@ -7,6 +7,7 @@ import { CORAL_MAIN_BUTTON } from '@styles/common/button';
 export const StJoinForm = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 20px;
 
   h1 {
@@ -15,15 +16,8 @@ export const StJoinForm = styled.div`
     margin: 54px 0px 72px 0px;
   }
 
-  & > *:nth-child(2) {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-export const StInputWrapper = styled.div`
-  & > div:nth-of-type(2n + 1) {
-    margin-left: 4px;
+  & > *:not(& > *:nth-child(2)) {
+    width: 100%;
   }
 `;
 

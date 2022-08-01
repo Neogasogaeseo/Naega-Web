@@ -8,7 +8,8 @@ export const StThumbnail = styled.img<{ styles: React.CSSProperties }>`
   border-radius: ${(props) => props.styles.borderRadius ?? 0};
 `;
 
-export const StImageUpload = styled.div`
+export const StImageUpload = styled.div<{ styles: React.CSSProperties }>`
+  width: ${(props) => props.styles.width};
   cursor: pointer;
   position: relative;
 `;

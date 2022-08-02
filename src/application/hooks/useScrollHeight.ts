@@ -18,6 +18,7 @@ export function useScrollHeight() {
     if (scrollTop + documentHeight >= scrollHeight - SCROLL_BOTTOM_PADDING) {
       setIsBottomReached([]);
       setIsInitialState(false);
+      console.log('bottom reached !!!!!!!!!!!!!!!!!!!!');
     }
   }, []);
 

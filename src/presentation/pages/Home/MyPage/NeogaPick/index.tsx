@@ -46,7 +46,7 @@ function MyNeogaPick() {
 
   return (
     <>
-      <CommonNavigation title="너가소개서 픽 하기" />
+      <CommonNavigation title="MY 너가소개서" />
       <StMyNeogaPick>
         <header>
           너가소개서에 지인이 남겨준 답변들 중<br />

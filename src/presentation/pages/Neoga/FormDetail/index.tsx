@@ -46,8 +46,8 @@ function NeogaDetailForm() {
   );
   const link = `${DOMAIN}/neososeoform/${resultDetail?.q ?? ''}`;
 
-  const { data: resultFeedback, refetch: refetchFeedbacks } = useQuery(
-    ['nssFeedbacksDetail', formID],
+  const { data: resultFeedback } = useQuery(
+    ['nssFeedbacksDetail', Number(formID)],
     () => api.neogaService.getNeososeoFeedback(+(formID ?? 0)),
     { useErrorBoundary: true, retry: 1 },
   );
@@ -59,7 +59,6 @@ function NeogaDetailForm() {
 
   const closeBottomSheet = () => {
     setBottomSheetOpened(false);
-    refetchFeedbacks();
   };
 
   if (!resultDetail) return <></>;
@@ -143,6 +142,7 @@ function NeogaDetailForm() {
           opened={bottomSheetOpened}
           close={closeBottomSheet}
           {...bottomSheetState}
+          formID={Number(formID)}
         />
       </StNeogaDetailForm>
     </>

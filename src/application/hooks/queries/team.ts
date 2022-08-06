@@ -1,6 +1,7 @@
+import { QueryClient, useMutation, UseMutationOptions } from 'react-query';
+
 import { api } from '@api/index';
 import { TeamProfileData } from '@api/types/team';
-import { QueryClient, useMutation } from 'react-query';
 
 const queryClient = new QueryClient();
 
@@ -12,3 +13,6 @@ export const useDeleteTeam = (teamID: number) =>
       });
     },
   });
+
+export const usePickTeamFeedback = (feedbackID: number, options?: UseMutationOptions) =>
+  useMutation(async () => await api.teamService.postFeedbackBookmark(feedbackID), options);

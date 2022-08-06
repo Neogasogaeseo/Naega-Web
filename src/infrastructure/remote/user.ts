@@ -174,6 +174,7 @@ export function userDataRemote(): UserService {
         ? response.data.form
             .map((form: any) => ({
               id: form.formId,
+              title: form.title.replace('\\n', '\n').replaceAll('*', ''),
               profileImage: form.darkIconImage,
             }))
             .reduce((acc: MyDetail[], cur: MyDetail) => {

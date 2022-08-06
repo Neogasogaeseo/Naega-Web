@@ -5,6 +5,7 @@ import { StProfileList, StItemWrapper, StAllButton } from '@components/common/Pr
 
 interface MyListData {
   id: number;
+  title?: string;
   profileImage?: string;
 }
 
@@ -32,7 +33,7 @@ function MySelectableList(props: MyListProps) {
         >
           ALL
         </StAllButton>
-        {items.map(({ id, profileImage }) => (
+        {items.map(({ id, title, profileImage }) => (
           <MyItem
             key={id}
             id={id}
@@ -41,7 +42,7 @@ function MySelectableList(props: MyListProps) {
             isSelected={selectedItem?.id === id}
             onProfileClick={() => {
               setAllButton(false);
-              setSelectedItem({ id, profileImage });
+              setSelectedItem({ id, title, profileImage });
             }}
           />
         ))}

@@ -64,6 +64,7 @@ export interface EditProfileInfo {
 
 export interface MyDetail {
   id: number;
+  title?: string;
   profileImage?: string;
 }
 

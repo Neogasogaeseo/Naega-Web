@@ -60,6 +60,7 @@ function MyNeogaPick() {
               selectedItem={selectedForm}
               setSelectedItem={setSelectedForm}
             />
+            <div>{selectedForm?.title ?? '전체'}</div>
           </StMyNeogaFormList>
         )}
         {answerInfo?.pages && answerInfo.pages.map((page) => page.answerList).flat().length ? (

@@ -41,8 +41,7 @@ export const StAllButton = styled.div<{ isSquare: boolean; isSelected: boolean }
   height: ${({ isSquare }) => (isSquare ? '42px' : '43px')};
   line-height: ${({ isSquare }) => (isSquare ? '42px' : '43px')};
   text-align: center;
-  border: ${(props) => (props.isSelected ? (props.isSquare ? '1.5px' : '1px') : '0px')} solid
-    ${COLOR.CORAL_MAIN};
+  border: ${({ isSelected }) => (isSelected ? '1px' : '0px')} solid ${COLOR.CORAL_MAIN};
   border-radius: ${({ isSquare }) => (isSquare ? '16px' : '50%')};
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   ${FONT_STYLES.R_14_BODY};

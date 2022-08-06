@@ -67,6 +67,7 @@ function MyTeamPick() {
           <StMyTeamPickList>
             <FeedbackCardList
               feedbacks={feedbackInfo.pages.map((page) => page.feedbackList).flat()}
+              selectedTeam={selectedTeam}
             />
           </StMyTeamPickList>
         ) : (

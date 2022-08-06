@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useQueryClient } from 'react-query';
 import { useParams } from 'react-router-dom';
 
-import { api } from '@api/index';
 import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
+import { usePickTeamFeedback } from '@hooks/queries/team';
+import { MyDetail } from '@api/types/user';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(
@@ -18,6 +19,7 @@ type FeedbackCardProps = FeedbackDetail & {
     isPinned: boolean,
   ): void;
   parentPage: 'teamsoseo' | 'mypage';
+  selectedTeam?: MyDetail | null;
 };
 
 function FeedbackCardItem(props: FeedbackCardProps) {
@@ -33,6 +35,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     openBottomSheet,
     parentPage,
     isBookmarked,
+    selectedTeam,
   } = props;
 
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
@@ -40,25 +43,12 @@ function FeedbackCardItem(props: FeedbackCardProps) {
   const { userID } = useParams();
   const queryClient = useQueryClient();
 
-  const { mutate: bookmarkFeedback } = useMutation(
-    async () => {
-      const response = await api.teamService.postFeedbackBookmark(id);
-      return response;
+  const { mutate: pickFeedback, isLoading } = usePickTeamFeedback(+id, {
+    onSuccess: () => {
+      fireToast({ content: isBookmarked ? '픽 취소' : '픽 완료', bottom: 9 });
+      queryClient.invalidateQueries(userID ? 'tssBookmark' : ['feedbackInfo', selectedTeam?.id]);
     },
-    {
-      onSuccess: (data) => {
-        if (data && data.isBookmarked) {
-          userID
-            ? fireToast({ content: '픽 완료', bottom: 28 })
-            : fireToast({ content: 'MY에서 픽한 피드백을 확인할 수 있어요', bottom: 120 });
-        } else {
-          fireToast({ content: '픽 취소', bottom: 28 });
-        }
-        queryClient.invalidateQueries('feedbackInfo');
-        queryClient.invalidateQueries('tssBookmark');
-      },
-    },
-  );
+  });
 
   const isForMe = useMemo(
     () => +targetProfileID === loginUserID || targetProfileID === loginUsername,
@@ -81,7 +71,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
         </div>
         {(isMine || isForMe) &&
           (parentPage === 'mypage' && isForMe ? (
-            <StBookmark selected={isBookmarked} onClick={() => bookmarkFeedback()} />
+            <StBookmark selected={isBookmarked} onClick={() => isLoading || pickFeedback()} />
           ) : (
             <StMeatBall
               onClick={() => {

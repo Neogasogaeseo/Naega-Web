@@ -1,14 +1,17 @@
-import { AnswerDetail } from '@api/types/user';
+import { AnswerDetail, MyDetail } from '@api/types/user';
 import NeososeoAnswerCardItem from '../Item';
 
-type NeososeoAnswerCardListProps = { answers: AnswerDetail[] };
+interface NeososeoAnswerCardListProps {
+  answers: AnswerDetail[];
+  selectedForm?: MyDetail | null;
+}
 
 function NeososeoAnswerCardList(props: NeososeoAnswerCardListProps) {
-  const { answers } = props;
+  const { answers, selectedForm } = props;
   return (
     <>
       {answers.map((answer) => (
-        <NeososeoAnswerCardItem key={answer.id} {...answer} />
+        <NeososeoAnswerCardItem key={answer.id} selectedForm={selectedForm} {...answer} />
       ))}
     </>
   );

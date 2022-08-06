@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -14,7 +14,7 @@ import BottomSheet from '@components/common/BottomSheet';
 import useImageUpload from '@hooks/useImageUpload';
 import ImageUpload from '@components/common/ImageUpload';
 import { icPencil } from '@assets/icons';
-import { useDeleteTeam } from '@queries/team';
+import { useDeleteTeam } from '@hooks/queries/team';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
@@ -22,11 +22,10 @@ export default function TeamEdit() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const queryClient = useQueryClient();
   const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
     useImageUpload();
 
-  const { data: teamInfo, isSuccess } = useQuery(
+  const { data: teamInfo } = useQuery(
     ['teamEditInfo', teamID],
     async () => await api.teamService.getTeamEditInfo(Number(teamID)),
     {
@@ -48,19 +47,16 @@ export default function TeamEdit() {
       });
     },
     {
-      onSuccess: () => {
-        navigate(-1);
-        return queryClient.invalidateQueries('teamEditInfo');
-      },
+      onSuccess: () => navigate(-1),
     },
   );
 
   useEffect(() => {
-    if (isSuccess && teamInfo) {
+    if (teamInfo) {
       setName(teamInfo.name);
       setDescription(teamInfo.description);
     }
-  }, [isSuccess]);
+  }, [teamInfo]);
 
   useEffect(() => {
     if (!teamID || (teamID && isNaN(+teamID))) navigate('/home');

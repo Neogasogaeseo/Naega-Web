@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import MyItem from '@components/MyItem';
-import { StProfileList, StItemWrapper, StAllButton } from '@components/common/ProfileList/style';
+import { StProfileList, StItemWrapper, StAllButtonWrapper, StAllButton } from './style';
 
 interface MyListData {
   id: number;
@@ -22,17 +22,19 @@ function MySelectableList(props: MyListProps) {
 
   return (
     <StProfileList>
-      <StItemWrapper isSquare={isSquare}>
-        <StAllButton
-          isSquare={isSquare}
+      <StItemWrapper>
+        <StAllButtonWrapper
           isSelected={allButton}
           onClick={() => {
             setAllButton(true);
             setSelectedItem(null);
           }}
         >
-          ALL
-        </StAllButton>
+          <StAllButton isSquare={isSquare} isSelected={allButton}>
+            ALL
+          </StAllButton>
+          {isSquare && <span>전체</span>}
+        </StAllButtonWrapper>
         {items.map(({ id, title, profileImage }) => (
           <MyItem
             key={id}

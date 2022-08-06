@@ -48,6 +48,7 @@ export function userDataRemote(): UserService {
       username: response.data.user.name,
       userID: response.data.user.profileId,
       profileImage: response.data.user.image,
+      keywordCount: response.data.keywordCount,
       neososeo: response.data.answerKeywordList
         ? response.data.answerKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,

@@ -37,6 +37,7 @@ function MySelectableList(props: MyListProps) {
           <MyItem
             key={id}
             id={id}
+            title={title}
             profileImage={profileImage}
             isSquare={isSquare}
             isSelected={selectedItem?.id === id}

@@ -31,5 +31,5 @@ export const StMyTeamList = styled.div`
 `;
 
 export const StMyTeamPickList = styled.div`
-  padding: 0 24px;
+  padding: 0 20px;
 `;

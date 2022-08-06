@@ -60,6 +60,7 @@ function MyTeamPick() {
               selectedItem={selectedTeam}
               setSelectedItem={setSelectedTeam}
             />
+            <div>{selectedTeam?.title ? selectedTeam?.title + ' 팀' : '전체'}</div>
           </StMyTeamList>
         )}
         {feedbackInfo?.pages &&

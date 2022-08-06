@@ -218,6 +218,7 @@ export function userDataRemote(): UserService {
       teamList: response.data.team
         ? response.data.team.map((team: any) => ({
             id: team.id,
+            title: team.name,
             profileImage: team.image || imgEmptyProfile,
           }))
         : [],

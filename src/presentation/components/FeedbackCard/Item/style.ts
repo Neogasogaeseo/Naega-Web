@@ -5,7 +5,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StFeedbackCard = styled.div`
-  padding: 24px 4px 25px 4px;
+  padding: 24px 0;
   display: flex;
   gap: 16px;
   flex-direction: column;

@@ -67,15 +67,18 @@ export const StTextarea = styled.textarea`
 `;
 
 export const StUploadContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   width: 100%;
   height: 149px;
   border: 1.4px dashed ${COLOR.GRAY_3};
   border-radius: 16px;
-  color: ${COLOR.GRAY_5};
-  font-size: 16px;
-  line-height: 100%;
+  ${FONT_STYLES.R_16_TITLE};
+  color: ${COLOR.GRAY_4};
   background-color: white;
-  padding-top: 25px;
+  padding-top: 28px;
   text-align: center;
 `;
 
@@ -90,12 +93,6 @@ export const StButton = styled.button`
   :not(:disabled) {
     background-color: ${COLOR.CORAL_MAIN};
   }
-`;
-
-export const StPhotoUploadMiddleDesc = styled.div`
-  ${FONT_STYLES.R_16_TITLE};
-  color: ${COLOR.GRAY_4};
-  margin-top: 14px;
 `;
 
 export const StPhotoUploadImage = styled.img`

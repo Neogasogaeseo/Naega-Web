@@ -38,6 +38,7 @@ export const USER_DATA: {
       { id: '3', content: '배려왕왕와오앙왕왕', color: '#4C48FF', fontColor: '#FFFFFF' },
     ],
     team: [{ id: '1', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
+    keywordCount: 5,
   }),
   NEOSOSEO_BOOKMARK: {
     count: 3,

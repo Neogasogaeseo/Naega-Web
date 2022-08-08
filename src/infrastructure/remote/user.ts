@@ -3,6 +3,7 @@ import { privateAPI, publicAPI } from './base';
 import { InternalServerError, NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
+import { removeSpecialCharacters } from '@utils/string';
 import { imgEmptyProfile } from '@assets/images';
 import { MyDetail } from '@api/types/user';
 
@@ -48,6 +49,7 @@ export function userDataRemote(): UserService {
       username: response.data.user.name,
       userID: response.data.user.profileId,
       profileImage: response.data.user.image,
+      keywordCount: response.data.keywordCount,
       neososeo: response.data.answerKeywordList
         ? response.data.answerKeywordList.map((keyword: any) => ({
             id: keyword.keywordId,
@@ -173,6 +175,7 @@ export function userDataRemote(): UserService {
         ? response.data.form
             .map((form: any) => ({
               id: form.formId,
+              title: removeSpecialCharacters(form.title),
               profileImage: form.darkIconImage,
             }))
             .reduce((acc: MyDetail[], cur: MyDetail) => {
@@ -216,6 +219,7 @@ export function userDataRemote(): UserService {
       teamList: response.data.team
         ? response.data.team.map((team: any) => ({
             id: team.id,
+            title: team.name,
             profileImage: team.image || imgEmptyProfile,
           }))
         : [],

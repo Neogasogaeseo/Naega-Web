@@ -19,11 +19,17 @@ export const StMyTeamPick = styled.div`
 `;
 
 export const StMyTeamList = styled.div`
-  & > div {
-    padding: 30px 23px 29px 23px;
+  & > div:first-child {
+    padding: 24px 23px 0 23px;
+  }
+
+  & > div:last-child {
+    padding: 37px 23px 0 23px;
+    color: ${COLOR.GRAY_8};
+    ${FONT_STYLES.SB_18_TITLE};
   }
 `;
 
 export const StMyTeamPickList = styled.div`
-  padding: 0 24px;
+  padding: 0 20px;
 `;

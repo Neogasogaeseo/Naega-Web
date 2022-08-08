@@ -23,6 +23,7 @@ export const StBookmark = styled.div<{ selected: boolean }>`
 export const StMeatBall = styled(IcMeatball)`
   position: absolute;
   right: 0;
+  cursor: pointer;
 `;
 
 export const StHeader = styled.div`

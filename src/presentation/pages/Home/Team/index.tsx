@@ -41,12 +41,8 @@ function HomeTeam() {
               <ProfileList
                 isSquare={true}
                 profileList={profileList}
-                onProfileClick={(id) => {
-                  navigate(`/team/${id}`);
-                }}
-                onAddClick={() => {
-                  navigate('/team/register');
-                }}
+                onProfileClick={(id) => navigate(`/team/${id}`)}
+                onAddClick={() => navigate('/team/register')}
               />
             </>
           )

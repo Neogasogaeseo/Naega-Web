@@ -18,6 +18,7 @@ interface ImageUploadProps {
   closeBottomSheet: () => void;
   ref: React.ForwardedRef<HTMLInputElement>;
 }
+
 const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) => {
   const {
     children: emptyImage,

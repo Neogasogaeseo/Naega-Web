@@ -15,12 +15,7 @@ const JoinCompleteForm = () => {
         <StNoticeWrapper>회원가입이 완료되었어요</StNoticeWrapper>
       </div>
       <p>이제 내 너가소개서를 받아보세요</p>
-      <StButton
-        type="submit"
-        onClick={() => {
-          navigate('/home');
-        }}
-      >
+      <StButton type="submit" onClick={() => navigate('/home')}>
         확인
       </StButton>
     </StJoinCompleteForm>

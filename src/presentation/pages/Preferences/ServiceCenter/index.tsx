@@ -7,11 +7,11 @@ import { IcCamera } from '@assets/icons';
 import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
 import SelectBox from '@components/common/SelectBox';
+import BottomSheet from '@components/common/BottomSheet';
+import ImageUpload from '@components/common/ImageUpload';
 import useImageUpload from '@hooks/useImageUpload';
 import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
-import BottomSheet from '@components/common/BottomSheet';
-import ImageUpload from '@components/common/ImageUpload';
 import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
 function ServiceCenterPage() {
@@ -21,8 +21,8 @@ function ServiceCenterPage() {
     'service-category',
     api.reportService.getServiceCenterCategories,
   );
-  const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
   const [email, setEmail] = useState('');
+  const [selectedItemID, setSelectedItemID] = useState<number | undefined>(undefined);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const { image, bottomSheetOpened, imageUploadProps, closeBottomSheet, bottomSheetButtonList } =
@@ -40,6 +40,7 @@ function ServiceCenterPage() {
       selectedItemID,
       title,
       content,
+      email,
       image === null ? undefined : image,
     );
     if (response.isSuccess) {

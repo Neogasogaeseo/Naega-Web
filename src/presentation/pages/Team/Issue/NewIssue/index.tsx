@@ -87,9 +87,7 @@ function TeamNewIssue() {
                 <StCategory
                   selected={selectedCategory?.id === category.id}
                   key={category.id}
-                  onClick={() => {
-                    onClickSelectedHandler(category);
-                  }}
+                  onClick={() => onClickSelectedHandler(category)}
                 >
                   {category.name}
                 </StCategory>

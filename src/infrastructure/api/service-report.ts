@@ -5,6 +5,7 @@ export interface ReportService {
     categoryID: number,
     title: string,
     content: string,
+    email?: string,
     image?: File,
   ): Promise<{ isSuccess: boolean }>;
 }

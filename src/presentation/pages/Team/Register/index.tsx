@@ -64,62 +64,67 @@ function TeamRegister() {
 
   return (
     <StWrapper>
-      {isMemberSelectMode && <TeamMemberAddForRegister onClickSubmitButton={closeMembers} />}
-      <StTeamRegister>
-        <CommonNavigation />
-        <div>
-          <StTitle>팀 등록하기</StTitle>
-          <ImageUpload
-            styles={{
-              width: '88px',
-              height: '88px',
-              borderRadius: '30px',
-            }}
-            defaultChildren={{
-              src: icPencil,
-              styles: { width: '24px', right: '262px' },
-            }}
-            {...imageUploadProps}
-          >
-            <ImgTeamDefault />
-          </ImageUpload>
-          <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
-          <CommonInput
-            value={name}
-            width="100%"
-            placeholder="팀 이름을 입력해주세요"
-            onChange={(name) => setName(name)}
-          />
-          <CommonLabel content="팀에 관해 간략히 설명해주세요" marginTop="44px" />
-          <StTextarea
-            placeholder="설명을 입력해주세요"
-            value={description}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
-          />
-          <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
-          <ProfileList
-            isSquare={false}
-            profileList={[
-              { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
-              ...selectedUserList.map((user) => ({
-                id: user.id,
-                profileName: user.name,
-                profileImage: user.image ?? imgEmptyProfile,
-              })),
-            ]}
-            onAddClick={() => setIsMemberSelectMode(true)}
-          />
-          <StSubmitButton
-            onClick={() => {
-              mutate();
-              navigate('/home/team');
-            }}
-            isActive={name.length > 0}
-          >
-            완료
-          </StSubmitButton>
-        </div>
-      </StTeamRegister>
+      {isMemberSelectMode ? (
+        <TeamMemberAddForRegister onClickSubmitButton={closeMembers} />
+      ) : (
+        <StTeamRegister>
+          <CommonNavigation />
+          <div>
+            <StTitle>팀 등록하기</StTitle>
+            <ImageUpload
+              styles={{
+                width: '88px',
+                height: '88px',
+                borderRadius: '30px',
+              }}
+              defaultChildren={{
+                src: icPencil,
+                styles: { width: '24px' },
+              }}
+              {...imageUploadProps}
+            >
+              <ImgTeamDefault />
+            </ImageUpload>
+            <CommonLabel content="팀 이름" marginTop="32px" marginBottom="18px" />
+            <CommonInput
+              value={name}
+              width="100%"
+              placeholder="팀 이름을 입력해주세요"
+              onChange={(name) => setName(name)}
+            />
+            <CommonLabel content="팀에 관해 간략히 설명해주세요" marginTop="44px" />
+            <StTextarea
+              placeholder="설명을 입력해주세요"
+              value={description}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setDescription(e.target.value)
+              }
+            />
+            <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
+            <ProfileList
+              isSquare={false}
+              profileList={[
+                { id: id, profileName: username, profileImage: profileImage ?? imgEmptyProfile },
+                ...selectedUserList.map((user) => ({
+                  id: user.id,
+                  profileName: user.name,
+                  profileImage: user.image ?? imgEmptyProfile,
+                })),
+              ]}
+              onAddClick={() => setIsMemberSelectMode(true)}
+            />
+            <StSubmitButton
+              onClick={() => {
+                mutate();
+                navigate('/home/team');
+              }}
+              isActive={name.length > 0}
+            >
+              완료
+            </StSubmitButton>
+          </div>
+        </StTeamRegister>
+      )}
       <BottomSheet
         isOpened={bottomSheetOpened}
         buttonList={bottomSheetButtonList}

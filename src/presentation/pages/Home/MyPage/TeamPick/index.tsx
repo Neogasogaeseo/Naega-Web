@@ -46,7 +46,7 @@ function MyTeamPick() {
 
   return (
     <>
-      <CommonNavigation title="팀원소개서 픽 하기" />
+      <CommonNavigation title="MY 팀원소개서" />
       <StMyTeamPick>
         <header>
           팀원소개서에 팀원이 남겨준 피드백들 중<br />
@@ -60,6 +60,7 @@ function MyTeamPick() {
               selectedItem={selectedTeam}
               setSelectedItem={setSelectedTeam}
             />
+            <div>{selectedTeam?.title ? selectedTeam?.title + ' 팀' : '전체'}</div>
           </StMyTeamList>
         )}
         {feedbackInfo?.pages &&

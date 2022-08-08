@@ -14,7 +14,6 @@ import {
   StUploadContainer,
   StButton,
   StPhotoUploadImage,
-  StPhotoUploadMiddleDesc,
   StCategory,
 } from './style';
 import { icCamera } from '@assets/icons';
@@ -115,7 +114,7 @@ function TeamNewIssue() {
         >
           <StUploadContainer>
             <StPhotoUploadImage src={icCamera} />
-            <StPhotoUploadMiddleDesc>파일을 선택해서 업로드해주세요</StPhotoUploadMiddleDesc>
+            <div>파일을 선택해서 업로드해주세요</div>
           </StUploadContainer>
         </ImageUpload>
         <StButton

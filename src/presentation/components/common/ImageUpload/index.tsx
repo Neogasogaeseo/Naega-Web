@@ -53,7 +53,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
   };
 
   return (
-    <StImageUpload onClick={clickImageUpload}>
+    <StImageUpload onClick={clickImageUpload} styles={styles}>
       <input
         hidden={true}
         ref={ref}

@@ -1,6 +1,7 @@
 import { NeogaService } from '@api/neoga';
 import { NotFoundError } from '@api/types/errors';
 import { STATUS_CODE } from '@utils/constant';
+import { removeSpecialCharacters } from '@utils/string';
 import { AxiosError } from 'axios';
 import { privateAPI } from './base';
 
@@ -177,7 +178,7 @@ export function NeogaDataRemote(): NeogaService {
     if (!response.data) throw new NotFoundError('해당 유저와 폼 아이디로 생성된 폼이 없습니다.');
     return {
       id: response.data.form.id,
-      title: response.data.form.title.replace('\\n', '\n').replaceAll('*', ''),
+      title: removeSpecialCharacters(response.data.form.title),
       subtitle: response.data.form.subtitle.replace('\\n', '\n'),
       darkIconImage: response.data.form.darkIconImage,
       createdAt: response.data.form.createdAt,

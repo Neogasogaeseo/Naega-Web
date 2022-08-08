@@ -19,8 +19,16 @@ export const StMyNeogaPick = styled.div`
 `;
 
 export const StMyNeogaFormList = styled.div`
-  & > div {
-    padding: 30px 24px 28px 24px;
+  padding: 0 24px;
+
+  & > div:first-child {
+    padding-top: 26px;
+  }
+
+  & > div:last-child {
+    padding-top: 36px;
+    color: ${COLOR.GRAY_8};
+    ${FONT_STYLES.SB_18_TITLE};
   }
 `;
 

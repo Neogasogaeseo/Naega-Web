@@ -8,7 +8,7 @@ import { useToast } from '@hooks/useToast';
 import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
-import { StJoinForm, StInputWrapper, StButton } from './style';
+import { StJoinForm, StButton } from './style';
 import { StErrorMsg } from '@components/common/Input/style';
 import { icProfile, icEmail, icCameraMainCoral } from '@assets/icons';
 import ImageUpload from '@components/common/ImageUpload';
@@ -98,34 +98,32 @@ function JoinForm() {
           }}
           defaultChildren={{
             src: icCameraMainCoral,
-            styles: { width: '32.29px', right: '117px' },
+            styles: { width: '32.29px' },
           }}
           {...imageUploadProps}
         >
           <img src={icProfile} />
         </ImageUpload>
-        <StInputWrapper>
-          <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
-          <CommonInput
-            width="100%"
-            placeholder="neososeo_team"
-            onChange={(value) => {
-              setInputId(value);
-            }}
-            maxLength={15}
-            img={icEmail}
-          />
-          <StErrorMsg>{errorMsg}</StErrorMsg>
-          <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
-          <CommonInput
-            width="100%"
-            placeholder="이름을 입력해주세요"
-            onChange={(value) => {
-              setInputName(value);
-            }}
-            maxLength={6}
-          />
-        </StInputWrapper>
+        <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
+        <CommonInput
+          width="100%"
+          placeholder="neososeo_team"
+          onChange={(value) => {
+            setInputId(value);
+          }}
+          maxLength={15}
+          img={icEmail}
+        />
+        <StErrorMsg>{errorMsg}</StErrorMsg>
+        <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
+        <CommonInput
+          width="100%"
+          placeholder="이름을 입력해주세요"
+          onChange={(value) => {
+            setInputName(value);
+          }}
+          maxLength={6}
+        />
         <StButton
           type="submit"
           onClick={onClickSubmitUserInfo}

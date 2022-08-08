@@ -39,6 +39,7 @@ export interface NeososeoAnswerBookmark {
 }
 
 export interface MyPageInfo extends User {
+  keywordCount: number;
   neososeo: Keyword[];
   team: Keyword[];
 }
@@ -63,6 +64,7 @@ export interface EditProfileInfo {
 
 export interface MyDetail {
   id: number;
+  title?: string;
   profileImage?: string;
 }
 

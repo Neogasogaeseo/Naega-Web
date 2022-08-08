@@ -101,7 +101,7 @@ function HomeMyPage() {
                   <div>
                     <img src={icCrown} />
                     <span>My 키워드</span>
-                    <span>{mypageInfo.neososeo.length + mypageInfo.team.length}</span>
+                    <span>{mypageInfo.keywordCount}</span>
                   </div>
                   {isMyPage && (
                     <StDetailLink onClick={() => navigate(`/mypage/keyword`)}>

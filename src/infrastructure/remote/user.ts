@@ -3,6 +3,7 @@ import { privateAPI, publicAPI } from './base';
 import { InternalServerError, NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
 import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
+import { removeSpecialCharacters } from '@utils/string';
 import { imgEmptyProfile } from '@assets/images';
 import { MyDetail } from '@api/types/user';
 
@@ -174,7 +175,7 @@ export function userDataRemote(): UserService {
         ? response.data.form
             .map((form: any) => ({
               id: form.formId,
-              title: form.title.replace('\\n', '\n').replaceAll('*', ''),
+              title: removeSpecialCharacters(form.title),
               profileImage: form.darkIconImage,
             }))
             .reduce((acc: MyDetail[], cur: MyDetail) => {

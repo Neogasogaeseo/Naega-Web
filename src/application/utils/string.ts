@@ -11,3 +11,6 @@ export const splitIntoTwoLines = (oneLineString: string): string => {
   }
   return firstLine + '\n' + secondLine;
 };
+
+export const removeSpecialCharacters = (title: string) =>
+  title.replace('\\n', '\n').replaceAll('*', '');

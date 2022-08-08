@@ -1,13 +1,14 @@
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
 import { STATUS_CODE } from '@utils/constant';
+import { removeSpecialCharacters } from '@utils/string';
 import { publicAPI } from './base';
 
 export function NeososeoFormRemote(): NeososeoFormService {
   const getFormInfo = async (q: string) => {
     const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
     return {
-      title: response.data.form.title.replace('\\n', '\n').replaceAll('*', ''),
+      title: removeSpecialCharacters(response.data.form.title),
       content: response.data.form.subtitle.replace('\\n', '\n'),
       imageSub: response.data.form.darkIconImage,
       relation: response.data.relationship.map((relation: any) => ({

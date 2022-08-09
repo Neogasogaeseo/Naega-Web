@@ -28,7 +28,7 @@ function ErrorFallback({ error }: FallbackProps) {
         </div>
       )}
       <div>
-        <Link to="/preferences/feedback">
+        <Link to="/preferences/feedback" state={true}>
           <IcPaperAirplane />
           <div>피드백을 보내주시겠어요?</div>
         </Link>

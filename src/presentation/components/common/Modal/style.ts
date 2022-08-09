@@ -8,6 +8,7 @@ export const StCommonModal = styled.div<{ isCoral: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 336px;
   & > *:nth-child(1) {
     margin-top: 32px;
   }

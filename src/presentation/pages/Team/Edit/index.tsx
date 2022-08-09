@@ -66,6 +66,7 @@ export default function TeamEdit() {
     <StRelativeWrapper>
       <CommonModal
         isOpened={isOpenModal}
+        isCoral={false}
         title="팀을 삭제하시겠습니까?"
         description={'팀을 삭제하면 관련된 정보가 모두' + '\n' + '사라지며 복구할 수 없습니다.'}
         onClickConfirm={() =>

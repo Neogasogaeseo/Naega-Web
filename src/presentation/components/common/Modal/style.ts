@@ -1,9 +1,9 @@
+import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
-import { COMMON_MODAL, COMMON_MODAL_BUTTON } from '@styles/common/modal';
-import styled from 'styled-components';
+import { COMMON_MODAL, COMMON_MODAL_BUTTON, CORAL_MODAL_BUTTON } from '@styles/common/modal';
 
-export const StCommonModal = styled.div`
+export const StCommonModal = styled.div<{ isCoral: boolean }>`
   ${COMMON_MODAL}
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@ export const StCommonModal = styled.div`
   }
   & > *:last-child {
     margin: 34px 19px 24px 19px;
-    ${COMMON_MODAL_BUTTON}
+    color: ${({ isCoral }) => (isCoral ? CORAL_MODAL_BUTTON : COMMON_MODAL_BUTTON)};
   }
 `;
 

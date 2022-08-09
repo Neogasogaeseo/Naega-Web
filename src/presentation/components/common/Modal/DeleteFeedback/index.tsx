@@ -31,6 +31,7 @@ function DeleteFeedbackModal(props: DeleteFeedbackModalProps) {
       onClickCancel={closeModal}
       onClickConfirm={mutateDeleteFeedback}
       isOpened={isOpened}
+      isCoral={false}
     />
   );
 }

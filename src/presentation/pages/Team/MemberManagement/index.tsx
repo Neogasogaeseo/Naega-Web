@@ -55,6 +55,7 @@ export default function TeamMemberManagement() {
         title="저장이 안됩니다"
         description={'뒤로가기를 누르면 추가하신' + '\n' + '팀원 정보가 저장이 안돼요'}
         isOpened={isModalOpen}
+        isCoral={false}
         onClickConfirm={() => {
           closeAddMode();
           setIsModalOpen(false);

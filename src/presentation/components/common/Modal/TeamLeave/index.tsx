@@ -104,7 +104,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   const { mutate: deleteTeam } = useDeleteTeam(Number(teamID));
 
   const QuestionModal = (
-    <StCommonModal>
+    <StCommonModal isCoral={false}>
       <IcWarning />
       <div>팀을 나가시겠습니까?</div>
       <StDescription>
@@ -134,7 +134,7 @@ export default function TeamLeaveModal(props: TeamLeaveModalProps) {
   );
 
   const DeleteModal = (
-    <StCommonModal>
+    <StCommonModal isCoral={false}>
       <IcWarning />
       <div>팀을 삭제하시겠습니까?</div>
       <StDescription>

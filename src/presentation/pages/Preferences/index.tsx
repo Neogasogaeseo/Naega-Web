@@ -1,4 +1,9 @@
+import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import { api } from '@api/index';
+import { useLoginUser } from '@hooks/useLoginUser';
 import CommonHeader from '@components/common/Header';
+import CommonModal from '@components/common/Modal';
 import {
   StPreferencesWrapper,
   StSection,
@@ -7,23 +12,24 @@ import {
   StTitle,
   StWhiteBackground,
 } from './style';
-import { useLoginUser } from '@hooks/useLoginUser';
-import { api } from '@api/index';
-import { useNavigate } from 'react-router';
 
 function PreferencesPage() {
   const { removeAccessToken } = useLoginUser();
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const resetUser = () => {
     removeAccessToken();
     navigate('/');
   };
+
   const withdrawForever = async () => {
     const response = await api.userService.postWithdraw();
     if (response.isSuccess) {
       resetUser();
     }
   };
+
   return (
     <>
       <CommonHeader />
@@ -51,9 +57,20 @@ function PreferencesPage() {
           <StSectionTitle>계정</StSectionTitle>
           <StSectionItem>약관</StSectionItem>
           <StSectionItem onClick={resetUser}>로그아웃</StSectionItem>
-          <StSectionItem onClick={withdrawForever}>탈퇴</StSectionItem>
+          <StSectionItem onClick={() => setIsModalOpen(true)}>탈퇴</StSectionItem>
         </StSection>
       </StPreferencesWrapper>
+      <CommonModal
+        title="탈퇴하시겠습니까?"
+        description={'계정을 탈퇴하면' + '\n' + '내 소개를 복원할 수 없습니다.'}
+        isOpened={isModalOpen}
+        isCoral={true}
+        onClickConfirm={() => {
+          withdrawForever();
+          setIsModalOpen(false);
+        }}
+        onClickCancel={() => setIsModalOpen(false)}
+      />
     </>
   );
 }

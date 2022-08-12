@@ -8,11 +8,11 @@ interface CommonModalProps {
   title: string;
   description?: string;
   isOpened: boolean;
-  isCoral: boolean;
+  isCoral?: boolean;
 }
 
 export default function CommonModal(props: CommonModalProps) {
-  const { onClickConfirm, onClickCancel, title, description, isOpened, isCoral } = props;
+  const { onClickConfirm, onClickCancel, title, description, isOpened, isCoral = false } = props;
   return (
     <ModalWrapper isOpened={isOpened}>
       <StCommonModal isCoral={isCoral}>

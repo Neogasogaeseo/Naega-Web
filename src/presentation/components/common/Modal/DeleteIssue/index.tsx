@@ -23,7 +23,6 @@ function DeleteIssueModal(props: DeleteIssueModalProps) {
       onClickCancel={closeModal}
       onClickConfirm={deleteIssue}
       isOpened={isOpened}
-      isCoral={false}
     />
   );
 }

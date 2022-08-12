@@ -3,7 +3,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { COMMON_MODAL, COMMON_MODAL_BUTTON, CORAL_MODAL_BUTTON } from '@styles/common/modal';
 
-export const StCommonModal = styled.div<{ isCoral: boolean }>`
+export const StCommonModal = styled.div<{ isCoral?: boolean }>`
   ${COMMON_MODAL}
   display: flex;
   flex-direction: column;

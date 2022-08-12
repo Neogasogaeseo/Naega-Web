@@ -47,7 +47,6 @@ function MyKeyword() {
     <StMyKeyword>
       <CommonModal
         isOpened={isOpenModal}
-        isCoral={false}
         title="키워드를 삭제하시겠습니까?"
         description={'키워드를 삭제하면 전체 게시글에서' + '\n' + '해당 키워드가 모두 삭제됩니다.'}
         onClickConfirm={async () => {

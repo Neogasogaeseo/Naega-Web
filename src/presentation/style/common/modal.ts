@@ -9,7 +9,7 @@ export const COMMON_MODAL_BUTTON = css`
     width: 144px;
     height: 50px;
     border-radius: 12px;
-    ${FONT_STYLES.M_15_TITLE}
+    ${FONT_STYLES.R_15_BODY};
     line-height: 100%;
     letter-spacing: -0.01em;
   }
@@ -21,6 +21,27 @@ export const COMMON_MODAL_BUTTON = css`
   & > button:last-child {
     background-color: ${COLOR.CORAL_1};
     color: ${COLOR.CORAL_MAIN};
+  }
+`;
+
+export const CORAL_MODAL_BUTTON = css`
+  display: flex;
+  & > button {
+    width: 144px;
+    height: 50px;
+    border-radius: 12px;
+    ${FONT_STYLES.R_15_BODY};
+    line-height: 100%;
+    letter-spacing: -0.01em;
+  }
+  & > button:first-child {
+    margin-right: 10px;
+    background-color: ${COLOR.GRAY_2};
+    color: ${COLOR.GRAY_5};
+  }
+  & > button:last-child {
+    background-color: ${COLOR.CORAL_MAIN};
+    color: ${COLOR.WHITE};
   }
 `;
 

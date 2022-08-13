@@ -102,6 +102,7 @@ export const StTargetUser = styled.div`
     height: 60px;
     border-radius: 118px;
     margin-bottom: 12px;
+    object-fit: cover;
   }
   & > div {
     ${COLOR.GRAY_8}

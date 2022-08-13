@@ -1,15 +1,17 @@
+import { useState, useEffect } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate, useLocation } from 'react-router';
 import { api } from '@api/index';
 import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
 import SelectBox from '@components/common/SelectBox';
 import { useToast } from '@hooks/useToast';
-import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router';
 import { StButton, StForm, StFormTitle, StSubTitle, StTextarea, StTitle } from '../style';
 
 function FeedbackPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const categoryState = location.state;
   const { fireToast } = useToast();
   const { data: categories } = useQuery(
     'feedback-category',
@@ -22,6 +24,9 @@ function FeedbackPage() {
   useEffect(() => {
     if (selectedItemID === undefined && categories !== undefined) {
       setSelectedItemID(categories[0].id);
+    }
+    if (categoryState && categories !== undefined) {
+      setSelectedItemID(categories[2].id);
     }
   }, [categories]);
 

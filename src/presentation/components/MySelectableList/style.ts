@@ -46,6 +46,6 @@ export const StAllButton = styled.div<{ isSquare: boolean; isSelected: boolean }
   opacity: ${({ isSelected }) => (isSelected ? 1 : 0.5)};
   ${FONT_STYLES.R_14_BODY};
   background-color: ${COLOR.GRAY_15};
-  color: ${(props) => (props.isSelected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
+  color: ${({ isSelected }) => (isSelected ? COLOR.CORAL_MAIN : COLOR.GRAY_5)};
   -webkit-tap-highlight-color: transparent;
 `;

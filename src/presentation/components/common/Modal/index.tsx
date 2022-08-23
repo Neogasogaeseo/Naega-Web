@@ -1,4 +1,4 @@
-import { IcWarning, IcWarningCoral } from '@assets/icons';
+import { IcWarning } from '@assets/icons';
 import ModalWrapper from '../ModalWrapper';
 import { StCommonModal, StDescription } from './style';
 
@@ -8,15 +8,14 @@ interface CommonModalProps {
   title: string;
   description?: string;
   isOpened: boolean;
-  isCoral?: boolean;
 }
 
 export default function CommonModal(props: CommonModalProps) {
-  const { onClickConfirm, onClickCancel, title, description, isOpened, isCoral = false } = props;
+  const { onClickConfirm, onClickCancel, title, description, isOpened } = props;
   return (
     <ModalWrapper isOpened={isOpened}>
-      <StCommonModal isCoral={isCoral}>
-        {isCoral ? <IcWarningCoral /> : <IcWarning />}
+      <StCommonModal>
+        <IcWarning />
         <div>{title}</div>
         {description && <StDescription>{description}</StDescription>}
         <div>

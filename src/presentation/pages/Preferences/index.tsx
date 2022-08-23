@@ -64,7 +64,6 @@ function PreferencesPage() {
         title="탈퇴하시겠습니까?"
         description={'계정을 탈퇴하면' + '\n' + '내 소개를 복원할 수 없습니다.'}
         isOpened={isModalOpen}
-        isCoral={true}
         onClickConfirm={() => {
           withdrawForever();
           setIsModalOpen(false);

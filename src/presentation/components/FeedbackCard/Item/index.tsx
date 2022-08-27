@@ -18,7 +18,7 @@ type FeedbackCardProps = FeedbackDetail & {
     isForMe: boolean,
     isPinned: boolean,
   ): void;
-  parentPage: 'teamsoseo' | 'mypage';
+  parentPage: 'teamsoseo' | 'mypage' | 'myteamsoseo';
   selectedTeam?: MyDetail | null;
 };
 
@@ -93,10 +93,12 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           ))}
       </StHeader>
       <StBody>{body}</StBody>
-      <StIssue>
-        <div>이슈</div>
-        화면 기획 논의를 하다가 각자의 주장으로 의견이 충돌했다
-      </StIssue>
+      {parentPage === 'myteamsoseo' && (
+        <StIssue>
+          <div>이슈</div>
+          화면 기획 논의를 하다가 각자의 주장으로 의견이 충돌했다
+        </StIssue>
+      )}
       <ImmutableKeywordList
         keywordList={keywordList}
         onItemClick={() => {

@@ -94,7 +94,8 @@ function FeedbackCardItem(props: FeedbackCardProps) {
       </StHeader>
       <StBody>{body}</StBody>
       <StIssue>
-        <span>이슈</span>
+        <div>이슈</div>
+        화면 기획 논의를 하다가 각자의 주장으로 의견이 충돌했다
       </StIssue>
       <ImmutableKeywordList
         keywordList={keywordList}

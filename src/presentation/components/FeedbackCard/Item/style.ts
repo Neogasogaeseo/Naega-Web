@@ -61,9 +61,15 @@ export const StIssue = styled.div`
   background-color: ${COLOR.GRAY_1};
   color: ${COLOR.GRAY_6};
   padding: 16px 16px 18px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
 
-  & > span {
+  & > div {
     ${FONT_STYLES.SB_12_TITLE};
     color: ${COLOR.GRAY_5};
+    margin-bottom: 8px;
   }
 `;

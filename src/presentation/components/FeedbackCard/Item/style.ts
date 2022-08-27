@@ -56,3 +56,14 @@ export const StBody = styled.div`
   color: ${COLOR.GRAY_7};
   white-space: pre-line;
 `;
+
+export const StIssue = styled.div`
+  background-color: ${COLOR.GRAY_1};
+  color: ${COLOR.GRAY_6};
+  padding: 16px 16px 18px 16px;
+
+  & > span {
+    ${FONT_STYLES.SB_12_TITLE};
+    color: ${COLOR.GRAY_5};
+  }
+`;

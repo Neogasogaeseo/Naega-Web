@@ -6,7 +6,7 @@ import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
-import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
+import { StFeedbackCard, StHeader, StBody, StIssue, StBookmark, StMeatBall } from './style';
 import { usePickTeamFeedback } from '@hooks/queries/team';
 import { MyDetail } from '@api/types/user';
 
@@ -93,6 +93,9 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           ))}
       </StHeader>
       <StBody>{body}</StBody>
+      <StIssue>
+        <span>이슈</span>
+      </StIssue>
       <ImmutableKeywordList
         keywordList={keywordList}
         onItemClick={() => {

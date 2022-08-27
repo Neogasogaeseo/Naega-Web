@@ -70,7 +70,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           <span>{createdAt}</span>
         </div>
         {(isMine || isForMe) &&
-          (parentPage === 'mypage' && isForMe ? (
+          (parentPage !== 'teamsoseo' && isForMe ? (
             <StBookmark selected={isBookmarked} onClick={() => isLoading || pickFeedback()} />
           ) : (
             <StMeatBall

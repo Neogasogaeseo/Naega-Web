@@ -21,23 +21,23 @@ export default function NeogaLink() {
   const { formID, viewMode } = useParams();
   const [isCreated, setIsCreated] = useState(viewMode === CREATED);
   const { fireToast } = useToast();
-  const [link, setLink] = useState<string>('');
+  const [q, setQ] = useState<string | undefined>();
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
     { enabled: viewMode === NEW, useErrorBoundary: true, retry: 1 },
   );
 
-  const createLink = async () => {
+  const createQ = async () => {
     if (!formID || isNaN(+formID)) return;
     const { q, isCreated } = await api.neogaService.postCreateForm(+formID);
-    setLink(`${DOMAIN}/neososeoform/${q}`);
+    setQ(q);
     setIsCreated(isCreated);
   };
 
   useEffect(() => {
     if (!(viewMode === NEW || viewMode === CREATED)) navigate('/');
-    if (viewMode === CREATED) createLink();
+    if (viewMode === CREATED) createQ();
   }, []);
 
   return (
@@ -49,7 +49,7 @@ export default function NeogaLink() {
           title={(formData && formData.title) ?? ''}
           image={(formData && formData.image) ?? ''}
         >
-          <StLinkButton onClick={createLink} isCreated={isCreated}>
+          <StLinkButton onClick={createQ} isCreated={isCreated}>
             <IcPulsCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
@@ -63,7 +63,7 @@ export default function NeogaLink() {
           <StLinkButton
             onClick={() =>
               copyClipboard(
-                link,
+                `${DOMAIN}/neososeoform/${q}`,
                 () => fireToast({ content: '링크가 클립보드에 저장되었습니다.' }),
                 () => fireToast({ content: '다시 시도해주세요.' }),
               )

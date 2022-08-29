@@ -1,14 +1,10 @@
-import { api } from '@api/index';
-import { useQuery } from 'react-query';
+import { useGetFormInfo } from '@hooks/queries/neososeo-form';
 import { useParams, Outlet } from 'react-router-dom';
 import { StNeososeoFormPage } from './style';
 
 function NeososeoFormPage() {
   const { q } = useParams();
-
-  const { data: neososeoFormData, isLoading } = useQuery(['neososeoForm', q], () =>
-    api.neososeoFormService.getFormInfo(q ?? ''),
-  );
+  const { data: neososeoFormData, isLoading } = useGetFormInfo(q ?? '');
 
   return (
     <StNeososeoFormPage>

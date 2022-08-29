@@ -141,7 +141,7 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: response.success };
   };
 
-  const postCreateForm = async (formID: number) => {
+  const createForm = async (formID: number) => {
     const response = await privateAPI
       .post({
         url: `/form/create`,
@@ -229,7 +229,7 @@ export function NeogaDataRemote(): NeogaService {
     getMainResultCard,
     getAllFormCard,
     postAnswerBookmark,
-    postCreateForm,
+    createForm,
     getCreateFormInfo,
     getNeososeoInfo,
     getNeososeoFeedback,

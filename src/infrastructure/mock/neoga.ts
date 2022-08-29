@@ -37,7 +37,7 @@ export function neogaDataMock(): NeogaService {
     return { isSuccess: true };
   };
 
-  const postCreateForm = async () => {
+  const createForm = async () => {
     await wait(2000);
     return { isCreated: true, q: '큐' };
   };
@@ -72,7 +72,7 @@ export function neogaDataMock(): NeogaService {
     getAllFormCard,
     postAnswerBookmark,
     deleteAnswer,
-    postCreateForm,
+    createForm,
     getCreateFormInfo,
     getNeososeoInfo,
     getNeososeoFeedback,

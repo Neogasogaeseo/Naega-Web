@@ -28,7 +28,7 @@ export default function NeogaLink() {
 
   const createQ = async () => {
     if (!formID || isNaN(+formID)) return;
-    const { q, isCreated } = await api.neogaService.postCreateForm(+formID);
+    const { q, isCreated } = await api.neogaService.createForm(+formID);
     setQ(q);
     setIsCreated(isCreated);
   };

@@ -18,7 +18,6 @@ export const StNeososeoFormHome = styled.div`
       width: 60px;
       height: 60px;
       border-radius: 20px;
-      image-orientation: from-image;
     }
     display: flex;
     gap: 16px;

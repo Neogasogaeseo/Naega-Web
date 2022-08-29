@@ -74,7 +74,6 @@ export const StIssueThumbnail = styled.img`
   width: calc(100% + 40px);
   margin-left: -20px;
   object-fit: cover;
-  image-orientation: from-image;
 `;
 
 export const StDivisionLine = styled.div`

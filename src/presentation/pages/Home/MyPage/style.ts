@@ -150,7 +150,6 @@ export const StMyPageProfile = styled.div`
     height: 60px;
     border-radius: 20px;
     object-fit: cover;
-    image-orientation: from-image;
   }
   & svg {
     position: absolute;

@@ -18,7 +18,6 @@ export const StSearchedUserItem = styled.div`
       object-fit: cover;
       border-radius: 100px;
       margin-right: 10px;
-      image-orientation: from-image;
     }
   }
 `;

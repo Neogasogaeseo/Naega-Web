@@ -39,7 +39,6 @@ export const StTeamMemberPopup = styled.div`
       object-fit: cover;
       margin-right: 15px;
       border-radius: 77.0833px;
-      image-orientation: from-image;
     }
 
     span {

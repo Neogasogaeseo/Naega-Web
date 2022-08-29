@@ -17,7 +17,6 @@ export const StIssueCard = styled.div<{ issueCardImage?: string }>`
         height: 96px;
         border-radius: 20px 20px 0px 0px;
         background: no-repeat center/cover url(${props.issueCardImage});
-        image-orientation: from-image;
       }
     `}
 

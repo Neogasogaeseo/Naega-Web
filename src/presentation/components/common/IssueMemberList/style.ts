@@ -17,7 +17,6 @@ export const StIssueMemberList = styled.div`
     position: relative;
     border-radius: 50%;
     margin-right: -11px;
-    image-orientation: from-image;
   }
 
   & img:not(img:nth-of-type(1)) {

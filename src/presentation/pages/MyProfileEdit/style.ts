@@ -48,7 +48,6 @@ export const StProfileImg = styled.div`
     height: 118px;
     border-radius: 50%;
     object-fit: cover;
-    image-orientation: from-image;
   }
 
   svg {

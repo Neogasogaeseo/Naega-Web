@@ -1,5 +1,6 @@
-import { useGetFormInfo } from '@hooks/queries/neososeo-form';
 import { useParams, Outlet } from 'react-router-dom';
+
+import { useGetFormInfo } from '@hooks/queries/neososeo-form';
 import { StNeososeoFormPage } from './style';
 
 function NeososeoFormPage() {

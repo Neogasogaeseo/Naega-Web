@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import { StLinkButton, StNeogaLink } from './style';

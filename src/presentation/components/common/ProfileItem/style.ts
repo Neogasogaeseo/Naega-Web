@@ -24,6 +24,7 @@ export const StProfileItem = styled.div<{
         props.isSelected ? `1px solid ${COLOR.PINK}` : '1px solid transparent'};
       ${(props) =>
         props.isSelected && `filter: opacity(0.6) drop-shadow(0 0 0 rgb(255, 98, 98, 0.9));`}
+      image-orientation: from-image;
     }
   }
 

@@ -19,6 +19,7 @@ export const StIssueTeamInfo = styled.div`
     height: 22px;
     border-radius: 8px;
     object-fit: cover;
+    image-orientation: from-image;
   }
 
   span {

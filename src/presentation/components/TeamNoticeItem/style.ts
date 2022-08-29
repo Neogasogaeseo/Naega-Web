@@ -8,6 +8,7 @@ export const StTeamProfile = styled.img<{ isDeclined: boolean }>`
   height: 48px;
   object-fit: cover;
   ${({ isDeclined }) => isDeclined && `filter: grayscale(80%) brightness(0.8);`}
+  image-orientation: from-image;
 `;
 
 export const StTeamProfileWrapper = styled.div`

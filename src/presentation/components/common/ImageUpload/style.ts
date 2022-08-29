@@ -6,6 +6,7 @@ export const StThumbnail = styled.img<{ styles: React.CSSProperties }>`
   width: ${(props) => props.styles.width};
   height: ${(props) => props.styles.height};
   border-radius: ${(props) => props.styles.borderRadius ?? 0};
+  image-orientation: from-image;
 `;
 
 export const StImageUpload = styled.div<{ styles: React.CSSProperties }>`
@@ -18,6 +19,7 @@ export const StThumbnailWrapper = styled.div<{ styles: React.CSSProperties }>`
   width: ${(props) => props.styles.width};
   height: ${(props) => props.styles.height};
   border-radius: ${(props) => props.styles.borderRadius ?? 0};
+  image-orientation: from-image;
 `;
 
 export const StDefaultChildren = styled.img<{ styles: React.CSSProperties }>`

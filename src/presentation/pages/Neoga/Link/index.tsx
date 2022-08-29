@@ -14,18 +14,17 @@ import CommonHeader from '@components/common/Header';
 import { imgCreatedLink } from '@assets/images';
 
 export default function NeogaLink() {
-  const CREATED = 'created';
-  const NEW = 'new';
+  const VIEW_MODE = { CREATED: 'created', NEW: 'new' };
 
   const navigate = useNavigate();
   const { formID, viewMode } = useParams();
-  const [isCreated, setIsCreated] = useState(viewMode === CREATED);
+  const [isCreated, setIsCreated] = useState(viewMode === VIEW_MODE.CREATED);
   const { fireToast } = useToast();
   const [q, setQ] = useState<string | undefined>();
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
-    { enabled: viewMode === NEW, useErrorBoundary: true, retry: 1 },
+    { enabled: viewMode === VIEW_MODE.NEW, useErrorBoundary: true, retry: 1 },
   );
 
   const createQ = async () => {
@@ -36,8 +35,8 @@ export default function NeogaLink() {
   };
 
   useEffect(() => {
-    if (!(viewMode === NEW || viewMode === CREATED)) navigate('/');
-    if (viewMode === CREATED) createQ();
+    if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
+    if (viewMode === VIEW_MODE.CREATED) createQ();
   }, []);
 
   return (

@@ -13,5 +13,5 @@ export const useGetFormInfo = (
 ) =>
   useQuery(['neososeoForm', q], () => api.neososeoFormService.getFormInfo(q), {
     ...options,
-    useErrorBoundary: options?.useErrorBoundary || true,
+    useErrorBoundary: options?.useErrorBoundary ?? true,
   });

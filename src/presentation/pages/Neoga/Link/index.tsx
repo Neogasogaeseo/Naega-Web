@@ -43,9 +43,9 @@ export default function NeogaLink() {
       <CommonHeader />
       <div>
         <NeogaFormTicket
-          content={(formData && formData.subtitle) ?? ''}
-          title={(formData && formData.title) ?? ''}
-          image={(formData && formData.image) ?? ''}
+          content={formData?.subtitle ?? ''}
+          title={formData?.title ?? ''}
+          image={formData?.image ?? ''}
         >
           <StLinkButton onClick={createQ} isCreated={isCreated}>
             <IcPulsCoral />

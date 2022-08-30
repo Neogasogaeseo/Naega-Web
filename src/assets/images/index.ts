@@ -23,3 +23,4 @@ export { ReactComponent as ImgLogoHeader } from './img_logo_header.svg';
 export { ReactComponent as ImgPage1 } from './img_page_1.svg';
 export { ReactComponent as ImgPage2 } from './img_page_2.svg';
 export { default as imgNoTeammates } from './img_no_teammates.png';
+export { default as imgCharacterLogo } from './img_character_logo.png';

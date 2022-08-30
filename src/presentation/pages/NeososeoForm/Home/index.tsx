@@ -1,6 +1,6 @@
 import { NeososeoFormData } from '@api/types/neososeo-form';
 import CommonHeader from '@components/common/Header';
-import FormCard from '@components/common/FormCard';
+import NeogaFormTicket from '@components/common/NeogaFormTicket';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';
 import { StNeososeoFormHome, StAnswerCount } from './style';
@@ -28,13 +28,13 @@ function NeososeoFormHome() {
         </div>
       </div>
       <div>
-        <FormCard
+        <NeogaFormTicket
           image={neososeoFormData.imageSub}
           title={neososeoFormData.title}
           content={neososeoFormData.content}
         >
           <StAnswerCount>{neososeoFormData.answerCount}명이 답변했어요</StAnswerCount>
-        </FormCard>
+        </NeogaFormTicket>
       </div>
       <div>
         <StButton onClick={() => navigate('intro')}>나도 답변 작성하기</StButton>

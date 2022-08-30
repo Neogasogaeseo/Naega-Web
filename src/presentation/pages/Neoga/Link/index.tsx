@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
-import FormCard from '@components/common/FormCard';
+import NeogaFormTicket from '@components/common/NeogaFormTicket';
 import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
@@ -42,7 +42,7 @@ export default function NeogaLink() {
     <StNeogaLink isCreated={isCreated}>
       <CommonHeader />
       <div>
-        <FormCard
+        <NeogaFormTicket
           content={(formData && formData.subtitle) ?? ''}
           title={(formData && formData.title) ?? ''}
           image={(formData && formData.image) ?? ''}
@@ -51,8 +51,8 @@ export default function NeogaLink() {
             <IcPulsCoral />
             <div>링크 생성하기</div>
           </StLinkButton>
-        </FormCard>
-        <FormCard
+        </NeogaFormTicket>
+        <NeogaFormTicket
           content="너가소개서 생성 완료!"
           title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
           image={imgCreatedLink}
@@ -71,7 +71,7 @@ export default function NeogaLink() {
             <IcLinkWhite />
             <div>링크 복사하기</div>
           </StLinkButton>
-        </FormCard>
+        </NeogaFormTicket>
       </div>
     </StNeogaLink>
   );

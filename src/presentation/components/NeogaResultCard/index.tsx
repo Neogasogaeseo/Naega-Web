@@ -1,6 +1,6 @@
 import { imgEmptyProfile } from '@assets/images';
 import { StNeogaResultCard, StNeogaCardHeader, StNeogaCardLine, StNeogaNoReply } from './style';
-import NeogaResultComment from '../NeogaResultComment';
+import NeogaResultComment from '@components/NeogaResultComment';
 import { useNavigate } from 'react-router-dom';
 import { NeogaAnswerList } from '@api/types/neoga';
 

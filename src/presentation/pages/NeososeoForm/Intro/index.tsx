@@ -2,7 +2,7 @@ import { NeososeoFormData, Relation } from '@api/types/neososeo-form';
 import { ImgPage1 } from '@assets/images';
 import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import NeososeoFormHeader from '@components/NeososeoFormHeader';
 import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';

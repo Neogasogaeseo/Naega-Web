@@ -5,7 +5,7 @@ import { ImgPage2 } from '@assets/images';
 import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import NeososeoFormHeader from '@components/NeososeoFormHeader';
 import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';

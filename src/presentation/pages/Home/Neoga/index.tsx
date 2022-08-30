@@ -6,7 +6,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import TemplateListSkeleton from '@components/common/Skeleton/TemplateList';
 import CardItemSkeleton from '@components/common/Skeleton/CardItem';
 import NeogaMainCardList from '@components/NeogaMainCard/List';
-import NeogaResultCard from '@components/common/NeogaResultCard';
+import NeogaResultCard from '@components/NeogaResultCard';
 import HomeNeogaEmptyView from '@components/common/Empty/HomeNeoga';
 import { StBanner, StForm, StHomeNeoga, StResult, StMoreButtonArea, StWholeButton } from './style';
 import { icNewTag, icWhole } from '@assets/icons';

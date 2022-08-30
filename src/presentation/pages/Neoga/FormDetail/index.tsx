@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { useToast } from '@hooks/useToast';
 import { copyClipboard } from '@utils/copyClipboard';
 import { DOMAIN } from '@utils/constant';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import NeososeoFormHeader from '@components/NeososeoFormHeader';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import NeogaDetailFormEmptyView from '@components/common/Empty/NeogaDetailForm';
 import {

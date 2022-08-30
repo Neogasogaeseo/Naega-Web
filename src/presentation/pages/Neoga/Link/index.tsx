@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 import { StLinkButton, StNeogaLink } from './style';
 import { api } from '@api/index';
-import NeogaFormTicket from '@components/common/NeogaFormTicket';
+import NeogaFormTicket from '@components/NeogaFormTicket';
 import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';

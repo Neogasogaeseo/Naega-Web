@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { api } from '@api/index';
 import { useLoginUser } from '@hooks/useLoginUser';
-import NeogaResultCard from '@components/common/NeogaResultCard';
+import NeogaResultCard from '@components/NeogaResultCard';
 import NeogaCreateCardItem from '@components/NeogaCreateCard/Item';
 import { StNeogaResult } from './style';
 import CommonHeader from '@components/common/Header';

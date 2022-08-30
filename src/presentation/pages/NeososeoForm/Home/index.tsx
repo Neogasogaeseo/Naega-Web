@@ -1,6 +1,6 @@
 import { NeososeoFormData } from '@api/types/neososeo-form';
 import CommonHeader from '@components/common/Header';
-import NeogaFormTicket from '@components/common/NeogaFormTicket';
+import NeogaFormTicket from '@components/NeogaFormTicket';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { StButton } from '../style';
 import { StNeososeoFormHome, StAnswerCount } from './style';

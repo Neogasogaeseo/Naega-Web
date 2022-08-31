@@ -7,8 +7,8 @@ export const StNeogaLink = styled.div<{ isCreated: boolean }>`
   flex-direction: column;
   align-items: center;
   background-color: ${COLOR.GRAY_1};
-  height: 100vh;
-  & > *:last-child {
+  height: 100%;
+  & > *:nth-child(2) {
     margin-top: 136px;
     margin-bottom: 69px;
     position: relative;
@@ -46,5 +46,15 @@ export const StLinkButton = styled.div<{ isCreated: boolean }>`
     line-height: 24px;
     letter-spacing: -0.01em;
     color: ${(props) => (props.isCreated ? COLOR.WHITE : COLOR.CORAL_MAIN)};
+  }
+`;
+
+export const StWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  & > *:last-child {
+    position: absolute;
+    top: 0;
   }
 `;

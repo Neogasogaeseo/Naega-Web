@@ -1,3 +1,4 @@
+import { formatDate } from './../../application/utils/date';
 import { NeososeoFormService } from '@api/neososeo-form';
 import { NeososeoAnswerData } from '@api/types/neososeo-form';
 import { STATUS_CODE } from '@utils/constant';
@@ -20,7 +21,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
       formID: response.data.form.linkFormId,
       userProfileImage: response.data.user.image,
       answerCount: response.data.answerCount,
-      createdAt: new Date(response.data.createdAt).toLocaleString(),
+      createdAt: formatDate(new Date(response.data.form.createdAt), 'yyyy-mm-dd'),
     };
   };
 

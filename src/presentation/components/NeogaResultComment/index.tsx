@@ -1,5 +1,5 @@
 import { Keyword } from '@api/types/user';
-import ImmutableKeywordList from '../Keyword/ImmutableList';
+import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { StNeogaResultComment } from './style';
 
 interface NeogaResultCommentProps {

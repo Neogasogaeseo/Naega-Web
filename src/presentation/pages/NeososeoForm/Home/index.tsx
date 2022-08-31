@@ -24,7 +24,7 @@ function NeososeoFormHome() {
         />
         <div>
           <div>{neososeoFormData.userName}님의 너가소개서</div>
-          <div>2022-03-02</div>
+          <div>{neososeoFormData.createdAt}</div>
         </div>
       </div>
       <div>

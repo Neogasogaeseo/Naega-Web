@@ -20,6 +20,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
       formID: response.data.form.linkFormId,
       userProfileImage: response.data.user.image,
       answerCount: response.data.answerCount,
+      createdAt: new Date(response.data.createdAt).toLocaleString(),
     };
   };
 

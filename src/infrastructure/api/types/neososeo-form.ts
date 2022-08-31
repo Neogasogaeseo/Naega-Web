@@ -13,6 +13,7 @@ export type NeososeoFormData = {
   userProfileImage?: string;
   formID: number;
   answerCount: number;
+  createdAt: string;
 };
 
 export type NeososeoAnswerData = {

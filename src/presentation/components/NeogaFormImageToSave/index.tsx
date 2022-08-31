@@ -1,19 +1,19 @@
 import React from 'react';
 
 import NeogaFormTicket from '@components/NeogaFormTicket';
-import { StLogo, StNeogaFormImage } from './style';
+import { StLogo, StNeogaFormImageToSave } from './style';
 import { NeososeoFormData } from '@api/types/neososeo-form';
 import { imgCharacterLogo } from '@assets/images';
 
-interface NeogaFormImageProps {
+interface NeogaFormImageToSaveProps {
   formData: NeososeoFormData;
 }
 
-export const NeogaFormImage = React.forwardRef<HTMLDivElement, NeogaFormImageProps>(
+export const NeogaFormImageToSave = React.forwardRef<HTMLDivElement, NeogaFormImageToSaveProps>(
   (props, ref) => {
     const { title, content, imageSub, userName, createdAt, userProfileImage } = props.formData;
     return (
-      <StNeogaFormImage ref={ref}>
+      <StNeogaFormImageToSave ref={ref}>
         <div>
           <img src={userProfileImage} />
           <div>
@@ -24,7 +24,7 @@ export const NeogaFormImage = React.forwardRef<HTMLDivElement, NeogaFormImagePro
         <NeogaFormTicket image={imageSub} title={title} content={content}>
           <StLogo src={imgCharacterLogo} />
         </NeogaFormTicket>
-      </StNeogaFormImage>
+      </StNeogaFormImageToSave>
     );
   },
 );

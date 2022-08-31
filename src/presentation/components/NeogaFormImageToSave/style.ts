@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
-export const StNeogaFormImage = styled.div`
+export const StNeogaFormImageToSave = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

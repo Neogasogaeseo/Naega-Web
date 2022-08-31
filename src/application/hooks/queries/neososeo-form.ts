@@ -7,7 +7,7 @@ import { NeososeoFormData } from '@api/types/neososeo-form';
 export const useGetFormInfo = (
   q: string,
   options?: Omit<
-    UseQueryOptions<NeososeoFormData, AxiosError, Promise<NeososeoFormData>, string[]>,
+    UseQueryOptions<NeososeoFormData, AxiosError, NeososeoFormData, string[]>,
     'queryKey' | 'queryFn'
   >,
 ) =>

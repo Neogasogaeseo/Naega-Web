@@ -22,7 +22,7 @@ export const NeogaFormImageToSave = React.forwardRef<HTMLDivElement, NeogaFormIm
           </div>
         </div>
         <NeogaFormTicket image={imageSub} title={title} content={content}>
-          <StLogo src={imgCharacterLogo} crossOrigin="anonymous" />
+          <StLogo src={imgCharacterLogo} />
         </NeogaFormTicket>
       </StNeogaFormImageToSave>
     );

@@ -15,14 +15,14 @@ export const NeogaFormImageToSave = React.forwardRef<HTMLDivElement, NeogaFormIm
     return (
       <StNeogaFormImageToSave ref={ref}>
         <div>
-          <img src={userProfileImage} />
+          <img src={userProfileImage} crossOrigin="anonymous" />
           <div>
             <div>{`${userName}님의 너가소개서`}</div>
             <div>{createdAt}</div>
           </div>
         </div>
         <NeogaFormTicket image={imageSub} title={title} content={content}>
-          <StLogo src={imgCharacterLogo} />
+          <StLogo src={imgCharacterLogo} crossOrigin="anonymous" />
         </NeogaFormTicket>
       </StNeogaFormImageToSave>
     );

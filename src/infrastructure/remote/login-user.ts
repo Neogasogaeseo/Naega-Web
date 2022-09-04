@@ -1,6 +1,9 @@
+import { AxiosError } from 'axios';
+
 import { LoginUserService } from '@api/login-user';
 import { STATUS_CODE } from '@utils/constant';
 import { publicAPI } from './base';
+import { NotFoundError } from '@api/types/errors';
 
 export function loginUserRemote(): LoginUserService {
   const getUserInfo = async (token: string) => {
@@ -14,5 +17,29 @@ export function loginUserRemote(): LoginUserService {
       accessToken: token,
     };
   };
-  return { getUserInfo };
+
+  const postLogin = async (authorizationCode: string) => {
+    const response = await publicAPI
+      .post({
+        url: `/auth/login`,
+        data: { authenticationCode: authorizationCode },
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === STATUS_CODE.NOT_FOUND)
+          throw new NotFoundError('로그인에 실패하였습니다.');
+      });
+    const { id, profileId, name, image, refreshToken } = response.user;
+    return {
+      isJoined: profileId.length > 0,
+      accessToken: response.data.accesstoken,
+      refreshToken: refreshToken,
+      user: {
+        id: Number(id),
+        username: name,
+        userID: profileId,
+        profileImage: image,
+      },
+    };
+  };
+  return { getUserInfo, postLogin };
 }

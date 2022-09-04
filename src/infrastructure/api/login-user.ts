@@ -1,8 +1,9 @@
-import { LoginUser } from './types/user';
+import { LoginUser, User } from './types/user';
 import { publicAPI } from '../remote/base';
 
 export interface LoginUserService {
-  getUserInfo(token: string): Promise<LoginUser>;
+  getUserInfo(token: string): Promise<User>;
+  postLogin(authorizationCode: string): Promise<LoginUser>;
 }
 
 export const postLogin = async (

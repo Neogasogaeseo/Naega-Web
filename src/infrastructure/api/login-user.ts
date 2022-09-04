@@ -6,12 +6,12 @@ export interface LoginUserService {
 }
 
 export const postLogin = async (
-  kakaoToken: string,
+  authorizationCode: string,
 ): Promise<{ user?: any; accesstoken: string; refreshtoken?: string }> => {
   try {
     const response = await publicAPI.post({
       url: `/auth/login`,
-      data: { authenticationCode: kakaoToken, provider: 'kakao' },
+      data: { authenticationCode: authorizationCode, provider: 'kakao' },
     });
     if (response.status === 200) return response.data;
     else throw '로그인 실패';

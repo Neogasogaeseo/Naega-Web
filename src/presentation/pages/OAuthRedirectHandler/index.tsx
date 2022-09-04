@@ -12,8 +12,8 @@ const OAuthRedirectHandler = () => {
   const setKakaoRefreshToken = useSetRecoilState(kakaoRefreshTokenState);
 
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
-    postLogin(code).then((response) => {
+    const authorizationCode = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
+    postLogin(authorizationCode).then((response) => {
       if (response.user) {
         const { id, profileId, name, image } = response.user;
         const accessToken = response.accesstoken;

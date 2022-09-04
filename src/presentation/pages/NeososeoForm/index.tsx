@@ -1,4 +1,5 @@
 import { useParams, Outlet } from 'react-router-dom';
+import GoogleAdsense from '@components/GoogleAdsense';
 
 import { useGetFormInfo } from '@hooks/queries/neososeo-form';
 import { StNeososeoFormPage } from './style';
@@ -9,6 +10,7 @@ function NeososeoFormPage() {
 
   return (
     <StNeososeoFormPage>
+      <GoogleAdsense />
       {!isLoading && neososeoFormData !== undefined && <Outlet context={{ neososeoFormData }} />}
     </StNeososeoFormPage>
   );

@@ -1,4 +1,4 @@
-const isProduction = process.env.NODE_ENV === 'production';
+export const isProduction = process.env.NODE_ENV === 'production';
 export const DOMAIN = isProduction ? 'https://naegasogaeseo-dev.kro.kr' : 'http://localhost:3000';
 
 export const PAGES = { KEYWORD: 15, NOTICE: 15, PICK: 10, SEARCHED_USER: 16 };

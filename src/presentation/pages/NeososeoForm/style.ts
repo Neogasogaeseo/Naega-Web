@@ -9,6 +9,13 @@ export const StNeososeoFormPage = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  padding-top: 50px;
+  position: relative;
+
+  & > *:first-child {
+    padding: 0 20px;
+    padding-top: 50px;
+  }
 `;
 
 export const StNeososeoTitle = styled.div`
@@ -77,7 +84,7 @@ export const StNeososeoFormLayout = styled.div`
   margin-bottom: 48px;
   & > div:nth-child(1) {
     padding-top: 22px;
-    padding-bottom: 134px;
+    padding-bottom: 84px;
   }
   & > div:nth-child(2) {
     display: flex;

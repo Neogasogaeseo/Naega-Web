@@ -4,11 +4,15 @@ import { atom } from 'recoil';
 export const loginUserState = atom<LoginUser>({
   key: 'loginUserState',
   default: {
-    id: -1,
+    user: {
+      id: -1,
+      username: '',
+      userID: '',
+      profileImage: '',
+    },
+    isJoined: false,
     accessToken: '',
-    username: '',
-    userID: '',
-    profileImage: '',
+    refreshToken: '',
   },
 });
 

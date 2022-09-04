@@ -12,7 +12,7 @@ import { COLOR } from '@styles/common/color';
 import UserSearchResult from '../../UserSearchResult';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import { api } from '@api/index';
-import { SEARCHED_USER_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { SearchedUserForRegister } from '@api/types/team';
 
 export default function TeamMemberAddForRegister({
@@ -31,8 +31,8 @@ export default function TeamMemberAddForRegister({
       const response = await api.teamService.getSearchedUserListForRegister(searchWord, pageParam);
       return {
         result: response,
-        nextPage: pageParam + SEARCHED_USER_PAGE,
-        isLast: response.length < SEARCHED_USER_PAGE,
+        nextPage: pageParam + PAGES.SEARCHED_USER,
+        isLast: response.length < PAGES.SEARCHED_USER,
       };
     },
     [searchWord],

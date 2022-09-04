@@ -1,5 +1,6 @@
 import { api } from '@api/index';
 import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import GoogleAdsense from '@components/GoogleAdsense';
 import FormRouter from '@routes/FormRouter';
 import { neososeoAnswerState, neososeoFormState } from '@stores/neososeo-form';
 import { useEffect } from 'react';
@@ -23,6 +24,7 @@ function NeososeoFormPage() {
 
   return (
     <StNeososeoFormPage>
+      <GoogleAdsense />
       {neososeoForm && (
         <NeososeoFormHeader title={neososeoForm.title} image={neososeoForm.imageSub} />
       )}

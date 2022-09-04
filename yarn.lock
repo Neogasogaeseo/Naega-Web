@@ -1096,6 +1096,13 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
   integrity sha512-M0qqxAcwCsIVfpFQSlGN5XjXWu8l5JDZN+fPt1LeW5SZexQTgnaEvgXAY+CeygRw0EeppWHi12JxESWiWrB0Sg==
 
+"@ctrl/react-adsense@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@ctrl/react-adsense/-/react-adsense-1.6.0.tgz#8761bbb13934bf4c9acc520041463050cd96d032"
+  integrity sha512-FlekDNpaSkXpxVH9ic9p3fue3FTQl/Cwqv/DG8ZbN00XL6aujHsArCPo0ElnBBB3imGLtnL3q01L/PrB+5NahA==
+  dependencies:
+    tslib "^2.4.0"
+
 "@emotion/babel-plugin@^11.7.1":
   version "11.7.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.7.2.tgz#fec75f38a6ab5b304b0601c74e2a5e77c95e5fa0"
@@ -8481,6 +8488,11 @@ tslib@^2.0.3:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tslib@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.21.0:
   version "3.21.0"

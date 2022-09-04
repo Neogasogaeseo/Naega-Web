@@ -8,11 +8,12 @@ export const StNeososeoFormPage = styled.div`
   width: 100%;
   padding: 50px 0;
   display: grid;
-  grid-template-rows: 70px auto;
+  grid-template-rows: 120px auto;
   position: relative;
 
   & > *:first-child {
     padding: 0 20px;
+    padding-top: 50px;
   }
 `;
 

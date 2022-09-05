@@ -1,7 +1,8 @@
 import { api } from '@api/index';
 import { LoginUser } from '@api/types/user';
 import { errorState } from '@stores/error';
-import { authState, loginUserState } from '@stores/login-user';
+import { isAuthenticatedState, loginUserState } from '@stores/login-user';
+import { TOKEN } from '@utils/constant';
 import { useRecoilState } from 'recoil';
 
 export function useLoginUser() {

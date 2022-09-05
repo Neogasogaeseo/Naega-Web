@@ -16,7 +16,7 @@ export const loginUserState = atom<LoginUser>({
   },
 });
 
-export const authState = atom<boolean>({
-  key: 'authState',
+export const isAuthenticatedState = atom<boolean>({
+  key: 'isAuthenticatedState',
   default: false,
 });

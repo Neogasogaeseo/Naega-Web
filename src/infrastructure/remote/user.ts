@@ -46,6 +46,7 @@ export function userDataRemote(): UserService {
         throw new NotFoundError('사용자를 찾을 수 없습니다.');
     });
     return {
+      id: response.data.user.id,
       username: response.data.user.name,
       userID: response.data.user.profileId,
       profileImage: response.data.user.image,

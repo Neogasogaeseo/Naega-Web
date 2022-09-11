@@ -27,6 +27,7 @@ export const USER_DATA: {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
   MY_PAGE_INFO: (userID: string) => ({
+    id: 1,
     username: '강쥐',
     userID,
     profileImage:

@@ -26,7 +26,12 @@ export function useLoginUser() {
   const removeAccessToken = () => {
     localStorage.removeItem(TOKEN.ACCESS);
     setIsAuthenticated(false);
-    setLoginUser(undefined);
+    setLoginUser({
+      isJoined: false,
+      accessToken: '',
+      refreshToken: '',
+      user: { id: -1, userID: '', username: '', profileImage: '' },
+    });
   };
 
   const saveLoginUser = (loginUser: LoginUser) => {
@@ -59,7 +64,7 @@ export function useLoginUser() {
   };
 
   return {
-    ...loginUser?.user,
+    ...loginUser.user,
     setAccessToken,
     setRefreshToken,
     removeAccessToken,

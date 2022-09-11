@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
-import { postJoin } from '@api/login-user';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
-import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import { StJoin, StButton } from './style';
@@ -14,10 +11,9 @@ import { icProfile, icEmail, icCameraMainCoral } from '@assets/icons';
 import ImageUpload from '@components/common/ImageUpload';
 import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
+import { api } from '@api/index';
 
 export default function Join() {
-  const accessToken = useRecoilValue(kakaoAccessTokenState);
-  const refreshToken = useRecoilValue(kakaoRefreshTokenState);
   const [isJoinConditionPassed, setIsJoinConditionPassed] = useState({
     id: false,
     name: false,
@@ -64,18 +60,10 @@ export default function Join() {
       form.append('name', inputName);
       image && form.append('image', image);
       form.append('provider', 'kakao');
-      form.append('accesstoken', accessToken);
-      form.append('refreshtoken', refreshToken);
 
-      const response = await postJoin(form);
-      if (response.status === 200) {
-        saveLoginUser({
-          id: response.data.user,
-          accessToken: response.data.accesstoken,
-          username: response.data.user.name,
-          userID: response.data.user.profileId,
-          profileImage: response.data.user.image,
-        });
+      const loginUser = await api.loginUserService.postUserInfo(form);
+      if (loginUser) {
+        saveLoginUser(loginUser);
         navigate('/join/complete');
       } else {
         fireToast({ content: '중복된 아이디입니다.' });

@@ -20,7 +20,21 @@ export function loginUserMock(): LoginUserService {
       },
     };
   };
-  return { getUserInfo, postLogin };
+  const postUserInfo = async () => {
+    await wait(2000);
+    return {
+      isJoined: true,
+      accessToken: '',
+      refreshToken: '',
+      user: {
+        id: 1,
+        username: '',
+        userID: '',
+        profileImage: '',
+      },
+    };
+  };
+  return { getUserInfo, postLogin, postUserInfo };
 }
 
 const wait = (milliSeconds: number) => new Promise((resolve) => setTimeout(resolve, milliSeconds));

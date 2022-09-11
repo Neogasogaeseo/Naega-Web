@@ -1,46 +1,67 @@
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+
 import { api } from '@api/index';
 import { LoginUser } from '@api/types/user';
 import { errorState } from '@stores/error';
 import { isAuthenticatedState, loginUserState } from '@stores/login-user';
 import { TOKEN } from '@utils/constant';
-import { useRecoilState } from 'recoil';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
-  const [isAuthenticated, setIsAuthenticated] = useRecoilState(authState);
+  const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
   const [error, setError] = useRecoilState(errorState);
+  const navigate = useNavigate();
 
-  const setAccessToken = (token: string) => {
-    localStorage.setItem('token', token);
+  const setAccessToken = (accessToken: string) => {
+    localStorage.setItem(TOKEN.ACCESS, accessToken);
+    initLoginUser();
+  };
+
+  const setRefreshToken = (refreshToken: string) => {
+    localStorage.setItem(TOKEN.REFRESH, refreshToken);
     initLoginUser();
   };
 
   const removeAccessToken = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem(TOKEN.ACCESS);
     setIsAuthenticated(false);
-    setLoginUser({ id: -1, accessToken: '', username: '', userID: '', profileImage: '' });
+    setLoginUser(undefined);
   };
 
   const saveLoginUser = (loginUser: LoginUser) => {
     setLoginUser(loginUser);
     setIsAuthenticated(true);
-    localStorage.setItem('token', loginUser.accessToken);
+    localStorage.setItem(TOKEN.ACCESS, loginUser.accessToken);
+    localStorage.setItem(TOKEN.REFRESH, loginUser.refreshToken);
   };
 
   const initLoginUser = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) throw '토큰이 없습니다';
-      const user = await api.loginUserService.getUserInfo(token);
-      saveLoginUser(user);
+      const accessToken = localStorage.getItem(TOKEN.ACCESS);
+      const refreshToken = localStorage.getItem(TOKEN.REFRESH);
+      if (accessToken && refreshToken) {
+        const user = await api.loginUserService.getUserInfo(accessToken);
+        if (user.userID && user.username && user.profileImage) {
+          saveLoginUser({
+            isJoined: true,
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+            user: user,
+          });
+        } else {
+          navigate('/join');
+        }
+      } else throw '토큰이 없습니다';
     } catch (error) {
       setError(error);
     }
   };
 
   return {
-    ...loginUser,
+    ...loginUser?.user,
     setAccessToken,
+    setRefreshToken,
     removeAccessToken,
     initLoginUser,
     saveLoginUser,

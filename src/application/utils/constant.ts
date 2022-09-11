@@ -19,3 +19,5 @@ export const STATUS_CODE = {
   SERVICE_UNAVAILABLE: 503,
   DB_ERROR: 600,
 };
+
+export const TOKEN = { ACCESS: 'accessToken', REFRESH: 'refreshToken' };

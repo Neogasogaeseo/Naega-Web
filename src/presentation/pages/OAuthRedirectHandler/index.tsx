@@ -1,31 +1,32 @@
-import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { postLogin } from '@api/login-user';
+import { useMutation } from 'react-query';
+
 import { useLoginUser } from '@hooks/useLoginUser';
+import { api } from '@api/index';
 
 const OAuthRedirectHandler = () => {
   const navigate = useNavigate();
   const { saveLoginUser } = useLoginUser();
-  const setKakaoAccessToken = useSetRecoilState(kakaoAccessTokenState);
-  const setKakaoRefreshToken = useSetRecoilState(kakaoRefreshTokenState);
+  const [authorizationCode, setAuthorizationCode] = useState<string>('');
+
+  const { mutate: login } = useMutation(() => api.loginUserService.postLogin(authorizationCode), {
+    useErrorBoundary: true,
+    onSuccess: (data) => {
+      saveLoginUser(data);
+      if (data.isJoined) navigate('/home');
+      else navigate('/join');
+    },
+  });
+
+  useEffect(
+    () => setAuthorizationCode(new URL(window.location.href).searchParams.get('code') ?? ''),
+    [],
+  );
 
   useEffect(() => {
-    const authorizationCode = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
-    postLogin(authorizationCode).then((response) => {
-      if (response.user) {
-        const { id, profileId, name, image } = response.user;
-        const accessToken = response.accesstoken;
-        saveLoginUser({ id, accessToken, username: name, userID: profileId, profileImage: image });
-        navigate('/home');
-      } else {
-        setKakaoAccessToken(response.accesstoken);
-        setKakaoRefreshToken(response.refreshtoken ?? '');
-        navigate('/join');
-      }
-    });
-  }, []);
+    if (authorizationCode.length) login();
+  }, [authorizationCode]);
 
   return <></>;
 };

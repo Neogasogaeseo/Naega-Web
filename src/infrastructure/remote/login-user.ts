@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { LoginUserService } from '@api/login-user';
 import { STATUS_CODE } from '@utils/constant';
 import { publicAPI } from './base';
-import { ForbiddenError, NotFoundError, UnauthorizedError } from '@api/types/errors';
+import { ForbiddenError, NotFoundError } from '@api/types/errors';
 
 export function loginUserRemote(): LoginUserService {
   const getUserInfo = async (token: string) => {
@@ -25,7 +25,7 @@ export function loginUserRemote(): LoginUserService {
         data: { authenticationCode: authorizationCode },
       })
       .catch((error: AxiosError) => {
-        if (error.response?.status === STATUS_CODE.NOT_FOUND)
+        if (error.response?.status === STATUS_CODE.BAD_REQUEST)
           throw new NotFoundError('로그인에 실패하였습니다.');
       });
     const { id, profileId, name, image, refreshToken } = response.data.user;
@@ -50,14 +50,8 @@ export function loginUserRemote(): LoginUserService {
         type: 'multipart',
       })
       .catch((error: AxiosError) => {
-        switch (error.response?.status) {
-          case STATUS_CODE.NOT_FOUND:
-            throw new NotFoundError('로그인에 실패하였습니다.');
-          case STATUS_CODE.FORBIDDEN:
-            throw new ForbiddenError('이미 가입되었습니다.');
-          case STATUS_CODE.UNAUTHORIZED:
-            throw new UnauthorizedError('로그인에 실패하였습니다.');
-        }
+        if (error.response?.status === STATUS_CODE.FORBIDDEN)
+          throw new ForbiddenError('이미 가입되었습니다.');
       });
     if (response.status === STATUS_CODE.OK) {
       const { id, profileId, name, image, refreshToken } = response.data.user;

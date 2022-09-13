@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import { api } from '@api/index';
@@ -11,7 +10,6 @@ export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
   const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
   const [error, setError] = useRecoilState(errorState);
-  const navigate = useNavigate();
 
   const setAccessToken = (accessToken: string) => {
     localStorage.setItem(TOKEN.ACCESS, accessToken);
@@ -54,8 +52,6 @@ export function useLoginUser() {
             refreshToken: refreshToken,
             user: user,
           });
-        } else {
-          navigate('/join');
         }
       } else throw '토큰이 없습니다';
     } catch (error) {

@@ -1,11 +1,21 @@
-import { useLoginUser } from '@hooks/useLoginUser';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
 import ErrorGuard from './ErrorGuard';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { loginUserState } from '@stores/login-user';
 
 function PrivateRoute() {
   const { isAuthenticated, isLoading, error } = useLoginUser();
+  const loginUser = useRecoilValue(loginUserState);
+
   if (error) throw error;
-  return isLoading ? <></> : isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+
+  if (isLoading) return <></>;
+
+  if (isAuthenticated) return loginUser.isJoined ? <Outlet /> : <Navigate to="/join" />;
+
+  return <Navigate to="/" />;
 }
 
 function GuardedPrivateRoute() {

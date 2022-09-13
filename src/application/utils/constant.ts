@@ -20,4 +20,4 @@ export const STATUS_CODE = {
   DB_ERROR: 600,
 };
 
-export const TOKEN = { ACCESS: 'accessToken', REFRESH: 'refreshToken' };
+export const TOKEN_KEYS = { ACCESS: 'accessToken', REFRESH: 'refreshToken' };

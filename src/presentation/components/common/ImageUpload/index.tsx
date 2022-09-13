@@ -1,6 +1,5 @@
 import { forwardRef, useState } from 'react';
 
-import { resizeImage } from '@utils/image';
 import { StDefaultChildren, StImageUpload, StThumbnail, StThumbnailWrapper } from './style';
 
 interface ImageUploadProps {
@@ -45,9 +44,8 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>((props, ref) 
     e.preventDefault();
     if (e.target.files !== null && e.target.files.length > 0) {
       const file = e.target.files[0];
-      const { imageBlob, resizedImageFile } = await resizeImage(file, 500);
-      setFile(resizedImageFile);
-      setThumbnail(URL.createObjectURL(imageBlob));
+      setFile(file);
+      setThumbnail(URL.createObjectURL(file));
       closeBottomSheet();
     }
   };

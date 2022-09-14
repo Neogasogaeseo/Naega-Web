@@ -22,7 +22,7 @@ export function loginUserRemote(): LoginUserService {
     const response = await publicAPI
       .post({
         url: `/auth/login`,
-        data: { authenticationCode: authorizationCode },
+        data: { authenticationCode: authorizationCode, provider: 'kakao' },
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)

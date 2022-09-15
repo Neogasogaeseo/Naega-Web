@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import { LoginUserService } from '@api/login-user';
 import { STATUS_CODE } from '@utils/constant';
-import { publicAPI } from './base';
+import { publicAPI, privateAPI } from './base';
 import { ForbiddenError, NotFoundError } from '@api/types/errors';
 
 export function loginUserRemote(): LoginUserService {
@@ -43,7 +43,7 @@ export function loginUserRemote(): LoginUserService {
   };
 
   const postUserInfo = async (joinData: FormData) => {
-    const response = await publicAPI
+    const response = await privateAPI
       .post({
         url: `/auth/register`,
         data: joinData,

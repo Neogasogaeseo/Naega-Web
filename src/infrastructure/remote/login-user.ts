@@ -28,6 +28,7 @@ export function loginUserRemote(): LoginUserService {
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
           throw new NotFoundError('로그인에 실패하였습니다.');
       });
+    console.log(response);
     const { id, profileId, name, image, refreshToken } = response.data.user;
     return {
       isJoined: profileId.length > 0 && name.length > 0 && image.length > 0,

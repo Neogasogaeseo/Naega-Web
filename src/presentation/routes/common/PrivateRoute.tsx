@@ -9,9 +9,6 @@ function PrivateRoute() {
   const { isAuthenticated, isLoading, error } = useLoginUser();
   const loginUser = useRecoilValue(loginUserState);
 
-  console.log('isAuthenticated', isAuthenticated);
-  console.log('isLoading', isLoading);
-
   if (error) throw error;
 
   if (isLoading) return <></>;

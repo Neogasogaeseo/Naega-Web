@@ -24,6 +24,7 @@ const OAuthRedirectHandler = () => {
   useEffect(() => {
     const authorizationCode = new URL(window.location.href).searchParams.get('code') ?? '';
     if (authorizationCode.length) login(authorizationCode);
+    else throw '카카오 인가 코드 조회 실패';
   }, []);
 
   return <></>;

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useQueryClient } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
@@ -9,6 +9,7 @@ import { useToast } from '@hooks/useToast';
 import { StFeedbackCard, StHeader, StBody, StIssue, StBookmark, StMeatBall } from './style';
 import { usePickTeamFeedback } from '@hooks/queries/team';
 import { MyDetail } from '@api/types/user';
+import { icArrowDetail } from '@assets/icons';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(
@@ -37,11 +38,14 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     isBookmarked,
     selectedTeam,
   } = props;
-
+  const navigate = useNavigate();
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
   const { userID } = useParams();
   const queryClient = useQueryClient();
+  // 임시로 작성한 부분
+  const teamID = 193;
+  const issueNumber = 199;
 
   const { mutate: pickFeedback, isLoading } = usePickTeamFeedback(+id, {
     onSuccess: () => {
@@ -92,13 +96,19 @@ function FeedbackCardItem(props: FeedbackCardProps) {
             />
           ))}
       </StHeader>
-      <StBody>{body}</StBody>
       {parentPage === 'myteamsoseo' && (
         <StIssue>
-          <div>이슈</div>
+          <div>
+            <div>이슈</div>
+            <button onClick={() => navigate(`/team/${teamID}/${issueNumber}`)}>
+              자세히 보기
+              <img src={icArrowDetail} />
+            </button>
+          </div>
           화면 기획 논의를 하다가 각자의 주장으로 의견이 충돌했다
         </StIssue>
       )}
+      <StBody>{body}</StBody>
       <ImmutableKeywordList
         keywordList={keywordList}
         onItemClick={() => {

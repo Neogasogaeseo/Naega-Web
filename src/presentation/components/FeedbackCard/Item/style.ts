@@ -68,8 +68,26 @@ export const StIssue = styled.div`
   word-break: keep-all;
 
   & > div {
-    ${FONT_STYLES.SB_12_TITLE};
-    color: ${COLOR.GRAY_5};
-    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+
+    div {
+      ${FONT_STYLES.SB_13_TITLE};
+      color: ${COLOR.GRAY_6};
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      ${FONT_STYLES.SB_12_TITLE};
+      color: ${COLOR.GRAY_4};
+      background-color: transparent;
+
+      img {
+        margin-left: 4px;
+      }
+    }
   }
 `;

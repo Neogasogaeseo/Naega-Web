@@ -46,3 +46,21 @@ export const StSubmitButton = styled.button`
   background-color: transparent;
   ${FONT_STYLES.M_15_TITLE}
 `;
+
+export const StInputStatus = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  & > *:first-child {
+    padding-left: 4px;
+    padding-top: 15px;
+    color: ${COLOR.CORAL_MAIN};
+    ${FONT_STYLES.R_14_TITLE};
+  }
+  & > *:last-child {
+    padding-right: 6px;
+    padding-top: 6px;
+    color: ${COLOR.GRAY_4};
+    ${FONT_STYLES.R_13_TITLE};
+  }
+`;

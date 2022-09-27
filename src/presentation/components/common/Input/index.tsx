@@ -1,4 +1,4 @@
-import { StCommonInput, StInputWrapper, StInput, StSubmitButton } from './style';
+import { StCommonInput, StInputWrapper, StInput, StSubmitButton, StInputStatus } from './style';
 
 interface CommonInputProps {
   width: string;
@@ -60,6 +60,10 @@ function CommonInput(props: CommonInputProps) {
           <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
         )}
       </StInputWrapper>
+      <StInputStatus>
+        <div>* 에러메시지</div>
+        <div>3/8</div>
+      </StInputStatus>
     </StCommonInput>
   );
 }

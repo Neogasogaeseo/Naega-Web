@@ -5,6 +5,7 @@ import { LoginUser } from '@api/types/user';
 import { errorState } from '@stores/error';
 import { isAuthenticatedState, loginUserState } from '@stores/login-user';
 import { INITIAL_LOGIN_USER, TOKEN_KEYS } from '@utils/constant';
+import { UnauthorizedError } from '@api/types/errors';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
@@ -48,7 +49,7 @@ export function useLoginUser() {
             user: user,
           });
         }
-      } else throw '토큰이 없습니다';
+      } else throw new UnauthorizedError('토큰이 없습니다');
     } catch (error) {
       setError(error);
     }

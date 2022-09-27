@@ -19,6 +19,7 @@ import ImageUpload from '@components/common/ImageUpload';
 import useImageUpload from '@hooks/useImageUpload';
 import BottomSheet from '@components/common/BottomSheet';
 import { icPencil } from '@assets/icons';
+import FormItem from '@components/common/FormItem';
 
 function TeamRegister() {
   const [isMemberSelectMode, setIsMemberSelectMode] = useState(false);
@@ -91,15 +92,20 @@ function TeamRegister() {
               width="100%"
               placeholder="팀 이름을 입력해주세요"
               onChange={(name) => setName(name)}
+              maxLength={8}
             />
             <CommonLabel content="팀에 관해 간략히 설명해주세요" marginTop="44px" />
-            <StTextarea
-              placeholder="설명을 입력해주세요"
-              value={description}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                setDescription(e.target.value)
-              }
-            />
+            <FormItem value={description} maxLength={70}>
+              <StTextarea
+                placeholder="설명을 입력해주세요"
+                value={description}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setDescription(e.target.value)
+                }
+                maxLength={70}
+              />
+            </FormItem>
+
             <CommonLabel content="팀원을 추가해주세요" marginTop="44px" marginBottom="18px" />
             <ProfileList
               isSquare={false}

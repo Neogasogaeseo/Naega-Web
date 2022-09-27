@@ -1,4 +1,5 @@
-import { StCommonInput, StInputWrapper, StInput, StSubmitButton, StInputStatus } from './style';
+import FormItem from '../FormItem';
+import { StCommonInput, StInputWrapper, StInput, StSubmitButton } from './style';
 
 interface CommonInputProps {
   width: string;
@@ -25,12 +26,12 @@ function CommonInput(props: CommonInputProps) {
     defaultValue,
     onChange,
     onBlur,
-    errorMsg,
     onSubmit,
     img,
     disabled = false,
     submitButtonValue,
     submitButtonDisabled = false,
+    errorMsg,
   } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,35 +39,33 @@ function CommonInput(props: CommonInputProps) {
   };
 
   return (
-    <StCommonInput>
-      <StInputWrapper
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSubmit?.(e);
-        }}
-        width={width}
-      >
-        <StInput
+    <FormItem value={value ?? ''} errorMsg={errorMsg} maxLength={maxLength ?? -1}>
+      <StCommonInput>
+        <StInputWrapper
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit?.(e);
+          }}
           width={width}
-          onChange={handleChange}
-          onBlur={onBlur}
-          maxLength={maxLength}
-          placeholder={placeholder || ''}
-          value={value}
-          defaultValue={defaultValue}
-          img={img}
-          disabled={disabled}
-          hasButton={submitButtonValue !== undefined}
-        />
-        {submitButtonValue && (
-          <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
-        )}
-      </StInputWrapper>
-      <StInputStatus>
-        <div>{errorMsg && errorMsg}</div>
-        <div>{maxLength && `${value?.length}/${maxLength}`}</div>
-      </StInputStatus>
-    </StCommonInput>
+        >
+          <StInput
+            width={width}
+            onChange={handleChange}
+            onBlur={onBlur}
+            maxLength={maxLength}
+            placeholder={placeholder || ''}
+            value={value}
+            defaultValue={defaultValue}
+            img={img}
+            disabled={disabled}
+            hasButton={submitButtonValue !== undefined}
+          />
+          {submitButtonValue && (
+            <StSubmitButton disabled={submitButtonDisabled}>{submitButtonValue}</StSubmitButton>
+          )}
+        </StInputWrapper>
+      </StCommonInput>
+    </FormItem>
   );
 }
 

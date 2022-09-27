@@ -1,14 +1,10 @@
 import { LoginUser } from '@api/types/user';
+import { INITIAL_LOGIN_USER } from '@utils/constant';
 import { atom } from 'recoil';
 
 export const loginUserState = atom<LoginUser>({
   key: 'loginUserState',
-  default: {
-    isJoined: false,
-    accessToken: '',
-    refreshToken: '',
-    user: { id: -1, userID: '', username: '', profileImage: '' },
-  },
+  default: INITIAL_LOGIN_USER,
 });
 
 export const isAuthenticatedState = atom<boolean>({

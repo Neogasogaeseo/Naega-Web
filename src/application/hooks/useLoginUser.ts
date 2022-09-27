@@ -4,7 +4,7 @@ import { api } from '@api/index';
 import { LoginUser } from '@api/types/user';
 import { errorState } from '@stores/error';
 import { isAuthenticatedState, loginUserState } from '@stores/login-user';
-import { TOKEN_KEYS } from '@utils/constant';
+import { INITIAL_LOGIN_USER, TOKEN_KEYS } from '@utils/constant';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
@@ -24,12 +24,7 @@ export function useLoginUser() {
   const removeAccessToken = () => {
     localStorage.removeItem(TOKEN_KEYS.ACCESS);
     setIsAuthenticated(false);
-    setLoginUser({
-      isJoined: false,
-      accessToken: '',
-      refreshToken: '',
-      user: { id: -1, userID: '', username: '', profileImage: '' },
-    });
+    setLoginUser(INITIAL_LOGIN_USER);
   };
 
   const saveLoginUser = (loginUser: LoginUser) => {

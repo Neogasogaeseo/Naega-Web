@@ -21,3 +21,10 @@ export const STATUS_CODE = {
 };
 
 export const TOKEN_KEYS = { ACCESS: 'accessToken', REFRESH: 'refreshToken' };
+
+export const INITIAL_LOGIN_USER = {
+  isJoined: false,
+  accessToken: '',
+  refreshToken: '',
+  user: { id: -1, userID: '', username: '', profileImage: '' },
+};

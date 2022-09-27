@@ -6,11 +6,11 @@ interface CommonInputProps {
   maxLength?: number;
   value?: string;
   defaultValue?: string;
-  isConditionPassed?: boolean;
+  errorMsg?: string;
   img?: string;
   onChange?: (value: string) => void;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
   disabled?: boolean;
   submitButtonValue?: string;
   submitButtonDisabled?: boolean;
@@ -25,12 +25,14 @@ function CommonInput(props: CommonInputProps) {
     defaultValue,
     onChange,
     onBlur,
+    errorMsg,
     onSubmit,
     img,
     disabled = false,
     submitButtonValue,
     submitButtonDisabled = false,
   } = props;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
@@ -40,7 +42,7 @@ function CommonInput(props: CommonInputProps) {
       <StInputWrapper
         onSubmit={(e) => {
           e.preventDefault();
-          onSubmit && onSubmit(e);
+          onSubmit?.(e);
         }}
         width={width}
       >
@@ -61,8 +63,8 @@ function CommonInput(props: CommonInputProps) {
         )}
       </StInputWrapper>
       <StInputStatus>
-        <div>* 에러메시지</div>
-        <div>3/8</div>
+        <div>{errorMsg && errorMsg}</div>
+        <div>{maxLength && `${value?.length}/${maxLength}`}</div>
       </StInputStatus>
     </StCommonInput>
   );

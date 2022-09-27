@@ -30,7 +30,7 @@ export function loginUserRemote(): LoginUserService {
       });
     const { id, profileId, name, image, refreshToken } = response.data.user;
     return {
-      isJoined: profileId.length > 0 && name.length > 0,
+      isJoined: profileId.length && name.length,
       accessToken: response.data.accesstoken,
       refreshToken: refreshToken,
       user: {

@@ -107,9 +107,7 @@ export default function Join() {
         <CommonInput
           width="100%"
           placeholder="이름을 입력해주세요"
-          onChange={(value) => {
-            setInputName(value);
-          }}
+          onChange={(value) => setInputName(value)}
           maxLength={6}
         />
         <StButton

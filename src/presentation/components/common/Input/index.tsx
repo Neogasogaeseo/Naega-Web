@@ -6,7 +6,7 @@ import { StCommonInput, StInputWrapper, StInput, StSubmitButton } from './style'
 type InputCustomProps = 'width' | 'onChange' | 'value' | 'onSubmit';
 
 interface CommonInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, InputCustomProps> {
-  value?: string;
+  value: string;
   width: string;
   defaultValue?: string;
   errorMsg?: string;

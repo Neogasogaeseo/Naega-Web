@@ -16,7 +16,7 @@ export const StInputWrapper = styled.form<{ width: string }>`
   position: relative;
 `;
 
-export const StInput = styled.input<{ width: string; img?: string; hasButton: boolean }>`
+export const StInput = styled.input<{ width: string; img?: string; hasButton?: boolean }>`
   ${COMMON_INPUT}
   height: 52px;
   width: ${(props) => props.width};

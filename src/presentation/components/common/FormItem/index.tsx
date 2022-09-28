@@ -6,7 +6,7 @@ interface FormItemProps {
   children: ReactNode;
   value: string;
   errorMsg?: string;
-  maxLength: number;
+  maxLength?: number;
 }
 
 export default function FormItem(props: FormItemProps) {
@@ -15,8 +15,8 @@ export default function FormItem(props: FormItemProps) {
     <StFormItem>
       {children}
       <StInputStatus>
-        <StErrorMsg>{errorMsg && errorMsg}</StErrorMsg>
-        <StCount>{`${value?.length}/${maxLength}`}</StCount>
+        {errorMsg && <StErrorMsg>{errorMsg}</StErrorMsg>}
+        {maxLength && <StCount>{`${value?.length}/${maxLength}`}</StCount>}
       </StInputStatus>
     </StFormItem>
   );

@@ -39,7 +39,7 @@ function CommonInput(props: CommonInputProps) {
   };
 
   return (
-    <FormItem value={value ?? ''} errorMsg={errorMsg} maxLength={maxLength ?? -1}>
+    <FormItem value={value ?? ''} errorMsg={errorMsg} maxLength={maxLength}>
       <StCommonInput>
         <StInputWrapper
           onSubmit={(e) => {

@@ -1,18 +1,18 @@
+import { InputHTMLAttributes } from 'react';
+
 import FormItem from '../FormItem';
 import { StCommonInput, StInputWrapper, StInput, StSubmitButton } from './style';
 
-interface CommonInputProps {
-  width: string;
-  placeholder?: string;
-  maxLength?: number;
+type InputCustomProps = 'width' | 'onChange' | 'value' | 'onSubmit';
+
+interface CommonInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, InputCustomProps> {
   value?: string;
+  width: string;
   defaultValue?: string;
   errorMsg?: string;
   img?: string;
   onChange?: (value: string) => void;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement, Element>) => void;
-  disabled?: boolean;
   submitButtonValue?: string;
   submitButtonDisabled?: boolean;
 }

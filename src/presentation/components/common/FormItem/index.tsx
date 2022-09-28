@@ -16,7 +16,9 @@ export default function FormItem(props: FormItemProps) {
       {children}
       <StInputStatus>
         <StErrorMsg>{errorMsg && errorMsg}</StErrorMsg>
-        <StCount>{maxLength && `${value?.length}/${maxLength}`}</StCount>
+        {maxLength && (
+          <StCount isMax={maxLength < value.length}>{`${value.length}/${maxLength}`}</StCount>
+        )}
       </StInputStatus>
     </StFormItem>
   );

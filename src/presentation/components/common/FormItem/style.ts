@@ -20,9 +20,9 @@ export const StErrorMsg = styled.div`
   ${FONT_STYLES.R_14_TITLE};
 `;
 
-export const StCount = styled.div`
+export const StCount = styled.div<{ isMax: boolean }>`
   padding-right: 6px;
   padding-top: 6px;
-  color: ${COLOR.GRAY_4};
+  color: ${(props) => (props.isMax ? COLOR.CORAL_MAIN : COLOR.GRAY_4)};
   ${FONT_STYLES.R_13_TITLE};
 `;

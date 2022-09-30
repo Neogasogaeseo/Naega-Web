@@ -15,6 +15,7 @@ const OAuthRedirectHandler = () => {
       useErrorBoundary: true,
       onSuccess: (data) => {
         const loginUser = saveLoginUser(data);
+        console.log('loginUser', loginUser.isJoined);
         alert(`onSuccess loginUser ${loginUser}`);
         if (loginUser.isJoined) navigate('/home');
         else navigate('/join');

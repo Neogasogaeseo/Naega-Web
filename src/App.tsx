@@ -20,6 +20,7 @@ function App() {
 
   useEffect(() => {
     initLoginUser();
+    alert('>>>>app에 Mount cycle에 들어옴');
   }, []);
 
   return (

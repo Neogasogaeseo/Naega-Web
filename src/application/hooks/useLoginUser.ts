@@ -43,6 +43,7 @@ export function useLoginUser() {
     localStorage.setItem(TOKEN_KEYS.REFRESH, loginUser.refreshToken);
     alert('saveLoginUser 5');
     console.log('saveLoginUser 5', loginUser);
+    return loginUser;
   };
 
   const initLoginUser = async () => {

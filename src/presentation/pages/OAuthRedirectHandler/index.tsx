@@ -14,8 +14,9 @@ const OAuthRedirectHandler = () => {
     {
       useErrorBoundary: true,
       onSuccess: (data) => {
-        saveLoginUser(data);
-        if (data.isJoined) navigate('/home');
+        const loginUser = saveLoginUser(data);
+        alert(`onSuccess loginUser ${loginUser}`);
+        if (loginUser.isJoined) navigate('/home');
         else navigate('/join');
       },
     },

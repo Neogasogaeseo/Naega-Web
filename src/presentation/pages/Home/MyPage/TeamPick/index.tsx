@@ -8,7 +8,7 @@ import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import MySelectableList from '@components/MySelectableList';
 import FeedbackCardList from '@components/FeedbackCard/List';
-import { PICK_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { StMyTeamPick, StMyTeamList, StMyTeamPickList } from './style';
 import { MyDetail } from '@api/types/user';
 
@@ -25,8 +25,8 @@ function MyTeamPick() {
         : await api.userService.getMyFeedbackInfo(pageParam);
       return {
         feedbackList: response.feedbackList,
-        nextPage: pageParam + PICK_PAGE,
-        isLast: response.feedbackList.length < PICK_PAGE,
+        nextPage: pageParam + PAGES.PICK,
+        isLast: response.feedbackList.length < PAGES.PICK,
       };
     },
     [selectedTeam && selectedTeam.id],

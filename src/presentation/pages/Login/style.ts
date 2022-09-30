@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
-export const StLoginForm = styled.div`
+export const StLogin = styled.div`
   padding: 0 20px;
   position: relative;
 
@@ -13,7 +13,7 @@ export const StLoginForm = styled.div`
   }
 `;
 
-export const StLogin = styled.div`
+export const StTitle = styled.div`
   font-weight: 600;
   ${FONT_STYLES.SB_24_TITLE};
   color: ${COLOR.GRAY_8};

@@ -1,30 +1,30 @@
-import { kakaoAccessTokenState, kakaoRefreshTokenState } from '@stores/kakao-auth';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { postLogin } from '@api/login-user';
+import { useMutation } from 'react-query';
+
 import { useLoginUser } from '@hooks/useLoginUser';
+import { api } from '@api/index';
 
 const OAuthRedirectHandler = () => {
   const navigate = useNavigate();
   const { saveLoginUser } = useLoginUser();
-  const setKakaoAccessToken = useSetRecoilState(kakaoAccessTokenState);
-  const setKakaoRefreshToken = useSetRecoilState(kakaoRefreshTokenState);
+
+  const { mutate: login } = useMutation(
+    (authorizationCode: string) => api.loginUserService.postLogin(authorizationCode),
+    {
+      useErrorBoundary: true,
+      onSuccess: (data) => {
+        saveLoginUser(data);
+        if (data.isJoined) navigate('/home');
+        else navigate('/join');
+      },
+    },
+  );
 
   useEffect(() => {
-    const code = new URL(window.location.href).searchParams.get('code') ?? ''; //인가코드
-    postLogin(code).then((response) => {
-      if (response.user) {
-        const { id, profileId, name, image } = response.user;
-        const accessToken = response.accesstoken;
-        saveLoginUser({ id, accessToken, username: name, userID: profileId, profileImage: image });
-        navigate('/home');
-      } else {
-        setKakaoAccessToken(response.accesstoken);
-        setKakaoRefreshToken(response.refreshtoken ?? '');
-        navigate('/join');
-      }
-    });
+    const authorizationCode = new URL(window.location.href).searchParams.get('code') ?? '';
+    if (authorizationCode.length) login(authorizationCode);
+    else throw '카카오 인가 코드 조회 실패';
   }, []);
 
   return <></>;

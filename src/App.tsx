@@ -9,6 +9,7 @@ import ToastList from '@components/common/Toast/List';
 
 function App() {
   const { initLoginUser } = useLoginUser();
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {

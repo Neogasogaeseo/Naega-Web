@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { privateAPI, publicAPI } from './base';
 import { InternalServerError, NotFoundError } from '@api/types/errors';
 import { UserService } from '@api/user';
-import { KEYWORD_PAGE, PICK_PAGE, STATUS_CODE } from '@utils/constant';
+import { PAGES, STATUS_CODE } from '@utils/constant';
 import { removeSpecialCharacters } from '@utils/string';
 import { imgEmptyProfile } from '@assets/images';
 import { MyDetail } from '@api/types/user';
@@ -10,7 +10,7 @@ import { MyDetail } from '@api/types/user';
 export function userDataRemote(): UserService {
   const getKeywords = async (userID: number, page: number) => {
     const response = await publicAPI.get({
-      url: `/user/keyword?userId=${userID}&offset=${page}&limit=${KEYWORD_PAGE}`,
+      url: `/user/keyword?userId=${userID}&offset=${page}&limit=${PAGES.KEYWORD}`,
     });
     return response.data.keyword.map((keyword: any) => ({
       id: keyword.id,
@@ -46,6 +46,7 @@ export function userDataRemote(): UserService {
         throw new NotFoundError('사용자를 찾을 수 없습니다.');
     });
     return {
+      id: response.data.user.id,
       username: response.data.user.name,
       userID: response.data.user.profileId,
       profileImage: response.data.user.image,
@@ -149,7 +150,7 @@ export function userDataRemote(): UserService {
 
   const getMyKeywordList = async (page: number) => {
     const response = await privateAPI.get({
-      url: `/user/myKeyword?offset=${page}&limit=${KEYWORD_PAGE}`,
+      url: `/user/myKeyword?offset=${page}&limit=${PAGES.KEYWORD}`,
     });
     return {
       totalCount: response.data.totalCount,
@@ -190,7 +191,7 @@ export function userDataRemote(): UserService {
   const getMyAnswerInfo = async (page: number, formID?: number) => {
     const queryParamFormID = formID ? `formId=${formID}&` : '';
     const response = await privateAPI.get({
-      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PICK_PAGE}`,
+      url: `/form/answer/pick?${queryParamFormID}offset=${page}&limit=${PAGES.PICK}`,
     });
     if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { answerList: [] };
     return {
@@ -229,7 +230,7 @@ export function userDataRemote(): UserService {
   const getMyFeedbackInfo = async (page: number, teamID?: number) => {
     const queryParamTeamID = teamID ? `teamId=${teamID}&` : '';
     const response = await privateAPI.get({
-      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PICK_PAGE}`,
+      url: `/team/feedback/pick?${queryParamTeamID}offset=${page}&limit=${PAGES.PICK}`,
     });
     if (response.axiosStatus === STATUS_CODE.NO_CONTENT) return { feedbackList: [] };
     return {

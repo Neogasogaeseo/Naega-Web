@@ -30,13 +30,18 @@ export function useLoginUser() {
 
   const saveLoginUser = (loginUser: LoginUser) => {
     console.log('saveLoginUser 1', loginUser);
+    alert('saveLoginUser 1');
     setLoginUser(loginUser);
-    console.log('saveLoginUser 2', loginUser);
+    console.log('LoginUser 2', loginUser);
+    alert('saveLoginUser 2');
     setIsAuthenticated(true);
+    alert('saveLoginUser 3');
     console.log('saveLoginUser 3', loginUser);
     localStorage.setItem(TOKEN_KEYS.ACCESS, loginUser.accessToken);
+    alert('saveLoginUser 4');
     console.log('saveLoginUser 4', loginUser);
     localStorage.setItem(TOKEN_KEYS.REFRESH, loginUser.refreshToken);
+    alert('saveLoginUser 5');
     console.log('saveLoginUser 5', loginUser);
   };
 
@@ -57,7 +62,13 @@ export function useLoginUser() {
             user: user,
           });
         }
-      } else throw new UnauthorizedError('토큰이 없습니다');
+      } else if (!accessToken && !refreshToken) {
+        console.log('>>>>>>둘 다 없어서 나는 에러');
+        // throw new UnauthorizedError('토큰이 없습니다');
+      } else {
+        console.log('>>>>>>여튼 마지막 ELSE에 걸림');
+        throw new UnauthorizedError('토큰이 없습니다');
+      }
     } catch (error) {
       setError(error);
       console.log('>>>>>알 수 없는 에러', error);

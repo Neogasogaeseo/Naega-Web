@@ -9,7 +9,7 @@ import { UnauthorizedError } from '@api/types/errors';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
-  const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
+  const [isAuthenticated, setIsAuthenticatedOrigin] = useRecoilState(isAuthenticatedState);
   const [error, setError] = useRecoilState(errorState);
 
   const setAccessToken = (accessToken: string) => {
@@ -55,14 +55,19 @@ export function useLoginUser() {
     }
   };
 
+  const setIsAuthenticated = (isAuthenticated: boolean) =>
+    setIsAuthenticatedOrigin(isAuthenticated);
+
   return {
     ...loginUser.user,
+    loginUser,
     setAccessToken,
     setRefreshToken,
     removeAccessToken,
     initLoginUser,
     saveLoginUser,
     isAuthenticated,
+    setIsAuthenticated,
     isLoading: !error && !isAuthenticated,
     error: error,
   };

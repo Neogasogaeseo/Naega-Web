@@ -8,7 +8,7 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import ToastList from '@components/common/Toast/List';
 
 function App() {
-  const { initLoginUser, isAuthenticated } = useLoginUser();
+  const { initLoginUser } = useLoginUser();
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,9 +19,8 @@ function App() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) initLoginUser();
-    // TODO else 로그아웃
-  }, [isAuthenticated]);
+    initLoginUser();
+  }, []);
 
   return (
     <>

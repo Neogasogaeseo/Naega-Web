@@ -7,14 +7,14 @@ import { api } from '@api/index';
 
 const OAuthRedirectHandler = () => {
   const navigate = useNavigate();
-  const { setIsAuthenticated } = useLoginUser();
+  const { saveLoginUser } = useLoginUser();
 
   const { mutate: login } = useMutation(
     (authorizationCode: string) => api.loginUserService.postLogin(authorizationCode),
     {
       useErrorBoundary: true,
       onSuccess: (data) => {
-        setIsAuthenticated(true);
+        saveLoginUser(data);
         if (data.isJoined) navigate('/home');
         else navigate('/join');
       },

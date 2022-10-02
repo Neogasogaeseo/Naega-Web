@@ -2,15 +2,12 @@ import { useRecoilState } from 'recoil';
 
 import { api } from '@api/index';
 import { LoginUser } from '@api/types/user';
-import { errorState } from '@stores/error';
 import { isAuthenticatedState, loginUserState } from '@stores/login-user';
 import { INITIAL_LOGIN_USER, TOKEN_KEYS } from '@utils/constant';
-import { UnauthorizedError } from '@api/types/errors';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
   const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
-  const [error, setError] = useRecoilState(errorState);
 
   const setAccessToken = (accessToken: string) => {
     localStorage.setItem(TOKEN_KEYS.ACCESS, accessToken);
@@ -22,8 +19,9 @@ export function useLoginUser() {
     initLoginUser();
   };
 
-  const removeAccessToken = () => {
+  const removeToken = () => {
     localStorage.removeItem(TOKEN_KEYS.ACCESS);
+    localStorage.removeItem(TOKEN_KEYS.REFRESH);
     setIsAuthenticated(false);
     setLoginUser(INITIAL_LOGIN_USER);
   };
@@ -36,34 +34,29 @@ export function useLoginUser() {
   };
 
   const initLoginUser = async () => {
-    try {
-      const accessToken = localStorage.getItem(TOKEN_KEYS.ACCESS);
-      const refreshToken = localStorage.getItem(TOKEN_KEYS.REFRESH);
-      if (accessToken && refreshToken) {
-        const user = await api.loginUserService.getUserInfo(accessToken);
-        if (user.userID && user.username && user.profileImage) {
-          saveLoginUser({
-            isJoined: true,
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-            user: user,
-          });
-        }
-      } else throw new UnauthorizedError('토큰이 없습니다');
-    } catch (error) {
-      setError(error);
+    const accessToken = localStorage.getItem(TOKEN_KEYS.ACCESS);
+    const refreshToken = localStorage.getItem(TOKEN_KEYS.REFRESH);
+    if (accessToken && refreshToken) {
+      const user = await api.loginUserService.getUserInfo(accessToken);
+      if (user.userID && user.username) {
+        saveLoginUser({
+          isJoined: true,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          user: user,
+        });
+      }
     }
   };
 
   return {
     ...loginUser.user,
+    isJoined: loginUser.isJoined,
     setAccessToken,
     setRefreshToken,
-    removeAccessToken,
+    removeToken,
     initLoginUser,
     saveLoginUser,
     isAuthenticated,
-    isLoading: !error && !isAuthenticated,
-    error: error,
   };
 }

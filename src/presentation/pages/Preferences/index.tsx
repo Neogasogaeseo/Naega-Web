@@ -14,12 +14,12 @@ import {
 } from './style';
 
 function PreferencesPage() {
-  const { removeAccessToken } = useLoginUser();
+  const { removeToken } = useLoginUser();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const resetUser = () => {
-    removeAccessToken();
+    removeToken();
     navigate('/');
   };
 

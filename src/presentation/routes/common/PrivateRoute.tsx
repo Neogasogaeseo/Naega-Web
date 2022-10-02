@@ -6,12 +6,8 @@ import { useLoginUser } from '@hooks/useLoginUser';
 import { loginUserState } from '@stores/login-user';
 
 function PrivateRoute() {
-  const { isAuthenticated, isLoading, error } = useLoginUser();
+  const { isAuthenticated } = useLoginUser();
   const loginUser = useRecoilValue(loginUserState);
-
-  if (error) throw error;
-
-  if (isLoading) return <></>;
 
   if (isAuthenticated) return loginUser.isJoined ? <Outlet /> : <Navigate to="/join" />;
 

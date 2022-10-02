@@ -1,15 +1,13 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { api } from '@api/index';
 import { LoginUser } from '@api/types/user';
-import { errorState } from '@stores/error';
 import { isAuthenticatedState, loginUserState } from '@stores/login-user';
 import { INITIAL_LOGIN_USER, TOKEN_KEYS } from '@utils/constant';
 
 export function useLoginUser() {
   const [loginUser, setLoginUser] = useRecoilState(loginUserState);
   const [isAuthenticated, setIsAuthenticated] = useRecoilState(isAuthenticatedState);
-  const error = useRecoilValue(errorState);
 
   const setAccessToken = (accessToken: string) => {
     localStorage.setItem(TOKEN_KEYS.ACCESS, accessToken);
@@ -59,7 +57,5 @@ export function useLoginUser() {
     initLoginUser,
     saveLoginUser,
     isAuthenticated,
-    isLoading: !error && !isAuthenticated,
-    error: error,
   };
 }

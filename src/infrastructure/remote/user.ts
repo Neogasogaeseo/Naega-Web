@@ -200,7 +200,10 @@ export function userDataRemote(): UserService {
             id: answer.answerId,
             formId: answer.formId,
             icon: answer.darkIconImage,
-            question: answer.title.replace('\\n', ' ').replaceAll('*', ''),
+            question: answer.title
+              .replace('\\n', ' ')
+              .replaceAll('*', '')
+              .replaceAll('{{user}}', '나'),
             content: answer.content,
             isBookmarked: answer.isPinned,
             keywordList: answer.keywords.map((keyword: any) => ({

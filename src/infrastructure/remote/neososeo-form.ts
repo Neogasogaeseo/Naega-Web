@@ -7,9 +7,10 @@ import { publicAPI } from './base';
 export function NeososeoFormRemote(): NeososeoFormService {
   const getFormInfo = async (q: string) => {
     const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
+    const userName = response.data.user.name;
     return {
-      title: removeSpecialCharacters(response.data.form.title),
-      content: response.data.form.subtitle.replace('\\n', '\n'),
+      title: removeSpecialCharacters(response.data.form.title).replaceAll('{{user}}', userName),
+      content: response.data.form.subtitle.replace('\\n', '\n').replaceAll('{{user}}', userName),
       imageSub: response.data.form.darkIconImage,
       relation: response.data.relationship.map((relation: any) => ({
         id: relation.id,

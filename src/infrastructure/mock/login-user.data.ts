@@ -2,6 +2,7 @@ export const LOGIN_USER_DATA = {
   _: {
     id: 2,
     accessToken: 'token',
+    refreshToken: '',
     username: '서진서진',
     userID: 'seojin',
     profileImage:

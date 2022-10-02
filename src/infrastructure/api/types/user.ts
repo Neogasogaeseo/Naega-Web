@@ -14,14 +14,14 @@ export interface MyKeywordInfo {
 }
 
 export interface LoginUser {
-  id: number;
+  isJoined: boolean;
   accessToken: string;
-  username: string;
-  userID: string;
-  profileImage: string | null;
+  refreshToken: string;
+  user: User;
 }
 
 export interface User {
+  id: number;
   username: string;
   userID: string;
   profileImage: string;

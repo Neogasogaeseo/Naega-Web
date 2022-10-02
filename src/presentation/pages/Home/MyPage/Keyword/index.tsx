@@ -9,7 +9,7 @@ import CommonLoader from '@components/common/Loader';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
-import { KEYWORD_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
 import { IcMeatball } from '@assets/icons';
 
@@ -26,8 +26,8 @@ function MyKeyword() {
     return {
       totalCount: response.totalCount,
       result: response.keywordList,
-      nextPage: pageParam + KEYWORD_PAGE,
-      isLast: response.keywordList.length < KEYWORD_PAGE,
+      nextPage: pageParam + PAGES.KEYWORD,
+      isLast: response.keywordList.length < PAGES.KEYWORD,
     };
   }, []);
 

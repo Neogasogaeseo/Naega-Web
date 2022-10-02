@@ -4,7 +4,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import { CORAL_MAIN_BUTTON } from '@styles/common/button';
 
-export const StJoinForm = styled.div`
+export const StJoin = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

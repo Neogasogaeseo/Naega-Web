@@ -23,7 +23,14 @@ export function userDataMock(): UserService {
 
   const getNeososeoBookmark = async () => {
     await wait(1000);
-    return USER_DATA.NEOSOSEO_BOOKMARK;
+    const data = USER_DATA.NEOSOSEO_BOOKMARK;
+    return {
+      count: data.count,
+      answerList: data.answerList.map((d) => ({
+        ...d,
+        question: d.question.replaceAll('{{user}}', '나'),
+      })),
+    };
   };
 
   const getFeedbackBookmark = async () => {
@@ -58,7 +65,13 @@ export function userDataMock(): UserService {
 
   const getMyAnswerInfo = async () => {
     await wait(1000);
-    return USER_DATA.MY_ANSWER_INFO;
+    const data = USER_DATA.MY_ANSWER_INFO;
+    return {
+      answerList: data.answerList.map((d) => ({
+        ...d,
+        question: d.question.replaceAll('{{user}}', '나'),
+      })),
+    };
   };
 
   const getMyTeamInfo = async () => {

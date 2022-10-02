@@ -4,9 +4,9 @@ import ErrorGuard from './ErrorGuard';
 import { useLoginUser } from '@hooks/useLoginUser';
 
 function PrivateRoute() {
-  const { isAuthenticated, loginUser } = useLoginUser();
+  const { isAuthenticated, isJoined } = useLoginUser();
 
-  if (isAuthenticated) return loginUser.isJoined ? <Outlet /> : <Navigate to="/join" />;
+  if (isAuthenticated) return isJoined ? <Outlet /> : <Navigate to="/join" />;
 
   return <Navigate to="/" />;
 }

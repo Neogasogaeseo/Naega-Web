@@ -51,7 +51,7 @@ export function useLoginUser() {
 
   return {
     ...loginUser.user,
-    loginUser,
+    isJoined: loginUser.isJoined,
     setAccessToken,
     setRefreshToken,
     removeToken,

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 import { LoginUserService } from '@api/login-user';
 import { STATUS_CODE } from '@utils/constant';
 import { publicAPI, privateAPI } from './base';
-import { ForbiddenError, NotFoundError, UnauthorizedError } from '@api/types/errors';
+import { BadRequestError, ForbiddenError } from '@api/types/errors';
 
 export function loginUserRemote(): LoginUserService {
   const getUserInfo = async (token: string) => {
@@ -11,7 +11,7 @@ export function loginUserRemote(): LoginUserService {
       .get({ url: '/user', headers: { accesstoken: token } })
       .catch((error: AxiosError) => {
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
-          throw new UnauthorizedError('유저 조회에 실패하였습니다.');
+          throw new BadRequestError('유저 조회에 실패하였습니다.');
       });
     return {
       id: response.data.id,
@@ -30,7 +30,7 @@ export function loginUserRemote(): LoginUserService {
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
-          throw new NotFoundError('로그인에 실패하였습니다.');
+          throw new BadRequestError('로그인에 실패하였습니다.');
       });
     const { id, profileId, name, image, refreshToken } = response.data.user;
     return {

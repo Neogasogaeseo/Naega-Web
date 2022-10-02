@@ -2,7 +2,6 @@ import { api } from '@api/index';
 import { NeososeoFormData } from '@api/types/neososeo-form';
 import { Keyword } from '@api/types/user';
 import { ImgPage2 } from '@assets/images';
-import CommonInput from '@components/common/Input';
 import CommonNavigation from '@components/common/Navigation';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
@@ -14,6 +13,7 @@ import { useRecoilState, useResetRecoilState } from 'recoil';
 import { StButton, StNeososeoFormLayout, StNeososeoTitle, StSubTitle } from '../style';
 import { StTextarea, StKeywordListWrapper } from './style';
 import { useToast } from '@hooks/useToast';
+import { StInput } from '@components/common/Input/style';
 
 interface OutletContextProps {
   neososeoFormData: NeososeoFormData;
@@ -63,7 +63,7 @@ function NeososeoFormAnswer() {
           />
           <StSubTitle>답변에 대한 {neososeoFormData.userName}의 키워드를 남겨주세요</StSubTitle>
           <Link to="keyword">
-            <CommonInput width="100%" placeholder="답변을 키워드로 요악해주세요" disabled />
+            <StInput width="100%" placeholder="답변을 키워드로 요악해주세요" disabled />
           </Link>
           <StKeywordListWrapper>
             <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />

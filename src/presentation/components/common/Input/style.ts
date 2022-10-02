@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { COLOR } from '@styles/common/color';
 import { COMMON_INPUT } from '@styles/common/input';
 import { FONT_STYLES } from '@styles/common/font-style';
@@ -15,7 +16,7 @@ export const StInputWrapper = styled.form<{ width: string }>`
   position: relative;
 `;
 
-export const StInput = styled.input<{ width: string; img?: string; hasButton: boolean }>`
+export const StInput = styled.input<{ width: string; img?: string; hasButton?: boolean }>`
   ${COMMON_INPUT}
   height: 52px;
   width: ${(props) => props.width};
@@ -25,13 +26,6 @@ export const StInput = styled.input<{ width: string; img?: string; hasButton: bo
   padding: 10px 20px;
   ${({ img }) => img && 'padding-left: 34px; background-position: 12px center;'}
   ${({ hasButton }) => hasButton && 'padding-right: 56px;'}
-`;
-
-export const StErrorMsg = styled.div`
-  color: ${COLOR.CORAL_MAIN};
-  font-size: 14px;
-  line-height: 140%;
-  margin-top: 15px;
 `;
 
 export const StSubmitButton = styled.button`

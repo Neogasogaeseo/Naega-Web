@@ -8,7 +8,6 @@ import {
   StIssueThumbnail,
   StDivisionLine,
 } from './style';
-import CommonInput from '@components/common/Input';
 import IssueMemberList from '@components/common/IssueMemberList';
 import IssueTeamInfo from '@components/common/IssueTeamInfo';
 import FeedbackCardList from '@components/FeedbackCard/List';
@@ -23,6 +22,7 @@ import { IcMeatball } from '@assets/icons';
 import DeleteFeedbackModal from '@components/common/Modal/DeleteFeedback';
 import DeleteIssueModal from '@components/common/Modal/DeleteIssue';
 import { useLoginUser } from '@hooks/useLoginUser';
+import { StInput } from '@components/common/Input/style';
 
 function TeamIssue() {
   const { teamID, issueID } = useParams();
@@ -138,11 +138,7 @@ function TeamIssue() {
         </StWrapper>
       )}
       <StLink to="./create">
-        <CommonInput
-          width="100%"
-          placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요"
-          disabled={true}
-        />
+        <StInput width="100%" placeholder="팀원에게 이슈에 대한 피드백을 남겨주세요" disabled />
       </StLink>
       {bottomSheetState !== undefined && (
         <TeamsoseoPickerBottomSheet

@@ -6,7 +6,6 @@ import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
 import { FeedbackEditInfo, TeamMemberNoneId } from '@api/types/team';
 import ProfileListSelectable from '@components/ProfileListSelectable';
-import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import {
   StAbsoluteWrapper,
@@ -22,6 +21,7 @@ import {
 import { IcLock } from '@assets/icons';
 import { imgEmptyProfile } from '@assets/images';
 import { useToast } from '@hooks/useToast';
+import { StInput } from '@components/common/Input/style';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
@@ -160,10 +160,10 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
             <StSection>
               <StSectionTitle>피드백에 대한 팀원의 키워드를 남겨주세요</StSectionTitle>
               <Link to="keyword">
-                <CommonInput
+                <StInput
                   width="100%"
                   placeholder="팀원을 표현하는 키워드를 입력해주세요"
-                  disabled={true}
+                  disabled
                 />
               </Link>
               <ImmutableKeywordList keywordList={keywordList} onItemClick={() => null} />

@@ -6,7 +6,6 @@ import { useToast } from '@hooks/useToast';
 import CommonLabel from '@components/common/Label';
 import CommonInput from '@components/common/Input';
 import { StJoin, StButton } from './style';
-import { StErrorMsg } from '@components/common/Input/style';
 import { icProfile, icEmail, icCameraMainCoral } from '@assets/icons';
 import ImageUpload from '@components/common/ImageUpload';
 import useImageUpload from '@hooks/useImageUpload';
@@ -94,6 +93,7 @@ export default function Join() {
         </ImageUpload>
         <CommonLabel content="아이디" marginTop="44px" marginBottom="20px" />
         <CommonInput
+          value={inputId}
           width="100%"
           placeholder="neososeo_team"
           onChange={(value) => {
@@ -102,9 +102,10 @@ export default function Join() {
           maxLength={15}
           img={icEmail}
         />
-        <StErrorMsg>{errorMsg}</StErrorMsg>
         <CommonLabel content="이름" marginTop="44px" marginBottom="20px" />
         <CommonInput
+          value={inputName}
+          errorMsg={errorMsg}
           width="100%"
           placeholder="이름을 입력해주세요"
           onChange={(value) => setInputName(value)}

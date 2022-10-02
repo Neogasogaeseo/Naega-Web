@@ -58,3 +58,15 @@ export class InternalServerError implements CustomError {
       '현재 내부 서버에 오류가 있거나' + '\n' + '찾고 있는 리소스에 문제가 있어 표시할 수 없어요';
   }
 }
+
+export class BadRequestError implements CustomError {
+  code: 400;
+  name: 'Bad Request Error';
+  message: string;
+
+  constructor(message: string) {
+    this.code = 400;
+    this.name = 'Bad Request Error';
+    this.message = message;
+  }
+}

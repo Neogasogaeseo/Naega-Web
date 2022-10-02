@@ -4,6 +4,7 @@ import { useMutation } from 'react-query';
 
 import { useLoginUser } from '@hooks/useLoginUser';
 import { api } from '@api/index';
+import { UnauthorizedError } from '@api/types/errors';
 
 const OAuthRedirectHandler = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const OAuthRedirectHandler = () => {
   useEffect(() => {
     const authorizationCode = new URL(window.location.href).searchParams.get('code') ?? '';
     if (authorizationCode.length) login(authorizationCode);
-    else throw '카카오 인가 코드 조회 실패';
+    else throw new UnauthorizedError('카카오 인가 코드 조회 실패');
   }, []);
 
   return <></>;

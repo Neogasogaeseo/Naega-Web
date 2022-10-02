@@ -51,6 +51,7 @@ export function useLoginUser() {
 
   return {
     ...loginUser.user,
+    loginUser,
     setAccessToken,
     setRefreshToken,
     removeToken,

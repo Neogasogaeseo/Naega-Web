@@ -2,8 +2,8 @@ import { NeososeoFormData } from '@api/types/neososeo-form';
 
 export const NEOSOSEO_FORM_DATA: { FORM: NeososeoFormData } = {
   FORM: {
-    title: '너가 닮고 싶은\n나의 일잘러 모습',
-    content: '나와 함께하며 당신이 닮고 싶었던 능력이 있었나요?',
+    title: '너가 닮고 싶은\n{{user}}의 일잘러 모습',
+    content: '{{user}}와 함께하며 당신이 닮고 싶었던 능력이 있었나요?',
     relation: [
       { id: 1, content: '동네친구' },
       { id: 2, content: '쿵짝최고' },

@@ -15,6 +15,7 @@ import useImageUpload from '@hooks/useImageUpload';
 import ImageUpload from '@components/common/ImageUpload';
 import { icPencil } from '@assets/icons';
 import { useDeleteTeam } from '@hooks/queries/team';
+import FormItem from '@components/common/FormItem';
 
 export default function TeamEdit() {
   const navigate = useNavigate();
@@ -104,13 +105,17 @@ export default function TeamEdit() {
           width="100%"
           placeholder="팀 이름을 입력해주세요"
           onChange={(name) => setName(name)}
+          maxLength={8}
         />
         <CommonLabel content="팀에 관해 간략히 설명해주세요" marginTop="44px" />
-        <StTextarea
-          placeholder="설명을 입력해주세요"
-          value={description}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
-        />
+        <FormItem value={description} maxLength={70}>
+          <StTextarea
+            placeholder="설명을 입력해주세요"
+            value={description}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+            maxLength={70}
+          />
+        </FormItem>
         <button onClick={() => setIsOpenModal(true)}>팀 삭제하기</button>
         <div>팀을 삭제하면 모든 정보가 사라지며 다시 복구할 수 없습니다</div>
       </StTeamEdit>

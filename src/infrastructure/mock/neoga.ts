@@ -4,27 +4,56 @@ import { NEOGA_DATA } from './neoga.data';
 export function neogaDataMock(): NeogaService {
   const getBannerTemplate = async () => {
     await wait(20);
-    return NEOGA_DATA.BANNER_TEMPLATE;
+    const data = NEOGA_DATA.BANNER_TEMPLATE;
+    return {
+      ...data,
+      title: data.title.replaceAll('*', '').replaceAll('{{user}}', '나'),
+      content: data.content.replaceAll('{{user}}', '나'),
+    };
   };
 
   const getMainTemplate = async () => {
     await wait(2000);
-    return NEOGA_DATA.MAIN_TEMPLATE;
+    const data = NEOGA_DATA.MAIN_TEMPLATE;
+    return data.map((d) => ({
+      ...d,
+      title: d.title.replaceAll('{{user}}', '나'),
+    }));
   };
 
   const getAllTemplates = async () => {
     await wait(2000);
-    return NEOGA_DATA.ALL_TEMPLATES;
+    const data = NEOGA_DATA.ALL_TEMPLATES;
+    return data.map((d) => ({
+      ...d,
+      title: d.title.replace('\\n', ' ').replaceAll('*', '').replaceAll('{{user}}', '나'),
+      content: d.content.replace('\\n', ' ').replaceAll('{{user}}', '나'),
+    }));
   };
 
   const getMainResultCard = async () => {
     await wait(2000);
-    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+    const data = NEOGA_DATA.RESULT_CARD_TEMPLATE;
+    return {
+      resultList: data.resultList.map((d) => ({
+        ...d,
+        title: d.title.replace('\\n', ' ').replaceAll('*', '').replaceAll('{{user}}', '나'),
+      })),
+      count: data.count,
+    };
   };
 
   const getAllFormCard = async () => {
     await wait(2000);
-    return NEOGA_DATA.RESULT_CARD_TEMPLATE;
+    const data = NEOGA_DATA.RESULT_CARD_TEMPLATE;
+    return {
+      resultList: data.resultList.map((d) => ({
+        ...d,
+        title: d.title.replace('\\n', ' ').replaceAll('*', '').replaceAll('{{user}}', '나'),
+        subtitle: d.subtitle.replaceAll('{{user}}', '나'),
+      })),
+      count: data.count,
+    };
   };
 
   const postAnswerBookmark = async () => {

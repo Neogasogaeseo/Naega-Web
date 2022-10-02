@@ -58,6 +58,7 @@ function NeososeoFormIntro() {
           <div>
             <StSubTitle>이름을 입력해주세요</StSubTitle>
             <CommonInput
+              value={neososeoAnswer.name}
               width="100%"
               placeholder="당신의 이름이나 별명을 입력해주세요"
               onChange={(name) => setUserName(name)}

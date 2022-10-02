@@ -8,7 +8,7 @@ import {
   TeamEditInfo,
 } from '@api/types/team';
 import { TeamService } from '@api/team';
-import { NOTICE_PAGE, SEARCHED_USER_PAGE, STATUS_CODE } from '@utils/constant';
+import { PAGES, STATUS_CODE } from '@utils/constant';
 import { getTimeDifference } from '@utils/date';
 import { privateAPI } from './base';
 
@@ -225,7 +225,7 @@ export function teamDataRemote(): TeamService {
 
   const getSearchedUserListForRegister = async (searchID: string, page: number) => {
     const response = await privateAPI.get({
-      url: `/user/search?searchId=${searchID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
+      url: `/user/search?searchId=${searchID}&offset=${page}&limit=${PAGES.SEARCHED_USER}`,
     });
     if (response.status === STATUS_CODE.OK)
       return response.data.user.map((user: any) => ({
@@ -241,7 +241,7 @@ export function teamDataRemote(): TeamService {
 
   const getSearchedUserListForEdit = async (teamID: number, searchID: string, page: number) => {
     const response = await privateAPI.get({
-      url: `/user/search?searchId=${searchID}&teamId=${teamID}&offset=${page}&limit=${SEARCHED_USER_PAGE}`,
+      url: `/user/search?searchId=${searchID}&teamId=${teamID}&offset=${page}&limit=${PAGES.SEARCHED_USER}`,
     });
     if (response.status === STATUS_CODE.OK)
       return response.data.user.map((user: any) => ({
@@ -366,7 +366,7 @@ export function teamDataRemote(): TeamService {
 
   const getNotice = async (page: number) => {
     const response = await privateAPI.get({
-      url: `/user/notice?offset=${page}&limit=${NOTICE_PAGE}`,
+      url: `/user/notice?offset=${page}&limit=${PAGES.NOTICE}`,
     });
     return response.data.notice.map((notice: any) => {
       const invitationUpdatedTime = new Date(notice.invitation.updatedAt);

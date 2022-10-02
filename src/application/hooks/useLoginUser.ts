@@ -38,7 +38,7 @@ export function useLoginUser() {
     const refreshToken = localStorage.getItem(TOKEN_KEYS.REFRESH);
     if (accessToken && refreshToken) {
       const user = await api.loginUserService.getUserInfo(accessToken);
-      if (user.userID && user.username && user.profileImage) {
+      if (user.userID && user.username) {
         saveLoginUser({
           isJoined: true,
           accessToken: accessToken,

@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 import FormRouter from './FormRouter';
 import { useLoginUser } from '@hooks/useLoginUser';
 import PreferencesRouter from './PreferencesRouter';
+import InAppBrowserEscape from '@components/InAppBrowserEscape';
 
 const Router = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const Router = () => {
   return (
     <>
       <ScrollToTop />
+      <InAppBrowserEscape />
       <Suspense fallback={<></>}>
         <Routes>
           <Route path="/*" element={<UserRouter />} />

@@ -21,8 +21,9 @@ export function useLoginUser() {
     initLoginUser();
   };
 
-  const removeAccessToken = () => {
+  const removeToken = () => {
     localStorage.removeItem(TOKEN_KEYS.ACCESS);
+    localStorage.removeItem(TOKEN_KEYS.REFRESH);
     setIsAuthenticated(false);
     setLoginUser(INITIAL_LOGIN_USER);
   };
@@ -54,7 +55,7 @@ export function useLoginUser() {
     ...loginUser.user,
     setAccessToken,
     setRefreshToken,
-    removeAccessToken,
+    removeToken,
     initLoginUser,
     saveLoginUser,
     isAuthenticated,

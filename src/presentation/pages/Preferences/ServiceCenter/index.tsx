@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import { api } from '@api/index';
 import { IcCamera } from '@assets/icons';
@@ -15,6 +15,8 @@ import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '
 import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
 function ServiceCenterPage() {
+  const location = useLocation();
+  const categoryState = location.state;
   const navigate = useNavigate();
   const { fireToast } = useToast();
   const { data: categories } = useQuery(
@@ -31,6 +33,9 @@ function ServiceCenterPage() {
   useEffect(() => {
     if (selectedItemID === undefined && categories !== undefined) {
       setSelectedItemID(categories[0].id);
+    }
+    if (categoryState && categories !== undefined) {
+      setSelectedItemID(categories[2].id);
     }
   }, [categories]);
 

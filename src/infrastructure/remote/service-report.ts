@@ -14,14 +14,14 @@ export function reportRemote(): ReportService {
     categoryID: number,
     title: string,
     content: string,
-    email?: string,
+    email: string,
     image?: File,
   ) => {
     const formData = new FormData();
     formData.append('reportCategoryId', categoryID.toString());
     formData.append('title', title);
     formData.append('content', content);
-    email && formData.append('email', email);
+    formData.append('email', email);
     image && formData.append('image', image);
     const response = await privateAPI
       .post({ url: '/report', data: formData, type: 'multipart' })

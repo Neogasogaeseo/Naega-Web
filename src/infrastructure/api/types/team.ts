@@ -73,6 +73,9 @@ export type FeedbackDetail = {
   createdAt: string;
   keywordList: Keyword[];
   isBookmarked: boolean;
+  teamID?: string;
+  issueID?: string;
+  issueContent?: string;
 };
 
 export type PostFeedbackBookmarkResponse = {

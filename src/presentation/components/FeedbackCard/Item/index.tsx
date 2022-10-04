@@ -37,15 +37,15 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     parentPage,
     isBookmarked,
     selectedTeam,
+    teamID,
+    issueID,
+    issueContent,
   } = props;
   const navigate = useNavigate();
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
   const { userID } = useParams();
   const queryClient = useQueryClient();
-  // 임시로 작성한 부분
-  const teamID = 193;
-  const issueNumber = 199;
 
   const { mutate: pickFeedback, isLoading } = usePickTeamFeedback(+id, {
     onSuccess: () => {
@@ -100,12 +100,12 @@ function FeedbackCardItem(props: FeedbackCardProps) {
         <StIssue>
           <div>
             <div>이슈</div>
-            <button onClick={() => navigate(`/team/${teamID}/${issueNumber}`)}>
+            <button onClick={() => navigate(`/team/${teamID}/${issueID}`)}>
               자세히 보기
               <img src={icArrowDetail} />
             </button>
           </div>
-          화면 기획 논의를 하다가 각자의 주장으로 의견이 충돌했다
+          {issueContent}
         </StIssue>
       )}
       <StBody>{body}</StBody>

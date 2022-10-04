@@ -3,15 +3,7 @@ import { privateAPI } from './base';
 
 export function reportRemote(): ReportService {
   const getServiceCenterCategories = async () => {
-    const response = await privateAPI.get({ url: '/report/customer' });
-    return response.data.reportCategory.map((category: any) => ({
-      id: category.id,
-      content: category.name,
-    }));
-  };
-
-  const getFeedbackCategories = async () => {
-    const response = await privateAPI.get({ url: '/report/team' });
+    const response = await privateAPI.get({ url: '/report' });
     return response.data.reportCategory.map((category: any) => ({
       id: category.id,
       content: category.name,
@@ -39,5 +31,5 @@ export function reportRemote(): ReportService {
     return { isSuccess: response.success };
   };
 
-  return { getServiceCenterCategories, getFeedbackCategories, postReport };
+  return { getServiceCenterCategories, postReport };
 }

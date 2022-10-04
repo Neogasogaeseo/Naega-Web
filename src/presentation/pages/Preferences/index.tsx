@@ -43,12 +43,6 @@ function PreferencesPage() {
           </StSectionItem>
         </StSection>
         <StSection>
-          <StSectionTitle>폼 추가 요청</StSectionTitle>
-          <StSectionItem onClick={() => navigate('/preferences/feedback')}>
-            너소서 팀에게
-          </StSectionItem>
-        </StSection>
-        <StSection>
           <StSectionTitle>후원</StSectionTitle>
           <StSectionItem>서버비 후원</StSectionItem>
           <StWhiteBackground style={{ height: 44 }} />

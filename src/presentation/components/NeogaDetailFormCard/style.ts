@@ -30,9 +30,9 @@ export const StDate = styled.div`
 `;
 
 export const StFeedMore = styled.div`
+  cursor: pointer;
   & img {
     width: 22px;
-    cursor: pointer;
   }
 `;
 

@@ -36,13 +36,8 @@ function ServiceCenterPage() {
     useImageUpload();
 
   useEffect(() => {
-    if (categories !== undefined) {
-      if (selectedItemID === undefined) {
-        setSelectedItemID(categories[0].id);
-      }
-      if (isError) {
-        setSelectedItemID(categories[2].id);
-      }
+    if (selectedItemID === undefined && categories !== undefined) {
+      setSelectedItemID(isError ? categories[2].id : categories[0].id);
     }
   }, [categories]);
 

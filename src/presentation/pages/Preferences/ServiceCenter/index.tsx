@@ -14,9 +14,14 @@ import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
 import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
+interface CustomizedLinkState {
+  isError: boolean;
+}
+
 function ServiceCenterPage() {
   const location = useLocation();
-  const categoryState = location.state;
+  const state = location.state as CustomizedLinkState;
+  const { isError } = state;
   const navigate = useNavigate();
   const { fireToast } = useToast();
   const { data: categories } = useQuery(
@@ -31,11 +36,13 @@ function ServiceCenterPage() {
     useImageUpload();
 
   useEffect(() => {
-    if (selectedItemID === undefined && categories !== undefined) {
-      setSelectedItemID(categories[0].id);
-    }
-    if (categoryState && categories !== undefined) {
-      setSelectedItemID(categories[2].id);
+    if (categories !== undefined) {
+      if (selectedItemID === undefined) {
+        setSelectedItemID(categories[0].id);
+      }
+      if (isError) {
+        setSelectedItemID(categories[2].id);
+      }
     }
   }, [categories]);
 

@@ -246,6 +246,9 @@ export function userDataRemote(): UserService {
             createdAt: feedback.createdAt.slice(0, 10),
             body: feedback.content,
             isBookmarked: feedback.isPinned,
+            teamID: feedback.teamId,
+            issueID: feedback.issueId,
+            issueContent: feedback.issueContent,
             keywordList: feedback.keywords.map((keyword: any) => ({
               id: keyword.name,
               content: keyword.name,

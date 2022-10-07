@@ -56,9 +56,7 @@ function HomeTeam() {
             {issueList && issueList.length ? (
               <IssueCardList
                 issueList={issueList}
-                onIssueClick={(teamID, issueNumber) => {
-                  navigate(`/team/${teamID}/${issueNumber}`);
-                }}
+                onIssueClick={(teamID, issueNumber) => navigate(`/team/${teamID}/${issueNumber}`)}
               />
             ) : (
               <HomeTeamEmptyView />

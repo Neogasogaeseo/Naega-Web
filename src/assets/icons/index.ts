@@ -57,3 +57,4 @@ export { default as icPicked } from './ic_picked.svg';
 export { default as icUnpicked } from './ic_unpicked.svg';
 export { ReactComponent as IcPaperAirplane } from './ic_paper_airplane.svg';
 export { default as icCameraMainCoral } from './ic_camera_main_coral.svg';
+export { default as icArrowDetail } from './ic_arrow_detail.svg';

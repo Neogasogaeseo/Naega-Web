@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 import { useQueryClient } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { FeedbackDetail, FeedbackEditInfo } from '@api/types/team';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import { useLoginUser } from '@hooks/useLoginUser';
 import { useToast } from '@hooks/useToast';
-import { StFeedbackCard, StHeader, StBody, StBookmark, StMeatBall } from './style';
+import { StFeedbackCard, StHeader, StBody, StIssue, StBookmark, StMeatBall } from './style';
 import { usePickTeamFeedback } from '@hooks/queries/team';
 import { MyDetail } from '@api/types/user';
+import { icArrowDetail } from '@assets/icons';
 
 type FeedbackCardProps = FeedbackDetail & {
   openBottomSheet?(
@@ -18,7 +19,7 @@ type FeedbackCardProps = FeedbackDetail & {
     isForMe: boolean,
     isPinned: boolean,
   ): void;
-  parentPage: 'teamsoseo' | 'mypage';
+  parentPage: 'teamsoseo' | 'mypage' | 'myteamsoseo';
   selectedTeam?: MyDetail | null;
 };
 
@@ -36,8 +37,11 @@ function FeedbackCardItem(props: FeedbackCardProps) {
     parentPage,
     isBookmarked,
     selectedTeam,
+    teamID,
+    issueID,
+    issueContent,
   } = props;
-
+  const navigate = useNavigate();
   const { id: loginUserID, userID: loginUsername } = useLoginUser();
   const { fireToast } = useToast();
   const { userID } = useParams();
@@ -70,7 +74,7 @@ function FeedbackCardItem(props: FeedbackCardProps) {
           <span>{createdAt}</span>
         </div>
         {(isMine || isForMe) &&
-          (parentPage === 'mypage' && isForMe ? (
+          (parentPage !== 'teamsoseo' && isForMe ? (
             <StBookmark selected={isBookmarked} onClick={() => isLoading || pickFeedback()} />
           ) : (
             <StMeatBall
@@ -92,6 +96,18 @@ function FeedbackCardItem(props: FeedbackCardProps) {
             />
           ))}
       </StHeader>
+      {parentPage === 'myteamsoseo' && (
+        <StIssue>
+          <div>
+            <div>이슈</div>
+            <button onClick={() => navigate(`/team/${teamID}/${issueID}`)}>
+              자세히 보기
+              <img src={icArrowDetail} />
+            </button>
+          </div>
+          {issueContent}
+        </StIssue>
+      )}
       <StBody>{body}</StBody>
       <ImmutableKeywordList
         keywordList={keywordList}

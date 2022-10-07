@@ -11,7 +11,7 @@ type FeedbackCardListProps = {
     isForMe: boolean,
     isPinned: boolean,
   ) => void;
-  parentPage?: 'teamsoseo' | 'mypage';
+  parentPage?: 'teamsoseo' | 'mypage' | 'myteamsoseo';
   selectedTeam?: MyDetail | null;
 };
 

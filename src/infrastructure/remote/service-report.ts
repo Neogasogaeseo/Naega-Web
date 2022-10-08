@@ -3,15 +3,7 @@ import { privateAPI } from './base';
 
 export function reportRemote(): ReportService {
   const getServiceCenterCategories = async () => {
-    const response = await privateAPI.get({ url: '/report/customer' });
-    return response.data.reportCategory.map((category: any) => ({
-      id: category.id,
-      content: category.name,
-    }));
-  };
-
-  const getFeedbackCategories = async () => {
-    const response = await privateAPI.get({ url: '/report/team' });
+    const response = await privateAPI.get({ url: '/report' });
     return response.data.reportCategory.map((category: any) => ({
       id: category.id,
       content: category.name,
@@ -22,14 +14,14 @@ export function reportRemote(): ReportService {
     categoryID: number,
     title: string,
     content: string,
-    email?: string,
+    email: string,
     image?: File,
   ) => {
     const formData = new FormData();
     formData.append('reportCategoryId', categoryID.toString());
     formData.append('title', title);
     formData.append('content', content);
-    email && formData.append('email', email);
+    formData.append('email', email);
     image && formData.append('image', image);
     const response = await privateAPI
       .post({ url: '/report', data: formData, type: 'multipart' })
@@ -39,5 +31,5 @@ export function reportRemote(): ReportService {
     return { isSuccess: response.success };
   };
 
-  return { getServiceCenterCategories, getFeedbackCategories, postReport };
+  return { getServiceCenterCategories, postReport };
 }

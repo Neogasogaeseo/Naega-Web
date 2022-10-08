@@ -28,7 +28,7 @@ function ErrorFallback({ error }: FallbackProps) {
         </div>
       )}
       <div>
-        <Link to="/preferences/feedback" state={true}>
+        <Link to="/preferences/servicecenter" state={{ isError: true }}>
           <IcPaperAirplane />
           <div>피드백을 보내주시겠어요?</div>
         </Link>

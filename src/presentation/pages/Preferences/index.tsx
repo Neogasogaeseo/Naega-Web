@@ -38,14 +38,10 @@ function PreferencesPage() {
         <StWhiteBackground style={{ height: 24 }} />
         <StSection>
           <StSectionTitle>고객센터</StSectionTitle>
-          <StSectionItem onClick={() => navigate('/preferences/servicecenter')}>
+          <StSectionItem
+            onClick={() => navigate('/preferences/servicecenter', { state: { isError: false } })}
+          >
             문의하기
-          </StSectionItem>
-        </StSection>
-        <StSection>
-          <StSectionTitle>폼 추가 요청</StSectionTitle>
-          <StSectionItem onClick={() => navigate('/preferences/feedback')}>
-            너소서 팀에게
           </StSectionItem>
         </StSection>
         <StSection>

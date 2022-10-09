@@ -15,7 +15,7 @@ export const NeogaFormImageToSave = React.forwardRef<HTMLDivElement, NeogaFormIm
     return (
       <StNeogaFormImageToSave ref={ref}>
         <div>
-          <img src={userProfileImage} crossOrigin="anonymous" />
+          <img src={userProfileImage} />
           <div>
             <div>{`${userName}님의 너가소개서`}</div>
             <div>{createdAt}</div>

@@ -12,7 +12,7 @@ export default function FormCard(props: FormCardProps) {
   const { image, title, content, children, theme = 'WHITE' } = props;
   return (
     <StFormCard theme={theme}>
-      {image && <img src={image} crossOrigin="anonymous" />}
+      {image && <img src={image} />}
       <div>{content}</div>
       <div>{title}</div>
       <div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import domtoimage from 'dom-to-image';
+import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 
 import { StLinkButton, StNeogaLink, StWrapper } from './style';
@@ -19,7 +19,6 @@ import { NeogaFormImageToSave } from '@components/NeogaFormImageToSave';
 export default function NeogaLink() {
   const VIEW_MODE = { CREATED: 'created', NEW: 'new' };
 
-  // const navigate = useNavigate();
   const { formID, viewMode } = useParams();
   const [isCreated, setIsCreated] = useState(viewMode === VIEW_MODE.CREATED);
   const { fireToast } = useToast();
@@ -42,13 +41,17 @@ export default function NeogaLink() {
   };
 
   const saveImage = async () => {
-    const blob = await domtoimage.toBlob(imageToSaveRef.current as Node);
-    saveAs(blob, 'neoga_created_form.png');
+    const canvas =
+      imageToSaveRef.current &&
+      (await html2canvas(imageToSaveRef.current, {
+        useCORS: true,
+      }));
+    if (canvas) {
+      canvas.toBlob((blob) => blob && saveAs(blob, 'neoga_created_form.png'));
+    } else fireToast({ content: '이미지 저장에 실패했습니다' });
   };
 
   useEffect(() => {
-    // if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
-    // if (viewMode === VIEW_MODE.CREATED) createQ();
     setQ('4c799e4b1e0c38b340ce7cb50556eae440db7a6e8a1277e5fe');
   }, []);
 

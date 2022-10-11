@@ -1,3 +1,4 @@
+import { FONT_STYLES } from './../../../style/common/font-style';
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
@@ -57,4 +58,38 @@ export const StWrapper = styled.div`
     position: absolute;
     top: 0;
   }
+`;
+
+export const StSaveNotice = styled.div`
+  width: 100%;
+  background-color: ${COLOR.WHITE};
+  border: 1px solid ${COLOR.GRAY_2};
+  border-radius: 18px;
+  display: flex;
+  padding: 15px 14px 17px 19px;
+  align-items: center;
+  justify-content: space-between;
+  & > *:first-child {
+    & > *:first-child {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 143.99%;
+      color: ${COLOR.GRAY_6};
+    }
+    & > *:last-child {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 143.99%;
+      color: ${COLOR.GRAY_4};
+    }
+  }
+`;
+
+export const StSaveButton = styled.button`
+  width: 83px;
+  height: 27px;
+  border-radius: 13.5px;
+  background-color: ${COLOR.CORAL_1};
+  color: ${COLOR.CORAL_MAIN};
+  ${FONT_STYLES.M_13_TITLE}
 `;

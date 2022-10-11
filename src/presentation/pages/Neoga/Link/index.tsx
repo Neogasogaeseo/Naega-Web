@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 
-import { StLinkButton, StNeogaLink, StWrapper } from './style';
+import { StLinkButton, StNeogaLink, StSaveButton, StSaveNotice, StWrapper } from './style';
 import { api } from '@api/index';
 import NeogaFormTicket from '@components/NeogaFormTicket';
 import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
@@ -94,7 +94,13 @@ export default function NeogaLink() {
             </StLinkButton>
           </NeogaFormTicket>
         </div>
-        <button onClick={saveImage}>이미지 저장 임시 버튼</button>
+        <StSaveNotice>
+          <div>
+            <div>이미지를 저장해보세요</div>
+            <div>이미지를 저장한 후 공유해보세요</div>
+          </div>
+          <StSaveButton onClick={saveImage}>이미지 저장</StSaveButton>
+        </StSaveNotice>
       </StNeogaLink>
     </StWrapper>
   );

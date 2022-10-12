@@ -4,15 +4,15 @@ import { useQuery } from 'react-query';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 
-import { StLinkButton, StNeogaLink, StSaveButton, StSaveNotice, StWrapper } from './style';
+import { StCopyButton, StNeogaLink, StSaveButton, StSaveNotice, StWrapper } from './style';
 import { api } from '@api/index';
 import NeogaFormTicket from '@components/NeogaFormTicket';
-import { IcLinkWhite, IcPulsCoral } from '@assets/icons';
+import { IcLinkCoral, IcPulsCoral } from '@assets/icons';
 import { useToast } from '@hooks/useToast';
 import { DOMAIN } from '@utils/constant';
 import { copyClipboard } from '@utils/copyClipboard';
 import CommonHeader from '@components/common/Header';
-import { imgCreatedLink } from '@assets/images';
+import { imgBrowserLink } from '@assets/images';
 import { useGetFormInfo } from '@hooks/queries/neososeo-form';
 import { NeogaFormImageToSave } from '@components/NeogaFormImageToSave';
 
@@ -68,18 +68,17 @@ export default function NeogaLink() {
             title={formData?.title ?? ''}
             image={formData?.image ?? ''}
           >
-            <StLinkButton onClick={createQ} isCreated={isCreated}>
+            <StCopyButton onClick={createQ}>
               <IcPulsCoral />
               <div>링크 생성하기</div>
-            </StLinkButton>
+            </StCopyButton>
           </NeogaFormTicket>
           <NeogaFormTicket
             content="너가소개서 생성 완료!"
             title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
-            image={imgCreatedLink}
-            theme="CORAL"
+            image={imgBrowserLink}
           >
-            <StLinkButton
+            <StCopyButton
               onClick={() =>
                 copyClipboard(
                   `${DOMAIN}/neososeoform/${q}`,
@@ -87,11 +86,10 @@ export default function NeogaLink() {
                   () => fireToast({ content: '다시 시도해주세요.' }),
                 )
               }
-              isCreated={isCreated}
             >
-              <IcLinkWhite />
+              <IcLinkCoral />
               <div>링크 복사하기</div>
-            </StLinkButton>
+            </StCopyButton>
           </NeogaFormTicket>
         </div>
         <StSaveNotice>

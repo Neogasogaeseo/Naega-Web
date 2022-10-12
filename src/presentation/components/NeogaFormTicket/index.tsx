@@ -1,6 +1,6 @@
-import { StCircle, StFormCard } from './style';
+import { StCircle, StNeogaFormTicket } from './style';
 
-interface FormCardProps {
+interface NeogaFormTicketProps {
   image: string;
   title: string;
   content: string;
@@ -8,10 +8,10 @@ interface FormCardProps {
   theme?: 'WHITE' | 'CORAL';
 }
 
-export default function FormCard(props: FormCardProps) {
+export default function NeogaFormTicket(props: NeogaFormTicketProps) {
   const { image, title, content, children, theme = 'WHITE' } = props;
   return (
-    <StFormCard theme={theme}>
+    <StNeogaFormTicket theme={theme}>
       {image && <img src={image} />}
       <div>{content}</div>
       <div>{title}</div>
@@ -21,6 +21,6 @@ export default function FormCard(props: FormCardProps) {
         <StCircle />
       </div>
       {children}
-    </StFormCard>
+    </StNeogaFormTicket>
   );
 }

@@ -2,7 +2,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StFormCard = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
+export const StNeogaFormTicket = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
   width: 284px;
   height: 364px;
   background-color: ${(props) => (props.theme === 'WHITE' ? COLOR.WHITE : COLOR.CORAL_MAIN)};
@@ -38,6 +38,7 @@ export const StFormCard = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
     text-align: center;
     letter-spacing: -0.01em;
     margin-top: 12px;
+    white-space: pre-line;
   }
   & > *:nth-child(4) {
     display: flex;

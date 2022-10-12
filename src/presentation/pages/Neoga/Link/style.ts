@@ -31,7 +31,7 @@ export const StNeogaLink = styled.div<{ isCreated: boolean }>`
   }
 `;
 
-export const StLinkButton = styled.div<{ isCreated: boolean }>`
+export const StCopyButton = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
@@ -46,7 +46,7 @@ export const StLinkButton = styled.div<{ isCreated: boolean }>`
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: ${(props) => (props.isCreated ? COLOR.WHITE : COLOR.CORAL_MAIN)};
+    color: ${COLOR.CORAL_MAIN};
   }
 `;
 

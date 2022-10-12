@@ -41,6 +41,7 @@ export default function NeogaLink() {
   };
 
   const saveImage = async () => {
+    if (!createdFormData) return;
     const canvas =
       imageToSaveRef.current &&
       (await html2canvas(imageToSaveRef.current, {

@@ -1,33 +1,20 @@
+import { CORAL_MAIN_BUTTON, FULL_WIDTH_BUTTON } from '@styles/common/button';
 import { FONT_STYLES } from './../../../style/common/font-style';
 import styled from 'styled-components';
 import { COLOR } from '@styles/common/color';
 
-export const StNeogaLink = styled.div<{ isCreated: boolean }>`
+export const StNeogaLink = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: ${COLOR.GRAY_1};
   height: 100%;
-  & > *:nth-child(2) {
-    margin-top: 136px;
-    margin-bottom: 69px;
-    position: relative;
-    width: 284px;
-    height: 364px;
-    & > * {
-      transition: 1s;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-    }
-    & > *:first-child {
-      transform: ${(props) => (props.isCreated ? 'rotateY(180deg)' : 'rotateY(0deg)')};
-    }
-    & > *:last-child {
-      transform: ${(props) => (props.isCreated ? 'rotateY(0deg)' : 'rotateY(-180deg)')};
-    }
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  & > *:nth-child(1) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 `;
 
@@ -54,6 +41,9 @@ export const StWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
   & > *:last-child {
     position: absolute;
     top: 0;
@@ -61,7 +51,7 @@ export const StWrapper = styled.div`
 `;
 
 export const StSaveNotice = styled.div`
-  width: 100%;
+  margin: 19px 20px 0px 19px;
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.GRAY_2};
   border-radius: 18px;
@@ -92,4 +82,34 @@ export const StSaveButton = styled.button`
   background-color: ${COLOR.CORAL_1};
   color: ${COLOR.CORAL_MAIN};
   ${FONT_STYLES.M_13_TITLE}
+`;
+
+export const StAnswerButton = styled.button`
+  ${FULL_WIDTH_BUTTON}
+  ${CORAL_MAIN_BUTTON}
+  width: calc(100% - 40px);
+  margin-bottom: 52px;
+`;
+
+export const StFormTicketWrapper = styled.div<{ isCreated: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 364px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 136px;
+  & > * {
+    transition: 1s;
+    position: absolute;
+    width: 284px;
+    height: 364px;
+    backface-visibility: hidden;
+  }
+  & > *:first-child {
+    transform: ${(props) => (props.isCreated ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+  }
+  & > *:last-child {
+    transform: ${(props) => (props.isCreated ? 'rotateY(0deg)' : 'rotateY(-180deg)')};
+  }
 `;

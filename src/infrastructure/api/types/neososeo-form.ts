@@ -11,9 +11,10 @@ export type NeososeoFormData = {
   userName: string;
   userID: number;
   userProfileImage?: string;
-  formID: number;
+  createdID: number;
   answerCount: number;
   createdAt: string;
+  formID: number;
 };
 
 export type NeososeoAnswerData = {

@@ -31,7 +31,7 @@ function NeososeoFormAnswer() {
     const response = await api.neososeoFormService.postFormAnswer({
       ...neososeoAnswer,
       userID: neososeoFormData.userID,
-      formID: neososeoFormData.formID,
+      formID: neososeoFormData.createdID,
     });
     if (response.isSuccess) {
       resetNeososeoAnswer();

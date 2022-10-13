@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
@@ -40,6 +40,7 @@ export default function NeogaLink() {
     enabled: typeof q === 'string' && q.length > 0,
   });
   const imageToSaveRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const createQ = async () => {
     if (!formID || isNaN(+formID)) return;
@@ -59,6 +60,9 @@ export default function NeogaLink() {
       canvas.toBlob((blob) => blob && saveAs(blob, 'neoga_created_form.png'));
     } else fireToast({ content: '이미지 저장에 실패했습니다', bottom: 122 });
   };
+
+  const goAnswerPage = () =>
+    createdFormData && navigate(`/neoga/${createdFormData.formID}/detail/form`);
 
   useEffect(() => {
     setQ('4c799e4b1e0c38b340ce7cb50556eae440db7a6e8a1277e5fe');
@@ -110,7 +114,7 @@ export default function NeogaLink() {
             <StSaveButton onClick={saveImage}>이미지 저장</StSaveButton>
           </StSaveNotice>
         </div>
-        <StAnswerButton>답변 보러가기</StAnswerButton>
+        <StAnswerButton onClick={goAnswerPage}>답변 보러가기</StAnswerButton>
       </StNeogaLink>
     </StWrapper>
   );

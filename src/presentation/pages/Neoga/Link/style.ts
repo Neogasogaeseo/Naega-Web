@@ -13,6 +13,7 @@ export const StNeogaLink = styled.div`
   justify-content: space-between;
   & > *:nth-child(1) {
     flex-direction: column;
+    display: flex;
     align-items: center;
     width: 100%;
   }
@@ -50,8 +51,9 @@ export const StWrapper = styled.div`
   }
 `;
 
-export const StSaveNotice = styled.div`
+export const StSaveNotice = styled.div<{ isCreated: boolean }>`
   margin: 19px 20px 0px 19px;
+  width: calc(100% - 40px);
   background-color: ${COLOR.WHITE};
   border: 1px solid ${COLOR.GRAY_2};
   border-radius: 18px;
@@ -59,6 +61,7 @@ export const StSaveNotice = styled.div`
   padding: 15px 14px 17px 19px;
   align-items: center;
   justify-content: space-between;
+  visibility: ${(props) => (props.isCreated ? 'visible' : 'hidden')};
   & > *:first-child {
     & > *:first-child {
       font-weight: 600;
@@ -84,27 +87,24 @@ export const StSaveButton = styled.button`
   ${FONT_STYLES.M_13_TITLE}
 `;
 
-export const StAnswerButton = styled.button`
+export const StAnswerButton = styled.button<{ isCreated: boolean }>`
   ${FULL_WIDTH_BUTTON}
   ${CORAL_MAIN_BUTTON}
   width: calc(100% - 40px);
   margin-bottom: 52px;
+  visibility: ${(props) => (props.isCreated ? 'visible' : 'hidden')};
 `;
 
 export const StFormTicketWrapper = styled.div<{ isCreated: boolean }>`
   position: relative;
-  width: 100%;
+  width: 284px;
   height: 364px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 136px;
   & > * {
     transition: 1s;
     position: absolute;
-    width: 284px;
-    height: 364px;
     backface-visibility: hidden;
+    left: calc((100% - 284px) / 2);
   }
   & > *:first-child {
     transform: ${(props) => (props.isCreated ? 'rotateY(180deg)' : 'rotateY(0deg)')};

@@ -41,5 +41,4 @@ export const StNeogaFormImageToSave = styled.div`
 export const StLogo = styled.img`
   margin-top: 65px;
   height: 30px;
-  /* width: 70px; */
 `;

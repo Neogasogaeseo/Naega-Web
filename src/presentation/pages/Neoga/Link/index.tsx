@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import html2canvas from 'html2canvas';
@@ -64,12 +64,6 @@ export default function NeogaLink() {
   const goAnswerPage = () =>
     createdFormData && navigate(`/neoga/${createdFormData.formID}/detail/form`);
 
-  useEffect(() => {
-    setQ('4c799e4b1e0c38b340ce7cb50556eae440db7a6e8a1277e5fe');
-  }, []);
-
-  useEffect(() => setIsCreated(isCreated), [q]);
-
   return (
     <StWrapper>
       {createdFormData && <NeogaFormImageToSave formData={createdFormData} ref={imageToSaveRef} />}
@@ -106,7 +100,7 @@ export default function NeogaLink() {
               </StCopyButton>
             </NeogaFormTicket>
           </StFormTicketWrapper>
-          <StSaveNotice>
+          <StSaveNotice isCreated={isCreated}>
             <div>
               <div>이미지를 저장해보세요</div>
               <div>이미지를 저장한 후 공유해보세요</div>
@@ -114,7 +108,9 @@ export default function NeogaLink() {
             <StSaveButton onClick={saveImage}>이미지 저장</StSaveButton>
           </StSaveNotice>
         </div>
-        <StAnswerButton onClick={goAnswerPage}>답변 보러가기</StAnswerButton>
+        <StAnswerButton isCreated={isCreated} onClick={goAnswerPage}>
+          답변 보러가기
+        </StAnswerButton>
       </StNeogaLink>
     </StWrapper>
   );

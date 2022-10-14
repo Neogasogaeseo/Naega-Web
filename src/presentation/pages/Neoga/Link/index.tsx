@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import html2canvas from 'html2canvas';
@@ -63,6 +63,10 @@ export default function NeogaLink() {
 
   const goAnswerPage = () =>
     createdFormData && navigate(`/neoga/${createdFormData.formID}/detail/form`);
+
+  useEffect(() => {
+    if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
+  }, []);
 
   return (
     <StWrapper>

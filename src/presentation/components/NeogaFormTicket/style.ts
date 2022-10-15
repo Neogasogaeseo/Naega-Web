@@ -2,7 +2,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StNeogaFormTicket = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
+export const StNeogaFormTicket = styled.div<{ theme: 'WHITE' | 'CORAL'; isPreLine: boolean }>`
   width: 284px;
   height: 364px;
   background-color: ${(props) => (props.theme === 'WHITE' ? COLOR.WHITE : COLOR.CORAL_MAIN)};
@@ -12,7 +12,6 @@ export const StNeogaFormTicket = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
   align-items: center;
   border: 1px solid ${COLOR.GRAY_15};
   border-radius: 18px;
-
   & > *:nth-child(1) {
     margin-top: 42px;
     width: 86px;
@@ -38,7 +37,7 @@ export const StNeogaFormTicket = styled.div<{ theme: 'WHITE' | 'CORAL' }>`
     text-align: center;
     letter-spacing: -0.01em;
     margin-top: 12px;
-    white-space: pre-line;
+    white-space: ${(props) => (props.isPreLine ? 'pre-line' : 'normal')};
   }
   & > *:nth-child(4) {
     display: flex;

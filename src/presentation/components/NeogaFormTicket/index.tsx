@@ -6,20 +6,20 @@ interface NeogaFormTicketProps {
   content: string;
   children: React.ReactNode;
   theme?: 'WHITE' | 'CORAL';
-  isPreLine?: boolean;
+  isSmall?: boolean;
 }
 
 export default function NeogaFormTicket(props: NeogaFormTicketProps) {
-  const { image, title, content, children, theme = 'WHITE', isPreLine = false } = props;
+  const { image, title, content, children, theme = 'WHITE', isSmall = false } = props;
   return (
-    <StNeogaFormTicket theme={theme} isPreLine={isPreLine}>
+    <StNeogaFormTicket theme={theme} isSmall={isSmall}>
       {image && <img src={image} />}
       <div>{content}</div>
       <div>{title}</div>
       <div>
-        <StCircle />
+        <StCircle isSmall={isSmall} />
         <hr />
-        <StCircle />
+        <StCircle isSmall={isSmall} />
       </div>
       {children}
     </StNeogaFormTicket>

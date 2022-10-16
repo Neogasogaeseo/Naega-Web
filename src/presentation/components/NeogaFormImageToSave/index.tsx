@@ -21,7 +21,7 @@ export const NeogaFormImageToSave = React.forwardRef<HTMLDivElement, NeogaFormIm
             <div>{createdAt}</div>
           </div>
         </div>
-        <NeogaFormTicket image={imageSub} title={title} content={content}>
+        <NeogaFormTicket image={imageSub} title={title} content={content} isSmall>
           <StLogo src={imgCharacterLogo} />
         </NeogaFormTicket>
       </StNeogaFormImageToSave>

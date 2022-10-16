@@ -1,37 +1,38 @@
 import styled from 'styled-components';
 
 import { COLOR } from '@styles/common/color';
-import { FONT_STYLES } from '@styles/common/font-style';
 
 export const StNeogaFormImageToSave = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 844px;
-  padding-top: 167px;
+  height: 696px;
+  padding-top: 156px;
   background-color: ${COLOR.GRAY_1};
   & > *:first-child {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 16px;
-    margin-bottom: 26px;
+    gap: 12px;
+    margin-bottom: 22px;
     & > *:first-child {
-      width: 60px;
-      height: 60px;
-      border-radius: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 16.0349px;
       object-fit: cover;
     }
     & > *:last-child {
-      padding-top: 10px;
+      padding-top: 9px;
       & > *:first-child {
-        ${FONT_STYLES.SB_20_TITLE}
+        font-weight: 600;
+        font-size: 16px;
         color: ${COLOR.GRAY_8};
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
       & > *:last-child {
-        ${FONT_STYLES.R_14_TITLE}
+        font-weight: 400;
+        font-size: 11px;
         color: ${COLOR.GRAY_5};
       }
     }
@@ -39,6 +40,6 @@ export const StNeogaFormImageToSave = styled.div`
 `;
 
 export const StLogo = styled.img`
-  margin-top: 65px;
-  height: 30px;
+  margin-top: 60.53px;
+  height: 22px;
 `;

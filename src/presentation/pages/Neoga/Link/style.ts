@@ -61,7 +61,8 @@ export const StSaveNotice = styled.div<{ isCreated: boolean }>`
   padding: 15px 14px 17px 19px;
   align-items: center;
   justify-content: space-between;
-  visibility: ${(props) => (props.isCreated ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isCreated ? 1 : 0)};
+  transition: opacity 1s ease-in-out;
   & > *:first-child {
     & > *:first-child {
       font-weight: 600;
@@ -92,7 +93,8 @@ export const StAnswerButton = styled.button<{ isCreated: boolean }>`
   ${CORAL_MAIN_BUTTON}
   width: calc(100% - 40px);
   margin-bottom: 52px;
-  visibility: ${(props) => (props.isCreated ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.isCreated ? 1 : 0)};
+  transition: opacity 1s ease-in-out;
 `;
 
 export const StFormTicketWrapper = styled.div<{ isCreated: boolean }>`
@@ -102,7 +104,6 @@ export const StFormTicketWrapper = styled.div<{ isCreated: boolean }>`
   margin-top: 136px;
   & > * {
     transition: 1s;
-    position: absolute;
     backface-visibility: hidden;
     left: calc((100% - 284px) / 2);
   }
@@ -112,4 +113,8 @@ export const StFormTicketWrapper = styled.div<{ isCreated: boolean }>`
   & > *:last-child {
     transform: ${(props) => (props.isCreated ? 'rotateY(0deg)' : 'rotateY(-180deg)')};
   }
+`;
+
+export const StAbsoluteWrapper = styled.div`
+  position: absolute;
 `;

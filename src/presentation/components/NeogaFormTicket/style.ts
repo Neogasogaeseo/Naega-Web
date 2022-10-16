@@ -39,6 +39,7 @@ export const StNeogaFormTicket = styled.div<{
     text-align: center;
     margin-top: ${(props) => (props.isSmall ? '9.49px' : '12px')};
     white-space: ${(props) => (props.isSmall ? 'normal' : 'pre-line')};
+    line-height: ${(props) => (props.isSmall ? '100%' : '23px')};
   }
   & > *:nth-child(4) {
     display: flex;

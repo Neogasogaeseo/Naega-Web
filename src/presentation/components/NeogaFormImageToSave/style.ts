@@ -40,6 +40,7 @@ export const StNeogaFormImageToSave = styled.div`
 `;
 
 export const StLogo = styled.img`
-  margin-top: 60.53px;
+  position: absolute;
+  bottom: 22px;
   height: 22px;
 `;

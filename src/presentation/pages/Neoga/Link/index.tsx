@@ -35,9 +35,8 @@ export default function NeogaLink() {
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
-    { enabled: viewMode === 'ㅇㅇ', useErrorBoundary: true, retry: 1 },
+    { enabled: viewMode === VIEW_MODE.NEW, useErrorBoundary: true, retry: 1 },
   );
-  // 임시로 VIEW_MODE.NEW를 이상한걸로
   const { data: createdFormData } = useGetFormInfo(q ?? '', {
     enabled: typeof q === 'string' && q.length > 0,
   });
@@ -50,10 +49,10 @@ export default function NeogaLink() {
     setQ(q);
     setIsCreated(isCreated);
   };
-  console.log(createQ);
 
   const saveImage = async () => {
     if (!createdFormData) return;
+
     const canvas =
       imageToSaveRef.current &&
       (await html2canvas(imageToSaveRef.current, {
@@ -69,7 +68,7 @@ export default function NeogaLink() {
 
   useEffect(() => {
     if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
-    // setQ('4c799e4b1e0c38b340ce7daf1e1ca7f042e07305d4127fe5b1b05d');
+    if (viewMode === VIEW_MODE.CREATED) createQ();
   }, []);
 
   return (
@@ -85,7 +84,7 @@ export default function NeogaLink() {
                 title={formData?.title ?? ''}
                 image={formData?.image ?? ''}
               >
-                <StCopyButton onClick={() => setIsCreated((prev) => !prev)}>
+                <StCopyButton onClick={createQ}>
                   <IcPulsCoral />
                   <div>링크 생성하기</div>
                 </StCopyButton>
@@ -96,7 +95,6 @@ export default function NeogaLink() {
                 content="너가소개서 생성 완료!"
                 title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
                 image={imgBrowserLink}
-                isPreLine
               >
                 <StCopyButton
                   onClick={() =>

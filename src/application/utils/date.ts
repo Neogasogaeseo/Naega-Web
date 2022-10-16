@@ -51,15 +51,15 @@ export const formatDate = (date: Date, format: string) => {
     'Saturday',
   ];
   const WEEK_ENG_SHORT_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  return format.replace(/(yyyy|yy|MM|dd|WK|WEL|WES|HH|hh|mm|ss|a\/pK|a\/pE)/gi, (val) => {
+  return format.replace(/(YYYY|YY|MM|DD|WK|WEL|WES|HH|hh|mm|ss|a\/pK|a\/pE)/gi, (val) => {
     switch (val) {
-      case 'yyyy':
+      case 'YYYY':
         return date.getFullYear().toString(); // 년 (4자리)
-      case 'yy':
+      case 'YY':
         return date.getFullYear().toString().slice(-2); // 년 (2자리)
       case 'MM':
         return (date.getMonth() + 1).toString().padStart(2, '0'); // 월 (2자리)
-      case 'dd':
+      case 'DD':
         return date.getDate().toString().padStart(2, '0'); // 일 (2자리)
       case 'WK':
         return WEEK_KOR_NAMES[date.getDay()]; // 요일 (한글)

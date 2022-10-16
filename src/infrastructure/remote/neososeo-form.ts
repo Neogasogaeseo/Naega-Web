@@ -22,7 +22,7 @@ export function NeososeoFormRemote(): NeososeoFormService {
       formID: response.data.form.formId,
       userProfileImage: response.data.user.image,
       answerCount: response.data.answerCount,
-      createdAt: formatDate(new Date(response.data.form.createdAt), 'yyyy-mm-dd'),
+      createdAt: formatDate(new Date(response.data.form.createdAt), 'YYYY-MM-DD'),
     };
   };
 

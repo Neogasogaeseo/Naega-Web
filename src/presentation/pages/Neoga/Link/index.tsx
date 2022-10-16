@@ -12,6 +12,7 @@ import {
   StSaveButton,
   StSaveNotice,
   StWrapper,
+  StAbsoluteWrapper,
 } from './style';
 import { api } from '@api/index';
 import NeogaFormTicket from '@components/NeogaFormTicket';
@@ -34,8 +35,9 @@ export default function NeogaLink() {
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
-    { enabled: viewMode === VIEW_MODE.NEW, useErrorBoundary: true, retry: 1 },
+    { enabled: viewMode === 'ㅇㅇ', useErrorBoundary: true, retry: 1 },
   );
+  // 임시로 VIEW_MODE.NEW를 이상한걸로
   const { data: createdFormData } = useGetFormInfo(q ?? '', {
     enabled: typeof q === 'string' && q.length > 0,
   });
@@ -48,6 +50,7 @@ export default function NeogaLink() {
     setQ(q);
     setIsCreated(isCreated);
   };
+  console.log(createQ);
 
   const saveImage = async () => {
     if (!createdFormData) return;
@@ -66,6 +69,7 @@ export default function NeogaLink() {
 
   useEffect(() => {
     if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
+    // setQ('4c799e4b1e0c38b340ce7daf1e1ca7f042e07305d4127fe5b1b05d');
   }, []);
 
   return (
@@ -75,34 +79,40 @@ export default function NeogaLink() {
         <div>
           <CommonHeader />
           <StFormTicketWrapper isCreated={isCreated}>
-            <NeogaFormTicket
-              content={formData?.subtitle ?? ''}
-              title={formData?.title ?? ''}
-              image={formData?.image ?? ''}
-            >
-              <StCopyButton onClick={createQ}>
-                <IcPulsCoral />
-                <div>링크 생성하기</div>
-              </StCopyButton>
-            </NeogaFormTicket>
-            <NeogaFormTicket
-              content="너가소개서 생성 완료!"
-              title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
-              image={imgBrowserLink}
-            >
-              <StCopyButton
-                onClick={() =>
-                  copyClipboard(
-                    `${DOMAIN}/neososeoform/${q}`,
-                    () => fireToast({ content: '링크가 클립보드에 저장되었습니다.', bottom: 122 }),
-                    () => fireToast({ content: '다시 시도해주세요.', bottom: 122 }),
-                  )
-                }
+            <StAbsoluteWrapper>
+              <NeogaFormTicket
+                content={formData?.subtitle ?? ''}
+                title={formData?.title ?? ''}
+                image={formData?.image ?? ''}
               >
-                <IcLinkCoral />
-                <div>링크 복사하기</div>
-              </StCopyButton>
-            </NeogaFormTicket>
+                <StCopyButton onClick={() => setIsCreated((prev) => !prev)}>
+                  <IcPulsCoral />
+                  <div>링크 생성하기</div>
+                </StCopyButton>
+              </NeogaFormTicket>
+            </StAbsoluteWrapper>
+            <StAbsoluteWrapper>
+              <NeogaFormTicket
+                content="너가소개서 생성 완료!"
+                title={'링크를 복사해서' + '\n' + '친구들에게 공유해보세요'}
+                image={imgBrowserLink}
+                isPreLine
+              >
+                <StCopyButton
+                  onClick={() =>
+                    copyClipboard(
+                      `${DOMAIN}/neososeoform/${q}`,
+                      () =>
+                        fireToast({ content: '링크가 클립보드에 저장되었습니다.', bottom: 122 }),
+                      () => fireToast({ content: '다시 시도해주세요.', bottom: 122 }),
+                    )
+                  }
+                >
+                  <IcLinkCoral />
+                  <div>링크 복사하기</div>
+                </StCopyButton>
+              </NeogaFormTicket>
+            </StAbsoluteWrapper>
           </StFormTicketWrapper>
           <StSaveNotice isCreated={isCreated}>
             <div>

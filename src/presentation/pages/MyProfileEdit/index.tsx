@@ -12,7 +12,6 @@ import CommonInput from '@components/common/Input';
 import CommonLabel from '@components/common/Label';
 import CommonNavigation from '@components/common/Navigation';
 import { StEmptyImage, StInputWrapper, StMyProfileEdit } from './style';
-import { StErrorMsg } from '@components/common/Input/style';
 import { imgEmptyProfile } from '@assets/images';
 import { icMypageEdit } from '@assets/icons';
 
@@ -102,8 +101,8 @@ function MyProfileEdit() {
         <StInputWrapper>
           <CommonLabel content="아이디" marginTop="52px" marginBottom="20px" />
           <CommonInput
+            value={inputId}
             width="100%"
-            isConditionPassed={isEditConditionPassed.id}
             onChange={(value) => {
               setInputId(value);
             }}
@@ -117,12 +116,12 @@ function MyProfileEdit() {
             placeholder={userID}
             maxLength={15}
             defaultValue={userID}
+            errorMsg={errorMsg}
           />
-          <StErrorMsg>{errorMsg}</StErrorMsg>
           <CommonLabel content="이름" marginTop="46px" marginBottom="20px" />
           <CommonInput
+            value={inputName}
             width="100%"
-            isConditionPassed={isEditConditionPassed.name}
             onChange={(value) => {
               setInputName(value);
             }}

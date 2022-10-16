@@ -9,7 +9,7 @@ import CommonNavigation from '@components/common/Navigation';
 import MySelectableList from '@components/MySelectableList';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import NeososeoAnswerCardList from '@components/NeososeoAnswerCard/List';
-import { PICK_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { StMyNeogaPick, StMyNeogaFormList, StMyNeogaPickList } from './style';
 
 function MyNeogaPick() {
@@ -25,8 +25,8 @@ function MyNeogaPick() {
         : await api.userService.getMyAnswerInfo(pageParam);
       return {
         answerList: response.answerList,
-        nextPage: pageParam + PICK_PAGE,
-        isLast: response.answerList.length < PICK_PAGE,
+        nextPage: pageParam + PAGES.PICK,
+        isLast: response.answerList.length < PAGES.PICK,
       };
     },
     [selectedForm && selectedForm.id],

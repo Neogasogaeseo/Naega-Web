@@ -12,8 +12,11 @@ export function NeogaDataRemote(): NeogaService {
       return response.data
         ? {
             id: response.data.id,
-            title: response.data.title.replace('\\n', ' ').replaceAll('*', ''),
-            content: response.data.subtitle.replace('\\n', '\n'),
+            title: response.data.title
+              .replace('\\n', ' ')
+              .replaceAll('*', '')
+              .replaceAll('{{user}}', '나'),
+            content: response.data.subtitle.replace('\\n', '\n').replaceAll('{{user}}', '나'),
             isNew: response.data.isNew,
             isBanner: response.data.isBanner,
             src: response.data.darkIconImage,
@@ -29,7 +32,7 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK)
       return response.data.map((data: any) => ({
         id: data.id,
-        title: data.title,
+        title: data.title.replaceAll('{{user}}', '나'),
         src: data.darkIconImage,
         backgroundColor: data.colorCode,
         isCreated: data.isDeleted === undefined ? false : !data.isDeleted,
@@ -42,8 +45,8 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK)
       return response.data.map((data: any) => ({
         id: data.id,
-        title: data.title.replace('\\n', ' ').replaceAll('*', ''),
-        content: data.subtitle.replace('\\n', ' '),
+        title: data.title.replace('\\n', ' ').replaceAll('*', '').replaceAll('{{user}}', '나'),
+        content: data.subtitle.replace('\\n', ' ').replaceAll('{{user}}', '나'),
         isNew: data.isNew,
         src: data.darkIconImage,
         backgroundColor: data.colorCode,
@@ -61,7 +64,10 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
+              title: result.title
+                .replace('\\n', ' ')
+                .replaceAll('*', '')
+                .replaceAll('{{user}}', '나'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer.map((comment: any) => ({
@@ -82,7 +88,10 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
+              title: result.title
+                .replace('\\n', ' ')
+                .replaceAll('*', '')
+                .replaceAll('{{user}}', '나'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -100,8 +109,11 @@ export function NeogaDataRemote(): NeogaService {
         resultList: response.data.resultList
           ? response.data.resultList.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
-              subtitle: result.subtitle,
+              title: result.title
+                .replace('\\n', ' ')
+                .replaceAll('*', '')
+                .replaceAll('{{user}}', '나'),
+              subtitle: result.subtitle.replaceAll('{{user}}', '나'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: result.answer
@@ -124,8 +136,11 @@ export function NeogaDataRemote(): NeogaService {
           : response.data
           ? response.data.map((result: any) => ({
               id: result.id,
-              title: result.title.replace('\\n', ' ').replaceAll('*', ''),
-              subtitle: result.subtitle,
+              title: result.title
+                .replace('\\n', ' ')
+                .replaceAll('*', '')
+                .replaceAll('{{user}}', '나'),
+              subtitle: result.subtitle.replaceAll('{{user}}', '나'),
               darkIconImage: result.darkIconImage,
               createdAt: result.createdAt,
               answer: [],
@@ -167,8 +182,8 @@ export function NeogaDataRemote(): NeogaService {
     if (response.status === STATUS_CODE.OK) {
       return {
         id: id,
-        title: title.replace('\\n', ' ').replaceAll('*', ''),
-        subtitle: subtitle.replace('\\n', '\n'),
+        title: title.replace('\\n', ' ').replaceAll('*', '').replaceAll('{{user}}', '나'),
+        subtitle: subtitle.replace('\\n', '\n').replaceAll('{{user}}', '나'),
         image: darkIconImage,
       };
     } else throw '서버 통신 실패';
@@ -179,8 +194,8 @@ export function NeogaDataRemote(): NeogaService {
     if (!response.data) throw new NotFoundError('해당 유저와 폼 아이디로 생성된 폼이 없습니다.');
     return {
       id: response.data.form.id,
-      title: removeSpecialCharacters(response.data.form.title),
-      subtitle: response.data.form.subtitle.replace('\\n', '\n'),
+      title: removeSpecialCharacters(response.data.form.title).replaceAll('{{user}}', '나'),
+      subtitle: response.data.form.subtitle.replace('\\n', '\n').replaceAll('{{user}}', '나'),
       darkIconImage: response.data.form.darkIconImage,
       createdAt: response.data.form.createdAt,
       q: response.data.q,

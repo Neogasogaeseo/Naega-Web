@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import { api } from '@api/index';
 import { IcCamera } from '@assets/icons';
@@ -14,7 +14,14 @@ import { useToast } from '@hooks/useToast';
 import { StTitle, StSubTitle, StForm, StFormTitle, StTextarea, StButton } from '../style';
 import { StUploadContainer } from '@pages/Team/Issue/NewIssue/style';
 
+interface CustomizedLinkState {
+  isError: boolean;
+}
+
 function ServiceCenterPage() {
+  const location = useLocation();
+  const state = location.state as CustomizedLinkState;
+  const { isError } = state;
   const navigate = useNavigate();
   const { fireToast } = useToast();
   const { data: categories } = useQuery(
@@ -30,7 +37,7 @@ function ServiceCenterPage() {
 
   useEffect(() => {
     if (selectedItemID === undefined && categories !== undefined) {
-      setSelectedItemID(categories[0].id);
+      setSelectedItemID(isError ? categories[2].id : categories[0].id);
     }
   }, [categories]);
 

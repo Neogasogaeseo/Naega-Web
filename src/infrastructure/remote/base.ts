@@ -1,7 +1,8 @@
+import { TOKEN_KEYS } from '@utils/constant';
 import axios from 'axios';
 
 const BASEURL = 'http://127.0.0.1:5050/neogasogaeseo-9aaf5/asia-northeast3/api';
-const getAccessToken = () => localStorage.getItem('token') ?? '';
+const getAccessToken = () => localStorage.getItem(TOKEN_KEYS.ACCESS) ?? '';
 
 const getBasePrivateHeaders = () => ({
   Accept: `*/*`,

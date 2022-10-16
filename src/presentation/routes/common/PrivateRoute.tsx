@@ -1,11 +1,14 @@
-import { useLoginUser } from '@hooks/useLoginUser';
 import { Navigate, Outlet } from 'react-router-dom';
+
 import ErrorGuard from './ErrorGuard';
+import { useLoginUser } from '@hooks/useLoginUser';
 
 function PrivateRoute() {
-  const { isAuthenticated, isLoading, error } = useLoginUser();
-  if (error) throw error;
-  return isLoading ? <></> : isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  const { isAuthenticated, isJoined } = useLoginUser();
+
+  if (isAuthenticated) return isJoined ? <Outlet /> : <Navigate to="/join" />;
+
+  return <Navigate to="/" />;
 }
 
 function GuardedPrivateRoute() {

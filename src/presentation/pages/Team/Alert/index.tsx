@@ -3,7 +3,7 @@ import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import TeamNoticeItem from '@components/TeamNoticeItem';
 import { useScrollHeight } from '@hooks/useScrollHeight';
-import { NOTICE_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
 import { useInfiniteQuery } from 'react-query';
@@ -16,8 +16,8 @@ function TeamAlert() {
     const response = await api.teamService.getNotice(pageParam);
     return {
       result: response,
-      nextPage: pageParam + NOTICE_PAGE,
-      isLast: response.length < NOTICE_PAGE,
+      nextPage: pageParam + PAGES.NOTICE,
+      isLast: response.length < PAGES.NOTICE,
       id: pageParam,
     };
   }, []);

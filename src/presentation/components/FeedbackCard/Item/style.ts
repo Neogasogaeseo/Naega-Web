@@ -56,3 +56,38 @@ export const StBody = styled.div`
   color: ${COLOR.GRAY_7};
   white-space: pre-line;
 `;
+
+export const StIssue = styled.div`
+  background-color: ${COLOR.GRAY_1};
+  color: ${COLOR.GRAY_6};
+  padding: 16px 16px 18px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+
+    div {
+      ${FONT_STYLES.SB_13_TITLE};
+      color: ${COLOR.GRAY_6};
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      ${FONT_STYLES.SB_12_TITLE};
+      color: ${COLOR.GRAY_4};
+      background-color: transparent;
+
+      img {
+        margin-left: 4px;
+      }
+    }
+  }
+`;

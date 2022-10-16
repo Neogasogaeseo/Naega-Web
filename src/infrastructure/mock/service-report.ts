@@ -3,19 +3,11 @@ import { ReportService } from '@api/service-report';
 export function reportDataMock(): ReportService {
   const getServiceCenterCategories = async () => {
     return [
-      { id: 1, content: '서진서진' },
-      { id: 2, content: '주영주영' },
-      { id: 3, content: '지연지연' },
-      { id: 4, content: '효인효인' },
-    ];
-  };
-
-  const getFeedbackCategories = async () => {
-    return [
-      { id: 1, content: '서진서진' },
-      { id: 2, content: '주영주영' },
-      { id: 3, content: '지연지연' },
-      { id: 4, content: '효인효인' },
+      { id: 1, content: '계정' },
+      { id: 2, content: '답변 신고' },
+      { id: 3, content: '오류 신고 및 피드백' },
+      { id: 4, content: '너소서 질문 제안' },
+      { id: 5, content: '기타' },
     ];
   };
 
@@ -23,5 +15,5 @@ export function reportDataMock(): ReportService {
     return { isSuccess: true };
   };
 
-  return { getServiceCenterCategories, getFeedbackCategories, postReport };
+  return { getServiceCenterCategories, postReport };
 }

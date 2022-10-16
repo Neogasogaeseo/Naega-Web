@@ -27,6 +27,7 @@ export const USER_DATA: {
   KEYWORDS: [{ id: '0', content: '유사 사랑의 열매', color: '#4C48FF', fontColor: '#FFFFFF' }],
   KEYWORD: (content: string) => ({ id: '0', content, color: '#4C48FF', fontColor: '#FFFFFF' }),
   MY_PAGE_INFO: (userID: string) => ({
+    id: 1,
     username: '강쥐',
     userID,
     profileImage:
@@ -46,7 +47,7 @@ export const USER_DATA: {
       {
         id: 0,
         icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
-        question: '너가 닮고 싶은 나의 일잘러 모습',
+        question: '너가 닮고 싶은 {{user}}의 일잘러 모습',
         content:
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
@@ -59,7 +60,7 @@ export const USER_DATA: {
       {
         id: 1,
         icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
-        question: '너가 닮고 싶은 나의 일잘러 모습',
+        question: '너가 닮고 싶은 {{user}}의 일잘러 모습',
         content:
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
@@ -72,7 +73,7 @@ export const USER_DATA: {
       {
         id: 2,
         icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
-        question: '너가 닮고 싶은 나의 일잘러 모습',
+        question: '너가 닮고 싶은 {{user}}의 일잘러 모습',
         content:
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
@@ -183,7 +184,7 @@ export const USER_DATA: {
         id: 0,
         formId: 1,
         icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
-        question: '너가 닮고 싶은 나의 일잘러 모습',
+        question: '너가 닮고 싶은 {{user}}의 일잘러 모습',
         content:
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,
@@ -196,7 +197,7 @@ export const USER_DATA: {
         id: 1,
         formId: 1,
         icon: 'https://oopy.lazyrockets.com/api/rest/cdn/image/edbc11fb-2504-4cc6-b907-04db8a8554da.png',
-        question: '너가 닮고 싶은 나의 일잘러 모습',
+        question: '너가 닮고 싶은 {{user}}의 일잘러 모습',
         content:
           '강쥐야 너랑 작업같이 진행하면서 너가 있어서 넘 든든했어! 우리 앞으로도 꼭 같이 머머하자>< 울팀 엄마~!~!! 동해물과 백두산이 마르고 닳도록~ 하느님이 보우하사 우리 나라 만세~ 무궁화 삼천리',
         isBookmarked: true,

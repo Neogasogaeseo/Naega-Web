@@ -9,7 +9,7 @@ import KeywordEmptyView from '@components/common/Empty/Keyword';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import { useScrollHeight } from '@hooks/useScrollHeight';
-import { KEYWORD_PAGE } from '@utils/constant';
+import { PAGES } from '@utils/constant';
 import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
 
 interface OutletContextProps {
@@ -33,8 +33,8 @@ function TeamIssueKeyword() {
     const response = await api.userService.getKeywords(targetUser.id, pageParam);
     return {
       result: response,
-      nextPage: pageParam + KEYWORD_PAGE,
-      isLast: response.length < KEYWORD_PAGE,
+      nextPage: pageParam + PAGES.KEYWORD,
+      isLast: response.length < PAGES.KEYWORD,
     };
   }, []);
 

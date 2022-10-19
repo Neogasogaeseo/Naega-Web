@@ -166,7 +166,7 @@ export function NeogaDataRemote(): NeogaService {
         if (error.response?.status === STATUS_CODE.BAD_REQUEST)
           throw new BadRequestError('폼 생성을 실패했습니다');
       });
-    return { isCreated: response.status === 200, q: response.data };
+    return { isCreated: response.status === 200, formCode: response.data };
   };
 
   const getCreateFormInfo = async (formID: number) => {

@@ -6,8 +6,8 @@ import { removeSpecialCharacters } from '@utils/string';
 import { publicAPI } from './base';
 
 export function NeososeoFormRemote(): NeososeoFormService {
-  const getFormInfo = async (q: string) => {
-    const response = await publicAPI.get({ url: `/form/answer?q=${q}` });
+  const getFormInfo = async (formCode: string) => {
+    const response = await publicAPI.get({ url: `/form/answer?q=${formCode}` });
     const userName = response.data.user.name;
     return {
       title: removeSpecialCharacters(response.data.form.title).replaceAll('{{user}}', userName),

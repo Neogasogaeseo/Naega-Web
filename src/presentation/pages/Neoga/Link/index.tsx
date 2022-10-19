@@ -31,22 +31,22 @@ export default function NeogaLink() {
   const { formID, viewMode } = useParams();
   const [isCreated, setIsCreated] = useState(viewMode === VIEW_MODE.CREATED);
   const { fireToast } = useToast();
-  const [q, setQ] = useState<string | undefined>();
+  const [formCode, setFormCode] = useState<string | undefined>();
   const { data: formData } = useQuery(
     ['formData', formID],
     () => api.neogaService.getCreateFormInfo(Number(formID)),
     { enabled: viewMode === VIEW_MODE.NEW, useErrorBoundary: true, retry: 1 },
   );
-  const { data: createdFormData } = useGetFormInfo(q ?? '', {
-    enabled: typeof q === 'string' && q.length > 0,
+  const { data: createdFormData } = useGetFormInfo(formCode ?? '', {
+    enabled: typeof formCode === 'string' && formCode.length > 0,
   });
   const imageToSaveRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const createQ = async () => {
+  const createFormCode = async () => {
     if (!formID || isNaN(+formID)) return;
-    const { q, isCreated } = await api.neogaService.createForm(+formID);
-    setQ(q);
+    const { formCode, isCreated } = await api.neogaService.createForm(+formID);
+    setFormCode(formCode);
     setIsCreated(isCreated);
   };
 
@@ -68,7 +68,7 @@ export default function NeogaLink() {
 
   useEffect(() => {
     if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
-    if (viewMode === VIEW_MODE.CREATED) createQ();
+    if (viewMode === VIEW_MODE.CREATED) createFormCode();
   }, []);
 
   return (
@@ -84,7 +84,7 @@ export default function NeogaLink() {
                 title={formData?.title ?? ''}
                 image={formData?.image ?? ''}
               >
-                <StCopyButton onClick={createQ}>
+                <StCopyButton onClick={createFormCode}>
                   <IcPulsCoral />
                   <div>링크 생성하기</div>
                 </StCopyButton>
@@ -99,7 +99,7 @@ export default function NeogaLink() {
                 <StCopyButton
                   onClick={() =>
                     copyClipboard(
-                      `${DOMAIN}/neososeoform/${q}`,
+                      `${DOMAIN}/neososeoform/${formCode}`,
                       () =>
                         fireToast({ content: '링크가 클립보드에 저장되었습니다.', bottom: 122 }),
                       () => fireToast({ content: '다시 시도해주세요.', bottom: 122 }),

@@ -4,7 +4,7 @@ import { Keyword } from '@api/types/user';
 import { ImgPage2 } from '@assets/images';
 import CommonNavigation from '@components/common/Navigation';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
-import NeososeoFormHeader from '@components/common/NeososeoFormHeader';
+import NeososeoFormHeader from '@components/NeososeoFormHeader';
 import { neososeoAnswerState } from '@stores/neososeo-form';
 import { isAllFilled } from '@utils/string';
 import { useEffect, useState } from 'react';
@@ -31,7 +31,7 @@ function NeososeoFormAnswer() {
     const response = await api.neososeoFormService.postFormAnswer({
       ...neososeoAnswer,
       userID: neososeoFormData.userID,
-      formID: neososeoFormData.formID,
+      formID: neososeoFormData.createdID,
     });
     if (response.isSuccess) {
       resetNeososeoAnswer();

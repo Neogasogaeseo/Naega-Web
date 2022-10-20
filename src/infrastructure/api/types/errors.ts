@@ -63,10 +63,12 @@ export class BadRequestError implements CustomError {
   code: 400;
   name: 'Bad Request Error';
   message: string;
+  description: string;
 
   constructor(message: string) {
     this.code = 400;
     this.name = 'Bad Request Error';
     this.message = message;
+    this.description = '잘못된 요청입니다';
   }
 }

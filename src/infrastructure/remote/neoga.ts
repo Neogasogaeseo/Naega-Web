@@ -1,5 +1,5 @@
 import { NeogaService } from '@api/neoga';
-import { NotFoundError } from '@api/types/errors';
+import { BadRequestError, NotFoundError } from '@api/types/errors';
 import { STATUS_CODE } from '@utils/constant';
 import { removeSpecialCharacters } from '@utils/string';
 import { AxiosError } from 'axios';
@@ -156,16 +156,17 @@ export function NeogaDataRemote(): NeogaService {
     return { isSuccess: response.success };
   };
 
-  const postCreateForm = async (formID: number) => {
+  const createForm = async (formID: number) => {
     const response = await privateAPI
       .post({
         url: `/form/create`,
         data: { formId: formID },
       })
       .catch((error: AxiosError) => {
-        console.error(error.response);
+        if (error.response?.status === STATUS_CODE.BAD_REQUEST)
+          throw new BadRequestError('폼 생성을 실패했습니다');
       });
-    return { isCreated: response.message === '폼 생성 성공', q: response.data };
+    return { isCreated: response.status === 200, formCode: response.data };
   };
 
   const getCreateFormInfo = async (formID: number) => {
@@ -244,7 +245,7 @@ export function NeogaDataRemote(): NeogaService {
     getMainResultCard,
     getAllFormCard,
     postAnswerBookmark,
-    postCreateForm,
+    createForm,
     getCreateFormInfo,
     getNeososeoInfo,
     getNeososeoFeedback,

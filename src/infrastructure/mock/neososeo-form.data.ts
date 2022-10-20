@@ -15,7 +15,9 @@ export const NEOSOSEO_FORM_DATA: { FORM: NeososeoFormData } = {
     userName: '강쥐',
     userID: 1,
     formID: 1,
+    createdID: 1,
     userProfileImage: '',
     answerCount: 0,
+    createdAt: '2022-08-31',
   },
 };

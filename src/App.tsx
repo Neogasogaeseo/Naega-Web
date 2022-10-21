@@ -9,9 +9,9 @@ import ToastList from '@components/common/Toast/List';
 import VConsole from 'vconsole';
 import { DOMAIN } from '@utils/constant';
 
-function App() {
-  if (DOMAIN === 'https://naegasogaeseo-dev.kro.kr') new VConsole();
+if (DOMAIN === 'https://naegasogaeseo-dev.kro.kr') new VConsole();
 
+function App() {
   const { initLoginUser } = useLoginUser();
 
   const queryClient = new QueryClient({

@@ -1,5 +1,6 @@
 export { default as imgLogo } from './img_logo.svg';
 export { default as imgEmptyProfile } from './img_empty_profile.svg';
+export { default as imgEmptyProfileSmall } from './img_empty_profile_small.svg';
 export { default as imgEmptyJoinProfile } from './img_empty_join.svg';
 export { default as imgParty } from './img_party.svg';
 export { ReactComponent as ImgTeamDefault } from './img_team_default.svg';

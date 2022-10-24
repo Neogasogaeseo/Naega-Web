@@ -43,4 +43,6 @@ export const StLogo = styled.img`
   position: absolute;
   bottom: 22px;
   height: 22px;
+  width: 92px;
+  object-fit: cover;
 `;

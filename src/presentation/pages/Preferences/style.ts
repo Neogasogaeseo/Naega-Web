@@ -52,6 +52,8 @@ export const StSectionItem = styled.div`
   }
 `;
 
+export const StSectionLink = StSectionItem.withComponent('a');
+
 export const StForm = styled.div`
   display: flex;
   flex-direction: column;

@@ -8,6 +8,7 @@ import {
   StPreferencesWrapper,
   StSection,
   StSectionItem,
+  StSectionLink,
   StSectionTitle,
   StTitle,
   StWhiteBackground,
@@ -46,12 +47,19 @@ function PreferencesPage() {
         </StSection>
         <StSection>
           <StSectionTitle>후원</StSectionTitle>
-          <StSectionItem>서버비 후원</StSectionItem>
+          <StSectionLink href="https://qr.kakaopay.com/Ej7miTnbX1f608787" target="_blank">
+            서버비 후원
+          </StSectionLink>
           <StWhiteBackground style={{ height: 44 }} />
         </StSection>
         <StSection>
           <StSectionTitle>계정</StSectionTitle>
-          <StSectionItem>약관</StSectionItem>
+          <StSectionLink
+            href="https://suzieep.notion.site/84b53946ac1b48f5a86ea4f9d6bf307c"
+            target="_blank"
+          >
+            약관
+          </StSectionLink>
           <StSectionItem onClick={resetUser}>로그아웃</StSectionItem>
           <StSectionItem onClick={() => setIsModalOpen(true)}>탈퇴</StSectionItem>
         </StSection>

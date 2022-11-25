@@ -6,7 +6,7 @@ name: Release
 on:
   # Triggers the workflow on push or pull request events but only for the dev branch
   push:
-    branches: [release]
+    branches: ["v1.0.0"]
     paths-ignore: ['**.md']
 
   # Allows you to run this workflow manually from the Actions tab

@@ -5,35 +5,36 @@
 > 나와 함께한 당신이 대신 써 주는 나의 소개서 🖋📓  
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/73823388/150405288-e6c19597-8ff6-49ac-911f-fe0d36c8e400.gif" width=150>
+  <img src="https://user-images.githubusercontent.com/58380158/212395066-d20da9c1-a392-4a05-bbfc-a5ebf28b5940.gif" width=150 />
 </div>
 
 ## 📓 Main Service
 
 #### `너가소개서`
-나를 알아갈 수 있는 다양한 질문의 설문 링크를 열고, 친구들의 답변으로 나를 알아가세요!
+나를 알아갈 수 있는 다양한 질문들과 친구들의 답변으로 나의 새로운 모습을 발견하세요!
 <div align="left">
-  <img src="https://user-images.githubusercontent.com/58380158/154424612-c90f1089-267b-43de-966a-ce225d50613c.png" width=200>
-  <img src="https://user-images.githubusercontent.com/58380158/154424797-d7e9d546-dfa2-4cf8-b049-9bff42dae819.png" width=200>
-  <img src="https://user-images.githubusercontent.com/73823388/150408869-d1c5a594-9d08-436d-9054-4ce74e51a7b9.png" width=200>
-  <img src="https://user-images.githubusercontent.com/73823388/150532865-59f7396d-c94b-4d87-83a8-a03da379bea1.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212395404-4896ff0d-fe22-4a88-95a9-c6ad5ba87669.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212395543-a8f0f050-3410-485c-b383-d5158285a853.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212395553-d68facd8-ed24-41af-8603-b13f7a4a40a6.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212395564-3cadcfed-ce0f-415a-8c03-546b338b5a1e.png" width=200>
 </div>
 
 #### `팀원소개서`
-팀원들과 협업하며 일어난 이슈들을 기록하고 그에 대한 피드백을 주고받으세요!
+팀원들과 협업하며 일어난 이슈들을 기록하고 피드백을 주고받으며 협업 기록을 아카이빙 하세요!
 <div align="left">
-  <img src="https://user-images.githubusercontent.com/58380158/154423628-661dac91-51a7-4351-bfb1-db7aef0fbb40.png" width=200>
-  <img src="https://user-images.githubusercontent.com/58380158/154423893-d79f7a0a-afa9-4117-a1b5-19cdd8492a06.png" width=200>
-  <img src="https://user-images.githubusercontent.com/58380158/154424007-8d709f6e-df95-46e8-9ca0-ef2d029733da.png" width=200>
-  <img src="https://user-images.githubusercontent.com/73823388/150533291-a5ee42b2-81ca-43fd-9b48-fa7604d40af6.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212396376-265e2811-f7bb-400c-ae50-e1b4d2ac4161.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212396391-a692f594-34b8-418e-8d37-cf6dd8492b03.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212396415-bc4755f1-e978-4309-88f6-1b6395b552c2.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212396405-57de4e71-234d-4b13-9a6d-44e749acd8a9.png" width=200>
 </div>
 
 #### `마이페이지`
-나에게 많이 나온 키워드로 나를 소개하세요.  
-나를 잘 표현하는 소개를 Pick 해서 마이페이지를 구성하고 링크로 공유해서 주변에 자랑해 보세요!
+마음에 들었던 소개로 MY를 채우고 링크로 친구들과 공유하세요!
 <div align="left">
-  <img src="https://user-images.githubusercontent.com/58380158/154422566-a70ffaca-8843-48d0-bcd6-53016cce2717.png" width=200>
-  <img src="https://user-images.githubusercontent.com/58380158/154422612-f7f56679-51c6-42a9-ac4b-761cefc96845.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212397667-22625363-d461-4750-b623-f125c182ee14.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212398529-234df0a6-3662-451c-86de-db13b306a475.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212398537-2f4f1fae-d58e-41cd-893f-f95e63faa32d.png" width=200>
+  <img src="https://user-images.githubusercontent.com/58380158/212398813-1768dba8-6759-4278-a4dd-4c6da0b620e0.png" width=200>
 </div>
 
 ## 📓 Team
@@ -54,7 +55,7 @@
 
 ### 역할 분담
 **서진** : 팀원소개서_피드백 조회 및 생성, 키워드 입력 / 너가소개서_폼 만들기, 폼 입력 / 마이페이지  
-**지연** : 팀원소개서_메인, 팀별 상세 정보 조회 / 너가소개서_메인, 생성한 폼 조회 / 프로필 수정 페이지  
+**지연** : 팀원소개서_메인, 팀 상세 조회, 팀원 목록 / 너가소개서_메인, 생성한 설문 리스트 / 프로필 수정, 키워드 조회 및 삭제, MY 답변 픽 하기   
 **효인** : 랜딩 페이지 / 로그인, 회원가입 / 팀원소개서_이슈 등록 / 너가소개서_답변 조회  
 **주영** : 팀원소개서_팀 등록, 팀원 추가, 팀 수정 / 너가소개서_설문 링크 생성  
 

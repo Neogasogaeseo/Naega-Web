@@ -1,8 +1,12 @@
 import CommonModal from '@components/common/Modal';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+
+import { useLoginUser } from '@hooks/useLoginUser';
 
 const InAppBrowserEscape = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const { isAuthenticated } = useLoginUser();
+
   const openRealBrowser = useCallback(() => {
     const isIOS = navigator.userAgent.match(/iPhone|iPad/i);
     if (isIOS) {
@@ -14,12 +18,15 @@ const InAppBrowserEscape = () => {
         '#Intent;scheme=http;package=com.android.chrome;end';
     }
   }, []);
+
   useEffect(() => {
+    if (!isAuthenticated) return;
+
     const isInAppBrowser = navigator.userAgent.match(
       /inapp|NAVER|KAKAOTALK|Snapchat|Line|WirtschaftsWoche|Thunderbird|Instagram|everytimeApp|WhatsApp|Electron|wadiz|AliApp|zumapp|iPhone(.*)Whale|Android(.*)Whale|kakaostory|band|twitter|DaumApps|DaumDevice\/mobile|FB_IAB|FB4A|FBAN|FBIOS|FBSS|SamsungBrowser\/[^1]/i,
     );
     if (isInAppBrowser !== null) setIsModalOpened(true);
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <CommonModal

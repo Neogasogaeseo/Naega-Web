@@ -6,6 +6,10 @@ import GlobalStyle from '@styles/global';
 import Router from '@routes/Router';
 import { useLoginUser } from '@hooks/useLoginUser';
 import ToastList from '@components/common/Toast/List';
+import VConsole from 'vconsole';
+import { DOMAIN } from '@utils/constant';
+
+if (DOMAIN === 'https://naegasogaeseo-dev.kro.kr') new VConsole();
 
 function App() {
   const { initLoginUser } = useLoginUser();

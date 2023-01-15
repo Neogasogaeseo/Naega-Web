@@ -12,7 +12,7 @@ function GoogleAdsense() {
       client="ca-pub-6625943874572956"
       slot="8554867589"
       layout="display"
-      style={{ width: '100%', height: '50px', position: 'absolute', top: 0, left: 0 }}
+      style={{ width: '100%', height: '50px', position: 'absolute', top: 0, left: 0, padding: 0 }}
     />
   );
 }

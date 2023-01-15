@@ -1,27 +1,26 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { Link, Outlet, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 
 import { api } from '@api/index';
-import { Keyword } from '@api/types/user';
 import { FeedbackEditInfo, TeamMemberNoneId } from '@api/types/team';
-import ProfileListSelectable from '@components/ProfileListSelectable';
+import { Keyword } from '@api/types/user';
+import { IcLock } from '@assets/icons';
+import { imgEmptyProfile } from '@assets/images';
+import { StInput } from '@components/common/Input/style';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
+import ProfileListSelectable from '@components/ProfileListSelectable';
 import {
   StAbsoluteWrapper,
   StBlackBlur,
-  StWrapper,
+  StButton,
+  StEmptyWrapper,
   StSection,
   StSectionTitle,
-  StButton,
-  StTextarea,
-  StEmptyWrapper,
   StTargetUser,
+  StTextarea,
+  StWrapper,
 } from './style';
-import { IcLock } from '@assets/icons';
-import { imgEmptyProfile } from '@assets/images';
-import { useToast } from '@hooks/useToast';
-import { StInput } from '@components/common/Input/style';
 
 interface TeamIssueFeedbackProps {
   isEditMode?: boolean;
@@ -32,7 +31,6 @@ interface TeamIssueFeedbackProps {
 function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
   const { isEditMode = false } = props;
   const { feedbackEditInfo, closeBottomSheet } = useOutletContext<TeamIssueFeedbackProps>();
-  const { fireToast } = useToast();
 
   const [selectedUser, setSelectedUser] = useState<TeamMemberNoneId | null>(null);
   const [content, setContent] = useState<string>('');
@@ -181,15 +179,11 @@ function TeamIssueFeedback(props: TeamIssueFeedbackProps) {
         context={{
           keywordList,
           addKeyword: (keyword: Keyword) => {
-            if (keywordList.length < 2) {
-              setKeywordList((prev) =>
-                prev.map((prev) => prev.content).includes(keyword.content)
-                  ? prev
-                  : [...prev, keyword],
-              );
-            } else {
-              fireToast({ content: '키워드는 최대 2개 입력할 수 있어요' });
-            }
+            setKeywordList((prev) =>
+              prev.map((prev) => prev.content).includes(keyword.content)
+                ? prev
+                : [...prev, keyword],
+            );
           },
           removeKeyword: (targetKeyword: Keyword) =>
             setKeywordList((prev) =>

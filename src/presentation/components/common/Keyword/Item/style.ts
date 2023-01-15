@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import { icCloseWhite } from '@assets/icons';
 import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 
@@ -20,9 +21,22 @@ export const StKeywordItem = styled.div<{ color: string; fontColor: string }>`
     gap: 8px;
     ${FONT_STYLES.R_13_TITLE}
   }
-  img {
-    cursor: pointer;
-  }
+`;
+
+export const StKeywordCloseBtn = styled.div<{ color: string; theme: 'grey' | 'color' }>`
+  cursor: pointer;
+  mask-image: url(${icCloseWhite});
+  width: 13px;
+  height: 13px;
+  ${({ color, theme }) =>
+    theme === 'grey'
+      ? css`
+          background-color: ${COLOR.GRAY_6};
+        `
+      : css`
+          background-color: ${color};
+          opacity: 0.6;
+        `}
 `;
 
 export const StCount = styled.span`

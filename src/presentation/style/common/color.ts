@@ -1,4 +1,4 @@
-export const COLOR = {
+export const COLOR: Record<string, string> = {
   CORAL_MAIN: '#FF6262',
   BLACK: '#000000',
   WHITE: '#FFFFFF',

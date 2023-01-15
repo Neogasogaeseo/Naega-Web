@@ -3,7 +3,7 @@ import { COLOR } from '@styles/common/color';
 import { FONT_STYLES } from '@styles/common/font-style';
 import styled from 'styled-components';
 
-export const StNeososeoFormPage = styled.div`
+export const StNeososeoFormPage = styled.div<{ bg: string }>`
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -11,6 +11,7 @@ export const StNeososeoFormPage = styled.div`
   position: relative;
   padding-top: 50px;
   position: relative;
+  background-color: ${({ bg }) => bg};
 
   & > *:first-child {
     padding: 0 20px;

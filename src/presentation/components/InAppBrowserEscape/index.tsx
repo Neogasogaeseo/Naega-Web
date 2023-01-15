@@ -32,10 +32,15 @@ const InAppBrowserEscape = () => {
     <CommonModal
       title="알림"
       description={
-        '더 쾌적하게 너가소개서를 이용하기 위해' + '\n' + '외부 브라우저에서 접속해 주세요.'
+        '크롬 앱으로 접속하면' +
+        '\n' +
+        '더 쾌적한 환경에서 이용할 수 있습니다.' +
+        '\n' +
+        '*크롬 앱이 없다면 취소를 눌러주세요'
       }
       onClickCancel={() => setIsModalOpened(false)}
       onClickConfirm={openRealBrowser}
+      confirmLabel="크롬에서 보기"
       isOpened={isModalOpened}
     />
   );

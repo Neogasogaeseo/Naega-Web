@@ -91,7 +91,7 @@ function TeamIssueKeyword() {
       <StWhiteWrapper>
         <CommonInput
           width="100%"
-          placeholder="새 키워드를 입력해주세요"
+          placeholder="새 키워드를 입력해주세요 (최대 2개)"
           value={newKeywordContent}
           onChange={(value: string) => setNewKeywordContent(value)}
           onSubmit={createKeyword}

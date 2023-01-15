@@ -67,8 +67,7 @@ export default function NeogaLink() {
     createdFormData && navigate(`/neoga/${createdFormData.formID}/detail/form`);
 
   useEffect(() => {
-    setIsCreated(true);
-    // if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
+    if (!(viewMode === VIEW_MODE.NEW || viewMode === VIEW_MODE.CREATED)) navigate('/');
     if (viewMode === VIEW_MODE.CREATED) createFormCode();
   }, []);
 

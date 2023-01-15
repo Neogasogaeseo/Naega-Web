@@ -8,10 +8,11 @@ interface CommonModalProps {
   title: string;
   description?: string;
   isOpened: boolean;
+  confirmLabel?: string;
 }
 
 export default function CommonModal(props: CommonModalProps) {
-  const { onClickConfirm, onClickCancel, title, description, isOpened } = props;
+  const { onClickConfirm, onClickCancel, title, description, isOpened, confirmLabel } = props;
   return (
     <ModalWrapper isOpened={isOpened}>
       <StCommonModal>
@@ -20,7 +21,7 @@ export default function CommonModal(props: CommonModalProps) {
         {description && <StDescription>{description}</StDescription>}
         <div>
           <button onClick={onClickCancel}>취소</button>
-          <button onClick={onClickConfirm}>확인</button>
+          <button onClick={onClickConfirm}>{confirmLabel ?? '확인'}</button>
         </div>
       </StCommonModal>
     </ModalWrapper>

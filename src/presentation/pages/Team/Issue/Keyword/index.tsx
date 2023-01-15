@@ -1,16 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useOutletContext, Navigate } from 'react-router-dom';
-import { useInfiniteQuery } from 'react-query';
 import { api } from '@api/index';
 import { Keyword } from '@api/types/user';
-import CommonInput from '@components/common/Input';
-import CommonLoader from '@components/common/Loader';
 import KeywordEmptyView from '@components/common/Empty/Keyword';
+import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
+import CommonLoader from '@components/common/Loader';
 import { useScrollHeight } from '@hooks/useScrollHeight';
+import { useToast } from '@hooks/useToast';
 import { PAGES } from '@utils/constant';
-import { StAbsoluteWrapper, StTitleWrapper, StWhiteWrapper, StHeader } from './style';
+import { useCallback, useEffect, useState } from 'react';
+import { useInfiniteQuery } from 'react-query';
+import { Navigate, useNavigate, useOutletContext } from 'react-router-dom';
+import { StAbsoluteWrapper, StHeader, StTitleWrapper, StWhiteWrapper } from './style';
 
 interface OutletContextProps {
   keywordList: Keyword[];
@@ -21,6 +22,7 @@ interface OutletContextProps {
 
 function TeamIssueKeyword() {
   const navigate = useNavigate();
+  const { fireToast } = useToast();
   const [createdKeywordIDs, setCreatedKeywordIDs] = useState<string[]>([]);
   const { keywordList, removeKeyword, addKeyword, targetUser } =
     useOutletContext<OutletContextProps>();
@@ -48,12 +50,24 @@ function TeamIssueKeyword() {
 
   const createKeyword = async () => {
     if (newKeywordContent === '') return;
+    if (keywordList.length >= 2) {
+      fireToast({ content: '키워드는 최대 2개 입력할 수 있어요' });
+      return;
+    }
     setIsKeywordCreating(true);
     const newKeyword = await api.userService.postKeyword(targetUser.id, newKeywordContent);
     addKeyword(newKeyword);
     setCreatedKeywordIDs((prev) => [...prev, newKeyword.id]);
     setNewKeywordContent('');
     setIsKeywordCreating(false);
+  };
+
+  const updateKeywordList = (keyword: Keyword) => {
+    if (keywordList.length >= 2) {
+      fireToast({ content: '키워드는 최대 2개 입력할 수 있어요' });
+      return;
+    }
+    addKeyword(keyword);
   };
 
   const deleteKeyword = (keyword: Keyword) => {
@@ -77,7 +91,7 @@ function TeamIssueKeyword() {
       <StWhiteWrapper>
         <CommonInput
           width="100%"
-          placeholder="새 키워드를 입력해주세요"
+          placeholder="새 키워드를 입력해주세요 (최대 2개)"
           value={newKeywordContent}
           onChange={(value: string) => setNewKeywordContent(value)}
           onSubmit={createKeyword}
@@ -96,7 +110,7 @@ function TeamIssueKeyword() {
           <ImmutableKeywordList
             keywordList={userKeywordList.pages.map((page) => page.result).flat()}
             viewMode="linear"
-            onItemClick={(keyword: Keyword) => addKeyword(keyword)}
+            onItemClick={updateKeywordList}
           />
           {isFetchingNextPage && <CommonLoader />}
         </>

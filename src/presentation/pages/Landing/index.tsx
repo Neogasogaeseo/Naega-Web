@@ -1,7 +1,17 @@
-import { useLoginUser } from '@hooks/useLoginUser';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import {
+  imgGlass,
+  imgLanding,
+  imgLink,
+  imgMainPage,
+  imgMypage,
+  imgTeamsoseo,
+} from '@assets/images';
+import TeamLandingLottie from '@assets/lottie/TeamLottie';
 import CommonHeader from '@components/common/Header';
+import { GaAction, GaCategory, useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
+import { useLoginUser } from '@hooks/useLoginUser';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   StFooter,
   StLandingWrapper,
@@ -16,16 +26,6 @@ import {
   StServiceButton,
   StShadow,
 } from './style';
-import {
-  imgGlass,
-  imgLanding,
-  imgLink,
-  imgMainPage,
-  imgMypage,
-  imgTeamsoseo,
-} from '@assets/images';
-import TeamLandingLottie from '@assets/lottie/TeamLottie';
-import { GaAction, GaCategory, useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
 
 function Landing() {
   const { isAuthenticated } = useLoginUser();
@@ -49,7 +49,17 @@ function Landing() {
         </div>
         <img src={imgMainPage} />
         <StShadow top={161} />
-        <StServiceButton theme="coral" onClick={() => navigate(`/login`)}>
+        <StServiceButton
+          theme="coral"
+          onClick={() => {
+            makeGaEvent({
+              category: GaCategory.LANDING,
+              action: GaAction.CLICK,
+              label: 'login_top',
+            });
+            navigate(`/login`);
+          }}
+        >
           너가소개서 받으러 가기
         </StServiceButton>
       </StMain>

@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
-import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
 import MySelectableList from '@components/MySelectableList';
@@ -32,13 +31,13 @@ function MyTeamPick() {
     [selectedTeam && selectedTeam.id],
   );
 
-  const {
-    data: feedbackInfo,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(['feedbackInfo', selectedTeam?.id], fetchFeedbacksByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-  });
+  const { data: feedbackInfo, fetchNextPage } = useInfiniteQuery(
+    ['feedbackInfo', selectedTeam?.id],
+    fetchFeedbacksByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+    },
+  );
 
   useEffect(() => {
     if (!isInitialState) fetchNextPage();
@@ -75,7 +74,6 @@ function MyTeamPick() {
         ) : (
           <MyPickEmptyView pickType="team" />
         )}
-        {isFetchingNextPage && <CommonLoader />}
       </StMyTeamPick>
     </>
   );

@@ -5,12 +5,11 @@ import { api } from '@api/index';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import CommonNavigation from '@components/common/Navigation';
 import CommonModal from '@components/common/Modal';
-import CommonLoader from '@components/common/Loader';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MyPageEditBottomSheet from '@components/common/BottomSheet/MyPageEdit';
 import { PAGES } from '@utils/constant';
-import { StMyKeyword, StMyKeywordHeader, StLoaderWrapper } from './style';
+import { StMyKeyword, StMyKeywordHeader } from './style';
 import { IcMeatball } from '@assets/icons';
 
 function MyKeyword() {
@@ -31,13 +30,13 @@ function MyKeyword() {
     };
   }, []);
 
-  const {
-    data: myKeywordList,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery('myKeywordList', fetchKeywordsByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-  });
+  const { data: myKeywordList, fetchNextPage } = useInfiniteQuery(
+    'myKeywordList',
+    fetchKeywordsByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+    },
+  );
 
   useEffect(() => {
     if (!isInitialState) fetchNextPage();
@@ -94,7 +93,6 @@ function MyKeyword() {
               }}
             />
           )}
-          <StLoaderWrapper>{isFetchingNextPage && <CommonLoader />}</StLoaderWrapper>
         </>
       ) : (
         <></>

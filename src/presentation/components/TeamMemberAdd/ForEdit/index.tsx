@@ -45,15 +45,15 @@ export default function TeamMemberAddForEdit(props: TeamMemberAddForEditProps) {
     [searchWord],
   );
 
-  const {
-    data: searchedUserListResponseByPage,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(['userSearch', searchWord], searchUserByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-    enabled: searchWord !== '',
-    retry: 1,
-  });
+  const { data: searchedUserListResponseByPage, fetchNextPage } = useInfiniteQuery(
+    ['userSearch', searchWord],
+    searchUserByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+      enabled: searchWord !== '',
+      retry: 1,
+    },
+  );
 
   const getState = (isConfirmed: boolean | null, id: number): UserState => {
     switch (isConfirmed) {
@@ -126,10 +126,7 @@ export default function TeamMemberAddForEdit(props: TeamMemberAddForEditProps) {
           />
         )}
       </StPaddingWrapper>
-      <UserSearchResult
-        isFetchingNextPage={isFetchingNextPage}
-        searchedUserList={searchedUserList}
-      />
+      <UserSearchResult searchedUserList={searchedUserList} />
     </StTeamMemberAdd>
   );
 }

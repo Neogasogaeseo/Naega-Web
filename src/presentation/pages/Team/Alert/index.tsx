@@ -1,5 +1,4 @@
 import { api } from '@api/index';
-import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import TeamNoticeItem from '@components/TeamNoticeItem';
 import { useScrollHeight } from '@hooks/useScrollHeight';
@@ -21,11 +20,7 @@ function TeamAlert() {
       id: pageParam,
     };
   }, []);
-  const {
-    data: noticeList,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery('notice', fetchNoticeByPage, {
+  const { data: noticeList, fetchNextPage } = useInfiniteQuery('notice', fetchNoticeByPage, {
     getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
   });
 
@@ -43,7 +38,6 @@ function TeamAlert() {
           .map((notice) => (
             <TeamNoticeItem key={notice.teamID} {...notice} />
           ))}
-        {isFetchingNextPage && <CommonLoader />}
       </StTeamNoticeItemContainer>
     </>
   );

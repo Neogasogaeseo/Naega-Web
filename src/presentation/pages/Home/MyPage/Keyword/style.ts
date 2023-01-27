@@ -29,7 +29,3 @@ export const StMyKeywordHeader = styled.div`
     cursor: pointer;
   }
 `;
-
-export const StLoaderWrapper = styled.div`
-  margin-top: 50px;
-`;

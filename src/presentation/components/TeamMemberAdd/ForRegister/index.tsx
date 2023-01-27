@@ -38,15 +38,15 @@ export default function TeamMemberAddForRegister({
     [searchWord],
   );
 
-  const {
-    data: searchedUserListResponseByPage,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(['userSearch', searchWord], searchUserByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-    enabled: searchWord !== '',
-    retry: 1,
-  });
+  const { data: searchedUserListResponseByPage, fetchNextPage } = useInfiniteQuery(
+    ['userSearch', searchWord],
+    searchUserByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+      enabled: searchWord !== '',
+      retry: 1,
+    },
+  );
 
   const getSearchedUserList = (): SearchedUserForRegister[] | null => {
     if (!searchedUserListResponseByPage) return null;
@@ -112,10 +112,7 @@ export default function TeamMemberAddForRegister({
           />
         )}
       </StPaddingWrapper>
-      <UserSearchResult
-        isFetchingNextPage={isFetchingNextPage}
-        searchedUserList={searchedUserList}
-      />
+      <UserSearchResult searchedUserList={searchedUserList} />
     </StTeamMemberAdd>
   );
 }

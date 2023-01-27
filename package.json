@@ -28,7 +28,6 @@
     "react-query": "3.34.16",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
-    "react-spinners": "0.11.0",
     "recoil": "^0.5.2",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4",

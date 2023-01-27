@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { api } from '@api/index';
 import { MyDetail } from '@api/types/user';
 import { useScrollHeight } from '@hooks/useScrollHeight';
-import CommonLoader from '@components/common/Loader';
 import CommonNavigation from '@components/common/Navigation';
 import MySelectableList from '@components/MySelectableList';
 import MyPickEmptyView from '@components/common/Empty/MyPick';
@@ -32,13 +31,13 @@ function MyNeogaPick() {
     [selectedForm && selectedForm.id],
   );
 
-  const {
-    data: answerInfo,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(['answerInfo', selectedForm?.id], fetchAnswersByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-  });
+  const { data: answerInfo, fetchNextPage } = useInfiniteQuery(
+    ['answerInfo', selectedForm?.id],
+    fetchAnswersByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+    },
+  );
 
   useEffect(() => {
     if (!isInitialState) fetchNextPage();
@@ -73,7 +72,6 @@ function MyNeogaPick() {
         ) : (
           <MyPickEmptyView pickType="neoga" />
         )}
-        {isFetchingNextPage && <CommonLoader />}
       </StMyNeogaPick>
     </>
   );

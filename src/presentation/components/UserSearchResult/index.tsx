@@ -1,18 +1,14 @@
-import React from 'react';
-
 import { SearchedUserForEdit, SearchedUserForRegister } from '@api/types/team';
 import UserSearchEmptyView from '@components/common/Empty/UserSearch';
-import CommonLoader from '@components/common/Loader';
 import SearchedUserItem from '@components/SearchedUserItem';
 import { StUserSearchResultForTeamRegister } from './style';
 
 interface UserSearchResultProps {
-  isFetchingNextPage: boolean;
   searchedUserList: SearchedUserForRegister[] | SearchedUserForEdit[] | null;
 }
 
 export default function UserSearchResult(props: UserSearchResultProps) {
-  const { isFetchingNextPage, searchedUserList } = props;
+  const { searchedUserList } = props;
 
   return (
     <StUserSearchResultForTeamRegister>
@@ -21,12 +17,7 @@ export default function UserSearchResult(props: UserSearchResultProps) {
         <></>
       ) : searchedUserList.length ? (
         searchedUserList.map((user) => {
-          return (
-            <React.Fragment key={user.id}>
-              <SearchedUserItem user={user} />
-              {isFetchingNextPage && <CommonLoader />}
-            </React.Fragment>
-          );
+          return <SearchedUserItem key={user.id} user={user} />;
         })
       ) : (
         <UserSearchEmptyView />

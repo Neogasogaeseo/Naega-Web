@@ -4,7 +4,6 @@ import KeywordEmptyView from '@components/common/Empty/Keyword';
 import CommonInput from '@components/common/Input';
 import ImmutableKeywordList from '@components/common/Keyword/ImmutableList';
 import MutableKeywordList from '@components/common/Keyword/MutableList';
-import CommonLoader from '@components/common/Loader';
 import { useScrollHeight } from '@hooks/useScrollHeight';
 import { useToast } from '@hooks/useToast';
 import { PAGES } from '@utils/constant';
@@ -40,13 +39,13 @@ function TeamIssueKeyword() {
     };
   }, []);
 
-  const {
-    data: userKeywordList,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery('keywords', fetchKeywordsByPage, {
-    getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
-  });
+  const { data: userKeywordList, fetchNextPage } = useInfiniteQuery(
+    'keywords',
+    fetchKeywordsByPage,
+    {
+      getNextPageParam: (lastPage) => (lastPage.isLast ? undefined : lastPage.nextPage),
+    },
+  );
 
   const createKeyword = async () => {
     if (newKeywordContent === '') return;
@@ -106,14 +105,11 @@ function TeamIssueKeyword() {
       </StTitleWrapper>
       {userKeywordList?.pages &&
       userKeywordList.pages.map((page) => page.result).flat().length > 0 ? (
-        <>
-          <ImmutableKeywordList
-            keywordList={userKeywordList.pages.map((page) => page.result).flat()}
-            viewMode="linear"
-            onItemClick={updateKeywordList}
-          />
-          {isFetchingNextPage && <CommonLoader />}
-        </>
+        <ImmutableKeywordList
+          keywordList={userKeywordList.pages.map((page) => page.result).flat()}
+          viewMode="linear"
+          onItemClick={updateKeywordList}
+        />
       ) : (
         <KeywordEmptyView />
       )}

@@ -42,8 +42,8 @@ function HomeNeoga() {
             <div>{banner.title}</div>
             <div>{banner.content}</div>
           </div>
-          <img src={banner.src} />
-          {banner.isNew && <img src={icNewTag} />}
+          <img src={banner.src} alt="" />
+          {banner.isNew && <img src={icNewTag} alt="new" />}
         </StBanner>
       )}
       {isTemplateListLoading ? (
@@ -56,7 +56,7 @@ function HomeNeoga() {
               <h2>지인에게 궁금한 내 모습을 물어보세요</h2>
               <StWholeButton onClick={() => navigate('/neoga/create')}>
                 전체보기
-                <img src={icWhole} />
+                <img src={icWhole} alt="" />
               </StWholeButton>
             </div>
             <NeogaMainCardList
@@ -79,7 +79,7 @@ function HomeNeoga() {
               {cardItem.resultList.length > 0 && (
                 <StWholeButton onClick={() => navigate('/neoga/result')}>
                   전체보기
-                  <img src={icWhole} />
+                  <img src={icWhole} alt="" />
                 </StWholeButton>
               )}
             </div>

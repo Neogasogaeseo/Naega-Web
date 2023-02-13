@@ -19,7 +19,7 @@ function NeogaResultCard(props: NeogaResultCardProps) {
   return (
     <StNeogaResultCard onClick={() => navigate(`/neoga/${id}/detail/form`)}>
       <StNeogaCardHeader>
-        <img src={darkIconImage || imgEmptyProfile} />
+        <img src={darkIconImage || imgEmptyProfile} alt="" />
         <div>
           <div>{title}</div>
           <div>{createdAt}</div>

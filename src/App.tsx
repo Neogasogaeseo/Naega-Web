@@ -1,14 +1,17 @@
 import { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
 
-import GlobalStyle from '@styles/global';
-import Router from '@routes/Router';
-import { useLoginUser } from '@hooks/useLoginUser';
 import ToastList from '@components/common/Toast/List';
+import { GaAction, GaCategory, useGoogleAnalytics } from '@hooks/useGoogleAnalytics';
+import { useLoginUser } from '@hooks/useLoginUser';
+import Router from '@routes/Router';
+import GlobalStyle from '@styles/global';
+import ReactGA from 'react-ga';
 
 function App() {
-  const { initLoginUser } = useLoginUser();
+  const { initLoginUser, userID, isAuthenticated } = useLoginUser();
+  const { isGoogleAnalyticsLoaded, makeGaEvent } = useGoogleAnalytics();
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -21,6 +24,19 @@ function App() {
   useEffect(() => {
     initLoginUser();
   }, []);
+
+  useEffect(() => {
+    if (isGoogleAnalyticsLoaded) {
+      makeGaEvent({
+        category: GaCategory.INIT,
+        action: GaAction.USER_AGENT,
+        label: navigator.userAgent,
+      });
+      if (isAuthenticated) {
+        ReactGA.set({ userID });
+      }
+    }
+  }, [isGoogleAnalyticsLoaded, isAuthenticated]);
 
   return (
     <>

@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import ReactGA from 'react-ga';
 
 export const enum GaCategory {
+  INIT = 'init',
   LANDING = 'landing',
   TSS = 'tss',
   NSS = 'nss',
 }
 
 export const enum GaAction {
+  USER_AGENT = 'user_agent',
   CLICK = 'click',
 }
 
